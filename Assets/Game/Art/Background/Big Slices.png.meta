@@ -80,6 +80,90 @@ TextureImporter:
   - first:
       213: 2769981088502979403
     second: SCi-fi assets planet one 1_25
+  - first:
+      213: 716512255656357631
+    second: Big Slices_0
+  - first:
+      213: 6048012666251763423
+    second: Big Slices_1
+  - first:
+      213: 1296857816748767687
+    second: Big Slices_2
+  - first:
+      213: 4823205176051326445
+    second: Big Slices_3
+  - first:
+      213: 6062233307344938008
+    second: Big Slices_4
+  - first:
+      213: 8313968099605570990
+    second: Big Slices_5
+  - first:
+      213: -4792684613082300611
+    second: Big Slices_6
+  - first:
+      213: -3287382994330469292
+    second: Big Slices_7
+  - first:
+      213: -6843359517455104163
+    second: Big Slices_8
+  - first:
+      213: 177933519164691701
+    second: Big Slices_9
+  - first:
+      213: 8947757572878321335
+    second: Big Slices_10
+  - first:
+      213: 8012060437165036321
+    second: Big Slices_11
+  - first:
+      213: -3422372553238037826
+    second: Big Slices_12
+  - first:
+      213: 3126794213404919252
+    second: Big Slices_13
+  - first:
+      213: -5474858346727486184
+    second: Big Slices_14
+  - first:
+      213: 8759561350949954119
+    second: Big Slices_15
+  - first:
+      213: 7407864024578412831
+    second: Big Slices_16
+  - first:
+      213: -1561742405983467153
+    second: Big Slices_17
+  - first:
+      213: 6482983588876351912
+    second: Big Slices_18
+  - first:
+      213: -9199185543746520107
+    second: Big Slices_19
+  - first:
+      213: -2000684247822304791
+    second: Big Slices_20
+  - first:
+      213: -2703359579358000861
+    second: Big Slices_21
+  - first:
+      213: -6094206399029750804
+    second: Big Slices_22
+  - first:
+      213: -2710171063774796810
+    second: Big Slices_23
+  - first:
+      213: -5472418886998563916
+    second: Big Slices_24
+  - first:
+      213: 2765955677976343764
+    second: Big Slices_25
+  - first:
+      213: -905570930713848718
+    second: Big Slices_26
+  - first:
+      213: 6982281899432135958
+    second: Big Slices_27
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -181,154 +265,154 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_0
+      name: Big Slices_0
       rect:
         serializedVersion: 2
         x: 0
         y: 176
         width: 256
         height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc7b2fa9baed69420800000000000000
-      internalID: 2636539460492376012
+      spriteID: ffe6c9ba91091f900800000000000000
+      internalID: 716512255656357631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_1
+      name: Big Slices_1
       rect:
         serializedVersion: 2
         x: 0
         y: 128
         width: 16
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 480b96f9e0ffb5cf0800000000000000
-      internalID: -262335715001913212
+      spriteID: fdedff8e97bdee350800000000000000
+      internalID: 6048012666251763423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_2
+      name: Big Slices_2
       rect:
         serializedVersion: 2
         x: 25
         y: 112
         width: 62
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d550f6afdd2ed8f0800000000000000
-      internalID: -513922868871932463
+      spriteID: 7c9bf73305d5ff110800000000000000
+      internalID: 1296857816748767687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_3
+      name: Big Slices_3
       rect:
         serializedVersion: 2
         x: 144
         y: 80
         width: 63
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e5f85b1c4acb42b0800000000000000
-      internalID: -5599159283479939607
+      spriteID: ded5d5d9d877fe240800000000000000
+      internalID: 4823205176051326445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_4
+      name: Big Slices_4
       rect:
         serializedVersion: 2
         x: 213
         y: 118
         width: 37
         height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e3d35391e34de60800000000000000
-      internalID: 7986076317223042575
+      spriteID: 81426dde211612450800000000000000
+      internalID: 6062233307344938008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_5
+      name: Big Slices_5
       rect:
         serializedVersion: 2
         x: 7
         y: 80
         width: 24
         height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8448e96af9b0910800000000000000
-      internalID: 1804711613664872649
+      spriteID: ea56be2ffe5216370800000000000000
+      internalID: 8313968099605570990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_6
+      name: Big Slices_6
       rect:
         serializedVersion: 2
         x: 87
         y: 80
         width: 39
         height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f45088a0c24fc79b0800000000000000
-      internalID: -5080917809588337329
+      spriteID: d3fbfb4bcb6fc7db0800000000000000
+      internalID: -4792684613082300611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_7
+      name: Big Slices_7
       rect:
         serializedVersion: 2
         x: 213
@@ -342,377 +426,419 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43354eb5f5580e300800000000000000
-      internalID: 279369821507048244
+      spriteID: 45cb54e759ed062d0800000000000000
+      internalID: -3287382994330469292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_8
+      name: Big Slices_8
       rect:
         serializedVersion: 2
         x: 5
         y: 48
         width: 27
         height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63ee05447ff156210800000000000000
-      internalID: 1325500812194016822
+      spriteID: d57cccbc6c08701a0800000000000000
+      internalID: -6843359517455104163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_9
+      name: Big Slices_9
       rect:
         serializedVersion: 2
         x: 37
-        y: 35
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 48
+        width: 27
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 981153b3ac6efd850800000000000000
-      internalID: 6404090951395250569
+      spriteID: 5f4527bc795287200800000000000000
+      internalID: 177933519164691701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_10
+      name: Big Slices_10
       rect:
         serializedVersion: 2
-        x: 63
+        x: 64
         y: 48
-        width: 17
+        width: 16
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2feee2f09e407fb0800000000000000
-      internalID: -4652132030615720146
+      spriteID: 7b649b3fa12dc2c70800000000000000
+      internalID: 8947757572878321335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_11
+      name: Big Slices_11
       rect:
         serializedVersion: 2
         x: 83
         y: 50
         width: 57
         height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 882d2490d8be1eab0800000000000000
-      internalID: -4980440721916767608
+      spriteID: 123de24948e803f60800000000000000
+      internalID: 8012060437165036321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_12
+      name: Big Slices_12
       rect:
         serializedVersion: 2
         x: 145
         y: 48
         width: 29
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1582fb7ffddcb7830800000000000000
-      internalID: 4070073050077276241
+      spriteID: eba333b9b4a4180d0800000000000000
+      internalID: -3422372553238037826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_13
+      name: Big Slices_13
       rect:
         serializedVersion: 2
         x: 183
         y: 35
         width: 66
         height: 35
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24c20b8ae38d25dd0800000000000000
-      internalID: -2498697079607514046
+      spriteID: 4d54fb745ca946b20800000000000000
+      internalID: 3126794213404919252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_14
+      name: Big Slices_14
       rect:
         serializedVersion: 2
         x: 0
         y: 32
         width: 14
         height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd7ce1ef5d972c150800000000000000
-      internalID: 5891405222552455135
+      spriteID: 81dc9b737556504b0800000000000000
+      internalID: -5474858346727486184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_15
+      name: Big Slices_15
       rect:
         serializedVersion: 2
         x: 16
         y: 32
         width: 14
         height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e3c48526b40ad170800000000000000
-      internalID: 8203874851568796647
+      spriteID: 742ec9773a6309970800000000000000
+      internalID: 8759561350949954119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_16
+      name: Big Slices_16
       rect:
         serializedVersion: 2
         x: 65
         y: 32
         width: 14
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a212e088d04dcc3a0800000000000000
-      internalID: -6643702195696033494
+      spriteID: f115461f4150ec660800000000000000
+      internalID: 7407864024578412831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_17
+      name: Big Slices_17
       rect:
         serializedVersion: 2
         x: 81
         y: 32
         width: 14
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f083b00b0c9451d10800000000000000
-      internalID: 2095662293546907663
+      spriteID: f6901b46e83935ae0800000000000000
+      internalID: -1561742405983467153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_18
+      name: Big Slices_18
       rect:
         serializedVersion: 2
         x: 99
         y: 32
         width: 11
         height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c699024e0631b72f0800000000000000
-      internalID: -974163587530450580
+      spriteID: 8a979abc93f28f950800000000000000
+      internalID: 6482983588876351912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_19
+      name: Big Slices_19
       rect:
         serializedVersion: 2
         x: 100
         y: 16
         width: 23
         height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6d2fc182fed57c80800000000000000
-      internalID: -8325503202983203473
+      spriteID: 5db7412cc7de55080800000000000000
+      internalID: -9199185543746520107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_20
+      name: Big Slices_20
       rect:
         serializedVersion: 2
         x: 145
         y: 32
         width: 22
         height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8636e594c4f98d9f0800000000000000
-      internalID: -443429413298740376
+      spriteID: 9e9f4d4d6442c34e0800000000000000
+      internalID: -2000684247822304791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_21
+      name: Big Slices_21
       rect:
         serializedVersion: 2
         x: 5
         y: 6
         width: 41
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2282f65ee005520800000000000000
-      internalID: 2688665356115387075
+      spriteID: 329873c19ccbb7ad0800000000000000
+      internalID: -2703359579358000861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_22
+      name: Big Slices_22
       rect:
         serializedVersion: 2
         x: 49
         y: 6
         width: 46
         height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb5edd561871b7710800000000000000
-      internalID: 1691971929535014335
+      spriteID: ce35bed81970d6ba0800000000000000
+      internalID: -6094206399029750804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_23
+      name: Big Slices_23
       rect:
         serializedVersion: 2
         x: 101
         y: 0
         width: 53
         height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45a678008bb4b5120800000000000000
-      internalID: 2403598079787231828
+      spriteID: 6f3292fc6c9836ad0800000000000000
+      internalID: -2710171063774796810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_24
+      name: Big Slices_24
       rect:
         serializedVersion: 2
         x: 146
-        y: 9
+        y: 16
         width: 26
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87a1c12b3f4460b0800000000000000
-      internalID: -5736372909975165043
+      spriteID: 4b3ef4234001e04b0800000000000000
+      internalID: -5472418886998563916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SCi-fi assets planet one 1_25
+      name: Big Slices_25
       rect:
         serializedVersion: 2
         x: 183
         y: 4
         width: 66
         height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d43142d806a26620800000000000000
+      internalID: 2765955677976343764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Slices_26
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 35
+        width: 20
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27491e35904ce63f0800000000000000
+      internalID: -905570930713848718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Slices_27
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 64
+        width: 3
+        height: 2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -720,8 +846,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4b15cebf13f07620800000000000000
-      internalID: 2769981088502979403
+      spriteID: 61dca41d46c06e060800000000000000
+      internalID: 6982281899432135958
       vertices: []
       indices: 
       edges: []

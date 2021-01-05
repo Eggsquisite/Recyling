@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 2f;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private PlayerAnimation playerAnim;
+    private SpriteRenderer sp;
 
     private float xAxis;
     private float yAxis;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sp = GetComponent<SpriteRenderer>();
         playerAnim = GetComponent<PlayerAnimation>();
     }
 
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
                 playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK1);
 
                 attackDelay = anim.GetCurrentAnimatorStateInfo(0).length;
+                Debug.Log(attackDelay);
                 Invoke("ResetAttack", attackDelay);
             }
         }
