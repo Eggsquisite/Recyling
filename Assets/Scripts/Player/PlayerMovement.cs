@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 2f;
+    [SerializeField]
+    private float verticalSpeedMult = 0.75f;
+    [SerializeField]
+    private float horizontalSpeedMult = 1.25f;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -29,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
-        yAxis = Input.GetAxis("Vertical");
+        yAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
             isAttackPressed1 = true;
@@ -38,22 +42,18 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //movement
-        Vector2 vel = new Vector2(0, rb.velocity.y);
+        Vector2 movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
         if (!isAttacking)
         {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
             if (xAxis < 0)
             {
-                vel.x = -moveSpeed;
                 transform.localScale = new Vector2(-1, 1);
             }
             else if (xAxis > 0)
             {
-                vel.x = moveSpeed;
                 transform.localScale = new Vector2(1, 1);
-            }
-            else
-            {
-                vel.x = 0;
             }
         }
 
@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             if (!isAttacking)
             {
                 isAttacking = true;
+                movement = Vector2.zero;
 
                 playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK1);
 
