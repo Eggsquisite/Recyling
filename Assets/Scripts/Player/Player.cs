@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private bool isAttackPressed;
     private bool isSuperAttackPressed;
     private bool isAttacking;
+    private bool canReceiveInput = true;
 
     // Start is called before the first frame update
     void Start()
@@ -39,34 +40,46 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // movement inputs
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        // attack inputs
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
             isAttackPressed = true;
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isAttacking)
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
             isSuperAttackPressed = true;
     }
 
     private void FixedUpdate()
     {
-        //movement
+        // movement ---------------------------------
+        Movement();
+
+        // idle/run animation --------------------------------
+        MovementAnimation();
+
+        //attack ------------------------------------
+        Attack();
+    }
+
+    private void Movement()
+    {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
         if (!isAttacking)
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
             if (xAxis < 0)
-            {
                 transform.localScale = new Vector2(-1, 1);
-            }
             else if (xAxis > 0)
-            {
                 transform.localScale = new Vector2(1, 1);
-            }
         }
+    }
 
-        //animation
+    private void MovementAnimation()
+    {
+        // attack animations override run/idle anims
         if (!isAttacking)
         {
             if (xAxis != 0 || yAxis != 0)
@@ -74,38 +87,66 @@ public class Player : MonoBehaviour
             else
                 playerAnim.ChangeAnimationState(AnimStates.PLAYER_IDLE);
         }
-
-        //attack
-        if (isAttackPressed)
-        {
-            isAttackPressed = false;
-            attackCombo += 1;
-            Attack(attackCombo);
-        }
-        else if (isSuperAttackPressed)
-        {
-            isSuperAttackPressed = false;
-            Attack(4);
-        }
-
     }
 
-    private void Attack(int attackIndex)
+    private void Attack()
     {
+        // case for first attack
+        if (isAttackPressed && canReceiveInput && !isAttacking)
+        {
+            attackCombo += 1;
+            AttackAnimation(attackCombo);
+
+            isAttackPressed = false;
+            canReceiveInput = false;
+        }
+        // case for combo attacks
+        else if (isAttackPressed && canReceiveInput && isAttacking && attackCombo < 3)
+        {
+            attackCombo += 1;
+            AttackAnimation(attackCombo);
+
+            isAttackPressed = false;
+            canReceiveInput = false;
+        }
+        // case for super attack
+        else if (isSuperAttackPressed)
+        {
+            AttackAnimation(10);
+
+            isSuperAttackPressed = false;
+            canReceiveInput = false;
+        }
+    }
+
+    private void AttackAnimation(int attackIndex)
+    {
+        // stop movement when attacking
+        movement = Vector2.zero;
+
+        // case for first attack in combo/super attack
         if (!isAttacking)
         {
             isAttacking = true;
-            movement = Vector2.zero;
 
-            GetAttackAnimation(attackIndex);
-            
+            GetAttackDelay(attackIndex);
+
             Debug.Log(attackDelay);
+            Invoke("ResetAttack", attackDelay);
+        }
+        // case for combos
+        else if (isAttacking)
+        {
+            CancelInvoke("ResetAttack");
+
+            GetAttackDelay(attackIndex);
+
             Invoke("ResetAttack", attackDelay);
         }
     }
 
-    private void GetAttackAnimation(int attackIndex)
-    { 
+    private void GetAttackDelay(int attackIndex)
+    {
         if (attackIndex == 1)
         {
             attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK1);
@@ -121,16 +162,28 @@ public class Player : MonoBehaviour
             attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK3);
             playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK3);
         }
-        else if (attackIndex == 4)
+        else if (attackIndex == 10)
         {
             attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_SUPERATTACK);
             playerAnim.ChangeAnimationState(AnimStates.PLAYER_SUPERATTACK);
         }
+        else
+            return;
     }
 
     private void ResetAttack()
     {
         attackCombo = 0;
         isAttacking = false;
+        canReceiveInput = true;
+    }
+
+    private void ComboInput()
+    {
+        // called during attack animation, allows input such as combos or dodging 
+        if (isAttacking && attackCombo > 0)
+            canReceiveInput = true;
+        else
+            return;
     }
 }
