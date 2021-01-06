@@ -164,6 +164,9 @@ TextureImporter:
   - first:
       213: 6982281899432135958
     second: Big Slices_27
+  - first:
+      213: -4406490145820995202
+    second: Big Slices_28
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -333,7 +336,7 @@ TextureImporter:
         serializedVersion: 2
         x: 144
         y: 80
-        width: 63
+        width: 47
         height: 52
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -419,8 +422,8 @@ TextureImporter:
         y: 84
         width: 41
         height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -482,8 +485,8 @@ TextureImporter:
         y: 48
         width: 16
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -503,8 +506,8 @@ TextureImporter:
         y: 50
         width: 57
         height: 23
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -545,8 +548,8 @@ TextureImporter:
         y: 35
         width: 66
         height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -608,8 +611,8 @@ TextureImporter:
         y: 32
         width: 14
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -629,8 +632,8 @@ TextureImporter:
         y: 32
         width: 14
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -755,8 +758,8 @@ TextureImporter:
         y: 0
         width: 53
         height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -797,8 +800,8 @@ TextureImporter:
         y: 4
         width: 66
         height: 22
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -848,6 +851,27 @@ TextureImporter:
       bones: []
       spriteID: 61dca41d46c06e060800000000000000
       internalID: 6982281899432135958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Slices_28
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 80
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7194181f8009d2c0800000000000000
+      internalID: -4406490145820995202
       vertices: []
       indices: 
       edges: []

@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     private PlayerAnimation playerAnim;
     private SpriteRenderer sp;
 
+    private Vector2 movement;
     private float xAxis;
     private float yAxis;
     private float attackDelay;
-    private bool isAttackPressed1, isAttackPressed2, isAttackPressed3, isSuperAttackPressed;
+    private int attackCombo;
+    private bool isAttackPressed;
+    private bool isSuperAttackPressed;
     private bool isAttacking;
 
     // Start is called before the first frame update
@@ -29,6 +32,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         playerAnim = GetComponent<PlayerAnimation>();
+
+        ResetAttack();
     }
 
     // Update is called once per frame
@@ -38,13 +43,15 @@ public class Player : MonoBehaviour
         yAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
-            isAttackPressed1 = true;
+            isAttackPressed = true;
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isAttacking)
+            isSuperAttackPressed = true;
     }
 
     private void FixedUpdate()
     {
         //movement
-        Vector2 movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
+        movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
         if (!isAttacking)
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
@@ -69,26 +76,61 @@ public class Player : MonoBehaviour
         }
 
         //attack
-        if (isAttackPressed1)
+        if (isAttackPressed)
         {
-            isAttackPressed1 = false;
+            isAttackPressed = false;
+            attackCombo += 1;
+            Attack(attackCombo);
+        }
+        else if (isSuperAttackPressed)
+        {
+            isSuperAttackPressed = false;
+            Attack(4);
+        }
 
-            if (!isAttacking)
-            {
-                isAttacking = true;
-                movement = Vector2.zero;
+    }
 
-                playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK1);
+    private void Attack(int attackIndex)
+    {
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            movement = Vector2.zero;
 
-                attackDelay = anim.GetCurrentAnimatorStateInfo(0).length;
-                Debug.Log(attackDelay);
-                Invoke("ResetAttack", attackDelay);
-            }
+            GetAttackAnimation(attackIndex);
+            
+            Debug.Log(attackDelay);
+            Invoke("ResetAttack", attackDelay);
+        }
+    }
+
+    private void GetAttackAnimation(int attackIndex)
+    { 
+        if (attackIndex == 1)
+        {
+            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK1);
+            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK1);
+        }
+        else if (attackIndex == 2)
+        {
+            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK2);
+            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK2);
+        }
+        else if (attackIndex == 3)
+        {
+            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK3);
+            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK3);
+        }
+        else if (attackIndex == 4)
+        {
+            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_SUPERATTACK);
+            playerAnim.ChangeAnimationState(AnimStates.PLAYER_SUPERATTACK);
         }
     }
 
     private void ResetAttack()
     {
+        attackCombo = 0;
         isAttacking = false;
     }
 }
