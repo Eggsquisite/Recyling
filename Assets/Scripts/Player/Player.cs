@@ -130,8 +130,6 @@ public class Player : MonoBehaviour
             isAttacking = true;
 
             GetAttackDelay(attackIndex);
-
-            Debug.Log(attackDelay);
             Invoke("ResetAttack", attackDelay);
         }
         // case for combos
