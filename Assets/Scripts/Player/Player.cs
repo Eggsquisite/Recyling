@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         // case for first attack
-        if (isAttackPressed && canReceiveInput && !isAttacking)
+        if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0)
         {
             attackCombo += 1;
             AttackAnimation(attackCombo);
@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
             isAttacking = true;
 
             GetAttackDelay(attackIndex);
+
             Invoke("ResetAttack", attackDelay);
         }
         // case for combos
