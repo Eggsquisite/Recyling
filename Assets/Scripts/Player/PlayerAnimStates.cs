@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class AnimStates 
+public static class PlayerAnimStates 
 {
     public static string PLAYER_IDLE { get { return "player_idle"; } }
     public static string PLAYER_RUN { get { return "player_run"; } }

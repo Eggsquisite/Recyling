@@ -83,9 +83,9 @@ public class Player : MonoBehaviour
         if (!isAttacking)
         {
             if (xAxis != 0 || yAxis != 0)
-                playerAnim.ChangeAnimationState(AnimStates.PLAYER_RUN);
+                playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_RUN);
             else
-                playerAnim.ChangeAnimationState(AnimStates.PLAYER_IDLE);
+                playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_IDLE);
         }
     }
 
@@ -148,23 +148,23 @@ public class Player : MonoBehaviour
     {
         if (attackIndex == 1)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK1);
-            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK1);
+            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK1);
+            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK1);
         }
         else if (attackIndex == 2)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK2);
-            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK2);
+            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK2);
+            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK2);
         }
         else if (attackIndex == 3)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_ATTACK3);
-            playerAnim.ChangeAnimationState(AnimStates.PLAYER_ATTACK3);
+            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK3);
+            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK3);
         }
         else if (attackIndex == 10)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(AnimStates.PLAYER_SUPERATTACK);
-            playerAnim.ChangeAnimationState(AnimStates.PLAYER_SUPERATTACK);
+            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_SUPERATTACK);
+            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_SUPERATTACK);
         }
         else
             return;
