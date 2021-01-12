@@ -13,8 +13,18 @@ public class BasicEnemy : MonoBehaviour
     private string currentState;
     private float time;
 
+    [Header("Attack Collider")]
     [SerializeField]
     private float attackDelay;
+
+    [SerializeField]
+    private Transform attackPoint;
+
+    [SerializeField]
+    private float attackRange;
+
+    [SerializeField]
+    private LayerMask enemyLayers;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +35,7 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
 
         ResetAttack();
-        InvokeRepeating("AttackAnimation", 2f, 4f);
+        InvokeRepeating("AttackAnimation", 2f, 3f);
     }
 
     public void ChangeAnimationState(string newState)
@@ -67,11 +77,17 @@ public class BasicEnemy : MonoBehaviour
     private void Attack()
     {
         Debug.Log("attacking");
+        Collider2D[] hitEnemies = Physics2D.OverlapCapsuleAll(attackPoint.position, attackPoint.position + Vector3.right, CapsuleDirection2D.Horizontal, enemyLayers);
     }
 
     private void ResetAttack()
     {
         isAttacking = false;
         ChangeAnimationState(EnemyAnimStates.ENEMY_IDLE);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        
     }
 }
