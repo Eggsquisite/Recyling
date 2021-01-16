@@ -21,10 +21,10 @@ public class BasicEnemy : MonoBehaviour
     private Transform attackPoint;
 
     [SerializeField]
-    private float attackDistanceMultiplier;
+    private float attackLengthMultiplier;
 
     [SerializeField]
-    private float attackRadius;
+    private float attackWidthMultiplier;
 
     [SerializeField]
     private LayerMask playerLayer;
@@ -79,11 +79,8 @@ public class BasicEnemy : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("attacking");
-        Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(new Vector2(attackPoint.transform.position.x, attackPoint.transform.position.y), 
-                                                        new Vector2(1, 0.3f) * attackDistanceMultiplier, 
-                                                        CapsuleDirection2D.Horizontal,
-                                                        0f);
+        //Debug.Log("attacking");
+        Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
 
         foreach (Collider2D player in hitPlayer)
         { 
@@ -100,6 +97,6 @@ public class BasicEnemy : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        DebugExtension.DrawCapsule(attackPoint.position, attackPoint.position + Vector3.right * attackDistanceMultiplier, Color.grey, attackRadius);
+        //DebugExtension.DrawCapsule(attackPoint.position, attackPoint.position + Vector3.right * attackDistanceMultiplier, Color.grey, attackRadius);
     }
 }
