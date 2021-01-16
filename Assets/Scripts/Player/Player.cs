@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement Properties")]
     [SerializeField]
     private float moveSpeed = 2f;
     [SerializeField]
     private float verticalSpeedMult = 0.75f;
     [SerializeField]
     private float horizontalSpeedMult = 1.25f;
+
+    [Header("Damaged Properties")]
+    [SerializeField]
+    private float hurtMaxTime;
+    private float hurtTimer;
+    private float flashInterval = 0.1f;
+    private float flashTimer;
+    private bool hurt;
+    private bool invincible;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -49,6 +59,9 @@ public class Player : MonoBehaviour
             isAttackPressed = true;
         else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
             isSuperAttackPressed = true;
+
+        if (hurt)
+            DamageFlash();
     }
 
     private void FixedUpdate()
@@ -184,5 +197,38 @@ public class Player : MonoBehaviour
             canReceiveInput = true;
         else
             return;
+    }
+
+    public void Hit()
+    {
+        Debug.Log("Player is hurt");
+        if (!hurt && !invincible)
+        {
+            hurt = true;
+            invincible = true;
+            // take damage
+        }
+    }
+
+    private void DamageFlash()
+    { 
+            if (hurtTimer < hurtMaxTime)
+                hurtTimer += Time.deltaTime;
+            else if (hurtTimer >= hurtMaxTime)
+            {
+                hurt = false;
+                invincible = false;
+                sp.enabled = true;
+
+                hurtTimer = 0;
+            }
+
+            if (flashTimer < flashInterval)
+                flashTimer += Time.deltaTime;
+            else if (flashTimer >= flashInterval)
+            {
+                sp.enabled = !sp.enabled;
+                flashTimer = 0;
+            }
     }
 }

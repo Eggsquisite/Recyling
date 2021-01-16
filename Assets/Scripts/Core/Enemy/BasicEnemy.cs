@@ -10,6 +10,7 @@ public class BasicEnemy : MonoBehaviour
     private RuntimeAnimatorController ac;
 
     private bool isAttacking;
+    private bool attackHit;
     private string currentState;
     private float time;
 
@@ -39,6 +40,20 @@ public class BasicEnemy : MonoBehaviour
 
         ResetAttack();
         InvokeRepeating("AttackAnimation", 2f, attackDelay);
+    }
+
+    private void Update()
+    {
+        if (attackHit)
+        {
+            Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+
+            foreach (Collider2D player in hitPlayer)
+            {
+                if (player.tag == "Player")
+                    player.GetComponent<Player>().Hit();
+            }
+        }
     }
 
     public void ChangeAnimationState(string newState)
@@ -77,16 +92,15 @@ public class BasicEnemy : MonoBehaviour
         Invoke("ResetAttack", GetAnimationClipLength(EnemyAnimStates.ENEMY_ATTACK1));
     }
 
-    private void Attack()
+    private void AttackOn()
     {
         //Debug.Log("attacking");
-        Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+        attackHit = true;
+    }
 
-        foreach (Collider2D player in hitPlayer)
-        { 
-            if (player.tag == "Player")
-                Debug.Log("Hit + " + player.name);
-        }
+    private void AttackOff()
+    {
+        attackHit = false;
     }
 
     private void ResetAttack()
