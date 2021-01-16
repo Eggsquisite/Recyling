@@ -21,10 +21,13 @@ public class BasicEnemy : MonoBehaviour
     private Transform attackPoint;
 
     [SerializeField]
-    private float attackRange;
+    private float attackDistanceMultiplier;
 
     [SerializeField]
-    private LayerMask enemyLayers;
+    private float attackRadius;
+
+    [SerializeField]
+    private LayerMask playerLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +38,7 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
 
         ResetAttack();
-        InvokeRepeating("AttackAnimation", 2f, 3f);
+        InvokeRepeating("AttackAnimation", 2f, attackDelay);
     }
 
     public void ChangeAnimationState(string newState)
@@ -77,7 +80,16 @@ public class BasicEnemy : MonoBehaviour
     private void Attack()
     {
         Debug.Log("attacking");
-        Collider2D[] hitEnemies = Physics2D.OverlapCapsuleAll(attackPoint.position, attackPoint.position + Vector3.right, CapsuleDirection2D.Horizontal, enemyLayers);
+        Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(new Vector2(attackPoint.transform.position.x, attackPoint.transform.position.y), 
+                                                        new Vector2(1, 0.3f) * attackDistanceMultiplier, 
+                                                        CapsuleDirection2D.Horizontal,
+                                                        0f);
+
+        foreach (Collider2D player in hitPlayer)
+        { 
+            if (player.tag == "Player")
+                Debug.Log("Hit + " + player.name);
+        }
     }
 
     private void ResetAttack()
@@ -88,6 +100,6 @@ public class BasicEnemy : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        
+        DebugExtension.DrawCapsule(attackPoint.position, attackPoint.position + Vector3.right * attackDistanceMultiplier, Color.grey, attackRadius);
     }
 }
