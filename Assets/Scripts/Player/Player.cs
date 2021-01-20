@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float horizontalSpeedMult = 1.25f;
 
+    private Vector2 movement;
+    private float xAxis;
+    private float yAxis;
+
     [Header("Damaged Properties")]
     [SerializeField]
     private float hurtMaxTime;
@@ -23,14 +27,13 @@ public class Player : MonoBehaviour
     private bool isStunned;
     private float stunDuration;
 
+    private string currentState;
     private Animator anim;
     private Rigidbody2D rb;
-    private PlayerAnimation playerAnim;
     private SpriteRenderer sp;
+    private RuntimeAnimatorController ac;
 
-    private Vector2 movement;
-    private float xAxis;
-    private float yAxis;
+    [Header("Attack Properties")]
     private float attackDelay;
     private int attackCombo;
     private bool isAttackPressed;
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
-        playerAnim = GetComponent<PlayerAnimation>();
+        ac = anim.runtimeAnimatorController;
 
         ResetAttack();
     }
@@ -101,9 +104,9 @@ public class Player : MonoBehaviour
         if (!isAttacking)
         {
             if (xAxis != 0 || yAxis != 0)
-                playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_RUN);
+                AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_RUN);
             else
-                playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_IDLE);
+                AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_IDLE);
         }
     }
 
@@ -166,23 +169,23 @@ public class Player : MonoBehaviour
     {
         if (attackIndex == 1)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK1);
-            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK1);
+            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK1);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK1);
         }
         else if (attackIndex == 2)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK2);
-            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK2);
+            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK2);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK2);
         }
         else if (attackIndex == 3)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_ATTACK3);
-            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_ATTACK3);
+            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK3);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK3);
         }
         else if (attackIndex == 10)
         {
-            attackDelay = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_SUPERATTACK);
-            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_SUPERATTACK);
+            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_SUPERATTACK);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_SUPERATTACK);
         }
         else
             return;
@@ -204,17 +207,16 @@ public class Player : MonoBehaviour
             return;
     }
 
-    public void Hit()
+    public void Hit(int damageNum)
     {
-        Debug.Log("Player is hurt");
         if (!hurt && !invincible)
         {
             hurt = true;
             invincible = true;
 
             isStunned = true;
-            stunDuration = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_HURT);
-            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_HURT);
+            stunDuration = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_HURT);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_HURT);
             Invoke("ResetStun", stunDuration);
 
             // take damage

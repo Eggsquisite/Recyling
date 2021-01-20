@@ -30,6 +30,14 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private LayerMask playerLayer;
 
+    [Header("Attack Stats")]
+    [SerializeField]
+    private int damage;
+
+    private bool hurt;
+    private bool isStunned;
+    private bool stunDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +59,7 @@ public class BasicEnemy : MonoBehaviour
             foreach (Collider2D player in hitPlayer)
             {
                 if (player.tag == "Player")
-                    player.GetComponent<Player>().Hit();
+                    player.GetComponent<Player>().Hit(1);
             }
         }
     }
@@ -89,7 +97,8 @@ public class BasicEnemy : MonoBehaviour
         ChangeAnimationState(EnemyAnimStates.ENEMY_ATTACK1);
 
 
-        Invoke("ResetAttack", GetAnimationClipLength(EnemyAnimStates.ENEMY_ATTACK1));
+        //Invoke("ResetAttack", GetAnimationClipLength(EnemyAnimStates.ENEMY_ATTACK1));
+        Invoke("ResetAttack", AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_ATTACK1));
     }
 
     private void AttackOn()
@@ -107,6 +116,14 @@ public class BasicEnemy : MonoBehaviour
     {
         isAttacking = false;
         ChangeAnimationState(EnemyAnimStates.ENEMY_IDLE);
+    }
+
+    public void Hurt(int damageNum)
+    {
+        if (!hurt)
+        {
+            hurt = true;
+        }
     }
 
     private void OnDrawGizmosSelected()
