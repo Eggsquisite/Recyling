@@ -33,7 +33,20 @@ public class Player : MonoBehaviour
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
 
+    [Header("Attack Collider Properties")]
+    [SerializeField]
+    private Transform attackPoint;
+
+    [SerializeField]
+    private float attackLengthMultiplier;
+
+    [SerializeField]
+    private float attackWidthMultiplier;
+
     [Header("Attack Properties")]
+    [SerializeField]
+    private float damage;
+    
     private float attackDelay;
     private int attackCombo;
     private bool isAttackPressed;
@@ -191,6 +204,17 @@ public class Player : MonoBehaviour
             return;
     }
 
+    private void AttackHit(float attackMultiplier)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.tag == "Enemy")
+                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier));
+        }
+    }
+
     private void ResetAttack()
     {
         attackCombo = 0;
@@ -207,7 +231,7 @@ public class Player : MonoBehaviour
             return;
     }
 
-    public void Hit(int damageNum)
+    public void Hurt(int damageNum)
     {
         if (!hurt && !invincible)
         {
@@ -230,23 +254,23 @@ public class Player : MonoBehaviour
 
     private void DamageFlash()
     { 
-            if (hurtTimer < hurtMaxTime)
-                hurtTimer += Time.deltaTime;
-            else if (hurtTimer >= hurtMaxTime)
-            {
-                hurt = false;
-                invincible = false;
-                sp.enabled = true;
+        if (hurtTimer < hurtMaxTime)
+            hurtTimer += Time.deltaTime;
+        else if (hurtTimer >= hurtMaxTime)
+        {
+            hurt = false;
+            invincible = false;
+            sp.enabled = true;
 
-                hurtTimer = 0;
-            }
+            hurtTimer = 0;
+        }
 
-            if (flashTimer < flashInterval)
-                flashTimer += Time.deltaTime;
-            else if (flashTimer >= flashInterval)
-            {
-                sp.enabled = !sp.enabled;
-                flashTimer = 0;
-            }
+        if (flashTimer < flashInterval)
+            flashTimer += Time.deltaTime;
+        else if (flashTimer >= flashInterval)
+        {
+            sp.enabled = !sp.enabled;
+            flashTimer = 0;
+        }
     }
 }

@@ -27,8 +27,8 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float attackWidthMultiplier;
 
-    [SerializeField]
-    private LayerMask playerLayer;
+    /*[SerializeField]
+    private LayerMask playerLayer;*/
 
     [Header("Attack Stats")]
     [SerializeField]
@@ -36,7 +36,7 @@ public class BasicEnemy : MonoBehaviour
 
     private bool hurt;
     private bool isStunned;
-    private bool stunDuration;
+    private float stunDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
 
         ResetAttack();
-        InvokeRepeating("AttackAnimation", 2f, attackDelay);
+        //InvokeRepeating("AttackAnimation", 2f, attackDelay);
     }
 
     private void Update()
@@ -59,71 +59,60 @@ public class BasicEnemy : MonoBehaviour
             foreach (Collider2D player in hitPlayer)
             {
                 if (player.tag == "Player")
-                    player.GetComponent<Player>().Hit(1);
+                    player.GetComponent<Player>().Hurt(1);
             }
         }
-    }
-
-    public void ChangeAnimationState(string newState)
-    {
-        // guard to stop an animation from overriding itself
-        if (currentState == newState) return;
-
-        // play the new animation clip
-        anim.Play(newState);
-
-        // set the current state to the new state 
-        currentState = newState;
-    }
-
-    public float GetAnimationClipLength(string animation)
-    {
-        time = 0;
-
-        for (int i = 0; i < ac.animationClips.Length; i++)
-        {
-            if (ac.animationClips[i].name == animation)
-            {
-                time = ac.animationClips[i].length;
-                return time;
-            }
-        }
-        return 0;
     }
 
     private void AttackAnimation()
     {
-        isAttacking = true;
-        ChangeAnimationState(EnemyAnimStates.ENEMY_ATTACK1);
+        if (!isStunned)
+        {
+            isAttacking = true;
+            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_ATTACK1);
 
-
-        //Invoke("ResetAttack", GetAnimationClipLength(EnemyAnimStates.ENEMY_ATTACK1));
-        Invoke("ResetAttack", AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_ATTACK1));
-    }
-
-    private void AttackOn()
-    {
-        //Debug.Log("attacking");
-        attackHit = true;
-    }
-
-    private void AttackOff()
-    {
-        attackHit = false;
+            Invoke("ResetAttack", AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_ATTACK1));
+        }
     }
 
     private void ResetAttack()
     {
         isAttacking = false;
-        ChangeAnimationState(EnemyAnimStates.ENEMY_IDLE);
+
+        if (!isStunned)
+            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_IDLE);
+    }
+    private void AttackOn()
+    {
+        //called thru animation event
+        attackHit = true;
     }
 
-    public void Hurt(int damageNum)
+    private void AttackOff()
+    {
+        //called thru animation event
+        attackHit = false;
+    }
+
+    public void Hurt(float damageNum)
     {
         if (!hurt)
         {
+            Debug.Log("Enemy Hit + " + name);
             hurt = true;
+            isStunned = true;
+
+            stunDuration = AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_HURT);
+            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_HURT);
+            Invoke("ResetStun", stunDuration);
         }
+    }
+
+    private void ResetStun()
+    {
+        hurt = false;
+        isStunned = false;
+        AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_IDLE);
     }
 
     private void OnDrawGizmosSelected()
