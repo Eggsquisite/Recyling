@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private float flashTimer;
     private bool hurt;
     private bool invincible;
+    private bool isStunned;
+    private float stunDuration;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -66,14 +68,17 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // movement ---------------------------------
-        Movement();
+        if (!isStunned)
+        {
+            // movement ---------------------------------
+            Movement();
 
-        // idle/run animation --------------------------------
-        MovementAnimation();
+            // idle/run animation --------------------------------
+            MovementAnimation();
 
-        //attack ------------------------------------
-        Attack();
+            //attack ------------------------------------
+            Attack();
+        }
     }
 
     private void Movement()
@@ -206,8 +211,19 @@ public class Player : MonoBehaviour
         {
             hurt = true;
             invincible = true;
+
+            isStunned = true;
+            stunDuration = playerAnim.GetAnimationClipLength(PlayerAnimStates.PLAYER_HURT);
+            playerAnim.ChangeAnimationState(PlayerAnimStates.PLAYER_HURT);
+            Invoke("ResetStun", stunDuration);
+
             // take damage
         }
+    }
+
+    private void ResetStun()
+    {
+        isStunned = false;
     }
 
     private void DamageFlash()
