@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     [Header("Attack Properties")]
     [SerializeField]
     private float damage;
+
+    [SerializeField]
+    private float pushbackDistance;
     
     private float attackDelay;
     private int attackCombo;
@@ -211,7 +214,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy")
-                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier), transform);
+                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier), pushbackDistance, transform);
         }
     }
 

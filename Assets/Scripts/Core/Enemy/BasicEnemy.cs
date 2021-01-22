@@ -34,9 +34,6 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private int damage;
 
-    [SerializeField]
-    private float pushbackDistance;
-
     private bool isStunned;
     private float stunDuration;
 
@@ -107,10 +104,10 @@ public class BasicEnemy : MonoBehaviour
         attackHit = false;
     }
 
-    public void Hurt(float damageNum, Transform playerRef)
+    public void Hurt(float damageNum, float distance, Transform playerRef)
     {
         isStunned = true;
-        PushBack(playerRef);
+        PushBack(distance, playerRef);
 
         stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
         PlayAnimation(EnemyAnimStates.ENEMY_HURT);
@@ -123,17 +120,17 @@ public class BasicEnemy : MonoBehaviour
         PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
     }
 
-    private void PushBack(Transform reference)
+    private void PushBack(float distance, Transform reference)
     {
         Vector2 newPosition;
         if (reference.transform.position.x > transform.position.x)
         {
-            newPosition = new Vector2(-pushbackDistance, 0f) + (Vector2)transform.position;
+            newPosition = new Vector2(-distance, 0f) + (Vector2)transform.position;
             transform.position = newPosition;
         }
         else if (reference.transform.position.x <= transform.position.x)
         {
-            newPosition = new Vector2(pushbackDistance, 0f) + (Vector2)transform.position;
+            newPosition = new Vector2(distance, 0f) + (Vector2)transform.position;
             transform.position = newPosition;
         }
     }
