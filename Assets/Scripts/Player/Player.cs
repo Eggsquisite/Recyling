@@ -100,6 +100,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void PlayAnimation(string newAnim)
+    {
+        AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
+    }
+    private float GetAnimationLength(string newAnim)
+    {
+        return AnimHelper.GetAnimClipLength(ac, newAnim);
+    }
+
     private void Movement()
     {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
@@ -120,9 +129,9 @@ public class Player : MonoBehaviour
         if (!isAttacking)
         {
             if (xAxis != 0 || yAxis != 0)
-                AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_RUN);
+                PlayAnimation(PlayerAnimStates.PLAYER_RUN);
             else
-                AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_IDLE);
+                PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
         }
     }
 
@@ -185,23 +194,23 @@ public class Player : MonoBehaviour
     {
         if (attackIndex == 1)
         {
-            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK1);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK1);
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK1);
+            PlayAnimation(PlayerAnimStates.PLAYER_ATTACK1);
         }
         else if (attackIndex == 2)
         {
-            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK2);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK2);
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK2);
+            PlayAnimation(PlayerAnimStates.PLAYER_ATTACK2);
         }
         else if (attackIndex == 3)
         {
-            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_ATTACK3);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_ATTACK3);
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK3);
+            PlayAnimation(PlayerAnimStates.PLAYER_ATTACK3);
         }
         else if (attackIndex == 10)
         {
-            attackDelay = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_SUPERATTACK);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_SUPERATTACK);
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_SUPERATTACK);
+            PlayAnimation(PlayerAnimStates.PLAYER_SUPERATTACK);
         }
         else
             return;
@@ -242,8 +251,8 @@ public class Player : MonoBehaviour
             invincible = true;
 
             isStunned = true;
-            stunDuration = AnimHelper.GetAnimClipLength(ac, PlayerAnimStates.PLAYER_HURT);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, PlayerAnimStates.PLAYER_HURT);
+            stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
+            PlayAnimation(PlayerAnimStates.PLAYER_HURT);
             Invoke("ResetStun", stunDuration);
 
             // take damage

@@ -46,11 +46,12 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
 
         ResetAttack();
-        //InvokeRepeating("AttackAnimation", 2f, attackDelay);
+        InvokeRepeating("AttackAnimation", 2f, attackDelay);
     }
 
     private void Update()
     {
+        // Attack Hitbox
         if (attackHit)
         {
             Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
