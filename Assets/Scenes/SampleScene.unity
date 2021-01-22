@@ -359,7 +359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581574327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: 0.27, z: 0}
+  m_LocalPosition: {x: 0.83, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1593178487}
@@ -538,10 +538,7 @@ MonoBehaviour:
   attackPoint: {fileID: 434323665}
   attackLengthMultiplier: 1
   attackWidthMultiplier: 1.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 0
+  damage: 1
 --- !u!1 &936393238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,10 +3317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fe9797c0b3af04696d76c3e0fad9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  ac: {fileID: 0}
-  currentState: 
-  time: 0
 --- !u!114 &1593178492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3342,7 +3335,7 @@ MonoBehaviour:
   hurtMaxTime: 1.5
   attackPoint: {fileID: 581574328}
   attackLengthMultiplier: 1
-  attackWidthMultiplier: 1.5
+  attackWidthMultiplier: 1
   damage: 1
 --- !u!114 &1593178493
 MonoBehaviour:

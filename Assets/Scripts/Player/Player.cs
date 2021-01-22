@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
 
     [Header("Damaged Properties")]
     [SerializeField]
-    private float hurtMaxTime;
-    private float hurtTimer;
+    private float isHurtMaxTime;
+    private float isHurtTimer;
     private float flashInterval = 0.1f;
     private float flashTimer;
-    private bool hurt;
+    private bool isHurt;
     private bool invincible;
     private bool isStunned;
     private float stunDuration;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
             isSuperAttackPressed = true;
 
-        if (hurt)
+        if (isHurt)
             DamageFlash();
     }
 
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy")
-                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier));
+                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier), transform);
         }
     }
 
@@ -233,9 +233,9 @@ public class Player : MonoBehaviour
 
     public void Hurt(int damageNum)
     {
-        if (!hurt && !invincible)
+        if (!isHurt && !invincible)
         {
-            hurt = true;
+            isHurt = true;
             invincible = true;
 
             isStunned = true;
@@ -254,15 +254,15 @@ public class Player : MonoBehaviour
 
     private void DamageFlash()
     { 
-        if (hurtTimer < hurtMaxTime)
-            hurtTimer += Time.deltaTime;
-        else if (hurtTimer >= hurtMaxTime)
+        if (isHurtTimer < isHurtMaxTime)
+            isHurtTimer += Time.deltaTime;
+        else if (isHurtTimer >= isHurtMaxTime)
         {
-            hurt = false;
+            isHurt = false;
             invincible = false;
             sp.enabled = true;
 
-            hurtTimer = 0;
+            isHurtTimer = 0;
         }
 
         if (flashTimer < flashInterval)

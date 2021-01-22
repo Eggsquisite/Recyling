@@ -34,7 +34,9 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private int damage;
 
-    private bool hurt;
+    [SerializeField]
+    private float pushbackDistance;
+
     private bool isStunned;
     private float stunDuration;
 
@@ -64,23 +66,34 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    // Animation Helper Functions //////
+    private void PlayAnimation(string newAnim)
+    {
+        AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
+    }
+    private float GetAnimationLength(string newAnim)
+    {
+        return AnimHelper.GetAnimClipLength(ac, newAnim);
+    }
+
     private void AttackAnimation()
     {
         if (!isStunned)
         {
             isAttacking = true;
-            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_ATTACK1);
 
-            Invoke("ResetAttack", AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_ATTACK1));
+            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
+            Invoke("ResetAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
         }
     }
+
 
     private void ResetAttack()
     {
         isAttacking = false;
 
         if (!isStunned)
-            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_IDLE);
+            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
     }
     private void AttackOn()
     {
@@ -94,29 +107,34 @@ public class BasicEnemy : MonoBehaviour
         attackHit = false;
     }
 
-    public void Hurt(float damageNum)
+    public void Hurt(float damageNum, Transform playerRef)
     {
-        if (!hurt)
-        {
-            Debug.Log("Enemy Hit + " + name);
-            hurt = true;
-            isStunned = true;
+        isStunned = true;
+        PushBack(playerRef);
 
-            stunDuration = AnimHelper.GetAnimClipLength(ac, EnemyAnimStates.ENEMY_HURT);
-            AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_HURT);
-            Invoke("ResetStun", stunDuration);
-        }
+        stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+        PlayAnimation(EnemyAnimStates.ENEMY_HURT);
+        Invoke("ResetStun", stunDuration);
     }
 
     private void ResetStun()
     {
-        hurt = false;
         isStunned = false;
-        AnimHelper.ChangeAnimationState(anim, ref currentState, EnemyAnimStates.ENEMY_IDLE);
+        PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
     }
 
-    private void OnDrawGizmosSelected()
+    private void PushBack(Transform reference)
     {
-        //DebugExtension.DrawCapsule(attackPoint.position, attackPoint.position + Vector3.right * attackDistanceMultiplier, Color.grey, attackRadius);
+        Vector2 newPosition;
+        if (reference.transform.position.x > transform.position.x)
+        {
+            newPosition = new Vector2(-pushbackDistance, 0f) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+        else if (reference.transform.position.x <= transform.position.x)
+        {
+            newPosition = new Vector2(pushbackDistance, 0f) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
     }
 }
