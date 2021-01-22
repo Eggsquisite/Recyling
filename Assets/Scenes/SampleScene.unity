@@ -3241,7 +3241,7 @@ MonoBehaviour:
   attackPoint: {fileID: 581574328}
   attackLengthMultiplier: 1
   attackWidthMultiplier: 1
-  damage: 1
+  damage: 10
   pushbackDistance: 0.1
 --- !u!114 &1593178493
 MonoBehaviour:
