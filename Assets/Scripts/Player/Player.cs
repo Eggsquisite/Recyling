@@ -71,15 +71,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // movement inputs
-        xAxis = Input.GetAxisRaw("Horizontal");
-        yAxis = Input.GetAxisRaw("Vertical");
+        if (!isStunned)
+        {
+            // movement inputs
+            xAxis = Input.GetAxisRaw("Horizontal");
+            yAxis = Input.GetAxisRaw("Vertical");
 
-        // attack inputs
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
-            isAttackPressed = true;
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
-            isSuperAttackPressed = true;
+            // attack inputs
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
+                isAttackPressed = true;
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
+                isSuperAttackPressed = true;
+        }
 
         if (isHurt)
             DamageFlash();
@@ -248,9 +251,10 @@ public class Player : MonoBehaviour
         if (!isHurt && !invincible)
         {
             isHurt = true;
-            invincible = true;
-
             isStunned = true;
+            invincible = true;
+            ResetAttack();
+
             stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
             Invoke("ResetStun", stunDuration);

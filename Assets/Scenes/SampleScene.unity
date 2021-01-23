@@ -164,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434323664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.982, y: 0.159, z: 0}
+  m_LocalPosition: {x: 0.982, y: 0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 714426428}
@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 714426429}
   - component: {fileID: 714426430}
   - component: {fileID: 714426431}
+  - component: {fileID: 714426432}
   m_Layer: 7
   m_Name: MudGuard
   m_TagString: Enemy
@@ -455,8 +456,24 @@ MonoBehaviour:
   attackDelay: 1.5
   attackPoint: {fileID: 434323665}
   attackLengthMultiplier: 1
-  attackWidthMultiplier: 1.5
+  attackWidthMultiplier: 1.25
   damage: 1
+--- !u!114 &714426432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714426424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e0f1ab3f665b848a3a2e58002507d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.75
+  rightOffset: {x: 1, y: 0}
+  leftOffset: {x: -1, y: 0}
+  canFollow: 1
 --- !u!1 &936393238
 GameObject:
   m_ObjectHideFlags: 0
