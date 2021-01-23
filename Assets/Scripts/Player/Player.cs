@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private float flashInterval = 0.1f;
     private float flashTimer;
     private bool isHurt;
-    private bool invincible;
+    private bool isInvincible;
     private bool isStunned;
     private float stunDuration;
 
@@ -248,11 +248,11 @@ public class Player : MonoBehaviour
 
     public void Hurt(int damageNum)
     {
-        if (!isHurt && !invincible)
+        if (!isHurt && !isInvincible)
         {
             isHurt = true;
             isStunned = true;
-            invincible = true;
+            isInvincible = true;
             ResetAttack();
 
             stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
@@ -275,7 +275,7 @@ public class Player : MonoBehaviour
         else if (isHurtTimer >= isHurtMaxTime)
         {
             isHurt = false;
-            invincible = false;
+            isInvincible = false;
             sp.enabled = true;
 
             isHurtTimer = 0;
