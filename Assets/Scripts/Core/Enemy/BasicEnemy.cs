@@ -65,7 +65,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void Update() {
-        // Attack Hitbox Activated
+        ///////////////////// Attack Hitbox Activated ///////////////////////////
         if (attackHit) {
             Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
 
@@ -75,7 +75,7 @@ public class BasicEnemy : MonoBehaviour
             }
         }
 
-        // Follow Player
+        ///////////////////// Follow Player /////////////////////////////////////
         if (canFollow && !isStunned) {
             PlayAnimation(EnemyAnimStates.ENEMY_RUN);
 
