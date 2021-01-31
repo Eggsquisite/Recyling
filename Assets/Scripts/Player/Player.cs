@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy")
-                enemy.GetComponent<BasicEnemy>().Hurt(Mathf.RoundToInt(damage * attackMultiplier), pushbackDistance, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage * attackMultiplier), pushbackDistance, transform);
         }
     }
 
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
             return;
     }
 
-    public void Hurt(int damageNum)
+    public void PlayerHurt(int damageNum)
     {
         if (!isHurt && !isInvincible)
         {

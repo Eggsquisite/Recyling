@@ -30,4 +30,10 @@ public static class AnimHelper
         // set the current state to the new state 
         currentState = newState;
     }
+
+    public static void ReplayAnimation(Animator anim, ref string currentState, string newState)
+    {
+        anim.Play(newState, -1, 0f);
+        currentState = newState;
+    }
 }
