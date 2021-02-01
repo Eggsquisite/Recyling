@@ -32,6 +32,7 @@ public class BasicEnemy : MonoBehaviour
     private float deathFadeTime;
 
     private bool isDead;
+    private bool isInvincible;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -75,10 +76,6 @@ public class BasicEnemy : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        anim = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();
-        ac = anim.runtimeAnimatorController;
-
         SetupVariables();
         InvokeRepeating("FindPlayer", 1f, 0.5f);
     }
@@ -102,6 +99,10 @@ public class BasicEnemy : MonoBehaviour
 
     private void SetupVariables()
     {
+        anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
+        ac = anim.runtimeAnimatorController;
+
         canFollow = true;
         attackReady = true;
         xScaleValue = transform.localScale.x;
@@ -215,7 +216,7 @@ public class BasicEnemy : MonoBehaviour
 
     /////////////// Enemy Is Hit //////////////////
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
-        if (isDead)
+        if (isDead || isInvincible)
             return;
 
         isStunned = true;
