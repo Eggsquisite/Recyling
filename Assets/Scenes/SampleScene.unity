@@ -3017,7 +3017,7 @@ MonoBehaviour:
   attackLengthMultiplier: 1
   attackWidthMultiplier: 1
   damage: 10
-  pushbackDistance: 0.1
+  pushbackDistance: 0.15
 --- !u!114 &1593178493
 MonoBehaviour:
   m_ObjectHideFlags: 0

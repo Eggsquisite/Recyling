@@ -108,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -137
+  m_SortingOrder: -75
   m_Sprite: {fileID: 8793639957104055765, guid: 68afdf6c3bddec346b8be2c411952d70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -209,13 +209,13 @@ MonoBehaviour:
   damage: 1
   minAttackDelay: 1
   maxAttackDelay: 1.5
-  attackRange: 1.25
+  attackRange: 1.5
   detectPlayerPos: {fileID: 3898020910143470721}
   inRange: 0
-  minMoveSpeed: 0.75
+  minMoveSpeed: 0.8
   maxMoveSpeed: 1
   minOffset: 0.75
-  maxOffset: 1.5
+  maxOffset: 1.25
   canFollow: 1
 --- !u!1 &3898020909053490396
 GameObject:
