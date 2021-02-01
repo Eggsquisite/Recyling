@@ -5,11 +5,11 @@ using UnityEngine;
 public class BasicEnemy : MonoBehaviour
 {
     private Animator anim;
+    private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
     private string currentState;
 
     [Header("Attack Collider Properties")]
-
     [SerializeField]
     private Transform attackPoint;
 
@@ -23,6 +23,15 @@ public class BasicEnemy : MonoBehaviour
     private LayerMask playerLayer;
 
     private RaycastHit2D hit;
+
+    [Header("Enemy Stats")]
+    [SerializeField]
+    private int health;
+
+    [SerializeField]
+    private float deathFadeTime;
+
+    private bool isDead;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -67,16 +76,17 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
         ac = anim.runtimeAnimatorController;
-        xScaleValue = transform.localScale.x;
 
-        ResetFollow();
-        ResetAttack();
         SetupVariables();
         InvokeRepeating("FindPlayer", 1f, 0.5f);
     }
 
     private void Update() {
+        if (isDead)
+            return;
+
         ///////////////////// Attack Hitbox Activated ///////////////////////////
         if (attackHitbox) 
             CheckHitBox();
@@ -84,7 +94,7 @@ public class BasicEnemy : MonoBehaviour
         ///////////////////// Follow Player /////////////////////////////////////
         FollowPlayer();
 
-        /////////////////////////// Attack Animation Activated /////////////////
+        /////////////////////////// Attack Animation Activated //////////////////
         if (inRange && !isStunned && !isAttacking && attackReady) {
             AttackAnimation();
         }
@@ -92,6 +102,10 @@ public class BasicEnemy : MonoBehaviour
 
     private void SetupVariables()
     {
+        canFollow = true;
+        attackReady = true;
+        xScaleValue = transform.localScale.x;
+
         moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
 
@@ -200,17 +214,25 @@ public class BasicEnemy : MonoBehaviour
     }
 
     /////////////// Enemy Is Hit //////////////////
-    public void EnemyHurt(float damageNum, float distance, Transform playerRef) {
+    public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
+        if (isDead)
+            return;
+
         isStunned = true;
         canFollow = false;
         PushBack(distance, playerRef);
         if (IsInvoking("ResetStun"))
             CancelInvoke("ResetStun");
 
-        ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
-        stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+        health -= damageNum;
+        if (health <= 0)
+            Death();
+        else { 
+            ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
+            stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
-        Invoke("ResetStun", stunDuration + 0.25f);
+            Invoke("ResetStun", stunDuration + 0.25f);
+        }
     }
 
     private void PushBack(float distance, Transform reference) {
@@ -223,6 +245,25 @@ public class BasicEnemy : MonoBehaviour
             newPosition = new Vector2(distance, 0f) + (Vector2)transform.position;
             transform.position = newPosition;
         }
+    }
+
+    private void Death() {
+        isDead = true;
+        CancelInvoke("FindPlayer");
+        //StartCoroutine(FadeAway());
+        PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
+    }
+
+    IEnumerator FadeAway() {
+        float alpha = sp.color.a;
+
+        for (float t = 0.0f; t < deathFadeTime; t += Time.deltaTime) {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 0.25f, t / deathFadeTime));
+            sp.color = newColor;
+            yield return null;
+        }
+
+        //Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

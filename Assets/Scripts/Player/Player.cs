@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
-    private float damage;
+    private int damage;
 
     [SerializeField]
     private float pushbackDistance;
