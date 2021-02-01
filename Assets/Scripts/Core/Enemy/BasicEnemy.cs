@@ -5,16 +5,14 @@ using UnityEngine;
 public class BasicEnemy : MonoBehaviour
 {
     private Animator anim;
-    private Rigidbody2D rb;
-    private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
 
     private bool isAttacking;
     private bool attackHit;
+    public bool inRange;
     private string currentState;
-    private float time;
 
-    [Header("Attack Collider")]
+    [Header("Attack Collider Properties")]
     [SerializeField]
     private float attackDelay;
 
@@ -27,12 +25,20 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float attackWidthMultiplier;
 
-    /*[SerializeField]
-    private LayerMask playerLayer;*/
+    [SerializeField]
+    private LayerMask playerLayer;
 
-    [Header("Attack Stats")]
+    private RaycastHit2D hit;
+
+    [Header("Attack Properties")]
     [SerializeField]
     private int damage;
+
+    [SerializeField]
+    private float attackRange;
+
+    [SerializeField]
+    private Transform detectPlayerPos;
 
     private bool isStunned;
     private float stunDuration;
@@ -54,8 +60,6 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        sp = GetComponent<SpriteRenderer>();
         ac = anim.runtimeAnimatorController;
         xScaleValue = transform.localScale.x;
 
@@ -83,15 +87,34 @@ public class BasicEnemy : MonoBehaviour
             if (playerChar.x > transform.position.x) {
                 transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, moveSpeed * Time.deltaTime);
+
+                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.right, attackRange, playerLayer);
+                if (hit.collider != null && !inRange)
+                    inRange = true;
+                else if (hit.collider == null && inRange)
+                    inRange = false;
             }
             // player is to the left of enemy
             else if (playerChar.x <= transform.position.x)  {
                 transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, moveSpeed * Time.deltaTime);
+
+                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.left, attackRange, playerLayer);
+                if (hit.collider != null && !inRange)
+                    inRange = true;
+                else if (hit.collider == null && inRange)
+                    inRange = false;
             }
         }
-        else if (!canFollow && !isStunned && !isAttacking)
+        else if (!canFollow && !isStunned && !isAttacking) { 
             PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+            Debug.Log("IDleing");
+        }
+
+        /////////////////////////// Attack Animation Activated /////////////////
+        if (inRange && !isStunned && !isAttacking) {
+            AttackAnimation();
+        }
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -171,4 +194,13 @@ public class BasicEnemy : MonoBehaviour
             transform.position = newPosition;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        if (playerChar.x <= transform.position.x)
+            Gizmos.DrawRay(detectPlayerPos.position, Vector2.left);
+        else if (playerChar.x > transform.position.x)
+            Gizmos.DrawRay(detectPlayerPos.position, Vector2.right);
+    }   
 }
