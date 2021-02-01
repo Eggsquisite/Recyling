@@ -6,15 +6,9 @@ public class BasicEnemy : MonoBehaviour
 {
     private Animator anim;
     private RuntimeAnimatorController ac;
-
-    private bool isAttacking;
-    private bool attackHit;
-    public bool inRange;
     private string currentState;
 
     [Header("Attack Collider Properties")]
-    [SerializeField]
-    private float attackDelay;
 
     [SerializeField]
     private Transform attackPoint;
@@ -35,27 +29,40 @@ public class BasicEnemy : MonoBehaviour
     private int damage;
 
     [SerializeField]
+    private float minAttackDelay;
+
+    [SerializeField]
+    private float maxAttackDelay;
+
+    [SerializeField]
     private float attackRange;
 
     [SerializeField]
     private Transform detectPlayerPos;
 
+    public bool inRange;
     private bool isStunned;
+    private bool isAttacking;
+    private bool attackReady;
+    private bool attackHitbox;
+    private float attackDelay;
     private float stunDuration;
 
     [Header("Follow Player")]
     [SerializeField]
-    private float moveSpeed;
+    private float minMoveSpeed;
+    [SerializeField]
+    private float maxMoveSpeed;
 
     [SerializeField]
-    private Vector2 rightOffset;
-
+    private float minOffset;
     [SerializeField]
-    private Vector2 leftOffset;
+    private float maxOffset;
 
-    private Vector2 playerChar;
     public bool canFollow;
+    private float moveSpeed;
     private float xScaleValue;
+    private Vector2 leftOffset, rightOffset, playerChar;
 
     // Start is called before the first frame update
     void Start() {
@@ -63,58 +70,33 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
         xScaleValue = transform.localScale.x;
 
+        ResetFollow();
         ResetAttack();
-        //InvokeRepeating("AttackAnimation", 2f, attackDelay);
+        SetupVariables();
         InvokeRepeating("FindPlayer", 1f, 0.5f);
     }
 
     private void Update() {
         ///////////////////// Attack Hitbox Activated ///////////////////////////
-        if (attackHit) {
-            Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-
-            foreach (Collider2D player in hitPlayer) {
-                if (player.tag == "Player")
-                    player.GetComponent<Player>().PlayerHurt(1);
-            }
-        }
+        if (attackHitbox) 
+            CheckHitBox();
 
         ///////////////////// Follow Player /////////////////////////////////////
-        if (canFollow && !isStunned) {
-            PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-
-            // player is to the right of enemy
-            if (playerChar.x > transform.position.x) {
-                transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, moveSpeed * Time.deltaTime);
-
-                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.right, attackRange, playerLayer);
-                if (hit.collider != null && !inRange)
-                    inRange = true;
-                else if (hit.collider == null && inRange)
-                    inRange = false;
-            }
-            // player is to the left of enemy
-            else if (playerChar.x <= transform.position.x)  {
-                transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, moveSpeed * Time.deltaTime);
-
-                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.left, attackRange, playerLayer);
-                if (hit.collider != null && !inRange)
-                    inRange = true;
-                else if (hit.collider == null && inRange)
-                    inRange = false;
-            }
-        }
-        else if (!canFollow && !isStunned && !isAttacking) { 
-            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-            Debug.Log("IDleing");
-        }
+        FollowPlayer();
 
         /////////////////////////// Attack Animation Activated /////////////////
-        if (inRange && !isStunned && !isAttacking) {
+        if (inRange && !isStunned && !isAttacking && attackReady) {
             AttackAnimation();
         }
+    }
+
+    private void SetupVariables()
+    {
+        moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
+        attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
+
+        leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0);
+        rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0);
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -135,8 +117,41 @@ public class BasicEnemy : MonoBehaviour
             playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
+    private void FollowPlayer() {
+        if (inRange && !canFollow && !isStunned && !isAttacking) {
+            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+        }
+        else if (canFollow && !isStunned && !isAttacking) {
+            PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+
+            // player is to the right of enemy
+            if (playerChar.x > transform.position.x) {
+                transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+                transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, moveSpeed * Time.deltaTime);
+
+                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.right, attackRange, playerLayer);
+                if (hit.collider != null && !inRange)
+                    inRange = true;
+                else if (hit.collider == null && inRange)
+                    inRange = false;
+            }
+            // player is to the left of enemy
+            else if (playerChar.x <= transform.position.x) {
+                transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+                transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, moveSpeed * Time.deltaTime);
+
+                hit = Physics2D.Raycast(detectPlayerPos.position, Vector2.left, attackRange, playerLayer);
+                if (hit.collider != null && !inRange)
+                    inRange = true;
+                else if (hit.collider == null && inRange)
+                    inRange = false;
+            }
+        }
+    }
+
     private void ResetFollow() {
         canFollow = true;
+        FindPlayer();
     }
 
     private void ResetStun() {
@@ -145,37 +160,52 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Attack Code ///////////////////////
+    private void CheckHitBox() {
+        Collider2D[] hitPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+
+        foreach (Collider2D player in hitPlayer)
+        {
+            if (player.tag == "Player")
+                player.GetComponent<Player>().PlayerHurt(damage);
+        }
+    }
+
+    private void FinishAttack() {
+        isAttacking = false;
+        Invoke("ResetAttack", attackDelay);
+    }
+
     private void ResetAttack() {
         ResetFollow();
-        isAttacking = false;
+        attackReady = true;
     }
 
     private void AttackActivated() {
         //called thru animation event
-        attackHit = true;
+        attackHitbox = true;
     }
 
     private void AttackDeactivated() {
         //called thru animation event
-        attackHit = false;
+        attackHitbox = false;
     }
 
     private void AttackAnimation() {
-        if (!isStunned && !isAttacking) {
-            isAttacking = true;
-            canFollow = false;
+        canFollow = false;
+        isAttacking = true;
+        attackReady = false;
 
-            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
-            Invoke("ResetAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
-        }
+        PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
+        Invoke("FinishAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
     }
 
     /////////////// Enemy Is Hit //////////////////
     public void EnemyHurt(float damageNum, float distance, Transform playerRef) {
         isStunned = true;
         canFollow = false;
-        CancelInvoke("ResetStun");
         PushBack(distance, playerRef);
+        if (IsInvoking("ResetStun"))
+            CancelInvoke("ResetStun");
 
         ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
         stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
