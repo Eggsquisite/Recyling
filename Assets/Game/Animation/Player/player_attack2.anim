@@ -88,7 +88,7 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.36666667
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}
