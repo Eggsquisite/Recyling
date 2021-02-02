@@ -23,27 +23,26 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private int health;
 
-    [SerializeField]
-    private float deathFadeTime;
+    /*[SerializeField]
+    private float deathFadeTime;*/
 
     private bool isDead;
     private bool isInvincible;
 
     [Header("Attack Properties")]
     [SerializeField]
-    private int damage;
-
-    [SerializeField]
-    private float minAttackDelay;
-
-    [SerializeField]
-    private float maxAttackDelay;
-
-    [SerializeField]
     private float stunDelay;
 
     [SerializeField]
+    private int damage;
+
+    [SerializeField] [Range(0, 5f)]
     private float attackRange;
+
+    [SerializeField] [Range(0, 5f)]
+    private float minAttackDelay;
+    [SerializeField] [Range(0, 5f)]
+    private float maxAttackDelay;
 
     private bool inRange;
     private bool isStunned;
@@ -54,14 +53,14 @@ public class BasicEnemy : MonoBehaviour
     private float stunDuration;
 
     [Header("Follow Player")]
-    [SerializeField]
+    [SerializeField] [Range(0, 5f)]
     private float minMoveSpeed;
-    [SerializeField]
+    [SerializeField] [Range(0, 5f)]
     private float maxMoveSpeed;
 
-    [SerializeField]
+    [SerializeField] [Range(0.5f, 5f)]
     private float minOffset;
-    [SerializeField]
+    [SerializeField] [Range(0.5f, 5f)]
     private float maxOffset;
 
     private bool canFollow;
@@ -287,7 +286,7 @@ public class BasicEnemy : MonoBehaviour
         PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
     }
 
-    IEnumerator FadeAway() {
+    /*IEnumerator FadeAway() {
         float alpha = sp.color.a;
 
         for (float t = 0.0f; t < deathFadeTime; t += Time.deltaTime) {
@@ -297,7 +296,7 @@ public class BasicEnemy : MonoBehaviour
         }
 
         //Destroy(gameObject);
-    }
+    }*/
 
     private void OnDrawGizmosSelected()
     {

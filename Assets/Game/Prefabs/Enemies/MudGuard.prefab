@@ -206,15 +206,14 @@ MonoBehaviour:
   health: 100
   deathFadeTime: 15
   damage: 5
-  minAttackDelay: 1
-  maxAttackDelay: 1.5
+  minAttackDelay: 0.75
+  maxAttackDelay: 1.25
   stunDelay: 0.5
   attackRange: 1.2
   minMoveSpeed: 0.8
   maxMoveSpeed: 1
   minOffset: 0.75
   maxOffset: 1.25
-  canFollow: 1
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0

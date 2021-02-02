@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Animation Helper Functions ////////////////////////////////////////
     private void PlayAnimation(string newAnim)
     {
         AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
@@ -111,6 +112,7 @@ public class Player : MonoBehaviour
     {
         return AnimHelper.GetAnimClipLength(ac, newAnim);
     }
+    // Animation Helper Functions ////////////////////////////////////////
 
     private void Movement()
     {
@@ -270,6 +272,14 @@ public class Player : MonoBehaviour
 
     private void DamageFlash()
     { 
+        if (flashTimer < flashInterval)
+            flashTimer += Time.deltaTime;
+        else if (flashTimer >= flashInterval)
+        {
+            sp.enabled = !sp.enabled;
+            flashTimer = 0;
+        }
+
         if (isHurtTimer < isHurtMaxTime)
             isHurtTimer += Time.deltaTime;
         else if (isHurtTimer >= isHurtMaxTime)
@@ -281,12 +291,10 @@ public class Player : MonoBehaviour
             isHurtTimer = 0;
         }
 
-        if (flashTimer < flashInterval)
-            flashTimer += Time.deltaTime;
-        else if (flashTimer >= flashInterval)
-        {
-            sp.enabled = !sp.enabled;
-            flashTimer = 0;
-        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }
