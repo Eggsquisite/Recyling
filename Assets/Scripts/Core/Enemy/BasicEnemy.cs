@@ -72,7 +72,7 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, 0.5f);
+        InvokeRepeating("FindPlayer", 1f, 0.25f);
     }
 
     private void Update() {
@@ -86,7 +86,6 @@ public class BasicEnemy : MonoBehaviour
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
         FollowPlayer();
-        CheckPlayerPos();
 
         /////////////////////////// Attack Animation Activated //////////////////
         if (inRange && !isStunned && !isAttacking && attackReady) {
@@ -166,6 +165,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckPlayerPos()
     {
+        // Set variable of leftOfPlayer
         if (playerChar.x > transform.position.x && !leftOfPlayer) { 
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
@@ -178,15 +178,21 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckPlayerInRange()
     {
+        CheckPlayerPos();
+
         if (leftOfPlayer)
             playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, attackRange, playerLayer);
         else
             playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, attackRange, playerLayer);
 
-        if (playerDetected.collider != null && !inRange)
+        if (playerDetected.collider != null && !inRange) { 
             inRange = true;
-        else if (playerDetected.collider == null && inRange)
+            /*Debug.Log(name + " is IN range!");*/
+        }
+        else if (playerDetected.collider == null && inRange) { 
             inRange = false;
+            /*Debug.Log(name + " is OUT OF range!");*/
+        }
     }
 
     private void ResetFollow() {

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2237502159876300118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.12, y: 0.079, z: 0}
+  m_LocalPosition: {x: 3.12, y: 0.075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2237502160636908986}
@@ -219,7 +219,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &2237502160636908991
@@ -235,8 +235,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0021672137, y: 0.098003045}
-  m_Size: {x: 0.63259727, y: 0.2822857}
+  m_Offset: {x: -0.002167224, y: 0.01083036}
+  m_Size: {x: 0.63259745, y: 0.28228626}
   m_Direction: 1
 --- !u!95 &2237502160636908987
 Animator:
@@ -285,7 +285,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 1000
+  health: 50
   stunDelay: 0.5
   damage: 5
   attackRange: 0.5
@@ -293,5 +293,5 @@ MonoBehaviour:
   maxAttackDelay: 2.5
   minMoveSpeed: 1
   maxMoveSpeed: 1.5
-  minOffset: 3
-  maxOffset: 3.5
+  minOffset: 2.75
+  maxOffset: 3.25

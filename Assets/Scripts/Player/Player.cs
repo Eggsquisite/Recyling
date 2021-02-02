@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float horizontalSpeedMult = 1.25f;
 
-    private Vector2 movement;
     private float xAxis;
     private float yAxis;
+    private bool facingLeft;
+    private Vector2 movement;
 
     [Header("Damaged Properties")]
     [SerializeField]
@@ -43,13 +44,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float attackWidthMultiplier;
 
+    [SerializeField]
+    private LayerMask enemyLayer;
+
     [Header("Attack Properties")]
     [SerializeField]
     private int damage;
 
     [SerializeField]
+    private int specialAttackDmg;
+
+    [SerializeField]
+    private float attackRangeVisualizer;
+
+    [SerializeField]
     private float pushbackDistance;
-    
+
+    [SerializeField]
+    private float specialPushbackMultiplier;
+
     private float attackDelay;
     private int attackCombo;
     private bool isAttackPressed;
@@ -88,10 +101,8 @@ public class Player : MonoBehaviour
             DamageFlash();
     }
 
-    private void FixedUpdate()
-    {
-        if (!isStunned)
-        {
+    private void FixedUpdate() {
+        if (!isStunned) {
             // movement ---------------------------------
             Movement();
 
@@ -114,22 +125,28 @@ public class Player : MonoBehaviour
     }
     // Animation Helper Functions ////////////////////////////////////////
 
-    private void Movement()
-    {
+    private void Movement() {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
-        if (!isAttacking)
-        {
+        if (!isAttacking) {
+            CheckDirection();
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-            if (xAxis < 0)
-                transform.localScale = new Vector2(-1, 1);
-            else if (xAxis > 0)
-                transform.localScale = new Vector2(1, 1);
         }
     }
 
-    private void MovementAnimation()
-    {
+    private void CheckDirection() {
+        if (xAxis < 0 && !facingLeft) {
+            facingLeft = true;
+            transform.localScale = new Vector2(-1, 1);
+            Debug.Log("facing left");
+        }
+        else if (xAxis > 0 && facingLeft) {
+            facingLeft = false;
+            transform.localScale = new Vector2(1, 1);
+            Debug.Log("Facing right");
+        }
+    }
+
+    private void MovementAnimation() {
         // attack animations override run/idle anims
         if (!isAttacking)
         {
@@ -140,11 +157,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Attack()
-    {
+    private void Attack() {
         // case for first attack
-        if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0)
-        {
+        if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0) {
             attackCombo += 1;
             AttackAnimation(attackCombo);
 
@@ -152,8 +167,7 @@ public class Player : MonoBehaviour
             canReceiveInput = false;
         }
         // case for combo attacks
-        else if (isAttackPressed && canReceiveInput && isAttacking && attackCombo < 3)
-        {
+        else if (isAttackPressed && canReceiveInput && isAttacking && attackCombo < 3) {
             attackCombo += 1;
             AttackAnimation(attackCombo);
 
@@ -161,8 +175,7 @@ public class Player : MonoBehaviour
             canReceiveInput = false;
         }
         // case for super attack
-        else if (isSuperAttackPressed)
-        {
+        else if (isSuperAttackPressed) {
             AttackAnimation(10);
 
             isSuperAttackPressed = false;
@@ -170,14 +183,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AttackAnimation(int attackIndex)
-    {
+    private void AttackAnimation(int attackIndex) {
         // stop movement when attacking
         movement = Vector2.zero;
 
         // case for first attack in combo/super attack
-        if (!isAttacking)
-        {
+        if (!isAttacking) {
             isAttacking = true;
 
             GetAttackDelay(attackIndex);
@@ -185,8 +196,7 @@ public class Player : MonoBehaviour
             Invoke("ResetAttack", attackDelay);
         }
         // case for combos
-        else if (isAttacking)
-        {
+        else if (isAttacking) {
             CancelInvoke("ResetAttack");
 
             GetAttackDelay(attackIndex);
@@ -195,25 +205,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void GetAttackDelay(int attackIndex)
-    {
-        if (attackIndex == 1)
-        {
+    private void GetAttackDelay(int attackIndex) {
+        if (attackIndex == 1) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK1);
             PlayAnimation(PlayerAnimStates.PLAYER_ATTACK1);
         }
-        else if (attackIndex == 2)
-        {
+        else if (attackIndex == 2) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK2);
             PlayAnimation(PlayerAnimStates.PLAYER_ATTACK2);
         }
-        else if (attackIndex == 3)
-        {
+        else if (attackIndex == 3) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK3);
             PlayAnimation(PlayerAnimStates.PLAYER_ATTACK3);
         }
-        else if (attackIndex == 10)
-        {
+        else if (attackIndex == 10) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_SUPERATTACK);
             PlayAnimation(PlayerAnimStates.PLAYER_SUPERATTACK);
         }
@@ -221,26 +226,43 @@ public class Player : MonoBehaviour
             return;
     }
 
-    private void AttackHit(float attackMultiplier)
+    private void AttackHitboxActivated(float attackRange) {
+        Collider2D[] hitEnemies;
+        if (facingLeft) { 
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange), enemyLayer);
+            Debug.Log("Attacking left");
+        }
+        else
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies) {
+            if (enemy.tag == "Enemy")
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage), pushbackDistance, transform);
+        }
+    }
+
+    private void SpecialAttackHitboxActivated(float attackRange)
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+        Collider2D[] hitEnemies;
+        if (facingLeft)
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange), enemyLayer);
+        else
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy")
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage * attackMultiplier), pushbackDistance, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(specialAttackDmg), pushbackDistance * specialPushbackMultiplier, transform);
         }
     }
 
-    private void ResetAttack()
-    {
+    private void ResetAttack() {
         attackCombo = 0;
         isAttacking = false;
         canReceiveInput = true;
     }
 
-    private void ComboInput()
-    {
+    private void ComboInput() {
         // called during attack animation, allows input such as combos or dodging 
         if (isAttacking && attackCombo > 0)
             canReceiveInput = true;
@@ -248,10 +270,8 @@ public class Player : MonoBehaviour
             return;
     }
 
-    public void PlayerHurt(int damageNum)
-    {
-        if (!isHurt && !isInvincible)
-        {
+    public void PlayerHurt(int damageNum) {
+        if (!isHurt && !isInvincible) {
             isHurt = true;
             isStunned = true;
             isInvincible = true;
@@ -265,36 +285,31 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ResetStun()
-    {
+    private void ResetStun() {
         isStunned = false;
     }
 
-    private void DamageFlash()
-    { 
+    private void DamageFlash() { 
         if (flashTimer < flashInterval)
             flashTimer += Time.deltaTime;
-        else if (flashTimer >= flashInterval)
-        {
+        else if (flashTimer >= flashInterval) {
             sp.enabled = !sp.enabled;
             flashTimer = 0;
         }
 
         if (isHurtTimer < isHurtMaxTime)
             isHurtTimer += Time.deltaTime;
-        else if (isHurtTimer >= isHurtMaxTime)
-        {
+        else if (isHurtTimer >= isHurtMaxTime) {
             isHurt = false;
             isInvincible = false;
             sp.enabled = true;
 
             isHurtTimer = 0;
         }
-
     }
 
-    private void OnDrawGizmos()
-    {
-        
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRangeVisualizer));
     }
 }
