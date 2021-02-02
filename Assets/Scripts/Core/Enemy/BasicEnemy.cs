@@ -203,7 +203,6 @@ public class BasicEnemy : MonoBehaviour
     }
     ////////////////// Attack Code /////////////////////////////
     private void ResetAttack() {
-        //ResetFollow();
         attackReady = true;
     }
     private void FinishAttack() {
