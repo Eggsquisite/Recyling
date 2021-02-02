@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Components")]
-    private Animator anim;
-    private SpriteRenderer sp;
+    [SerializeField]
     private Rigidbody2D rb;
+
+    private SpriteRenderer sp;
+    private Animator anim;
     private RuntimeAnimatorController ac;
 
     [Header("Movement Properties")]
@@ -46,18 +48,18 @@ public class Player : MonoBehaviour
     [Header("Dash Properties")]
     [SerializeField]
     private float dashSpeed;
-
     [SerializeField]
     private float dashCooldown;
-
     [SerializeField]
     private float dashMaxTime;
+    [SerializeField]
+    private float landingDelay;  
 
     private bool dashReady;
     private bool isDashing;
+    private bool isLanding;
     private float dashTimer;
     private float dashCooldownTimer;
-    private Vector2 dashDirection;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -85,9 +87,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sp = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (sp == null) sp = GetComponent<SpriteRenderer>();
+        if (anim == null) anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
         dashReady = true;
 
@@ -115,20 +117,24 @@ public class Player : MonoBehaviour
                 dashReady = false;
                 canReceiveInput = false;
 
+                Debug.Log("Starting dash...");
+                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+
                 // dash cases for standing still 
-                if (xAxis == 0 && yAxis == 0 && facingLeft)
+                /*if (xAxis == 0 && yAxis == 0 && facingLeft)
                     dashDirection = new Vector2(-1f, 0f);
                 else if (xAxis == 0 && yAxis == 0 && !facingLeft)
                     dashDirection = new Vector2(1f, 0f);
                 else
-                    dashDirection = new Vector2(xAxis, yAxis);
+                    dashDirection = new Vector2(xAxis, yAxis);*/
             }
         }
 
         if (isHurt)
             DamageFlash();
-
-        if (!dashReady)
+        if (isLanding)
+            DashLand();
+        if (!dashReady && !isLanding)
             ResetDash();
     }
 
@@ -161,7 +167,7 @@ public class Player : MonoBehaviour
 
     private void Movement() {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
-        if (!isAttacking && !isDashing) {
+        if (!isAttacking) {
             CheckDirection();
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
@@ -180,7 +186,7 @@ public class Player : MonoBehaviour
 
     private void MovementAnimation() {
         // attack animations override run/idle anims
-        if (!isAttacking)
+        if (!isAttacking && !isDashing && !isLanding)
         {
             if (xAxis != 0 || yAxis != 0)
                 PlayAnimation(PlayerAnimStates.PLAYER_RUN);
@@ -196,18 +202,41 @@ public class Player : MonoBehaviour
         if (!isDashing)
             return;
 
-        if (dashReady)
+        if (dashReady) { 
             dashReady = false;
+        }
 
         if (dashTimer < dashMaxTime) {
             dashTimer += Time.deltaTime;
-            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
+            //rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
+            transform.Translate(0, dashSpeed * Time.deltaTime, 0f, transform.parent);
         } else if (dashTimer >= dashMaxTime) {
             dashTimer = 0f;
             isDashing = false;
-            canReceiveInput = true;
+            isLanding = true;
+            PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
-    } 
+    }
+
+    private void DashLand()
+    {
+        if (transform.position.y > 0) {
+            transform.Translate(0, -dashSpeed * Time.deltaTime, 0f, transform.parent);
+        }
+        else if (transform.position.y <= 0) {
+            dashTimer = 0f;
+            
+            //transform.position = new Vector2(0f, 0f);
+            PlayAnimation(PlayerAnimStates.PLAYER_LAND);
+            Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND) + landingDelay);
+        }
+    }
+
+    private void ResetLanding() {
+        isLanding = false;
+        if (!isAttacking)
+            canReceiveInput = true;
+    }
 
     private void ResetDash() {
         if (dashCooldownTimer < dashCooldown)

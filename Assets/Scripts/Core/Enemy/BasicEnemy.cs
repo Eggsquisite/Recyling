@@ -236,7 +236,7 @@ public class BasicEnemy : MonoBehaviour
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, attackRange, playerLayer);
 
         if (hitBox.collider != null) { 
-                hitBox.collider.GetComponent<Player>().PlayerHurt(damage);
+                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(damage);
         }
     }
 
