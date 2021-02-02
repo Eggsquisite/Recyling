@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Components")]
+    private Animator anim;
+    private SpriteRenderer sp;
+    private Rigidbody2D rb;
+    private RuntimeAnimatorController ac;
+
     [Header("Movement Properties")]
     [SerializeField]
     private float moveSpeed = 2f;
@@ -29,36 +35,42 @@ public class Player : MonoBehaviour
     private float stunDuration;
 
     private string currentState;
-    private Animator anim;
-    private Rigidbody2D rb;
-    private SpriteRenderer sp;
-    private RuntimeAnimatorController ac;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
     private Transform attackPoint;
 
     [SerializeField]
-    private float attackLengthMultiplier;
-
-    [SerializeField]
-    private float attackWidthMultiplier;
-
-    [SerializeField]
     private LayerMask enemyLayer;
+
+    [Header("Dash Properties")]
+    [SerializeField]
+    private float dashSpeed;
+
+    [SerializeField]
+    private float dashCooldown;
+
+    [SerializeField]
+    private float dashMaxTime;
+
+    private bool dashReady;
+    private bool isDashing;
+    private float dashTimer;
+    private float dashCooldownTimer;
+    private Vector2 dashDirection;
 
     [Header("Attack Properties")]
     [SerializeField]
     private int damage;
 
-    [SerializeField]
-    private int specialAttackDmg;
-
-    [SerializeField]
+    [SerializeField] [Range(0, 5f)]
     private float attackRangeVisualizer;
 
-    [SerializeField]
+    [SerializeField] [Range(0, 0.5f)]
     private float pushbackDistance;
+
+    [SerializeField]
+    private int specialAttackDmg;
 
     [SerializeField]
     private float specialPushbackMultiplier;
@@ -73,10 +85,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
+        dashReady = true;
 
         ResetAttack();
     }
@@ -95,10 +108,28 @@ public class Player : MonoBehaviour
                 isAttackPressed = true;
             else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
                 isSuperAttackPressed = true;
+
+            // dash inputs
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing) {
+                isDashing = true;
+                dashReady = false;
+                canReceiveInput = false;
+
+                // dash cases for standing still 
+                if (xAxis == 0 && yAxis == 0 && facingLeft)
+                    dashDirection = new Vector2(-1f, 0f);
+                else if (xAxis == 0 && yAxis == 0 && !facingLeft)
+                    dashDirection = new Vector2(1f, 0f);
+                else
+                    dashDirection = new Vector2(xAxis, yAxis);
+            }
         }
 
         if (isHurt)
             DamageFlash();
+
+        if (!dashReady)
+            ResetDash();
     }
 
     private void FixedUpdate() {
@@ -108,6 +139,9 @@ public class Player : MonoBehaviour
 
             // idle/run animation --------------------------------
             MovementAnimation();
+
+            // dash -----------------------------------------------
+            Dashing();
 
             //attack ------------------------------------
             Attack();
@@ -127,7 +161,7 @@ public class Player : MonoBehaviour
 
     private void Movement() {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
-        if (!isAttacking) {
+        if (!isAttacking && !isDashing) {
             CheckDirection();
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
@@ -136,13 +170,11 @@ public class Player : MonoBehaviour
     private void CheckDirection() {
         if (xAxis < 0 && !facingLeft) {
             facingLeft = true;
-            transform.localScale = new Vector2(-1, 1);
-            Debug.Log("facing left");
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         else if (xAxis > 0 && facingLeft) {
             facingLeft = false;
-            transform.localScale = new Vector2(1, 1);
-            Debug.Log("Facing right");
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
 
@@ -157,6 +189,39 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// DASH CODE /////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    private void Dashing() {
+        if (!isDashing)
+            return;
+
+        if (dashReady)
+            dashReady = false;
+
+        if (dashTimer < dashMaxTime) {
+            dashTimer += Time.deltaTime;
+            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
+        } else if (dashTimer >= dashMaxTime) {
+            dashTimer = 0f;
+            isDashing = false;
+            canReceiveInput = true;
+        }
+    } 
+
+    private void ResetDash() {
+        if (dashCooldownTimer < dashCooldown)
+            dashCooldownTimer += Time.deltaTime;
+        else if (dashCooldownTimer >= dashCooldown) {
+            dashReady = true;
+            dashCooldownTimer = 0f;
+            Debug.Log("Dash Ready!");
+        }
+    }
+
+    /// <summary>
+    /// ATTACK CODE ////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     private void Attack() {
         // case for first attack
         if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0) {
@@ -230,7 +295,6 @@ public class Player : MonoBehaviour
         Collider2D[] hitEnemies;
         if (facingLeft) { 
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange), enemyLayer);
-            Debug.Log("Attacking left");
         }
         else
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
