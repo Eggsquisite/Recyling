@@ -52,8 +52,6 @@ public class Player : MonoBehaviour
     private float dashCooldown;
     [SerializeField]
     private float dashMaxTime;
-    [SerializeField]
-    private float landingDelay;  
 
     private bool dashReady;
     private bool isDashing;
@@ -228,7 +226,7 @@ public class Player : MonoBehaviour
             
             //transform.position = new Vector2(0f, 0f);
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
-            Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND) + landingDelay);
+            Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND));
         }
     }
 
