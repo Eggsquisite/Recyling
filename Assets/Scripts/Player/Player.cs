@@ -170,9 +170,9 @@ public class Player : MonoBehaviour
         if (!isAttacking) {
             CheckDirection();
 
-            if (isWalking)
+            if (isWalking && !isDashing)
                 rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
-            else if (isRunning && !isDashing)
+            else if (isRunning || isDashing)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
         }
     }
@@ -388,8 +388,11 @@ public class Player : MonoBehaviour
 
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking and not running
-        if (!isRunning)
-            movement = Vector2.zero;
+        if (!isRunning) { 
+            runDirection = movement = Vector2.zero;
+            runAttackDash = false;
+            runDashTimer = 0f;
+        }
         else {
             runDirection = new Vector2(xAxis, yAxis);
             runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
