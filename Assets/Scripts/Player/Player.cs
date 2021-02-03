@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
     private float dashCooldown;
     [SerializeField]
     private float dashMaxTime;
+    [SerializeField]
+    private float dashHeight;
 
     private bool dashReady;
     private bool isDashing;
@@ -162,7 +164,7 @@ public class Player : MonoBehaviour
 
             if (isWalking)
                 rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
-            else if (isRunning)
+            else if (isRunning && !isDashing)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
         }
     }
@@ -222,12 +224,12 @@ public class Player : MonoBehaviour
         // dash inputs
         if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing)
         {
+            ResetWalk();
             isDashing = true;
             dashReady = false;
             isInvincible = true;
             canReceiveInput = false;
 
-            Debug.Log("Starting dash...");
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
 
             // dash cases for standing still 
@@ -254,6 +256,7 @@ public class Player : MonoBehaviour
     }
 
     private void ResetWalk() {
+        walkTimer = 0f;
         isWalking = false;
         isRunning = false;
     }
@@ -288,8 +291,10 @@ public class Player : MonoBehaviour
         if (dashTimer < dashMaxTime) {
             dashTimer += Time.deltaTime;
 
-            //transform.Translate(0, dashSpeed * Time.deltaTime, 0f, transform.parent);
-            transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + Vector2.up, dashSpeed * Time.deltaTime);
+            transform.localPosition = new Vector2(transform.localPosition.x, 
+                                        Mathf.Lerp(transform.localPosition.y, 
+                                        dashHeight, 
+                                        dashSpeed * Time.deltaTime));
         } else if (dashTimer >= dashMaxTime) {
             dashTimer = 0f;
             isFalling = true;
@@ -300,15 +305,16 @@ public class Player : MonoBehaviour
 
     private void DashFall()
     {
-        if (transform.position.y > 0) {
-            transform.Translate(0, -9.81f * Time.deltaTime, 0f, transform.parent);
+        if (transform.localPosition.y > 0) {
+            transform.Translate(0, -6f * Time.deltaTime, 0f, transform.parent);
         }
-        else if (transform.position.y <= 0) {
+        else if (transform.localPosition.y <= 0) {
             dashTimer = 0f;
             Stunned();
             isLanding = true;
             isFalling = false;
             isInvincible = false;
+            transform.localPosition = Vector2.zero;
 
             //transform.position = new Vector2(0f, 0f);
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
