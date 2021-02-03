@@ -4326,7 +4326,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 40168971}
-  moveSpeed: 2
+  walkSpeed: 2
+  runSpeed: 3
+  walkToRunTime: 3
   verticalSpeedMult: 0.75
   horizontalSpeedMult: 1.25
   isHurtMaxTime: 1.5
@@ -4334,10 +4336,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashSpeed: 1
+  dashSpeed: 5
   dashCooldown: 1
   dashMaxTime: 2
-  landingDelay: 0.5
   damage: 10
   attackRangeVisualizer: 3.6
   pushbackDistance: 0.1

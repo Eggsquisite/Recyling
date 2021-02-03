@@ -14,14 +14,24 @@ public class Player : MonoBehaviour
 
     [Header("Movement Properties")]
     [SerializeField]
-    private float moveSpeed = 2f;
+    private float walkSpeed;
     [SerializeField]
-    private float verticalSpeedMult = 0.75f;
+    private float runSpeed;
     [SerializeField]
-    private float horizontalSpeedMult = 1.25f;
+    private float walkToRunTime;
+    [SerializeField]
+    private float verticalSpeedMult;
+    [SerializeField]
+    private float horizontalSpeedMult;
 
     private float xAxis;
     private float yAxis;
+    private float walkTimer;
+    private float stopBuffer;
+    private float bufferTimer;
+    private bool isStopped;
+    private bool isWalking;
+    private bool isRunning;
     private bool facingLeft;
     private Vector2 movement;
 
@@ -55,6 +65,7 @@ public class Player : MonoBehaviour
 
     private bool dashReady;
     private bool isDashing;
+    private bool isFalling;
     private bool isLanding;
     private float dashTimer;
     private float dashCooldownTimer;
@@ -90,6 +101,7 @@ public class Player : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
         dashReady = true;
+        stopBuffer = .1f;
 
         ResetAttack();
     }
@@ -97,42 +109,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStunned)
-        {
-            // movement inputs
-            xAxis = Input.GetAxisRaw("Horizontal");
-            yAxis = Input.GetAxisRaw("Vertical");
-
-            // attack inputs
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
-                isAttackPressed = true;
-            else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
-                isSuperAttackPressed = true;
-
-            // dash inputs
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing) {
-                isDashing = true;
-                dashReady = false;
-                canReceiveInput = false;
-
-                Debug.Log("Starting dash...");
-                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-
-                // dash cases for standing still 
-                /*if (xAxis == 0 && yAxis == 0 && facingLeft)
-                    dashDirection = new Vector2(-1f, 0f);
-                else if (xAxis == 0 && yAxis == 0 && !facingLeft)
-                    dashDirection = new Vector2(1f, 0f);
-                else
-                    dashDirection = new Vector2(xAxis, yAxis);*/
-            }
+        if (!isStunned) { 
+            WalkingToRunning();
+            CheckForMovement();
+            CheckForInput();
         }
 
+        if (isStopped)
+            StopBuffer();
         if (isHurt)
             DamageFlash();
-        if (isLanding)
-            DashLand();
-        if (!dashReady && !isLanding)
+        if (isFalling)
+            DashFall();
+        if (!dashReady && !isFalling && !isLanding)
             ResetDash();
     }
 
@@ -163,14 +152,36 @@ public class Player : MonoBehaviour
     }
     // Animation Helper Functions ////////////////////////////////////////
 
+    /// <summary>
+    /// MOVEMENT CODE /////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     private void Movement() {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
         if (!isAttacking) {
             CheckDirection();
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+            if (isWalking)
+                rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
+            else if (isRunning)
+                rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+        }
+    }
+    private void MovementAnimation() {
+        // attack animations override run/idle anims
+        if (!isAttacking && !isDashing && !isLanding)
+        {
+            if (xAxis == 0 && yAxis == 0 && !isFalling)
+                PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
+            else if (isWalking)
+                PlayAnimation(PlayerAnimStates.PLAYER_WALK);
+            else if (isRunning)
+                PlayAnimation(PlayerAnimStates.PLAYER_RUN);
         }
     }
 
+    /// <summary>
+    /// CHECKS ///////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     private void CheckDirection() {
         if (xAxis < 0 && !facingLeft) {
             facingLeft = true;
@@ -181,15 +192,85 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+    private void CheckForMovement() {
+        // movement inputs
+        if (isAttacking)
+            ResetWalk();
+        else { 
+            xAxis = Input.GetAxisRaw("Horizontal");
+            yAxis = Input.GetAxisRaw("Vertical");
+        } 
 
-    private void MovementAnimation() {
-        // attack animations override run/idle anims
-        if (!isAttacking && !isDashing && !isLanding)
+        // Check to see if stopped moving after walking
+        if (xAxis == 0 && yAxis == 0 && (isWalking || isRunning) && !isStopped) { 
+            isStopped = true;
+            bufferTimer = 0f;
+        } // Check to see if start moving after stopping
+        else if ((xAxis != 0 || yAxis != 0) && !isRunning && !isWalking)
+            isWalking = true;
+        else if (isRunning && isWalking)
+            isWalking = false;
+    }
+
+    private void CheckForInput() {
+        // attack inputs
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
+            isAttackPressed = true;
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
+            isSuperAttackPressed = true;
+
+        // dash inputs
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing)
         {
-            if (xAxis != 0 || yAxis != 0)
-                PlayAnimation(PlayerAnimStates.PLAYER_RUN);
+            isDashing = true;
+            dashReady = false;
+            isInvincible = true;
+            canReceiveInput = false;
+
+            Debug.Log("Starting dash...");
+            PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+
+            // dash cases for standing still 
+            /*if (xAxis == 0 && yAxis == 0 && facingLeft)
+                dashDirection = new Vector2(-1f, 0f);
+            else if (xAxis == 0 && yAxis == 0 && !facingLeft)
+                dashDirection = new Vector2(1f, 0f);
             else
-                PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
+                dashDirection = new Vector2(xAxis, yAxis);*/
+        }
+    }
+    ///
+    ///  WALK/RUN CODE ////////////////////////////////////////////////////////////////////////
+    ///  
+    private void WalkingToRunning() {
+        if (isWalking && !isRunning) {
+            if (walkTimer < walkToRunTime)
+                walkTimer += Time.deltaTime;
+            else if (walkTimer >= walkToRunTime) {
+                isWalking = false;
+                isRunning = true;
+            }
+        }
+    }
+
+    private void ResetWalk() {
+        isWalking = false;
+        isRunning = false;
+    }
+
+    private void StopBuffer() {
+        if (bufferTimer < stopBuffer && (xAxis != 0 || yAxis != 0)) { 
+            bufferTimer = 0f;
+            isStopped = false;
+            return;
+        }
+
+        if (bufferTimer < stopBuffer)
+            bufferTimer += Time.deltaTime;
+        else if (bufferTimer >= stopBuffer) {
+            walkTimer = 0f;
+            ResetWalk();
+            isStopped = false;
         }
     }
 
@@ -206,24 +287,29 @@ public class Player : MonoBehaviour
 
         if (dashTimer < dashMaxTime) {
             dashTimer += Time.deltaTime;
-            //rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
-            transform.Translate(0, dashSpeed * Time.deltaTime, 0f, transform.parent);
+
+            //transform.Translate(0, dashSpeed * Time.deltaTime, 0f, transform.parent);
+            transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + Vector2.up, dashSpeed * Time.deltaTime);
         } else if (dashTimer >= dashMaxTime) {
             dashTimer = 0f;
+            isFalling = true;
             isDashing = false;
-            isLanding = true;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
     }
 
-    private void DashLand()
+    private void DashFall()
     {
         if (transform.position.y > 0) {
-            transform.Translate(0, -dashSpeed * Time.deltaTime, 0f, transform.parent);
+            transform.Translate(0, -9.81f * Time.deltaTime, 0f, transform.parent);
         }
         else if (transform.position.y <= 0) {
             dashTimer = 0f;
-            
+            Stunned();
+            isLanding = true;
+            isFalling = false;
+            isInvincible = false;
+
             //transform.position = new Vector2(0f, 0f);
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
             Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND));
@@ -231,6 +317,7 @@ public class Player : MonoBehaviour
     }
 
     private void ResetLanding() {
+        ResetStun();
         isLanding = false;
         if (!isAttacking)
             canReceiveInput = true;
@@ -278,6 +365,7 @@ public class Player : MonoBehaviour
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking
         movement = Vector2.zero;
+        isStopped = true;
 
         // case for first attack in combo/super attack
         if (!isAttacking) {
@@ -364,8 +452,9 @@ public class Player : MonoBehaviour
     public void PlayerHurt(int damageNum) {
         if (!isHurt && !isInvincible) {
             isHurt = true;
-            isStunned = true;
             isInvincible = true;
+
+            Stunned();
             ResetAttack();
 
             stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
@@ -374,6 +463,11 @@ public class Player : MonoBehaviour
 
             // take damage
         }
+    }
+
+    private void Stunned() {
+        ResetWalk();
+        isStunned = true;
     }
 
     private void ResetStun() {
