@@ -186,7 +186,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40168965}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -437,10 +437,6 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -161
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
@@ -3107,6 +3103,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -220
+      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (1)
@@ -4566,8 +4566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 40168971}
-  walkSpeed: 2
-  runSpeed: 3
+  walkSpeed: 1.5
+  runSpeed: 2.5
   walkToRunTime: 3
   verticalSpeedMult: 0.75
   horizontalSpeedMult: 1.25
@@ -4581,7 +4581,7 @@ MonoBehaviour:
   dashMaxTime: 2
   dashHeight: 2
   damage: 10
-  attackRangeVisualizer: 3.6
+  attackRangeVisualizer: 1
   pushbackDistance: 0.1
   specialAttackDmg: 50
   specialPushbackMultiplier: 10

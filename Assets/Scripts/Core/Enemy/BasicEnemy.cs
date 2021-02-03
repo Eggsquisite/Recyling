@@ -207,6 +207,9 @@ public class BasicEnemy : MonoBehaviour
 
         Invoke("ResetAttack", stunDelay);
     }
+    private void ResetInvincible() {
+        isInvincible = false;
+    }
     ////////////////// Attack Code /////////////////////////////
     private void ResetAttack() {
         attackReady = true;
@@ -257,6 +260,7 @@ public class BasicEnemy : MonoBehaviour
         isStunned = true;
         canFollow = false;
         attackReady = false;
+        isInvincible = true;
         PushBack(distance, playerRef);
         if (IsInvoking("ResetStun"))
             CancelInvoke("ResetStun");
@@ -268,6 +272,7 @@ public class BasicEnemy : MonoBehaviour
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
+            Invoke("ResetInvincible", 0.1f);
             Invoke("ResetStun", stunDuration + 0.25f);
         }
     }

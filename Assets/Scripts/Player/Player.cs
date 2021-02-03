@@ -89,11 +89,16 @@ public class Player : MonoBehaviour
     private float specialPushbackMultiplier;
 
     private float attackDelay;
+    private float runDashTimer;
+    private float runDashMaxTime;
     private int attackCombo;
-    private bool isAttackPressed;
-    private bool isSuperAttackPressed;
     private bool isAttacking;
+    private bool runAttackDash;
+    private bool isAttackPressed;
+    private bool isRunAttackPressed;
+    private bool isSuperAttackPressed;
     private bool canReceiveInput = true;
+    private Vector2 runDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -137,6 +142,9 @@ public class Player : MonoBehaviour
 
             // dash -----------------------------------------------
             Dashing();
+
+            // run attack ----------------------------------------
+            RunAttack();
 
             //attack ------------------------------------
             Attack();
@@ -216,8 +224,10 @@ public class Player : MonoBehaviour
 
     private void CheckForInput() {
         // attack inputs
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && !isRunning)
             isAttackPressed = true;
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && isRunning)
+            isRunAttackPressed = true;
         else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
             isSuperAttackPressed = true;
 
@@ -231,14 +241,6 @@ public class Player : MonoBehaviour
             canReceiveInput = false;
 
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-
-            // dash cases for standing still 
-            /*if (xAxis == 0 && yAxis == 0 && facingLeft)
-                dashDirection = new Vector2(-1f, 0f);
-            else if (xAxis == 0 && yAxis == 0 && !facingLeft)
-                dashDirection = new Vector2(1f, 0f);
-            else
-                dashDirection = new Vector2(xAxis, yAxis);*/
         }
     }
     ///
@@ -316,7 +318,6 @@ public class Player : MonoBehaviour
             isInvincible = false;
             transform.localPosition = Vector2.zero;
 
-            //transform.position = new Vector2(0f, 0f);
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
             Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND));
         }
@@ -349,7 +350,6 @@ public class Player : MonoBehaviour
             AttackAnimation(attackCombo);
 
             isAttackPressed = false;
-            canReceiveInput = false;
         }
         // case for combo attacks
         else if (isAttackPressed && canReceiveInput && isAttacking && attackCombo < 3) {
@@ -357,21 +357,48 @@ public class Player : MonoBehaviour
             AttackAnimation(attackCombo);
 
             isAttackPressed = false;
-            canReceiveInput = false;
+        }
+        // case for run attack
+        else if (isRunAttackPressed) {
+            attackCombo += 1;
+            AttackAnimation(attackCombo);
+
+            isRunAttackPressed = false;
         }
         // case for super attack
         else if (isSuperAttackPressed) {
             AttackAnimation(10);
 
             isSuperAttackPressed = false;
-            canReceiveInput = false;
+        }
+    }
+
+    private void RunAttack() { 
+        if (runAttackDash) {
+            if (runDashTimer < runDashMaxTime) { 
+                runDashTimer += Time.deltaTime;
+                rb.MovePosition(rb.position + runDirection * runSpeed * Time.fixedDeltaTime);
+            }
+            else if (runDashTimer >= runDashMaxTime) {
+                runDashTimer = 0f;
+                runAttackDash = false;
+            }
         }
     }
 
     private void AttackAnimation(int attackIndex) {
-        // stop movement when attacking
-        movement = Vector2.zero;
+        // stop movement when attacking and not running
+        if (!isRunning)
+            movement = Vector2.zero;
+        else {
+            runDirection = new Vector2(xAxis, yAxis);
+            runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
+
+            runAttackDash = true;
+        }
+
         isStopped = true;
+        canReceiveInput = false;
 
         // case for first attack in combo/super attack
         if (!isAttacking) {
@@ -392,9 +419,14 @@ public class Player : MonoBehaviour
     }
 
     private void GetAttackDelay(int attackIndex) {
-        if (attackIndex == 1) {
+        if (attackIndex == 1 && !isRunning) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK1);
             PlayAnimation(PlayerAnimStates.PLAYER_ATTACK1);
+        }
+        else if (attackIndex == 1 && isRunning)
+        {
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
+            PlayAnimation(PlayerAnimStates.PLAYER_RUNATTACK);
         }
         else if (attackIndex == 2) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK2);
@@ -456,19 +488,20 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerHurt(int damageNum) {
-        if (!isHurt && !isInvincible) {
-            isHurt = true;
-            isInvincible = true;
+        if (isHurt || isInvincible)
+            return; 
 
-            Stunned();
-            ResetAttack();
+        isHurt = true;
+        isInvincible = true;
 
-            stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
-            PlayAnimation(PlayerAnimStates.PLAYER_HURT);
-            Invoke("ResetStun", stunDuration);
+        Stunned();
+        ResetAttack();
 
-            // take damage
-        }
+        stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
+        PlayAnimation(PlayerAnimStates.PLAYER_HURT);
+        Invoke("ResetStun", stunDuration);
+
+        // take damage
     }
 
     private void Stunned() {
