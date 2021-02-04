@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
     [Header("Attack Collider Properties")]
     [SerializeField]
     private Transform attackPoint;
-
     [SerializeField]
     private LayerMask enemyLayer;
 
