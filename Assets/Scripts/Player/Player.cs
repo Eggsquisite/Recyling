@@ -34,10 +34,12 @@ public class Player : MonoBehaviour
     private bool isRunning;
     private bool facingLeft;
     private Vector2 movement;
+    private string currentState;
 
     [Header("Damaged Properties")]
     [SerializeField]
     private float isHurtMaxTime;
+
     private float isHurtTimer;
     private float flashInterval = 0.1f;
     private float flashTimer;
@@ -46,7 +48,6 @@ public class Player : MonoBehaviour
     private bool isStunned;
     private float stunDuration;
 
-    private string currentState;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -64,10 +65,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float dashHeight;
 
-    private bool dashReady;
     private bool isDashing;
     private bool isFalling;
     private bool isLanding;
+    private bool dashReady = true;
     private float dashTimer;
     private float dashCooldownTimer;
 
@@ -106,7 +107,6 @@ public class Player : MonoBehaviour
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
-        dashReady = true;
         stopBuffer = .1f;
 
         ResetAttack();
