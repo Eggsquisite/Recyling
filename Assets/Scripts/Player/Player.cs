@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     private bool isDashing;
     private bool isFalling;
     private bool isLanding;
+    private bool stopDash;
     private bool dashReady = true;
     private float dashTimer;
     private float dashCooldownTimer;
@@ -254,21 +255,22 @@ public class Player : MonoBehaviour
 
         if (canReceiveInput && dashReady && !isDashing) {
             ResetWalk();
-            isDashing = true;
             dashReady = false;
+            isDashing = true;
             canReceiveInput = false;
-
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
         }
     }
 
-    public void StopDashInput() { 
-        if (isDashing) {
+    public void StopDashInput() {
+        if (isDashing && dashTimer >= dashMinTime) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
+        else if (isDashing && dashTimer < dashMinTime)
+            stopDash = true;
     }
 
     ///
@@ -318,29 +320,23 @@ public class Player : MonoBehaviour
             dashReady = false;
         }
 
-/*        if (dashTimer < dashMinTime) {
+        if (dashTimer < dashMinTime) {
             dashTimer += Time.deltaTime;
-
-            transform.localPosition = new Vector2(transform.localPosition.x, 
-                                        Mathf.Lerp(transform.localPosition.y, 
-                                        dashHeight, 
-                                        dashSpeed * Time.deltaTime));
         } else if (dashTimer >= dashMinTime) {
             dashTimer = dashMinTime;
-        }*/
+        }
 
-        if (playerStats.GetCurrentEnergy() > 0)
-            transform.localPosition = new Vector2(transform.localPosition.x,
-                                        Mathf.Lerp(transform.localPosition.y,
-                                        dashHeight,
-                                        dashSpeed * Time.deltaTime));
-        else if (playerStats.GetCurrentEnergy() <= 0) {
+        if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
-        }
-
+        } 
+        else if (playerStats.GetCurrentEnergy() > 0)
+            transform.localPosition = new Vector2(transform.localPosition.x,
+                                        Mathf.Lerp(transform.localPosition.y,
+                                        dashHeight,
+                                        dashSpeed * Time.deltaTime));
     }
 
     private void DashFall()
@@ -351,6 +347,7 @@ public class Player : MonoBehaviour
         else if (transform.localPosition.y <= 0) {
             dashTimer = 0f;
             Stunned();
+            stopDash = false;
             isLanding = true;
             isFalling = false;
             transform.localPosition = Vector2.zero;
@@ -365,6 +362,10 @@ public class Player : MonoBehaviour
         isLanding = false;
         if (!isAttacking)
             canReceiveInput = true;
+    }
+
+    private void SetDashing() {
+        isDashing = true;
     }
 
     private void ResetDash() {
