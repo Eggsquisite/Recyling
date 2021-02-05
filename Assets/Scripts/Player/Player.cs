@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Rigidbody2D rb;
-    [SerializeField]
 
     private SpriteRenderer sp;
     private Animator anim;
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour
     private float walkSpeed;
     [SerializeField]
     private float runSpeed;
-    [SerializeField]
+    [SerializeField] [Range(0, 10f)]
     private float walkToRunTime;
     [SerializeField]
     private float verticalSpeedMult;

@@ -10,18 +10,24 @@ public class PlayerUI : MonoBehaviour
     private Slider healthMaxValue;
     [SerializeField]
     private Slider healthCurrentValue;
+    [SerializeField]
+    private Slider healthDestroyedValue;
 
     [Header("Energy")]
     [SerializeField]
     private Slider energyMaxValue;
     [SerializeField]
     private Slider energyCurrentValue;
+    [SerializeField]
+    private Slider energyDestroyedValue;
 
     [Header("Stamina")]
     [SerializeField]
     private Slider staminaMaxValue;
     [SerializeField]
     private Slider staminaCurrentValue;
+    [SerializeField]
+    private Slider staminaDestroyedValue;
 
     private float hi;
 
@@ -37,7 +43,16 @@ public class PlayerUI : MonoBehaviour
         
     }
 
-    public void SetMaxHealth(float percent) {
-        healthMaxValue.value = percent;
+    public void SetMaxHealth(int newValue) {
+        healthMaxValue.value = newValue;
+        healthCurrentValue.maxValue = healthCurrentValue.value = newValue;
+    }
+
+    public void SetCurrentHealth(int newValue) {
+        healthCurrentValue.value = newValue;
+    }
+
+    public void SetEnergyMax(int newValue) {
+        energyMaxValue.value = newValue;
     }
 }
