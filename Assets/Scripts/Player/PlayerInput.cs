@@ -30,5 +30,7 @@ public class PlayerInput : MonoBehaviour
         // DASH INPUT
         if (Input.GetKeyDown(KeyCode.Space))
             player.DashInput();
+        else if (Input.GetKeyUp(KeyCode.Space))
+            player.StopDashInput();
     }
 }

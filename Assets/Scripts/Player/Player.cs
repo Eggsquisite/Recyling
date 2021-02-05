@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float dashCooldown;
     [SerializeField]
-    private float dashMaxTime;
+    private float dashMinTime;
     [SerializeField]
     private float dashHeight;
 
@@ -262,6 +262,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StopDashInput() { 
+        if (isDashing) {
+            dashTimer = 0f;
+            isFalling = true;
+            isDashing = false;
+            PlayAnimation(PlayerAnimStates.PLAYER_FALL);
+        }
+    }
+
     ///
     ///  WALK/RUN CODE ////////////////////////////////////////////////////////////////////////
     ///  
@@ -309,19 +318,29 @@ public class Player : MonoBehaviour
             dashReady = false;
         }
 
-        if (dashTimer < dashMaxTime) {
+/*        if (dashTimer < dashMinTime) {
             dashTimer += Time.deltaTime;
 
             transform.localPosition = new Vector2(transform.localPosition.x, 
                                         Mathf.Lerp(transform.localPosition.y, 
                                         dashHeight, 
                                         dashSpeed * Time.deltaTime));
-        } else if (dashTimer >= dashMaxTime) {
+        } else if (dashTimer >= dashMinTime) {
+            dashTimer = dashMinTime;
+        }*/
+
+        if (playerStats.GetCurrentEnergy() > 0)
+            transform.localPosition = new Vector2(transform.localPosition.x,
+                                        Mathf.Lerp(transform.localPosition.y,
+                                        dashHeight,
+                                        dashSpeed * Time.deltaTime));
+        else if (playerStats.GetCurrentEnergy() <= 0) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
+
     }
 
     private void DashFall()
@@ -405,7 +424,7 @@ public class Player : MonoBehaviour
 
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking and not running
-        if (!isRunning) { 
+        if (!isRunning || isSuperAttackPressed) { 
             runDirection = movement = Vector2.zero;
             runAttackDash = false;
             runDashTimer = 0f;
