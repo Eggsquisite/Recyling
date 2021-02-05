@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
     private float runDashTimer;
     private float runDashMaxTime;
     private int attackCombo;
+    private bool canTurn;
     private bool isAttacking;
     private bool runAttackDash;
     private bool isAttackPressed;
@@ -175,8 +176,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Movement() {
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
+        CheckDirection();
         if (!isAttacking) {
-            CheckDirection();
 
             if (isWalking && !isDashing)
                 rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
@@ -364,10 +365,6 @@ public class Player : MonoBehaviour
             canReceiveInput = true;
     }
 
-    private void SetDashing() {
-        isDashing = true;
-    }
-
     private void ResetDash() {
         if (dashCooldownTimer < dashCooldown)
             dashCooldownTimer += Time.deltaTime;
@@ -525,6 +522,14 @@ public class Player : MonoBehaviour
             canReceiveInput = true;
         else
             return;
+    }
+
+    private void SetCanTurn() {
+        canTurn = true;
+    }
+
+    private void ResetCanTurn() {
+        canTurn = false;
     }
 
     private void ConsumeEnergy(int value) {
