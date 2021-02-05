@@ -39,12 +39,8 @@ public class BasicEnemy : MonoBehaviour
     [Header("Attack Properties")]
     [SerializeField]
     private EnemyAttacks attackChosen;
-
     [SerializeField]
     private float stunDelay;
-
-    [SerializeField]
-    private int damage;
 
     [SerializeField] [Range(0, 5f)]
     private float attackVisualizer;
@@ -55,9 +51,16 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] [Range(0, 5f)]
     private float attackRange3;
 
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField]
+    private int attackDamage1;
+    [SerializeField]
+    private int attackDamage2;
+    [SerializeField]
+    private int attackDamage3;
+
+    [SerializeField]
     private float minAttackDelay;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField]
     private float maxAttackDelay;
 
     private bool inRange;
@@ -65,6 +68,8 @@ public class BasicEnemy : MonoBehaviour
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
+    private int attackCounter;
+    private int currentAttackDamage;
     private float currentAttackRange;
     private float attackDelay;
     private float stunDuration;
@@ -228,7 +233,7 @@ public class BasicEnemy : MonoBehaviour
     private void ResetInvincible() {
         isInvincible = false;
     }
-    ////////////////// Attack Code /////////////////////////////
+    ////////////////// Attack Code ////////////////////////////////////////////////////////////
     private void ResetAttack() {
         attackReady = true;
     }
@@ -257,7 +262,7 @@ public class BasicEnemy : MonoBehaviour
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
         if (hitBox.collider != null) {
-            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(damage);
+            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
         }
     }
 
@@ -265,6 +270,7 @@ public class BasicEnemy : MonoBehaviour
         canFollow = false;
         isAttacking = true;
         attackReady = false;
+        FindEnemy();
 
         if (attackChosen == EnemyAttacks.BasicAttack1)
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
@@ -276,37 +282,43 @@ public class BasicEnemy : MonoBehaviour
         Invoke("FinishAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
     }
 
-    private void ChooseAttack(int index) {
-        if (index == 1) {
+   private void ChooseAttack(int index) {
+        if (index == 1)
+        {
             attackChosen = EnemyAttacks.BasicAttack1;
             currentAttackRange = attackRange1;
         }
-        else if (index == 2) { 
+        else if (index == 2)
+        {
             attackChosen = EnemyAttacks.BasicAttack2;
             currentAttackRange = attackRange2;
         }
-        else if (index == 3) { 
+        else if (index == 3)
+        {
             attackChosen = EnemyAttacks.BasicAttack3;
             currentAttackRange = attackRange3;
         }
     }
-
+    
     private void ChooseAttack(EnemyAttacks attackChoice)
     {
         if (attackChoice == EnemyAttacks.BasicAttack1)
         {
             attackChosen = EnemyAttacks.BasicAttack1;
             currentAttackRange = attackRange1;
+            currentAttackDamage = attackDamage1;
         }
         else if (attackChoice == EnemyAttacks.BasicAttack2)
         {
             attackChosen = EnemyAttacks.BasicAttack2;
             currentAttackRange = attackRange2;
+            currentAttackDamage = attackDamage2;
         }
         else if (attackChoice == EnemyAttacks.BasicAttack3)
         {
             attackChosen = EnemyAttacks.BasicAttack3;
             currentAttackRange = attackRange3;
+            currentAttackDamage = attackDamage3;
         }
     }
 
@@ -365,6 +377,22 @@ public class BasicEnemy : MonoBehaviour
 
         //Destroy(gameObject);
     }*/
+
+    // ENEMY SPECIFIC /////////////////////////////////////////////////////////////////////////////
+    private void FindEnemy() {
+        if (name.Contains("MudGuard"))
+            MudguardAttack();
+    }
+
+    private void MudguardAttack() {
+        attackCounter++;
+        if (attackCounter % 3 == 0)
+            ChooseAttack(EnemyAttacks.BasicAttack1);
+        else
+            ChooseAttack(EnemyAttacks.BasicAttack2);
+    }
+
+    // GIZMOS ////////////////////////////////////////////////////////////////////////////////
 
     private void OnDrawGizmosSelected()
     {

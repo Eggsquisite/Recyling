@@ -287,11 +287,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   health: 50
+  attackChosen: 0
   stunDelay: 0.5
   damage: 50
-  attackRange: 0.5
-  minAttackDelay: 2
-  maxAttackDelay: 2.5
+  attackVisualizer: 0
+  attackRange1: 0
+  attackRange2: 0
+  attackRange3: 0
+  minAttackDelay: 4
+  maxAttackDelay: 6
   minMoveSpeed: 1
   maxMoveSpeed: 1.5
   minOffset: 2.75

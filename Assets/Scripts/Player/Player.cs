@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Player Stats")]
     private PlayerStats playerStats;
+    private bool isDead;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -120,12 +121,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStunned) { 
-            WalkingToRunning();
-            //CheckForMovement();
-            //CheckForInput();
-        }
+        if (isDead)
+            return;
 
+        if (!isStunned) 
+            WalkingToRunning();
         if (isStopped)
             StopBuffer();
         if (isHurt)
@@ -137,6 +137,9 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (isDead)
+            return;
+
         if (!isStunned) {
             // movement ---------------------------------
             Movement();
@@ -525,12 +528,19 @@ public class Player : MonoBehaviour
         ResetAttack();
         SetInvincible();
 
-        stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
-        PlayAnimation(PlayerAnimStates.PLAYER_HURT);
-        Invoke("ResetStun", stunDuration);
-
         // take damage
         playerStats.SetCurrentHealth(-damageNum);
+
+        if (playerStats.GetCurrentHealth() <= 0) {
+            isDead = true;
+            PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
+        }
+        else { 
+            stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
+            PlayAnimation(PlayerAnimStates.PLAYER_HURT);
+            Invoke("ResetStun", stunDuration);
+        }
+
     }
 
     private void Stunned() {

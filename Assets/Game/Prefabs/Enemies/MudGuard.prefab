@@ -206,16 +206,18 @@ MonoBehaviour:
     m_Bits: 64
   health: 120
   attackChosen: 0
-  stunDelay: 0.5
-  damage: 125
-  attackVisualizer: 1.3
+  stunDelay: 0.75
+  attackVisualizer: 1.2
   attackRange1: 3.5
   attackRange2: 1.3
   attackRange3: 0
-  minAttackDelay: 0.75
-  maxAttackDelay: 1.25
-  minMoveSpeed: 0.25
-  maxMoveSpeed: 0.75
+  attackDamage1: 75
+  attackDamage2: 60
+  attackDamage3: 0
+  minAttackDelay: 2
+  maxAttackDelay: 4
+  minMoveSpeed: 0.5
+  maxMoveSpeed: 1.25
   minOffset: 0.75
   maxOffset: 1.25
 --- !u!1 &3898020909053490396
