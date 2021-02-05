@@ -498,9 +498,14 @@ public class Player : MonoBehaviour
             return;
     }
 
+    private void ConsumeEnergy(int value) {
+        playerStats.SetCurrentEnergy(-value);
+    }
+
     private void ConsumeStamina(int value) {
         playerStats.SetCurrentStamina(-value);
     }
+
 
     /// <summary>
     /// DAMAGED CODE ////////////////////////////////////////////////////////////////////

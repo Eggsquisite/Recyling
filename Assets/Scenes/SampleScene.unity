@@ -4693,7 +4693,7 @@ MonoBehaviour:
     m_Bits: 128
   dashSpeed: 4
   dashCooldown: 1
-  dashMaxTime: 2
+  dashMaxTime: 1
   dashHeight: 2
   damage: 10
   attackRangeVisualizer: 1

@@ -33,12 +33,6 @@ public class PlayerStats : MonoBehaviour
         InitializeUI();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void InitializeUI()
     {
         UI.SetCurrentHealth(maxHealth);
