@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
+    private enum EnemyAttacks
+    {
+        BasicAttack1,
+        BasicAttack2,
+        BasicAttack3
+    };
+
     private Animator anim;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
@@ -31,13 +38,22 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
+    private EnemyAttacks attackChosen;
+
+    [SerializeField]
     private float stunDelay;
 
     [SerializeField]
     private int damage;
 
     [SerializeField] [Range(0, 5f)]
-    private float attackRange;
+    private float attackVisualizer;
+    [SerializeField] [Range(0, 5f)]
+    private float attackRange1;
+    [SerializeField] [Range(0, 5f)]
+    private float attackRange2;
+    [SerializeField] [Range(0, 5f)]
+    private float attackRange3;
 
     [SerializeField] [Range(0, 5f)]
     private float minAttackDelay;
@@ -49,6 +65,7 @@ public class BasicEnemy : MonoBehaviour
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
+    private float currentAttackRange;
     private float attackDelay;
     private float stunDuration;
 
@@ -80,7 +97,7 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         ///////////////////// Attack Hitbox Activated ///////////////////////////
-        if (attackHitbox) 
+        if (attackHitbox)
             CheckHitBox();
 
         ///////////////////// Follow Player /////////////////////////////////////
@@ -98,16 +115,17 @@ public class BasicEnemy : MonoBehaviour
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         ac = anim.runtimeAnimatorController;
+        ChooseAttack(attackChosen);
 
         canFollow = true;
         attackReady = true;
         xScaleValue = transform.localScale.x;
 
-        if (playerChar.x > transform.position.x) { 
+        if (playerChar.x > transform.position.x) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
-        else if (playerChar.x <= transform.position.x) { 
+        else if (playerChar.x <= transform.position.x) {
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
@@ -133,7 +151,7 @@ public class BasicEnemy : MonoBehaviour
 
     ////////////////// Find Player AI ////////////////////
     private void FindPlayer() {
-        if (canFollow) { 
+        if (canFollow) {
             playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
     }
@@ -147,7 +165,7 @@ public class BasicEnemy : MonoBehaviour
             PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
             Debug.Log("2");
         }*/
-        if (inRange && !attackReady && !isStunned && !isAttacking) { 
+        if (inRange && !attackReady && !isStunned && !isAttacking) {
             PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
         }
         // ENEMY MOVEMENT ///////////////////////////////////////////////
@@ -166,11 +184,11 @@ public class BasicEnemy : MonoBehaviour
     private void CheckPlayerPos()
     {
         // Set variable of leftOfPlayer
-        if (playerChar.x > transform.position.x && !leftOfPlayer) { 
+        if (playerChar.x > transform.position.x && !leftOfPlayer) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
-        else if (playerChar.x <= transform.position.x && leftOfPlayer) { 
+        else if (playerChar.x <= transform.position.x && leftOfPlayer) {
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
@@ -181,15 +199,15 @@ public class BasicEnemy : MonoBehaviour
         CheckPlayerPos();
 
         if (leftOfPlayer)
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, attackRange, playerLayer);
+            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
         else
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, attackRange, playerLayer);
+            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
-        if (playerDetected.collider != null && !inRange) { 
+        if (playerDetected.collider != null && !inRange) {
             inRange = true;
             /*Debug.Log(name + " is IN range!");*/
         }
-        else if (playerDetected.collider == null && inRange) { 
+        else if (playerDetected.collider == null && inRange) {
             inRange = false;
             /*Debug.Log(name + " is OUT OF range!");*/
         }
@@ -234,12 +252,12 @@ public class BasicEnemy : MonoBehaviour
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
         if (leftOfPlayer)
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, attackRange, playerLayer);
+            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
         else
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, attackRange, playerLayer);
+            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
-        if (hitBox.collider != null) { 
-                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(damage);
+        if (hitBox.collider != null) {
+            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(damage);
         }
     }
 
@@ -248,8 +266,48 @@ public class BasicEnemy : MonoBehaviour
         isAttacking = true;
         attackReady = false;
 
-        PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
+        if (attackChosen == EnemyAttacks.BasicAttack1)
+            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
+        else if (attackChosen == EnemyAttacks.BasicAttack2)
+            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK2);
+        else if (attackChosen == EnemyAttacks.BasicAttack3)
+            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK3);
+
         Invoke("FinishAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
+    }
+
+    private void ChooseAttack(int index) {
+        if (index == 1) {
+            attackChosen = EnemyAttacks.BasicAttack1;
+            currentAttackRange = attackRange1;
+        }
+        else if (index == 2) { 
+            attackChosen = EnemyAttacks.BasicAttack2;
+            currentAttackRange = attackRange2;
+        }
+        else if (index == 3) { 
+            attackChosen = EnemyAttacks.BasicAttack3;
+            currentAttackRange = attackRange3;
+        }
+    }
+
+    private void ChooseAttack(EnemyAttacks attackChoice)
+    {
+        if (attackChoice == EnemyAttacks.BasicAttack1)
+        {
+            attackChosen = EnemyAttacks.BasicAttack1;
+            currentAttackRange = attackRange1;
+        }
+        else if (attackChoice == EnemyAttacks.BasicAttack2)
+        {
+            attackChosen = EnemyAttacks.BasicAttack2;
+            currentAttackRange = attackRange2;
+        }
+        else if (attackChoice == EnemyAttacks.BasicAttack3)
+        {
+            attackChosen = EnemyAttacks.BasicAttack3;
+            currentAttackRange = attackRange3;
+        }
     }
 
     /////////////// Enemy Is Hit //////////////////
@@ -312,8 +370,8 @@ public class BasicEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange));
+            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackVisualizer));
         else
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange));
+            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackVisualizer));
     }   
 }
