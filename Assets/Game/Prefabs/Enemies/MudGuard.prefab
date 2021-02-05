@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -161
+  m_SortingOrder: -220
   m_Sprite: {fileID: 8793639957104055765, guid: 68afdf6c3bddec346b8be2c411952d70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
     m_Bits: 64
   health: 120
   stunDelay: 0.5
-  damage: 5
+  damage: 125
   attackRange: 1.2
   minAttackDelay: 0.75
   maxAttackDelay: 1.25

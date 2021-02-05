@@ -122,6 +122,9 @@ public class Player : MonoBehaviour
         ac = anim.runtimeAnimatorController;
         stopBuffer = .1f;
 
+        UI.SetCurrentHealth(maxHealth);
+        UI.SetCurrentEnergy(maxEnergy);
+
         ResetAttack();
     }
 
@@ -516,6 +519,7 @@ public class Player : MonoBehaviour
         PlayAnimation(PlayerAnimStates.PLAYER_HURT);
         Invoke("ResetStun", stunDuration);
 
+        UI.SetCurrentHealth(-damageNum);
         // take damage
     }
 
