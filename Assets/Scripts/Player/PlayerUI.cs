@@ -58,12 +58,12 @@ public class PlayerUI : MonoBehaviour
         if (healthLost)
             DestroyedTimer(ref healthTimer, ref healthLost, ref healthDecaying);
         else if (healthDecaying)
-            VisualDecay(healthCurrentValue, ref healthDestroyedValue, ref healthDecaying);
+            VisualDecay(healthCurrentValue, healthDestroyedValue, ref healthDecaying);
 
         if (energyLost)
             DestroyedTimer(ref energyTimer, ref energyLost, ref energyDecaying);
         else if (energyDecaying)
-            VisualDecay(energyCurrentValue, ref energyDestroyedValue, ref energyDecaying);
+            VisualDecay(energyCurrentValue, energyDestroyedValue, ref energyDecaying);
     }
 
     private void DestroyedTimer(ref float timer, ref bool flag, ref bool decayFlag) {
@@ -76,7 +76,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    private void VisualDecay(Slider currentValue, ref Slider decayValue, ref bool decayFlag) {
+    private void VisualDecay(Slider currentValue, Slider decayValue, ref bool decayFlag) {
 
         if (decayValue.value > currentValue.value) {
             Debug.Log("Decaying");
