@@ -13,15 +13,7 @@ public class Player : MonoBehaviour
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
-    [SerializeField]
-    private int maxHealth;
-    [SerializeField]
-    private int maxEnergy;
-    [SerializeField]
-    private int maxStamina;
-
-    private PlayerUI UI;
-    private int currentHealth;
+    private PlayerStats playerStats;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -112,18 +104,15 @@ public class Player : MonoBehaviour
     private Vector2 runDirection;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
+        if (playerStats == null) playerStats = GetComponent<PlayerStats>();
 
-        UI = GetComponent<PlayerUI>();
         ac = anim.runtimeAnimatorController;
         stopBuffer = .1f;
-
-        UI.SetCurrentHealth(maxHealth);
-        UI.SetCurrentEnergy(maxEnergy);
 
         ResetAttack();
     }
@@ -238,24 +227,28 @@ public class Player : MonoBehaviour
     }
 
     private void CheckForInput() {
-        // attack inputs
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && !isRunning)
-            isAttackPressed = true;
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && isRunning)
-            isRunAttackPressed = true;
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
-            isSuperAttackPressed = true;
+        // attack inputs 
+        if (playerStats.GetCurrentStamina() > 0) { 
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && !isRunning)
+                isAttackPressed = true;
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && isRunning)
+                isRunAttackPressed = true;
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
+                isSuperAttackPressed = true;
+        }
 
         // dash inputs
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing)
-        {
-            ResetWalk();
-            isDashing = true;
-            dashReady = false;
-            isInvincible = true;
-            canReceiveInput = false;
+        if (playerStats.GetCurrentEnergy() > 0) { 
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing)
+            {
+                ResetWalk();
+                isDashing = true;
+                dashReady = false;
+                isInvincible = true;
+                canReceiveInput = false;
 
-            PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+            }
         }
     }
     ///
@@ -505,6 +498,13 @@ public class Player : MonoBehaviour
             return;
     }
 
+    private void ConsumeStamina(int value) {
+        playerStats.SetCurrentStamina(-value);
+    }
+
+    /// <summary>
+    /// DAMAGED CODE ////////////////////////////////////////////////////////////////////
+    /// </summary>
     public void PlayerHurt(int damageNum) {
         if (isHurt || isInvincible)
             return; 
@@ -519,7 +519,7 @@ public class Player : MonoBehaviour
         PlayAnimation(PlayerAnimStates.PLAYER_HURT);
         Invoke("ResetStun", stunDuration);
 
-        UI.SetCurrentHealth(-damageNum);
+        playerStats.SetCurrentHealth(-damageNum);
         // take damage
     }
 

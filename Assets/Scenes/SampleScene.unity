@@ -4562,6 +4562,7 @@ GameObject:
   - component: {fileID: 1080875355}
   - component: {fileID: 1080875354}
   - component: {fileID: 1080875356}
+  - component: {fileID: 1080875358}
   - component: {fileID: 1080875357}
   m_Layer: 6
   m_Name: PlayerSprite
@@ -4680,9 +4681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 40168971}
-  maxHealth: 500
-  maxEnergy: 300
-  maxStamina: 200
   walkSpeed: 1.5
   runSpeed: 2.5
   walkToRunTime: 3
@@ -4714,8 +4712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 3
+  visualDelay: 1
   decaySpeed: 200
+  recoverySpeed: 30
   healthMaxValue: {fileID: 4674527415172417435}
   healthCurrentValue: {fileID: 4674527415699176524}
   healthDestroyedValue: {fileID: 246685319}
@@ -4725,6 +4724,27 @@ MonoBehaviour:
   staminaMaxValue: {fileID: 8011314775743250866}
   staminaCurrentValue: {fileID: 8011314776342559333}
   staminaDestroyedValue: {fileID: 1265297794}
+--- !u!114 &1080875358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080875351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59f0077d939aeb4986fb0a0e9aa2c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  maxEnergy: 300
+  maxStamina: 200
+  healthRecoveryValue: 0
+  healthRecoveryDelay: 2
+  energyRecoveryValue: 2
+  energyRecoveryDelay: 2
+  staminaRecoveryValue: 5
+  staminaRecoveryDelay: 1
 --- !u!4 &1153999375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
