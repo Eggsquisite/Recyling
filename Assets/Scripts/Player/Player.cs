@@ -351,7 +351,6 @@ public class Player : MonoBehaviour
         else if (dashCooldownTimer >= dashCooldown) {
             dashReady = true;
             dashCooldownTimer = 0f;
-            Debug.Log("Dash Ready!");
         }
     }
 
