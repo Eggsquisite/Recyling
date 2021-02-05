@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
     }
 
     public void BasicAttackInput() {
-        if (isStunned)
+        if (isStunned || playerStats.GetCurrentStamina() <= 0)
             return; 
 
         if (canReceiveInput && !isRunning)
@@ -238,22 +238,21 @@ public class Player : MonoBehaviour
     }
 
     public void SuperAttackInput() {
-        if (isStunned)
+        if (isStunned || (playerStats.GetCurrentStamina() <= 0 && playerStats.GetCurrentEnergy() < 75))
             return;
 
-        if (canReceiveInput && playerStats.GetCurrentEnergy() > 75)
+        if (canReceiveInput)
             isSuperAttackPressed = true;
     }
 
     public void DashInput() {
-        if (isStunned)
+        if (isStunned || playerStats.GetCurrentEnergy() <= 0)
             return;
 
         if (canReceiveInput && dashReady && !isDashing) {
             ResetWalk();
             isDashing = true;
             dashReady = false;
-            isInvincible = true;
             canReceiveInput = false;
 
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
@@ -332,7 +331,6 @@ public class Player : MonoBehaviour
             Stunned();
             isLanding = true;
             isFalling = false;
-            isInvincible = false;
             transform.localPosition = Vector2.zero;
 
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
@@ -524,10 +522,9 @@ public class Player : MonoBehaviour
             return; 
 
         isHurt = true;
-        isInvincible = true;
-
         Stunned();
         ResetAttack();
+        SetInvincible();
 
         stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
         PlayAnimation(PlayerAnimStates.PLAYER_HURT);
@@ -540,6 +537,17 @@ public class Player : MonoBehaviour
     private void Stunned() {
         ResetWalk();
         isStunned = true;
+    }
+
+    private void SetInvincible() {
+        isInvincible = true;
+    }
+
+    private void ResetInvincible() {
+        if (isDashing || isFalling)
+            return;
+        else
+            isInvincible = false;
     }
 
     private void ResetStun() {
@@ -558,7 +566,7 @@ public class Player : MonoBehaviour
             isHurtTimer += Time.deltaTime;
         else if (isHurtTimer >= isHurtMaxTime) {
             isHurt = false;
-            isInvincible = false;
+            ResetInvincible();
             sp.enabled = true;
 
             isHurtTimer = 0;
