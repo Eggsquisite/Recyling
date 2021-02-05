@@ -168,11 +168,11 @@ public class PlayerUI : MonoBehaviour
 
         do
         {
-            SetCurrentStamina(healthRecoveryRate);
+            SetCurrentHealth(healthRecoveryRate);
             yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
         }
         while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryRate > 0);
-        SetCurrentStamina((int)healthCurrentValue.maxValue);
+        SetCurrentHealth((int)healthCurrentValue.maxValue);
     }
     public void SetHealthRecoveryRate(int newValue) {
         healthRecoveryRate = newValue;
@@ -217,11 +217,11 @@ public class PlayerUI : MonoBehaviour
 
         do
         {
-            SetCurrentStamina(energyRecoveryRate);
+            SetCurrentEnergy(energyRecoveryRate);
             yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
         }
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryRate > 0);
-        SetCurrentStamina((int)energyCurrentValue.maxValue);
+        SetCurrentEnergy((int)energyCurrentValue.maxValue);
     }
 
     public void SetEnergyRecoveryRate(int newValue) {
