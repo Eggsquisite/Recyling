@@ -210,11 +210,11 @@ public class BasicEnemy : MonoBehaviour
 
         if (playerDetected.collider != null && !inRange) {
             inRange = true;
-            /*Debug.Log(name + " is IN range!");*/
+            Debug.Log(name + " is IN range!");
         }
         else if (playerDetected.collider == null && inRange) {
             inRange = false;
-            /*Debug.Log(name + " is OUT OF range!");*/
+            Debug.Log(name + " is OUT OF range!");
         }
     }
 
@@ -238,6 +238,7 @@ public class BasicEnemy : MonoBehaviour
         attackReady = true;
     }
     private void FinishAttack() {
+        FindAttack();
         ResetFollow();
         isAttacking = false;
         if (IsInvoking("ResetAttack"))
@@ -270,7 +271,6 @@ public class BasicEnemy : MonoBehaviour
         canFollow = false;
         isAttacking = true;
         attackReady = false;
-        FindEnemy();
 
         if (attackChosen == EnemyAttacks.BasicAttack1)
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
@@ -378,8 +378,8 @@ public class BasicEnemy : MonoBehaviour
         //Destroy(gameObject);
     }*/
 
-    // ENEMY SPECIFIC /////////////////////////////////////////////////////////////////////////////
-    private void FindEnemy() {
+    // ENEMY SPECIFIC ATTACKS /////////////////////////////////////////////////////////////////////////////
+    private void FindAttack() {
         if (name.Contains("MudGuard"))
             MudguardAttack();
     }
