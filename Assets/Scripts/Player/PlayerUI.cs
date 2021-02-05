@@ -23,7 +23,7 @@ public class PlayerUI : MonoBehaviour
     private bool healthLost;
     private bool healthDecaying;
     private bool healthRecovering;
-    private int healthRecoveryRate;
+    private int healthRecoveryValue;
     private float healthTimer;
     private float healthRecoveryDelay;
 
@@ -38,7 +38,7 @@ public class PlayerUI : MonoBehaviour
     private bool energyLost;
     private bool energyDecaying;
     private bool energyRecovering;
-    private int energyRecoveryRate;
+    private int energyRecoveryValue;
     private float energyTimer;
     private float energyRecoveryDelay;
 
@@ -53,7 +53,7 @@ public class PlayerUI : MonoBehaviour
     private bool staminaLost;
     private bool staminaDecaying;
     private bool staminaRecovering;
-    private int staminaRecoveryRate;
+    private int staminaRecoveryValue;
     private float staminaTimer;
     private float staminaRecoveryDelay;
 
@@ -168,17 +168,17 @@ public class PlayerUI : MonoBehaviour
 
         do
         {
-            SetCurrentHealth(healthRecoveryRate);
+            SetCurrentHealth(healthRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
         }
-        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryRate > 0);
+        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0);
         SetCurrentHealth((int)healthCurrentValue.maxValue);
     }
-    public void SetHealthRecoveryRate(int newValue) {
-        healthRecoveryRate = newValue;
+    public void SetHealthRecoveryValue(int newValue) {
+        healthRecoveryValue = newValue;
     }
-    public int GetHealthRecoveryRate() {
-        return healthRecoveryRate;
+    public int GetHealthRecoveryValue() {
+        return healthRecoveryValue;
     }
     public void SetHealthRecoveryDelay(float newValue) {
         healthRecoveryDelay = newValue;
@@ -217,18 +217,18 @@ public class PlayerUI : MonoBehaviour
 
         do
         {
-            SetCurrentEnergy(energyRecoveryRate);
+            SetCurrentEnergy(energyRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
         }
-        while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryRate > 0);
+        while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0);
         SetCurrentEnergy((int)energyCurrentValue.maxValue);
     }
 
-    public void SetEnergyRecoveryRate(int newValue) {
-        energyRecoveryRate = newValue;
+    public void SetEnergyRecoveryValue(int newValue) {
+        energyRecoveryValue = newValue;
     }
-    public int GetEnergyRecoveryRate() {
-        return energyRecoveryRate;
+    public int GetEnergyRecoveryValue() {
+        return energyRecoveryValue;
     }
     public void SetEnergyRecoveryDelay(float newValue) {
         energyRecoveryDelay = newValue;
@@ -271,18 +271,18 @@ public class PlayerUI : MonoBehaviour
 
         do
         {
-            SetCurrentStamina(staminaRecoveryRate);
+            SetCurrentStamina(staminaRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
         }
-        while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryRate > 0);
+        while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryValue > 0);
         SetCurrentStamina((int)staminaCurrentValue.maxValue);
     }
 
-    public void SetStaminaRecoveryRate(int newValue) {
-        staminaRecoveryRate = newValue;
+    public void SetStaminaRecoveryValue(int newValue) {
+        staminaRecoveryValue = newValue;
     }
-    public int GetStaminaRecoveryRate() {
-        return staminaRecoveryRate;
+    public int GetStaminaRecoveryValue() {
+        return staminaRecoveryValue;
     }
     public void SetStaminaRecoveryDelay(float newValue) {
         staminaRecoveryDelay = newValue;

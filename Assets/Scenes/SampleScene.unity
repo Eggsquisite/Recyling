@@ -4561,6 +4561,7 @@ GameObject:
   - component: {fileID: 1080875353}
   - component: {fileID: 1080875355}
   - component: {fileID: 1080875354}
+  - component: {fileID: 1080875359}
   - component: {fileID: 1080875356}
   - component: {fileID: 1080875358}
   - component: {fileID: 1080875357}
@@ -4745,6 +4746,18 @@ MonoBehaviour:
   energyRecoveryDelay: 2
   staminaRecoveryValue: 5
   staminaRecoveryDelay: 1
+--- !u!114 &1080875359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080875351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edacec0d88d8b654c83ccc513948ec49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1153999375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}

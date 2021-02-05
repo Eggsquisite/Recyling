@@ -122,8 +122,8 @@ public class Player : MonoBehaviour
     {
         if (!isStunned) { 
             WalkingToRunning();
-            CheckForMovement();
-            CheckForInput();
+            //CheckForMovement();
+            //CheckForInput();
         }
 
         if (isStopped)
@@ -194,25 +194,15 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// CHECKS ///////////////////////////////////////////////////////////////////////////////////
+    /// INPUTS AND CHECKS ///////////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    private void CheckDirection() {
-        if (xAxis < 0 && !facingLeft) {
-            facingLeft = true;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-        else if (xAxis > 0 && facingLeft) {
-            facingLeft = false;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-        }
-    }
-    private void CheckForMovement() {
+    public void CheckForMovement(float xInput, float yInput) {
         // movement inputs
         if (isAttacking)
             ResetWalk();
         else { 
-            xAxis = Input.GetAxisRaw("Horizontal");
-            yAxis = Input.GetAxisRaw("Vertical");
+            xAxis = xInput;
+            yAxis = yInput;
         } 
 
         // Check to see if stopped moving after walking
@@ -226,31 +216,50 @@ public class Player : MonoBehaviour
             isWalking = false;
     }
 
-    private void CheckForInput() {
-        // attack inputs 
-        if (playerStats.GetCurrentStamina() > 0) { 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && !isRunning)
-                isAttackPressed = true;
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && canReceiveInput && isRunning)
-                isRunAttackPressed = true;
-            else if (Input.GetKeyDown(KeyCode.Mouse1) && canReceiveInput)
-                isSuperAttackPressed = true;
+    private void CheckDirection() {
+        if (xAxis < 0 && !facingLeft) {
+            facingLeft = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-
-        // dash inputs
-        if (playerStats.GetCurrentEnergy() > 0) { 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canReceiveInput && dashReady && !isDashing)
-            {
-                ResetWalk();
-                isDashing = true;
-                dashReady = false;
-                isInvincible = true;
-                canReceiveInput = false;
-
-                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-            }
+        else if (xAxis > 0 && facingLeft) {
+            facingLeft = false;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+
+    public void BasicAttackInput() {
+        if (isStunned)
+            return; 
+
+        if (canReceiveInput && !isRunning)
+            isAttackPressed = true;
+        else if (canReceiveInput && isRunning)
+            isRunAttackPressed = true;
+    }
+
+    public void SuperAttackInput() {
+        if (isStunned)
+            return;
+
+        if (canReceiveInput && playerStats.GetCurrentEnergy() > 75)
+            isSuperAttackPressed = true;
+    }
+
+    public void DashInput() {
+        if (isStunned)
+            return;
+
+        if (canReceiveInput && dashReady && !isDashing) {
+            ResetWalk();
+            isDashing = true;
+            dashReady = false;
+            isInvincible = true;
+            canReceiveInput = false;
+
+            PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+        }
+    }
+
     ///
     ///  WALK/RUN CODE ////////////////////////////////////////////////////////////////////////
     ///  
@@ -524,8 +533,8 @@ public class Player : MonoBehaviour
         PlayAnimation(PlayerAnimStates.PLAYER_HURT);
         Invoke("ResetStun", stunDuration);
 
-        playerStats.SetCurrentHealth(-damageNum);
         // take damage
+        playerStats.SetCurrentHealth(-damageNum);
     }
 
     private void Stunned() {

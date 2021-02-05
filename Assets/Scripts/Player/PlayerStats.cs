@@ -39,9 +39,9 @@ public class PlayerStats : MonoBehaviour
         UI.SetCurrentEnergy(maxEnergy);
         UI.SetCurrentStamina(maxStamina);
 
-        UI.SetHealthRecoveryRate(healthRecoveryValue);
-        UI.SetEnergyRecoveryRate(energyRecoveryValue);
-        UI.SetStaminaRecoveryRate(staminaRecoveryValue);
+        UI.SetHealthRecoveryValue(healthRecoveryValue);
+        UI.SetEnergyRecoveryValue(energyRecoveryValue);
+        UI.SetStaminaRecoveryValue(staminaRecoveryValue);
 
         UI.SetHealthRecoveryDelay(healthRecoveryDelay);
         UI.SetEnergyRecoveryDelay(energyRecoveryDelay);
