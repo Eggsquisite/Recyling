@@ -7,10 +7,22 @@ public class Player : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
 
     private SpriteRenderer sp;
     private Animator anim;
     private RuntimeAnimatorController ac;
+
+    [Header("Player Stats")]
+    [SerializeField]
+    private int maxHealth;
+    [SerializeField]
+    private int maxEnergy;
+    [SerializeField]
+    private int maxStamina;
+
+    private PlayerUI UI;
+    private int currentHealth;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -106,6 +118,8 @@ public class Player : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
+
+        UI = GetComponent<PlayerUI>();
         ac = anim.runtimeAnimatorController;
         stopBuffer = .1f;
 

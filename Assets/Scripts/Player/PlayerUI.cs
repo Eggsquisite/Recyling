@@ -36,4 +36,8 @@ public class PlayerUI : MonoBehaviour
     {
         
     }
+
+    public void SetMaxHealth(float percent) {
+        healthMaxValue.value = percent;
+    }
 }
