@@ -69,6 +69,7 @@ public class BasicEnemy : MonoBehaviour
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
+    private bool attackFromLeft;
     private int attackCounter;
     private int currentAttackDamage;
     private float currentAttackRange;
@@ -178,7 +179,7 @@ public class BasicEnemy : MonoBehaviour
         else if (canFollow && !isStunned && !isAttacking) {
             PlayAnimation(EnemyAnimStates.ENEMY_RUN);
 
-            if (leftOfPlayer) {
+            if (attackFromLeft) {
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
             }
             else {
@@ -246,6 +247,12 @@ public class BasicEnemy : MonoBehaviour
             CancelInvoke("ResetAttack");
 
         Invoke("ResetAttack", attackDelay);
+
+        int tmp = Random.Range(0, 10);
+        if (tmp >= 0 && tmp < 5)
+            attackFromLeft = true;
+        else if (tmp >= 5 && tmp < 10)
+            attackFromLeft = false;
     }
     private void AttackActivated() {
         //called thru animation event

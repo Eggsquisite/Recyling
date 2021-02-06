@@ -216,10 +216,10 @@ MonoBehaviour:
   attackDamage2: 150
   attackDamage3: 0
   minAttackDelay: 2
-  maxAttackDelay: 4
+  maxAttackDelay: 3
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
-  minOffset: 0.75
+  minOffset: 1
   maxOffset: 1.25
 --- !u!114 &1705846100269140049
 MonoBehaviour:
