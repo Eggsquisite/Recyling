@@ -83,16 +83,12 @@ public class Player : MonoBehaviour
     [Header("Attack Properties")]
     [SerializeField]
     private int damage;
-
     [SerializeField] [Range(0, 5f)]
     private float attackRangeVisualizer;
-
     [SerializeField] [Range(0, 0.5f)]
     private float pushbackDistance;
-
     [SerializeField]
     private int specialAttackDmg;
-
     [SerializeField]
     private float specialPushbackMultiplier;
 
@@ -129,6 +125,7 @@ public class Player : MonoBehaviour
             return;
 
         DashFall();
+        ResetRun();
         ResetDash();
         DamageFlash();
         WalkingToRunning();
@@ -210,7 +207,6 @@ public class Player : MonoBehaviour
         if (xAxis == 0 && yAxis == 0 && (isWalking || isRunning) && !isStopped) {
             isStopped = true;
             bufferTimer = 0f;
-            Debug.Log("Stopped");
             StartCoroutine(StopTimer());
         } // Check to see if start moving after stopping
         else if ((xAxis != 0 || yAxis != 0) && !isRunning && !isWalking) {
@@ -284,11 +280,14 @@ public class Player : MonoBehaviour
             return;
 
         if (isWalking && !isRunning) {
-            if (walkTimer < walkToRunTime)
+            if (walkTimer < walkToRunTime) { 
                 walkTimer += Time.deltaTime;
+                anim.SetFloat("speedMultiplier", 1.5f + (walkTimer / walkToRunTime));
+            }
             else if (walkTimer >= walkToRunTime) {
                 isWalking = false;
                 isRunning = true;
+                anim.SetFloat("speedMultiplier", 1f);
             }
         }
     }
@@ -297,45 +296,37 @@ public class Player : MonoBehaviour
         walkTimer = 0f;
         isWalking = false;
         isRunning = false;
+        anim.SetFloat("speedMultiplier", 1f);
     }
 
-/*    private void StopBuffer()
-    {
-        if (xAxis == 0 && yAxis == 0 && !isStopped && (isWalking || isRunning))
-        {
-            Debug.Log("Starting stop timer");
-            isStopped = true;
-            bufferTimer = 0f;
-            StartCoroutine(StopTimer());
+    private void ResetRun() {
+        if (isRunning && playerStats.GetCurrentStamina() <= 0) { 
+            isRunning = false;
+            shiftKeyHeld = false;
+            anim.SetFloat("speedMultiplier", 1f);
         }
-        else if (isStopped && (xAxis != 0 || yAxis != 0)) { 
-            bufferTimer = 0f;
-            isStopped = false;
-            StopCoroutine(StopTimer());
-        }
-    }*/
+    }
 
     IEnumerator StopTimer() {
-        Debug.Log("Stop timer");
-
         while (bufferTimer < stopBuffer && isStopped) { 
             bufferTimer += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
         if (bufferTimer >= stopBuffer) { 
-            Debug.Log("Walk reset");
             ResetWalk();
             walkTimer = 0f;
         }
     }
 
     public void ShiftToRun(bool value) {
-        shiftKeyHeld = value;
+        if (playerStats.GetCurrentStamina() > 0)
+            shiftKeyHeld = value;
 
         if (!shiftKeyHeld) {
-            isRunning = false;
             walkTimer = 0f;
+            anim.SetFloat("speedMultiplier", 1f);
+            isRunning = false;
         }
     }
 

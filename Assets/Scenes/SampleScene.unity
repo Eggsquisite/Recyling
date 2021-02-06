@@ -192,8 +192,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028059233, y: 0.0027695782}
-  m_Size: {x: 0.45444807, y: 0.25961033}
+  m_Offset: {x: -0.017906057, y: 0.002769592}
+  m_Size: {x: 0.49506006, y: 0.30022237}
   m_Direction: 1
 --- !u!1001 &123669841
 PrefabInstance:
@@ -245,6 +245,10 @@ PrefabInstance:
     - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237502160636908989, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
+      propertyPath: m_SortingOrder
+      value: 416
       objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908990, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_Name
@@ -1885,7 +1889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 2.02, z: -10}
+  m_LocalPosition: {x: 15, y: 4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3251,10 +3255,6 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -252
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
@@ -4723,8 +4723,8 @@ MonoBehaviour:
   runSpeed: 2.5
   verticalSpeedMult: 0.75
   horizontalSpeedMult: 1.25
-  walkToRunTime: 0.5
-  stopBuffer: 0.25
+  walkToRunTime: 1.5
+  stopBuffer: 0.1
   isHurtMaxTime: 2
   attackPoint: {fileID: 581574328}
   enemyLayer:
@@ -4780,7 +4780,7 @@ MonoBehaviour:
   maxStamina: 600
   healthRecoveryValue: 0
   healthRecoveryDelay: 0
-  energyRecoveryValue: 1
+  energyRecoveryValue: 2
   energyRecoveryDelay: 1
   staminaRecoveryValue: 8
   staminaRecoveryDelay: 0.25
@@ -6301,10 +6301,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2237502160636908989, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
-      propertyPath: m_SortingOrder
-      value: -247
-      objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908990, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_Name
       value: SmallMo
@@ -6486,6 +6482,10 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -98
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
