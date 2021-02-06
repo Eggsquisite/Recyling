@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     private float staminaRecoveryDelay;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (UI == null) UI = GetComponent<PlayerUI>();
         InitializeUI();
@@ -35,6 +35,10 @@ public class PlayerStats : MonoBehaviour
 
     private void InitializeUI()
     {
+        UI.SetMaxHealth(maxHealth);
+        UI.SetMaxEnergy(maxEnergy);
+        UI.SetMaxStamina(maxStamina);
+
         UI.SetCurrentHealth(maxHealth);
         UI.SetCurrentEnergy(maxEnergy);
         UI.SetCurrentStamina(maxStamina);

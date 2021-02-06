@@ -375,7 +375,7 @@ RectTransform:
   m_GameObject: {fileID: 4674527413905775022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 4674527413789610934}
   - {fileID: 4674527415393650274}
@@ -433,9 +433,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4674527415151417148}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 2000
   m_WholeNumbers: 1
-  m_Value: 400
+  m_Value: 874
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -251,7 +251,6 @@ public class PlayerUI : MonoBehaviour
         else
             staminaDestroyedValue.value += newValue;
 
-        Debug.Log("Updating stamina...");
         staminaCurrentValue.value += newValue;
     }
     
