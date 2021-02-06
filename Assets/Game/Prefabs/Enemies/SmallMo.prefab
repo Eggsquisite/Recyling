@@ -293,7 +293,7 @@ MonoBehaviour:
   attackRange1: 0.75
   attackRange2: 0
   attackRange3: 0
-  attackDamage1: 30
+  attackDamage1: 60
   attackDamage2: 0
   attackDamage3: 0
   minAttackDelay: 4
