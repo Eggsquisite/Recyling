@@ -246,17 +246,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2237502160636908989, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
-      propertyPath: m_SortingOrder
-      value: 416
-      objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908990, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_Name
       value: SmallMo (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237502160636908990, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
@@ -493,6 +485,10 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -176
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
@@ -1752,7 +1748,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0c74931b82f38ed41acd1be8d9bec824, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -3264,10 +3260,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MudGuard (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
 --- !u!1 &916414450
@@ -4729,9 +4721,10 @@ MonoBehaviour:
   rb: {fileID: 40168971}
   walkSpeed: 1.5
   runSpeed: 2.5
-  walkToRunTime: 3
   verticalSpeedMult: 0.75
   horizontalSpeedMult: 1.25
+  walkToRunTime: 0.5
+  stopBuffer: 0.25
   isHurtMaxTime: 2
   attackPoint: {fileID: 581574328}
   enemyLayer:
@@ -4819,8 +4812,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
   - {fileID: 8300000, guid: 8cf1785e05cf4ab4d914887767fc6313, type: 3}
   - {fileID: 8300000, guid: 1ef9f82c3a43ffe429eb9e4a934f77b8, type: 3}
-  basicAttackHit: {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
-  playerHit: {fileID: 8300000, guid: 223421becde18344a9e9b166f4bea3fe, type: 3}
+  playerHit:
+  - {fileID: 8300000, guid: c3d60146026c09a4388569c7184a8339, type: 3}
+  - {fileID: 8300000, guid: c92cf41cdfde8b446ba621b8648772a4, type: 3}
+  - {fileID: 8300000, guid: ef6a779a7f2b066438768450666493f8, type: 3}
 --- !u!4 &1153999375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
@@ -6267,10 +6262,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.12
       objectReference: {fileID: 0}
@@ -6309,6 +6300,10 @@ PrefabInstance:
     - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237502160636908989, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
+      propertyPath: m_SortingOrder
+      value: -247
       objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908990, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_Name
@@ -6492,17 +6487,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -98
-      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}

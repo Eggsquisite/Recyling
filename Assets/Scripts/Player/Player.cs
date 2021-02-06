@@ -22,18 +22,20 @@ public class Player : MonoBehaviour
     private float walkSpeed;
     [SerializeField]
     private float runSpeed;
-    [SerializeField] [Range(0, 10f)]
-    private float walkToRunTime;
     [SerializeField]
     private float verticalSpeedMult;
     [SerializeField]
     private float horizontalSpeedMult;
+    [SerializeField]
+    private float walkToRunTime;
+    [SerializeField]
+    private float stopBuffer;
 
     private float xAxis;
     private float yAxis;
     private float walkTimer;
-    private float stopBuffer;
     private float bufferTimer;
+    private bool shiftKeyHeld;
     private bool isStopped;
     private bool isWalking;
     private bool isRunning;
@@ -117,8 +119,6 @@ public class Player : MonoBehaviour
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
 
         ac = anim.runtimeAnimatorController;
-        stopBuffer = .1f;
-
         ResetAttack();
     }
 
@@ -128,16 +128,10 @@ public class Player : MonoBehaviour
         if (isDead)
             return;
 
-        if (!isStunned) 
-            WalkingToRunning();
-        if (isStopped)
-            StopBuffer();
-        if (isHurt)
-            DamageFlash();
-        if (isFalling)
-            DashFall();
-        if (!dashReady && !isFalling && !isLanding)
-            ResetDash();
+        DashFall();
+        ResetDash();
+        DamageFlash();
+        WalkingToRunning();
     }
 
     private void FixedUpdate() {
@@ -210,15 +204,21 @@ public class Player : MonoBehaviour
         else { 
             xAxis = xInput;
             yAxis = yInput;
-        } 
+        }
 
         // Check to see if stopped moving after walking
-        if (xAxis == 0 && yAxis == 0 && (isWalking || isRunning) && !isStopped) { 
+        if (xAxis == 0 && yAxis == 0 && (isWalking || isRunning) && !isStopped) {
             isStopped = true;
             bufferTimer = 0f;
+            Debug.Log("Stopped");
+            StartCoroutine(StopTimer());
         } // Check to see if start moving after stopping
-        else if ((xAxis != 0 || yAxis != 0) && !isRunning && !isWalking)
+        else if ((xAxis != 0 || yAxis != 0) && !isRunning && !isWalking) {
             isWalking = true;
+            isStopped = false;
+        }
+        else if ((xAxis != 0 || yAxis != 0) && (isWalking || isRunning)) 
+            isStopped = false;
         else if (isRunning && isWalking)
             isWalking = false;
     }
@@ -280,6 +280,9 @@ public class Player : MonoBehaviour
     ///  WALK/RUN CODE ////////////////////////////////////////////////////////////////////////
     ///  
     private void WalkingToRunning() {
+        if (!shiftKeyHeld)
+            return;
+
         if (isWalking && !isRunning) {
             if (walkTimer < walkToRunTime)
                 walkTimer += Time.deltaTime;
@@ -296,19 +299,43 @@ public class Player : MonoBehaviour
         isRunning = false;
     }
 
-    private void StopBuffer() {
-        if (bufferTimer < stopBuffer && (xAxis != 0 || yAxis != 0)) { 
+/*    private void StopBuffer()
+    {
+        if (xAxis == 0 && yAxis == 0 && !isStopped && (isWalking || isRunning))
+        {
+            Debug.Log("Starting stop timer");
+            isStopped = true;
+            bufferTimer = 0f;
+            StartCoroutine(StopTimer());
+        }
+        else if (isStopped && (xAxis != 0 || yAxis != 0)) { 
             bufferTimer = 0f;
             isStopped = false;
-            return;
+            StopCoroutine(StopTimer());
+        }
+    }*/
+
+    IEnumerator StopTimer() {
+        Debug.Log("Stop timer");
+
+        while (bufferTimer < stopBuffer && isStopped) { 
+            bufferTimer += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        if (bufferTimer < stopBuffer)
-            bufferTimer += Time.deltaTime;
-        else if (bufferTimer >= stopBuffer) {
-            walkTimer = 0f;
+        if (bufferTimer >= stopBuffer) { 
+            Debug.Log("Walk reset");
             ResetWalk();
-            isStopped = false;
+            walkTimer = 0f;
+        }
+    }
+
+    public void ShiftToRun(bool value) {
+        shiftKeyHeld = value;
+
+        if (!shiftKeyHeld) {
+            isRunning = false;
+            walkTimer = 0f;
         }
     }
 
@@ -342,8 +369,10 @@ public class Player : MonoBehaviour
                                         dashSpeed * Time.deltaTime));
     }
 
-    private void DashFall()
-    {
+    private void DashFall() {
+        if (!isFalling)
+            return;
+
         if (transform.localPosition.y > 0) {
             transform.Translate(0, -6f * Time.deltaTime, 0f, transform.parent);
         }
@@ -368,6 +397,9 @@ public class Player : MonoBehaviour
     }
 
     private void ResetDash() {
+        if (dashReady && isFalling && isLanding)
+            return;
+
         if (dashCooldownTimer < dashCooldown)
             dashCooldownTimer += Time.deltaTime;
         else if (dashCooldownTimer >= dashCooldown) {
@@ -491,11 +523,9 @@ public class Player : MonoBehaviour
         else
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
-        playSounds.PlayBasicAttack();
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy") {
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage), pushbackDistance, transform);
-                playSounds.PlayBasicAttackHit();
             }
         }
     }
@@ -508,12 +538,10 @@ public class Player : MonoBehaviour
         else
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
-        //playSounds.PlaySuperAttack();
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy") { 
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(specialAttackDmg), pushbackDistance * specialPushbackMultiplier, transform);
-                playSounds.PlayBasicAttackHit();
             }
 
         }
@@ -598,7 +626,10 @@ public class Player : MonoBehaviour
         isStunned = false;
     }
 
-    private void DamageFlash() { 
+    private void DamageFlash() {
+        if (!isHurt)
+            return;
+
         if (flashTimer < flashInterval)
             flashTimer += Time.deltaTime;
         else if (flashTimer >= flashInterval) {

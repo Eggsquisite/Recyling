@@ -9,9 +9,7 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField]
     private List<AudioClip> basicAttack;
     [SerializeField]
-    private AudioClip basicAttackHit;
-    [SerializeField]
-    private AudioClip playerHit;
+    private List<AudioClip> playerHit;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +18,14 @@ public class PlayerSounds : MonoBehaviour
     }
 
     public void PlayBasicAttack() {
-        audSource.PlayOneShot(basicAttack[Random.Range(0, basicAttack.Capacity)]);
-    }
-
-    public void PlayBasicAttackHit() {
-        audSource.PlayOneShot(basicAttackHit);
+        var tmp = basicAttack[Random.Range(0, basicAttack.Capacity)];
+        if (tmp != null)
+            audSource.PlayOneShot(tmp);
     }
 
     public void PlayPlayerHit() {
-        audSource.PlayOneShot(playerHit);
+        var tmp = playerHit[Random.Range(0, playerHit.Capacity)];
+        if (tmp != null)
+            audSource.PlayOneShot(tmp);
     }
 }

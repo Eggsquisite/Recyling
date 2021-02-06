@@ -14,6 +14,7 @@ public class BasicEnemy : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
+    private EnemySounds playSound;
     private string currentState;
 
     [Header("Attack Collider Properties")]
@@ -117,8 +118,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void SetupVariables()
     {
-        anim = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();
+        if (anim == null) anim = GetComponent<Animator>();
+        if (sp == null) sp = GetComponent<SpriteRenderer>();
+        if (playSound == null) playSound = GetComponent<EnemySounds>();
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
@@ -338,17 +340,20 @@ public class BasicEnemy : MonoBehaviour
         attackReady = false;
         isInvincible = true;
         PushBack(distance, playerRef);
+
         if (IsInvoking("ResetStun"))
             CancelInvoke("ResetStun");
 
         health -= damageNum;
+        playSound.PlayEnemyHit();
+
         if (health <= 0)
             Death();
         else { 
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
-            Invoke("ResetInvincible", 0.1f);
+            Invoke("ResetInvincible", 0.2f);
             Invoke("ResetStun", stunDuration + 0.25f);
         }
     }

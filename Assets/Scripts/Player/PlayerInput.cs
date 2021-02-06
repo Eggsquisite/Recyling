@@ -21,6 +21,12 @@ public class PlayerInput : MonoBehaviour
         yAxis = Input.GetAxisRaw("Vertical");
         player.CheckForMovement(xAxis, yAxis);
 
+        // RUN INPUT
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            player.ShiftToRun(true);
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+            player.ShiftToRun(false);
+
         // ATTACK INPUTS
         if (Input.GetKeyDown(KeyCode.Mouse0))
             player.BasicAttackInput();

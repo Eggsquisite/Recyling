@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 2237502160636908987}
   - component: {fileID: 2237502160636908984}
   - component: {fileID: 2237502160636908985}
+  - component: {fileID: 1780537994}
   m_Layer: 7
   m_Name: SmallMo
   m_TagString: Enemy
@@ -189,7 +190,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -247
+  m_SortingOrder: 416
   m_Sprite: {fileID: 827538889749247048, guid: d345ea7b195ccce4390ae2ca751b9abd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -302,3 +303,21 @@ MonoBehaviour:
   maxMoveSpeed: 0.75
   minOffset: 2.75
   maxOffset: 3.25
+--- !u!114 &1780537994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237502160636908990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73ea30384d556a49992d0df6b8101eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack1:
+  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  basicAttack2: []
+  basicAttack3: []
+  enemyHit:
+  - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}

@@ -25,7 +25,7 @@ AnimationClip:
       value: {fileID: 3603565297551478906, guid: b979abc12070fd148a7199c75c3b0350, type: 3}
     - time: 0.16666667
       value: {fileID: 3127454580493880639, guid: b979abc12070fd148a7199c75c3b0350, type: 3}
-    - time: 0.25
+    - time: 0.26666668
       value: {fileID: 6456537032405249696, guid: b979abc12070fd148a7199c75c3b0350, type: 3}
     - time: 0.33333334
       value: {fileID: -464181221617099073, guid: b979abc12070fd148a7199c75c3b0350, type: 3}
@@ -84,6 +84,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.15
+    functionName: PlayBasicAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.16666667
     functionName: AttackHitboxActivated
     data: 
@@ -91,21 +98,14 @@ AnimationClip:
     floatParameter: 1
     intParameter: 1
     messageOptions: 0
-  - time: 0.18333334
+  - time: 0.16666667
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 100
     messageOptions: 0
-  - time: 0.2
-    functionName: AttackHitboxActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.23333333
+  - time: 0.21666667
     functionName: AttackHitboxActivated
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -119,14 +119,14 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
+  - time: 0.28333333
     functionName: SetCanTurn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.3
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}
