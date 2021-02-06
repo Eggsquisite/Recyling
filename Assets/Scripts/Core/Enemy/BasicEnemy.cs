@@ -1,31 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum EnemyAttacks
+{
+    BasicAttack1,
+    BasicAttack2,
+    BasicAttack3
+};
 
 public class BasicEnemy : MonoBehaviour
 {
-    private enum EnemyAttacks
-    {
-        BasicAttack1,
-        BasicAttack2,
-        BasicAttack3
-    };
 
     private Animator anim;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
     private EnemySounds playSound;
+    private EnemyType enemyType;
     private string currentState;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
     private Transform attackPoint;
+    [SerializeField]
+    private Transform attackPoint2;
 
     [SerializeField]
     private LayerMask playerLayer;
 
     private RaycastHit2D playerDetected;
     private RaycastHit2D hitBox;
+    private RaycastHit2D hitBox2;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -67,12 +71,15 @@ public class BasicEnemy : MonoBehaviour
     private bool inRange;
     private bool isStunned;
     private bool isAttacking;
+    private bool areaAttack;
     private bool attackReady;
     private bool attackHitbox;
+    private bool attackHitbox2;
     private bool attackFromLeft;
     private int attackCounter;
     private int currentAttackDamage;
     private float currentAttackRange;
+    private float currentAttackRange2;
     private float attackDelay;
     private float stunDuration;
 
@@ -106,6 +113,8 @@ public class BasicEnemy : MonoBehaviour
         ///////////////////// Attack Hitbox Activated ///////////////////////////
         if (attackHitbox)
             CheckHitBox();
+        if (attackHitbox2)
+            CheckHitBox2();
 
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
@@ -122,6 +131,8 @@ public class BasicEnemy : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (playSound == null) playSound = GetComponent<EnemySounds>();
+        if (enemyType == null) enemyType = GetComponent<EnemyType>();
+
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
@@ -254,24 +265,55 @@ public class BasicEnemy : MonoBehaviour
         else if (tmp >= 5 && tmp < 10)
             attackFromLeft = false;
     }
-    private void AttackActivated() {
+    private void AttackActivated(int flag) {
         //called thru animation event
         attackHitbox = true;
+
+        if (flag == 0)
+            areaAttack = false;
+        else
+            areaAttack = true;
+    }
+    private void AttackActivated2(int flag) {
+        attackHitbox2 = true;
+
+        if (flag == 0)
+            areaAttack = false;
+        else
+            areaAttack = true;
     }
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
+        areaAttack = false;
+    }
+    private void AttackDeactivated2() {
+        attackHitbox2 = false;
+        areaAttack = false;
     }
 
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (leftOfPlayer)
+        if (leftOfPlayer || areaAttack) 
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
-        else
+        else if (!leftOfPlayer && !areaAttack)
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
         if (hitBox.collider != null) {
             hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
+        }
+    }
+
+    private void CheckHitBox2()
+    {
+        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+        if (leftOfPlayer || !areaAttack)
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
+        else if (!leftOfPlayer && areaAttack)
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
+
+        if (hitBox2.collider != null) {
+            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
         }
     }
 
@@ -352,6 +394,8 @@ public class BasicEnemy : MonoBehaviour
             CancelInvoke("ResetStun");
 
         health -= damageNum;
+        AttackDeactivated();
+        AttackDeactivated2();
         playSound.PlayEnemyHit();
 
         if (health <= 0)
@@ -415,9 +459,16 @@ public class BasicEnemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if (!leftOfPlayer)
+        if (leftOfPlayer)
             Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackVisualizer));
         else
             Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackVisualizer));
-    }   
+
+        Gizmos.color = Color.green;
+        if (leftOfPlayer)
+            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.left * attackVisualizer));
+        else
+            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * attackVisualizer));
+
+    }
 }
