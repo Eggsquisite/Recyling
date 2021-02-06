@@ -99,7 +99,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 60
+    intParameter: 80
     messageOptions: 0
   - time: 0.38333333
     functionName: ComboInput

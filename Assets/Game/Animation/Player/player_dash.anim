@@ -83,7 +83,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
+    intParameter: 10
     messageOptions: 0
   - time: 0
     functionName: SetInvincible
@@ -97,26 +97,26 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
+    intParameter: 10
     messageOptions: 0
   - time: 0.16666667
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
+    intParameter: 10
     messageOptions: 0
   - time: 0.25
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
+    intParameter: 10
     messageOptions: 0
   - time: 0.33333334
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
+    intParameter: 10
     messageOptions: 0

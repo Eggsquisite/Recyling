@@ -270,15 +270,22 @@ public class BasicEnemy : MonoBehaviour
         canFollow = false;
         isAttacking = true;
         attackReady = false;
+        var tmp = 0f;
 
-        if (attackChosen == EnemyAttacks.BasicAttack1)
+        if (attackChosen == EnemyAttacks.BasicAttack1) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
-        else if (attackChosen == EnemyAttacks.BasicAttack2)
+            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1);
+        }
+        else if (attackChosen == EnemyAttacks.BasicAttack2) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK2);
-        else if (attackChosen == EnemyAttacks.BasicAttack3)
+            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK2);
+        }
+        else if (attackChosen == EnemyAttacks.BasicAttack3) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK3);
+            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK3);
+        }
 
-        Invoke("FinishAttack", GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1));
+        Invoke("FinishAttack", tmp);
     }
 
    private void ChooseAttack(int index) {
@@ -396,9 +403,9 @@ public class BasicEnemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackVisualizer));
-        else
+        if (!leftOfPlayer)
             Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackVisualizer));
+        else
+            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackVisualizer));
     }   
 }

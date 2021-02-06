@@ -192,8 +192,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022248268, y: 0.028918592}
-  m_Size: {x: 0.38471746, y: 0.2073117}
+  m_Offset: {x: -0.028059233, y: 0.0027695782}
+  m_Size: {x: 0.45444807, y: 0.25961033}
   m_Direction: 1
 --- !u!1001 &123669841
 PrefabInstance:
@@ -493,10 +493,6 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -176
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
@@ -1730,6 +1726,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1745,6 +1742,102 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!82 &519420030
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3163,9 +3256,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -252
+      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
@@ -4508,6 +4609,7 @@ GameObject:
   - component: {fileID: 1080875356}
   - component: {fileID: 1080875358}
   - component: {fileID: 1080875357}
+  - component: {fileID: 1080875360}
   m_Layer: 6
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -4630,7 +4732,7 @@ MonoBehaviour:
   walkToRunTime: 3
   verticalSpeedMult: 0.75
   horizontalSpeedMult: 1.25
-  isHurtMaxTime: 1.5
+  isHurtMaxTime: 2
   attackPoint: {fileID: 581574328}
   enemyLayer:
     serializedVersion: 2
@@ -4642,7 +4744,7 @@ MonoBehaviour:
   damage: 10
   attackRangeVisualizer: 1
   pushbackDistance: 0.1
-  specialAttackDmg: 50
+  specialAttackDmg: 60
   specialPushbackMultiplier: 10
 --- !u!114 &1080875357
 MonoBehaviour:
@@ -4657,7 +4759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 1
-  decaySpeed: 300
+  decaySpeed: 500
   recoverySpeed: 0.03
   healthMaxValue: {fileID: 4674527415172417435}
   healthCurrentValue: {fileID: 4674527415699176524}
@@ -4684,11 +4786,11 @@ MonoBehaviour:
   maxEnergy: 400
   maxStamina: 600
   healthRecoveryValue: 0
-  healthRecoveryDelay: 2
-  energyRecoveryValue: 3
-  energyRecoveryDelay: 2
+  healthRecoveryDelay: 0
+  energyRecoveryValue: 1
+  energyRecoveryDelay: 1
   staminaRecoveryValue: 8
-  staminaRecoveryDelay: 0.5
+  staminaRecoveryDelay: 0.25
 --- !u!114 &1080875359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4701,6 +4803,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec0d88d8b654c83ccc513948ec49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1080875360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080875351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b66dfa44eceec1459af5f88bb4c9056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 8cf1785e05cf4ab4d914887767fc6313, type: 3}
+  - {fileID: 8300000, guid: 1ef9f82c3a43ffe429eb9e4a934f77b8, type: 3}
+  basicAttackHit: {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
+  playerHit: {fileID: 8300000, guid: 223421becde18344a9e9b166f4bea3fe, type: 3}
 --- !u!4 &1153999375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
@@ -6147,6 +6267,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237502160636908986, guid: 57aa02054119d154eb42db7b3117da44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.12
       objectReference: {fileID: 0}
@@ -6375,6 +6499,10 @@ PrefabInstance:
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}

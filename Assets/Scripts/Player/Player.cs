@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Player Stats")]
     private PlayerStats playerStats;
+    private PlayerSounds playSounds;
     private bool isDead;
 
     [Header("Movement Properties")]
@@ -113,6 +114,7 @@ public class Player : MonoBehaviour
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
+        if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
 
         ac = anim.runtimeAnimatorController;
         stopBuffer = .1f;
@@ -243,7 +245,7 @@ public class Player : MonoBehaviour
     }
 
     public void SuperAttackInput() {
-        if (isStunned || (playerStats.GetCurrentStamina() <= 0 && playerStats.GetCurrentEnergy() < 75))
+        if (isStunned || (playerStats.GetCurrentStamina() <= 0 || playerStats.GetCurrentEnergy() < 300))
             return;
 
         if (canReceiveInput)
@@ -489,9 +491,12 @@ public class Player : MonoBehaviour
         else
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
+        playSounds.PlayBasicAttack();
         foreach (Collider2D enemy in hitEnemies) {
-            if (enemy.tag == "Enemy")
+            if (enemy.tag == "Enemy") {
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage), pushbackDistance, transform);
+                playSounds.PlayBasicAttackHit();
+            }
         }
     }
 
@@ -503,10 +508,14 @@ public class Player : MonoBehaviour
         else
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
+        //playSounds.PlaySuperAttack();
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.tag == "Enemy")
+            if (enemy.tag == "Enemy") { 
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(specialAttackDmg), pushbackDistance * specialPushbackMultiplier, transform);
+                playSounds.PlayBasicAttackHit();
+            }
+
         }
     }
 
@@ -555,6 +564,7 @@ public class Player : MonoBehaviour
 
         // take damage
         playerStats.SetCurrentHealth(-damageNum);
+        playSounds.PlayPlayerHit();
 
         if (playerStats.GetCurrentHealth() <= 0) {
             isDead = true;

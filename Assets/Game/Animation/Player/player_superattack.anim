@@ -116,14 +116,14 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 90
+    intParameter: 150
     messageOptions: 0
   - time: 0.53333336
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 150
+    intParameter: 300
     messageOptions: 0
   - time: 0.55
     functionName: SpecialAttackHitboxActivated
