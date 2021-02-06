@@ -111,7 +111,7 @@ public class PlayerUI : MonoBehaviour
     private void VisualDecay(Slider currentValue, Slider decayValue, ref bool decayFlag, int index) {
         if (decayValue.value > currentValue.value) {
             decayValue.value -= decaySpeed * Time.deltaTime;
-        } else if (decayValue.value <= currentValue.value) {
+        } else if (decayValue.value <= currentValue.value && decayFlag) {
             decayValue.value = currentValue.value;
             decayFlag = false;
 
@@ -271,7 +271,7 @@ public class PlayerUI : MonoBehaviour
                 staminaRecovering)
         {
             SetCurrentStamina(staminaRecoveryValue);
-            yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
+            yield return new WaitForSeconds(recoverySpeed);
         }
 
         staminaRecovering = false;

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2237502159876300118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.12, y: 0.075, z: 0}
+  m_LocalPosition: {x: 3, y: 0.075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2237502160636908986}
@@ -189,7 +189,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 130
+  m_SortingOrder: -247
   m_Sprite: {fileID: 827538889749247048, guid: d345ea7b195ccce4390ae2ca751b9abd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -288,12 +288,14 @@ MonoBehaviour:
     m_Bits: 64
   health: 50
   attackChosen: 0
-  stunDelay: 0.5
-  damage: 50
-  attackVisualizer: 0
-  attackRange1: 0
+  stunDelay: 1
+  attackVisualizer: 0.75
+  attackRange1: 0.75
   attackRange2: 0
   attackRange3: 0
+  attackDamage1: 30
+  attackDamage2: 0
+  attackDamage3: 0
   minAttackDelay: 4
   maxAttackDelay: 6
   minMoveSpeed: 1

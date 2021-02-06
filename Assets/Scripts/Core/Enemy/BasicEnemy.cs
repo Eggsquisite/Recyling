@@ -210,11 +210,11 @@ public class BasicEnemy : MonoBehaviour
 
         if (playerDetected.collider != null && !inRange) {
             inRange = true;
-            Debug.Log(name + " is IN range!");
+/*            Debug.Log(name + " is IN range!");*/
         }
         else if (playerDetected.collider == null && inRange) {
             inRange = false;
-            Debug.Log(name + " is OUT OF range!");
+/*            Debug.Log(name + " is OUT OF range!");*/
         }
     }
 
