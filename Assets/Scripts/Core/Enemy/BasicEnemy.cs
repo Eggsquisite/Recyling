@@ -138,8 +138,8 @@ public class BasicEnemy : MonoBehaviour
         baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
 
-        leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0);
-        rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0);
+        leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0f);
+        rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -149,8 +149,7 @@ public class BasicEnemy : MonoBehaviour
     private void ReplayAnimation(string newAnim) {
         AnimHelper.ReplayAnimation(anim, ref currentState, newAnim);
     }
-    private float GetAnimationLength(string newAnim)
-    {
+    private float GetAnimationLength(string newAnim) {
         return AnimHelper.GetAnimClipLength(ac, newAnim);
     }
 

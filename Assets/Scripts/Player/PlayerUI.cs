@@ -149,7 +149,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public int GetCurrentHealth() {
-        return Mathf.RoundToInt(healthCurrentValue.value);
+        return (int)healthCurrentValue.value;
     }
 
     IEnumerator HealthRecovery() {
@@ -162,7 +162,7 @@ public class PlayerUI : MonoBehaviour
                 healthRecovering)
         { 
             SetCurrentHealth(healthRecoveryValue);
-            yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
+            yield return new WaitForSeconds(recoverySpeed);
         }
 
         healthRecovering = false;
@@ -202,7 +202,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public int GetCurrentEnergy() {
-        return Mathf.RoundToInt(energyCurrentValue.value);
+        return (int)energyCurrentValue.value;
     }
 
     IEnumerator EnergyRecovery() {
@@ -215,7 +215,7 @@ public class PlayerUI : MonoBehaviour
                 energyRecovering) 
         { 
             SetCurrentEnergy(energyRecoveryValue);
-            yield return new WaitForSeconds(recoverySpeed * Time.deltaTime);
+            yield return new WaitForSeconds(recoverySpeed);
         }
 
         energyRecovering = false;
@@ -241,10 +241,7 @@ public class PlayerUI : MonoBehaviour
     public void SetCurrentStamina(int newValue) {
         if (staminaLost)
             staminaTimer = 0f;
-/*        if (staminaRecovering) 
-            StopCoroutine(StaminaRecovery());*/
 
-        // Reset timer and visual decay if decaying
         if (staminaCurrentValue.value + newValue < staminaCurrentValue.value)
         {
             staminaLost = true;
@@ -254,11 +251,12 @@ public class PlayerUI : MonoBehaviour
         else
             staminaDestroyedValue.value += newValue;
 
+        Debug.Log("Updating stamina...");
         staminaCurrentValue.value += newValue;
     }
     
     public int GetCurrentStamina() {
-        return Mathf.RoundToInt(staminaCurrentValue.value);
+        return (int)staminaCurrentValue.value;
     }
 
     IEnumerator StaminaRecovery() {
@@ -274,6 +272,7 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(recoverySpeed);
         }
 
+        yield return 0;
         staminaRecovering = false;
     }
 
