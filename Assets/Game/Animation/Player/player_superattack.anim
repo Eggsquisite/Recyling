@@ -125,14 +125,14 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 300
+    intParameter: 200
     messageOptions: 0
   - time: 1
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 150
+    intParameter: 100
     messageOptions: 0
   - time: 1.0166667
     functionName: SpecialAttackHitboxActivated

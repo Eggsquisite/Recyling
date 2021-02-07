@@ -434,6 +434,20 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    private void AttackFollowThrough(float distance) {
+        Vector2 newPosition;
+        if (playerChar.x > transform.position.x)
+        {
+            newPosition = new Vector2(distance, distance / 2f) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+        else if (playerChar.x <= transform.position.x)
+        {
+            newPosition = new Vector2(-distance, -distance / 2) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+    }
+
     private void Death() {
         isDead = true;
         CancelInvoke("FindPlayer");
