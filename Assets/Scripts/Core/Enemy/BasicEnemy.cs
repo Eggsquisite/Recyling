@@ -10,7 +10,6 @@ public enum EnemyAttacks
 
 public class BasicEnemy : MonoBehaviour
 {
-
     private Animator anim;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
@@ -94,16 +93,19 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] [Range(0.5f, 5f)]
     private float maxOffset;
 
+    private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
-    private float baseMoveSpeed;
     private float xScaleValue;
-    private Vector2 leftOffset, rightOffset, playerChar;
+    private float currentSpeed;
+    private float baseMoveSpeed;
+    private Vector2 leftOffset, rightOffset, playerChar, dist;
+    private Vector2 lastUpdatePos = Vector2.zero;
 
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, 0.25f);
+        InvokeRepeating("FindPlayer", 1f, .5f);
     }
 
     private void Update() {
@@ -118,7 +120,9 @@ public class BasicEnemy : MonoBehaviour
 
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
+        MovementAnimation();
         FollowPlayer();
+        IsMoving();
 
         /////////////////////////// Attack Animation Activated //////////////////
         if (inRange && !isStunned && !isAttacking && attackReady) {
@@ -174,29 +178,36 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void FollowPlayer() {
-        /*if (inRange && !canFollow && !isStunned && !isAttacking) {
+    private void MovementAnimation() {
+        if (!isMoving && !attackReady && !isStunned && !isAttacking)
             PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-            Debug.Log("1");
-        }
-        else if (!canFollow && !isStunned && !isAttacking) {
-            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-            Debug.Log("2");
-        }*/
-        if (inRange && !attackReady && !isStunned && !isAttacking) {
-            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-        }
-        // ENEMY MOVEMENT ///////////////////////////////////////////////
-        else if (canFollow && !isStunned && !isAttacking) {
+        else if (isMoving && !isStunned && !isAttacking)
             PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+    }
+
+    private void FollowPlayer() {
+        if (canFollow && !isStunned && !isAttacking) {
+            //PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+            IsMoving();
 
             if (attackFromLeft) {
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
             }
-            else {
+            else { 
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
             }
         }
+    }
+
+    private void IsMoving() {
+        dist = (Vector2)transform.position - lastUpdatePos;
+        currentSpeed = dist.magnitude / Time.deltaTime;
+        lastUpdatePos = transform.position;
+
+        if (currentSpeed > 0 && !isMoving)
+            isMoving = true;
+        else if (currentSpeed <= 0 && isMoving)
+            isMoving = false;
     }
 
     private void CheckPlayerPos()
@@ -221,14 +232,16 @@ public class BasicEnemy : MonoBehaviour
         else
             playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
-        if (playerDetected.collider != null && !inRange) {
+        if (!attackReady)
+            inRange = false;
+        else if (playerDetected.collider != null && !inRange) {
             inRange = true;
 /*            Debug.Log(name + " is IN range!");*/
         }
         else if (playerDetected.collider == null && inRange) {
             inRange = false;
 /*            Debug.Log(name + " is OUT OF range!");*/
-        }
+        } 
     }
 
     private void ResetFollow() {

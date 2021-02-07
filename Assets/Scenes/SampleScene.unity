@@ -4737,7 +4737,7 @@ MonoBehaviour:
   horizontalSpeedMult: 1.25
   walkToRunTime: 1.5
   stopBuffer: 0.1
-  isHurtMaxTime: 2
+  isHurtMaxTime: 0.25
   attackPoint: {fileID: 581574328}
   enemyLayer:
     serializedVersion: 2
@@ -7053,26 +7053,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1144525132013246141}
-  attackPoint2: {fileID: 0}
+  attackPoint2: {fileID: 1144525132013246141}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   health: 100
   attackChosen: 0
   stunDelay: 0.75
-  attackVisualizer: 3.5
-  attackRange1: 3.5
+  attackVisualizer: 3
+  attackRange1: 3
   attackRange2: 1.3
   attackRange3: 0
   attackDamage1: 200
-  attackDamage2: 150
+  attackDamage2: 0
   attackDamage3: 0
-  minAttackDelay: 2
-  maxAttackDelay: 3
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1.25
-  minOffset: 1
-  maxOffset: 1.25
+  minAttackDelay: 3
+  maxAttackDelay: 4
+  minMoveSpeed: 1.25
+  maxMoveSpeed: 1.75
+  minOffset: 2.5
+  maxOffset: 3
 --- !u!1 &1144525131731574356
 GameObject:
   m_ObjectHideFlags: 0
