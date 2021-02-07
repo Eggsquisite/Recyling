@@ -438,12 +438,12 @@ public class BasicEnemy : MonoBehaviour
         Vector2 newPosition;
         if (playerChar.x > transform.position.x)
         {
-            newPosition = new Vector2(distance, distance / 2f) + (Vector2)transform.position;
+            newPosition = new Vector2(distance, (transform.position.y - playerChar.y)) + (Vector2)transform.position;
             transform.position = newPosition;
         }
         else if (playerChar.x <= transform.position.x)
         {
-            newPosition = new Vector2(-distance, -distance / 2) + (Vector2)transform.position;
+            newPosition = new Vector2(-distance, (transform.position.y - playerChar.y)) + (Vector2)transform.position;
             transform.position = newPosition;
         }
     }
