@@ -11,6 +11,7 @@ public enum EnemyAttacks
 public class BasicEnemy : MonoBehaviour
 {
     private Animator anim;
+    private Rigidbody2D rb;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
     private EnemySounds playSound;
@@ -134,6 +135,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (anim == null) anim = GetComponent<Animator>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyType == null) enemyType = GetComponent<EnemyType>();
 
@@ -192,9 +194,11 @@ public class BasicEnemy : MonoBehaviour
 
             if (attackFromLeft) {
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
+                //rb.velocity = new Vector2(transform.position.x - (playerChar.x + leftOffset.x), transform.position.y - (playerChar.y + leftOffset.y));
             }
-            else { 
+            else {
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+                //rb.velocity = new Vector2(transform.position.x - (playerChar.x + rightOffset.x), transform.position.y - (playerChar.y + rightOffset.y));
             }
         }
     }

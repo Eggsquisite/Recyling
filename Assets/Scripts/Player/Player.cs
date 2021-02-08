@@ -91,6 +91,8 @@ public class Player : MonoBehaviour
     private int specialAttackDmg;
     [SerializeField]
     private float specialPushbackMultiplier;
+    [SerializeField]
+    private float attackFollowThruDistance;
 
     private float attackDelay;
     private float runDashTimer;
@@ -537,6 +539,16 @@ public class Player : MonoBehaviour
 
         }
     }
+
+    private void AttackFollowThrough() {
+        Vector2 newPosition;
+        newPosition = new Vector2(xAxis * attackFollowThruDistance, yAxis * attackFollowThruDistance);
+        rb.MovePosition(rb.position + newPosition);
+        //newPosition = new Vector2(xAxis * attackFollowThruDistance, yAxis * attackFollowThruDistance) + (Vector2)transform.position;
+        //transform.position = newPosition;
+
+    }
+
 
     private void ResetAttack() {
         attackCombo = 0;
