@@ -112,10 +112,17 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6666667
-    functionName: AttackFollowThroughBoth
+    functionName: AttackFollowThroughVertical
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.5
+    floatParameter: 0.15
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
+    functionName: AttackFollowThroughHorizontal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.2
     intParameter: 0
     messageOptions: 0
   - time: 0.68333334
@@ -133,10 +140,17 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.25
-    functionName: AttackFollowThroughBoth
+    functionName: AttackFollowThroughVertical
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.5
+    floatParameter: 0.25
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.25
+    functionName: AttackFollowThroughHorizontal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.15
     intParameter: 0
     messageOptions: 0
   - time: 1.2666667

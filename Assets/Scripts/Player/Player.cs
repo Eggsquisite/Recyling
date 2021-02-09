@@ -259,10 +259,10 @@ public class Player : MonoBehaviour
             return;
 
         if (canReceiveInput && dashReady && !isDashing) {
-            ResetWalk();
+/*            ResetWalk();
             dashReady = false;
             IsDashing();
-            canReceiveInput = false;
+            canReceiveInput = false;*/
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
         }
     }
@@ -349,6 +349,20 @@ public class Player : MonoBehaviour
     /// <summary>
     /// DASH CODE /////////////////////////////////////////////////////////////////////////////
     /// </summary>
+    /// 
+    private void DashStarting()
+    {
+        ResetWalk();
+        IsDashing();
+        dashReady = false;
+        canReceiveInput = false;
+    }
+    private void DashStartFalling() {
+        dashTimer = 0f;
+        isFalling = true;
+        isDashing = false;
+    }
+
     private void Dashing() {
         if (!isDashing)
             return;
@@ -359,21 +373,21 @@ public class Player : MonoBehaviour
 
         if (dashTimer < dashMinTime) {
             dashTimer += Time.deltaTime;
+            transform.localPosition = new Vector2(transform.localPosition.x,
+                                        Mathf.Lerp(transform.localPosition.y,
+                                        dashHeight,
+                                        dashSpeed * Time.deltaTime));
         } else if (dashTimer >= dashMinTime) {
             dashTimer = dashMinTime;
         }
 
-        if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
+        /*if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         } 
-        else if (playerStats.GetCurrentEnergy() > 0)
-            transform.localPosition = new Vector2(transform.localPosition.x,
-                                        Mathf.Lerp(transform.localPosition.y,
-                                        dashHeight,
-                                        dashSpeed * Time.deltaTime));
+        if (playerStats.GetCurrentEnergy() > 0)*/
     }
 
     private void DashFall() {
@@ -381,7 +395,7 @@ public class Player : MonoBehaviour
             return;
 
         if (transform.localPosition.y > 0) {
-            transform.Translate(0, -6f * Time.deltaTime, 0f, transform.parent);
+            transform.Translate(0, -dashSpeed * Time.deltaTime, 0f, transform.parent);
         }
         else if (transform.localPosition.y <= 0) {
             dashTimer = 0f;
@@ -399,6 +413,7 @@ public class Player : MonoBehaviour
     private void ResetLanding() {
         ResetStun();
         isLanding = false;
+        UI.SetEnergyRecoverable(true);
         if (!isAttacking)
             canReceiveInput = true;
     }
@@ -558,10 +573,12 @@ public class Player : MonoBehaviour
         Vector2 newPosition;
         if (facingLeft) {
             newPosition = new Vector2(transform.position.x - attackFollowThruDistance, transform.position.y);
-            transform.position = newPosition;
+            rb.position = newPosition;
+            //transform.position = newPosition;
         } else {
             newPosition = new Vector2(transform.position.x + attackFollowThruDistance, transform.position.y);
-            transform.position = newPosition;
+            rb.position = newPosition;
+            //transform.position = newPosition;
         }
     }
 

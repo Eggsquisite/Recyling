@@ -446,7 +446,8 @@ public class BasicEnemy : MonoBehaviour
         else if (playerChar.y <= transform.position.y) {
             newPosition = new Vector2(0f, -distance) + (Vector2)transform.position;
             transform.position = newPosition;
-        }
+        } else if (playerChar.y == transform.position.y) 
+            return;
     }
 
     private void AttackFollowThroughHorizontal(float distance) {
@@ -474,7 +475,6 @@ public class BasicEnemy : MonoBehaviour
             transform.position = newPosition;
         }
     }*/
-
 
     private void Death() {
         isDead = true;

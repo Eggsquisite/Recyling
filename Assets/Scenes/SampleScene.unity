@@ -4744,14 +4744,14 @@ MonoBehaviour:
     m_Bits: 128
   dashSpeed: 4
   dashCooldown: 1
-  dashMinTime: 0.33
+  dashMinTime: 0.4
   dashHeight: 1.5
   damage: 10
   attackRangeVisualizer: 1
   pushbackDistance: 0.1
   specialAttackDmg: 60
   specialPushbackMultiplier: 10
-  attackFollowThruDistance: 0.1
+  attackFollowThruDistance: 0.15
 --- !u!114 &1080875357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4910,7 +4910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163143692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 40168966}
