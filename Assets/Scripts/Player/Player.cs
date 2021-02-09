@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [Header("Player Stats")]
     private PlayerStats playerStats;
     private PlayerSounds playSounds;
+    private PlayerUI UI;
     private bool isDead;
 
     [Header("Movement Properties")]
@@ -115,6 +116,7 @@ public class Player : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
+        if (UI == null) UI = GetComponent<PlayerUI>();
 
         ac = anim.runtimeAnimatorController;
         ResetAttack();
@@ -246,8 +248,10 @@ public class Player : MonoBehaviour
         if (isStunned || (playerStats.GetCurrentStamina() <= 0 || playerStats.GetCurrentEnergy() < 300))
             return;
 
-        if (canReceiveInput)
+        if (canReceiveInput) { 
             isSuperAttackPressed = true;
+            UI.SetEnergyRecoverable(false);
+        }
     }
 
     public void DashInput() {
@@ -257,7 +261,7 @@ public class Player : MonoBehaviour
         if (canReceiveInput && dashReady && !isDashing) {
             ResetWalk();
             dashReady = false;
-            isDashing = true;
+            IsDashing();
             canReceiveInput = false;
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
         }
@@ -267,11 +271,21 @@ public class Player : MonoBehaviour
         if (isDashing && dashTimer >= dashMinTime) {
             dashTimer = 0f;
             isFalling = true;
-            isDashing = false;
+            ResetIsDashing();
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
         else if (isDashing && dashTimer < dashMinTime)
             stopDash = true;
+    }
+
+    private void IsDashing() {
+        isDashing = true;
+        UI.SetEnergyRecoverable(false);
+    }
+
+    private void ResetIsDashing() {
+        isDashing = false;
+        UI.SetEnergyRecoverable(true);
     }
 
     ///
@@ -466,7 +480,7 @@ public class Player : MonoBehaviour
 
         // case for first attack in combo/super attack
         if (!isAttacking) {
-            isAttacking = true;
+            IsAttacking();
 
             GetAttackDelay(attackIndex);
 
@@ -542,18 +556,27 @@ public class Player : MonoBehaviour
 
     private void AttackFollowThrough() {
         Vector2 newPosition;
-        newPosition = new Vector2(xAxis * attackFollowThruDistance, yAxis * attackFollowThruDistance);
-        rb.MovePosition(rb.position + newPosition);
-        //newPosition = new Vector2(xAxis * attackFollowThruDistance, yAxis * attackFollowThruDistance) + (Vector2)transform.position;
-        //transform.position = newPosition;
-
+        if (facingLeft) {
+            newPosition = new Vector2(transform.position.x - attackFollowThruDistance, transform.position.y);
+            transform.position = newPosition;
+        } else {
+            newPosition = new Vector2(transform.position.x + attackFollowThruDistance, transform.position.y);
+            transform.position = newPosition;
+        }
     }
 
+    private void IsAttacking() {
+        isAttacking = true;
+        UI.SetStaminaRecoverable(false);
+    }
 
     private void ResetAttack() {
         attackCombo = 0;
         isAttacking = false;
         canReceiveInput = true;
+        UI.SetStaminaRecoverable(true);
+        if (!isDashing)
+            UI.SetEnergyRecoverable(true);
     }
 
     private void ComboInput() {
