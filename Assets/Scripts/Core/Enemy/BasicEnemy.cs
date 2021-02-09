@@ -175,9 +175,7 @@ public class BasicEnemy : MonoBehaviour
 
     ////////////////// Find Player AI ////////////////////
     private void FindPlayer() {
-        if (canFollow) {
-            playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
-        }
+       playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
     private void MovementAnimation() {
@@ -438,19 +436,45 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void AttackFollowThrough(float distance) {
+    private void AttackFollowThroughVertical(float distance) {
+        // up down movement only
         Vector2 newPosition;
-        if (playerChar.x > transform.position.x)
-        {
-            newPosition = new Vector2(distance, (transform.position.y - playerChar.y)) + (Vector2)transform.position;
+        if (playerChar.y > transform.position.y) {
+            newPosition = new Vector2(0f, distance) + (Vector2)transform.position;
             transform.position = newPosition;
         }
-        else if (playerChar.x <= transform.position.x)
-        {
-            newPosition = new Vector2(-distance, (transform.position.y - playerChar.y)) + (Vector2)transform.position;
+        else if (playerChar.y <= transform.position.y) {
+            newPosition = new Vector2(0f, -distance) + (Vector2)transform.position;
             transform.position = newPosition;
         }
     }
+
+    private void AttackFollowThroughHorizontal(float distance) {
+        // Left right movement only
+        Vector2 newPosition;
+        if (playerChar.x >= transform.position.x) {
+            newPosition = new Vector2(distance, 0f) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+        else if (playerChar.x <= transform.position.x) {
+            newPosition = new Vector2(-distance, 0f) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+    }
+
+/*    private void AttackFollowThroughBoth(float distance) {
+        FindPlayer();
+        Vector2 newPosition;
+        Debug.Log(playerChar.y + " - " + transform.position.y + " = " + (playerChar.y - transform.position.y));
+        if (playerChar.x >= transform.position.x) {
+            newPosition = new Vector2(distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
+            transform.position = newPosition;
+        } else if (playerChar.x < transform.position.x) {
+            newPosition = new Vector2(-distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+    }*/
+
 
     private void Death() {
         isDead = true;

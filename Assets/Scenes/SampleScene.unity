@@ -4751,7 +4751,7 @@ MonoBehaviour:
   pushbackDistance: 0.1
   specialAttackDmg: 60
   specialPushbackMultiplier: 10
-  attackFollowThruDistance: 0.25
+  attackFollowThruDistance: 0.1
 --- !u!114 &1080875357
 MonoBehaviour:
   m_ObjectHideFlags: 0
