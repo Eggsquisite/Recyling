@@ -184,9 +184,9 @@ public class Player : MonoBehaviour
     }
     private void MovementAnimation() {
         // attack animations override run/idle anims
-        if (!isAttacking && !isDashing && !isLanding)
+        if (!isAttacking && !isDashing && !isFalling && !isLanding)
         {
-            if (xAxis == 0 && yAxis == 0 && !isFalling)
+            if (xAxis == 0 && yAxis == 0)
                 PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
             else if (isWalking)
                 PlayAnimation(PlayerAnimStates.PLAYER_WALK);
@@ -258,7 +258,7 @@ public class Player : MonoBehaviour
         if (isStunned || playerStats.GetCurrentEnergy() <= 0)
             return;
 
-        if (canReceiveInput && dashReady && !isDashing) {
+        if (canReceiveInput && dashReady && !isDashing && !isFalling) {
 /*            ResetWalk();
             dashReady = false;
             IsDashing();

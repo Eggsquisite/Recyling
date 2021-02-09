@@ -4743,7 +4743,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   dashSpeed: 4
-  dashCooldown: 1
+  dashCooldown: 0.75
   dashMinTime: 0.4
   dashHeight: 1.5
   damage: 10

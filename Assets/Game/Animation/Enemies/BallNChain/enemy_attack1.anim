@@ -39,17 +39,17 @@ AnimationClip:
       value: {fileID: 827538889749247048, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 0.75
       value: {fileID: -5010287565412364656, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 0.9166667
+    - time: 0.95
       value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.0833334
+    - time: 1.1166667
       value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.25
+    - time: 1.2833333
       value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.3333334
+    - time: 1.3666667
       value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.4166666
+    - time: 1.45
       value: {fileID: -5569035362507985257, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.5
+    - time: 1.5333333
       value: {fileID: -5789285544991574940, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     attribute: m_Sprite
     path: 
@@ -91,7 +91,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5166667
+    m_StopTime: 1.55
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -139,28 +139,28 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.25
-    functionName: AttackFollowThroughVertical
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.25
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.25
+  - time: 1.2833333
     functionName: AttackFollowThroughHorizontal
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.15
     intParameter: 0
     messageOptions: 0
-  - time: 1.2666667
+  - time: 1.2833333
+    functionName: AttackFollowThroughVertical
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.25
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.35
+  - time: 1.3666667
     functionName: AttackDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
