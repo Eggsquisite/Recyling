@@ -71,17 +71,20 @@ public class BasicEnemy : MonoBehaviour
     private bool inRange;
     private bool isStunned;
     private bool isAttacking;
-    private bool areaAttack;
     private bool attackReady;
     private bool attackHitbox;
     private bool attackHitbox2;
     private bool attackFromLeft;
+    private bool attackFollowThru;
+
     private int attackCounter;
     private int currentAttackDamage;
     private float currentAttackRange;
     private float currentAttackRange2;
+    private float attackFollowThruSpeed;
     private float attackDelay;
     private float stunDuration;
+    private Vector2 newPosition;
 
     [Header("Follow Player")]
     [SerializeField] [Range(0, 5f)]
@@ -95,6 +98,7 @@ public class BasicEnemy : MonoBehaviour
     private float maxOffset;
 
     private bool isMoving;
+    private bool canTurn;
     private bool canFollow;
     private bool leftOfPlayer;
     private float xScaleValue;
@@ -129,6 +133,11 @@ public class BasicEnemy : MonoBehaviour
         if (inRange && !isStunned && !isAttacking && attackReady) {
             AttackAnimation();
         }
+
+        if (attackFollowThru) {
+            AttackFollowThroughHorizontal();
+            AttackFollowThroughVertical();
+        }
     }
 
     private void SetupVariables()
@@ -142,6 +151,7 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
+        canTurn = true;
         canFollow = true;
         attackReady = true;
         xScaleValue = transform.localScale.x;
@@ -214,6 +224,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckPlayerPos()
     {
+        if (isAttacking)
+            return;
+
         // Set variable of leftOfPlayer
         if (playerChar.x > transform.position.x && !leftOfPlayer) {
             leftOfPlayer = true;
@@ -280,38 +293,37 @@ public class BasicEnemy : MonoBehaviour
         else if (tmp >= 5 && tmp < 10)
             attackFromLeft = false;
     }
-    private void AttackActivated(int flag) {
+    private void AttackActivated(int value) {
         //called thru animation event
+        CancelInvoke("FindPlayer");
+        FindPlayer();
         attackHitbox = true;
+        attackFollowThru = true;
+        attackFollowThruSpeed = value;
 
-        if (flag == 0)
-            areaAttack = false;
-        else
-            areaAttack = true;
-    }
-    private void AttackActivated2(int flag) {
-        attackHitbox2 = true;
-
-        if (flag == 0)
-            areaAttack = false;
-        else
-            areaAttack = true;
+        /*if (flag == 0)
+            attackFollowThruHorizontal = true;
+        else if (flag == 1)
+            attackFollowThruVertical = true;
+        else if (flag == 2)
+            attackFollowThruBoth = true;*/
     }
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
-        areaAttack = false;
-    }
-    private void AttackDeactivated2() {
-        attackHitbox2 = false;
-        areaAttack = false;
+        attackFollowThru = false;
+        InvokeRepeating("FindPlayer", 0f, 0.5f);
+
+        /*attackFollowThruBoth = false;
+        attackFollowThruVertical = false;
+        attackFollowThruHorizontal = false;*/
     }
 
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (leftOfPlayer || areaAttack) 
+        if (leftOfPlayer) 
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
-        else if (!leftOfPlayer && !areaAttack)
+        else if (!leftOfPlayer)
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
         if (hitBox.collider != null) {
@@ -322,9 +334,9 @@ public class BasicEnemy : MonoBehaviour
     private void CheckHitBox2()
     {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (leftOfPlayer || !areaAttack)
+        if (leftOfPlayer)
             hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
-        else if (!leftOfPlayer && areaAttack)
+        else if (!leftOfPlayer)
             hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
 
         if (hitBox2.collider != null) {
@@ -410,7 +422,6 @@ public class BasicEnemy : MonoBehaviour
 
         health -= damageNum;
         AttackDeactivated();
-        AttackDeactivated2();
         playSound.PlayEnemyHit();
 
         if (health <= 0)
@@ -436,31 +447,29 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void AttackFollowThroughVertical(float distance) {
+    private void AttackFollowThroughVertical() {
         // up down movement only
-        Vector2 newPosition;
         if (playerChar.y > transform.position.y) {
-            newPosition = new Vector2(0f, distance) + (Vector2)transform.position;
-            transform.position = newPosition;
+            newPosition = new Vector2(0f, 1) + (Vector2)transform.position;
         }
         else if (playerChar.y <= transform.position.y) {
-            newPosition = new Vector2(0f, -distance) + (Vector2)transform.position;
-            transform.position = newPosition;
+            newPosition = new Vector2(0f, -1) + (Vector2)transform.position;
         } else if (playerChar.y == transform.position.y) 
             return;
+
+        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
     }
 
-    private void AttackFollowThroughHorizontal(float distance) {
+    private void AttackFollowThroughHorizontal() {
         // Left right movement only
-        Vector2 newPosition;
         if (playerChar.x >= transform.position.x) {
-            newPosition = new Vector2(distance, 0f) + (Vector2)transform.position;
-            transform.position = newPosition;
+            newPosition = new Vector2(1, 0f) + (Vector2)transform.position;
         }
         else if (playerChar.x <= transform.position.x) {
-            newPosition = new Vector2(-distance, 0f) + (Vector2)transform.position;
-            transform.position = newPosition;
+            newPosition = new Vector2(-1, 0f) + (Vector2)transform.position;
         }
+        
+        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
     }
 
 /*    private void AttackFollowThroughBoth(float distance) {

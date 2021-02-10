@@ -4745,7 +4745,7 @@ MonoBehaviour:
   dashSpeed: 4
   dashCooldown: 0.75
   dashMinTime: 0.4
-  dashHeight: 1.5
+  dashHeight: 1.25
   damage: 10
   attackRangeVisualizer: 1
   pushbackDistance: 0.1
@@ -7070,6 +7070,8 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 3
   maxAttackDelay: 4
+  attackFollowThruDistance: 3
+  attackFollowThruSpeed: 5
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
   minOffset: 2.5
@@ -7732,6 +7734,8 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 2
   maxAttackDelay: 3
+  attackFollowThruDistance: 0
+  attackFollowThruSpeed: 0
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
   minOffset: 1
