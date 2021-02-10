@@ -1,7 +1,49 @@
 fileFormatVersion: 2
 guid: 6353ad1dca1cf80429016ea3a91d5526
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3497824979014677474
+    second: Special Attack with FX_0
+  - first:
+      213: 1997369963090146627
+    second: Special Attack with FX_1
+  - first:
+      213: 306400875332568541
+    second: Special Attack with FX_2
+  - first:
+      213: 6626098730966301892
+    second: Special Attack with FX_3
+  - first:
+      213: -8729604426021594812
+    second: Special Attack with FX_4
+  - first:
+      213: 4630618064519584843
+    second: Special Attack with FX_5
+  - first:
+      213: -6299334272061482982
+    second: Special Attack with FX_6
+  - first:
+      213: -3159098475581200637
+    second: Special Attack with FX_7
+  - first:
+      213: -2788965824986159985
+    second: Special Attack with FX_8
+  - first:
+      213: 1925880594483617701
+    second: Special Attack with FX_9
+  - first:
+      213: 6974692551835937176
+    second: Special Attack with FX_10
+  - first:
+      213: 774071110424614998
+    second: Special Attack with FX_11
+  - first:
+      213: 2324057318123716211
+    second: Special Attack with FX_12
+  - first:
+      213: -1332853403853138437
+    second: Special Attack with FX_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +74,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,12 +83,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -68,7 +110,31 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,7 +143,301 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Special Attack with FX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 988
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e378a04945ca8030800000000000000
+      internalID: 3497824979014677474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 912
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345f50f166518bb10800000000000000
+      internalID: 1997369963090146627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 836
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5011509fd804400800000000000000
+      internalID: 306400875332568541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 760
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ccb9e170b1a4fb50800000000000000
+      internalID: 6626098730966301892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 684
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4491e45a6073ad680800000000000000
+      internalID: -8729604426021594812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 608
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c523a7892434040800000000000000
+      internalID: 4630618064519584843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18d458dad44498a0800000000000000
+      internalID: -6299334272061482982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30721809ca0a824d0800000000000000
+      internalID: -3159098475581200637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 380
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f84eef6db5a9b49d0800000000000000
+      internalID: -2788965824986159985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af930a623a1aba10800000000000000
+      internalID: 1925880594483617701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 228
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8996eb12ce51bc060800000000000000
+      internalID: 6974692551835937176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65850cfd29d0eba00800000000000000
+      internalID: 774071110424614998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37e396441d5b04020800000000000000
+      internalID: 2324057318123716211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Attack with FX_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 81
+        height: 76
+      alignment: 9
+      pivot: {x: 0.36, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5d9a514e0c08de0800000000000000
+      internalID: -1332853403853138437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

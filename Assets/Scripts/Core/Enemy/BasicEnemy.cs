@@ -47,13 +47,15 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float stunDelay;
 
-    [SerializeField] [Range(0, 5f)]
-    private float attackVisualizer;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
+    private float visualizeRange;
+    [SerializeField]
+    private float detectRange;
+    [SerializeField] 
     private float attackRange1;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float attackRange2;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float attackRange3;
 
     [SerializeField]
@@ -87,18 +89,22 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 newPosition;
 
     [Header("Follow Player")]
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField]
+    private float followDistance;
+    [SerializeField]
+    private float followDelay;
+
+    [SerializeField] 
     private float minMoveSpeed;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float maxMoveSpeed;
 
-    [SerializeField] [Range(0.5f, 5f)]
+    [SerializeField] 
     private float minOffset;
-    [SerializeField] [Range(0.5f, 5f)]
+    [SerializeField] 
     private float maxOffset;
 
     private bool isMoving;
-    private bool canTurn;
     private bool canFollow;
     private bool leftOfPlayer;
     private float xScaleValue;
@@ -110,7 +116,7 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, .5f);
+        InvokeRepeating("FindPlayer", 1f, followDelay);
     }
 
     private void Update() {
@@ -151,7 +157,6 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
-        canTurn = true;
         canFollow = true;
         attackReady = true;
         xScaleValue = transform.localScale.x;
@@ -243,9 +248,9 @@ public class BasicEnemy : MonoBehaviour
         CheckPlayerPos();
 
         if (leftOfPlayer)
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
+            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, detectRange, playerLayer);
         else
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
+            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, detectRange, playerLayer);
 
         if (!attackReady)
             inRange = false;
@@ -279,8 +284,10 @@ public class BasicEnemy : MonoBehaviour
         attackReady = true;
     }
     private void FinishAttack() {
-        FindAttack();
         ResetFollow();
+        FindNextAttack();
+        AttackFollowDeactivated();
+
         isAttacking = false;
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
@@ -293,13 +300,11 @@ public class BasicEnemy : MonoBehaviour
         else if (tmp >= 5 && tmp < 10)
             attackFromLeft = false;
     }
-    private void AttackActivated(int value) {
+    private void AttackActivated() {
         //called thru animation event
         CancelInvoke("FindPlayer");
         FindPlayer();
         attackHitbox = true;
-        attackFollowThru = true;
-        attackFollowThruSpeed = value;
 
         /*if (flag == 0)
             attackFollowThruHorizontal = true;
@@ -311,8 +316,7 @@ public class BasicEnemy : MonoBehaviour
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
-        attackFollowThru = false;
-        InvokeRepeating("FindPlayer", 0f, 0.5f);
+        InvokeRepeating("FindPlayer", 0f, followDelay);
 
         /*attackFollowThruBoth = false;
         attackFollowThruVertical = false;
@@ -406,6 +410,53 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    private void AttackFollowActivated(int value) {
+        attackFollowThru = true;
+        attackFollowThruSpeed = value;
+    }
+
+    private void AttackFollowDeactivated() {
+        attackFollowThru = false;
+    }
+
+    private void AttackFollowThroughVertical() {
+        // up down movement only
+        if (playerChar.y > transform.position.y) {
+            newPosition = new Vector2(0f, 1) + (Vector2)transform.position;
+        }
+        else if (playerChar.y <= transform.position.y) {
+            newPosition = new Vector2(0f, -1) + (Vector2)transform.position;
+        } else if (playerChar.y == transform.position.y) 
+            return;
+
+        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+    }
+
+    private void AttackFollowThroughHorizontal() {
+        // Left right movement only
+        if (playerChar.x >= transform.position.x) {
+            newPosition = new Vector2(followDistance, 0f) + (Vector2)transform.position;
+        }
+        else if (playerChar.x <= transform.position.x) {
+            newPosition = new Vector2(-followDistance, 0f) + (Vector2)transform.position;
+        }
+        
+        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+    }
+
+/*    private void AttackFollowThroughBoth(float distance) {
+        FindPlayer();
+        Vector2 newPosition;
+        Debug.Log(playerChar.y + " - " + transform.position.y + " = " + (playerChar.y - transform.position.y));
+        if (playerChar.x >= transform.position.x) {
+            newPosition = new Vector2(distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
+            transform.position = newPosition;
+        } else if (playerChar.x < transform.position.x) {
+            newPosition = new Vector2(-distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
+            transform.position = newPosition;
+        }
+    }*/
+
     /////////////// Enemy Is Hit //////////////////
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
         if (isDead || isInvincible)
@@ -447,44 +498,6 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void AttackFollowThroughVertical() {
-        // up down movement only
-        if (playerChar.y > transform.position.y) {
-            newPosition = new Vector2(0f, 1) + (Vector2)transform.position;
-        }
-        else if (playerChar.y <= transform.position.y) {
-            newPosition = new Vector2(0f, -1) + (Vector2)transform.position;
-        } else if (playerChar.y == transform.position.y) 
-            return;
-
-        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
-    }
-
-    private void AttackFollowThroughHorizontal() {
-        // Left right movement only
-        if (playerChar.x >= transform.position.x) {
-            newPosition = new Vector2(1, 0f) + (Vector2)transform.position;
-        }
-        else if (playerChar.x <= transform.position.x) {
-            newPosition = new Vector2(-1, 0f) + (Vector2)transform.position;
-        }
-        
-        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
-    }
-
-/*    private void AttackFollowThroughBoth(float distance) {
-        FindPlayer();
-        Vector2 newPosition;
-        Debug.Log(playerChar.y + " - " + transform.position.y + " = " + (playerChar.y - transform.position.y));
-        if (playerChar.x >= transform.position.x) {
-            newPosition = new Vector2(distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
-            transform.position = newPosition;
-        } else if (playerChar.x < transform.position.x) {
-            newPosition = new Vector2(-distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
-            transform.position = newPosition;
-        }
-    }*/
-
     private void Death() {
         isDead = true;
         CancelInvoke("FindPlayer");
@@ -505,7 +518,7 @@ public class BasicEnemy : MonoBehaviour
     }*/
 
     // ENEMY SPECIFIC ATTACKS /////////////////////////////////////////////////////////////////////////////
-    private void FindAttack() {
+    private void FindNextAttack() {
         if (name.Contains("MudGuard"))
             MudguardAttack();
     }
@@ -524,15 +537,14 @@ public class BasicEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackVisualizer));
+            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * visualizeRange));
         else
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackVisualizer));
+            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * visualizeRange));
 
         Gizmos.color = Color.green;
         if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.left * attackVisualizer));
+            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.left * visualizeRange));
         else
-            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * attackVisualizer));
-
+            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * visualizeRange));
     }
 }

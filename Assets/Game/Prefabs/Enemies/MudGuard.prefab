@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3898020908785157715
 Transform:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -252
+  m_SortingOrder: -98
   m_Sprite: {fileID: 8793639957104055765, guid: 68afdf6c3bddec346b8be2c411952d70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,7 +228,8 @@ MonoBehaviour:
   health: 100
   attackChosen: 0
   stunDelay: 0.75
-  attackVisualizer: 3.5
+  visualizeRange: 0
+  detectRange: 0
   attackRange1: 3.5
   attackRange2: 1.3
   attackRange3: 0
@@ -237,6 +238,8 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 2
   maxAttackDelay: 3
+  followDistance: 0.25
+  followDelay: 0.5
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
   minOffset: 1

@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2237502160636908986
 Transform:
   m_ObjectHideFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 2237502159876300119}
+  attackPoint2: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -299,6 +300,7 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 4
   maxAttackDelay: 6
+  followDelay: 1
   minMoveSpeed: 0.5
   maxMoveSpeed: 0.75
   minOffset: 2.75
