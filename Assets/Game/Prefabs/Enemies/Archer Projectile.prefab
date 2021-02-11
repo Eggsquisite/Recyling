@@ -140,8 +140,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.5, y: 0}
-  m_Size: {x: 2, y: 0.3}
+  m_Offset: {x: 1.5458231, y: 0}
+  m_Size: {x: 2.4083545, y: 0.30000564}
   m_Direction: 1
 --- !u!114 &8795698285439481204
 MonoBehaviour:
@@ -168,6 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b0077dd14cc6548b0005b60da94dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyTime: 2
-  projectileVelocity: 6
+  flyTime: 1.25
+  projectileVelocity: 4
   damage: 120

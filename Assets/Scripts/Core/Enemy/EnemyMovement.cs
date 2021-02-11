@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
     private float minOffset;
     [SerializeField] 
     private float maxOffset;
+    [SerializeField]
+    private Vector2 offsetAttackStandby;
 
     private bool isMoving;
     private bool canFollow;
@@ -74,19 +76,25 @@ public class EnemyMovement : MonoBehaviour
         InvokeRepeating("FindPlayer", 0f, followDelay);
     }
 
-    public void FollowPlayer(bool attackFromLeft) {
+    public void FollowPlayer(bool attackFromLeft, bool attackReady) {
         if (canFollow)  {
             IsMoving();
 
-            if (attackFromLeft)
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
-            else
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+            if (attackReady) { 
+                if (attackFromLeft)
+                    transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
+                else
+                    transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+            } else { 
+                if (attackFromLeft)
+                    transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset - offsetAttackStandby, baseMoveSpeed * Time.deltaTime);
+                else
+                    transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset + offsetAttackStandby, baseMoveSpeed * Time.deltaTime);
+            }
         }
     }
 
-    private void IsMoving()
-    {
+    private void IsMoving() {
         dist = (Vector2)transform.position - lastUpdatePos;
         currentSpeed = dist.magnitude / Time.deltaTime;
         lastUpdatePos = transform.position;

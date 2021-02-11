@@ -436,10 +436,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   health: 60
-  attackChosen: 1
+  attackChosen: 0
   stunDelay: 0.75
   visualizeRange: 2.5
-  detectRange: 5
+  detectRange: 4
   attackRange1: 0
   attackRange2: 2.5
   attackRange3: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 5
   maxAttackDelay: 7
-  attackFollowDistance: 0
+  attackFollowDistance: -0.5
   followDelay: 3
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
@@ -634,11 +634,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDelay: 1.5
-  minMoveSpeed: 0.5
-  maxMoveSpeed: 0.5
-  minOffset: 4
-  maxOffset: 5
+  followDelay: 1
+  minMoveSpeed: 1.5
+  maxMoveSpeed: 2
+  minOffset: 3
+  maxOffset: 4
+  offsetAttackStandby: {x: 5, y: 0}
 --- !u!114 &246685319 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 181791666552881679, guid: b81386a40a902c0418508093c2aa9835, type: 3}
@@ -2006,7 +2007,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c74931b82f38ed41acd1be8d9bec824, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -8698,6 +8699,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8795698285439481202, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: m_Size.x
+      value: 2.4083545
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795698285439481202, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: m_Size.y
+      value: 0.30000564
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795698285439481202, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.5458231
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795698285439481202, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.00000012864798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795698285439481205, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: flyTime
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795698285439481205, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+      propertyPath: projectileVelocity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_RootOrder
       value: 14

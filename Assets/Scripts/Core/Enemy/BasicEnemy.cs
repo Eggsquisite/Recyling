@@ -216,7 +216,7 @@ public class BasicEnemy : MonoBehaviour
         }*/
 
         if (!isStunned && !isAttacking)
-            enemyMovement.FollowPlayer(attackFromLeft);
+            enemyMovement.FollowPlayer(attackFromLeft, attackReady);
     }
 
 /*    private void IsMoving() {

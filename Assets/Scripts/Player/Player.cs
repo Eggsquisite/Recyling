@@ -665,6 +665,10 @@ public class Player : MonoBehaviour
             isInvincible = false;
     }
 
+    public bool GetInvincible() {
+        return isInvincible;
+    }
+
     private void ResetStun() {
         isStunned = false;
     }
