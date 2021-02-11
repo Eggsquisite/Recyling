@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("Player Detection")]
+    [SerializeField]
+    private Transform detectPos;
+    [SerializeField]
+    private float detectRange;
+    [SerializeField]
+    private LayerMask playerLayer;
+
+    [Header("Enemy Follow Properties")]
     [SerializeField]
     private float followDelay;
-
     [SerializeField] 
     private float minMoveSpeed;
     [SerializeField] 
@@ -85,7 +93,7 @@ public class EnemyMovement : MonoBehaviour
                     transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
                 else
                     transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
-            } else { 
+            } else if (!attackReady) { 
                 if (attackFromLeft)
                     transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset - offsetAttackStandby, baseMoveSpeed * Time.deltaTime);
                 else
@@ -105,8 +113,7 @@ public class EnemyMovement : MonoBehaviour
             isMoving = false;
     }
 
-    public void CheckPlayerPos()
-    {
+    public void CheckPlayerPos() {
         if (playerChar.x > transform.position.x && !leftOfPlayer)
         {
             leftOfPlayer = true;
@@ -119,6 +126,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public void CheckPlayerInRange(ref RaycastHit2D playerDetected) {
+        if (leftOfPlayer)
+            playerDetected = Physics2D.Raycast(detectPos.position, Vector2.right, detectRange, playerLayer);
+        else
+            playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
+    }
 
     public void ResetFollow()
     {
@@ -139,5 +152,11 @@ public class EnemyMovement : MonoBehaviour
     }
     public Vector2 GetPlayerPosition() {
         return playerChar;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
     }
 }

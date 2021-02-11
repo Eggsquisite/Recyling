@@ -652,6 +652,7 @@ public class Player : MonoBehaviour
     private void Stunned() {
         ResetWalk();
         isStunned = true;
+        runAttackDash = false;
     }
 
     private void SetInvincible() {

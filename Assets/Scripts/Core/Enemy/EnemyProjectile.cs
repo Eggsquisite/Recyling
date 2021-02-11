@@ -13,11 +13,13 @@ public class EnemyProjectile : MonoBehaviour
 
     private Animator anim;
     private Rigidbody2D rb;
+    private Collider2D coll;
 
     private void Start()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (anim == null) anim = GetComponent<Animator>();
+        if (coll == null) coll = GetComponent<Collider2D>();
         StartCoroutine(Kill());
     }
 
@@ -30,11 +32,12 @@ public class EnemyProjectile : MonoBehaviour
             rb.MovePosition((Vector2)transform.position + Vector2.left * projectileVelocity * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !collision.GetComponentInChildren<Player>().GetInvincible()) { 
+        if (collision.tag == "Player" && !collision.GetComponentInChildren<Player>().GetInvincible()) {
             collision.GetComponentInChildren<Player>().PlayerHurt(damage);
             anim.Play("arrow_dissipate");
+            coll.enabled = false;
         }
     }
 

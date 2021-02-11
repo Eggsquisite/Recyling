@@ -116,7 +116,6 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
-        /*InvokeRepeating("FindPlayer", 1f, followDelay);*/
     }
 
     private void Update() {
@@ -155,7 +154,7 @@ public class BasicEnemy : MonoBehaviour
         if (enemyType == null) enemyType = GetComponent<EnemyType>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
 
-        enemyMovement.FindPlayer();
+        enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
@@ -181,16 +180,6 @@ public class BasicEnemy : MonoBehaviour
         return AnimHelper.GetAnimClipLength(ac, newAnim);
     }
 
-    ////////////////// Find Player AI ////////////////////
-/*    private void FindPlayer() {
-       playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
-    }*/
-
-    IEnumerator FindPlayer() {
-        yield return new WaitForSeconds(enemyMovement.GetFollowDelay());
-        enemyMovement.FindPlayerRepeating();
-    }
-
     private void MovementAnimation() {
         if (!isStunned && !isAttacking) { 
             if (!enemyMovement.GetIsMoving())
@@ -200,79 +189,30 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    ////////////////// Find Player AI ////////////////////
     private void FollowPlayer() {
-        /*if (canFollow && !isStunned && !isAttacking) {
-            //PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-            IsMoving();
-
-            if (attackFromLeft) {
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
-                //rb.velocity = new Vector2(transform.position.x - (playerChar.x + leftOffset.x), transform.position.y - (playerChar.y + leftOffset.y));
-            }
-            else {
-                transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
-                //rb.velocity = new Vector2(transform.position.x - (playerChar.x + rightOffset.x), transform.position.y - (playerChar.y + rightOffset.y));
-            }
-        }*/
-
         if (!isStunned && !isAttacking)
             enemyMovement.FollowPlayer(attackFromLeft, attackReady);
     }
 
-/*    private void IsMoving() {
-        dist = (Vector2)transform.position - lastUpdatePos;
-        currentSpeed = dist.magnitude / Time.deltaTime;
-        lastUpdatePos = transform.position;
+    private void CheckPlayerInRange() {
+        if (!isAttacking)
+            enemyMovement.CheckPlayerPos();
 
-        if (currentSpeed > 0 && !isMoving)
-            isMoving = true;
-        else if (currentSpeed <= 0 && isMoving)
-            isMoving = false;
-    }*/
-
-    private void CheckPlayerPos()
-    {
-        if (isAttacking)
-            return;
-
-        enemyMovement.CheckPlayerPos();
-
-        /*// Set variable of leftOfPlayer
-        if (playerChar.x > transform.position.x && !leftOfPlayer) {
-            leftOfPlayer = true;
-            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
-        }
-        else if (playerChar.x <= transform.position.x && leftOfPlayer) {
-            leftOfPlayer = false;
-            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
-        }*/
-    }
-
-    private void CheckPlayerInRange()
-    {
-        CheckPlayerPos();
-
-        if (enemyMovement.GetLeftOfPlayer())
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, detectRange, playerLayer);
-        else if (!enemyMovement.GetLeftOfPlayer())
-            playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, detectRange, playerLayer);
+        enemyMovement.CheckPlayerInRange(ref playerDetected);
 
         if (!attackReady)
             inRange = false;
         else if (playerDetected.collider != null && !inRange) {
             inRange = true;
-/*            Debug.Log(name + " is IN range!");*/
+            //Debug.Log(name + " is IN range!");
         }
         else if (playerDetected.collider == null && inRange) {
             inRange = false;
-/*            Debug.Log(name + " is OUT OF range!");*/
+            //Debug.Log(name + " is OUT OF range!");
         } 
     }
 
-/*    private void ResetFollow() {
-        canFollow = true;
-        FindPlayer();
-    }*/
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
     private void ResetStun() {
         enemyMovement.ResetFollow();
@@ -307,27 +247,14 @@ public class BasicEnemy : MonoBehaviour
     }
     private void AttackActivated() {
         //called thru animation event
-        /*CancelInvoke("FindPlayer");*/
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
         attackHitbox = true;
-
-        /*if (flag == 0)
-            attackFollowThruHorizontal = true;
-        else if (flag == 1)
-            attackFollowThruVertical = true;
-        else if (flag == 2)
-            attackFollowThruBoth = true;*/
     }
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
-        StartCoroutine("FindPlayer");
-        //InvokeRepeating("FindPlayer", 0f, followDelay);
-
-        /*attackFollowThruBoth = false;
-        attackFollowThruVertical = false;
-        attackFollowThruHorizontal = false;*/
+        enemyMovement.FindPlayerRepeating();
     }
 
     private void CheckHitBox() {
@@ -466,6 +393,10 @@ public class BasicEnemy : MonoBehaviour
         }
     }*/
 
+    public bool GetIsAttacking() {
+        return isAttacking;
+    }
+
     /////////////// Enemy Is Hit //////////////////
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
         if (isDead || isInvincible)
@@ -546,8 +477,5 @@ public class BasicEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * visualizeRange));
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * visualizeRange));
     }
 }
