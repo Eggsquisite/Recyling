@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 237535661}
   - component: {fileID: 237535660}
   - component: {fileID: 237535659}
+  - component: {fileID: 237535668}
   - component: {fileID: 237535667}
   m_Layer: 7
   m_Name: ArcherDroid
@@ -447,7 +448,7 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 5
   maxAttackDelay: 7
-  followDistance: -1
+  attackFollowDistance: 0
   followDelay: 3
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
@@ -621,6 +622,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8795698285439481211, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+--- !u!114 &237535668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237535658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followDelay: 1.5
+  minMoveSpeed: 0.5
+  maxMoveSpeed: 0.5
+  minOffset: 4
+  maxOffset: 5
 --- !u!114 &246685319 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 181791666552881679, guid: b81386a40a902c0418508093c2aa9835, type: 3}
@@ -7399,7 +7417,7 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 3
   maxAttackDelay: 4
-  followDistance: 1
+  attackFollowDistance: 0
   followDelay: 0.5
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
@@ -8064,7 +8082,7 @@ MonoBehaviour:
   attackDamage3: 0
   minAttackDelay: 2
   maxAttackDelay: 3
-  followDistance: 0
+  attackFollowDistance: 0
   followDelay: 0
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25

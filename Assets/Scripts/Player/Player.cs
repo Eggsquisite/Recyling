@@ -547,7 +547,7 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy") {
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(damage), pushbackDistance, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)damage, pushbackDistance, transform);
             }
         }
     }
@@ -563,7 +563,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy") { 
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(Mathf.RoundToInt(specialAttackDmg), pushbackDistance * specialPushbackMultiplier, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)specialAttackDmg, pushbackDistance * specialPushbackMultiplier, transform);
             }
 
         }

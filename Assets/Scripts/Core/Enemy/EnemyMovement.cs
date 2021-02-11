@@ -4,28 +4,34 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Vector2 leftOffset, rightOffset, playerChar;
+    [SerializeField]
+    private float followDelay;
 
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float minMoveSpeed;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float maxMoveSpeed;
 
-    [SerializeField] [Range(0.5f, 5f)]
+    [SerializeField] 
     private float minOffset;
-    [SerializeField] [Range(0.5f, 5f)]
+    [SerializeField] 
     private float maxOffset;
 
+    private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
+    private float currentSpeed;
     private float baseMoveSpeed;
     private float xScaleValue;
+
+    private Vector2 lastUpdatePos = Vector2.zero;
+    private Vector2 leftOffset, rightOffset, playerChar, dist;
 
     // Start is called before the first frame update
     void Start()
     {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, 0.25f);
+        InvokeRepeating("FindPlayer", 1f, followDelay);
     }
 
     // Update is called once per frame
@@ -57,18 +63,54 @@ public class EnemyMovement : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
-    private void FindPlayer() {
-        if (canFollow) {
-            playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
-        }
+    public void FindPlayer() {
+        playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
+    }
+
+    public void StopFindPlayer() {
+        CancelInvoke("FindPlayer");
+    }
+    public void FindPlayerRepeating() {
+        InvokeRepeating("FindPlayer", 0f, followDelay);
     }
 
     public void FollowPlayer(bool attackFromLeft) {
-        if (attackFromLeft)
-            transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
-        else
-            transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+        if (canFollow)  {
+            IsMoving();
+
+            if (attackFromLeft)
+                transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
+            else
+                transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+        }
     }
+
+    private void IsMoving()
+    {
+        dist = (Vector2)transform.position - lastUpdatePos;
+        currentSpeed = dist.magnitude / Time.deltaTime;
+        lastUpdatePos = transform.position;
+
+        if (currentSpeed > 0 && !isMoving)
+            isMoving = true;
+        else if (currentSpeed <= 0 && isMoving)
+            isMoving = false;
+    }
+
+    public void CheckPlayerPos()
+    {
+        if (playerChar.x > transform.position.x && !leftOfPlayer)
+        {
+            leftOfPlayer = true;
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+        }
+        else if (playerChar.x <= transform.position.x && leftOfPlayer)
+        {
+            leftOfPlayer = false;
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        }
+    }
+
 
     public void ResetFollow()
     {
@@ -77,5 +119,17 @@ public class EnemyMovement : MonoBehaviour
     }
     public void SetFollow(bool flag) {
         canFollow = flag;
+    }
+    public float GetFollowDelay() {
+        return followDelay;
+    }
+    public bool GetLeftOfPlayer() {
+        return leftOfPlayer;
+    }
+    public bool GetIsMoving() {
+        return isMoving;
+    }
+    public Vector2 GetPlayerPosition() {
+        return playerChar;
     }
 }

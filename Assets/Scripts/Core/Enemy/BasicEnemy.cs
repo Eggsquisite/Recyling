@@ -14,6 +14,7 @@ public class BasicEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
+    private EnemyMovement enemyMovement;
     private EnemySounds playSound;
     private EnemyType enemyType;
     private string currentState;
@@ -69,6 +70,8 @@ public class BasicEnemy : MonoBehaviour
     private float minAttackDelay;
     [SerializeField]
     private float maxAttackDelay;
+    [SerializeField]
+    private float attackFollowDistance;
 
     private bool inRange;
     private bool isStunned;
@@ -90,8 +93,6 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Follow Player")]
     [SerializeField]
-    private float followDistance;
-    [SerializeField]
     private float followDelay;
 
     [SerializeField] 
@@ -106,17 +107,16 @@ public class BasicEnemy : MonoBehaviour
 
     private bool isMoving;
     private bool canFollow;
-    private bool leftOfPlayer;
     private float xScaleValue;
     private float currentSpeed;
     private float baseMoveSpeed;
-    private Vector2 leftOffset, rightOffset, playerChar, dist;
+    private Vector2 leftOffset, rightOffset, dist;
     private Vector2 lastUpdatePos = Vector2.zero;
 
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, followDelay);
+        /*InvokeRepeating("FindPlayer", 1f, followDelay);*/
     }
 
     private void Update() {
@@ -133,11 +133,10 @@ public class BasicEnemy : MonoBehaviour
         CheckPlayerInRange();
         MovementAnimation();
         FollowPlayer();
-        IsMoving();
 
         /////////////////////////// Attack Animation Activated //////////////////
         if (inRange && !isStunned && !isAttacking && attackReady) {
-            AttackAnimation();
+            StartCoroutine(AttackAnimation());
         }
 
         if (attackFollowThru) {
@@ -151,24 +150,18 @@ public class BasicEnemy : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyType == null) enemyType = GetComponent<EnemyType>();
+        if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
 
+        enemyMovement.FindPlayer();
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
         canFollow = true;
         attackReady = true;
         xScaleValue = transform.localScale.x;
-
-        if (playerChar.x > transform.position.x) {
-            leftOfPlayer = true;
-            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
-        }
-        else if (playerChar.x <= transform.position.x) {
-            leftOfPlayer = false;
-            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
-        }
 
         baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
@@ -189,19 +182,26 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
-    private void FindPlayer() {
+/*    private void FindPlayer() {
        playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
+    }*/
+
+    IEnumerator FindPlayer() {
+        yield return new WaitForSeconds(enemyMovement.GetFollowDelay());
+        enemyMovement.FindPlayerRepeating();
     }
 
     private void MovementAnimation() {
-        if (!isMoving && !attackReady && !isStunned && !isAttacking)
-            PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-        else if (isMoving && !isStunned && !isAttacking)
-            PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+        if (!isStunned && !isAttacking) { 
+            if (!enemyMovement.GetIsMoving())
+                PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+            else if (enemyMovement.GetIsMoving())
+                PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+        }
     }
 
     private void FollowPlayer() {
-        if (canFollow && !isStunned && !isAttacking) {
+        /*if (canFollow && !isStunned && !isAttacking) {
             //PlayAnimation(EnemyAnimStates.ENEMY_RUN);
             IsMoving();
 
@@ -213,10 +213,13 @@ public class BasicEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
                 //rb.velocity = new Vector2(transform.position.x - (playerChar.x + rightOffset.x), transform.position.y - (playerChar.y + rightOffset.y));
             }
-        }
+        }*/
+
+        if (!isStunned && !isAttacking)
+            enemyMovement.FollowPlayer(attackFromLeft);
     }
 
-    private void IsMoving() {
+/*    private void IsMoving() {
         dist = (Vector2)transform.position - lastUpdatePos;
         currentSpeed = dist.magnitude / Time.deltaTime;
         lastUpdatePos = transform.position;
@@ -225,14 +228,16 @@ public class BasicEnemy : MonoBehaviour
             isMoving = true;
         else if (currentSpeed <= 0 && isMoving)
             isMoving = false;
-    }
+    }*/
 
     private void CheckPlayerPos()
     {
         if (isAttacking)
             return;
 
-        // Set variable of leftOfPlayer
+        enemyMovement.CheckPlayerPos();
+
+        /*// Set variable of leftOfPlayer
         if (playerChar.x > transform.position.x && !leftOfPlayer) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
@@ -240,16 +245,16 @@ public class BasicEnemy : MonoBehaviour
         else if (playerChar.x <= transform.position.x && leftOfPlayer) {
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
-        }
+        }*/
     }
 
     private void CheckPlayerInRange()
     {
         CheckPlayerPos();
 
-        if (leftOfPlayer)
+        if (enemyMovement.GetLeftOfPlayer())
             playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.right, detectRange, playerLayer);
-        else
+        else if (!enemyMovement.GetLeftOfPlayer())
             playerDetected = Physics2D.Raycast(attackPoint.position, Vector2.left, detectRange, playerLayer);
 
         if (!attackReady)
@@ -264,12 +269,13 @@ public class BasicEnemy : MonoBehaviour
         } 
     }
 
-    private void ResetFollow() {
+/*    private void ResetFollow() {
         canFollow = true;
         FindPlayer();
-    }
+    }*/
+    ////////////////// Attack Code ////////////////////////////////////////////////////////////
     private void ResetStun() {
-        ResetFollow();
+        enemyMovement.ResetFollow();
         isStunned = false;
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
@@ -279,12 +285,11 @@ public class BasicEnemy : MonoBehaviour
     private void ResetInvincible() {
         isInvincible = false;
     }
-    ////////////////// Attack Code ////////////////////////////////////////////////////////////
     private void ResetAttack() {
         attackReady = true;
     }
     private void FinishAttack() {
-        ResetFollow();
+        enemyMovement.ResetFollow();
         FindNextAttack();
         AttackFollowDeactivated();
 
@@ -302,8 +307,9 @@ public class BasicEnemy : MonoBehaviour
     }
     private void AttackActivated() {
         //called thru animation event
-        CancelInvoke("FindPlayer");
-        FindPlayer();
+        /*CancelInvoke("FindPlayer");*/
+        enemyMovement.StopFindPlayer();
+        enemyMovement.FindPlayer();
         attackHitbox = true;
 
         /*if (flag == 0)
@@ -316,7 +322,8 @@ public class BasicEnemy : MonoBehaviour
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
-        InvokeRepeating("FindPlayer", 0f, followDelay);
+        StartCoroutine("FindPlayer");
+        //InvokeRepeating("FindPlayer", 0f, followDelay);
 
         /*attackFollowThruBoth = false;
         attackFollowThruVertical = false;
@@ -325,9 +332,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (leftOfPlayer) 
+        if (enemyMovement.GetLeftOfPlayer()) 
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
-        else if (!leftOfPlayer)
+        else if (!enemyMovement.GetLeftOfPlayer())
             hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
 
         if (hitBox.collider != null) {
@@ -338,9 +345,9 @@ public class BasicEnemy : MonoBehaviour
     private void CheckHitBox2()
     {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (leftOfPlayer)
+        if (enemyMovement.GetLeftOfPlayer())
             hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
-        else if (!leftOfPlayer)
+        else if (!enemyMovement.GetLeftOfPlayer())
             hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
 
         if (hitBox2.collider != null) {
@@ -348,7 +355,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void AttackAnimation() {
+    IEnumerator AttackAnimation() {
         canFollow = false;
         isAttacking = true;
         attackReady = false;
@@ -367,7 +374,9 @@ public class BasicEnemy : MonoBehaviour
             tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK3);
         }
 
-        Invoke("FinishAttack", tmp);
+        yield return new WaitForSeconds(tmp);
+        FinishAttack();
+        //Invoke("FinishAttack", tmp);
     }
 
    private void ChooseAttack(int index) {
@@ -421,12 +430,12 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughVertical() {
         // up down movement only
-        if (playerChar.y > transform.position.y) {
+        if (enemyMovement.GetPlayerPosition().y > transform.position.y) {
             newPosition = new Vector2(0f, 1) + (Vector2)transform.position;
         }
-        else if (playerChar.y <= transform.position.y) {
+        else if (enemyMovement.GetPlayerPosition().y <= transform.position.y) {
             newPosition = new Vector2(0f, -1) + (Vector2)transform.position;
-        } else if (playerChar.y == transform.position.y) 
+        } else if (enemyMovement.GetPlayerPosition().y == transform.position.y) 
             return;
 
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
@@ -434,11 +443,11 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
-        if (playerChar.x >= transform.position.x) {
-            newPosition = new Vector2(followDistance, 0f) + (Vector2)transform.position;
+        if (enemyMovement.GetPlayerPosition().x >= transform.position.x) {
+            newPosition = new Vector2(attackFollowDistance, 0f) + (Vector2)transform.position;
         }
-        else if (playerChar.x <= transform.position.x) {
-            newPosition = new Vector2(-followDistance, 0f) + (Vector2)transform.position;
+        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x) {
+            newPosition = new Vector2(-attackFollowDistance, 0f) + (Vector2)transform.position;
         }
         
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
@@ -536,15 +545,9 @@ public class BasicEnemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * visualizeRange));
-        else
-            Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * visualizeRange));
+        Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * visualizeRange));
 
         Gizmos.color = Color.green;
-        if (leftOfPlayer)
-            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.left * visualizeRange));
-        else
-            Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * visualizeRange));
+        Gizmos.DrawLine(attackPoint2.position, (Vector2)attackPoint2.position + (Vector2.right * visualizeRange));
     }
 }
