@@ -646,7 +646,6 @@ public class Player : MonoBehaviour
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
             Invoke("ResetStun", stunDuration);
         }
-
     }
 
     private void Stunned() {

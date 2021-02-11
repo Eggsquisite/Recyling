@@ -435,7 +435,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 60
+  health: 150
   attackChosen: 0
   stunDelay: 0.75
   visualizeRange: 2.5
@@ -449,11 +449,6 @@ MonoBehaviour:
   minAttackDelay: 5
   maxAttackDelay: 7
   attackFollowDistance: -0.5
-  followDelay: 3
-  minMoveSpeed: 1.5
-  maxMoveSpeed: 2
-  minOffset: 4
-  maxOffset: 5
 --- !u!114 &237535660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5078,7 +5073,7 @@ MonoBehaviour:
   healthRecoveryDelay: 0
   energyRecoveryValue: 2
   energyRecoveryDelay: 1
-  staminaRecoveryValue: 8
+  staminaRecoveryValue: 12
   staminaRecoveryDelay: 0.25
 --- !u!114 &1080875359
 MonoBehaviour:
@@ -7455,11 +7450,6 @@ MonoBehaviour:
   minAttackDelay: 3
   maxAttackDelay: 4
   attackFollowDistance: 0
-  followDelay: 0.5
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1.25
-  minOffset: 2.5
-  maxOffset: 3
 --- !u!1 &1144525131731574356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,11 +8110,6 @@ MonoBehaviour:
   minAttackDelay: 2
   maxAttackDelay: 3
   attackFollowDistance: 0
-  followDelay: 0
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1.25
-  minOffset: 1
-  maxOffset: 1.25
 --- !u!4 &3633208026588451534
 Transform:
   m_ObjectHideFlags: 0
@@ -8741,11 +8726,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.65
+      value: 8.52
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.96
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8757,15 +8742,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795698285439481208, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -91,28 +91,6 @@ public class BasicEnemy : MonoBehaviour
     private float stunDuration;
     private Vector2 newPosition;
 
-    [Header("Follow Player")]
-    [SerializeField]
-    private float followDelay;
-
-    [SerializeField] 
-    private float minMoveSpeed;
-    [SerializeField] 
-    private float maxMoveSpeed;
-
-    [SerializeField] 
-    private float minOffset;
-    [SerializeField] 
-    private float maxOffset;
-
-    private bool isMoving;
-    private bool canFollow;
-    private float xScaleValue;
-    private float currentSpeed;
-    private float baseMoveSpeed;
-    private Vector2 leftOffset, rightOffset, dist;
-    private Vector2 lastUpdatePos = Vector2.zero;
-
     // Start is called before the first frame update
     void Start() {
         SetupVariables();
@@ -158,15 +136,8 @@ public class BasicEnemy : MonoBehaviour
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
 
-        canFollow = true;
         attackReady = true;
-        xScaleValue = transform.localScale.x;
-
-        baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
-
-        leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0f);
-        rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -215,77 +186,42 @@ public class BasicEnemy : MonoBehaviour
 
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
     private void ResetStun() {
-        enemyMovement.ResetFollow();
+        // called thru invoke event in EnemyHurt()
         isStunned = false;
+        StartCoroutine(enemyMovement.ResetFollow());
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
 
         Invoke("ResetAttack", stunDelay);
     }
+
     private void ResetInvincible() {
+        // called thru invoke event in EnemyHurt()
         isInvincible = false;
     }
+
     private void ResetAttack() {
+        // called thru invoke in ResetStun()
         attackReady = true;
     }
-    private void FinishAttack() {
-        enemyMovement.ResetFollow();
-        FindNextAttack();
-        AttackFollowDeactivated();
 
-        isAttacking = false;
-        if (IsInvoking("ResetAttack"))
-            CancelInvoke("ResetAttack");
-
-        Invoke("ResetAttack", attackDelay);
-
-        int tmp = Random.Range(0, 10);
-        if (tmp >= 0 && tmp < 5)
-            attackFromLeft = true;
-        else if (tmp >= 5 && tmp < 10)
-            attackFromLeft = false;
-    }
     private void AttackActivated() {
         //called thru animation event
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
         attackHitbox = true;
     }
+
     private void AttackDeactivated() {
         //called thru animation event
         attackHitbox = false;
-        enemyMovement.FindPlayerRepeating();
-    }
-
-    private void CheckHitBox() {
-        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (enemyMovement.GetLeftOfPlayer()) 
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
-        else if (!enemyMovement.GetLeftOfPlayer())
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
-
-        if (hitBox.collider != null) {
-            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
-        }
-    }
-
-    private void CheckHitBox2()
-    {
-        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (enemyMovement.GetLeftOfPlayer())
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
-        else if (!enemyMovement.GetLeftOfPlayer())
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
-
-        if (hitBox2.collider != null) {
-            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
-        }
+        //enemyMovement.FindPlayerRepeating();
     }
 
     IEnumerator AttackAnimation() {
-        canFollow = false;
         isAttacking = true;
         attackReady = false;
+        enemyMovement.SetFollow(false);
         var tmp = 0f;
 
         if (attackChosen == EnemyAttacks.BasicAttack1) { 
@@ -303,7 +239,49 @@ public class BasicEnemy : MonoBehaviour
 
         yield return new WaitForSeconds(tmp);
         FinishAttack();
-        //Invoke("FinishAttack", tmp);
+    }
+
+    private void FinishAttack() {
+        FindNextAttack();
+        AttackFollowDeactivated();
+        StartCoroutine(enemyMovement.ResetFollow());
+
+        isAttacking = false;
+        if (IsInvoking("ResetAttack"))
+            CancelInvoke("ResetAttack");
+
+        Invoke("ResetAttack", attackDelay);
+
+        int tmp = Random.Range(0, 10);
+        if (tmp >= 0 && tmp < 5)
+            attackFromLeft = true;
+        else if (tmp >= 5 && tmp < 10)
+            attackFromLeft = false;
+    }
+
+    private void CheckHitBox() {
+        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+        if (enemyMovement.GetLeftOfPlayer()) 
+            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
+        else 
+            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
+
+        if (hitBox.collider != null) {
+            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
+        }
+    }
+
+    private void CheckHitBox2()
+    {
+        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
+        if (enemyMovement.GetLeftOfPlayer())
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
+        else
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
+
+        if (hitBox2.collider != null) {
+            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
+        }
     }
 
    private void ChooseAttack(int index) {
@@ -347,11 +325,13 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void AttackFollowActivated(int value) {
+        // called thru animation event
         attackFollowThru = true;
         attackFollowThruSpeed = value;
     }
 
     private void AttackFollowDeactivated() {
+        // called thru animation event
         attackFollowThru = false;
     }
 
@@ -403,9 +383,9 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         isStunned = true;
-        canFollow = false;
-        attackReady = false;
         isInvincible = true;
+        attackReady = false;
+        enemyMovement.SetFollow(false);
         PushBack(distance, playerRef);
 
         if (IsInvoking("ResetStun"))

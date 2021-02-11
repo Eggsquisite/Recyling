@@ -85,8 +85,8 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void FollowPlayer(bool attackFromLeft, bool attackReady) {
+        IsMoving();
         if (canFollow)  {
-            IsMoving();
 
             if (attackReady) { 
                 if (attackFromLeft)
@@ -133,13 +133,17 @@ public class EnemyMovement : MonoBehaviour
             playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
     }
 
-    public void ResetFollow()
+    public IEnumerator ResetFollow()
     {
+        yield return new WaitForSeconds(followDelay);
         canFollow = true;
         FindPlayer();
+        FindPlayerRepeating();
     }
     public void SetFollow(bool flag) {
         canFollow = flag;
+        if (!flag)
+            CancelInvoke("FindPlayer");
     }
     public float GetFollowDelay() {
         return followDelay;
