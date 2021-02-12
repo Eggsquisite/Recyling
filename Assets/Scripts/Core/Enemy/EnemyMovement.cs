@@ -12,11 +12,15 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private LayerMask playerLayer;
 
-    [Header("Enemy Follow Properties")]
+    [Header("Follow Properties")]
     [SerializeField]
     private float repeatFollowDelay;
     [SerializeField]
     private float attackFollowDelay;
+    [SerializeField]
+    private float stunFollowDelay;
+
+    [Header("Movement Properties")]
     [SerializeField] 
     private float minMoveSpeed;
     [SerializeField] 
@@ -82,6 +86,7 @@ public class EnemyMovement : MonoBehaviour
     public void StopFindPlayer() {
         CancelInvoke("FindPlayer");
     }
+
     public void FindPlayerRepeating() {
         InvokeRepeating("FindPlayer", 0f, repeatFollowDelay);
     }
@@ -135,6 +140,8 @@ public class EnemyMovement : MonoBehaviour
             playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
     }
 
+    // FOLLOW PROPERTIES /////////////////////////////////////////////////////////////////////////////////////
+
     public IEnumerator ResetAttackFollow()
     {
         yield return new WaitForSeconds(attackFollowDelay);
@@ -144,7 +151,7 @@ public class EnemyMovement : MonoBehaviour
     }
     public IEnumerator ResetStunFollow()
     {
-        yield return new WaitForSeconds(repeatFollowDelay);
+        yield return new WaitForSeconds(stunFollowDelay);
         canFollow = true;
         FindPlayer();
         FindPlayerRepeating();

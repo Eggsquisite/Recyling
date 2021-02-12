@@ -637,6 +637,7 @@ MonoBehaviour:
     m_Bits: 64
   repeatFollowDelay: 0.5
   attackFollowDelay: 2
+  stunFollowDelay: 0.25
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
   minOffset: 4

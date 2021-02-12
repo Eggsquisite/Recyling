@@ -383,8 +383,6 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         PushBack(distance, playerRef);
 
-        if (IsInvoking("ResetStun"))
-            CancelInvoke("ResetStun");
 
         health -= damageNum;
         AttackDeactivated();
@@ -395,9 +393,11 @@ public class BasicEnemy : MonoBehaviour
         else { 
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+            if (IsInvoking("ResetStun"))
+                CancelInvoke("ResetStun");
 
-            Invoke("ResetInvincible", 0.2f);
-            Invoke("ResetStun", stunDuration);
+            Invoke("ResetStun", stunDuration + 0.25f);
+            Invoke("ResetInvincible", stunDuration);
         }
     }
 
