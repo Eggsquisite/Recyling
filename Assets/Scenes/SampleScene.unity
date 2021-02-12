@@ -5045,7 +5045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 1
-  decaySpeed: 500
+  decaySpeed: 600
   recoverySpeed: 0.03
   healthMaxValue: {fileID: 4674527415172417435}
   healthCurrentValue: {fileID: 4674527415699176524}
@@ -5069,13 +5069,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  maxEnergy: 400
+  maxEnergy: 500
   maxStamina: 600
   healthRecoveryValue: 0
   healthRecoveryDelay: 0
-  energyRecoveryValue: 2
-  energyRecoveryDelay: 1
-  staminaRecoveryValue: 5
+  energyRecoveryValue: 4
+  energyRecoveryDelay: 0.5
+  staminaRecoveryValue: 10
   staminaRecoveryDelay: 0.25
 --- !u!114 &1080875359
 MonoBehaviour:

@@ -286,7 +286,6 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(recoverySpeed);
         }
 
-        Debug.Log("Broken");
         energyRecovering = false;
         yield break;
     }
@@ -342,7 +341,6 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(recoverySpeed);
         }
 
-        Debug.Log("Broken");
         staminaRecovering = false;
         yield break;
     }
