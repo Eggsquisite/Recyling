@@ -8,7 +8,6 @@ public class EnemyProjectile : MonoBehaviour
     private float flyTime;
     [SerializeField]
     private float projectileVelocity;
-    [SerializeField]
     private int damage;
 
     private Animator anim;
@@ -48,5 +47,9 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Dissipate() {
         Destroy(gameObject);
+    }
+
+    public void SetDamage(int dmg) {
+        damage = dmg;
     }
 }

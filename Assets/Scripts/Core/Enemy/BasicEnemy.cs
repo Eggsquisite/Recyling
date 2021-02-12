@@ -17,6 +17,7 @@ public class BasicEnemy : MonoBehaviour
     private EnemyMovement enemyMovement;
     private EnemySounds playSound;
     private EnemyType enemyType;
+    private ArcherDroid archerArrow;
     private string currentState;
 
     [Header("Attack Collider Properties")]
@@ -131,6 +132,9 @@ public class BasicEnemy : MonoBehaviour
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyType == null) enemyType = GetComponent<EnemyType>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
+        if (archerArrow == null) archerArrow = GetComponent<ArcherDroid>();
+        if (archerArrow != null)
+            archerArrow.SetDamage(attackDamage1);
 
         enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
@@ -188,7 +192,7 @@ public class BasicEnemy : MonoBehaviour
     private void ResetStun() {
         // called thru invoke event in EnemyHurt()
         isStunned = false;
-        StartCoroutine(enemyMovement.ResetFollow());
+        StartCoroutine(enemyMovement.ResetStunFollow());
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
 
@@ -244,7 +248,7 @@ public class BasicEnemy : MonoBehaviour
     private void FinishAttack() {
         FindNextAttack();
         AttackFollowDeactivated();
-        StartCoroutine(enemyMovement.ResetFollow());
+        StartCoroutine(enemyMovement.ResetAttackFollow());
 
         isAttacking = false;
         if (IsInvoking("ResetAttack"))
@@ -360,21 +364,12 @@ public class BasicEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
     }
 
-/*    private void AttackFollowThroughBoth(float distance) {
-        FindPlayer();
-        Vector2 newPosition;
-        Debug.Log(playerChar.y + " - " + transform.position.y + " = " + (playerChar.y - transform.position.y));
-        if (playerChar.x >= transform.position.x) {
-            newPosition = new Vector2(distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
-            transform.position = newPosition;
-        } else if (playerChar.x < transform.position.x) {
-            newPosition = new Vector2(-distance, playerChar.y - transform.position.y * (1 / distance)) + (Vector2)transform.position;
-            transform.position = newPosition;
-        }
-    }*/
-
     public bool GetIsAttacking() {
         return isAttacking;
+    }
+
+    public int GetDamage() {
+        return currentAttackDamage;
     }
 
     /////////////// Enemy Is Hit //////////////////
@@ -402,7 +397,7 @@ public class BasicEnemy : MonoBehaviour
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
             Invoke("ResetInvincible", 0.2f);
-            Invoke("ResetStun", stunDuration + 0.25f);
+            Invoke("ResetStun", stunDuration);
         }
     }
 

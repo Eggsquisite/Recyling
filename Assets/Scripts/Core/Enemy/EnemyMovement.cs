@@ -14,7 +14,9 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Enemy Follow Properties")]
     [SerializeField]
-    private float followDelay;
+    private float repeatFollowDelay;
+    [SerializeField]
+    private float attackFollowDelay;
     [SerializeField] 
     private float minMoveSpeed;
     [SerializeField] 
@@ -41,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, followDelay);
+        InvokeRepeating("FindPlayer", 1f, repeatFollowDelay);
     }
 
     // Update is called once per frame
@@ -81,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
         CancelInvoke("FindPlayer");
     }
     public void FindPlayerRepeating() {
-        InvokeRepeating("FindPlayer", 0f, followDelay);
+        InvokeRepeating("FindPlayer", 0f, repeatFollowDelay);
     }
 
     public void FollowPlayer(bool attackFromLeft, bool attackReady) {
@@ -133,9 +135,16 @@ public class EnemyMovement : MonoBehaviour
             playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
     }
 
-    public IEnumerator ResetFollow()
+    public IEnumerator ResetAttackFollow()
     {
-        yield return new WaitForSeconds(followDelay);
+        yield return new WaitForSeconds(attackFollowDelay);
+        canFollow = true;
+        FindPlayer();
+        FindPlayerRepeating();
+    }
+    public IEnumerator ResetStunFollow()
+    {
+        yield return new WaitForSeconds(repeatFollowDelay);
         canFollow = true;
         FindPlayer();
         FindPlayerRepeating();
@@ -144,9 +153,6 @@ public class EnemyMovement : MonoBehaviour
         canFollow = flag;
         if (!flag)
             CancelInvoke("FindPlayer");
-    }
-    public float GetFollowDelay() {
-        return followDelay;
     }
     public bool GetLeftOfPlayer() {
         return leftOfPlayer;
