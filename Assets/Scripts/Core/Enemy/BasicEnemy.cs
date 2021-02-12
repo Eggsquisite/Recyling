@@ -10,6 +10,7 @@ public enum EnemyAttacks
 
 public class BasicEnemy : MonoBehaviour
 {
+    [Header("Components")]
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -51,14 +52,25 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField] 
     private float visualizeRange;
-    [SerializeField]
-    private float detectRange;
     [SerializeField] 
     private float attackRange1;
     [SerializeField] 
     private float attackRange2;
     [SerializeField] 
     private float attackRange3;
+
+    [SerializeField]
+    private List<string> attackIndexes;
+    [SerializeField] [Range(0, 100)]
+    private List<int> attackChance;
+    [SerializeField]
+    private List<float> attackRanges;
+    [SerializeField]
+    private List<int> attackDamages;
+    [SerializeField]
+    private List<Transform> attackPoints;
+    [SerializeField]
+    private List<float> attackFollowDistances;
 
     [SerializeField]
     private int attackDamage1;
@@ -83,13 +95,18 @@ public class BasicEnemy : MonoBehaviour
     private bool attackFromLeft;
     private bool attackFollowThru;
 
+    private string attackChosenn;
     private int attackCounter;
+    private int attackIndex;
+    private int totalAttackChance;
     private int currentAttackDamage;
+    private float attackLength;
     private float currentAttackRange;
     private float currentAttackRange2;
     private float attackFollowThruSpeed;
     private float attackDelay;
     private float stunDuration;
+    private float playerDistance;
     private Vector2 newPosition;
 
     // Start is called before the first frame update
@@ -104,8 +121,6 @@ public class BasicEnemy : MonoBehaviour
         ///////////////////// Attack Hitbox Activated ///////////////////////////
         if (attackHitbox)
             CheckHitBox();
-        if (attackHitbox2)
-            CheckHitBox2();
 
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
@@ -129,9 +144,10 @@ public class BasicEnemy : MonoBehaviour
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
-        if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyType == null) enemyType = GetComponent<EnemyType>();
+        if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
+
         if (archerArrow == null) archerArrow = GetComponent<ArcherDroid>();
         if (archerArrow != null)
             archerArrow.SetDamage(attackDamage1);
@@ -139,6 +155,10 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
         ChooseAttack(attackChosen);
+        for (int i = 0; i < attackIndexes.Count; i++) {
+            totalAttackChance += attackChance[i];
+        }
+        Debug.Log(totalAttackChance);
 
         attackReady = true;
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
@@ -174,6 +194,7 @@ public class BasicEnemy : MonoBehaviour
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
 
+        playerDistance = enemyMovement.GetPlayerDistance();
         enemyMovement.CheckPlayerInRange(ref playerDetected);
 
         if (!attackReady)
@@ -226,23 +247,50 @@ public class BasicEnemy : MonoBehaviour
         isAttacking = true;
         attackReady = false;
         enemyMovement.SetFollow(false);
-        var tmp = 0f;
+        float tmpLength = 0f;
+        PickAttack();
 
-        if (attackChosen == EnemyAttacks.BasicAttack1) { 
+        if (playerDistance >= attackRanges[attackIndex]) {
+            isAttacking = false;
+            attackReady = true;
+            Debug.Log("attack not reached");
+            attackIndex = Random.Range(0, attackIndexes.Count);
+            StopCoroutine(AttackAnimation());
+            yield break;
+        }
+
+        Debug.Log(attackIndex);
+        attackChosenn = attackIndexes[attackIndex];
+        PlayAnimation(attackChosenn);
+        tmpLength = GetAnimationLength(attackChosenn);
+
+/*        if (attackChosen == EnemyAttacks.BasicAttack1) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
-            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1);
+            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1);
         }
         else if (attackChosen == EnemyAttacks.BasicAttack2) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK2);
-            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK2);
+            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK2);
         }
         else if (attackChosen == EnemyAttacks.BasicAttack3) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK3);
-            tmp = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK3);
-        }
+            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK3);
+        }*/
 
-        yield return new WaitForSeconds(tmp);
+        yield return new WaitForSeconds(tmpLength);
         FinishAttack();
+    }
+
+    private void PickAttack() {
+/*        int tmp = Random.Range(0, totalAttackChance);
+        for(int i = 0; i < attackIndexes.Count; i++) {
+            if (tmp < attackChance[i])
+                attackIndex = i;
+        }*/
+
+        attackIndex = Random.Range(0, attackIndexes.Count);
+        if (playerDistance >= attackRanges[attackIndex] && inRange)
+            attackIndex = Random.Range(0, attackIndexes.Count);
     }
 
     private void FinishAttack() {
@@ -273,12 +321,12 @@ public class BasicEnemy : MonoBehaviour
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
         if (enemyMovement.GetLeftOfPlayer()) 
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.right, currentAttackRange, playerLayer);
+            hitBox = Physics2D.Raycast(attackPoints[attackIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
         else 
-            hitBox = Physics2D.Raycast(attackPoint.position, Vector2.left, currentAttackRange, playerLayer);
+            hitBox = Physics2D.Raycast(attackPoints[attackIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
 
         if (hitBox.collider != null) {
-            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
+            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
         }
     }
 
@@ -313,8 +361,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
     
-    private void ChooseAttack(EnemyAttacks attackChoice)
-    {
+    private void ChooseAttack(EnemyAttacks attackChoice) {
         if (attackChoice == EnemyAttacks.BasicAttack1)
         {
             attackChosen = EnemyAttacks.BasicAttack1;
@@ -362,10 +409,10 @@ public class BasicEnemy : MonoBehaviour
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
         if (enemyMovement.GetPlayerPosition().x >= transform.position.x) {
-            newPosition = new Vector2(attackFollowDistance, 0f) + (Vector2)transform.position;
+            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
         }
         else if (enemyMovement.GetPlayerPosition().x <= transform.position.x) {
-            newPosition = new Vector2(-attackFollowDistance, 0f) + (Vector2)transform.position;
+            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
         }
         
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
@@ -390,7 +437,6 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         PushBack(distance, playerRef);
 
-
         health -= damageNum;
         AttackDeactivated();
         playSound.PlayEnemyHit();
@@ -404,7 +450,7 @@ public class BasicEnemy : MonoBehaviour
                 CancelInvoke("ResetStun");
 
             Invoke("ResetStun", stunDuration + 0.25f);
-            Invoke("ResetInvincible", stunDuration);
+            Invoke("ResetInvincible", stunDuration + 0.1f);
         }
     }
 

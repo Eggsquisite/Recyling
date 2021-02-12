@@ -185,10 +185,13 @@ public class EnemyMovement : MonoBehaviour
     public Vector2 GetPlayerPosition() {
         return playerChar;
     }
+    public float GetPlayerDistance() {
+        return Vector2.Distance(playerChar, transform.position);
+    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
+        //Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
     }
 }
