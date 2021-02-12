@@ -69,40 +69,115 @@ public class PlayerUI : MonoBehaviour
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        BarUpdate();
-    }
-
     private void BarUpdate() {
-        if (healthLost)
-            DestroyedTimer(ref healthTimer, ref healthLost, ref healthDecaying);
+/*        if (healthLost)
+            DestroyedTimer(ref healthTimer, ref healthLost, ref healthDecaying, 1);
         else if (healthDecaying)
             VisualDecay(healthCurrentValue, healthDestroyedValue, ref healthDecaying, 1);
 
         if (energyLost)
-            DestroyedTimer(ref energyTimer, ref energyLost, ref energyDecaying);
+            DestroyedTimer(ref energyTimer, ref energyLost, ref energyDecaying, 2);
         else if (energyDecaying)
             VisualDecay(energyCurrentValue, energyDestroyedValue, ref energyDecaying, 2);
 
         if (staminaLost)
-            DestroyedTimer(ref staminaTimer, ref staminaLost, ref staminaDecaying);
+            DestroyedTimer(ref staminaTimer, ref staminaLost, ref staminaDecaying, 3);
         else if (staminaDecaying)
-            VisualDecay(staminaCurrentValue, staminaDestroyedValue, ref staminaDecaying, 3);
+            VisualDecay(staminaCurrentValue, staminaDestroyedValue, ref staminaDecaying, 3);*/
     }
 
-    private void DestroyedTimer(ref float timer, ref bool flag, ref bool decayFlag) {
+/*    private void DestroyedTimer(ref float timer, ref bool flag, ref bool decayFlag, int index) {
         if (timer < visualDelay)
             timer += Time.deltaTime;
         else if (timer >= visualDelay) {
             timer = 0f;
             flag = false;
             decayFlag = true;
+
+            if (index == 1)
+                StartCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
+            else if (index == 2)
+                StartCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
+            else if (index == 3)
+                StartCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
+        }
+    }*/
+
+    IEnumerator DestroyedTimer(int index) {
+        if (index == 1)
+            StopCoroutine(HealthRecovery());
+        else if (index == 2)
+            StopCoroutine(EnergyRecovery());
+        else if (index == 3)
+            StopCoroutine(StaminaRecovery());
+
+        yield return new WaitForSeconds(visualDelay);
+        
+        if (index == 1 && !healthDecaying) {
+            healthLost = false;
+
+            StopCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
+            StartCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
+        } else if (index == 2 && !energyDecaying) {
+            energyLost = false;
+
+            StopCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
+            StartCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
+        } else if (index == 3 && !staminaDecaying) {
+            staminaLost = false;
+
+            StopCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
+            StartCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
         }
     }
 
-    private void VisualDecay(Slider currentValue, Slider decayValue, ref bool decayFlag, int index) {
+    IEnumerator VisualDecay(Slider currentValue, Slider decayValue, int index) {
+        if (index == 1)
+            healthDecaying = true;
+        else if (index == 2)
+            energyDecaying = true;
+        else if (index == 3)
+            staminaDecaying = true;
+        var currentTmp = currentValue.value;
+
+        while (decayValue.value > currentTmp) {
+            if (index == 1 && (!healthDecaying || healthLost)) {
+                StopCoroutine(HealthRecovery());
+                yield break;
+            }
+            else if (index == 2 && (!energyDecaying || energyLost)) {
+                StopCoroutine(EnergyRecovery());
+                yield break;
+            }
+            else if (index == 3 && (!staminaDecaying || staminaLost)) {
+                StopCoroutine(StaminaRecovery());
+                yield break;
+            }
+
+            decayValue.value -= decaySpeed * Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        decayValue.value = currentTmp;
+        
+        if (index == 1 && !healthRecovering) {
+            healthDecaying = false;
+
+            StopCoroutine(HealthRecovery());
+            StartCoroutine(HealthRecovery());
+        } else if (index == 2 && !energyRecovering) {
+            energyDecaying = false;
+
+            StopCoroutine(EnergyRecovery());
+            StartCoroutine(EnergyRecovery());
+        } else if (index == 3 && !staminaRecovering) {
+            staminaDecaying = false;
+            
+            StopCoroutine(StaminaRecovery());
+            StartCoroutine(StaminaRecovery());
+        }
+    }
+
+/*    private void VisualDecay(Slider currentValue, Slider decayValue, ref bool decayFlag, int index) {
         if (decayValue.value > currentValue.value) {
             decayValue.value -= decaySpeed * Time.deltaTime;
         } else if (decayValue.value <= currentValue.value && decayFlag) {
@@ -116,7 +191,7 @@ public class PlayerUI : MonoBehaviour
             else if (index == 3)
                 StartCoroutine(StaminaRecovery());
         }
-    }
+    }*/
 
     // HEALTH ///////////////////////////////////////////////////////////////////////////////////////
     public void SetMaxHealth(int newValue) {
@@ -126,15 +201,14 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrentHealth(int newValue) {
-        if (healthLost)
-            healthTimer = 0f;
-
         // Reset timer and visual decay if decaying
         if (healthCurrentValue.value + newValue < healthCurrentValue.value)
         {
             healthLost = true;
             healthDecaying = false;
             healthRecovering = false;
+            StopCoroutine(DestroyedTimer(1));
+            StartCoroutine(DestroyedTimer(1));
         }
         else
             healthDestroyedValue.value += newValue;
@@ -147,20 +221,21 @@ public class PlayerUI : MonoBehaviour
     }
 
     IEnumerator HealthRecovery() {
-        if (!healthRecovering)
-            healthRecovering = true;
-
+        healthRecovering = true;
         yield return new WaitForSeconds(healthRecoveryDelay);
         while (healthCurrentValue.value < healthCurrentValue.maxValue &&
                 healthRecoveryValue > 0 &&
                 healthRecovering && 
-                healthRecoverable)
-        { 
+                healthRecoverable && 
+                !healthDecaying &&
+                !healthLost)
+        {
             SetCurrentHealth(healthRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
         healthRecovering = false;
+        yield break;
     }
     public void SetHealthRecoveryValue(int newValue) {
         healthRecoveryValue = newValue;
@@ -180,15 +255,13 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrentEnergy(int newValue) {
-        if (energyLost)
-            energyTimer = 0f;
-
         // Reset timer and visual decay if decaying
-        if (energyCurrentValue.value + newValue < energyCurrentValue.value)
-        {
+        if (energyCurrentValue.value + newValue < energyCurrentValue.value) {
             energyLost = true;
             energyDecaying = false;
             energyRecovering = false;
+            StopCoroutine(DestroyedTimer(2));
+            StartCoroutine(DestroyedTimer(2));
         }
         else
             energyDestroyedValue.value += newValue;
@@ -201,20 +274,21 @@ public class PlayerUI : MonoBehaviour
     }
 
     IEnumerator EnergyRecovery() {
-        if (!energyRecovering)
-            energyRecovering = true;
+        energyRecovering = true;
 
         yield return new WaitForSeconds(energyRecoveryDelay);
-        while (energyCurrentValue.value < energyCurrentValue.maxValue && 
-                energyRecoveryValue > 0 && 
-                energyRecovering && 
-                energyRecoverable) 
-        { 
+        while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
+            if (energyLost) {
+                energyRecovering = false;
+                yield break;
+            }
             SetCurrentEnergy(energyRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
+        Debug.Log("Broken");
         energyRecovering = false;
+        yield break;
     }
 
     public void SetEnergyRecoveryValue(int newValue) {
@@ -235,18 +309,18 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrentStamina(int newValue) {
-        if (staminaLost)
-            staminaTimer = 0f;
-
-        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value)
-        {
+        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
             staminaLost = true;
             staminaDecaying = false;
             staminaRecovering = false;
+
+            StopCoroutine(DestroyedTimer(3));
+            StartCoroutine(DestroyedTimer(3));
         }
         else
             staminaDestroyedValue.value += newValue;
 
+        staminaTimer = 0f;
         staminaCurrentValue.value += newValue;
     }
     
@@ -255,21 +329,22 @@ public class PlayerUI : MonoBehaviour
     }
 
     IEnumerator StaminaRecovery() {
-        if (!staminaRecovering)
-            staminaRecovering = true;
+        staminaRecovering = true;
 
         yield return new WaitForSeconds(staminaRecoveryDelay);
-        while (staminaCurrentValue.value < staminaCurrentValue.maxValue && 
-                staminaRecoveryValue > 0 && 
-                staminaRecovering && 
-                staminaRecoverable)
+        while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryValue > 0)
         {
+            if (staminaLost) {
+                staminaRecovering = false;
+                yield break;
+            }
             SetCurrentStamina(staminaRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
-        yield return 0;
+        Debug.Log("Broken");
         staminaRecovering = false;
+        yield break;
     }
 
     public void SetStaminaRecoveryValue(int newValue) {

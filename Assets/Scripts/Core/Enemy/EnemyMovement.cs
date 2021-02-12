@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] 
     private float maxOffset;
     [SerializeField]
-    private Vector2 offsetAttackStandby;
+    private Vector2 offsetAttackStandbyRange;
 
     private bool isMoving;
     private bool canFollow;
@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     private float baseMoveSpeed;
     private float xScaleValue;
 
+    private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
     private Vector2 leftOffset, rightOffset, playerChar, dist;
 
@@ -61,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
     private void SetupVariables() {
         canFollow = true;
         xScaleValue = transform.localScale.x;
+        RandomizeOffsetAttackStandby();
 
         if (playerChar.x > transform.position.x)
         {
@@ -78,9 +80,16 @@ public class EnemyMovement : MonoBehaviour
         rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
     }
 
+    private void RandomizeOffsetAttackStandby() {
+        offsetAttackStandby = new Vector2(offsetAttackStandbyRange.x,
+                                    Random.Range(-offsetAttackStandbyRange.y, offsetAttackStandbyRange.y));
+    }
+
     ////////////////// Find Player AI ////////////////////
     public void FindPlayer() {
+        // Called thru invoke
         playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
+        RandomizeOffsetAttackStandby();
     }
 
     public void StopFindPlayer() {
@@ -97,14 +106,22 @@ public class EnemyMovement : MonoBehaviour
 
             if (attackReady) { 
                 if (attackFromLeft)
-                    transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset, baseMoveSpeed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(transform.position, 
+                        playerChar + leftOffset, 
+                        baseMoveSpeed * Time.deltaTime);
                 else
-                    transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset, baseMoveSpeed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(transform.position, 
+                        playerChar + rightOffset, 
+                        baseMoveSpeed * Time.deltaTime);
             } else if (!attackReady) { 
                 if (attackFromLeft)
-                    transform.position = Vector2.MoveTowards(transform.position, playerChar + leftOffset - offsetAttackStandby, baseMoveSpeed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(transform.position, 
+                        playerChar + leftOffset - offsetAttackStandby, 
+                        baseMoveSpeed / 2 * Time.deltaTime);
                 else
-                    transform.position = Vector2.MoveTowards(transform.position, playerChar + rightOffset + offsetAttackStandby, baseMoveSpeed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(transform.position, 
+                        playerChar + rightOffset + offsetAttackStandby, 
+                        baseMoveSpeed / 2 * Time.deltaTime);
             }
         }
     }
@@ -146,14 +163,12 @@ public class EnemyMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(attackFollowDelay);
         canFollow = true;
-        FindPlayer();
         FindPlayerRepeating();
     }
     public IEnumerator ResetStunFollow()
     {
         yield return new WaitForSeconds(stunFollowDelay);
         canFollow = true;
-        FindPlayer();
         FindPlayerRepeating();
     }
     public void SetFollow(bool flag) {

@@ -634,8 +634,8 @@ public class Player : MonoBehaviour
         SetInvincible();
 
         // take damage
-        playerStats.SetCurrentHealth(-damageNum);
         playSounds.PlayPlayerHit();
+        playerStats.SetCurrentHealth(-damageNum);
 
         if (playerStats.GetCurrentHealth() <= 0) {
             isDead = true;
@@ -671,6 +671,7 @@ public class Player : MonoBehaviour
 
     private void ResetStun() {
         isStunned = false;
+        UI.SetStaminaRecoverable(true);
     }
 
     private void DamageFlash() {

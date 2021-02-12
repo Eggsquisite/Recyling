@@ -257,10 +257,17 @@ public class BasicEnemy : MonoBehaviour
         Invoke("ResetAttack", attackDelay);
 
         int tmp = Random.Range(0, 10);
-        if (tmp >= 0 && tmp < 5)
-            attackFromLeft = true;
-        else if (tmp >= 5 && tmp < 10)
-            attackFromLeft = false;
+        if (attackFromLeft) { 
+            if (tmp >= 0 && tmp < 8)
+                attackFromLeft = true;
+            else if (tmp >= 8 && tmp < 10)
+                attackFromLeft = false;
+        } else {
+            if (tmp >= 0 && tmp < 8)
+                attackFromLeft = false;
+            else if (tmp >= 8 && tmp < 10)
+                attackFromLeft = true;
+        }
     }
 
     private void CheckHitBox() {

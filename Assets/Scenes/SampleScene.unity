@@ -636,13 +636,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   repeatFollowDelay: 0.5
-  attackFollowDelay: 2
+  attackFollowDelay: 1
   stunFollowDelay: 0.25
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
   minOffset: 4
   maxOffset: 5
-  offsetAttackStandby: {x: 2, y: 1}
+  offsetAttackStandbyRange: {x: 2, y: 0.5}
 --- !u!114 &246685319 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 181791666552881679, guid: b81386a40a902c0418508093c2aa9835, type: 3}
@@ -5075,7 +5075,7 @@ MonoBehaviour:
   healthRecoveryDelay: 0
   energyRecoveryValue: 2
   energyRecoveryDelay: 1
-  staminaRecoveryValue: 12
+  staminaRecoveryValue: 5
   staminaRecoveryDelay: 0.25
 --- !u!114 &1080875359
 MonoBehaviour:
