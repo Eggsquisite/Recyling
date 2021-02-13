@@ -48,6 +48,9 @@ public class BasicEnemy : MonoBehaviour
     private bool isDead;
     private bool isInvincible;
     private bool staminaRecovery;
+    private bool outOfStamina;
+    private bool fullOfStamina;
+
     private int currentHealth;
     private int currentStamina;
 
@@ -130,13 +133,10 @@ public class BasicEnemy : MonoBehaviour
         FollowPlayer();
 
         /////////////////////////// Attack Animation Activated //////////////////
+        //CheckStamina();
         if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
             PickAttack();
 
-/*        if (isAttacking && currentStamina <= 0) {
-            StopCoroutine(AttackAnimation());
-            FinishAttack();
-        }*/
 
         if (attackFollowThruBoth) {
             AttackFollowThroughHorizontal();
@@ -237,11 +237,14 @@ public class BasicEnemy : MonoBehaviour
     private void ResetStun() {
         // called thru invoke event in EnemyHurt()
         isStunned = false;
-        StartCoroutine(enemyMovement.ResetStunFollow());
-        if (IsInvoking("ResetAttack"))
-            return;
 
-        Invoke("ResetAttack", stunDelay);
+        StartCoroutine(enemyMovement.ResetStunFollow());
+        if (!outOfStamina) { 
+            if (IsInvoking("ResetAttack"))
+                CancelInvoke("ResetAttack");
+            
+            Invoke("ResetAttack", attackDelay);
+        }
     }
 
     private void ResetInvincible() {
@@ -252,7 +255,6 @@ public class BasicEnemy : MonoBehaviour
     private void ResetAttack() {
         // called thru invoke in ResetStun()
         attackReady = true;
-        Debug.Log("ATTACK READY");
     }
 
     private void AttackActivated() {
@@ -327,6 +329,7 @@ public class BasicEnemy : MonoBehaviour
 
 
     private void FinishAttack() {
+        isAttacking = false;
         staminaRecovery = true;
         AttackDeactivated();
         AttackFollowDeactivated();
@@ -335,17 +338,8 @@ public class BasicEnemy : MonoBehaviour
 
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
-
-        isAttacking = false;
-        attackReady = false;
-        var tmp = attackDelay * emptyStaminaDelayMult;
-        if (currentStamina <= 0)
-            Invoke("ResetAttack", tmp);
-        else
-        {
+        if (!outOfStamina)
             Invoke("ResetAttack", attackDelay);
-            Debug.Log("Stamina not empty");
-        }
 
 /*        int tmp = Random.Range(0, 10);
         if (attackFromLeft) { 
@@ -437,24 +431,44 @@ public class BasicEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
     }
 
+    public bool GetIsAttacking() {
+        return isAttacking;
+    }
+
+    // STAMINA CODE ////////////////////////////////////////////////////////
+
     IEnumerator StaminaRecovery() {
         yield return new WaitForSeconds(staminaRecoveryDelay);
         while (currentStamina < maxStamina && staminaRecovery && !isAttacking)
         {
             currentStamina += staminaRecoveryValue;
+            CheckStamina();
             yield return new WaitForSeconds(staminaRecoverySpeed);
         }
     }
 
-    public bool GetIsAttacking() {
-        return isAttacking;
+    private void CheckStamina() {
+        if (currentStamina > maxStamina) { 
+            currentStamina = maxStamina;
+            fullOfStamina = true;
+        }
+
+        if (!outOfStamina && currentStamina <= 0) {
+            currentStamina = 0;
+            outOfStamina = true;
+        }
+        else if (outOfStamina && currentStamina >= maxStamina) {
+            if (!isStunned || !isAttacking)
+                ResetAttack();  
+            outOfStamina = false;
+        } 
     }
 
     private void ConsumeStamina(int value) {
+        // called thru animation event
         currentStamina -= value;
-
-        if (currentStamina < 0)
-            currentStamina = 0;
+        fullOfStamina = false;
+        CheckStamina();
     }
 
     /////////////// Enemy Is Hit //////////////////
@@ -464,24 +478,27 @@ public class BasicEnemy : MonoBehaviour
 
         isStunned = true;
         isInvincible = true;
+        isAttacking = false;
         attackReady = false;
+        staminaRecovery = true;
         enemyMovement.SetFollow(false);
         PushBack(distance, playerRef);
 
         currentHealth -= damageNum;
         AttackDeactivated();
+        AttackFollowDeactivated();
         playSound.PlayEnemyHit();
 
         if (currentHealth <= 0)
             Death();
-        else { 
+        else {
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
-            if (IsInvoking("ResetStun"))
-                CancelInvoke("ResetStun");
 
-            Invoke("ResetStun", stunDuration + 0.25f);
             Invoke("ResetInvincible", stunDuration + 0.1f);
+            if (IsInvoking("ResetStun"))
+                return;
+            Invoke("ResetStun", stunDuration + 0.1f);
         }
     }
 

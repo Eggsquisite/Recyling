@@ -441,7 +441,7 @@ public class Player : MonoBehaviour
         if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0) {
             attackCombo += 1;
             AttackAnimation(attackCombo);
-
+            Debug.Log("Starting Player Attack COMBO");
             isAttackPressed = false;
         }
         // case for combo attacks
