@@ -103,6 +103,7 @@ public class BasicEnemy : MonoBehaviour
     private List<AttackPriority> priorityListOne;
     private List<AttackPriority> priorityListTwo;
     private List<AttackPriority> priorityListThree;
+    private List<List<AttackPriority>> priorityLists;
 
     private bool inRange;
     private bool isStunned;
@@ -146,8 +147,8 @@ public class BasicEnemy : MonoBehaviour
         FollowPlayer();
 
         /////////////////////////// Attack Animation Activated //////////////////
-        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady) 
-            StartCoroutine(PickAttack());
+        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady)
+            PickAttack();
         
 
         if (attackFollowThru) {
@@ -180,6 +181,7 @@ public class BasicEnemy : MonoBehaviour
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
         priorityListThree = new List<AttackPriority>();
+        priorityLists = new List<List<AttackPriority>>();
 
         for (int i = 0; i < attackIndexes.Count; i++)
         {
@@ -192,15 +194,9 @@ public class BasicEnemy : MonoBehaviour
                 priorityListThree.Add(new AttackPriority(i, attackIndexes[i]));
         }
 
-        foreach (AttackPriority prio in priorityListOne)
-            Debug.Log("Priority One - Index: " + prio.index + " String: " + prio.attackName);
-        foreach (AttackPriority prio in priorityListTwo)
-            Debug.Log("Priority Two - Index: " + prio.index + " String: " + prio.attackName);
-
-        /*foreach (KeyValuePair<int, string> kvp in priorityListOne)
-            Debug.Log("Priority One - Key: {" + kvp.Key + "}, Value: {" + kvp.Value + "}");
-        foreach (KeyValuePair<int, string> kvp in priorityListTwo)
-            Debug.Log("Priority Two - Key: {" + kvp.Key + "}, Value: {" + kvp.Value + "}");*/
+        priorityLists.Add(priorityListOne);
+        priorityLists.Add(priorityListTwo);
+        priorityLists.Add(priorityListThree);
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -279,21 +275,42 @@ public class BasicEnemy : MonoBehaviour
         //enemyMovement.FindPlayerRepeating();
     }
 
-    IEnumerator PickAttack() {
+    private void PickAttack() {
         isPicking = true;
+        float tmp;
+        for (int j = 0; j < priorityLists.Count; j++)
+        {
+            // priorityLists[j] is the list that contains all attacks of that specific priority
+            if (priorityLists[j].Count > 0)
+            {
+                for (int i = 0; i < priorityLists[j].Count; i++)
+                {
+                    tmp = attackRanges[priorityLists[j][i].index];
+                    //Debug.Log(priorityLists[j][i].attackName + " Range: " + tmp + " Index: " + priorityLists[j][i].index + " PlayerDistance: " + playerDistance);
+                    if (playerDistance < tmp)
+                    {
+                        attackIndex = priorityLists[j][i].index;
 
-        /*if (tmpList.Count > 0)
-            attackIndex = Random.Range(0, tmpList.Count);
-        else
-            attackIndex = tmpChoice;*/
+                        //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
+                        StartCoroutine(AttackAnimation());
+                        isPicking = false;
+                        return;
+                    }
+                    // keep iterating
+                }
+                //Debug.Log("iterated through priority list " + j + ", moving onto " + (j + 1));
+            }
+        }
+        isPicking = false;
+        //Debug.Log("restarting pick ");
 
-        while (playerDistance >= attackRanges[attackIndex])
+        /*while (playerDistance >= attackRanges[attackIndex])
         {
             Debug.Log("Picking new attack");
             attackIndex = Random.Range(0, attackIndexes.Count);
             yield return null;
         }
-        StartCoroutine(AttackAnimation());
+        StartCoroutine(AttackAnimation());*/
     }
 
     IEnumerator AttackAnimation() {
@@ -312,7 +329,8 @@ public class BasicEnemy : MonoBehaviour
             yield break;
         }*/
 
-        Debug.Log(attackIndex);
+        /*Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
+        Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");*/
         attackChosenn = attackIndexes[attackIndex];
         PlayAnimation(attackChosenn);
         tmpLength = GetAnimationLength(attackChosenn);

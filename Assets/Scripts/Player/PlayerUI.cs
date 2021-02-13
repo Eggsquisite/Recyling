@@ -280,6 +280,7 @@ public class PlayerUI : MonoBehaviour
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
             if (energyLost) {
                 energyRecovering = false;
+                StopCoroutine(EnergyRecovery());
                 yield break;
             }
             SetCurrentEnergy(energyRecoveryValue);
@@ -335,6 +336,7 @@ public class PlayerUI : MonoBehaviour
         {
             if (staminaLost) {
                 staminaRecovering = false;
+                StopCoroutine(StaminaRecovery());
                 yield break;
             }
             SetCurrentStamina(staminaRecoveryValue);

@@ -99,7 +99,6 @@ public class Player : MonoBehaviour
     private float runDashTimer;
     private float runDashMaxTime;
     private int attackCombo;
-    private bool canTurn;
     private bool isAttacking;
     private bool runAttackDash;
     private bool isAttackPressed;
@@ -336,7 +335,9 @@ public class Player : MonoBehaviour
     }
 
     public void ShiftToRun(bool value) {
-        if (playerStats.GetCurrentStamina() > 0)
+        if (playerStats.GetCurrentStamina() > 0 && value)
+            shiftKeyHeld = value;
+        else if (playerStats.GetCurrentStamina() > 0 && !value)
             shiftKeyHeld = value;
 
         if (!shiftKeyHeld) {
@@ -602,14 +603,6 @@ public class Player : MonoBehaviour
             canReceiveInput = true;
         else
             return;
-    }
-
-    private void SetCanTurn() {
-        canTurn = true;
-    }
-
-    private void ResetCanTurn() {
-        canTurn = false;
     }
 
     private void ConsumeEnergy(int value) {
