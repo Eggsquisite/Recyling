@@ -48,14 +48,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float isHurtMaxTime;
 
-    private float isHurtTimer;
-    private float flashInterval = 0.1f;
-    private float flashTimer;
     private bool isHurt;
-    private bool isInvincible;
     private bool isStunned;
+    private bool isInvincible;
+    private float flashTimer;
+    private float isHurtTimer;
     private float stunDuration;
-
+    private float flashInterval = 0.1f;
 
     [Header("Attack Collider Properties")]
     [SerializeField]

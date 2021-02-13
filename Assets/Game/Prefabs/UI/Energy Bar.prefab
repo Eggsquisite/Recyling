@@ -70,7 +70,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 16.81, y: 0}
+  m_AnchoredPosition: {x: 16.809998, y: 0}
   m_SizeDelta: {x: 43.75, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7213628522900502768
@@ -398,7 +398,7 @@ RectTransform:
   m_GameObject: {fileID: 7213628523810731616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 7213628523925322872}
   - {fileID: 7213628523396589996}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 7213628524306009512}
   - component: {fileID: 7213628524306009513}
   m_Layer: 5
-  m_Name: Current Energy
+  m_Name: Current Energy (UI)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 7097484158087781082}
   - component: {fileID: 9033336915388600901}
   m_Layer: 5
-  m_Name: 'Destroyed Energy '
+  m_Name: Destroyed Energy (UI)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

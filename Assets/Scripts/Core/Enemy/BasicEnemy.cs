@@ -16,7 +16,7 @@ public class AttackPriority
 public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
-    private Animator anim;
+    private Animator anim = null;
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
@@ -115,7 +115,7 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 newPosition;
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         SetupVariables();
     }
 

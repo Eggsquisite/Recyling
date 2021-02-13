@@ -12,7 +12,7 @@ public class PlayerSounds : MonoBehaviour
     private List<AudioClip> playerHit;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (audSource == null) audSource = Camera.main.GetComponent<AudioSource>();
     }

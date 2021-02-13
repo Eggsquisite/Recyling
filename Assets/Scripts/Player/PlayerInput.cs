@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     private float xAxis;
     private float yAxis;
 
-    private void Start()
+    private void Awake()
     {
         if (player == null) player = GetComponent<Player>();
     }

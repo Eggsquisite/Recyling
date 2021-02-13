@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6518329849582754605}
   - component: {fileID: 181791666552881679}
   m_Layer: 5
-  m_Name: Destroyed Health
+  m_Name: Destroyed Health (UI)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,7 +494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 16.81, y: 0}
+  m_AnchoredPosition: {x: 16.809998, y: 0}
   m_SizeDelta: {x: 43.75, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5760480972943370498
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 5760480973658594394}
   - component: {fileID: 5760480973658594395}
   m_Layer: 5
-  m_Name: Current Health
+  m_Name: Current Health (UI)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,7 +799,7 @@ RectTransform:
   m_GameObject: {fileID: 5760480974189012882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 5760480974030908810}
   - {fileID: 5760480972413761630}

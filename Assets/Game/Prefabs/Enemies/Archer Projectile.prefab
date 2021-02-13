@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 8795698285439481211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.65, y: 1.96, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1650541284}
   m_Father: {fileID: 0}
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -47
+  m_SortingOrder: -154
   m_Sprite: {fileID: 8450752722621515173, guid: 4f10110d730ad374189427063f725043, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -253,4 +253,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyTime: 1.5
   projectileVelocity: 7
-  damage: 120

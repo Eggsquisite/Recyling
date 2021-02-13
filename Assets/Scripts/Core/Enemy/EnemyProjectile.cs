@@ -14,7 +14,7 @@ public class EnemyProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D coll;
 
-    private void Start()
+    private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (anim == null) anim = GetComponent<Animator>();
@@ -25,10 +25,12 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.localScale.x > 0)
+        if (transform.localScale.x > 0) {
             rb.MovePosition((Vector2)transform.position + Vector2.right * projectileVelocity * Time.fixedDeltaTime);
-        else
+        }
+        else { 
             rb.MovePosition((Vector2)transform.position + Vector2.left * projectileVelocity * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
