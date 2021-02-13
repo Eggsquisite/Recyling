@@ -26,18 +26,6 @@ public class BasicEnemy : MonoBehaviour
     private ArcherDroid archerArrow;
     private string currentState;
 
-    [Header("Attack Collider Properties")]
-    [SerializeField]
-    private Transform attackPoint;
-    [SerializeField]
-    private Transform attackPoint2;
-
-    [SerializeField]
-    private LayerMask playerLayer;
-
-    private RaycastHit2D playerDetected;
-    private RaycastHit2D hitBox;
-    private RaycastHit2D hitBox2;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -63,6 +51,19 @@ public class BasicEnemy : MonoBehaviour
     private int currentHealth;
     private int currentStamina;
 
+    [Header("Attack Collider Properties")]
+    [SerializeField]
+    private Transform visualizePoint;
+    [SerializeField]
+    private List<Transform> attackPoints;
+
+    [SerializeField]
+    private LayerMask playerLayer;
+
+    private RaycastHit2D playerDetected;
+    private RaycastHit2D hitBox;
+    private RaycastHit2D hitBox2;
+
     [Header("Attack Properties")]
     [SerializeField]
     private float stunDelay;
@@ -78,8 +79,6 @@ public class BasicEnemy : MonoBehaviour
     private List<float> attackRanges;
     [SerializeField]
     private List<int> attackDamages;
-    [SerializeField]
-    private List<Transform> attackPoints;
     [SerializeField]
     private List<float> attackFollowDistances;
 
@@ -253,6 +252,7 @@ public class BasicEnemy : MonoBehaviour
     private void ResetAttack() {
         // called thru invoke in ResetStun()
         attackReady = true;
+        Debug.Log("ATTACK READY");
     }
 
     private void AttackActivated() {
@@ -313,16 +313,7 @@ public class BasicEnemy : MonoBehaviour
         staminaRecovery = false;
         enemyMovement.SetFollow(false);
         StopCoroutine(StaminaRecovery());
-        float tmpLength = 0f;
-
-/*        if (playerDistance >= attackRanges[attackIndex]) {
-            isAttacking = false;
-            attackReady = true;
-            Debug.Log("attack not reached");
-            attackIndex = Random.Range(0, attackIndexes.Count);
-            StopCoroutine(AttackAnimation());
-            yield break;
-        }*/
+        float tmpLength;
 
         /*Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
         Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");*/
@@ -342,16 +333,14 @@ public class BasicEnemy : MonoBehaviour
         StartCoroutine(StaminaRecovery());
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
-        isAttacking = false;
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
 
+        isAttacking = false;
+        attackReady = false;
         var tmp = attackDelay * emptyStaminaDelayMult;
         if (currentStamina <= 0)
-        { 
             Invoke("ResetAttack", tmp);
-            Debug.Log("Empty stamina " + tmp);
-        }
         else
         {
             Invoke("ResetAttack", attackDelay);
@@ -384,7 +373,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void CheckHitBox2()
+/*    private void CheckHitBox2()
     {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
         if (enemyMovement.GetLeftOfPlayer())
@@ -395,7 +384,7 @@ public class BasicEnemy : MonoBehaviour
         if (hitBox2.collider != null) {
             hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
         }
-    }
+    }*/
 
     private void AttackFollowBothActivated(int value) {
         // called thru animation events
@@ -425,10 +414,10 @@ public class BasicEnemy : MonoBehaviour
     private void AttackFollowThroughVertical() {
         // up down movement only
         if (enemyMovement.GetPlayerPosition().y > transform.position.y) {
-            newPosition = new Vector2(0f, 1) + (Vector2)transform.position;
+            newPosition = new Vector2(0f, attackFollowDistances[attackIndex]) + (Vector2)transform.position;
         }
         else if (enemyMovement.GetPlayerPosition().y <= transform.position.y) {
-            newPosition = new Vector2(0f, -1) + (Vector2)transform.position;
+            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex]) + (Vector2)transform.position;
         } else if (enemyMovement.GetPlayerPosition().y == transform.position.y) 
             return;
 
@@ -535,6 +524,6 @@ public class BasicEnemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * visualizeRange));
+        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
     }
 }

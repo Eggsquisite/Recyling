@@ -417,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &237535659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,17 +430,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 1219542617}
-  attackPoint2: {fileID: 1219542617}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
   maxHealth: 120
   maxStamina: 100
   staminaRecoveryValue: 10
   staminaRecoveryDelay: 1
   staminaRecoverySpeed: 0.5
   emptyStaminaDelayMult: 7.5
+  visualizePoint: {fileID: 1219542617}
+  attackPoints:
+  - {fileID: 0}
+  - {fileID: 1219542617}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   stunDelay: 0.75
   visualizeRange: 2.5
   attackIndexes:
@@ -451,9 +453,6 @@ MonoBehaviour:
   - 5
   - 2.5
   attackDamages: 9600000078000000
-  attackPoints:
-  - {fileID: 0}
-  - {fileID: 1219542617}
   attackFollowDistances:
   - -0.5
   - -1
@@ -7475,17 +7474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 1144525132013246141}
-  attackPoint2: {fileID: 1144525132013246141}
+  maxHealth: 200
+  maxStamina: 120
+  staminaRecoveryValue: 10
+  staminaRecoveryDelay: 2
+  staminaRecoverySpeed: 0.5
+  emptyStaminaDelayMult: 5
+  visualizePoint: {fileID: 1144525132013246141}
+  attackPoints:
+  - {fileID: 1144525132013246141}
+  - {fileID: 1144525132013246141}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 0
-  maxStamina: 0
-  staminaRecoveryValue: 0
-  staminaRecoveryDelay: 0
-  staminaRecoverySpeed: 0
-  emptyStaminaDelayMult: 0
   stunDelay: 0.75
   visualizeRange: 3
   attackIndexes:
@@ -7496,13 +7497,10 @@ MonoBehaviour:
   - 2.5
   - 3
   attackDamages: 9600000096000000
-  attackPoints:
-  - {fileID: 1144525132013246141}
-  - {fileID: 1144525132013246141}
   attackFollowDistances:
   - 0.5
   - 1.5
-  minAttackDelay: 1
+  minAttackDelay: 1.25
   maxAttackDelay: 1.5
 --- !u!1 &1144525131731574356
 GameObject:
@@ -7527,7 +7525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &1144525131731574357
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -7542,7 +7540,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7, y: 0.3}
+  m_Size: {x: 0.7, y: 0.35}
   m_Direction: 1
 --- !u!50 &1144525131731574358
 Rigidbody2D:
@@ -8172,24 +8170,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 3633208026800921123}
-  attackPoint2: {fileID: 1737930294}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
   maxHealth: 0
   maxStamina: 0
   staminaRecoveryValue: 0
   staminaRecoveryDelay: 0
   staminaRecoverySpeed: 0
   emptyStaminaDelayMult: 0
+  visualizePoint: {fileID: 0}
+  attackPoints: []
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   stunDelay: 0.75
   visualizeRange: 0
   attackIndexes: []
   attackPriority: 
   attackRanges: []
   attackDamages: 
-  attackPoints: []
   attackFollowDistances: []
   minAttackDelay: 2
   maxAttackDelay: 3

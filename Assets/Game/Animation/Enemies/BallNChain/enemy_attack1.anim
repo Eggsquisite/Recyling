@@ -137,6 +137,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 4
     messageOptions: 0
+  - time: 1.0166667
+    functionName: ConsumeStamina
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 20
+    messageOptions: 0
+  - time: 1.0166667
+    functionName: PlayBasicAttack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.0833334
     functionName: AttackDeactivated
     data: 
@@ -152,18 +166,32 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.6166667
+    functionName: AttackFollowHorizontalActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 4
+    messageOptions: 0
+  - time: 1.6166667
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.25
     intParameter: 4
     messageOptions: 0
-  - time: 1.6166667
-    functionName: AttackFollowHorizontalActivated
+  - time: 1.6333333
+    functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 4
+    intParameter: 20
+    messageOptions: 0
+  - time: 1.6333333
+    functionName: PlayBasicAttack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
   - time: 1.7
     functionName: AttackDeactivated
