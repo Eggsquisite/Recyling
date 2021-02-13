@@ -435,8 +435,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 150
-  attackChosen: 0
+  maxHealth: 120
+  maxStamina: 100
+  staminaRecoveryValue: 10
+  staminaRecoveryDelay: 1
+  staminaRecoverySpeed: 0.5
+  emptyStaminaDelayMult: 7.5
   stunDelay: 0.75
   visualizeRange: 2.5
   attackIndexes:
@@ -453,8 +457,8 @@ MonoBehaviour:
   attackFollowDistances:
   - -0.5
   - -1
-  minAttackDelay: 2
-  maxAttackDelay: 3
+  minAttackDelay: 0.75
+  maxAttackDelay: 1
 --- !u!114 &237535660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7476,8 +7480,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 200
-  attackChosen: 0
+  maxHealth: 0
+  maxStamina: 0
+  staminaRecoveryValue: 0
+  staminaRecoveryDelay: 0
+  staminaRecoverySpeed: 0
+  emptyStaminaDelayMult: 0
   stunDelay: 0.75
   visualizeRange: 3
   attackIndexes:
@@ -7519,7 +7527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &1144525131731574357
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8169,8 +8177,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 100
-  attackChosen: 0
+  maxHealth: 0
+  maxStamina: 0
+  staminaRecoveryValue: 0
+  staminaRecoveryDelay: 0
+  staminaRecoverySpeed: 0
+  emptyStaminaDelayMult: 0
   stunDelay: 0.75
   visualizeRange: 0
   attackIndexes: []

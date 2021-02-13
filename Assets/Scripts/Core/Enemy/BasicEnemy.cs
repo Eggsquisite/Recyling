@@ -51,12 +51,15 @@ public class BasicEnemy : MonoBehaviour
     private float staminaRecoveryDelay;
     [SerializeField]
     private float staminaRecoverySpeed;
+    [SerializeField]
+    private float emptyStaminaDelayMult;
 
     /*[SerializeField]
     private float deathFadeTime;*/
 
     private bool isDead;
     private bool isInvincible;
+    private bool staminaRecovery;
     private int currentHealth;
     private int currentStamina;
 
@@ -128,9 +131,13 @@ public class BasicEnemy : MonoBehaviour
         FollowPlayer();
 
         /////////////////////////// Attack Animation Activated //////////////////
-        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady)
+        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
             PickAttack();
-        
+
+/*        if (isAttacking && currentStamina <= 0) {
+            StopCoroutine(AttackAnimation());
+            FinishAttack();
+        }*/
 
         if (attackFollowThruBoth) {
             AttackFollowThroughHorizontal();
@@ -233,7 +240,7 @@ public class BasicEnemy : MonoBehaviour
         isStunned = false;
         StartCoroutine(enemyMovement.ResetStunFollow());
         if (IsInvoking("ResetAttack"))
-            CancelInvoke("ResetAttack");
+            return;
 
         Invoke("ResetAttack", stunDelay);
     }
@@ -278,8 +285,8 @@ public class BasicEnemy : MonoBehaviour
                         attackIndex = priorityLists[j][i].index;
 
                         //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
-                        StartCoroutine(AttackAnimation());
                         isPicking = false;
+                        StartCoroutine(AttackAnimation());
                         return;
                     }
                     // keep iterating
@@ -303,7 +310,9 @@ public class BasicEnemy : MonoBehaviour
         isPicking = false;
         isAttacking = true;
         attackReady = false;
+        staminaRecovery = false;
         enemyMovement.SetFollow(false);
+        StopCoroutine(StaminaRecovery());
         float tmpLength = 0f;
 
 /*        if (playerDistance >= attackRanges[attackIndex]) {
@@ -321,35 +330,35 @@ public class BasicEnemy : MonoBehaviour
         PlayAnimation(attackChosen);
         tmpLength = GetAnimationLength(attackChosen);
 
-/*        if (attackChosen == EnemyAttacks.BasicAttack1) { 
-            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
-            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK1);
-        }
-        else if (attackChosen == EnemyAttacks.BasicAttack2) { 
-            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK2);
-            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK2);
-        }
-        else if (attackChosen == EnemyAttacks.BasicAttack3) { 
-            PlayAnimation(EnemyAnimStates.ENEMY_ATTACK3);
-            tmpLength = GetAnimationLength(EnemyAnimStates.ENEMY_ATTACK3);
-        }*/
-
         yield return new WaitForSeconds(tmpLength);
         FinishAttack();
     }
 
 
     private void FinishAttack() {
+        staminaRecovery = true;
+        AttackDeactivated();
         AttackFollowDeactivated();
+        StartCoroutine(StaminaRecovery());
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
         isAttacking = false;
         if (IsInvoking("ResetAttack"))
             CancelInvoke("ResetAttack");
 
-        Invoke("ResetAttack", attackDelay);
+        var tmp = attackDelay * emptyStaminaDelayMult;
+        if (currentStamina <= 0)
+        { 
+            Invoke("ResetAttack", tmp);
+            Debug.Log("Empty stamina " + tmp);
+        }
+        else
+        {
+            Invoke("ResetAttack", attackDelay);
+            Debug.Log("Stamina not empty");
+        }
 
-        int tmp = Random.Range(0, 10);
+/*        int tmp = Random.Range(0, 10);
         if (attackFromLeft) { 
             if (tmp >= 0 && tmp < 8)
                 attackFromLeft = true;
@@ -360,7 +369,7 @@ public class BasicEnemy : MonoBehaviour
                 attackFromLeft = false;
             else if (tmp >= 8 && tmp < 10)
                 attackFromLeft = true;
-        }
+        }*/
     }
 
     private void CheckHitBox() {
@@ -439,8 +448,24 @@ public class BasicEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
     }
 
+    IEnumerator StaminaRecovery() {
+        yield return new WaitForSeconds(staminaRecoveryDelay);
+        while (currentStamina < maxStamina && staminaRecovery && !isAttacking)
+        {
+            currentStamina += staminaRecoveryValue;
+            yield return new WaitForSeconds(staminaRecoverySpeed);
+        }
+    }
+
     public bool GetIsAttacking() {
         return isAttacking;
+    }
+
+    private void ConsumeStamina(int value) {
+        currentStamina -= value;
+
+        if (currentStamina < 0)
+            currentStamina = 0;
     }
 
     /////////////// Enemy Is Hit //////////////////
