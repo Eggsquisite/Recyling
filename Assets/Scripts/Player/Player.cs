@@ -177,8 +177,10 @@ public class Player : MonoBehaviour
 
             if (isWalking && !isDashing)
                 rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
-            else if (isRunning || isDashing)
+            else if (isRunning)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+            else if (isDashing)
+                rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
         }
     }
     private void MovementAnimation() {
@@ -377,7 +379,7 @@ public class Player : MonoBehaviour
             transform.localPosition = new Vector2(transform.localPosition.x,
                                         Mathf.Lerp(transform.localPosition.y,
                                         dashHeight,
-                                        dashSpeed * Time.deltaTime));
+                                        4f * Time.deltaTime));
         } else if (dashTimer >= dashMinTime) {
             dashTimer = dashMinTime;
         }
@@ -396,7 +398,7 @@ public class Player : MonoBehaviour
             return;
 
         if (transform.localPosition.y > 0) {
-            transform.Translate(0, -dashSpeed * Time.deltaTime, 0f, transform.parent);
+            transform.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
         }
         else if (transform.localPosition.y <= 0) {
             dashTimer = 0f;

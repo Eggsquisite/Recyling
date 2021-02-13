@@ -408,8 +408,8 @@ GameObject:
   - component: {fileID: 237535662}
   - component: {fileID: 237535661}
   - component: {fileID: 237535660}
-  - component: {fileID: 237535659}
   - component: {fileID: 237535668}
+  - component: {fileID: 237535659}
   - component: {fileID: 237535667}
   m_Layer: 7
   m_Name: ArcherDroid
@@ -439,9 +439,6 @@ MonoBehaviour:
   attackChosen: 0
   stunDelay: 0.75
   visualizeRange: 2.5
-  attackRange1: 0
-  attackRange2: 2.5
-  attackRange3: 0
   attackIndexes:
   - enemy_attack1
   - enemy_attack2
@@ -456,12 +453,8 @@ MonoBehaviour:
   attackFollowDistances:
   - -0.5
   - -1
-  attackDamage1: 150
-  attackDamage2: 120
-  attackDamage3: 0
-  minAttackDelay: 3
-  maxAttackDelay: 4
-  attackFollowDistance: -1
+  minAttackDelay: 2
+  maxAttackDelay: 3
 --- !u!114 &237535660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +646,7 @@ MonoBehaviour:
   stunFollowDelay: 0.25
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
+  idleSpeedMult: 0.5
   minOffset: 4
   maxOffset: 5
   offsetAttackStandbyRange: {x: 1, y: 0.5}
@@ -5024,22 +5018,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 40168971}
-  walkSpeed: 1
+  walkSpeed: 1.5
   runSpeed: 2.5
   verticalSpeedMult: 0.5
   horizontalSpeedMult: 1.25
-  walkToRunTime: 1
+  walkToRunTime: 0.75
   stopBuffer: 0.1
   isHurtMaxTime: 0.25
   attackPoint: {fileID: 581574328}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashSpeed: 4
-  dashCooldown: 0.75
+  dashSpeed: 3
+  dashCooldown: 0.25
   dashMinTime: 0.4
   dashHeight: 1.25
-  damage: 10
+  damage: 15
   attackRangeVisualizer: 1
   pushbackDistance: 0.1
   specialAttackDmg: 60
@@ -6586,6 +6580,36 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1598915286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598915287}
+  m_Layer: 7
+  m_Name: DetectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1598915287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598915286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1144525131731574352}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1699661187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7394,11 +7418,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144525131731574356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.38, y: 0.5, z: 0}
+  m_LocalPosition: {x: 11.78, y: 1.55, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 1144525131463060696}
   - {fileID: 1144525132013246141}
+  - {fileID: 1598915287}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7451,25 +7476,26 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 100
+  health: 200
   attackChosen: 0
   stunDelay: 0.75
-  visualizeRange: 0
-  attackRange1: 3
-  attackRange2: 1.3
-  attackRange3: 0
-  attackIndexes: []
-  attackPriority: 
-  attackRanges: []
-  attackDamages: 
-  attackPoints: []
-  attackFollowDistances: []
-  attackDamage1: 200
-  attackDamage2: 0
-  attackDamage3: 0
-  minAttackDelay: 3
-  maxAttackDelay: 4
-  attackFollowDistance: 0
+  visualizeRange: 3
+  attackIndexes:
+  - enemy_attack1
+  - enemy_attack2
+  attackPriority: 0100000001000000
+  attackRanges:
+  - 2.5
+  - 3
+  attackDamages: 9600000096000000
+  attackPoints:
+  - {fileID: 1144525132013246141}
+  - {fileID: 1144525132013246141}
+  attackFollowDistances:
+  - 0.5
+  - 1.5
+  minAttackDelay: 1
+  maxAttackDelay: 1.5
 --- !u!1 &1144525131731574356
 GameObject:
   m_ObjectHideFlags: 0
@@ -7485,6 +7511,7 @@ GameObject:
   - component: {fileID: 1144525131731574353}
   - component: {fileID: 1144525131731574354}
   - component: {fileID: 3339075164233420882}
+  - component: {fileID: 1144525131731574360}
   - component: {fileID: 1144525131731574355}
   m_Layer: 7
   m_Name: BallNChainy
@@ -7492,7 +7519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &1144525131731574357
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -7569,7 +7596,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -50
+  m_SortingOrder: -155
   m_Sprite: {fileID: 8793639957104055765, guid: 4bcc4ddded587004a80c08f3a5401d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7581,6 +7608,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1144525131731574360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144525131731574356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectPos: {fileID: 1598915287}
+  detectRange: 3
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  repeatFollowDelay: 0.5
+  attackFollowDelay: 1
+  stunFollowDelay: 0.5
+  minMoveSpeed: 0.75
+  maxMoveSpeed: 1
+  idleSpeedMult: 0.75
+  minOffset: 1.5
+  maxOffset: 3
+  offsetAttackStandbyRange: {x: 2, y: 0.5}
 --- !u!1 &1144525132013246140
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,7 +7658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144525132013246140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.075, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1144525131731574352}
@@ -8120,21 +8173,14 @@ MonoBehaviour:
   attackChosen: 0
   stunDelay: 0.75
   visualizeRange: 0
-  attackRange1: 0.6
-  attackRange2: 1.3
-  attackRange3: 0
   attackIndexes: []
   attackPriority: 
   attackRanges: []
   attackDamages: 
   attackPoints: []
   attackFollowDistances: []
-  attackDamage1: 200
-  attackDamage2: 150
-  attackDamage3: 0
   minAttackDelay: 2
   maxAttackDelay: 3
-  attackFollowDistance: 0
 --- !u!4 &3633208026588451534
 Transform:
   m_ObjectHideFlags: 0

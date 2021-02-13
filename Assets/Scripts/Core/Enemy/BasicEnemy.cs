@@ -1,12 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum EnemyAttacks
-{
-    BasicAttack1,
-    BasicAttack2,
-    BasicAttack3
-};
 
 public class AttackPriority
 {
@@ -47,28 +41,31 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private int health;
+    private int maxHealth;
+
+    [SerializeField]
+    private int maxStamina;
+    [SerializeField]
+    private int staminaRecoveryValue;
+    [SerializeField]
+    private float staminaRecoveryDelay;
+    [SerializeField]
+    private float staminaRecoverySpeed;
 
     /*[SerializeField]
     private float deathFadeTime;*/
 
     private bool isDead;
     private bool isInvincible;
+    private int currentHealth;
+    private int currentStamina;
 
     [Header("Attack Properties")]
-    [SerializeField]
-    private EnemyAttacks attackChosen;
     [SerializeField]
     private float stunDelay;
 
     [SerializeField] 
     private float visualizeRange;
-    [SerializeField] 
-    private float attackRange1;
-    [SerializeField] 
-    private float attackRange2;
-    [SerializeField] 
-    private float attackRange3;
 
     [SerializeField]
     private List<string> attackIndexes;
@@ -84,22 +81,10 @@ public class BasicEnemy : MonoBehaviour
     private List<float> attackFollowDistances;
 
     [SerializeField]
-    private int attackDamage1;
-    [SerializeField]
-    private int attackDamage2;
-    [SerializeField]
-    private int attackDamage3;
-
-    [SerializeField]
     private float minAttackDelay;
     [SerializeField]
     private float maxAttackDelay;
-    [SerializeField]
-    private float attackFollowDistance;
 
-    /*public Dictionary<int, string> priorityListOne;
-    public Dictionary<int, string> priorityListTwo;
-    private Dictionary<int, string> priorityListThree;*/
     private List<AttackPriority> priorityListOne;
     private List<AttackPriority> priorityListTwo;
     private List<AttackPriority> priorityListThree;
@@ -111,17 +96,13 @@ public class BasicEnemy : MonoBehaviour
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
-    private bool attackHitbox2;
     private bool attackFromLeft;
-    private bool attackFollowThru;
+    private bool attackFollowThruBoth;
+    private bool attackFollowThruVertical;
+    private bool attackFollowThruHorizontal;
 
-    private string attackChosenn;
-    private int attackCounter;
+    private string attackChosen;
     private int attackIndex;
-    private int currentAttackDamage;
-    private float attackLength;
-    private float currentAttackRange;
-    private float currentAttackRange2;
     private float attackFollowThruSpeed;
     private float attackDelay;
     private float stunDuration;
@@ -151,9 +132,13 @@ public class BasicEnemy : MonoBehaviour
             PickAttack();
         
 
-        if (attackFollowThru) {
+        if (attackFollowThruBoth) {
             AttackFollowThroughHorizontal();
             AttackFollowThroughVertical();
+        } else if (attackFollowThruVertical) {
+            AttackFollowThroughVertical(); 
+        } else if (attackFollowThruHorizontal) {
+            AttackFollowThroughHorizontal();
         }
     }
 
@@ -169,12 +154,13 @@ public class BasicEnemy : MonoBehaviour
 
         if (archerArrow == null) archerArrow = GetComponent<ArcherDroid>();
         if (archerArrow != null)
-            archerArrow.SetDamage(attackDamage1);
+            archerArrow.SetDamage(attackDamages[0]);
 
         enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
-        //ChooseAttack(attackChosen);
 
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
         attackReady = true;
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
 
@@ -302,8 +288,8 @@ public class BasicEnemy : MonoBehaviour
             }
         }
         isPicking = false;
-        //Debug.Log("restarting pick ");
 
+        //Debug.Log("restarting pick ");
         /*while (playerDistance >= attackRanges[attackIndex])
         {
             Debug.Log("Picking new attack");
@@ -331,9 +317,9 @@ public class BasicEnemy : MonoBehaviour
 
         /*Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
         Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");*/
-        attackChosenn = attackIndexes[attackIndex];
-        PlayAnimation(attackChosenn);
-        tmpLength = GetAnimationLength(attackChosenn);
+        attackChosen = attackIndexes[attackIndex];
+        PlayAnimation(attackChosen);
+        tmpLength = GetAnimationLength(attackChosen);
 
 /*        if (attackChosen == EnemyAttacks.BasicAttack1) { 
             PlayAnimation(EnemyAnimStates.ENEMY_ATTACK1);
@@ -354,7 +340,6 @@ public class BasicEnemy : MonoBehaviour
 
 
     private void FinishAttack() {
-        FindNextAttack();
         AttackFollowDeactivated();
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
@@ -394,63 +379,38 @@ public class BasicEnemy : MonoBehaviour
     {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
         if (enemyMovement.GetLeftOfPlayer())
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, currentAttackRange2, playerLayer);
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, attackRanges[attackIndex], playerLayer);
         else
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, currentAttackRange2, playerLayer);
+            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, attackRanges[attackIndex], playerLayer);
 
         if (hitBox2.collider != null) {
-            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(currentAttackDamage);
+            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
         }
     }
 
-   private void ChooseAttack(int index) {
-        if (index == 1)
-        {
-            attackChosen = EnemyAttacks.BasicAttack1;
-            currentAttackRange = attackRange1;
-        }
-        else if (index == 2)
-        {
-            attackChosen = EnemyAttacks.BasicAttack2;
-            currentAttackRange = attackRange2;
-        }
-        else if (index == 3)
-        {
-            attackChosen = EnemyAttacks.BasicAttack3;
-            currentAttackRange = attackRange3;
-        }
-    }
-    
-    private void ChooseAttack(EnemyAttacks attackChoice) {
-        if (attackChoice == EnemyAttacks.BasicAttack1)
-        {
-            attackChosen = EnemyAttacks.BasicAttack1;
-            currentAttackRange = attackRange1;
-            currentAttackDamage = attackDamage1;
-        }
-        else if (attackChoice == EnemyAttacks.BasicAttack2)
-        {
-            attackChosen = EnemyAttacks.BasicAttack2;
-            currentAttackRange = attackRange2;
-            currentAttackDamage = attackDamage2;
-        }
-        else if (attackChoice == EnemyAttacks.BasicAttack3)
-        {
-            attackChosen = EnemyAttacks.BasicAttack3;
-            currentAttackRange = attackRange3;
-            currentAttackDamage = attackDamage3;
-        }
+    private void AttackFollowBothActivated(int value) {
+        // called thru animation events
+        attackFollowThruBoth = true;
+        attackFollowThruSpeed = value;
     }
 
-    private void AttackFollowActivated(int value) {
-        // called thru animation event
-        attackFollowThru = true;
+    private void AttackFollowVerticalActivated(int value){
+        // called thru animation events
+        attackFollowThruVertical = true;
+        attackFollowThruSpeed = value;
+    }
+
+    private void AttackFollowHorizontalActivated(int value) {
+        // called thru animation events
+        attackFollowThruHorizontal = true;
         attackFollowThruSpeed = value;
     }
 
     private void AttackFollowDeactivated() {
-        // called thru animation event
-        attackFollowThru = false;
+        // called thru animation events
+        attackFollowThruBoth = false;
+        attackFollowThruVertical = false;
+        attackFollowThruHorizontal = false;
     }
 
     private void AttackFollowThroughVertical() {
@@ -468,10 +428,11 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
-        if (enemyMovement.GetPlayerPosition().x >= transform.position.x) {
+        var tmp = enemyMovement.GetLeftOfPlayer();
+        if (enemyMovement.GetPlayerPosition().x >= transform.position.x && tmp) {
             newPosition = new Vector2(attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
         }
-        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x) {
+        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x && !tmp) {
             newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
         }
         
@@ -480,10 +441,6 @@ public class BasicEnemy : MonoBehaviour
 
     public bool GetIsAttacking() {
         return isAttacking;
-    }
-
-    public int GetDamage() {
-        return currentAttackDamage;
     }
 
     /////////////// Enemy Is Hit //////////////////
@@ -497,11 +454,11 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         PushBack(distance, playerRef);
 
-        health -= damageNum;
+        currentHealth -= damageNum;
         AttackDeactivated();
         playSound.PlayEnemyHit();
 
-        if (health <= 0)
+        if (currentHealth <= 0)
             Death();
         else { 
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
@@ -546,18 +503,7 @@ public class BasicEnemy : MonoBehaviour
     }*/
 
     // ENEMY SPECIFIC ATTACKS /////////////////////////////////////////////////////////////////////////////
-    private void FindNextAttack() {
-        if (name.Contains("MudGuard"))
-            MudguardAttack();
-    }
 
-    private void MudguardAttack() {
-        attackCounter++;
-        if (attackCounter % 3 == 0)
-            ChooseAttack(EnemyAttacks.BasicAttack1);
-        else
-            ChooseAttack(EnemyAttacks.BasicAttack2);
-    }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////
 

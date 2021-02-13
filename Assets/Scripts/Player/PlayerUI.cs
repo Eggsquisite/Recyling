@@ -260,6 +260,7 @@ public class PlayerUI : MonoBehaviour
             energyLost = true;
             energyDecaying = false;
             energyRecovering = false;
+            StopCoroutine(EnergyRecovery());
             StopCoroutine(DestroyedTimer(2));
             StartCoroutine(DestroyedTimer(2));
         }
@@ -314,6 +315,7 @@ public class PlayerUI : MonoBehaviour
             staminaDecaying = false;
             staminaRecovering = false;
 
+            StopCoroutine(StaminaRecovery());
             StopCoroutine(DestroyedTimer(3));
             StartCoroutine(DestroyedTimer(3));
         }

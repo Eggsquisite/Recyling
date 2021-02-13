@@ -25,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
     private float minMoveSpeed;
     [SerializeField] 
     private float maxMoveSpeed;
+    [SerializeField]
+    private float idleSpeedMult;
 
     [SerializeField] 
     private float minOffset;
@@ -105,7 +107,7 @@ public class EnemyMovement : MonoBehaviour
         if (canFollow)  {
 
             if (attackReady) { 
-                if (attackFromLeft)
+                if (leftOfPlayer)
                     transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + leftOffset, 
                         baseMoveSpeed * Time.deltaTime);
@@ -114,14 +116,14 @@ public class EnemyMovement : MonoBehaviour
                         playerChar + rightOffset, 
                         baseMoveSpeed * Time.deltaTime);
             } else if (!attackReady) { 
-                if (attackFromLeft)
+                if (leftOfPlayer)
                     transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + leftOffset - offsetAttackStandby, 
-                        baseMoveSpeed / 2 * Time.deltaTime);
+                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);
                 else
                     transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + rightOffset + offsetAttackStandby, 
-                        baseMoveSpeed / 2 * Time.deltaTime);
+                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);
             }
         }
     }

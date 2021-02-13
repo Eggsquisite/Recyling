@@ -187,11 +187,11 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5833333
-    functionName: AttackFollowActivated
+    functionName: AttackFollowHorizontalActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 4
+    intParameter: 6
     messageOptions: 0
   - time: 0.5833333
     functionName: AttackActivated
