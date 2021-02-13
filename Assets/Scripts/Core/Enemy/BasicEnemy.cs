@@ -8,6 +8,17 @@ public enum EnemyAttacks
     BasicAttack3
 };
 
+public class AttackPriority
+{
+    public int index;
+    public string attackName;
+
+    public AttackPriority(int newIndex, string newAttackName) {
+        attackName = newAttackName;
+        index = newIndex;
+    }
+}
+
 public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
@@ -61,8 +72,8 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField]
     private List<string> attackIndexes;
-    [SerializeField] [Range(0, 100)]
-    private List<int> attackChance;
+    [SerializeField]
+    private List<int> attackPriority;
     [SerializeField]
     private List<float> attackRanges;
     [SerializeField]
@@ -86,8 +97,16 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float attackFollowDistance;
 
+    /*public Dictionary<int, string> priorityListOne;
+    public Dictionary<int, string> priorityListTwo;
+    private Dictionary<int, string> priorityListThree;*/
+    private List<AttackPriority> priorityListOne;
+    private List<AttackPriority> priorityListTwo;
+    private List<AttackPriority> priorityListThree;
+
     private bool inRange;
     private bool isStunned;
+    private bool isPicking;
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
@@ -98,7 +117,6 @@ public class BasicEnemy : MonoBehaviour
     private string attackChosenn;
     private int attackCounter;
     private int attackIndex;
-    private int totalAttackChance;
     private int currentAttackDamage;
     private float attackLength;
     private float currentAttackRange;
@@ -128,9 +146,9 @@ public class BasicEnemy : MonoBehaviour
         FollowPlayer();
 
         /////////////////////////// Attack Animation Activated //////////////////
-        if (inRange && !isStunned && !isAttacking && attackReady) {
-            StartCoroutine(AttackAnimation());
-        }
+        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady) 
+            StartCoroutine(PickAttack());
+        
 
         if (attackFollowThru) {
             AttackFollowThroughHorizontal();
@@ -154,14 +172,35 @@ public class BasicEnemy : MonoBehaviour
 
         enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
-        ChooseAttack(attackChosen);
-        for (int i = 0; i < attackIndexes.Count; i++) {
-            totalAttackChance += attackChance[i];
-        }
-        Debug.Log(totalAttackChance);
+        //ChooseAttack(attackChosen);
 
         attackReady = true;
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
+
+        priorityListOne = new List<AttackPriority>();
+        priorityListTwo = new List<AttackPriority>();
+        priorityListThree = new List<AttackPriority>();
+
+        for (int i = 0; i < attackIndexes.Count; i++)
+        {
+            var tmp = attackPriority[i];
+            if (tmp == 1)
+                priorityListOne.Add(new AttackPriority(i, attackIndexes[i]));
+            else if (tmp == 2)
+                priorityListTwo.Add(new AttackPriority(i, attackIndexes[i]));
+            else if (tmp == 3)
+                priorityListThree.Add(new AttackPriority(i, attackIndexes[i]));
+        }
+
+        foreach (AttackPriority prio in priorityListOne)
+            Debug.Log("Priority One - Index: " + prio.index + " String: " + prio.attackName);
+        foreach (AttackPriority prio in priorityListTwo)
+            Debug.Log("Priority Two - Index: " + prio.index + " String: " + prio.attackName);
+
+        /*foreach (KeyValuePair<int, string> kvp in priorityListOne)
+            Debug.Log("Priority One - Key: {" + kvp.Key + "}, Value: {" + kvp.Value + "}");
+        foreach (KeyValuePair<int, string> kvp in priorityListTwo)
+            Debug.Log("Priority Two - Key: {" + kvp.Key + "}, Value: {" + kvp.Value + "}");*/
     }
 
     /////////////////// Animation Helper Functions ////////
@@ -191,22 +230,19 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void CheckPlayerInRange() {
+        playerDistance = enemyMovement.GetPlayerDistance();
+
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
 
-        playerDistance = enemyMovement.GetPlayerDistance();
         enemyMovement.CheckPlayerInRange(ref playerDetected);
 
         if (!attackReady)
             inRange = false;
-        else if (playerDetected.collider != null && !inRange) {
+        else if (playerDetected.collider != null && !inRange) 
             inRange = true;
-            //Debug.Log(name + " is IN range!");
-        }
-        else if (playerDetected.collider == null && inRange) {
+        else if (playerDetected.collider == null && inRange) 
             inRange = false;
-            //Debug.Log(name + " is OUT OF range!");
-        } 
     }
 
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
@@ -243,21 +279,38 @@ public class BasicEnemy : MonoBehaviour
         //enemyMovement.FindPlayerRepeating();
     }
 
+    IEnumerator PickAttack() {
+        isPicking = true;
+
+        /*if (tmpList.Count > 0)
+            attackIndex = Random.Range(0, tmpList.Count);
+        else
+            attackIndex = tmpChoice;*/
+
+        while (playerDistance >= attackRanges[attackIndex])
+        {
+            Debug.Log("Picking new attack");
+            attackIndex = Random.Range(0, attackIndexes.Count);
+            yield return null;
+        }
+        StartCoroutine(AttackAnimation());
+    }
+
     IEnumerator AttackAnimation() {
+        isPicking = false;
         isAttacking = true;
         attackReady = false;
         enemyMovement.SetFollow(false);
         float tmpLength = 0f;
-        PickAttack();
 
-        if (playerDistance >= attackRanges[attackIndex]) {
+/*        if (playerDistance >= attackRanges[attackIndex]) {
             isAttacking = false;
             attackReady = true;
             Debug.Log("attack not reached");
             attackIndex = Random.Range(0, attackIndexes.Count);
             StopCoroutine(AttackAnimation());
             yield break;
-        }
+        }*/
 
         Debug.Log(attackIndex);
         attackChosenn = attackIndexes[attackIndex];
@@ -281,17 +334,6 @@ public class BasicEnemy : MonoBehaviour
         FinishAttack();
     }
 
-    private void PickAttack() {
-/*        int tmp = Random.Range(0, totalAttackChance);
-        for(int i = 0; i < attackIndexes.Count; i++) {
-            if (tmp < attackChance[i])
-                attackIndex = i;
-        }*/
-
-        attackIndex = Random.Range(0, attackIndexes.Count);
-        if (playerDistance >= attackRanges[attackIndex] && inRange)
-            attackIndex = Random.Range(0, attackIndexes.Count);
-    }
 
     private void FinishAttack() {
         FindNextAttack();
