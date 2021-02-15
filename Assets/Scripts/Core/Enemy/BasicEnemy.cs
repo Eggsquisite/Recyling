@@ -29,7 +29,7 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private float spawnDelay;
+    private float spawnDistance;
 
     [SerializeField]
     private int maxHealth;
@@ -169,12 +169,12 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+
         isSpawning = true;
+        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
+
         attackReady = true;
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
-
-        StartCoroutine(enemyMovement.SpawningDelay(spawnDelay));
-        StartCoroutine(SpawningEnding());
 
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
@@ -218,9 +218,10 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
-    IEnumerator SpawningEnding() {
-        yield return new WaitForSeconds(spawnDelay + 0.5f);
+    private void SpawningEnding() {
         isSpawning = false;
+        enemyMovement.FindPlayerRepeating();
+        CancelInvoke("CheckPlayerDistance");
     }
     
     private void FollowPlayer() {
@@ -228,8 +229,17 @@ public class BasicEnemy : MonoBehaviour
             enemyMovement.FollowPlayer(attackFromLeft, attackReady);
     }
 
-    private void CheckPlayerInRange() {
+    private void CheckPlayerDistance() {
+        if (isSpawning)
+            enemyMovement.FindPlayer();
+
         playerDistance = enemyMovement.GetPlayerDistance();
+        if (playerDistance < spawnDistance && isSpawning)
+            SpawningEnding();
+    }
+
+    private void CheckPlayerInRange() {
+        CheckPlayerDistance();
 
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
@@ -502,7 +512,7 @@ public class BasicEnemy : MonoBehaviour
         playSound.PlayEnemyHit();
 
         if (currentHealth <= 0)
-            Death();
+            StartCoroutine(Death());
         else {
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
@@ -526,11 +536,14 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void Death() {
+    IEnumerator Death() {
         isDead = true;
         enemyMovement.StopFindPlayer();
-        //StartCoroutine(FadeAway());
         PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
+        var tmp = GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
+
+        yield return new WaitForSeconds(tmp);
+        Destroy(this);
     }
 
     /*IEnumerator FadeAway() {

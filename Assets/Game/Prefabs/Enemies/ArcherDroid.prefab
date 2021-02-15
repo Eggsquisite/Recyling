@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 7
+  spawnDistance: 8
   maxHealth: 200
   maxStamina: 100
   staminaRecoveryValue: 10
