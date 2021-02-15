@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void SetupVariables() {
-        canFollow = true;
+        //canFollow = true;
         xScaleValue = transform.localScale.x;
         RandomizeOffsetAttackStandby();
 
@@ -91,7 +91,8 @@ public class EnemyMovement : MonoBehaviour
     public void FindPlayer() {
         // Called thru invoke
         playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
-        RandomizeOffsetAttackStandby();
+        if (canFollow)
+            RandomizeOffsetAttackStandby();
     }
 
     public void StopFindPlayer() {
@@ -128,7 +129,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void IsMoving() {
+    public void IsMoving() {
         dist = (Vector2)transform.position - lastUpdatePos;
         currentSpeed = dist.magnitude / Time.deltaTime;
         lastUpdatePos = transform.position;

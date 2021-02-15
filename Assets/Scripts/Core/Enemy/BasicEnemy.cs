@@ -29,7 +29,9 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private float spawnDistance;
+    private float tetherFollowRange;
+    [SerializeField]
+    private float tetherUnfollowRange;
 
     [SerializeField]
     private int maxHealth;
@@ -52,7 +54,7 @@ public class BasicEnemy : MonoBehaviour
     private bool isInvincible;
     private bool staminaRecovery;
     private bool outOfStamina;
-    private bool isSpawning;
+    private bool outOfTetherRange;
 
     private int currentHealth;
     private int currentStamina;
@@ -123,7 +125,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void Update() {
-        if (isDead || isSpawning)
+        if (isDead || outOfTetherRange)
             return;
 
         ///////////////////// Attack Hitbox Activated ///////////////////////////
@@ -170,7 +172,7 @@ public class BasicEnemy : MonoBehaviour
         currentHealth = maxHealth;
         currentStamina = maxStamina;
 
-        isSpawning = true;
+        outOfTetherRange = true;
         InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
 
         attackReady = true;
@@ -218,10 +220,19 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
-    private void SpawningEnding() {
-        isSpawning = false;
+    private void EnemyInTetherRange() {
+        outOfTetherRange = false;
+        enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
         CancelInvoke("CheckPlayerDistance");
+    }
+
+    private void EnemyOutsideTetherRange() {
+        outOfTetherRange = true;
+        enemyMovement.SetFollow(false);
+        PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+
+        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
     }
     
     private void FollowPlayer() {
@@ -230,12 +241,14 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void CheckPlayerDistance() {
-        if (isSpawning)
+        if (outOfTetherRange)
             enemyMovement.FindPlayer();
-
         playerDistance = enemyMovement.GetPlayerDistance();
-        if (playerDistance < spawnDistance && isSpawning)
-            SpawningEnding();
+
+        if (playerDistance <= tetherFollowRange && outOfTetherRange)
+            EnemyInTetherRange();
+        else if (playerDistance > tetherUnfollowRange && !outOfTetherRange)
+            EnemyOutsideTetherRange();
     }
 
     private void CheckPlayerInRange() {
