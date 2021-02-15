@@ -29,10 +29,13 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private int maxHealth;
+    private float spawnDelay;
 
     [SerializeField]
+    private int maxHealth;
+    [SerializeField]
     private int maxStamina;
+
     [SerializeField]
     private int staminaRecoveryValue;
     [SerializeField]
@@ -49,7 +52,7 @@ public class BasicEnemy : MonoBehaviour
     private bool isInvincible;
     private bool staminaRecovery;
     private bool outOfStamina;
-    private bool fullOfStamina;
+    private bool isSpawning;
 
     private int currentHealth;
     private int currentStamina;
@@ -120,7 +123,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void Update() {
-        if (isDead)
+        if (isDead || isSpawning)
             return;
 
         ///////////////////// Attack Hitbox Activated ///////////////////////////
@@ -136,7 +139,6 @@ public class BasicEnemy : MonoBehaviour
         //CheckStamina();
         if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
             PickAttack();
-
 
         if (attackFollowThruBoth) {
             AttackFollowThroughHorizontal();
@@ -162,13 +164,17 @@ public class BasicEnemy : MonoBehaviour
         if (archerArrow != null)
             archerArrow.SetDamage(attackDamages[0]);
 
-        enemyMovement.FindPlayerRepeating();
+        //enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+        isSpawning = true;
         attackReady = true;
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
+
+        StartCoroutine(enemyMovement.SpawningDelay(spawnDelay));
+        StartCoroutine(SpawningEnding());
 
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
@@ -212,6 +218,11 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
+    IEnumerator SpawningEnding() {
+        yield return new WaitForSeconds(spawnDelay + 0.5f);
+        isSpawning = false;
+    }
+    
     private void FollowPlayer() {
         if (!isStunned && !isAttacking)
             enemyMovement.FollowPlayer(attackFromLeft, attackReady);
@@ -450,7 +461,6 @@ public class BasicEnemy : MonoBehaviour
     private void CheckStamina() {
         if (currentStamina > maxStamina) { 
             currentStamina = maxStamina;
-            fullOfStamina = true;
         }
 
         if (!outOfStamina && currentStamina <= 0) {
@@ -467,7 +477,6 @@ public class BasicEnemy : MonoBehaviour
     private void ConsumeStamina(int value) {
         // called thru animation event
         currentStamina -= value;
-        fullOfStamina = false;
         CheckStamina();
     }
 
@@ -484,10 +493,12 @@ public class BasicEnemy : MonoBehaviour
             FinishAttack();
         }
 
-        currentHealth -= damageNum;
         AttackDeactivated();
         AttackFollowDeactivated();
+        currentHealth -= damageNum;
         PushBack(distance, playerRef);
+
+        // Play sounds
         playSound.PlayEnemyHit();
 
         if (currentHealth <= 0)
@@ -517,7 +528,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Death() {
         isDead = true;
-        CancelInvoke("FindPlayer");
+        enemyMovement.StopFindPlayer();
         //StartCoroutine(FadeAway());
         PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
     }

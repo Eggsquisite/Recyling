@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
     void Awake()
     {
         SetupVariables();
-        InvokeRepeating("FindPlayer", 1f, repeatFollowDelay);
+        //InvokeRepeating("FindPlayer", 1f, repeatFollowDelay);
     }
 
     // Update is called once per frame
@@ -88,6 +88,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     ////////////////// Find Player AI ////////////////////
+    public IEnumerator SpawningDelay(float spawnDelay) {
+        yield return new WaitForSeconds(spawnDelay);
+        FindPlayerRepeating();
+    }
+    
     public void FindPlayer() {
         // Called thru invoke
         playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
