@@ -478,15 +478,16 @@ public class BasicEnemy : MonoBehaviour
 
         isStunned = true;
         isInvincible = true;
-        isAttacking = false;
-        attackReady = false;
-        staminaRecovery = true;
         enemyMovement.SetFollow(false);
-        PushBack(distance, playerRef);
+        if (isAttacking) {
+            StopCoroutine("AttackAnimation");
+            FinishAttack();
+        }
 
         currentHealth -= damageNum;
         AttackDeactivated();
         AttackFollowDeactivated();
+        PushBack(distance, playerRef);
         playSound.PlayEnemyHit();
 
         if (currentHealth <= 0)
