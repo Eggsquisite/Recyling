@@ -549,13 +549,19 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    public bool GetIsDead() {
+        return isDead;
+    }
+
     IEnumerator Death() {
         isDead = true;
         enemyMovement.StopFindPlayer();
+        GetComponent<Collider2D>().enabled = false;
         PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
         var tmp = GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
 
         yield return new WaitForSeconds(tmp);
+        Destroy(enemyMovement);
         Destroy(this);
     }
 

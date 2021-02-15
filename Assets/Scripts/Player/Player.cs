@@ -548,7 +548,7 @@ public class Player : MonoBehaviour
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies) {
-            if (enemy.tag == "Enemy") {
+            if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
                 enemy.GetComponent<BasicEnemy>().EnemyHurt((int)damage, pushbackDistance, transform);
             }
         }
