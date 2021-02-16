@@ -112,43 +112,26 @@ public class EnemyMovement : MonoBehaviour
 
             if (attackReady) { 
                 if (leftOfPlayer) {
-                    followVelocity = new Vector2(playerChar.x + leftOffset.x, playerChar.y) 
-                        * baseMoveSpeed 
-                        * Time.fixedDeltaTime;
-                    /*transform.position = Vector2.MoveTowards(transform.position, 
+                    rb.position = Vector2.MoveTowards(rb.position, 
                         playerChar + leftOffset, 
-                        baseMoveSpeed * Time.deltaTime);*/
+                        baseMoveSpeed * Time.fixedDeltaTime);
                 }
                 else {
-                    followVelocity = new Vector2(playerChar.x + rightOffset.x, playerChar.y) 
-                        * baseMoveSpeed
-                        * Time.fixedDeltaTime;
-                    /*transform.position = Vector2.MoveTowards(transform.position, 
+                    rb.position = Vector2.MoveTowards(rb.position, 
                         playerChar + rightOffset, 
-                        baseMoveSpeed * Time.deltaTime);*/
-                    Debug.Log(new Vector2(playerChar.x + rightOffset.x, playerChar.y)); 
+                        baseMoveSpeed * Time.fixedDeltaTime);
                 }
             } 
             else if (!attackReady) {
                 if (leftOfPlayer)
-                    followVelocity = new Vector2(playerChar.x + leftOffset.x - offsetAttackStandby.x,
-                        playerChar.y + offsetAttackStandby.y)
-                        * baseMoveSpeed * idleSpeedMult
-                        * Time.fixedDeltaTime;
-                /*transform.position = Vector2.MoveTowards(transform.position, 
-                    playerChar + leftOffset - offsetAttackStandby, 
-                    baseMoveSpeed * idleSpeedMult * Time.deltaTime);*/
+                    rb.position = Vector2.MoveTowards(rb.position,
+                        playerChar + leftOffset - offsetAttackStandby,
+                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
                 else
-                    followVelocity = new Vector2(playerChar.x + rightOffset.x + offsetAttackStandby.x,
-                        playerChar.y + offsetAttackStandby.y)
-                        * baseMoveSpeed * idleSpeedMult
-                        * Time.fixedDeltaTime;
-                    /*transform.position = Vector2.MoveTowards(transform.position, 
-                        playerChar + rightOffset + offsetAttackStandby, 
-                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);*/
+                    rb.position = Vector2.MoveTowards(rb.position,
+                        playerChar + leftOffset + offsetAttackStandby,
+                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
             }
-
-            rb.MovePosition(rb.position + followVelocity);
         }
     }
 

@@ -341,8 +341,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   repeatFollowDelay: 0.5
-  attackFollowDelay: 1
-  stunFollowDelay: 0.5
+  attackFollowDelay: 0.5
+  stunFollowDelay: 0.25
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
   idleSpeedMult: 0.5
@@ -384,7 +384,7 @@ MonoBehaviour:
   attackPriority: 0200000001000000
   attackRanges:
   - 5
-  - 3
+  - 2
   attackDamages: 9600000078000000
   attackFollowDistances:
   - -0.5

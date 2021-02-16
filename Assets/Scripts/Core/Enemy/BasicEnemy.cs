@@ -482,7 +482,6 @@ public class BasicEnemy : MonoBehaviour
         }
 
         //transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
-        //Debug.Log("Player position: " + enemyMovement.GetPlayerPosition() + " Enemy position: " + newPosition);
         rb.MovePosition(rb.position + newPosition);
     }
 
@@ -560,13 +559,13 @@ public class BasicEnemy : MonoBehaviour
 
     private void PushBack(float distance, Transform reference) {
         Vector2 newPosition;
-        if (reference.transform.position.x > transform.position.x) {
-            newPosition = new Vector2(-distance, 0f) + (Vector2)transform.position;
-            transform.position = newPosition;
+        if (reference.transform.position.x > rb.position.x) {
+            newPosition = new Vector2(-distance, 0f) + rb.position;
+            rb.position = newPosition;
         }
         else if (reference.transform.position.x <= transform.position.x) {
-            newPosition = new Vector2(distance, 0f) + (Vector2)transform.position;
-            transform.position = newPosition;
+            newPosition = new Vector2(distance, 0f) + rb.position;
+            rb.position = newPosition;
         }
     }
 
