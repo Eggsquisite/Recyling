@@ -135,18 +135,35 @@ public class BasicEnemy : MonoBehaviour
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
         MovementAnimation();
-        FollowPlayer();
 
         /////////////////////////// Attack Animation Activated //////////////////
         //CheckStamina();
         if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
             PickAttack();
 
-        if (attackFollowThruBoth) {
+        /*if (attackFollowThruBoth) {
             AttackFollowThroughHorizontal();
             AttackFollowThroughVertical();
         } else if (attackFollowThruVertical) {
             AttackFollowThroughVertical(); 
+        } else if (attackFollowThruHorizontal) {
+            AttackFollowThroughHorizontal();
+        }*/
+    }
+
+    private void FixedUpdate() {
+        if (isDead || outOfTetherRange)
+            return;
+
+        // Follow Player ////////////////////////////////////////////////////////////////
+        FollowPlayer();
+
+        // Attack Follow Through ////////////////////////////////////////////////////////
+        if (attackFollowThruBoth) {
+            AttackFollowThroughHorizontal();
+            AttackFollowThroughVertical();
+        } else if (attackFollowThruVertical) {
+            AttackFollowThroughVertical();
         } else if (attackFollowThruHorizontal) {
             AttackFollowThroughHorizontal();
         }
@@ -351,8 +368,8 @@ public class BasicEnemy : MonoBehaviour
         StopCoroutine(StaminaRecovery());
         float tmpLength;
 
-        /*Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
-        Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");*/
+        //Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
+        //Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");
         attackChosen = attackIndexes[attackIndex];
         PlayAnimation(attackChosen);
         tmpLength = GetAnimationLength(attackChosen);
@@ -414,19 +431,19 @@ public class BasicEnemy : MonoBehaviour
         }
     }*/
 
-    private void AttackFollowBothActivated(int value) {
+    private void AttackFollowBothActivated(float value) {
         // called thru animation events
         attackFollowThruBoth = true;
         attackFollowThruSpeed = value;
     }
 
-    private void AttackFollowVerticalActivated(int value){
+    private void AttackFollowVerticalActivated(float value){
         // called thru animation events
         attackFollowThruVertical = true;
         attackFollowThruSpeed = value;
     }
 
-    private void AttackFollowHorizontalActivated(int value) {
+    private void AttackFollowHorizontalActivated(float value) {
         // called thru animation events
         attackFollowThruHorizontal = true;
         attackFollowThruSpeed = value;
@@ -434,6 +451,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowDeactivated() {
         // called thru animation events
+        newPosition = Vector2.zero;
         attackFollowThruBoth = false;
         attackFollowThruVertical = false;
         attackFollowThruHorizontal = false;
@@ -441,28 +459,31 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughVertical() {
         // up down movement only
-        if (enemyMovement.GetPlayerPosition().y > transform.position.y) {
-            newPosition = new Vector2(0f, attackFollowDistances[attackIndex]) + (Vector2)transform.position;
+        if (enemyMovement.GetPlayerPosition().y > rb.position.y) {
+            newPosition = new Vector2(0f, attackFollowDistances[attackIndex]) * attackFollowThruSpeed * Time.fixedDeltaTime;
         }
-        else if (enemyMovement.GetPlayerPosition().y <= transform.position.y) {
-            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex]) + (Vector2)transform.position;
-        } else if (enemyMovement.GetPlayerPosition().y == transform.position.y) 
+        else if (enemyMovement.GetPlayerPosition().y < rb.position.y) {
+            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex]) * attackFollowThruSpeed * Time.fixedDeltaTime;
+        } else if (enemyMovement.GetPlayerPosition().y == rb.position.y) 
             return;
 
-        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + newPosition);
     }
 
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
         var tmp = enemyMovement.GetLeftOfPlayer();
-        if (enemyMovement.GetPlayerPosition().x >= transform.position.x && tmp) {
-            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
+        if (enemyMovement.GetPlayerPosition().x >= rb.position.x && tmp) {
+            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f) * attackFollowThruSpeed * Time.fixedDeltaTime;
         }
-        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x && !tmp) {
-            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f) + (Vector2)transform.position;
+        else if (enemyMovement.GetPlayerPosition().x < rb.position.x && !tmp) {
+            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f) * attackFollowThruSpeed * Time.fixedDeltaTime;
         }
-        
-        transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+
+        //transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+        //Debug.Log("Player position: " + enemyMovement.GetPlayerPosition() + " Enemy position: " + newPosition);
+        rb.MovePosition(rb.position + newPosition);
     }
 
     public bool GetIsAttacking() {

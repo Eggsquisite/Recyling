@@ -190,8 +190,8 @@ AnimationClip:
     functionName: AttackFollowHorizontalActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 6
+    floatParameter: 6
+    intParameter: 2
     messageOptions: 0
   - time: 0.5
     functionName: AttackActivated

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
     [Header("Player Detection")]
     [SerializeField]
     private Transform detectPos;
@@ -44,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
-    private Vector2 leftOffset, rightOffset, playerChar, dist;
+    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,8 +65,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void SetupVariables() {
         //canFollow = true;
-        xScaleValue = transform.localScale.x;
         RandomizeOffsetAttackStandby();
+        xScaleValue = transform.localScale.x;
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
 
         if (playerChar.x > transform.position.x)
         {
@@ -108,24 +111,44 @@ public class EnemyMovement : MonoBehaviour
         if (canFollow)  {
 
             if (attackReady) { 
-                if (leftOfPlayer)
-                    transform.position = Vector2.MoveTowards(transform.position, 
+                if (leftOfPlayer) {
+                    followVelocity = new Vector2(playerChar.x + leftOffset.x, playerChar.y) 
+                        * baseMoveSpeed 
+                        * Time.fixedDeltaTime;
+                    /*transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + leftOffset, 
-                        baseMoveSpeed * Time.deltaTime);
-                else
-                    transform.position = Vector2.MoveTowards(transform.position, 
+                        baseMoveSpeed * Time.deltaTime);*/
+                }
+                else {
+                    followVelocity = new Vector2(playerChar.x + rightOffset.x, playerChar.y) 
+                        * baseMoveSpeed
+                        * Time.fixedDeltaTime;
+                    /*transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + rightOffset, 
-                        baseMoveSpeed * Time.deltaTime);
-            } else if (!attackReady) { 
+                        baseMoveSpeed * Time.deltaTime);*/
+                    Debug.Log(followVelocity);
+                }
+            } 
+            else if (!attackReady) {
                 if (leftOfPlayer)
-                    transform.position = Vector2.MoveTowards(transform.position, 
-                        playerChar + leftOffset - offsetAttackStandby, 
-                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);
+                    followVelocity = new Vector2(playerChar.x + leftOffset.x - offsetAttackStandby.x,
+                        playerChar.y  + offsetAttackStandby.y)
+                        * baseMoveSpeed * idleSpeedMult
+                        * Time.fixedDeltaTime;
+                /*transform.position = Vector2.MoveTowards(transform.position, 
+                    playerChar + leftOffset - offsetAttackStandby, 
+                    baseMoveSpeed * idleSpeedMult * Time.deltaTime);*/
                 else
-                    transform.position = Vector2.MoveTowards(transform.position, 
+                    followVelocity = new Vector2(playerChar.x + rightOffset.x + offsetAttackStandby.x,
+                        playerChar.y + offsetAttackStandby.y)
+                        * baseMoveSpeed * idleSpeedMult
+                        * Time.fixedDeltaTime;
+                    /*transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + rightOffset + offsetAttackStandby, 
-                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);
+                        baseMoveSpeed * idleSpeedMult * Time.deltaTime);*/
             }
+
+            rb.MovePosition(rb.position + followVelocity);
         }
     }
 

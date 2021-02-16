@@ -243,7 +243,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035896704084563201}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_Bits: 64
   repeatFollowDelay: 0.5
   attackFollowDelay: 1
-  stunFollowDelay: 0.25
+  stunFollowDelay: 0.5
   minMoveSpeed: 1.5
   maxMoveSpeed: 2
   idleSpeedMult: 0.5
@@ -384,7 +384,7 @@ MonoBehaviour:
   attackPriority: 0200000001000000
   attackRanges:
   - 5
-  - 2.5
+  - 3
   attackDamages: 9600000078000000
   attackFollowDistances:
   - -0.5
