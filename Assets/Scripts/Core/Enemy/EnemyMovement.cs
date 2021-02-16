@@ -126,13 +126,13 @@ public class EnemyMovement : MonoBehaviour
                     /*transform.position = Vector2.MoveTowards(transform.position, 
                         playerChar + rightOffset, 
                         baseMoveSpeed * Time.deltaTime);*/
-                    Debug.Log(followVelocity);
+                    Debug.Log(new Vector2(playerChar.x + rightOffset.x, playerChar.y)); 
                 }
             } 
             else if (!attackReady) {
                 if (leftOfPlayer)
                     followVelocity = new Vector2(playerChar.x + leftOffset.x - offsetAttackStandby.x,
-                        playerChar.y  + offsetAttackStandby.y)
+                        playerChar.y + offsetAttackStandby.y)
                         * baseMoveSpeed * idleSpeedMult
                         * Time.fixedDeltaTime;
                 /*transform.position = Vector2.MoveTowards(transform.position, 
