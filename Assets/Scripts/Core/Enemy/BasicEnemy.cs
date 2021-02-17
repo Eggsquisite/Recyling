@@ -102,6 +102,10 @@ public class BasicEnemy : MonoBehaviour
     private List<AttackPriority> priorityListThree;
     private List<List<AttackPriority>> priorityLists;
 
+    private string attackChosen;
+    private int abovePlayer;
+    private int attackIndex;
+    private bool leftOfPlayer;
     private bool inRange;
     private bool isStunned;
     private bool isPicking;
@@ -113,8 +117,6 @@ public class BasicEnemy : MonoBehaviour
     private bool attackFollowThruVertical;
     private bool attackFollowThruHorizontal;
 
-    private string attackChosen;
-    private int attackIndex;
     private float attackFollowThruSpeed;
     private float attackDelay;
     private float stunDuration;
@@ -368,6 +370,9 @@ public class BasicEnemy : MonoBehaviour
 
         //Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");
         attackChosen = attackIndexes[attackIndex];
+        abovePlayer = enemyMovement.GetAbovePlayer();
+        leftOfPlayer = enemyMovement.GetLeftOfPlayer();
+
         PlayAnimation(attackChosen);
         tmpLength = GetAnimationLength(attackChosen);
 
@@ -460,19 +465,17 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughVertical() {
         // up down movement only
-        var tmp = enemyMovement.GetAbovePlayer();
-
-        if (tmp == 1) { 
+        if (abovePlayer == 1) { 
             newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
                                     * attackFollowThruSpeed
                                     * Time.fixedDeltaTime;
         }
-        else if (tmp == -1) { 
+        else if (abovePlayer == -1) { 
             newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
                                     * attackFollowThruSpeed
                                     * Time.fixedDeltaTime;
         }
-        else if (tmp == 0) { 
+        else if (abovePlayer == 0) { 
             newPosition = Vector2.zero;
         }
 
@@ -481,88 +484,66 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
-        var tmp = enemyMovement.GetLeftOfPlayer();
+        if (attackFollowFacePlayer[attackIndex])
+            enemyMovement.CheckPlayerPos();
 
-        if (!attackFollowFacePlayer[attackIndex]) {
+        if (leftOfPlayer) { 
             newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
-        } else { 
-            enemyMovement.CheckPlayerPos();
-            if (tmp) { 
-                newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
-            else { 
-                newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
+        }
+        else { 
+            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
+                                    * attackFollowThruSpeed
+                                    * Time.fixedDeltaTime;
         }
         
         rb.MovePosition(rb.position + newPosition);
     }
 
     private void AttackFollowThroughBoth() {
-        var tmpVertical = enemyMovement.GetAbovePlayer();
-        var tmpHorizontal = enemyMovement.GetLeftOfPlayer();
+        if (attackFollowFacePlayer[attackIndex]) { 
+            enemyMovement.CheckPlayerPos();
+            abovePlayer = enemyMovement.GetAbovePlayer();
+        }
 
-        if (!attackFollowFacePlayer[attackIndex]) {
-            if (tmpVertical == 1)
-                newPosition = new Vector2(attackFollowDistances[attackIndex], 
+        if (leftOfPlayer) {
+            // if left of player, always move left
+            if (abovePlayer == 1) {
+                newPosition = new Vector2(attackFollowDistances[attackIndex],
                                         attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
-            else if (tmpVertical == -1) {
+            }
+            else if (abovePlayer == -1) {
                 newPosition = new Vector2(attackFollowDistances[attackIndex],
                                         -attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
-            } else if (tmpVertical == 0) {
+            }
+            else if (abovePlayer == 0) {
                 newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
-        } else {
-            enemyMovement.CheckPlayerPos();
-            if (tmpHorizontal) {
-                if (tmpVertical == 1) {
-                    newPosition = new Vector2(attackFollowDistances[attackIndex],
-                                            attackFollowDistances[attackIndex])
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
-                else if (tmpVertical == -1) {
-                    newPosition = new Vector2(attackFollowDistances[attackIndex],
-                                            -attackFollowDistances[attackIndex])
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
-                else if (tmpVertical == 0) {
-                    newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
+        } else if (!leftOfPlayer) {
+            // if to the right of player, always move right
+            if (abovePlayer == 1) {
+                newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                        attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
             }
-            else {
-                if (tmpVertical == 1) { 
-                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
-                                            attackFollowDistances[attackIndex])
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
-                else if (tmpVertical == -1) {
-                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
-                                            -attackFollowDistances[attackIndex])
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
-                else if (tmpVertical == 0)  {
-                    newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
-                                            * attackFollowThruSpeed
-                                            * Time.fixedDeltaTime;
-                }
+            else if (abovePlayer == -1) {
+                newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                        -attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+            else if (abovePlayer == 0) {
+                newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
             }
         }
 

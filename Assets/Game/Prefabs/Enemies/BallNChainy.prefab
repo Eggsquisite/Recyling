@@ -233,8 +233,8 @@ MonoBehaviour:
   borderLayer:
     serializedVersion: 2
     m_Bits: 1536
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1
+  minMoveSpeed: 1
+  maxMoveSpeed: 1.5
   idleSpeedMult: 0.75
   minOffset: 1.5
   maxOffset: 3
@@ -279,6 +279,7 @@ MonoBehaviour:
   attackFollowDistances:
   - 0.5
   - 1.5
+  attackFollowFacePlayer: 0001
   minAttackDelay: 1.5
   maxAttackDelay: 2.5
 --- !u!1 &5761460218542371028
