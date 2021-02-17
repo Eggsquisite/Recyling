@@ -140,15 +140,6 @@ public class BasicEnemy : MonoBehaviour
         //CheckStamina();
         if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
             PickAttack();
-
-        /*if (attackFollowThruBoth) {
-            AttackFollowThroughHorizontal();
-            AttackFollowThroughVertical();
-        } else if (attackFollowThruVertical) {
-            AttackFollowThroughVertical(); 
-        } else if (attackFollowThruHorizontal) {
-            AttackFollowThroughHorizontal();
-        }*/
     }
 
     private void FixedUpdate() {
@@ -241,6 +232,8 @@ public class BasicEnemy : MonoBehaviour
         outOfTetherRange = false;
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
+        PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+
         CancelInvoke("CheckPlayerDistance");
     }
 
@@ -536,7 +529,6 @@ public class BasicEnemy : MonoBehaviour
         isInvincible = true;
         enemyMovement.SetFollow(false);
         if (isAttacking) {
-            Debug.Log("Stopping attack");
             StopCoroutine(AttackAnimation());
             FinishAttack();
         }

@@ -115,60 +115,47 @@ public class EnemyMovement : MonoBehaviour
                 if (leftOfPlayer) {
                     desiredPosition = playerChar + leftOffset;
                     followVelocity = Vector2.MoveTowards(rb.position,
-                        desiredPosition,
-                        baseMoveSpeed * Time.fixedDeltaTime);
-
-                    /*direction = desiredPosition - rb.position;
-                    RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, direction.magnitude);
-                    if (hit.collider != null)
-                        rb.MovePosition(hit.point);
-                    else
-                        rb.MovePosition(followVelocity);*/
-                    /*rb.position = Vector2.MoveTowards(rb.position, 
-                        playerChar + leftOffset, 
-                        baseMoveSpeed * Time.fixedDeltaTime);*/
+                                                        desiredPosition,
+                                                        baseMoveSpeed * Time.fixedDeltaTime);
                 }
                 else {
                     desiredPosition = playerChar + rightOffset;
                     followVelocity = Vector2.MoveTowards(rb.position,
-                        desiredPosition,
-                        baseMoveSpeed * Time.fixedDeltaTime);
-                    /*rb.position = Vector2.MoveTowards(rb.position, 
-                        playerChar + rightOffset, 
-                        baseMoveSpeed * Time.fixedDeltaTime);*/
+                                                        desiredPosition,
+                                                        baseMoveSpeed * Time.fixedDeltaTime);
                 }
             } 
             else if (!attackReady) {
                 if (leftOfPlayer) { 
                     desiredPosition = playerChar + leftOffset + offsetAttackStandby;
                     followVelocity = Vector2.MoveTowards(rb.position,
-                        desiredPosition,
-                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
-                /*rb.position = Vector2.MoveTowards(rb.position,
-                    playerChar + leftOffset - offsetAttackStandby,
-                    baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
+                                                        desiredPosition,
+                                                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
                 }
                 else {
                     desiredPosition = playerChar + rightOffset + offsetAttackStandby;
                     followVelocity = Vector2.MoveTowards(rb.position,
-                        desiredPosition,
-                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
-                    /*rb.position = Vector2.MoveTowards(rb.position,
-                        playerChar + rightOffset + offsetAttackStandby,
-                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
+                                                        desiredPosition,
+                                                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
                 }
             }
 
-            //rb.MovePosition(followVelocity);
-            direction = desiredPosition - rb.position;
-            RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
-
-            if (hit.collider != null && hit.collider.tag == "Border") ;
+            RaycastHit2D hit = CalculateDirection();
+            if (hit.collider != null) {
                 //rb.MovePosition(hit.point);
-                // do nothing
+                if (Vector2.Distance(rb.position, hit.point) > 0.5f)
+                    rb.MovePosition(followVelocity);
+                else;
+                    //do nothing
+            }
             else
                 rb.MovePosition(followVelocity);
         }
+    }
+
+    private RaycastHit2D CalculateDirection() {
+        direction = desiredPosition - rb.position;
+        return Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
     }
 
     public void IsMoving() {

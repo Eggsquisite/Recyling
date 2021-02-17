@@ -128,3 +128,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 30
     messageOptions: 0
+  - time: 0.68333334
+    functionName: AttackFollowHorizontalActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 4
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.75
+    functionName: AttackFollowDeactivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -454,6 +454,7 @@ public class Player : MonoBehaviour
             attackCombo += 1;
             AttackAnimation(attackCombo);
 
+            shiftKeyHeld = false;
             isRunAttackPressed = false;
         }
         // case for super attack

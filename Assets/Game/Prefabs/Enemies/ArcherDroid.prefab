@@ -223,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 47
   m_Sprite: {fileID: 38890944275603932, guid: 3a2fc3efdfb85014ba2b7adb26a1b600, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -243,7 +243,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035896704084563201}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -339,13 +339,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 1035896702770273575}
-  detectRange: 5
+  detectRange: 6
   repeatFollowDelay: 0.5
   attackFollowDelay: 0.5
   stunFollowDelay: 0.25
   borderLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   minMoveSpeed: 1
   maxMoveSpeed: 1.5
   idleSpeedMult: 0.75
@@ -368,8 +368,8 @@ MonoBehaviour:
   tetherUnfollowRange: 8
   maxHealth: 200
   maxStamina: 100
-  staminaRecoveryValue: 10
-  staminaRecoveryDelay: 1
+  staminaRecoveryValue: 12
+  staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   emptyStaminaDelayMult: 7.5
   visualizePoint: {fileID: 1035896702901250802}
@@ -386,14 +386,14 @@ MonoBehaviour:
   - enemy_attack2
   attackPriority: 0200000001000000
   attackRanges:
-  - 5
+  - 6
   - 2.5
   attackDamages: 9600000078000000
   attackFollowDistances:
   - -0.5
   - -1
-  minAttackDelay: 0.5
-  maxAttackDelay: 1
+  minAttackDelay: 1
+  maxAttackDelay: 2
 --- !u!114 &1035896704084563224
 MonoBehaviour:
   m_ObjectHideFlags: 0
