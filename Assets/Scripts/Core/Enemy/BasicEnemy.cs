@@ -119,7 +119,7 @@ public class BasicEnemy : MonoBehaviour
     private float playerDistance;
     private Vector2 newPosition;
 
-    private Coroutine attackAnimationCoroutine;
+    private Coroutine attackAnimationRoutine, staminaRecoveryRoutine;
 
     // Start is called before the first frame update
     void Awake() {
@@ -335,7 +335,7 @@ public class BasicEnemy : MonoBehaviour
 
                         //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
                         isPicking = false;
-                        attackAnimationCoroutine = StartCoroutine(AttackAnimation());
+                        attackAnimationRoutine = StartCoroutine(AttackAnimation());
                         return;
                     }
                     // keep iterating
@@ -361,7 +361,8 @@ public class BasicEnemy : MonoBehaviour
         attackReady = false;
         staminaRecovery = false;
         enemyMovement.SetFollow(false);
-        StopCoroutine(StaminaRecovery());
+        if (staminaRecoveryRoutine != null)
+            StopCoroutine(StaminaRecovery());
         float tmpLength;
 
         //Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
@@ -383,7 +384,7 @@ public class BasicEnemy : MonoBehaviour
         staminaRecovery = true;
         AttackDeactivated();
         AttackFollowDeactivated();
-        StartCoroutine(StaminaRecovery());
+        staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
         if (IsInvoking("ResetAttack"))
@@ -531,7 +532,8 @@ public class BasicEnemy : MonoBehaviour
         isInvincible = true;
         enemyMovement.SetFollow(false);
         if (isAttacking) {
-            StopCoroutine(attackAnimationCoroutine);
+            if (attackAnimationRoutine != null)
+                StopCoroutine(attackAnimationRoutine);
             FinishAttack();
         }
 
