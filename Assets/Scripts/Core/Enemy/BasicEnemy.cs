@@ -305,6 +305,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void ResetAttack() {
         // called thru invoke in ResetStun()
+        attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
         attackReady = true;
     }
 
@@ -375,6 +376,9 @@ public class BasicEnemy : MonoBehaviour
         tmpLength = GetAnimationLength(attackChosen);
 
         yield return new WaitForSeconds(tmpLength);
+        if (!isAttacking) 
+            yield break;
+        
         FinishAttack();
     }
 
@@ -392,18 +396,18 @@ public class BasicEnemy : MonoBehaviour
         if (!outOfStamina)
             Invoke("ResetAttack", attackDelay);
 
-/*        int tmp = Random.Range(0, 10);
-        if (attackFromLeft) { 
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = true;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = false;
-        } else {
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = false;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = true;
-        }*/
+        /*        int tmp = Random.Range(0, 10);
+                if (attackFromLeft) { 
+                    if (tmp >= 0 && tmp < 8)
+                        attackFromLeft = true;
+                    else if (tmp >= 8 && tmp < 10)
+                        attackFromLeft = false;
+                } else {
+                    if (tmp >= 0 && tmp < 8)
+                        attackFromLeft = false;
+                    else if (tmp >= 8 && tmp < 10)
+                        attackFromLeft = true;
+                }*/
     }
 
     private void CheckHitBox() {
@@ -532,7 +536,8 @@ public class BasicEnemy : MonoBehaviour
         isInvincible = true;
         enemyMovement.SetFollow(false);
         if (isAttacking) {
-            StopCoroutine("AttackAnimation");
+            Debug.Log("Stopping attack");
+            StopCoroutine(AttackAnimation());
             FinishAttack();
         }
 

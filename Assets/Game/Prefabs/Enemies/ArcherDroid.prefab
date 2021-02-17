@@ -223,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -31
+  m_SortingOrder: 50
   m_Sprite: {fileID: 38890944275603932, guid: 3a2fc3efdfb85014ba2b7adb26a1b600, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -243,7 +243,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035896704084563201}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -335,20 +335,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectPos: {fileID: 1035896702770273575}
-  detectRange: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  detectPos: {fileID: 1035896702770273575}
+  detectRange: 5
   repeatFollowDelay: 0.5
   attackFollowDelay: 0.5
   stunFollowDelay: 0.25
-  minMoveSpeed: 1.5
-  maxMoveSpeed: 2
-  idleSpeedMult: 0.5
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  minMoveSpeed: 1
+  maxMoveSpeed: 1.5
+  idleSpeedMult: 0.75
   minOffset: 4
   maxOffset: 5
-  offsetAttackStandbyRange: {x: 1, y: 0.5}
+  offsetAttackStandbyRange: {x: 2, y: 1}
 --- !u!114 &1035896704084563200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,8 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherFollowRange: 8
-  tetherUnfollowRange: 12
+  tetherFollowRange: 6
+  tetherUnfollowRange: 8
   maxHealth: 200
   maxStamina: 100
   staminaRecoveryValue: 10
@@ -384,13 +387,13 @@ MonoBehaviour:
   attackPriority: 0200000001000000
   attackRanges:
   - 5
-  - 2
+  - 2.5
   attackDamages: 9600000078000000
   attackFollowDistances:
   - -0.5
   - -1
   minAttackDelay: 0.5
-  maxAttackDelay: 0.75
+  maxAttackDelay: 1
 --- !u!114 &1035896704084563224
 MonoBehaviour:
   m_ObjectHideFlags: 0

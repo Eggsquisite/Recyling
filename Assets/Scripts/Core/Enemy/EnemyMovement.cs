@@ -8,11 +8,11 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Player Detection")]
     [SerializeField]
+    private LayerMask playerLayer;
+    [SerializeField]
     private Transform detectPos;
     [SerializeField]
     private float detectRange;
-    [SerializeField]
-    private LayerMask playerLayer;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
     private float stunFollowDelay;
 
     [Header("Movement Properties")]
+    [SerializeField]
+    private LayerMask borderLayer;
     [SerializeField] 
     private float minMoveSpeed;
     [SerializeField] 
@@ -46,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
-    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
+    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity, direction, desiredPosition;
 
     // Start is called before the first frame update
     void Awake()
@@ -109,29 +111,63 @@ public class EnemyMovement : MonoBehaviour
     public void FollowPlayer(bool attackFromLeft, bool attackReady) {
         IsMoving();
         if (canFollow)  {
-
             if (attackReady) { 
                 if (leftOfPlayer) {
-                    rb.position = Vector2.MoveTowards(rb.position, 
-                        playerChar + leftOffset, 
+                    desiredPosition = playerChar + leftOffset;
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                        desiredPosition,
                         baseMoveSpeed * Time.fixedDeltaTime);
+
+                    /*direction = desiredPosition - rb.position;
+                    RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, direction.magnitude);
+                    if (hit.collider != null)
+                        rb.MovePosition(hit.point);
+                    else
+                        rb.MovePosition(followVelocity);*/
+                    /*rb.position = Vector2.MoveTowards(rb.position, 
+                        playerChar + leftOffset, 
+                        baseMoveSpeed * Time.fixedDeltaTime);*/
                 }
                 else {
-                    rb.position = Vector2.MoveTowards(rb.position, 
-                        playerChar + rightOffset, 
+                    desiredPosition = playerChar + rightOffset;
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                        desiredPosition,
                         baseMoveSpeed * Time.fixedDeltaTime);
+                    /*rb.position = Vector2.MoveTowards(rb.position, 
+                        playerChar + rightOffset, 
+                        baseMoveSpeed * Time.fixedDeltaTime);*/
                 }
             } 
             else if (!attackReady) {
-                if (leftOfPlayer)
-                    rb.position = Vector2.MoveTowards(rb.position,
-                        playerChar + leftOffset - offsetAttackStandby,
+                if (leftOfPlayer) { 
+                    desiredPosition = playerChar + leftOffset + offsetAttackStandby;
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                        desiredPosition,
                         baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
-                else
-                    rb.position = Vector2.MoveTowards(rb.position,
-                        playerChar + leftOffset + offsetAttackStandby,
+                /*rb.position = Vector2.MoveTowards(rb.position,
+                    playerChar + leftOffset - offsetAttackStandby,
+                    baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
+                }
+                else {
+                    desiredPosition = playerChar + rightOffset + offsetAttackStandby;
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                        desiredPosition,
                         baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
+                    /*rb.position = Vector2.MoveTowards(rb.position,
+                        playerChar + rightOffset + offsetAttackStandby,
+                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
+                }
             }
+
+            //rb.MovePosition(followVelocity);
+            direction = desiredPosition - rb.position;
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
+
+            if (hit.collider != null && hit.collider.tag == "Border") ;
+                //rb.MovePosition(hit.point);
+                // do nothing
+            else
+                rb.MovePosition(followVelocity);
         }
     }
 
@@ -202,5 +238,8 @@ public class EnemyMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         //Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
+        if (rb != null)
+            Gizmos.DrawRay(rb.position, direction);
+        //Gizmos.DrawLine(rb.position, direction);
     }
 }

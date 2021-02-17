@@ -173,7 +173,6 @@ public class Player : MonoBehaviour
         movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
         CheckDirection();
         if (!isAttacking) {
-
             if (isWalking && !isDashing)
                 rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
             else if (isRunning)
