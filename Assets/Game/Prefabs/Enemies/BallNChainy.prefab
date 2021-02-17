@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -155
+  m_SortingOrder: 131
   m_Sprite: {fileID: 8793639957104055765, guid: 4bcc4ddded587004a80c08f3a5401d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -222,20 +222,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectPos: {fileID: 4618153347026935516}
-  detectRange: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  detectPos: {fileID: 4618153347026935516}
+  detectRange: 3
   repeatFollowDelay: 0.5
   attackFollowDelay: 1
-  stunFollowDelay: 0.5
+  stunFollowDelay: 0.25
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 1536
   minMoveSpeed: 0.75
   maxMoveSpeed: 1
   idleSpeedMult: 0.75
   minOffset: 1.5
   maxOffset: 3
-  offsetAttackStandbyRange: {x: 2, y: 0.5}
+  offsetAttackStandbyRange: {x: 1, y: 0.75}
 --- !u!114 &5761460218273841752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tetherFollowRange: 6
+  tetherUnfollowRange: 8
   maxHealth: 300
   maxStamina: 120
-  staminaRecoveryValue: 10
-  staminaRecoveryDelay: 2
+  staminaRecoveryValue: 15
+  staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   emptyStaminaDelayMult: 5
   visualizePoint: {fileID: 5761460219095272118}
@@ -274,8 +279,8 @@ MonoBehaviour:
   attackFollowDistances:
   - 0.5
   - 1.5
-  minAttackDelay: 1.25
-  maxAttackDelay: 1.5
+  minAttackDelay: 1.5
+  maxAttackDelay: 2.5
 --- !u!1 &5761460218542371028
 GameObject:
   m_ObjectHideFlags: 0

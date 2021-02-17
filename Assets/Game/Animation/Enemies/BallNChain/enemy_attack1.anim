@@ -51,7 +51,7 @@ AnimationClip:
       value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 1.45
       value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.6166667
+    - time: 1.6333333
       value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 1.7
       value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
@@ -134,7 +134,7 @@ AnimationClip:
     functionName: AttackFollowHorizontalActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 8
     intParameter: 4
     messageOptions: 0
   - time: 1.0166667
@@ -169,7 +169,7 @@ AnimationClip:
     functionName: AttackFollowHorizontalActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 8
     intParameter: 4
     messageOptions: 0
   - time: 1.6166667

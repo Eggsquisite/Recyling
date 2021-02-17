@@ -181,7 +181,7 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 1.25
@@ -206,14 +206,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: AttackFollowDeactivated
+    functionName: AttackDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: AttackDeactivated
+    functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -223,7 +223,7 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 1.8333334
@@ -265,7 +265,7 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 2.4166667
@@ -276,18 +276,18 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.4333334
-    functionName: ConsumeStamina
+    functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 20
+    intParameter: 0
     messageOptions: 0
   - time: 2.4333334
-    functionName: PlayBasicAttack1
+    functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 20
     messageOptions: 0
   - time: 2.5
     functionName: AttackFollowDeactivated
@@ -314,7 +314,7 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 3.0166667
@@ -356,7 +356,7 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 3.6
@@ -391,11 +391,18 @@ AnimationClip:
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 4
     messageOptions: 0
   - time: 4.1666665
     functionName: AttackActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.1833334
+    functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -407,13 +414,6 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
-    messageOptions: 0
-  - time: 4.1833334
-    functionName: PlayBasicAttack1
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
     messageOptions: 0
   - time: 4.25
     functionName: AttackDeactivated

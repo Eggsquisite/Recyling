@@ -5075,6 +5075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArcherDroid
       objectReference: {fileID: 0}
+    - target: {fileID: 1035896704084563201, guid: d3bae41c241700c408b9f12b696bc131, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1035896704084563225, guid: d3bae41c241700c408b9f12b696bc131, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -5386,6 +5390,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1660239811
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5761460218273841752, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: attackFollowFacePlayer.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841752, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: attackFollowFacePlayer.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841752, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: attackFollowFacePlayer.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2492299
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3107164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761460218273841759, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
+      propertyPath: m_Name
+      value: BallNChainy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
 --- !u!114 &1819003732 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5295118107472535084, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}

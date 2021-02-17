@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private Vector2 offsetAttackStandbyRange;
 
+    private int abovePlayer;
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
@@ -170,16 +171,22 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void CheckPlayerPos() {
-        if (playerChar.x > transform.position.x && !leftOfPlayer)
-        {
+        if (playerChar.x > transform.position.x && !leftOfPlayer) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
-        else if (playerChar.x <= transform.position.x && leftOfPlayer)
-        {
+        else if (playerChar.x <= transform.position.x && leftOfPlayer) {
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
+
+        // case for above, below, and same y.pos as the player
+        if (playerChar.y > transform.position.y && abovePlayer != 1)
+            abovePlayer = 1;
+        else if (playerChar.y < transform.position.y && abovePlayer != -1)
+            abovePlayer = -1;
+        else if (playerChar.y == transform.position.y && abovePlayer != 0)
+            abovePlayer = 0;
     }
 
     public void CheckPlayerInRange(ref RaycastHit2D playerDetected) {
@@ -210,6 +217,9 @@ public class EnemyMovement : MonoBehaviour
     }
     public bool GetLeftOfPlayer() {
         return leftOfPlayer;
+    }
+    public int GetAbovePlayer() {
+        return abovePlayer;
     }
     public bool GetIsMoving() {
         return isMoving;

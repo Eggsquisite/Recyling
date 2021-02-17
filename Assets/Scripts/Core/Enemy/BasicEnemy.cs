@@ -89,6 +89,8 @@ public class BasicEnemy : MonoBehaviour
     private List<int> attackDamages;
     [SerializeField]
     private List<float> attackFollowDistances;
+    [SerializeField]
+    private List<bool> attackFollowFacePlayer;
 
     [SerializeField]
     private float minAttackDelay;
@@ -153,8 +155,7 @@ public class BasicEnemy : MonoBehaviour
 
         // Attack Follow Through ////////////////////////////////////////////////////////
         if (attackFollowThruBoth) {
-            AttackFollowThroughHorizontal();
-            AttackFollowThroughVertical();
+            AttackFollowThroughBoth();
         } else if (attackFollowThruVertical) {
             AttackFollowThroughVertical();
         } else if (attackFollowThruHorizontal) {
@@ -328,7 +329,7 @@ public class BasicEnemy : MonoBehaviour
                 for (int i = 0; i < priorityLists[j].Count; i++)
                 {
                     tmp = attackRanges[priorityLists[j][i].index];
-                    //Debug.Log(priorityLists[j][i].attackName + " Range: " + tmp + " Index: " + priorityLists[j][i].index + " PlayerDistance: " + playerDistance);
+                    // iterates through each list in priorityLists to find an attack that is currently in range
                     if (playerDistance < tmp)
                     {
                         attackIndex = priorityLists[j][i].index;
@@ -356,6 +357,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     IEnumerator AttackAnimation() {
+        float tmpLength;
         isPicking = false;
         isAttacking = true;
         attackReady = false;
@@ -363,9 +365,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         if (staminaRecoveryRoutine != null)
             StopCoroutine(StaminaRecovery());
-        float tmpLength;
 
-        //Debug.Log(attackIndex + "attack chosen: " + attackIndexes[attackIndex]);
         //Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");
         attackChosen = attackIndexes[attackIndex];
         PlayAnimation(attackChosen);
@@ -384,6 +384,7 @@ public class BasicEnemy : MonoBehaviour
         staminaRecovery = true;
         AttackDeactivated();
         AttackFollowDeactivated();
+
         staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
@@ -459,34 +460,113 @@ public class BasicEnemy : MonoBehaviour
 
     private void AttackFollowThroughVertical() {
         // up down movement only
-        if (enemyMovement.GetPlayerPosition().y > rb.position.y) {
-            newPosition = new Vector2(0f, attackFollowDistances[attackIndex]) * attackFollowThruSpeed * Time.fixedDeltaTime;
-        }
-        else if (enemyMovement.GetPlayerPosition().y < rb.position.y) {
-            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex]) * attackFollowThruSpeed * Time.fixedDeltaTime;
-        } else if (enemyMovement.GetPlayerPosition().y == rb.position.y) 
-            return;
+        var tmp = enemyMovement.GetAbovePlayer();
 
-        //transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+        if (tmp == 1) { 
+            newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
+                                    * attackFollowThruSpeed
+                                    * Time.fixedDeltaTime;
+        }
+        else if (tmp == -1) { 
+            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
+                                    * attackFollowThruSpeed
+                                    * Time.fixedDeltaTime;
+        }
+        else if (tmp == 0) { 
+            newPosition = Vector2.zero;
+        }
+
         rb.MovePosition(rb.position + newPosition);
     }
 
     private void AttackFollowThroughHorizontal() {
         // Left right movement only
         var tmp = enemyMovement.GetLeftOfPlayer();
-        if (enemyMovement.GetPlayerPosition().x >= rb.position.x && tmp) {
-            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f) * attackFollowThruSpeed * Time.fixedDeltaTime;
-        }
-        else if (enemyMovement.GetPlayerPosition().x < rb.position.x && !tmp) {
-            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f) * attackFollowThruSpeed * Time.fixedDeltaTime;
-        }
 
-        //transform.position = Vector2.MoveTowards(transform.position, newPosition, attackFollowThruSpeed * Time.deltaTime);
+        if (!attackFollowFacePlayer[attackIndex]) {
+            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+        } else { 
+            enemyMovement.CheckPlayerPos();
+            if (tmp) { 
+                newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+            else { 
+                newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+        }
+        
         rb.MovePosition(rb.position + newPosition);
     }
 
-    public bool GetIsAttacking() {
-        return isAttacking;
+    private void AttackFollowThroughBoth() {
+        var tmpVertical = enemyMovement.GetAbovePlayer();
+        var tmpHorizontal = enemyMovement.GetLeftOfPlayer();
+
+        if (!attackFollowFacePlayer[attackIndex]) {
+            if (tmpVertical == 1)
+                newPosition = new Vector2(attackFollowDistances[attackIndex], 
+                                        attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            else if (tmpVertical == -1) {
+                newPosition = new Vector2(attackFollowDistances[attackIndex],
+                                        -attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            } else if (tmpVertical == 0) {
+                newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+        } else {
+            enemyMovement.CheckPlayerPos();
+            if (tmpHorizontal) {
+                if (tmpVertical == 1) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex],
+                                            attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (tmpVertical == -1) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex],
+                                            -attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (tmpVertical == 0) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+            }
+            else {
+                if (tmpVertical == 1) { 
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                            attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (tmpVertical == -1) {
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                            -attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (tmpVertical == 0)  {
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+            }
+        }
+
+        rb.MovePosition(rb.position + newPosition);
     }
 
     // STAMINA CODE ////////////////////////////////////////////////////////
