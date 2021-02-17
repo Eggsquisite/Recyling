@@ -286,10 +286,10 @@ MonoBehaviour:
   maxStamina: 600
   healthRecoveryValue: 0
   healthRecoveryDelay: 0
-  energyRecoveryValue: 2
-  energyRecoveryDelay: 1
+  energyRecoveryValue: 4
+  energyRecoveryDelay: 0.5
   staminaRecoveryValue: 12
-  staminaRecoveryDelay: 1
+  staminaRecoveryDelay: 0.75
 --- !u!114 &722439448608458877
 MonoBehaviour:
   m_ObjectHideFlags: 0

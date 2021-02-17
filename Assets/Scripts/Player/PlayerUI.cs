@@ -58,6 +58,9 @@ public class PlayerUI : MonoBehaviour
     private float staminaRecoveryDelay;
 
     private bool healthRecoverable, energyRecoverable, staminaRecoverable;
+    private Coroutine healthRecoveryRoutine, energyRecoveryRoutine, staminaRecoveryRoutine;
+    private Coroutine healthVisualDecayRoutine, energyVisualDecayRoutine, staminaVisualDecayRoutine;
+    private Coroutine healthDestroyedTimerRoutine, energyDestroyedTimerRoutine, staminaDestroyedTimerRoutine;
 
     // Start is called before the first frame update
     void Start()
@@ -104,30 +107,33 @@ public class PlayerUI : MonoBehaviour
     }*/
 
     IEnumerator DestroyedTimer(int index) {
-        if (index == 1)
-            StopCoroutine(HealthRecovery());
-        else if (index == 2)
-            StopCoroutine(EnergyRecovery());
-        else if (index == 3)
-            StopCoroutine(StaminaRecovery());
+        if (index == 1 && healthRecoveryRoutine != null)
+            StopCoroutine(healthRecoveryRoutine);
+        else if (index == 2 && energyRecoveryRoutine != null)
+            StopCoroutine(energyRecoveryRoutine);
+        else if (index == 3 && staminaRecoveryRoutine != null)
+            StopCoroutine(staminaRecoveryRoutine);
 
         yield return new WaitForSeconds(visualDelay);
         
         if (index == 1 && !healthDecaying) {
             healthLost = false;
 
-            StopCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
-            StartCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
+            if (healthVisualDecayRoutine != null)
+                StopCoroutine(healthVisualDecayRoutine);
+            healthVisualDecayRoutine = StartCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
         } else if (index == 2 && !energyDecaying) {
             energyLost = false;
 
-            StopCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
-            StartCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
+            if (energyVisualDecayRoutine != null)
+                StopCoroutine(energyVisualDecayRoutine);
+            energyVisualDecayRoutine = StartCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
         } else if (index == 3 && !staminaDecaying) {
             staminaLost = false;
 
-            StopCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
-            StartCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
+            if (staminaVisualDecayRoutine != null)
+                StopCoroutine(staminaVisualDecayRoutine);
+            staminaVisualDecayRoutine = StartCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
         }
     }
 
@@ -142,15 +148,18 @@ public class PlayerUI : MonoBehaviour
 
         while (decayValue.value > currentTmp) {
             if (index == 1 && (!healthDecaying || healthLost)) {
-                StopCoroutine(HealthRecovery());
+                if (healthRecoveryRoutine != null)
+                    StopCoroutine(healthRecoveryRoutine);
                 yield break;
             }
             else if (index == 2 && (!energyDecaying || energyLost)) {
-                StopCoroutine(EnergyRecovery());
+                if (energyRecoveryRoutine != null)
+                    StopCoroutine(energyRecoveryRoutine);
                 yield break;
             }
             else if (index == 3 && (!staminaDecaying || staminaLost)) {
-                StopCoroutine(StaminaRecovery());
+                if (staminaRecoveryRoutine != null)
+                    StopCoroutine(staminaRecoveryRoutine);
                 yield break;
             }
 
@@ -162,18 +171,21 @@ public class PlayerUI : MonoBehaviour
         if (index == 1 && !healthRecovering) {
             healthDecaying = false;
 
-            StopCoroutine(HealthRecovery());
-            StartCoroutine(HealthRecovery());
+            if (healthRecoveryRoutine != null)
+                StopCoroutine(healthRecoveryRoutine);
+            healthRecoveryRoutine = StartCoroutine(HealthRecovery());
         } else if (index == 2 && !energyRecovering) {
             energyDecaying = false;
 
-            StopCoroutine(EnergyRecovery());
-            StartCoroutine(EnergyRecovery());
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
         } else if (index == 3 && !staminaRecovering) {
             staminaDecaying = false;
-            
-            StopCoroutine(StaminaRecovery());
-            StartCoroutine(StaminaRecovery());
+
+            if (staminaRecoveryRoutine != null)
+                StopCoroutine(staminaRecoveryRoutine);
+            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
         }
     }
 
@@ -207,8 +219,13 @@ public class PlayerUI : MonoBehaviour
             healthLost = true;
             healthDecaying = false;
             healthRecovering = false;
-            StopCoroutine(DestroyedTimer(1));
-            StartCoroutine(DestroyedTimer(1));
+
+            if (healthRecoveryRoutine != null)
+                StopCoroutine(healthRecoveryRoutine);
+
+            if (healthDestroyedTimerRoutine != null)
+                StopCoroutine(healthDestroyedTimerRoutine);
+            healthDestroyedTimerRoutine = StartCoroutine(DestroyedTimer(1));
         }
         else
             healthDestroyedValue.value += newValue;
@@ -222,15 +239,17 @@ public class PlayerUI : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         healthRecovering = true;
+
         yield return new WaitForSeconds(healthRecoveryDelay);
-        while (healthCurrentValue.value < healthCurrentValue.maxValue &&
-                healthRecoveryValue > 0 &&
-                healthRecovering && 
-                healthRecoverable && 
-                !healthDecaying &&
-                !healthLost)
-        {
-            SetCurrentHealth(healthRecoveryValue);
+        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0) {
+            if (healthLost) {
+                healthRecovering = false;
+
+                if (healthRecoveryRoutine != null)
+                    StopCoroutine(healthRecoveryRoutine);
+                yield break;
+            }
+            SetCurrentEnergy(healthRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
@@ -260,9 +279,13 @@ public class PlayerUI : MonoBehaviour
             energyLost = true;
             energyDecaying = false;
             energyRecovering = false;
-            StopCoroutine(EnergyRecovery());
-            StopCoroutine(DestroyedTimer(2));
-            StartCoroutine(DestroyedTimer(2));
+
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
+
+            if (energyDestroyedTimerRoutine != null)
+                StopCoroutine(energyDestroyedTimerRoutine);
+            energyDestroyedTimerRoutine = StartCoroutine(DestroyedTimer(2));
         }
         else
             energyDestroyedValue.value += newValue;
@@ -281,7 +304,9 @@ public class PlayerUI : MonoBehaviour
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
             if (energyLost) {
                 energyRecovering = false;
-                StopCoroutine(EnergyRecovery());
+
+                if (energyRecoveryRoutine != null)  
+                    StopCoroutine(energyRecoveryRoutine);
                 yield break;
             }
             SetCurrentEnergy(energyRecoveryValue);
@@ -315,8 +340,10 @@ public class PlayerUI : MonoBehaviour
             staminaDecaying = false;
             staminaRecovering = false;
 
-            StopCoroutine(StaminaRecovery());
-            StopCoroutine(DestroyedTimer(3));
+            if (staminaRecoveryRoutine != null)
+                StopCoroutine(staminaRecoveryRoutine);
+            if (staminaDestroyedTimerRoutine != null)
+                StopCoroutine(staminaDestroyedTimerRoutine);
             StartCoroutine(DestroyedTimer(3));
         }
         else
@@ -338,7 +365,8 @@ public class PlayerUI : MonoBehaviour
         {
             if (staminaLost) {
                 staminaRecovering = false;
-                StopCoroutine(StaminaRecovery());
+                if (staminaRecoveryRoutine != null)
+                    StopCoroutine(staminaRecoveryRoutine);
                 yield break;
             }
             SetCurrentStamina(staminaRecoveryValue);

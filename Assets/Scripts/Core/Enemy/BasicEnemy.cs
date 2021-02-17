@@ -119,6 +119,8 @@ public class BasicEnemy : MonoBehaviour
     private float playerDistance;
     private Vector2 newPosition;
 
+    private Coroutine attackAnimationCoroutine;
+
     // Start is called before the first frame update
     void Awake() {
         SetupVariables();
@@ -333,7 +335,7 @@ public class BasicEnemy : MonoBehaviour
 
                         //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
                         isPicking = false;
-                        StartCoroutine(AttackAnimation());
+                        attackAnimationCoroutine = StartCoroutine(AttackAnimation());
                         return;
                     }
                     // keep iterating
@@ -529,7 +531,7 @@ public class BasicEnemy : MonoBehaviour
         isInvincible = true;
         enemyMovement.SetFollow(false);
         if (isAttacking) {
-            StopCoroutine(AttackAnimation());
+            StopCoroutine(attackAnimationCoroutine);
             FinishAttack();
         }
 
