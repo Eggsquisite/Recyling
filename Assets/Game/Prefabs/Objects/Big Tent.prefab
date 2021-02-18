@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5253578468724851248}
   - component: {fileID: 5253578468724851249}
   - component: {fileID: 4413492067716255773}
+  - component: {fileID: 990847118}
   m_Layer: 0
   m_Name: Big Tent
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -280
+  m_SortingOrder: 38
   m_Sprite: {fileID: 3126794213404919252, guid: 07d34f3fb3b35ad4097576a77ae5e198, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,3 +97,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+--- !u!68 &990847118
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253578468724851250}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.1032124, y: -0.011947364}
+  - {x: 2.0254593, y: -0.022028476}
+  - {x: 0.5348604, y: -1.2353326}
+  - {x: -0.33449388, y: -0.35098958}
+  - {x: -1.1195645, y: -0.32447386}
+  - {x: -1.1289041, y: -0.013740033}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

@@ -345,7 +345,7 @@ MonoBehaviour:
   stunFollowDelay: 0.25
   borderLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
   minMoveSpeed: 1
   maxMoveSpeed: 1.5
   idleSpeedMult: 0.75
@@ -392,6 +392,7 @@ MonoBehaviour:
   attackFollowDistances:
   - -0.5
   - -1
+  attackFollowFacePlayer: 
   minAttackDelay: 1
   maxAttackDelay: 2
 --- !u!114 &1035896704084563224

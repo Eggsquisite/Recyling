@@ -1,682 +1,679 @@
 fileFormatVersion: 2
-guid: f997c7169e07b3c4097c10fa18f60885
+guid: 45e980bf2643d5f48892ff1949cb5c25
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3930877054352106209
-    second: Sci-fi assets planet two_0
+      213: -3871553710077906751
+    second: Tilemap_Planet Two_0
   - first:
-      213: 8144865879670715967
-    second: Sci-fi assets planet two_1
+      213: -8806358810377034848
+    second: Tilemap_Planet Two_1
   - first:
-      213: -7730691024901711942
-    second: Sci-fi assets planet two_2
+      213: -3291084942371147385
+    second: Tilemap_Planet Two_2
   - first:
-      213: 2220545825295425251
-    second: Sci-fi assets planet two_3
+      213: 6501678122571443950
+    second: Tilemap_Planet Two_3
   - first:
-      213: 2820093263769937715
-    second: Sci-fi assets planet two_4
+      213: 7688932427875737111
+    second: Tilemap_Planet Two_4
   - first:
-      213: 2503885241562129330
-    second: Sci-fi assets planet two_5
+      213: 2209281619293540921
+    second: Tilemap_Planet Two_5
   - first:
-      213: 6097190902904808179
-    second: Sci-fi assets planet two_6
+      213: 6038625976184749841
+    second: Tilemap_Planet Two_6
   - first:
-      213: -4072372554160454274
-    second: Sci-fi assets planet two_7
+      213: 6853488982222772433
+    second: Tilemap_Planet Two_7
   - first:
-      213: -505214583379431896
-    second: Sci-fi assets planet two_8
+      213: -5497952986468567653
+    second: Tilemap_Planet Two_8
   - first:
-      213: -8858687973338391555
-    second: Sci-fi assets planet two_9
+      213: 2212368400361412714
+    second: Tilemap_Planet Two_9
   - first:
-      213: -423627019965435322
-    second: Sci-fi assets planet two_10
+      213: -668919465735766318
+    second: Tilemap_Planet Two_10
   - first:
-      213: 4526059850140786317
-    second: Sci-fi assets planet two_11
+      213: 458772866130140741
+    second: Tilemap_Planet Two_11
   - first:
-      213: 8001743867243252348
-    second: Sci-fi assets planet two_12
+      213: -2355680081136042988
+    second: Tilemap_Planet Two_12
   - first:
-      213: -7185207556918170621
-    second: Sci-fi assets planet two_13
+      213: 5327781484994119949
+    second: Tilemap_Planet Two_13
   - first:
-      213: 1970734924535332463
-    second: Sci-fi assets planet two_14
+      213: 7599650173674554510
+    second: Tilemap_Planet Two_14
   - first:
-      213: 6211308065418497784
-    second: Sci-fi assets planet two_15
+      213: 4351314704445274161
+    second: Tilemap_Planet Two_15
   - first:
-      213: -6799492621562440823
-    second: Sci-fi assets planet two_16
+      213: -6075199792567313995
+    second: Tilemap_Planet Two_16
   - first:
-      213: 8513931573856788258
-    second: Sci-fi assets planet two_17
+      213: 1962884468863101054
+    second: Tilemap_Planet Two_17
   - first:
-      213: -2650621495982565450
-    second: Sci-fi assets planet two_18
+      213: -8126436458907962221
+    second: Tilemap_Planet Two_18
   - first:
-      213: 1487526486437520410
-    second: Sci-fi assets planet two_19
+      213: -6280561487882606366
+    second: Tilemap_Planet Two_19
   - first:
-      213: 9167404003397350426
-    second: Sci-fi assets planet two_20
+      213: -5423168393626149770
+    second: Tilemap_Planet Two_20
   - first:
-      213: -7647754635686362800
-    second: Sci-fi assets planet two_21
+      213: -3019310584025331458
+    second: Tilemap_Planet Two_21
   - first:
-      213: 2361332823291819343
-    second: Sci-fi assets planet two_22
+      213: -8874386959011905206
+    second: Tilemap_Planet Two_22
   - first:
-      213: -409056879546548541
-    second: Sci-fi assets planet two_23
+      213: 1732062416926009278
+    second: Tilemap_Planet Two_23
   - first:
-      213: -3114354389863334450
-    second: Sci-fi assets planet two_24
+      213: 6891233121707020091
+    second: Tilemap_Planet Two_24
   - first:
-      213: 5050894803963379533
-    second: Sci-fi assets planet two_25
+      213: -1180650254170561300
+    second: Tilemap_Planet Two_25
   - first:
-      213: 6102648350852980822
-    second: Sci-fi assets planet two_26
+      213: -3020618826890096977
+    second: Tilemap_Planet Two_26
   - first:
-      213: 2695427643345423888
-    second: Sci-fi assets planet two_27
+      213: -317756838396869333
+    second: Tilemap_Planet Two_27
   - first:
-      213: -4801595858617570448
-    second: Sci-fi assets planet two_28
+      213: 2659948302909137787
+    second: Tilemap_Planet Two_28
   - first:
-      213: -466582213736534892
-    second: Sci-fi assets planet two_29
+      213: -4757948719829748034
+    second: Tilemap_Planet Two_29
   - first:
-      213: -1977887918394025656
-    second: Sci-fi assets planet two_30
+      213: 6262836167008786524
+    second: Tilemap_Planet Two_30
   - first:
-      213: -4990895369185897249
-    second: Sci-fi assets planet two_31
+      213: -5271785315302306353
+    second: Tilemap_Planet Two_31
   - first:
-      213: -7638360991138110898
-    second: Sci-fi assets planet two_32
+      213: -7954003058605539477
+    second: Tilemap_Planet Two_32
   - first:
-      213: -3089093245120039342
-    second: Sci-fi assets planet two_33
+      213: 5922999735153232394
+    second: Tilemap_Planet Two_33
   - first:
-      213: 2513431179319631078
-    second: Sci-fi assets planet two_34
+      213: 6695258806137544760
+    second: Tilemap_Planet Two_34
   - first:
-      213: -3729114301096664594
-    second: Sci-fi assets planet two_35
+      213: -4015227938163221953
+    second: Tilemap_Planet Two_35
   - first:
-      213: -8231842363941101443
-    second: Sci-fi assets planet two_36
+      213: -1057237345300969317
+    second: Tilemap_Planet Two_36
   - first:
-      213: -6935644662253846931
-    second: Sci-fi assets planet two_37
+      213: -2187586662212774453
+    second: Tilemap_Planet Two_37
   - first:
-      213: 5589168263972408754
-    second: Sci-fi assets planet two_38
+      213: -1107088492858058219
+    second: Tilemap_Planet Two_38
   - first:
-      213: -7042382448235118074
-    second: Sci-fi assets planet two_39
+      213: -7225902073559106196
+    second: Tilemap_Planet Two_39
   - first:
-      213: 6229485718876964449
-    second: Sci-fi assets planet two_40
+      213: 2817768542363984476
+    second: Tilemap_Planet Two_40
   - first:
-      213: 5094526872738434232
-    second: Sci-fi assets planet two_41
+      213: -6739038379705910077
+    second: Tilemap_Planet Two_41
   - first:
-      213: -6047389831586396360
-    second: Sci-fi assets planet two_42
+      213: -5012180924082962475
+    second: Tilemap_Planet Two_42
   - first:
-      213: 361609922414143488
-    second: Sci-fi assets planet two_43
+      213: -4962548806471217596
+    second: Tilemap_Planet Two_43
   - first:
-      213: -6876144258779592863
-    second: Sci-fi assets planet two_44
+      213: 1556971442620882984
+    second: Tilemap_Planet Two_44
   - first:
-      213: -8262587541067927270
-    second: Sci-fi assets planet two_45
+      213: -7614077280135481657
+    second: Tilemap_Planet Two_45
   - first:
-      213: 851716578914687790
-    second: Sci-fi assets planet two_46
+      213: -57135869286144811
+    second: Tilemap_Planet Two_46
   - first:
-      213: -4733513348527904049
-    second: Sci-fi assets planet two_47
+      213: -4807813440303033828
+    second: Tilemap_Planet Two_47
   - first:
-      213: -3166014501845726178
-    second: Sci-fi assets planet two_48
+      213: 5565407489835432357
+    second: Tilemap_Planet Two_48
   - first:
-      213: -4475971514303317428
-    second: Sci-fi assets planet two_49
+      213: -8838384546050240546
+    second: Tilemap_Planet Two_49
   - first:
-      213: 14268180334302413
-    second: Sci-fi assets planet two_50
+      213: 2058219350704399344
+    second: Tilemap_Planet Two_50
   - first:
-      213: -5751649645467574998
-    second: Sci-fi assets planet two_51
+      213: 4960272296378469632
+    second: Tilemap_Planet Two_51
   - first:
-      213: -685257875659694826
-    second: Sci-fi assets planet two_52
+      213: 4636297003430279913
+    second: Tilemap_Planet Two_52
   - first:
-      213: -614604837275682146
-    second: Sci-fi assets planet two_53
+      213: 5755588252068109789
+    second: Tilemap_Planet Two_53
   - first:
-      213: -5455518905018550913
-    second: Sci-fi assets planet two_54
+      213: -4567300581507447571
+    second: Tilemap_Planet Two_54
   - first:
-      213: -5366456455013939505
-    second: Sci-fi assets planet two_55
+      213: 5910612580838212536
+    second: Tilemap_Planet Two_55
   - first:
-      213: 1932457414401462290
-    second: Sci-fi assets planet two_56
+      213: 180651954089124674
+    second: Tilemap_Planet Two_56
   - first:
-      213: -7269743258657490843
-    second: Sci-fi assets planet two_57
+      213: -1166706823919192859
+    second: Tilemap_Planet Two_57
   - first:
-      213: -2817210516946284922
-    second: Sci-fi assets planet two_58
+      213: -8024895882538268556
+    second: Tilemap_Planet Two_58
   - first:
-      213: 6116218158886678023
-    second: Sci-fi assets planet two_59
+      213: 5322826359461933746
+    second: Tilemap_Planet Two_59
   - first:
-      213: 452815362711126198
-    second: Sci-fi assets planet two_60
+      213: 3330420676976380789
+    second: Tilemap_Planet Two_60
   - first:
-      213: -1171513570207877901
-    second: Sci-fi assets planet two_61
+      213: 2991673128462552143
+    second: Tilemap_Planet Two_61
   - first:
-      213: -5680559756181174128
-    second: Sci-fi assets planet two_62
+      213: 2995259123093922157
+    second: Tilemap_Planet Two_62
   - first:
-      213: 6737562365692052289
-    second: Sci-fi assets planet two_63
+      213: 5575398148172106836
+    second: Tilemap_Planet Two_63
   - first:
-      213: 2008897594062977646
-    second: Sci-fi assets planet two_64
+      213: -3447829148084582255
+    second: Tilemap_Planet Two_64
   - first:
-      213: -3387447166268496112
-    second: Sci-fi assets planet two_65
+      213: 1126009294231909438
+    second: Tilemap_Planet Two_65
   - first:
-      213: -8377089753664960517
-    second: Sci-fi assets planet two_66
+      213: 5351175964577586595
+    second: Tilemap_Planet Two_66
   - first:
-      213: -5874104242728599455
-    second: Sci-fi assets planet two_67
+      213: -4604499747604822454
+    second: Tilemap_Planet Two_67
   - first:
-      213: -6787158082649653614
-    second: Sci-fi assets planet two_68
+      213: -1998483293134357156
+    second: Tilemap_Planet Two_68
   - first:
-      213: -3356290380903337588
-    second: Sci-fi assets planet two_69
+      213: 9075265762856321946
+    second: Tilemap_Planet Two_69
   - first:
-      213: 6552777477571640073
-    second: Sci-fi assets planet two_70
+      213: 8953504890086768738
+    second: Tilemap_Planet Two_70
   - first:
-      213: 1455062549963364839
-    second: Sci-fi assets planet two_71
+      213: 1991849019519453502
+    second: Tilemap_Planet Two_71
   - first:
-      213: 8233424578246305504
-    second: Sci-fi assets planet two_72
+      213: 8849058632897270762
+    second: Tilemap_Planet Two_72
   - first:
-      213: 5573653481164136328
-    second: Sci-fi assets planet two_73
+      213: -5944961089839591014
+    second: Tilemap_Planet Two_73
   - first:
-      213: -1098450990552856214
-    second: Sci-fi assets planet two_74
+      213: -1863556806312385772
+    second: Tilemap_Planet Two_74
   - first:
-      213: 6673918706414437500
-    second: Sci-fi assets planet two_75
+      213: 5282916319855925176
+    second: Tilemap_Planet Two_75
   - first:
-      213: 5457049099705055389
-    second: Sci-fi assets planet two_76
+      213: 3602944814497281307
+    second: Tilemap_Planet Two_76
   - first:
-      213: -1008991512772676722
-    second: Sci-fi assets planet two_77
+      213: -8642053145437431971
+    second: Tilemap_Planet Two_77
   - first:
-      213: -451833127482997597
-    second: Sci-fi assets planet two_78
+      213: -2592590267261794553
+    second: Tilemap_Planet Two_78
   - first:
-      213: -3032571024036323120
-    second: Sci-fi assets planet two_79
+      213: -2537853715447944233
+    second: Tilemap_Planet Two_79
   - first:
-      213: 1151426629410490609
-    second: Sci-fi assets planet two_80
+      213: 1081515062984282120
+    second: Tilemap_Planet Two_80
   - first:
-      213: 3311737257812939604
-    second: Sci-fi assets planet two_81
+      213: -7624666346283617632
+    second: Tilemap_Planet Two_81
   - first:
-      213: -1092243180307639433
-    second: Sci-fi assets planet two_82
+      213: 6172725981863890542
+    second: Tilemap_Planet Two_82
   - first:
-      213: 2946154057473247053
-    second: Sci-fi assets planet two_83
+      213: 7555853532557407970
+    second: Tilemap_Planet Two_83
   - first:
-      213: -3169188419786775490
-    second: Sci-fi assets planet two_84
+      213: -1081145110703932963
+    second: Tilemap_Planet Two_84
   - first:
-      213: 5727201000285115619
-    second: Sci-fi assets planet two_85
+      213: 4759663883156625992
+    second: Tilemap_Planet Two_85
   - first:
-      213: 6492895514128562125
-    second: Sci-fi assets planet two_86
+      213: -9132759677756401892
+    second: Tilemap_Planet Two_86
   - first:
-      213: 7476458706891797766
-    second: Sci-fi assets planet two_87
+      213: -4641116740124247491
+    second: Tilemap_Planet Two_87
   - first:
-      213: 3239046383463348695
-    second: Sci-fi assets planet two_88
+      213: -7272554307795303979
+    second: Tilemap_Planet Two_88
   - first:
-      213: -3448460128564439463
-    second: Sci-fi assets planet two_89
+      213: 8361342513384235642
+    second: Tilemap_Planet Two_89
   - first:
-      213: -1271028939054300616
-    second: Sci-fi assets planet two_90
+      213: -4622644033900025464
+    second: Tilemap_Planet Two_90
   - first:
-      213: -7133401749217566271
-    second: Sci-fi assets planet two_91
+      213: -8567488145198936433
+    second: Tilemap_Planet Two_91
   - first:
-      213: -8480629280430170165
-    second: Sci-fi assets planet two_92
+      213: 5563388440137579837
+    second: Tilemap_Planet Two_92
   - first:
-      213: 2709481581599873813
-    second: Sci-fi assets planet two_93
+      213: 3796148893444393993
+    second: Tilemap_Planet Two_93
   - first:
-      213: 806100098800917594
-    second: Sci-fi assets planet two_94
+      213: -8212610848492724450
+    second: Tilemap_Planet Two_94
   - first:
-      213: 3810511968312797690
-    second: Sci-fi assets planet two_95
+      213: -5563966340023565667
+    second: Tilemap_Planet Two_95
   - first:
-      213: 8435393456989061201
-    second: Sci-fi assets planet two_96
+      213: 2675687126061264137
+    second: Tilemap_Planet Two_96
   - first:
-      213: 5681648545064577009
-    second: Sci-fi assets planet two_97
+      213: -3374849163001766236
+    second: Tilemap_Planet Two_97
   - first:
-      213: 1613616571627732391
-    second: Sci-fi assets planet two_98
+      213: 1605725853337358479
+    second: Tilemap_Planet Two_98
   - first:
-      213: 1740085487197203098
-    second: Sci-fi assets planet two_99
+      213: 1404707062047376791
+    second: Tilemap_Planet Two_99
   - first:
-      213: -7629926058444129742
-    second: Sci-fi assets planet two_100
+      213: -1558963921205155816
+    second: Tilemap_Planet Two_100
   - first:
-      213: 5435075907271871909
-    second: Sci-fi assets planet two_101
+      213: 5270994126950809133
+    second: Tilemap_Planet Two_101
   - first:
-      213: -8544872096649993293
-    second: Sci-fi assets planet two_102
+      213: -7577587804789372482
+    second: Tilemap_Planet Two_102
   - first:
-      213: -5818184584503795577
-    second: Sci-fi assets planet two_103
+      213: -5688255433947092531
+    second: Tilemap_Planet Two_103
   - first:
-      213: -154614253804011934
-    second: Sci-fi assets planet two_104
+      213: -2788545429986835973
+    second: Tilemap_Planet Two_104
   - first:
-      213: -7039088641367556227
-    second: Sci-fi assets planet two_105
+      213: -4036490695360964744
+    second: Tilemap_Planet Two_105
   - first:
-      213: 6973300269673414541
-    second: Sci-fi assets planet two_106
+      213: 8517541357800795158
+    second: Tilemap_Planet Two_106
   - first:
-      213: -4813817378020791566
-    second: Sci-fi assets planet two_107
+      213: 5415144299934408603
+    second: Tilemap_Planet Two_107
   - first:
-      213: 4100581880863900177
-    second: Sci-fi assets planet two_108
+      213: 4936391752810197387
+    second: Tilemap_Planet Two_108
   - first:
-      213: -428530163292604775
-    second: Sci-fi assets planet two_109
+      213: -4620867866627469624
+    second: Tilemap_Planet Two_109
   - first:
-      213: -4706674417905960484
-    second: Sci-fi assets planet two_110
+      213: -2007354133536794725
+    second: Tilemap_Planet Two_110
   - first:
-      213: -6085410682554118926
-    second: Sci-fi assets planet two_111
+      213: 6560505859456747106
+    second: Tilemap_Planet Two_111
   - first:
-      213: 4426817925188148320
-    second: Sci-fi assets planet two_112
+      213: 7894400357024521492
+    second: Tilemap_Planet Two_112
   - first:
-      213: 4782379721439837995
-    second: Sci-fi assets planet two_113
+      213: 184593175361485247
+    second: Tilemap_Planet Two_113
   - first:
-      213: 4752301255999888051
-    second: Sci-fi assets planet two_114
+      213: 1332085334241264717
+    second: Tilemap_Planet Two_114
   - first:
-      213: 8130143097167128120
-    second: Sci-fi assets planet two_115
+      213: -8116127512128197462
+    second: Tilemap_Planet Two_115
   - first:
-      213: 6412728132546074886
-    second: Sci-fi assets planet two_116
+      213: -6461351988293785181
+    second: Tilemap_Planet Two_116
   - first:
-      213: 7819604240708943385
-    second: Sci-fi assets planet two_117
+      213: -7466171569181200223
+    second: Tilemap_Planet Two_117
   - first:
-      213: -1350199453182166546
-    second: Sci-fi assets planet two_118
+      213: 6401686815710404150
+    second: Tilemap_Planet Two_118
   - first:
-      213: 9094668506819602071
-    second: Sci-fi assets planet two_119
+      213: -7461669692975480748
+    second: Tilemap_Planet Two_119
   - first:
-      213: 1475818739169641772
-    second: Sci-fi assets planet two_120
+      213: 4129252762020001436
+    second: Tilemap_Planet Two_120
   - first:
-      213: 8865371210201247486
-    second: Sci-fi assets planet two_121
+      213: 3390851331873091242
+    second: Tilemap_Planet Two_121
   - first:
-      213: -9033986427164340550
-    second: Sci-fi assets planet two_122
+      213: 3935787750978344159
+    second: Tilemap_Planet Two_122
   - first:
-      213: 6956648806519328898
-    second: Sci-fi assets planet two_123
+      213: 7402739864213372
+    second: Tilemap_Planet Two_123
   - first:
-      213: 7902075055299213700
-    second: Sci-fi assets planet two_124
+      213: 1978424131189919121
+    second: Tilemap_Planet Two_124
   - first:
-      213: 3165350325615056230
-    second: Sci-fi assets planet two_125
+      213: 9091214492347540199
+    second: Tilemap_Planet Two_125
   - first:
-      213: -8086535355821638291
-    second: Sci-fi assets planet two_126
+      213: -8965907972175352506
+    second: Tilemap_Planet Two_126
   - first:
-      213: -1193201484253284406
-    second: Sci-fi assets planet two_127
+      213: 5464513141963850300
+    second: Tilemap_Planet Two_127
   - first:
-      213: 3580657761292463421
-    second: Sci-fi assets planet two_128
+      213: -5039276141128887619
+    second: Tilemap_Planet Two_128
   - first:
-      213: -3513372071804763338
-    second: Sci-fi assets planet two_129
+      213: -8583436526128009686
+    second: Tilemap_Planet Two_129
   - first:
-      213: -7070296386474389553
-    second: Sci-fi assets planet two_130
+      213: 4241098594039539693
+    second: Tilemap_Planet Two_130
   - first:
-      213: 6400701349336460171
-    second: Sci-fi assets planet two_131
+      213: -4371411590647917627
+    second: Tilemap_Planet Two_131
   - first:
-      213: 4660264934250897494
-    second: Sci-fi assets planet two_132
+      213: 9187922606462390727
+    second: Tilemap_Planet Two_132
   - first:
-      213: 5932794904519262627
-    second: Sci-fi assets planet two_133
+      213: -248105465494785927
+    second: Tilemap_Planet Two_133
   - first:
-      213: 5760648097367261204
-    second: Sci-fi assets planet two_134
+      213: -3562725950951533402
+    second: Tilemap_Planet Two_134
   - first:
-      213: -6719748272206107530
-    second: Sci-fi assets planet two_135
+      213: -6696185906263373630
+    second: Tilemap_Planet Two_135
   - first:
-      213: 8932269969688228985
-    second: Sci-fi assets planet two_136
+      213: 4670738268149804900
+    second: Tilemap_Planet Two_136
   - first:
-      213: 2920431151359075700
-    second: Sci-fi assets planet two_137
+      213: -5166072570124536724
+    second: Tilemap_Planet Two_137
   - first:
-      213: 9049068670430914183
-    second: Sci-fi assets planet two_138
+      213: 1147113082196187776
+    second: Tilemap_Planet Two_138
   - first:
-      213: -1532228568626651976
-    second: Sci-fi assets planet two_139
+      213: 3404088993175358628
+    second: Tilemap_Planet Two_139
   - first:
-      213: 1777058879092652895
-    second: Sci-fi assets planet two_140
+      213: 541666692848183282
+    second: Tilemap_Planet Two_140
   - first:
-      213: 244460132131722724
-    second: Sci-fi assets planet two_141
+      213: 1827836411664605604
+    second: Tilemap_Planet Two_141
   - first:
-      213: -2938207984597284690
-    second: Sci-fi assets planet two_142
+      213: 5366104024239545084
+    second: Tilemap_Planet Two_142
   - first:
-      213: 2004729713814005130
-    second: Sci-fi assets planet two_143
+      213: 8173846322332179028
+    second: Tilemap_Planet Two_143
   - first:
-      213: 3793338871176836527
-    second: Sci-fi assets planet two_144
+      213: 1412206970610968079
+    second: Tilemap_Planet Two_144
   - first:
-      213: 4898211284164863175
-    second: Sci-fi assets planet two_145
+      213: -6147029837250390126
+    second: Tilemap_Planet Two_145
   - first:
-      213: -947965244860439844
-    second: Sci-fi assets planet two_146
+      213: -4572860939794786790
+    second: Tilemap_Planet Two_146
   - first:
-      213: -3769732109433965098
-    second: Sci-fi assets planet two_147
+      213: 981234380043177156
+    second: Tilemap_Planet Two_147
   - first:
-      213: -6030848220092400490
-    second: Sci-fi assets planet two_148
+      213: 3008862839214588784
+    second: Tilemap_Planet Two_148
   - first:
-      213: 1834848689555183837
-    second: Sci-fi assets planet two_149
+      213: 7209370376501913171
+    second: Tilemap_Planet Two_149
   - first:
-      213: 4166956272132951011
-    second: Sci-fi assets planet two_150
+      213: 1348356927274223567
+    second: Tilemap_Planet Two_150
   - first:
-      213: 8972940605671119052
-    second: Sci-fi assets planet two_151
+      213: 4600316331189023945
+    second: Tilemap_Planet Two_151
   - first:
-      213: -134437949809814131
-    second: Sci-fi assets planet two_152
+      213: -4422087735290714497
+    second: Tilemap_Planet Two_152
   - first:
-      213: -2582032220552511882
-    second: Sci-fi assets planet two_153
+      213: -8786909821746625683
+    second: Tilemap_Planet Two_153
   - first:
-      213: 8855267331513667062
-    second: Sci-fi assets planet two_154
+      213: 252829181618505876
+    second: Tilemap_Planet Two_154
   - first:
-      213: 3602596786796095890
-    second: Sci-fi assets planet two_155
+      213: 8590655611487397588
+    second: Tilemap_Planet Two_155
   - first:
-      213: 1860044447944515052
-    second: Sci-fi assets planet two_156
+      213: -2033118338135303218
+    second: Tilemap_Planet Two_156
   - first:
-      213: 4525006940598171481
-    second: Sci-fi assets planet two_157
+      213: 5818772821169736197
+    second: Tilemap_Planet Two_157
   - first:
-      213: -2250193338018974105
-    second: Sci-fi assets planet two_158
+      213: 7411922884261304503
+    second: Tilemap_Planet Two_158
   - first:
-      213: 7765922949885068534
-    second: Sci-fi assets planet two_159
+      213: -3315387495002210414
+    second: Tilemap_Planet Two_159
   - first:
-      213: 4959780771200086863
-    second: Sci-fi assets planet two_160
+      213: 6946020471882596757
+    second: Tilemap_Planet Two_160
   - first:
-      213: 6951899922390054559
-    second: Sci-fi assets planet two_161
+      213: -281723417322880981
+    second: Tilemap_Planet Two_161
   - first:
-      213: -539465107494329886
-    second: Sci-fi assets planet two_162
+      213: -6227345379177514165
+    second: Tilemap_Planet Two_162
   - first:
-      213: 3483251147158131396
-    second: Sci-fi assets planet two_163
+      213: 8469064622957957104
+    second: Tilemap_Planet Two_163
   - first:
-      213: 5325654388597982218
-    second: Sci-fi assets planet two_164
+      213: -5443972277914673404
+    second: Tilemap_Planet Two_164
   - first:
-      213: -3222456972107933703
-    second: Sci-fi assets planet two_165
+      213: -8339073066759271340
+    second: Tilemap_Planet Two_165
   - first:
-      213: 640517130542175535
-    second: Sci-fi assets planet two_166
+      213: 6196100364234905518
+    second: Tilemap_Planet Two_166
   - first:
-      213: -5999430647619467318
-    second: Sci-fi assets planet two_167
+      213: -2643369215083329897
+    second: Tilemap_Planet Two_167
   - first:
-      213: 2376032819591240783
-    second: Sci-fi assets planet two_168
+      213: 234766151978604426
+    second: Tilemap_Planet Two_168
   - first:
-      213: 6102959059797813662
-    second: Sci-fi assets planet two_169
+      213: -5302805544641361368
+    second: Tilemap_Planet Two_169
   - first:
-      213: 1543710919316827713
-    second: Sci-fi assets planet two_170
+      213: 5134269855708647969
+    second: Tilemap_Planet Two_170
   - first:
-      213: 6354931170400858510
-    second: Sci-fi assets planet two_171
+      213: 1396954770446406383
+    second: Tilemap_Planet Two_171
   - first:
-      213: 4213919195559617793
-    second: Sci-fi assets planet two_172
+      213: -5187559889693426319
+    second: Tilemap_Planet Two_172
   - first:
-      213: 8443889430488016535
-    second: Sci-fi assets planet two_173
+      213: -3040474643878660264
+    second: Tilemap_Planet Two_173
   - first:
-      213: -1616172258124740680
-    second: Sci-fi assets planet two_174
+      213: 1232731329507590601
+    second: Tilemap_Planet Two_174
   - first:
-      213: -3556976276021355552
-    second: Sci-fi assets planet two_175
+      213: 2841770662714905694
+    second: Tilemap_Planet Two_175
   - first:
-      213: -4678979429732726538
-    second: Sci-fi assets planet two_176
+      213: -2742229333329829207
+    second: Tilemap_Planet Two_176
   - first:
-      213: 2534931409663762662
-    second: Sci-fi assets planet two_177
+      213: -1818842205096119218
+    second: Tilemap_Planet Two_177
   - first:
-      213: 1828380686194151788
-    second: Sci-fi assets planet two_178
+      213: 7970522529596553802
+    second: Tilemap_Planet Two_178
   - first:
-      213: 8668084361252827014
-    second: Sci-fi assets planet two_179
+      213: -6498846334145755623
+    second: Tilemap_Planet Two_179
   - first:
-      213: -4253150177740842235
-    second: Sci-fi assets planet two_180
+      213: 1934012985043839786
+    second: Tilemap_Planet Two_180
   - first:
-      213: -7970631941037376070
-    second: Sci-fi assets planet two_181
+      213: -7065126843308391260
+    second: Tilemap_Planet Two_181
   - first:
-      213: 7775170590249896372
-    second: Sci-fi assets planet two_182
+      213: -2265194713889767099
+    second: Tilemap_Planet Two_182
   - first:
-      213: -7559328171983646428
-    second: Sci-fi assets planet two_183
+      213: -4667950202252137476
+    second: Tilemap_Planet Two_183
   - first:
-      213: 3377196242134804669
-    second: Sci-fi assets planet two_184
+      213: 6527815081282875131
+    second: Tilemap_Planet Two_184
   - first:
-      213: 4442631268257530736
-    second: Sci-fi assets planet two_185
+      213: -2579656339590273046
+    second: Tilemap_Planet Two_185
   - first:
-      213: 7985071845239185943
-    second: Sci-fi assets planet two_186
+      213: -2193801180967666355
+    second: Tilemap_Planet Two_186
   - first:
-      213: -5166216126174181854
-    second: Sci-fi assets planet two_187
+      213: 6793461021360708062
+    second: Tilemap_Planet Two_187
   - first:
-      213: 1503085944435735558
-    second: Sci-fi assets planet two_188
+      213: 4880216920586322423
+    second: Tilemap_Planet Two_188
   - first:
-      213: -5739329126781390274
-    second: Sci-fi assets planet two_189
+      213: -2713137757574920488
+    second: Tilemap_Planet Two_189
   - first:
-      213: -1896676422098845677
-    second: Sci-fi assets planet two_190
+      213: -3026119993021426789
+    second: Tilemap_Planet Two_190
   - first:
-      213: -3009916784957486905
-    second: Sci-fi assets planet two_191
+      213: 7900968755866101503
+    second: Tilemap_Planet Two_191
   - first:
-      213: -6236289336063864127
-    second: Sci-fi assets planet two_192
+      213: 2422062600045449546
+    second: Tilemap_Planet Two_192
   - first:
-      213: -2094237965605828370
-    second: Sci-fi assets planet two_193
+      213: -2757863943013086074
+    second: Tilemap_Planet Two_193
   - first:
-      213: -5072985449557977888
-    second: Sci-fi assets planet two_194
+      213: -7468522442926892057
+    second: Tilemap_Planet Two_194
   - first:
-      213: -6430398699558929490
-    second: Sci-fi assets planet two_195
+      213: -8378684557907770374
+    second: Tilemap_Planet Two_195
   - first:
-      213: 358047224281899989
-    second: Sci-fi assets planet two_196
+      213: 871625222476039311
+    second: Tilemap_Planet Two_196
   - first:
-      213: 8305921484954175149
-    second: Sci-fi assets planet two_197
+      213: -4573612525938445207
+    second: Tilemap_Planet Two_197
   - first:
-      213: -5774519403746172564
-    second: Sci-fi assets planet two_198
+      213: 5583271629689628149
+    second: Tilemap_Planet Two_198
   - first:
-      213: -6989651097429387633
-    second: Sci-fi assets planet two_199
+      213: -1987913977577172604
+    second: Tilemap_Planet Two_199
   - first:
-      213: 4589702324456651352
-    second: Sci-fi assets planet two_200
+      213: 4859164120322819877
+    second: Tilemap_Planet Two_200
   - first:
-      213: 6068990048129094366
-    second: Sci-fi assets planet two_201
+      213: 7442059225773673397
+    second: Tilemap_Planet Two_201
   - first:
-      213: -5394010509079539192
-    second: Sci-fi assets planet two_202
+      213: 3041921998539621784
+    second: Tilemap_Planet Two_202
   - first:
-      213: 3990351651077627703
-    second: Sci-fi assets planet two_203
+      213: -3685072870925794972
+    second: Tilemap_Planet Two_203
   - first:
-      213: 8889257177667320627
-    second: Sci-fi assets planet two_204
+      213: -1971029103466352078
+    second: Tilemap_Planet Two_204
   - first:
-      213: -5150348737307282262
-    second: Sci-fi assets planet two_205
+      213: 9205939315788050367
+    second: Tilemap_Planet Two_205
   - first:
-      213: 7067398980044914849
-    second: Sci-fi assets planet two_206
+      213: 7932037487166591722
+    second: Tilemap_Planet Two_206
   - first:
-      213: 4446324274418472286
-    second: Sci-fi assets planet two_207
+      213: 8833179249018799046
+    second: Tilemap_Planet Two_207
   - first:
-      213: -4406239170141269990
-    second: Sci-fi assets planet two_208
+      213: -469671191261530257
+    second: Tilemap_Planet Two_208
   - first:
-      213: 2713209149417439034
-    second: Sci-fi assets planet two_209
+      213: 8552201609479837917
+    second: Tilemap_Planet Two_209
   - first:
-      213: 6599163185459094699
-    second: Sci-fi assets planet two_210
+      213: 3344618096467355925
+    second: Tilemap_Planet Two_210
   - first:
-      213: 6936119834316313276
-    second: Sci-fi assets planet two_211
+      213: -3469380249920352605
+    second: Tilemap_Planet Two_211
   - first:
-      213: 8173576804445482279
-    second: Sci-fi assets planet two_212
+      213: -5993591975496477386
+    second: Tilemap_Planet Two_212
   - first:
-      213: -1088438052191730466
-    second: Sci-fi assets planet two_213
+      213: 69839873298931882
+    second: Tilemap_Planet Two_213
   - first:
-      213: -6682785212374221302
-    second: Sci-fi assets planet two_214
+      213: -1080342525417312383
+    second: Tilemap_Planet Two_214
   - first:
-      213: 2452651728192459451
-    second: Sci-fi assets planet two_215
+      213: 6324991249045191556
+    second: Tilemap_Planet Two_215
   - first:
-      213: -4606060842625324485
-    second: Sci-fi assets planet two_216
+      213: 9147716804750931203
+    second: Tilemap_Planet Two_216
   - first:
-      213: -5526417144447195118
-    second: Sci-fi assets planet two_217
+      213: -4617090938870877688
+    second: Tilemap_Planet Two_217
   - first:
-      213: -6774988880180439257
-    second: Sci-fi assets planet two_218
+      213: -3085961023112148575
+    second: Tilemap_Planet Two_218
   - first:
-      213: -8101066576429641398
-    second: Sci-fi assets planet two_219
+      213: 3061757004299503535
+    second: Tilemap_Planet Two_219
   - first:
-      213: -8281484383266624894
-    second: Sci-fi assets planet two_220
+      213: -6043141997319638048
+    second: Tilemap_Planet Two_220
   - first:
-      213: 1321899966289832815
-    second: Sci-fi assets planet two_221
+      213: 3344942971849316627
+    second: Tilemap_Planet Two_221
   - first:
-      213: 4060785335654364154
-    second: Sci-fi assets planet two_222
+      213: -1504925149569447607
+    second: Tilemap_Planet Two_222
   - first:
-      213: 2206021668515187226
-    second: Sci-fi assets planet two_223
-  - first:
-      213: -4063191474587777427
-    second: Sci-fi assets planet two_224
+      213: 8866979466859553069
+    second: Tilemap_Planet Two_223
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -778,7 +775,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sci-fi assets planet two_0
+      name: Tilemap_Planet Two_0
       rect:
         serializedVersion: 2
         x: 0
@@ -792,14 +789,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e22460bad74d8630800000000000000
-      internalID: 3930877054352106209
+      spriteID: 1c0f5fdb96a754ac0800000000000000
+      internalID: -3871553710077906751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_1
+      name: Tilemap_Planet Two_1
       rect:
         serializedVersion: 2
         x: 16
@@ -813,14 +810,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f36f8fc3d50680170800000000000000
-      internalID: 8144865879670715967
+      spriteID: 0a368dee15789c580800000000000000
+      internalID: -8806358810377034848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_2
+      name: Tilemap_Planet Two_2
       rect:
         serializedVersion: 2
         x: 32
@@ -834,14 +831,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab7de68c87117b490800000000000000
-      internalID: -7730691024901711942
+      spriteID: 781b45c8ea7b352d0800000000000000
+      internalID: -3291084942371147385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_3
+      name: Tilemap_Planet Two_3
       rect:
         serializedVersion: 2
         x: 48
@@ -855,14 +852,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eed534c9a6f0de10800000000000000
-      internalID: 2220545825295425251
+      spriteID: eeeaccb1ec99a3a50800000000000000
+      internalID: 6501678122571443950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_4
+      name: Tilemap_Planet Two_4
       rect:
         serializedVersion: 2
         x: 64
@@ -876,14 +873,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 337aa74c1ebf22720800000000000000
-      internalID: 2820093263769937715
+      spriteID: 71ed3813e4394ba60800000000000000
+      internalID: 7688932427875737111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_5
+      name: Tilemap_Planet Two_5
       rect:
         serializedVersion: 2
         x: 80
@@ -897,14 +894,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b367ad6c569fb220800000000000000
-      internalID: 2503885241562129330
+      spriteID: 9329ace6de1f8ae10800000000000000
+      internalID: 2209281619293540921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_6
+      name: Tilemap_Planet Two_6
       rect:
         serializedVersion: 2
         x: 96
@@ -918,14 +915,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f2626762d29d9450800000000000000
-      internalID: 6097190902904808179
+      spriteID: 11f30f1d4528dc350800000000000000
+      internalID: 6038625976184749841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_7
+      name: Tilemap_Planet Two_7
       rect:
         serializedVersion: 2
         x: 112
@@ -939,14 +936,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7547340db60c77c0800000000000000
-      internalID: -4072372554160454274
+      spriteID: 1d811710beb7c1f50800000000000000
+      internalID: 6853488982222772433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_8
+      name: Tilemap_Planet Two_8
       rect:
         serializedVersion: 2
         x: 128
@@ -960,14 +957,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82e625e530e1df8f0800000000000000
-      internalID: -505214583379431896
+      spriteID: b953eb163e853b3b0800000000000000
+      internalID: -5497952986468567653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_9
+      name: Tilemap_Planet Two_9
       rect:
         serializedVersion: 2
         x: 144
@@ -981,14 +978,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfbd32d393e9f0580800000000000000
-      internalID: -8858687973338391555
+      spriteID: a6857d7a659e3be10800000000000000
+      internalID: 2212368400361412714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_10
+      name: Tilemap_Planet Two_10
       rect:
         serializedVersion: 2
         x: 160
@@ -1002,14 +999,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 642f3b54879fe1af0800000000000000
-      internalID: -423627019965435322
+      spriteID: 2deb97d3a4587b6f0800000000000000
+      internalID: -668919465735766318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_11
+      name: Tilemap_Planet Two_11
       rect:
         serializedVersion: 2
         x: 176
@@ -1023,14 +1020,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8e9ccf147bcfce30800000000000000
-      internalID: 4526059850140786317
+      spriteID: 54e5646bd73ed5600800000000000000
+      internalID: 458772866130140741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_12
+      name: Tilemap_Planet Two_12
       rect:
         serializedVersion: 2
         x: 192
@@ -1044,14 +1041,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7ac1b6f6a7eb0f60800000000000000
-      internalID: 8001743867243252348
+      spriteID: 41c3c677271fe4fd0800000000000000
+      internalID: -2355680081136042988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_13
+      name: Tilemap_Planet Two_13
       rect:
         serializedVersion: 2
         x: 208
@@ -1065,14 +1062,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30ca07cbbc3094c90800000000000000
-      internalID: -7185207556918170621
+      spriteID: d094af5680510f940800000000000000
+      internalID: 5327781484994119949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_14
+      name: Tilemap_Planet Two_14
       rect:
         serializedVersion: 2
         x: 224
@@ -1086,14 +1083,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6e7263f8f4795b10800000000000000
-      internalID: 1970734924535332463
+      spriteID: e848b1b7191677960800000000000000
+      internalID: 7599650173674554510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_15
+      name: Tilemap_Planet Two_15
       rect:
         serializedVersion: 2
         x: 240
@@ -1107,14 +1104,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fec9cdc6cff23650800000000000000
-      internalID: 6211308065418497784
+      spriteID: 138f4606ba9f26c30800000000000000
+      internalID: 4351314704445274161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_16
+      name: Tilemap_Planet Two_16
       rect:
         serializedVersion: 2
         x: 0
@@ -1128,14 +1125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98391e66c7953a1a0800000000000000
-      internalID: -6799492621562440823
+      spriteID: 5b99f78f9fd80bba0800000000000000
+      internalID: -6075199792567313995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_17
+      name: Tilemap_Planet Two_17
       rect:
         serializedVersion: 2
         x: 16
@@ -1149,14 +1146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22f57bd58af872670800000000000000
-      internalID: 8513931573856788258
+      spriteID: e7867bd46019d3b10800000000000000
+      internalID: 1962884468863101054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_18
+      name: Tilemap_Planet Two_18
       rect:
         serializedVersion: 2
         x: 32
@@ -1170,14 +1167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b7d1f10bc9173bd0800000000000000
-      internalID: -2650621495982565450
+      spriteID: 394f109a819193f80800000000000000
+      internalID: -8126436458907962221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_19
+      name: Tilemap_Planet Two_19
       rect:
         serializedVersion: 2
         x: 48
@@ -1191,14 +1188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a14e71a4571c4a410800000000000000
-      internalID: 1487526486437520410
+      spriteID: 2e822c44a96f6d8a0800000000000000
+      internalID: -6280561487882606366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_20
+      name: Tilemap_Planet Two_20
       rect:
         serializedVersion: 2
         x: 64
@@ -1212,14 +1209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a143efebe59293f70800000000000000
-      internalID: 9167404003397350426
+      spriteID: 67c99c444190db4b0800000000000000
+      internalID: -5423168393626149770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_21
+      name: Tilemap_Planet Two_21
       rect:
         serializedVersion: 2
         x: 80
@@ -1233,14 +1230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 051419aada7bdd590800000000000000
-      internalID: -7647754635686362800
+      spriteID: ef8c79455014916d0800000000000000
+      internalID: -3019310584025331458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_22
+      name: Tilemap_Planet Two_22
       rect:
         serializedVersion: 2
         x: 96
@@ -1254,14 +1251,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4577c021b325c020800000000000000
-      internalID: 2361332823291819343
+      spriteID: a418cbc4418d7d480800000000000000
+      internalID: -8874386959011905206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_23
+      name: Tilemap_Planet Two_23
       rect:
         serializedVersion: 2
         x: 112
@@ -1275,14 +1272,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ceb2b17fecb25af0800000000000000
-      internalID: -409056879546548541
+      spriteID: eb7eda16795890810800000000000000
+      internalID: 1732062416926009278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_24
+      name: Tilemap_Planet Two_24
       rect:
         serializedVersion: 2
         x: 128
@@ -1296,14 +1293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd7487de2797c4d0800000000000000
-      internalID: -3114354389863334450
+      spriteID: b3fc0cb430492af50800000000000000
+      internalID: 6891233121707020091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_25
+      name: Tilemap_Planet Two_25
       rect:
         serializedVersion: 2
         x: 144
@@ -1317,14 +1314,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4f7a1c3012681640800000000000000
-      internalID: 5050894803963379533
+      spriteID: ce4603469dc7d9fe0800000000000000
+      internalID: -1180650254170561300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_26
+      name: Tilemap_Planet Two_26
       rect:
         serializedVersion: 2
         x: 160
@@ -1338,14 +1335,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65027b58756f0b450800000000000000
-      internalID: 6102648350852980822
+      spriteID: faecb5d4e2b9416d0800000000000000
+      internalID: -3020618826890096977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_27
+      name: Tilemap_Planet Two_27
       rect:
         serializedVersion: 2
         x: 176
@@ -1359,14 +1356,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01e4f5f1925186520800000000000000
-      internalID: 2695427643345423888
+      spriteID: b25476ac6d9179bf0800000000000000
+      internalID: -317756838396869333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_28
+      name: Tilemap_Planet Two_28
       rect:
         serializedVersion: 2
         x: 192
@@ -1380,14 +1377,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07bec1ca10e4d5db0800000000000000
-      internalID: -4801595858617570448
+      spriteID: b736dc373e80ae420800000000000000
+      internalID: 2659948302909137787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_29
+      name: Tilemap_Planet Two_29
       rect:
         serializedVersion: 2
         x: 208
@@ -1401,14 +1398,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49ce7bbd2fd5689f0800000000000000
-      internalID: -466582213736534892
+      spriteID: eb6f50719de58fdb0800000000000000
+      internalID: -4757948719829748034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_30
+      name: Tilemap_Planet Two_30
       rect:
         serializedVersion: 2
         x: 224
@@ -1422,14 +1419,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8495692ea612d84e0800000000000000
-      internalID: -1977887918394025656
+      spriteID: c58170ddf401ae650800000000000000
+      internalID: 6262836167008786524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_31
+      name: Tilemap_Planet Two_31
       rect:
         serializedVersion: 2
         x: 240
@@ -1443,14 +1440,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd45888ca17ccbab0800000000000000
-      internalID: -4990895369185897249
+      spriteID: fcd0945df2bd6d6b0800000000000000
+      internalID: -5271785315302306353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_32
+      name: Tilemap_Planet Two_32
       rect:
         serializedVersion: 2
         x: 0
@@ -1464,14 +1461,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e422309f5271ff590800000000000000
-      internalID: -7638360991138110898
+      spriteID: b6f327d3c54bd9190800000000000000
+      internalID: -7954003058605539477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_33
+      name: Tilemap_Planet Two_33
       rect:
         serializedVersion: 2
         x: 16
@@ -1485,14 +1482,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 256bf8e6f065125d0800000000000000
-      internalID: -3089093245120039342
+      spriteID: a0a8a82b0e8b23250800000000000000
+      internalID: 5922999735153232394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_34
+      name: Tilemap_Planet Two_34
       rect:
         serializedVersion: 2
         x: 32
@@ -1506,14 +1503,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ecdcb2475081e220800000000000000
-      internalID: 2513431179319631078
+      spriteID: 830622349665aec50800000000000000
+      internalID: 6695258806137544760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_35
+      name: Tilemap_Planet Two_35
       rect:
         serializedVersion: 2
         x: 48
@@ -1527,14 +1524,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1ed440d468f3cc0800000000000000
-      internalID: -3729114301096664594
+      spriteID: f3a9e8db67b0748c0800000000000000
+      internalID: -4015227938163221953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_36
+      name: Tilemap_Planet Two_36
       rect:
         serializedVersion: 2
         x: 64
@@ -1548,14 +1545,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d706742fbfe92cd80800000000000000
-      internalID: -8231842363941101443
+      spriteID: b980f066c30f351f0800000000000000
+      internalID: -1057237345300969317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_37
+      name: Tilemap_Planet Two_37
       rect:
         serializedVersion: 2
         x: 80
@@ -1569,14 +1566,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6e76022de3afbf90800000000000000
-      internalID: -6935644662253846931
+      spriteID: bc5dc63658124a1e0800000000000000
+      internalID: -2187586662212774453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_38
+      name: Tilemap_Planet Two_38
       rect:
         serializedVersion: 2
         x: 96
@@ -1590,14 +1587,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bd46f36ce6b09d40800000000000000
-      internalID: 5589168263972408754
+      spriteID: 51ad540a1e4d2a0f0800000000000000
+      internalID: -1107088492858058219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_39
+      name: Tilemap_Planet Two_39
       rect:
         serializedVersion: 2
         x: 112
@@ -1611,14 +1608,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6020088b97e644e90800000000000000
-      internalID: -7042382448235118074
+      spriteID: c6d30cb395078bb90800000000000000
+      internalID: -7225902073559106196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_40
+      name: Tilemap_Planet Two_40
       rect:
         serializedVersion: 2
         x: 128
@@ -1632,14 +1629,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 166c70f8144937650800000000000000
-      internalID: 6229485718876964449
+      spriteID: c5220e26f89ba1720800000000000000
+      internalID: 2817768542363984476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_41
+      name: Tilemap_Planet Two_41
       rect:
         serializedVersion: 2
         x: 144
@@ -1653,14 +1650,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc8144e23563b640800000000000000
-      internalID: 5094526872738434232
+      spriteID: 3ccb7e17c402a72a0800000000000000
+      internalID: -6739038379705910077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_42
+      name: Tilemap_Planet Two_42
       rect:
         serializedVersion: 2
         x: 160
@@ -1674,14 +1671,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 837cbf51dfa531ca0800000000000000
-      internalID: -6047389831586396360
+      spriteID: 5dfbb065108217ab0800000000000000
+      internalID: -5012180924082962475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_43
+      name: Tilemap_Planet Two_43
       rect:
         serializedVersion: 2
         x: 176
@@ -1695,14 +1692,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00860ccfe42b40500800000000000000
-      internalID: 361609922414143488
+      spriteID: 44e8eb9372c712bb0800000000000000
+      internalID: -4962548806471217596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_44
+      name: Tilemap_Planet Two_44
       rect:
         serializedVersion: 2
         x: 192
@@ -1716,14 +1713,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 167c91f5a370390a0800000000000000
-      internalID: -6876144258779592863
+      spriteID: 82068d227497b9510800000000000000
+      internalID: 1556971442620882984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_45
+      name: Tilemap_Planet Two_45
       rect:
         serializedVersion: 2
         x: 208
@@ -1737,14 +1734,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a11f3119864655d80800000000000000
-      internalID: -8262587541067927270
+      spriteID: 7c6f6290e0d555690800000000000000
+      internalID: -7614077280135481657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_46
+      name: Tilemap_Planet Two_46
       rect:
         serializedVersion: 2
         x: 224
@@ -1758,14 +1755,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2b558747b7e1db00800000000000000
-      internalID: 851716578914687790
+      spriteID: 5d42447ca33053ff0800000000000000
+      internalID: -57135869286144811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_47
+      name: Tilemap_Planet Two_47
       rect:
         serializedVersion: 2
         x: 240
@@ -1779,14 +1776,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcaac6150be2f4eb0800000000000000
-      internalID: -4733513348527904049
+      spriteID: c1293602627374db0800000000000000
+      internalID: -4807813440303033828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_48
+      name: Tilemap_Planet Two_48
       rect:
         serializedVersion: 2
         x: 0
@@ -1800,14 +1797,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1c00c7b59e0014d0800000000000000
-      internalID: -3166014501845726178
+      spriteID: 5a970fd00ac4c3d40800000000000000
+      internalID: 5565407489835432357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_49
+      name: Tilemap_Planet Two_49
       rect:
         serializedVersion: 2
         x: 16
@@ -1821,14 +1818,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4afe295f9722e1c0800000000000000
-      internalID: -4475971514303317428
+      spriteID: edf8f584510c75580800000000000000
+      internalID: -8838384546050240546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_50
+      name: Tilemap_Planet Two_50
       rect:
         serializedVersion: 2
         x: 32
@@ -1842,14 +1839,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc4da6c95d0b23000800000000000000
-      internalID: 14268180334302413
+      spriteID: 0f322943893409c10800000000000000
+      internalID: 2058219350704399344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_51
+      name: Tilemap_Planet Two_51
       rect:
         serializedVersion: 2
         x: 48
@@ -1863,14 +1860,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2d5769fe190e20b0800000000000000
-      internalID: -5751649645467574998
+      spriteID: 00d89d67f5d66d440800000000000000
+      internalID: 4960272296378469632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_52
+      name: Tilemap_Planet Two_52
       rect:
         serializedVersion: 2
         x: 64
@@ -1884,14 +1881,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61dd3cdb7997d76f0800000000000000
-      internalID: -685257875659694826
+      spriteID: 9ea7baa7f8f675040800000000000000
+      internalID: 4636297003430279913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_53
+      name: Tilemap_Planet Two_53
       rect:
         serializedVersion: 2
         x: 80
@@ -1905,14 +1902,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9a32f4282c7877f0800000000000000
-      internalID: -614604837275682146
+      spriteID: ddd5ee55505ffdf40800000000000000
+      internalID: 5755588252068109789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_54
+      name: Tilemap_Planet Two_54
       rect:
         serializedVersion: 2
         x: 96
@@ -1926,14 +1923,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f75f0f0e57a1a44b0800000000000000
-      internalID: -5455518905018550913
+      spriteID: de440d8d150bd90c0800000000000000
+      internalID: -4567300581507447571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_55
+      name: Tilemap_Planet Two_55
       rect:
         serializedVersion: 2
         x: 112
@@ -1947,14 +1944,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc6ca4079448685b0800000000000000
-      internalID: -5366456455013939505
+      spriteID: 8b301d593d6b60250800000000000000
+      internalID: 5910612580838212536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_56
+      name: Tilemap_Planet Two_56
       rect:
         serializedVersion: 2
         x: 128
@@ -1968,14 +1965,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21018f0a7c771da10800000000000000
-      internalID: 1932457414401462290
+      spriteID: 243667fbefdc18200800000000000000
+      internalID: 180651954089124674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_57
+      name: Tilemap_Planet Two_57
       rect:
         serializedVersion: 2
         x: 144
@@ -1989,14 +1986,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 568fd63e50fac1b90800000000000000
-      internalID: -7269743258657490843
+      spriteID: 5e4b54b33560fcfe0800000000000000
+      internalID: -1166706823919192859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_58
+      name: Tilemap_Planet Two_58
       rect:
         serializedVersion: 2
         x: 160
@@ -2010,14 +2007,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68e0ce706f147e8d0800000000000000
-      internalID: -2817210516946284922
+      spriteID: 478cfc966b7d1a090800000000000000
+      internalID: -8024895882538268556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_59
+      name: Tilemap_Planet Two_59
       rect:
         serializedVersion: 2
         x: 176
@@ -2031,14 +2028,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70eeb39a20c21e450800000000000000
-      internalID: 6116218158886678023
+      spriteID: 2b270d45f5a7ed940800000000000000
+      internalID: 5322826359461933746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_60
+      name: Tilemap_Planet Two_60
       rect:
         serializedVersion: 2
         x: 192
@@ -2052,14 +2049,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b08c3b5c29b84600800000000000000
-      internalID: 452815362711126198
+      spriteID: 57b0bcbd5f7083e20800000000000000
+      internalID: 3330420676976380789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_61
+      name: Tilemap_Planet Two_61
       rect:
         serializedVersion: 2
         x: 208
@@ -2073,14 +2070,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f4b5366d92fdbfe0800000000000000
-      internalID: -1171513570207877901
+      spriteID: f4c871a1cde848920800000000000000
+      internalID: 2991673128462552143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_62
+      name: Tilemap_Planet Two_62
       rect:
         serializedVersion: 2
         x: 224
@@ -2094,14 +2091,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0980177aff89a21b0800000000000000
-      internalID: -5680559756181174128
+      spriteID: d61e24a8d4c419920800000000000000
+      internalID: 2995259123093922157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_63
+      name: Tilemap_Planet Two_63
       rect:
         serializedVersion: 2
         x: 240
@@ -2115,14 +2112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1438d134641a08d50800000000000000
-      internalID: 6737562365692052289
+      spriteID: 45c4b27731bcf5d40800000000000000
+      internalID: 5575398148172106836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_64
+      name: Tilemap_Planet Two_64
       rect:
         serializedVersion: 2
         x: 0
@@ -2136,14 +2133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6ab24cd7b901eb10800000000000000
-      internalID: 2008897594062977646
+      spriteID: 1984e2e38a9d620d0800000000000000
+      internalID: -3447829148084582255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_65
+      name: Tilemap_Planet Two_65
       rect:
         serializedVersion: 2
         x: 16
@@ -2157,14 +2154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017a92fefbe5df0d0800000000000000
-      internalID: -3387447166268496112
+      spriteID: e343b7cbc7360af00800000000000000
+      internalID: 1126009294231909438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_66
+      name: Tilemap_Planet Two_66
       rect:
         serializedVersion: 2
         x: 32
@@ -2178,14 +2175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf74c35b0499ebb80800000000000000
-      internalID: -8377089753664960517
+      spriteID: 3ad51432032334a40800000000000000
+      internalID: 5351175964577586595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_67
+      name: Tilemap_Planet Two_67
       rect:
         serializedVersion: 2
         x: 48
@@ -2199,14 +2196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1600c86405dfa7ea0800000000000000
-      internalID: -5874104242728599455
+      spriteID: a4683af00e78910c0800000000000000
+      internalID: -4604499747604822454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_68
+      name: Tilemap_Planet Two_68
       rect:
         serializedVersion: 2
         x: 64
@@ -2220,14 +2217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29efe390fab2fc1a0800000000000000
-      internalID: -6787158082649653614
+      spriteID: c5d7c278806f344e0800000000000000
+      internalID: -1998483293134357156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_69
+      name: Tilemap_Planet Two_69
       rect:
         serializedVersion: 2
         x: 80
@@ -2241,14 +2238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8132335eaf0c61d0800000000000000
-      internalID: -3356290380903337588
+      spriteID: a93c055e022d1fd70800000000000000
+      internalID: 9075265762856321946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_70
+      name: Tilemap_Planet Two_70
       rect:
         serializedVersion: 2
         x: 96
@@ -2262,14 +2259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90b76d2d56420fa50800000000000000
-      internalID: 6552777477571640073
+      spriteID: 2604854824d314c70800000000000000
+      internalID: 8953504890086768738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_71
+      name: Tilemap_Planet Two_71
       rect:
         serializedVersion: 2
         x: 112
@@ -2283,14 +2280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e95a801eab613410800000000000000
-      internalID: 1455062549963364839
+      spriteID: e39caa6412874ab10800000000000000
+      internalID: 1991849019519453502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_72
+      name: Tilemap_Planet Two_72
       rect:
         serializedVersion: 2
         x: 128
@@ -2304,14 +2301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e667570800034270800000000000000
-      internalID: 8233424578246305504
+      spriteID: ae3127a31fb2eca70800000000000000
+      internalID: 8849058632897270762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_73
+      name: Tilemap_Planet Two_73
       rect:
         serializedVersion: 2
         x: 144
@@ -2325,14 +2322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88f58e58f48995d40800000000000000
-      internalID: 5573653481164136328
+      spriteID: a919794f2614f7da0800000000000000
+      internalID: -5944961089839591014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_74
+      name: Tilemap_Planet Two_74
       rect:
         serializedVersion: 2
         x: 160
@@ -2346,14 +2343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a69cbe8d4a481c0f0800000000000000
-      internalID: -1098450990552856214
+      spriteID: 4132dfc45f05326e0800000000000000
+      internalID: -1863556806312385772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_75
+      name: Tilemap_Planet Two_75
       rect:
         serializedVersion: 2
         x: 176
@@ -2367,14 +2364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c74caab14b58e9c50800000000000000
-      internalID: 6673918706414437500
+      spriteID: 8b7502f1760b05940800000000000000
+      internalID: 5282916319855925176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_76
+      name: Tilemap_Planet Two_76
       rect:
         serializedVersion: 2
         x: 192
@@ -2388,14 +2385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d98f8c55e355bbb40800000000000000
-      internalID: 5457049099705055389
+      spriteID: b153275383b300230800000000000000
+      internalID: 3602944814497281307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_77
+      name: Tilemap_Planet Two_77
       rect:
         serializedVersion: 2
         x: 208
@@ -2409,14 +2406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e83fcc3a0975ff1f0800000000000000
-      internalID: -1008991512772676722
+      spriteID: d579728a372411880800000000000000
+      internalID: -8642053145437431971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_78
+      name: Tilemap_Planet Two_78
       rect:
         serializedVersion: 2
         x: 224
@@ -2430,14 +2427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a44f9a1a24cab9f0800000000000000
-      internalID: -451833127482997597
+      spriteID: 707c9b753e4450cd0800000000000000
+      internalID: -2592590267261794553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_79
+      name: Tilemap_Planet Two_79
       rect:
         serializedVersion: 2
         x: 240
@@ -2451,14 +2448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d02c2c88b42ae5d0800000000000000
-      internalID: -3032571024036323120
+      spriteID: 7dbe1deed7bb7ccd0800000000000000
+      internalID: -2537853715447944233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_80
+      name: Tilemap_Planet Two_80
       rect:
         serializedVersion: 2
         x: 0
@@ -2472,14 +2469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f800fe3b60baff00800000000000000
-      internalID: 1151426629410490609
+      spriteID: 800996c3830520f00800000000000000
+      internalID: 1081515062984282120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_81
+      name: Tilemap_Planet Two_81
       rect:
         serializedVersion: 2
         x: 16
@@ -2493,14 +2490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 453dd595d77a5fd20800000000000000
-      internalID: 3311737257812939604
+      spriteID: 0a2b3e2fa5ebf2690800000000000000
+      internalID: -7624666346283617632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_82
+      name: Tilemap_Planet Two_82
       rect:
         serializedVersion: 2
         x: 32
@@ -2514,14 +2511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7739b6d4d9297d0f0800000000000000
-      internalID: -1092243180307639433
+      spriteID: e6e42d4739de9a550800000000000000
+      internalID: 6172725981863890542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_83
+      name: Tilemap_Planet Two_83
       rect:
         serializedVersion: 2
         x: 48
@@ -2535,14 +2532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d47c4418187d2e820800000000000000
-      internalID: 2946154057473247053
+      spriteID: 2e6f6f651c8cbd860800000000000000
+      internalID: 7555853532557407970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_84
+      name: Tilemap_Planet Two_84
       rect:
         serializedVersion: 2
         x: 64
@@ -2556,14 +2553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e34e35c5ce7c404d0800000000000000
-      internalID: -3169188419786775490
+      spriteID: dd977ddff300ff0f0800000000000000
+      internalID: -1081145110703932963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_85
+      name: Tilemap_Planet Two_85
       rect:
         serializedVersion: 2
         x: 80
@@ -2577,14 +2574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e4914b37fa1b7f40800000000000000
-      internalID: 5727201000285115619
+      spriteID: 84a9ecd7519bd0240800000000000000
+      internalID: 4759663883156625992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_86
+      name: Tilemap_Planet Two_86
       rect:
         serializedVersion: 2
         x: 96
@@ -2598,14 +2595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc73c5bb1166b1a50800000000000000
-      internalID: 6492895514128562125
+      spriteID: c179154e57be14180800000000000000
+      internalID: -9132759677756401892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_87
+      name: Tilemap_Planet Two_87
       rect:
         serializedVersion: 2
         x: 112
@@ -2619,14 +2616,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 605792af497b1c760800000000000000
-      internalID: 7476458706891797766
+      spriteID: d3a76cf1ae0779fb0800000000000000
+      internalID: -4641116740124247491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_88
+      name: Tilemap_Planet Two_88
       rect:
         serializedVersion: 2
         x: 128
@@ -2640,14 +2637,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d9b859468763fc20800000000000000
-      internalID: 3239046383463348695
+      spriteID: 5d1cf128362b21b90800000000000000
+      internalID: -7272554307795303979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_89
+      name: Tilemap_Planet Two_89
       rect:
         serializedVersion: 2
         x: 144
@@ -2661,14 +2658,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95691d6a8cb9420d0800000000000000
-      internalID: -3448460128564439463
+      spriteID: a72a3a337b4790470800000000000000
+      internalID: 8361342513384235642
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_90
+      name: Tilemap_Planet Two_90
       rect:
         serializedVersion: 2
         x: 160
@@ -2682,14 +2679,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8324d640ae56c5ee0800000000000000
-      internalID: -1271028939054300616
+      spriteID: 8896f443eb119dfb0800000000000000
+      internalID: -4622644033900025464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_91
+      name: Tilemap_Planet Two_91
       rect:
         serializedVersion: 2
         x: 176
@@ -2703,14 +2700,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c1acb947e0110d90800000000000000
-      internalID: -7133401749217566271
+      spriteID: f8e0c08acea2a1980800000000000000
+      internalID: -8567488145198936433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_92
+      name: Tilemap_Planet Two_92
       rect:
         serializedVersion: 2
         x: 192
@@ -2724,14 +2721,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcfde2c0a90ce4a80800000000000000
-      internalID: -8480629280430170165
+      spriteID: d3d3ae96f40253d40800000000000000
+      internalID: 5563388440137579837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_93
+      name: Tilemap_Planet Two_93
       rect:
         serializedVersion: 2
         x: 208
@@ -2745,14 +2742,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51b59bc94230a9520800000000000000
-      internalID: 2709481581599873813
+      spriteID: 90cce344e41aea430800000000000000
+      internalID: 3796148893444393993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_94
+      name: Tilemap_Planet Two_94
       rect:
         serializedVersion: 2
         x: 224
@@ -2766,14 +2763,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5c9f6ad4c7df2b00800000000000000
-      internalID: 806100098800917594
+      spriteID: e1f521112f1f60e80800000000000000
+      internalID: -8212610848492724450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_95
+      name: Tilemap_Planet Two_95
       rect:
         serializedVersion: 2
         x: 240
@@ -2787,14 +2784,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af9a8ab3278a1e430800000000000000
-      internalID: 3810511968312797690
+      spriteID: d924aa8c712d8c2b0800000000000000
+      internalID: -5563966340023565667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_96
+      name: Tilemap_Planet Two_96
       rect:
         serializedVersion: 2
         x: 0
@@ -2808,14 +2805,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 150cc7018a9801570800000000000000
-      internalID: 8435393456989061201
+      spriteID: 90da7f6c343f12520800000000000000
+      internalID: 2675687126061264137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_97
+      name: Tilemap_Planet Two_97
       rect:
         serializedVersion: 2
         x: 16
@@ -2829,14 +2826,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f76033cf3549de40800000000000000
-      internalID: 5681648545064577009
+      spriteID: 4ae51c421902a21d0800000000000000
+      internalID: -3374849163001766236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_98
+      name: Tilemap_Planet Two_98
       rect:
         serializedVersion: 2
         x: 32
@@ -2850,14 +2847,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7adfd8bf8b7b46610800000000000000
-      internalID: 1613616571627732391
+      spriteID: f8095d6f72fa84610800000000000000
+      internalID: 1605725853337358479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_99
+      name: Tilemap_Planet Two_99
       rect:
         serializedVersion: 2
         x: 48
@@ -2871,14 +2868,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9aa33ff786062810800000000000000
-      internalID: 1740085487197203098
+      spriteID: 79501d661a58e7310800000000000000
+      internalID: 1404707062047376791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_100
+      name: Tilemap_Planet Two_100
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818aaeac2927d5ae0800000000000000
+      internalID: -1558963921205155816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap_Planet Two_101
       rect:
         serializedVersion: 2
         x: 112
@@ -2892,14 +2910,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23af0f7ccae0d1690800000000000000
-      internalID: -7629926058444129742
+      spriteID: d2eb2164b35562940800000000000000
+      internalID: 5270994126950809133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_101
+      name: Tilemap_Planet Two_102
       rect:
         serializedVersion: 2
         x: 128
@@ -2913,14 +2931,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad493ccdb44d6b40800000000000000
-      internalID: 5435075907271871909
+      spriteID: eb982311a0007d690800000000000000
+      internalID: -7577587804789372482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_102
+      name: Tilemap_Planet Two_103
       rect:
         serializedVersion: 2
         x: 144
@@ -2934,14 +2952,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b3a70cc9148a6980800000000000000
-      internalID: -8544872096649993293
+      spriteID: dc9e5eb02d14f01b0800000000000000
+      internalID: -5688255433947092531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_103
+      name: Tilemap_Planet Two_104
       rect:
         serializedVersion: 2
         x: 176
@@ -2955,14 +2973,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7806ffa42f7a14fa0800000000000000
-      internalID: -5818184584503795577
+      spriteID: bf1889da4b81d49d0800000000000000
+      internalID: -2788545429986835973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_104
+      name: Tilemap_Planet Two_105
       rect:
         serializedVersion: 2
         x: 192
@@ -2976,14 +2994,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26ebcc4c723baddf0800000000000000
-      internalID: -154614253804011934
+      spriteID: 87717db49118bf7c0800000000000000
+      internalID: -4036490695360964744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_105
+      name: Tilemap_Planet Two_106
       rect:
         serializedVersion: 2
         x: 208
@@ -2997,14 +3015,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7fbcc4ec22205e90800000000000000
-      internalID: -7039088641367556227
+      spriteID: 61c2a6facb2643670800000000000000
+      internalID: 8517541357800795158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_106
+      name: Tilemap_Planet Two_107
       rect:
         serializedVersion: 2
         x: 224
@@ -3018,14 +3036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8ff40e26a326c060800000000000000
-      internalID: 6973300269673414541
+      spriteID: b9f5215dc05762b40800000000000000
+      internalID: 5415144299934408603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_107
+      name: Tilemap_Planet Two_108
       rect:
         serializedVersion: 2
         x: 240
@@ -3039,14 +3057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fae7717992e13db0800000000000000
-      internalID: -4813817378020791566
+      spriteID: b817b622526918440800000000000000
+      internalID: 4936391752810197387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_108
+      name: Tilemap_Planet Two_109
       rect:
         serializedVersion: 2
         x: 0
@@ -3060,14 +3078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 112cb4dae7138e830800000000000000
-      internalID: 4100581880863900177
+      spriteID: 8ce07af58216fdfb0800000000000000
+      internalID: -4620867866627469624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_109
+      name: Tilemap_Planet Two_110
       rect:
         serializedVersion: 2
         x: 16
@@ -3081,14 +3099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9967761461e8d0af0800000000000000
-      internalID: -428530163292604775
+      spriteID: b97902c0d027424e0800000000000000
+      internalID: -2007354133536794725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_110
+      name: Tilemap_Planet Two_111
       rect:
         serializedVersion: 2
         x: 32
@@ -3102,14 +3120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd9fb4fcd888eaeb0800000000000000
-      internalID: -4706674417905960484
+      spriteID: 266c9c3f1599b0b50800000000000000
+      internalID: 6560505859456747106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_111
+      name: Tilemap_Planet Two_112
       rect:
         serializedVersion: 2
         x: 48
@@ -3123,14 +3141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fc8ef1e9374c8ba0800000000000000
-      internalID: -6085410682554118926
+      spriteID: 41dd9236c4b8e8d60800000000000000
+      internalID: 7894400357024521492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_112
+      name: Tilemap_Planet Two_113
       rect:
         serializedVersion: 2
         x: 64
@@ -3144,14 +3162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06cdb2cd2773f6d30800000000000000
-      internalID: 4426817925188148320
+      spriteID: fb9f165d38ecf8200800000000000000
+      internalID: 184593175361485247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_113
+      name: Tilemap_Planet Two_114
       rect:
         serializedVersion: 2
         x: 80
@@ -3165,14 +3183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2ff37db40d6e5240800000000000000
-      internalID: 4782379721439837995
+      spriteID: d4445f5cd848c7210800000000000000
+      internalID: 1332085334241264717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_114
+      name: Tilemap_Planet Two_115
       rect:
         serializedVersion: 2
         x: 96
@@ -3186,14 +3204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ba148540d093f140800000000000000
-      internalID: 4752301255999888051
+      spriteID: aace2df5709bd5f80800000000000000
+      internalID: -8116127512128197462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_115
+      name: Tilemap_Planet Two_116
       rect:
         serializedVersion: 2
         x: 112
@@ -3207,14 +3225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 836adbf421214d070800000000000000
-      internalID: 8130143097167128120
+      spriteID: 3a92cf0b99aa456a0800000000000000
+      internalID: -6461351988293785181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_116
+      name: Tilemap_Planet Two_117
       rect:
         serializedVersion: 2
         x: 128
@@ -3228,14 +3246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 609109da2469ef850800000000000000
-      internalID: 6412728132546074886
+      spriteID: 1a075dae384d26890800000000000000
+      internalID: -7466171569181200223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_117
+      name: Tilemap_Planet Two_118
       rect:
         serializedVersion: 2
         x: 144
@@ -3249,14 +3267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91e389b70a0d48c60800000000000000
-      internalID: 7819604240708943385
+      spriteID: 63e58b5cd3c57d850800000000000000
+      internalID: 6401686815710404150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_118
+      name: Tilemap_Planet Two_119
       rect:
         serializedVersion: 2
         x: 192
@@ -3270,14 +3288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee9762140c0234de0800000000000000
-      internalID: -1350199453182166546
+      spriteID: 45006e6a2f2d27890800000000000000
+      internalID: -7461669692975480748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_119
+      name: Tilemap_Planet Two_120
       rect:
         serializedVersion: 2
         x: 208
@@ -3291,14 +3309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7962ae242d0c63e70800000000000000
-      internalID: 9094668506819602071
+      spriteID: c96b004628d0e4930800000000000000
+      internalID: 4129252762020001436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_120
+      name: Tilemap_Planet Two_121
       rect:
         serializedVersion: 2
         x: 0
@@ -3312,14 +3330,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c254215f2592b7410800000000000000
-      internalID: 1475818739169641772
+      spriteID: aaea4722259be0f20800000000000000
+      internalID: 3390851331873091242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_121
+      name: Tilemap_Planet Two_122
       rect:
         serializedVersion: 2
         x: 16
@@ -3333,14 +3351,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efe250a1520280b70800000000000000
-      internalID: 8865371210201247486
+      spriteID: fd4d5685b1abe9630800000000000000
+      internalID: 3935787750978344159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_122
+      name: Tilemap_Planet Two_123
       rect:
         serializedVersion: 2
         x: 32
@@ -3354,14 +3372,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abe4b276535d0a280800000000000000
-      internalID: -9033986427164340550
+      spriteID: c7798ffa0cc4a1000800000000000000
+      internalID: 7402739864213372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_123
+      name: Tilemap_Planet Two_124
       rect:
         serializedVersion: 2
         x: 48
@@ -3375,14 +3393,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 280dabb4b3bfa8060800000000000000
-      internalID: 6956648806519328898
+      spriteID: 19dc2a2e346c47b10800000000000000
+      internalID: 1978424131189919121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_124
+      name: Tilemap_Planet Two_125
       rect:
         serializedVersion: 2
         x: 64
@@ -3396,14 +3414,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 489b593556fc9ad60800000000000000
-      internalID: 7902075055299213700
+      spriteID: 7e22249d96b7a2e70800000000000000
+      internalID: 9091214492347540199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_125
+      name: Tilemap_Planet Two_126
       rect:
         serializedVersion: 2
         x: 112
@@ -3417,14 +3435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 665d3f3b9559deb20800000000000000
-      internalID: 3165350325615056230
+      spriteID: 64d25a5e332b29380800000000000000
+      internalID: -8965907972175352506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_126
+      name: Tilemap_Planet Two_127
       rect:
         serializedVersion: 2
         x: 128
@@ -3438,14 +3456,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6d3d9c20fad6cf80800000000000000
-      internalID: -8086535355821638291
+      spriteID: c32853910c9d5db40800000000000000
+      internalID: 5464513141963850300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_127
+      name: Tilemap_Planet Two_128
       rect:
         serializedVersion: 2
         x: 144
@@ -3459,14 +3477,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac73d996295e07fe0800000000000000
-      internalID: -1193201484253284406
+      spriteID: db259e28c05e01ab0800000000000000
+      internalID: -5039276141128887619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_128
+      name: Tilemap_Planet Two_129
       rect:
         serializedVersion: 2
         x: 160
@@ -3480,14 +3498,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3d2514434d01b130800000000000000
-      internalID: 3580657761292463421
+      spriteID: a2ee60cd4f181e880800000000000000
+      internalID: -8583436526128009686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_129
+      name: Tilemap_Planet Two_130
       rect:
         serializedVersion: 2
         x: 176
@@ -3501,14 +3519,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6338c4027befd3fc0800000000000000
-      internalID: -3513372071804763338
+      spriteID: de7a22373b86bda30800000000000000
+      internalID: 4241098594039539693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_130
+      name: Tilemap_Planet Two_131
       rect:
         serializedVersion: 2
         x: 192
@@ -3522,14 +3540,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcf477385e241ed90800000000000000
-      internalID: -7070296386474389553
+      spriteID: 5c3d76ca150a553c0800000000000000
+      internalID: -4371411590647917627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_131
+      name: Tilemap_Planet Two_132
       rect:
         serializedVersion: 2
         x: 224
@@ -3543,14 +3561,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8b209007fbd3d850800000000000000
-      internalID: 6400701349336460171
+      spriteID: 7c1d8fd4eee028f70800000000000000
+      internalID: 9187922606462390727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_132
+      name: Tilemap_Planet Two_133
       rect:
         serializedVersion: 2
         x: 240
@@ -3564,14 +3582,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 650eb3d34469ca040800000000000000
-      internalID: 4660264934250897494
+      spriteID: 970b956c46d8e8cf0800000000000000
+      internalID: -248105465494785927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_133
+      name: Tilemap_Planet Two_134
       rect:
         serializedVersion: 2
         x: 0
@@ -3585,14 +3603,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a14e194885855250800000000000000
-      internalID: 5932794904519262627
+      spriteID: 6a4d77daf97ae8ec0800000000000000
+      internalID: -3562725950951533402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_134
+      name: Tilemap_Planet Two_135
       rect:
         serializedVersion: 2
         x: 16
@@ -3606,14 +3624,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4100b9f5ceee1ff40800000000000000
-      internalID: 5760648097367261204
+      spriteID: 2c8c13b656e5213a0800000000000000
+      internalID: -6696185906263373630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_135
+      name: Tilemap_Planet Two_136
       rect:
         serializedVersion: 2
         x: 32
@@ -3627,14 +3645,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67c2c179c88aeb2a0800000000000000
-      internalID: -6719748272206107530
+      spriteID: 46f64ef45bbc1d040800000000000000
+      internalID: 4670738268149804900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_136
+      name: Tilemap_Planet Two_137
       rect:
         serializedVersion: 2
         x: 48
@@ -3648,14 +3666,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 974f725563cc5fb70800000000000000
-      internalID: 8932269969688228985
+      spriteID: c6476d55e5c6e48b0800000000000000
+      internalID: -5166072570124536724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_137
+      name: Tilemap_Planet Two_138
       rect:
         serializedVersion: 2
         x: 96
@@ -3669,14 +3687,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4752eb7b8a4778820800000000000000
-      internalID: 2920431151359075700
+      spriteID: 08ad185454d5bef00800000000000000
+      internalID: 1147113082196187776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_138
+      name: Tilemap_Planet Two_139
       rect:
         serializedVersion: 2
         x: 128
@@ -3690,14 +3708,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 786a6210300c49d70800000000000000
-      internalID: 9049068670430914183
+      spriteID: 4acc80657e0cd3f20800000000000000
+      internalID: 3404088993175358628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_139
+      name: Tilemap_Planet Two_140
       rect:
         serializedVersion: 2
         x: 144
@@ -3711,14 +3729,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc9d442c3e6cbae0800000000000000
-      internalID: -1532228568626651976
+      spriteID: 2f760edbcf2648700800000000000000
+      internalID: 541666692848183282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_140
+      name: Tilemap_Planet Two_141
       rect:
         serializedVersion: 2
         x: 160
@@ -3732,14 +3750,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5b7541a2a169a810800000000000000
-      internalID: 1777058879092652895
+      spriteID: 4a12bc83887cd5910800000000000000
+      internalID: 1827836411664605604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_141
+      name: Tilemap_Planet Two_142
       rect:
         serializedVersion: 2
         x: 176
@@ -3753,14 +3771,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e5d479e13f746300800000000000000
-      internalID: 244460132131722724
+      spriteID: cfa9790ed2b387a40800000000000000
+      internalID: 5366104024239545084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_142
+      name: Tilemap_Planet Two_143
       rect:
         serializedVersion: 2
         x: 208
@@ -3774,14 +3792,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea8ccd1c7636937d0800000000000000
-      internalID: -2938207984597284690
+      spriteID: 45a1e3b5ce55f6170800000000000000
+      internalID: 8173846322332179028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_143
+      name: Tilemap_Planet Two_144
       rect:
         serializedVersion: 2
         x: 224
@@ -3795,14 +3813,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a85ed8e9d0b32db10800000000000000
-      internalID: 2004729713814005130
+      spriteID: f06e890f1ca299310800000000000000
+      internalID: 1412206970610968079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_144
+      name: Tilemap_Planet Two_145
       rect:
         serializedVersion: 2
         x: 240
@@ -3816,14 +3834,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa53d29fa95a4a430800000000000000
-      internalID: 3793338871176836527
+      spriteID: 29796fe6eec51baa0800000000000000
+      internalID: -6147029837250390126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_145
+      name: Tilemap_Planet Two_146
       rect:
         serializedVersion: 2
         x: 0
@@ -3837,14 +3855,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c4e47b0631f9f340800000000000000
-      internalID: 4898211284164863175
+      spriteID: a16d54c043fe980c0800000000000000
+      internalID: -4572860939794786790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_146
+      name: Tilemap_Planet Two_147
       rect:
         serializedVersion: 2
         x: 16
@@ -3858,14 +3876,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd26da0e1a628d2f0800000000000000
-      internalID: -947965244860439844
+      spriteID: 4cccfd7487b0e9d00800000000000000
+      internalID: 981234380043177156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_147
+      name: Tilemap_Planet Two_148
       rect:
         serializedVersion: 2
         x: 32
@@ -3879,14 +3897,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d5fdce8e983fabc0800000000000000
-      internalID: -3769732109433965098
+      spriteID: 07342458fc0a1c920800000000000000
+      internalID: 3008862839214588784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_148
+      name: Tilemap_Planet Two_149
       rect:
         serializedVersion: 2
         x: 48
@@ -3900,35 +3918,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69c78132f7f1e4ca0800000000000000
-      internalID: -6030848220092400490
+      spriteID: 356ee991924dc0460800000000000000
+      internalID: 7209370376501913171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_149
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd817856921b67910800000000000000
-      internalID: 1834848689555183837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_150
+      name: Tilemap_Planet Two_150
       rect:
         serializedVersion: 2
         x: 96
@@ -3942,14 +3939,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eb021be6a004d930800000000000000
-      internalID: 4166956272132951011
+      spriteID: fc70e904b7356b210800000000000000
+      internalID: 1348356927274223567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_151
+      name: Tilemap_Planet Two_151
       rect:
         serializedVersion: 2
         x: 112
@@ -3963,14 +3960,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc894bfa0f9468c70800000000000000
-      internalID: 8972940605671119052
+      spriteID: 9c433f6645b97df30800000000000000
+      internalID: 4600316331189023945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_152
+      name: Tilemap_Planet Two_152
       rect:
         serializedVersion: 2
         x: 128
@@ -3984,14 +3981,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d85114d9561622ef0800000000000000
-      internalID: -134437949809814131
+      spriteID: f76a26c42a691a2c0800000000000000
+      internalID: -4422087735290714497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_153
+      name: Tilemap_Planet Two_153
       rect:
         serializedVersion: 2
         x: 144
@@ -4005,14 +4002,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67eba572067ca2cd0800000000000000
-      internalID: -2582032220552511882
+      spriteID: d63c6697210ae0680800000000000000
+      internalID: -8786909821746625683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_154
+      name: Tilemap_Planet Two_154
       rect:
         serializedVersion: 2
         x: 160
@@ -4026,14 +4023,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fd4ef588ba34ea70800000000000000
-      internalID: 8855267331513667062
+      spriteID: 49849371dca328300800000000000000
+      internalID: 252829181618505876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_155
+      name: Tilemap_Planet Two_155
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d62c6e63c3283770800000000000000
+      internalID: 8590655611487397588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap_Planet Two_156
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecbdc15b4a9e8c3e0800000000000000
+      internalID: -2033118338135303218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap_Planet Two_157
       rect:
         serializedVersion: 2
         x: 208
@@ -4047,14 +4086,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 299e1f1b0befef130800000000000000
-      internalID: 3602596786796095890
+      spriteID: 50a058a3d0f60c050800000000000000
+      internalID: 5818772821169736197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_156
+      name: Tilemap_Planet Two_158
       rect:
         serializedVersion: 2
         x: 224
@@ -4068,14 +4107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ced9b2a029430d910800000000000000
-      internalID: 1860044447944515052
+      spriteID: 7b8dbfad7907cd660800000000000000
+      internalID: 7411922884261304503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_157
+      name: Tilemap_Planet Two_159
       rect:
         serializedVersion: 2
         x: 0
@@ -4089,14 +4128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 957f78486dd0cce30800000000000000
-      internalID: 4525006940598171481
+      spriteID: 29ffe9393a06df1d0800000000000000
+      internalID: -3315387495002210414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_158
+      name: Tilemap_Planet Two_160
       rect:
         serializedVersion: 2
         x: 16
@@ -4110,14 +4149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 766bd63c415b5c0e0800000000000000
-      internalID: -2250193338018974105
+      spriteID: 591472d41d8356060800000000000000
+      internalID: 6946020471882596757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_159
+      name: Tilemap_Planet Two_161
       rect:
         serializedVersion: 2
         x: 32
@@ -4131,14 +4170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f404fcf6c916cb60800000000000000
-      internalID: 7765922949885068534
+      spriteID: b208f896b0e171cf0800000000000000
+      internalID: -281723417322880981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_160
+      name: Tilemap_Planet Two_162
       rect:
         serializedVersion: 2
         x: 48
@@ -4152,14 +4191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43b137555ea4d440800000000000000
-      internalID: 4959780771200086863
+      spriteID: b4b347c1f560499a0800000000000000
+      internalID: -6227345379177514165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_161
+      name: Tilemap_Planet Two_163
       rect:
         serializedVersion: 2
         x: 64
@@ -4173,14 +4212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f96ff1c852c1a7060800000000000000
-      internalID: 6951899922390054559
+      spriteID: 0ff8c3f4769288570800000000000000
+      internalID: 8469064622957957104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_162
+      name: Tilemap_Planet Two_164
       rect:
         serializedVersion: 2
         x: 80
@@ -4194,14 +4233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e1251bc75f6388f0800000000000000
-      internalID: -539465107494329886
+      spriteID: 40f52df7e002374b0800000000000000
+      internalID: -5443972277914673404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_163
+      name: Tilemap_Planet Two_165
       rect:
         serializedVersion: 2
         x: 96
@@ -4215,14 +4254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c215d9967ef65030800000000000000
-      internalID: 3483251147158131396
+      spriteID: 45c49c36a39a54c80800000000000000
+      internalID: -8339073066759271340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_164
+      name: Tilemap_Planet Two_166
       rect:
         serializedVersion: 2
         x: 112
@@ -4236,14 +4275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0402ec237688e940800000000000000
-      internalID: 5325654388597982218
+      spriteID: ea7d3e2f378fcf550800000000000000
+      internalID: 6196100364234905518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_165
+      name: Tilemap_Planet Two_167
       rect:
         serializedVersion: 2
         x: 128
@@ -4257,14 +4296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7968905788743d0800000000000000
-      internalID: -3222456972107933703
+      spriteID: 79641cc34bdd05bd0800000000000000
+      internalID: -2643369215083329897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_166
+      name: Tilemap_Planet Two_168
       rect:
         serializedVersion: 2
         x: 160
@@ -4278,14 +4317,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f25d486cfe293e800800000000000000
-      internalID: 640517130542175535
+      spriteID: a8758f5429e024300800000000000000
+      internalID: 234766151978604426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_167
+      name: Tilemap_Planet Two_169
       rect:
         serializedVersion: 2
         x: 176
@@ -4299,14 +4338,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac7cc02cc9dbdbca0800000000000000
-      internalID: -5999430647619467318
+      spriteID: 82a0eaed376a866b0800000000000000
+      internalID: -5302805544641361368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_168
+      name: Tilemap_Planet Two_170
       rect:
         serializedVersion: 2
         x: 192
@@ -4320,14 +4359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4cd76ab24d59f020800000000000000
-      internalID: 2376032819591240783
+      spriteID: 12292823b37904740800000000000000
+      internalID: 5134269855708647969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_169
+      name: Tilemap_Planet Two_171
       rect:
         serializedVersion: 2
         x: 208
@@ -4341,14 +4380,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9920061ee012b450800000000000000
-      internalID: 6102959059797813662
+      spriteID: fe2debb56faf26310800000000000000
+      internalID: 1396954770446406383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_170
+      name: Tilemap_Planet Two_172
       rect:
         serializedVersion: 2
         x: 224
@@ -4362,14 +4401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14e65c5f6ec5c6510800000000000000
-      internalID: 1543710919316827713
+      spriteID: 17d32c3e3c51208b0800000000000000
+      internalID: -5187559889693426319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_171
+      name: Tilemap_Planet Two_173
       rect:
         serializedVersion: 2
         x: 240
@@ -4383,14 +4422,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81fcc7ca30413850800000000000000
-      internalID: 6354931170400858510
+      spriteID: 857b707ab601ec5d0800000000000000
+      internalID: -3040474643878660264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_172
+      name: Tilemap_Planet Two_174
       rect:
         serializedVersion: 2
         x: 16
@@ -4404,14 +4443,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 105e78b9e29da7a30800000000000000
-      internalID: 4213919195559617793
+      spriteID: 9c18bc6ec9a8b1110800000000000000
+      internalID: 1232731329507590601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_173
+      name: Tilemap_Planet Two_175
       rect:
         serializedVersion: 2
         x: 32
@@ -4425,14 +4464,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 796e9ea03b8be2570800000000000000
-      internalID: 8443889430488016535
+      spriteID: e549f348c5fff6720800000000000000
+      internalID: 2841770662714905694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_174
+      name: Tilemap_Planet Two_176
       rect:
         serializedVersion: 2
         x: 48
@@ -4446,14 +4485,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b742a2e4e33299e0800000000000000
-      internalID: -1616172258124740680
+      spriteID: 9a2283643f4a1f9d0800000000000000
+      internalID: -2742229333329829207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_175
+      name: Tilemap_Planet Two_177
       rect:
         serializedVersion: 2
         x: 64
@@ -4467,14 +4506,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb51413ce413aec0800000000000000
-      internalID: -3556976276021355552
+      spriteID: e44f1cea6ac22c6e0800000000000000
+      internalID: -1818842205096119218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_176
+      name: Tilemap_Planet Two_178
       rect:
         serializedVersion: 2
         x: 80
@@ -4488,35 +4527,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f8cb6bbffce01fb0800000000000000
-      internalID: -4678979429732726538
+      spriteID: a4ab9d2d20cfc9e60800000000000000
+      internalID: 7970522529596553802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_177
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e02dfabfa2ed2320800000000000000
-      internalID: 2534931409663762662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_178
+      name: Tilemap_Planet Two_179
       rect:
         serializedVersion: 2
         x: 112
@@ -4530,14 +4548,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6199c20c86bf5910800000000000000
-      internalID: 1828380686194151788
+      spriteID: 916846301b57fc5a0800000000000000
+      internalID: -6498846334145755623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_179
+      name: Tilemap_Planet Two_180
       rect:
         serializedVersion: 2
         x: 128
@@ -4551,17 +4569,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68fe7931dc83b4870800000000000000
-      internalID: 8668084361252827014
+      spriteID: a2be784209ef6da10800000000000000
+      internalID: 1934012985043839786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_180
+      name: Tilemap_Planet Two_181
       rect:
         serializedVersion: 2
-        x: 144
+        x: 176
         y: 48
         width: 16
         height: 16
@@ -4572,35 +4590,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50b1e5f8276c9f4c0800000000000000
-      internalID: -4253150177740842235
+      spriteID: 4a4c6839190a3fd90800000000000000
+      internalID: -7065126843308391260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_181
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abdb517da70a26190800000000000000
-      internalID: -7970631941037376070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_182
+      name: Tilemap_Planet Two_182
       rect:
         serializedVersion: 2
         x: 192
@@ -4614,14 +4611,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b9c8eb0574f6eb60800000000000000
-      internalID: 7775170590249896372
+      spriteID: 5410283c8696090e0800000000000000
+      internalID: -2265194713889767099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_183
+      name: Tilemap_Planet Two_183
       rect:
         serializedVersion: 2
         x: 240
@@ -4635,14 +4632,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 421df40241fd71790800000000000000
-      internalID: -7559328171983646428
+      spriteID: cfb6c8dd50c183fb0800000000000000
+      internalID: -4667950202252137476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_184
+      name: Tilemap_Planet Two_184
       rect:
         serializedVersion: 2
         x: 16
@@ -4656,14 +4653,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db8aa3dc6163ede20800000000000000
-      internalID: 3377196242134804669
+      spriteID: bfead470b35779a50800000000000000
+      internalID: 6527815081282875131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_185
+      name: Tilemap_Planet Two_185
       rect:
         serializedVersion: 2
         x: 32
@@ -4677,14 +4674,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0738884b99567ad30800000000000000
-      internalID: 4442631268257530736
+      spriteID: ae7232c0a38333cd0800000000000000
+      internalID: -2579656339590273046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_186
+      name: Tilemap_Planet Two_186
       rect:
         serializedVersion: 2
         x: 48
@@ -4698,14 +4695,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7126479598ca0de60800000000000000
-      internalID: 7985071845239185943
+      spriteID: d4df69cf27d0e81e0800000000000000
+      internalID: -2193801180967666355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_187
+      name: Tilemap_Planet Two_187
       rect:
         serializedVersion: 2
         x: 64
@@ -4719,14 +4716,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2264e761ec9ed48b0800000000000000
-      internalID: -5166216126174181854
+      spriteID: ed9daad3ec8374e50800000000000000
+      internalID: 6793461021360708062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_188
+      name: Tilemap_Planet Two_188
       rect:
         serializedVersion: 2
         x: 96
@@ -4740,14 +4737,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60c79f8e3b80cd410800000000000000
-      internalID: 1503085944435735558
+      spriteID: 7f1066ace630ab340800000000000000
+      internalID: 4880216920586322423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_189
+      name: Tilemap_Planet Two_189
       rect:
         serializedVersion: 2
         x: 112
@@ -4761,14 +4758,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e327425419ec950b0800000000000000
-      internalID: -5739329126781390274
+      spriteID: 8d60c05959ff85ad0800000000000000
+      internalID: -2713137757574920488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_190
+      name: Tilemap_Planet Two_190
       rect:
         serializedVersion: 2
         x: 128
@@ -4782,35 +4779,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31080f6d7d6ada5e0800000000000000
-      internalID: -1896676422098845677
+      spriteID: b93104046ef0106d0800000000000000
+      internalID: -3026119993021426789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_191
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c88f1d91a0aa36d0800000000000000
-      internalID: -3009916784957486905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_192
+      name: Tilemap_Planet Two_191
       rect:
         serializedVersion: 2
         x: 160
@@ -4824,14 +4800,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c25b5fd3ef3479a0800000000000000
-      internalID: -6236289336063864127
+      spriteID: ff6ebdae831e5ad60800000000000000
+      internalID: 7900968755866101503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_193
+      name: Tilemap_Planet Two_192
       rect:
         serializedVersion: 2
         x: 176
@@ -4845,14 +4821,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee88de08aa5cfe2e0800000000000000
-      internalID: -2094237965605828370
+      spriteID: a41d7732a15ec9120800000000000000
+      internalID: 2422062600045449546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_194
+      name: Tilemap_Planet Two_193
       rect:
         serializedVersion: 2
         x: 192
@@ -4866,14 +4842,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e41f588c922999b0800000000000000
-      internalID: -5072985449557977888
+      spriteID: 68cc8d90b591ab9d0800000000000000
+      internalID: -2757863943013086074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_195
+      name: Tilemap_Planet Two_194
       rect:
         serializedVersion: 2
         x: 224
@@ -4887,14 +4863,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eabf7a4d372a2c6a0800000000000000
-      internalID: -6430398699558929490
+      spriteID: 7eb5f48786a7a5890800000000000000
+      internalID: -7468522442926892057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_196
+      name: Tilemap_Planet Two_195
       rect:
         serializedVersion: 2
         x: 240
@@ -4908,14 +4884,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d32320bd0a08f400800000000000000
-      internalID: 358047224281899989
+      spriteID: af34bd869cee8bb80800000000000000
+      internalID: -8378684557907770374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_197
+      name: Tilemap_Planet Two_196
       rect:
         serializedVersion: 2
         x: 16
@@ -4929,14 +4905,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da68afa759f844370800000000000000
-      internalID: 8305921484954175149
+      spriteID: f8484f29582a81c00800000000000000
+      internalID: 871625222476039311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_198
+      name: Tilemap_Planet Two_197
       rect:
         serializedVersion: 2
         x: 32
@@ -4950,14 +4926,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c61eb1f6239ccdfa0800000000000000
-      internalID: -5774519403746172564
+      spriteID: 9647923c3a34780c0800000000000000
+      internalID: -4573612525938445207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_199
+      name: Tilemap_Planet Two_198
       rect:
         serializedVersion: 2
         x: 48
@@ -4971,14 +4947,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f865dc11c55cffe90800000000000000
-      internalID: -6989651097429387633
+      spriteID: 5f5aa2c37f3cb7d40800000000000000
+      internalID: 5583271629689628149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_200
+      name: Tilemap_Planet Two_199
       rect:
         serializedVersion: 2
         x: 64
@@ -4992,14 +4968,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85af50262f5e1bf30800000000000000
-      internalID: 4589702324456651352
+      spriteID: 4819a7215c28964e0800000000000000
+      internalID: -1987913977577172604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_201
+      name: Tilemap_Planet Two_200
       rect:
         serializedVersion: 2
         x: 80
@@ -5013,14 +4989,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed29d1c3b42693450800000000000000
-      internalID: 6068990048129094366
+      spriteID: 5274a21c5083f6340800000000000000
+      internalID: 4859164120322819877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_202
+      name: Tilemap_Planet Two_201
       rect:
         serializedVersion: 2
         x: 96
@@ -5034,14 +5010,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 802179b4500a425b0800000000000000
-      internalID: -5394010509079539192
+      spriteID: 5bb88a5af61874760800000000000000
+      internalID: 7442059225773673397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_203
+      name: Tilemap_Planet Two_202
       rect:
         serializedVersion: 2
         x: 112
@@ -5055,14 +5031,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73f10635fa3906730800000000000000
-      internalID: 3990351651077627703
+      spriteID: 895866dd0f3173a20800000000000000
+      internalID: 3041921998539621784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_204
+      name: Tilemap_Planet Two_203
       rect:
         serializedVersion: 2
         x: 128
@@ -5076,14 +5052,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33bb3f74e4cfc5b70800000000000000
-      internalID: 8889257177667320627
+      spriteID: 4610a0d8fbdfbdcc0800000000000000
+      internalID: -3685072870925794972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_205
+      name: Tilemap_Planet Two_204
       rect:
         serializedVersion: 2
         x: 144
@@ -5097,14 +5073,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa4fa637c194688b0800000000000000
-      internalID: -5150348737307282262
+      spriteID: 2327eed297f75a4e0800000000000000
+      internalID: -1971029103466352078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_206
+      name: Tilemap_Planet Two_205
       rect:
         serializedVersion: 2
         x: 160
@@ -5118,14 +5094,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0098b7de1741260800000000000000
-      internalID: 7067398980044914849
+      spriteID: fbf6955580112cf70800000000000000
+      internalID: 9205939315788050367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_207
+      name: Tilemap_Planet Two_206
       rect:
         serializedVersion: 2
         x: 176
@@ -5139,14 +5115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e55d8e4be5484bd30800000000000000
-      internalID: 4446324274418472286
+      spriteID: ae295af9112441e60800000000000000
+      internalID: 7932037487166591722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_208
+      name: Tilemap_Planet Two_207
       rect:
         serializedVersion: 2
         x: 208
@@ -5160,14 +5136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a10515ce1d4e9d2c0800000000000000
-      internalID: -4406239170141269990
+      spriteID: 6c30e1f0ab1c59a70800000000000000
+      internalID: 8833179249018799046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_209
+      name: Tilemap_Planet Two_208
       rect:
         serializedVersion: 2
         x: 224
@@ -5181,14 +5157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3fbd50a85147a520800000000000000
-      internalID: 2713209149417439034
+      spriteID: f673f9b3a846b79f0800000000000000
+      internalID: -469671191261530257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_210
+      name: Tilemap_Planet Two_209
       rect:
         serializedVersion: 2
         x: 240
@@ -5202,14 +5178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba4ef1c04ffe49b50800000000000000
-      internalID: 6599163185459094699
+      spriteID: dd8d1946d068fa670800000000000000
+      internalID: 8552201609479837917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_211
+      name: Tilemap_Planet Two_210
       rect:
         serializedVersion: 2
         x: 0
@@ -5223,14 +5199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb217fb7d3c024060800000000000000
-      internalID: 6936119834316313276
+      spriteID: 519a74d20787a6e20800000000000000
+      internalID: 3344618096467355925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_212
+      name: Tilemap_Planet Two_211
       rect:
         serializedVersion: 2
         x: 16
@@ -5244,14 +5220,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72d68555cc06e6170800000000000000
-      internalID: 8173576804445482279
+      spriteID: 3aecdb45b094adfc0800000000000000
+      internalID: -3469380249920352605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_213
+      name: Tilemap_Planet Two_212
       rect:
         serializedVersion: 2
         x: 32
@@ -5265,14 +5241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed4081bbb5715e0f0800000000000000
-      internalID: -1088438052191730466
+      spriteID: 63596eb8adb72dca0800000000000000
+      internalID: -5993591975496477386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_214
+      name: Tilemap_Planet Two_213
       rect:
         serializedVersion: 2
         x: 64
@@ -5286,14 +5262,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0e733a914af143a0800000000000000
-      internalID: -6682785212374221302
+      spriteID: aa02427aefe18f000800000000000000
+      internalID: 69839873298931882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_215
+      name: Tilemap_Planet Two_214
       rect:
         serializedVersion: 2
         x: 80
@@ -5307,14 +5283,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb2d8a880c1990220800000000000000
-      internalID: 2452651728192459451
+      spriteID: 18fa0c0723ad101f0800000000000000
+      internalID: -1080342525417312383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_216
+      name: Tilemap_Planet Two_215
       rect:
         serializedVersion: 2
         x: 96
@@ -5328,14 +5304,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3a2b7d411cf310c0800000000000000
-      internalID: -4606060842625324485
+      spriteID: 48bface9702e6c750800000000000000
+      internalID: 6324991249045191556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_217
+      name: Tilemap_Planet Two_216
       rect:
         serializedVersion: 2
         x: 112
@@ -5349,14 +5325,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 218a89823e83e43b0800000000000000
-      internalID: -5526417144447195118
+      spriteID: 305fc0d97f733fe70800000000000000
+      internalID: 9147716804750931203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_218
+      name: Tilemap_Planet Two_217
       rect:
         serializedVersion: 2
         x: 128
@@ -5370,14 +5346,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7279f9742876af1a0800000000000000
-      internalID: -6774988880180439257
+      spriteID: 8023de4e04cccefb0800000000000000
+      internalID: -4617090938870877688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_219
+      name: Tilemap_Planet Two_218
       rect:
         serializedVersion: 2
         x: 144
@@ -5391,14 +5367,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a411f1abeda339f80800000000000000
-      internalID: -8101066576429641398
+      spriteID: 1a903b2bcc67c25d0800000000000000
+      internalID: -3085961023112148575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_220
+      name: Tilemap_Planet Two_219
       rect:
         serializedVersion: 2
         x: 160
@@ -5412,14 +5388,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28aa272a4d1421d80800000000000000
-      internalID: -8281484383266624894
+      spriteID: fa706d506cb8d7a20800000000000000
+      internalID: 3061757004299503535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_221
+      name: Tilemap_Planet Two_220
       rect:
         serializedVersion: 2
         x: 176
@@ -5433,14 +5409,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6b6e4ff305585210800000000000000
-      internalID: 1321899966289832815
+      spriteID: 0e3b4821f52722ca0800000000000000
+      internalID: -6043141997319638048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_222
+      name: Tilemap_Planet Two_221
       rect:
         serializedVersion: 2
         x: 192
@@ -5454,14 +5430,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af33bc07fbeca5830800000000000000
-      internalID: 4060785335654364154
+      spriteID: 319940f19ef9b6e20800000000000000
+      internalID: 3344942971849316627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_223
+      name: Tilemap_Planet Two_222
       rect:
         serializedVersion: 2
         x: 208
@@ -5475,14 +5451,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1a89aef40d5d9e10800000000000000
-      internalID: 2206021668515187226
+      spriteID: 9498c56cc8e6d1be0800000000000000
+      internalID: -1504925149569447607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_224
+      name: Tilemap_Planet Two_223
       rect:
         serializedVersion: 2
         x: 224
@@ -5496,8 +5472,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d66cccea1e4ac97c0800000000000000
-      internalID: -4063191474587777427
+      spriteID: d21a8d888d6dd0b70800000000000000
+      internalID: 8866979466859553069
       vertices: []
       indices: 
       edges: []

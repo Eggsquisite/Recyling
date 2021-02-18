@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6248065715904606280}
   - component: {fileID: 6248065715904606283}
+  - component: {fileID: 5661679245690894073}
   m_Layer: 0
   m_Name: Plant 3
   m_TagString: Untagged
@@ -69,16 +70,29 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1502390773
-  m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 4070073050077276241, guid: 07d34f3fb3b35ad4097576a77ae5e198, type: 3}
+  m_SortingLayer: 3
+  m_SortingOrder: 134
+  m_Sprite: {fileID: -5474858346727486184, guid: 07d34f3fb3b35ad4097576a77ae5e198, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8125, y: 1.125}
+  m_Size: {x: 0.875, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5661679245690894073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248065715904606282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ebc61bf894f4e47b024f8531ad72b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reference: {fileID: 0}

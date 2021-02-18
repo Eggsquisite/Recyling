@@ -1,136 +1,145 @@
 fileFormatVersion: 2
-guid: 6df3007f46a45b64e818821c8832af4a
+guid: e448f057754142c41811acba1c2d0406
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3930877054352106209
-    second: Sci-fi assets planet two_0
+      213: -6756601461856547328
+    second: BigSlices_Planet Two_0
   - first:
-      213: 8144865879670715967
-    second: Sci-fi assets planet two_1
+      213: -2309985581771708780
+    second: BigSlices_Planet Two_1
   - first:
-      213: -7730691024901711942
-    second: Sci-fi assets planet two_2
+      213: -2814661259806173959
+    second: BigSlices_Planet Two_2
   - first:
-      213: 2220545825295425251
-    second: Sci-fi assets planet two_3
+      213: 1290877752334241414
+    second: BigSlices_Planet Two_3
   - first:
-      213: 2820093263769937715
-    second: Sci-fi assets planet two_4
+      213: -7083463659797246184
+    second: BigSlices_Planet Two_4
   - first:
-      213: 2503885241562129330
-    second: Sci-fi assets planet two_5
+      213: -268891109017431701
+    second: BigSlices_Planet Two_5
   - first:
-      213: 6097190902904808179
-    second: Sci-fi assets planet two_6
+      213: -940293378655324830
+    second: BigSlices_Planet Two_6
   - first:
-      213: -4072372554160454274
-    second: Sci-fi assets planet two_7
+      213: -6904723939224912369
+    second: BigSlices_Planet Two_7
   - first:
-      213: -505214583379431896
-    second: Sci-fi assets planet two_8
+      213: 4078053618808481066
+    second: BigSlices_Planet Two_8
   - first:
-      213: -8858687973338391555
-    second: Sci-fi assets planet two_9
+      213: 7750875152447165481
+    second: BigSlices_Planet Two_9
   - first:
-      213: -423627019965435322
-    second: Sci-fi assets planet two_10
+      213: -5927952635691248511
+    second: BigSlices_Planet Two_10
   - first:
-      213: 4526059850140786317
-    second: Sci-fi assets planet two_11
+      213: -6767221337143318572
+    second: BigSlices_Planet Two_11
   - first:
-      213: 8001743867243252348
-    second: Sci-fi assets planet two_12
+      213: -2257755237295860955
+    second: BigSlices_Planet Two_12
   - first:
-      213: -7185207556918170621
-    second: Sci-fi assets planet two_13
+      213: 6879214565684064247
+    second: BigSlices_Planet Two_13
   - first:
-      213: 1970734924535332463
-    second: Sci-fi assets planet two_14
+      213: 7707087368112315259
+    second: BigSlices_Planet Two_14
   - first:
-      213: 6211308065418497784
-    second: Sci-fi assets planet two_15
+      213: 5104861087738154636
+    second: BigSlices_Planet Two_15
   - first:
-      213: -6799492621562440823
-    second: Sci-fi assets planet two_16
+      213: -2925715229275008214
+    second: BigSlices_Planet Two_16
   - first:
-      213: 8513931573856788258
-    second: Sci-fi assets planet two_17
+      213: 4786322540901762882
+    second: BigSlices_Planet Two_17
   - first:
-      213: -2650621495982565450
-    second: Sci-fi assets planet two_18
+      213: -2214370181897924923
+    second: BigSlices_Planet Two_18
   - first:
-      213: 1487526486437520410
-    second: Sci-fi assets planet two_19
+      213: 8581606571473240201
+    second: BigSlices_Planet Two_19
   - first:
-      213: 9167404003397350426
-    second: Sci-fi assets planet two_20
+      213: -4701196051397164898
+    second: BigSlices_Planet Two_20
   - first:
-      213: -7647754635686362800
-    second: Sci-fi assets planet two_21
+      213: 1475278820894857464
+    second: BigSlices_Planet Two_21
   - first:
-      213: 2361332823291819343
-    second: Sci-fi assets planet two_22
+      213: -7955206802132442524
+    second: BigSlices_Planet Two_22
   - first:
-      213: -409056879546548541
-    second: Sci-fi assets planet two_23
+      213: -3336005516605027101
+    second: BigSlices_Planet Two_23
   - first:
-      213: -3114354389863334450
-    second: Sci-fi assets planet two_24
+      213: -2643101940352072460
+    second: BigSlices_Planet Two_24
   - first:
-      213: 5050894803963379533
-    second: Sci-fi assets planet two_25
+      213: 2003302704821694263
+    second: BigSlices_Planet Two_25
   - first:
-      213: 6102648350852980822
-    second: Sci-fi assets planet two_26
+      213: 5660483249675566388
+    second: BigSlices_Planet Two_26
   - first:
-      213: 2695427643345423888
-    second: Sci-fi assets planet two_27
+      213: 4418611589769288925
+    second: BigSlices_Planet Two_27
   - first:
-      213: -4801595858617570448
-    second: Sci-fi assets planet two_28
+      213: -586305132047280726
+    second: BigSlices_Planet Two_28
   - first:
-      213: -466582213736534892
-    second: Sci-fi assets planet two_29
+      213: -3025869275400532402
+    second: BigSlices_Planet Two_29
   - first:
-      213: -1977887918394025656
-    second: Sci-fi assets planet two_30
+      213: -4180352014885849212
+    second: BigSlices_Planet Two_30
   - first:
-      213: -4990895369185897249
-    second: Sci-fi assets planet two_31
+      213: 3605734822260983174
+    second: BigSlices_Planet Two_31
   - first:
-      213: -7638360991138110898
-    second: Sci-fi assets planet two_32
+      213: -4125373122295425102
+    second: BigSlices_Planet Two_32
   - first:
-      213: -3089093245120039342
-    second: Sci-fi assets planet two_33
+      213: -5662046858268266937
+    second: BigSlices_Planet Two_33
   - first:
-      213: 2513431179319631078
-    second: Sci-fi assets planet two_34
+      213: -8422003781237040308
+    second: BigSlices_Planet Two_34
   - first:
-      213: -3729114301096664594
-    second: Sci-fi assets planet two_35
+      213: -4388775207562653588
+    second: BigSlices_Planet Two_35
   - first:
-      213: -8231842363941101443
-    second: Sci-fi assets planet two_36
+      213: -7344809775538066090
+    second: BigSlices_Planet Two_36
   - first:
-      213: -6935644662253846931
-    second: Sci-fi assets planet two_37
+      213: 3982974057228221881
+    second: BigSlices_Planet Two_37
   - first:
-      213: 5589168263972408754
-    second: Sci-fi assets planet two_38
+      213: 1478656822829791591
+    second: BigSlices_Planet Two_38
   - first:
-      213: -7042382448235118074
-    second: Sci-fi assets planet two_39
+      213: -6027561584833302186
+    second: BigSlices_Planet Two_39
   - first:
-      213: 6229485718876964449
-    second: Sci-fi assets planet two_40
+      213: -127396017454507153
+    second: BigSlices_Planet Two_40
   - first:
-      213: 5094526872738434232
-    second: Sci-fi assets planet two_41
+      213: 5941242766078869085
+    second: BigSlices_Planet Two_41
   - first:
-      213: -886216489109902989
-    second: BigSlices_PlanetTwo_0
+      213: 2721404620848587165
+    second: BigSlices_Planet Two_42
+  - first:
+      213: 8367432570967427310
+    second: BigSlices_Planet Two_43
+  - first:
+      213: 2630555182499884084
+    second: BigSlices_Planet Two_44
+  - first:
+      213: -3063713779751198760
+    second: BigSlices_Planet Two_45
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -232,7 +241,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sci-fi assets planet two_0
+      name: BigSlices_Planet Two_0
       rect:
         serializedVersion: 2
         x: 0
@@ -240,20 +249,20 @@ TextureImporter:
         width: 47
         height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e22460bad74d8630800000000000000
-      internalID: 3930877054352106209
+      spriteID: 00ec729b4cabb32a0800000000000000
+      internalID: -6756601461856547328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_1
+      name: BigSlices_Planet Two_1
       rect:
         serializedVersion: 2
         x: 0
@@ -261,20 +270,20 @@ TextureImporter:
         width: 256
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f36f8fc3d50680170800000000000000
-      internalID: 8144865879670715967
+      spriteID: 496293a2a5841ffd0800000000000000
+      internalID: -2309985581771708780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_2
+      name: BigSlices_Planet Two_2
       rect:
         serializedVersion: 2
         x: 96
@@ -282,20 +291,20 @@ TextureImporter:
         width: 16
         height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab7de68c87117b490800000000000000
-      internalID: -7730691024901711942
+      spriteID: 9f413363f7050f8d0800000000000000
+      internalID: -2814661259806173959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_3
+      name: BigSlices_Planet Two_3
       rect:
         serializedVersion: 2
         x: 113
@@ -303,20 +312,20 @@ TextureImporter:
         width: 47
         height: 39
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eed534c9a6f0de10800000000000000
-      internalID: 2220545825295425251
+      spriteID: 68e4654f97e1ae110800000000000000
+      internalID: 1290877752334241414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_4
+      name: BigSlices_Planet Two_4
       rect:
         serializedVersion: 2
         x: 166
@@ -324,20 +333,20 @@ TextureImporter:
         width: 11
         height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 337aa74c1ebf22720800000000000000
-      internalID: 2820093263769937715
+      spriteID: 81f856ac45b72bd90800000000000000
+      internalID: -7083463659797246184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_5
+      name: BigSlices_Planet Two_5
       rect:
         serializedVersion: 2
         x: 202
@@ -345,20 +354,20 @@ TextureImporter:
         width: 20
         height: 15
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b367ad6c569fb220800000000000000
-      internalID: 2503885241562129330
+      spriteID: b6151c306f4b44cf0800000000000000
+      internalID: -268891109017431701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_6
+      name: BigSlices_Planet Two_6
       rect:
         serializedVersion: 2
         x: 210
@@ -366,20 +375,20 @@ TextureImporter:
         width: 46
         height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f2626762d29d9450800000000000000
-      internalID: 6097190902904808179
+      spriteID: 265f89c672863f2f0800000000000000
+      internalID: -940293378655324830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_7
+      name: BigSlices_Planet Two_7
       rect:
         serializedVersion: 2
         x: 0
@@ -387,20 +396,20 @@ TextureImporter:
         width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7547340db60c77c0800000000000000
-      internalID: -4072372554160454274
+      spriteID: f0efc5af82e7d20a0800000000000000
+      internalID: -6904723939224912369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_8
+      name: BigSlices_Planet Two_8
       rect:
         serializedVersion: 2
         x: 32
@@ -408,20 +417,20 @@ TextureImporter:
         width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82e625e530e1df8f0800000000000000
-      internalID: -505214583379431896
+      spriteID: a25631ce828289830800000000000000
+      internalID: 4078053618808481066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_9
+      name: BigSlices_Planet Two_9
       rect:
         serializedVersion: 2
         x: 179
@@ -429,20 +438,20 @@ TextureImporter:
         width: 19
         height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfbd32d393e9f0580800000000000000
-      internalID: -8858687973338391555
+      spriteID: 924d300a2e3a09b60800000000000000
+      internalID: 7750875152447165481
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_10
+      name: BigSlices_Planet Two_10
       rect:
         serializedVersion: 2
         x: 64
@@ -450,676 +459,25 @@ TextureImporter:
         width: 48
         height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 642f3b54879fe1af0800000000000000
-      internalID: -423627019965435322
+      spriteID: 18458484c7eabbda0800000000000000
+      internalID: -5927952635691248511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sci-fi assets planet two_11
+      name: BigSlices_Planet Two_11
       rect:
         serializedVersion: 2
         x: 137
         y: 105
         width: 24
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8e9ccf147bcfce30800000000000000
-      internalID: 4526059850140786317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_12
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 65
-        width: 52
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7ac1b6f6a7eb0f60800000000000000
-      internalID: 8001743867243252348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_13
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 79
-        width: 27
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30ca07cbbc3094c90800000000000000
-      internalID: -7185207556918170621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_14
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 65
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6e7263f8f4795b10800000000000000
-      internalID: 1970734924535332463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_15
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 65
-        width: 48
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8fec9cdc6cff23650800000000000000
-      internalID: 6211308065418497784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_16
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 1
-        width: 53
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98391e66c7953a1a0800000000000000
-      internalID: -6799492621562440823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_17
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 49
-        width: 32
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22f57bd58af872670800000000000000
-      internalID: 8513931573856788258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 34
-        width: 48
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b7d1f10bc9173bd0800000000000000
-      internalID: -2650621495982565450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_19
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 49
-        width: 26
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a14e71a4571c4a410800000000000000
-      internalID: 1487526486437520410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_20
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 16
-        width: 37
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a143efebe59293f70800000000000000
-      internalID: 9167404003397350426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_21
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 0
-        width: 54
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 051419aada7bdd590800000000000000
-      internalID: -7647754635686362800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4577c021b325c020800000000000000
-      internalID: 2361332823291819343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_23
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 33
-        width: 25
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ceb2b17fecb25af0800000000000000
-      internalID: -409056879546548541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_24
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 0
-        width: 24
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecd7487de2797c4d0800000000000000
-      internalID: -3114354389863334450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_25
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 2
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4f7a1c3012681640800000000000000
-      internalID: 5050894803963379533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_26
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 0
-        width: 38
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65027b58756f0b450800000000000000
-      internalID: 6102648350852980822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_27
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 20
-        width: 9
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01e4f5f1925186520800000000000000
-      internalID: 2695427643345423888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_28
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 18
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 07bec1ca10e4d5db0800000000000000
-      internalID: -4801595858617570448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_29
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 1
-        width: 24
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49ce7bbd2fd5689f0800000000000000
-      internalID: -466582213736534892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_30
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 81
-        width: 22
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8495692ea612d84e0800000000000000
-      internalID: -1977887918394025656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_31
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 64
-        width: 16
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd45888ca17ccbab0800000000000000
-      internalID: -4990895369185897249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_32
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 145
-        width: 12
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e422309f5271ff590800000000000000
-      internalID: -7638360991138110898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_33
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 145
-        width: 27
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 256bf8e6f065125d0800000000000000
-      internalID: -3089093245120039342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_34
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 145
-        width: 21
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ecdcb2475081e220800000000000000
-      internalID: 2513431179319631078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_35
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 82
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee1ed440d468f3cc0800000000000000
-      internalID: -3729114301096664594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_36
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 128
-        width: 1
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d706742fbfe92cd80800000000000000
-      internalID: -8231842363941101443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_37
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 123
-        width: 1
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6e76022de3afbf90800000000000000
-      internalID: -6935644662253846931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_38
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 128
-        width: 1
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bd46f36ce6b09d40800000000000000
-      internalID: 5589168263972408754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_39
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 120
-        width: 1
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6020088b97e644e90800000000000000
-      internalID: -7042382448235118074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_40
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 115
-        width: 1
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 166c70f8144937650800000000000000
-      internalID: 6229485718876964449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sci-fi assets planet two_41
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 147
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bc8144e23563b640800000000000000
-      internalID: 5094526872738434232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BigSlices_PlanetTwo_0
-      rect:
-        serializedVersion: 2
-        x: 243
-        y: 48
-        width: 9
         height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1128,8 +486,722 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 379a28c6cc683b3f0800000000000000
-      internalID: -886216489109902989
+      spriteID: 4d7e0235c000612a0800000000000000
+      internalID: -6767221337143318572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 65
+        width: 52
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 523d333e297daa0e0800000000000000
+      internalID: -2257755237295860955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_13
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ffaa492331e77f50800000000000000
+      internalID: 6879214565684064247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_14
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 81
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7b1c3d902315fa60800000000000000
+      internalID: 7707087368112315259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_15
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 81
+        width: 26
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ec852dc1c18d640800000000000000
+      internalID: 5104861087738154636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_16
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 65
+        width: 48
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23dc150085c567d0800000000000000
+      internalID: -2925715229275008214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_17
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 65
+        width: 25
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24705eeedfe6c6240800000000000000
+      internalID: 4786322540901762882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1
+        width: 53
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cec1c24d0af441e0800000000000000
+      internalID: -2214370181897924923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_19
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 49
+        width: 32
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98002de95bdf71770800000000000000
+      internalID: 8581606571473240201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 34
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90c009691ff1ceb0800000000000000
+      internalID: -4701196051397164898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_21
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 20
+        width: 37
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f85810754e397410800000000000000
+      internalID: 1475278820894857464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462ef1cdf8d699190800000000000000
+      internalID: -7955206802132442524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec830658a024b1d0800000000000000
+      internalID: -3336005516605027101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_24
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f44b2cf9c0d15bd0800000000000000
+      internalID: -2643101940352072460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_25
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 2
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fe97232392dcb10800000000000000
+      internalID: 2003302704821694263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_26
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 38
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43df5f966831e8e40800000000000000
+      internalID: 5660483249675566388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_27
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 17
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc5f9084df025d30800000000000000
+      internalID: 4418611589769288925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_28
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 18
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5555ab6960dd7f0800000000000000
+      internalID: -586305132047280726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_29
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e8bfefce3f106d0800000000000000
+      internalID: -3025869275400532402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_30
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 128
+        width: 1
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487f3acadf76cf5c0800000000000000
+      internalID: -4180352014885849212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_31
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6854f1387b42a0230800000000000000
+      internalID: 3605734822260983174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_32
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 128
+        width: 1
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b713af900bbfb6c0800000000000000
+      internalID: -4125373122295425102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_33
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 115
+        width: 1
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ead47916e5c61b0800000000000000
+      internalID: -5662046858268266937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_34
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 123
+        width: 1
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4b9e52ce280f1b80800000000000000
+      internalID: -8422003781237040308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_35
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 147
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60df229330f713c0800000000000000
+      internalID: -4388775207562653588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_36
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 120
+        width: 1
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65dac327c6ef11a90800000000000000
+      internalID: -7344809775538066090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_37
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 80
+        width: 27
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd3fa66dcd564730800000000000000
+      internalID: 3982974057228221881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_38
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 70
+        width: 3
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7693a7dcb8e358410800000000000000
+      internalID: 1478656822829791591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_39
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 65
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 651783a8cacc95ca0800000000000000
+      internalID: -6027561584833302186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_40
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 145
+        width: 27
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b13d14ff56b3ef0800000000000000
+      internalID: -127396017454507153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_41
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 145
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5e7d7451d8837250800000000000000
+      internalID: 5941242766078869085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_42
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 144
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9169c3851f54c520800000000000000
+      internalID: 2721404620848587165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_43
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 48
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee80c8a37971f1470800000000000000
+      internalID: 8367432570967427310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_44
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 19
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ce7fe400c918420800000000000000
+      internalID: 2630555182499884084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_45
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 19
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dfd570bc808b75d0800000000000000
+      internalID: -3063713779751198760
       vertices: []
       indices: 
       edges: []
