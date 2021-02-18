@@ -311,7 +311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
+  min_X: 0
+  max_X: 10
   camSpeed: 1
   canFollow: 1
 --- !u!1 &4547673069174331206
