@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
+    public float min_X, max_X;
 
     [Range(0, 10)]
     public float camSpeed;
@@ -13,19 +14,18 @@ public class CameraFollow : MonoBehaviour
     private Vector2 targetOffset;
     private Transform originalTarget;
 
-    private void Start()
-    {
+    private void Start() {
         originalTarget = target;
     }
 
     // Update is called once per frame
-    void LateUpdate()
-    {
+    void LateUpdate() {
         if (!canFollow)
             return;
         else
         {
-            Vector3 targetPosition = new Vector3(target.position.x + targetOffset.x, 
+            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, 
+                                                    min_X, max_X), 
                                                     transform.position.y, 
                                                     transform.position.z);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
