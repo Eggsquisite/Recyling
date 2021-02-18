@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField]
+    private LayerMask interactableLayer;
+
+    private Collider2D interactable;
     private Player player;
     private float xAxis;
     private float yAxis;
@@ -38,5 +42,18 @@ public class PlayerInput : MonoBehaviour
             player.DashInput();
         else if (Input.GetKeyUp(KeyCode.Space))
             player.StopDashInput();
+
+        // INTERACTION INPUT
+        if (Input.GetKeyDown(KeyCode.E)) {
+            interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
+            if (interactable != null) {
+                interactable.GetComponent<Interactable>().Interacting();
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 }
