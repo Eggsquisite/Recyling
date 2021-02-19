@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: c589dc6e5a0516b478262df58c4c5e61
+guid: b549c6e6eee4b4f46b28204aa10cfc4a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5387997489881651006
-    second: medium mattack 2_0
+      213: -1046985809655720750
+    second: medium mattack 1t_shadows_0
   - first:
-      213: 3284449134611760888
-    second: medium mattack 2_1
+      213: -910133371644337177
+    second: medium mattack 1t_shadows_1
   - first:
-      213: 1802908542868826906
-    second: medium mattack 2_2
+      213: 6544391179429280413
+    second: medium mattack 1t_shadows_2
   - first:
-      213: -6002929201044183899
-    second: medium mattack 2_3
+      213: 4703231805917317832
+    second: medium mattack 1t_shadows_3
   - first:
-      213: 3758981671058555272
-    second: medium mattack 2_4
+      213: -2181586957943153174
+    second: medium mattack 1t_shadows_4
   - first:
-      213: 2781642927722543591
-    second: medium mattack 2_5
+      213: 2023370907978455859
+    second: medium mattack 1t_shadows_5
   - first:
-      213: 2596890701220388256
-    second: medium mattack 2_6
+      213: -3599467020532590699
+    second: medium mattack 1t_shadows_6
   - first:
-      213: -7836965989215751858
-    second: medium mattack 2_7
+      213: 2701164753136685068
+    second: medium mattack 1t_shadows_7
+  - first:
+      213: 7405866334130212068
+    second: medium mattack 1t_shadows_8
+  - first:
+      213: -6763913579666191418
+    second: medium mattack 1t_shadows_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,7 +133,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: medium mattack 2_0
+      name: medium mattack 1t_shadows_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 558
+        width: 135
+        height: 62
+      alignment: 9
+      pivot: {x: 0.435, y: 0.07}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4989a04fb5871f0800000000000000
+      internalID: -1046985809655720750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: medium mattack 1t_shadows_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 496
+        width: 135
+        height: 62
+      alignment: 9
+      pivot: {x: 0.435, y: 0.07}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e329e4458e8e53f0800000000000000
+      internalID: -910133371644337177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: medium mattack 1t_shadows_2
       rect:
         serializedVersion: 2
         x: 0
@@ -141,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c868ec64dcf935b0800000000000000
-      internalID: -5387997489881651006
+      spriteID: d9af411aa1952da50800000000000000
+      internalID: 6544391179429280413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_1
+      name: medium mattack 1t_shadows_3
       rect:
         serializedVersion: 2
         x: 0
@@ -162,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f68f5f0615b49d20800000000000000
-      internalID: 3284449134611760888
+      spriteID: 8ca4500a86c354140800000000000000
+      internalID: 4703231805917317832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_2
+      name: medium mattack 1t_shadows_4
       rect:
         serializedVersion: 2
         x: 0
@@ -183,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1ba63c74c7350910800000000000000
-      internalID: 1802908542868826906
+      spriteID: aed5c25683279b1e0800000000000000
+      internalID: -2181586957943153174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_3
+      name: medium mattack 1t_shadows_5
       rect:
         serializedVersion: 2
         x: 0
@@ -204,14 +252,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a421ff42bf41bca0800000000000000
-      internalID: -6002929201044183899
+      spriteID: 33b5aeade15741c10800000000000000
+      internalID: 2023370907978455859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_4
+      name: medium mattack 1t_shadows_6
       rect:
         serializedVersion: 2
         x: 0
@@ -225,14 +273,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88146a4f9e59a2430800000000000000
-      internalID: 3758981671058555272
+      spriteID: 597db6cc0df1c0ec0800000000000000
+      internalID: -3599467020532590699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_5
+      name: medium mattack 1t_shadows_7
       rect:
         serializedVersion: 2
         x: 0
@@ -246,14 +294,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e931e641816a9620800000000000000
-      internalID: 2781642927722543591
+      spriteID: c00948618077c7520800000000000000
+      internalID: 2701164753136685068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_6
+      name: medium mattack 1t_shadows_8
       rect:
         serializedVersion: 2
         x: 0
@@ -267,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ad91c675520a0420800000000000000
-      internalID: 2596890701220388256
+      spriteID: 4ec0bd3613ce6c660800000000000000
+      internalID: 7405866334130212068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: medium mattack 2_7
+      name: medium mattack 1t_shadows_9
       rect:
         serializedVersion: 2
         x: 0
@@ -288,8 +336,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e413aff64f08d3390800000000000000
-      internalID: -7836965989215751858
+      spriteID: 6cb4e80af60c122a0800000000000000
+      internalID: -6763913579666191418
       vertices: []
       indices: 
       edges: []

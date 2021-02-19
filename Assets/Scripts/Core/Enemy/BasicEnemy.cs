@@ -65,13 +65,17 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
+    private List<Transform> attackDetectPoints;
+    [SerializeField]
+    private List<float> attackDetectRanges;
+    [SerializeField]
     private List<Transform> attackPoints;
+    [SerializeField]
+    private List<float> attackRanges;
     [SerializeField]
     private List<string> attackAnimations;
     [SerializeField]
     private List<int> attackPriority;
-    [SerializeField]
-    private List<float> attackRanges;
     [SerializeField]
     private List<int> attackDamages;
     [SerializeField]
@@ -314,8 +318,8 @@ public class BasicEnemy : MonoBehaviour
                     // split the attackRange / 2 and add to attackPoint to split the difference 
                     // when finding the distance between playerPosition and attackPoint, otherwise
                     // it will check the distance from both sides of attackPoint
-                    tmpRange = attackRanges[priorityLists[j][i].index] / 2;
-                    tmpAttackPoint = attackPoints[priorityLists[j][i].index];
+                    tmpRange = attackDetectRanges[priorityLists[j][i].index] / 2;
+                    tmpAttackPoint = attackDetectPoints[priorityLists[j][i].index];
 
                     if (enemyMovement.GetLeftOfPlayer())
                         tmpAttackVector = new Vector2(
