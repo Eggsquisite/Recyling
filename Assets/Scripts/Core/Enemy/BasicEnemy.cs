@@ -123,7 +123,7 @@ public class BasicEnemy : MonoBehaviour
     private float playerDistance;
     private Vector2 newPosition;
 
-    private Coroutine attackAnimationRoutine, staminaRecoveryRoutine;
+    private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine;
 
     // Start is called before the first frame update
     void Awake() {
@@ -133,10 +133,6 @@ public class BasicEnemy : MonoBehaviour
     private void Update() {
         if (isDead || outOfTetherRange)
             return;
-
-        ///////////////////// Attack Hitbox Activated ///////////////////////////
-        if (attackHitbox)
-            CheckHitBox();
 
         ///////////////////// Follow Player /////////////////////////////////////
         CheckPlayerInRange();
@@ -154,15 +150,6 @@ public class BasicEnemy : MonoBehaviour
 
         // Follow Player ////////////////////////////////////////////////////////////////
         FollowPlayer();
-
-        // Attack Follow Through ////////////////////////////////////////////////////////
-        if (attackFollowThruBoth) {
-            AttackFollowThroughBoth();
-        } else if (attackFollowThruVertical) {
-            AttackFollowThroughVertical();
-        } else if (attackFollowThruHorizontal) {
-            AttackFollowThroughHorizontal();
-        }
     }
 
     private void SetupVariables()
@@ -315,6 +302,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
         attackHitbox = true;
+        StartCoroutine(CheckHitBox());
     }
 
     private void AttackDeactivated() {
@@ -331,8 +319,7 @@ public class BasicEnemy : MonoBehaviour
         for (int j = 0; j < priorityLists.Count; j++)
         {
             // priorityLists[j] is the list that contains all attacks of that specific priority
-            if (priorityLists[j].Count > 0)
-            {
+            if (priorityLists[j].Count > 0) {
                 for (int i = 0; i < priorityLists[j].Count; i++)
                 {
                     // split the attackRange / 2 and add to attackPoint to split the difference 
@@ -429,47 +416,41 @@ public class BasicEnemy : MonoBehaviour
                 }*/
     }
 
-    private void CheckHitBox() {
-        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (enemyMovement.GetLeftOfPlayer()) 
-            hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
-        else 
-            hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
+    IEnumerator CheckHitBox() {
+        while (attackHitbox) { 
+            if (enemyMovement.GetLeftOfPlayer()) 
+                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
+            else 
+                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
 
-        if (hitBox.collider != null) {
-            hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
+            if (hitBox.collider != null) {
+                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
+            }
+
+            yield return null;
         }
+        yield break;
     }
-
-/*    private void CheckHitBox2()
-    {
-        //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
-        if (enemyMovement.GetLeftOfPlayer())
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.right, attackRanges[attackIndex], playerLayer);
-        else
-            hitBox2 = Physics2D.Raycast(attackPoint2.position, Vector2.left, attackRanges[attackIndex], playerLayer);
-
-        if (hitBox2.collider != null) {
-            hitBox2.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
-        }
-    }*/
 
     private void AttackFollowBothActivated(float value) {
         // called thru animation events
         attackFollowThruBoth = true;
         attackFollowThruSpeed = value;
+        attackFollowRoutine = StartCoroutine(AttackFollowThroughBoth());
     }
 
     private void AttackFollowVerticalActivated(float value){
         // called thru animation events
         attackFollowThruVertical = true;
         attackFollowThruSpeed = value;
+        attackFollowRoutine = StartCoroutine(AttackFollowThroughVertical());
     }
 
     private void AttackFollowHorizontalActivated(float value) {
         // called thru animation events
         attackFollowThruHorizontal = true;
         attackFollowThruSpeed = value;
+        attackFollowRoutine = StartCoroutine(AttackFollowThroughHorizontal());
     }
 
     private void AttackFollowDeactivated() {
@@ -478,93 +459,108 @@ public class BasicEnemy : MonoBehaviour
         attackFollowThruBoth = false;
         attackFollowThruVertical = false;
         attackFollowThruHorizontal = false;
+
+        if (attackFollowRoutine != null)
+            StopCoroutine(attackFollowRoutine);
     }
 
-    private void AttackFollowThroughVertical() {
+    IEnumerator AttackFollowThroughVertical() {
         // up down movement only
-        if (abovePlayer == 1) { 
-            newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
-                                    * attackFollowThruSpeed
-                                    * Time.fixedDeltaTime;
-        }
-        else if (abovePlayer == -1) { 
-            newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
-                                    * attackFollowThruSpeed
-                                    * Time.fixedDeltaTime;
-        }
-        else if (abovePlayer == 0) { 
-            newPosition = Vector2.zero;
-        }
+        while (attackFollowThruVertical) { 
+            if (abovePlayer == 1) { 
+                newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+            else if (abovePlayer == -1) { 
+                newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
+                                        * attackFollowThruSpeed
+                                        * Time.fixedDeltaTime;
+            }
+            else if (abovePlayer == 0) { 
+                newPosition = Vector2.zero;
+            }
 
-        rb.MovePosition(rb.position + newPosition);
+            rb.MovePosition(rb.position + newPosition);
+            yield return null;
+        }
+        yield break;
     }
 
-    private void AttackFollowThroughHorizontal() {
+    IEnumerator AttackFollowThroughHorizontal() {
         // Left right movement only
-        if (attackFollowFacePlayer[attackIndex])
-            enemyMovement.CheckPlayerPos();
+        while (attackFollowThruHorizontal) { 
+            if (attackFollowFacePlayer[attackIndex])
+                enemyMovement.CheckPlayerPos();
 
-        if (leftOfPlayer) { 
-            newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-        }
-        else { 
-            newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
-                                    * attackFollowThruSpeed
-                                    * Time.fixedDeltaTime;
-        }
-        
-        rb.MovePosition(rb.position + newPosition);
-    }
-
-    private void AttackFollowThroughBoth() {
-        if (attackFollowFacePlayer[attackIndex]) { 
-            enemyMovement.CheckPlayerPos();
-            abovePlayer = enemyMovement.GetAbovePlayer();
-        }
-
-        if (leftOfPlayer) {
-            // if left of player, always move left
-            if (abovePlayer == 1) {
-                newPosition = new Vector2(attackFollowDistances[attackIndex],
-                                        attackFollowDistances[attackIndex])
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
-            else if (abovePlayer == -1) {
-                newPosition = new Vector2(attackFollowDistances[attackIndex],
-                                        -attackFollowDistances[attackIndex])
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
-            else if (abovePlayer == 0) {
+            if (leftOfPlayer) { 
                 newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
             }
-        } else if (!leftOfPlayer) {
-            // if to the right of player, always move right
-            if (abovePlayer == 1) {
-                newPosition = new Vector2(-attackFollowDistances[attackIndex],
-                                        attackFollowDistances[attackIndex])
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
-            else if (abovePlayer == -1) {
-                newPosition = new Vector2(-attackFollowDistances[attackIndex],
-                                        -attackFollowDistances[attackIndex])
-                                        * attackFollowThruSpeed
-                                        * Time.fixedDeltaTime;
-            }
-            else if (abovePlayer == 0) {
+            else { 
                 newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
+        
+            rb.MovePosition(rb.position + newPosition);
+            yield return null;
         }
+        yield break;
+    }
 
-        rb.MovePosition(rb.position + newPosition);
+    IEnumerator AttackFollowThroughBoth() {
+        while (attackFollowThruBoth) { 
+            if (attackFollowFacePlayer[attackIndex]) { 
+                enemyMovement.CheckPlayerPos();
+                abovePlayer = enemyMovement.GetAbovePlayer();
+            }
+
+            if (leftOfPlayer) {
+                // if left of player, always move left
+                if (abovePlayer == 1) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex],
+                                            attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (abovePlayer == -1) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex],
+                                            -attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (abovePlayer == 0) {
+                    newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+            } else if (!leftOfPlayer) {
+                // if to the right of player, always move right
+                if (abovePlayer == 1) {
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                            attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (abovePlayer == -1) {
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex],
+                                            -attackFollowDistances[attackIndex])
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+                else if (abovePlayer == 0) {
+                    newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
+                                            * attackFollowThruSpeed
+                                            * Time.fixedDeltaTime;
+                }
+            }
+
+            rb.MovePosition(rb.position + newPosition);
+            yield return null;
+        }
+        yield break;
     }
 
     // STAMINA CODE ////////////////////////////////////////////////////////
