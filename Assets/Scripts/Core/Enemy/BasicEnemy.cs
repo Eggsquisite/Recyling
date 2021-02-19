@@ -61,12 +61,12 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Collider Properties")]
     [SerializeField]
+    private LayerMask playerLayer;
+    [SerializeField]
     private Transform visualizePoint;
     [SerializeField]
     private List<Transform> attackPoints;
 
-    [SerializeField]
-    private LayerMask playerLayer;
 
     private RaycastHit2D playerDetected;
     private RaycastHit2D hitBox;
@@ -322,7 +322,8 @@ public class BasicEnemy : MonoBehaviour
 
     private void PickAttack() {
         isPicking = true;
-        float tmp;
+        Transform tmpAttackPoint;
+        float tmpRange;
         for (int j = 0; j < priorityLists.Count; j++)
         {
             // priorityLists[j] is the list that contains all attacks of that specific priority
@@ -330,9 +331,11 @@ public class BasicEnemy : MonoBehaviour
             {
                 for (int i = 0; i < priorityLists[j].Count; i++)
                 {
-                    tmp = attackRanges[priorityLists[j][i].index];
+                    tmpRange = attackRanges[priorityLists[j][i].index];
+                    tmpAttackPoint = attackPoints[priorityLists[j][i].index];
                     // iterates through each list in priorityLists to find an attack that is currently in range
-                    if (playerDistance < tmp)
+                    if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackPoint.position)
+                        < tmpRange)
                     {
                         attackIndex = priorityLists[j][i].index;
 

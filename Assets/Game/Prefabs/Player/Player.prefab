@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 179
+  m_SortingOrder: -18
   m_Sprite: {fileID: 6662087177581645557, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -308,15 +308,7 @@ MonoBehaviour:
   visualDelay: 1
   decaySpeed: 600
   recoverySpeed: 0.03
-  healthMaxValue: {fileID: 0}
-  healthCurrentValue: {fileID: 0}
-  healthDestroyedValue: {fileID: 0}
-  energyMaxValue: {fileID: 0}
-  energyCurrentValue: {fileID: 0}
-  energyDestroyedValue: {fileID: 0}
-  staminaMaxValue: {fileID: 0}
-  staminaCurrentValue: {fileID: 0}
-  staminaDestroyedValue: {fileID: 0}
+  UI: {fileID: 0}
 --- !u!114 &722439448608458816
 MonoBehaviour:
   m_ObjectHideFlags: 0

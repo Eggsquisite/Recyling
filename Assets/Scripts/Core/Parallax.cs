@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public Transform cam;
     public float parallaxEffect;
     public float length;
+
+    private Transform cam;
     private float startPos;
 
     private void Start()
     {
         startPos = transform.position.x;
+        cam = Camera.main.transform;
     }
 
     // Update is called once per frame

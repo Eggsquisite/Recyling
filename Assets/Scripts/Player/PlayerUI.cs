@@ -12,12 +12,15 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private float recoverySpeed;
 
+    [SerializeField]
+    private ResourceUI UI;
+
     [Header("Health")]
-    [SerializeField]
+    //[SerializeField]
     private Slider healthMaxValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider healthCurrentValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider healthDestroyedValue;
 
     private bool healthLost;
@@ -28,11 +31,11 @@ public class PlayerUI : MonoBehaviour
     private float healthRecoveryDelay;
 
     [Header("Energy")]
-    [SerializeField]
+    //[SerializeField]
     private Slider energyMaxValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider energyCurrentValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider energyDestroyedValue;
 
     private bool energyLost;
@@ -43,11 +46,11 @@ public class PlayerUI : MonoBehaviour
     private float energyRecoveryDelay;
 
     [Header("Stamina")]
-    [SerializeField]
+    //[SerializeField]
     private Slider staminaMaxValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider staminaCurrentValue;
-    [SerializeField]
+    //[SerializeField]
     private Slider staminaDestroyedValue;
 
     private bool staminaLost;
@@ -63,13 +66,27 @@ public class PlayerUI : MonoBehaviour
     private Coroutine healthDestroyedTimerRoutine, energyDestroyedTimerRoutine, staminaDestroyedTimerRoutine;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        healthRecoverable = energyRecoverable = staminaRecoverable = true;
+
+        // initialize sliders
+        healthMaxValue = UI.GetHealthMaxValue();
+        healthCurrentValue = UI.GetHealthCurrentValue();
+        healthDestroyedValue = UI.GetHealthDestroyedValue();
+
+        energyMaxValue = UI.GetEnergyMaxValue();
+        energyCurrentValue = UI.GetEnergyCurrentValue();
+        energyDestroyedValue = UI.GetEnergyDestroyedValue();
+
+        staminaMaxValue = UI.GetStaminaMaxValue();
+        staminaCurrentValue = UI.GetStaminaCurrentValue();
+        staminaDestroyedValue = UI.GetStaminaDestroyedValue();
+
         healthDestroyedValue.value = healthDestroyedValue.maxValue = healthCurrentValue.maxValue;
         energyDestroyedValue.value = energyDestroyedValue.maxValue = energyCurrentValue.maxValue;
         staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.maxValue;
 
-        healthRecoverable = energyRecoverable = staminaRecoverable = true;
     }
 
     private void BarUpdate() {
