@@ -44,8 +44,6 @@ public class BasicEnemy : MonoBehaviour
     private float staminaRecoveryDelay;
     [SerializeField]
     private float staminaRecoverySpeed;
-    [SerializeField]
-    private float emptyStaminaDelayMult;
 
     /*[SerializeField]
     private float deathFadeTime;*/
@@ -80,7 +78,7 @@ public class BasicEnemy : MonoBehaviour
     private float visualizeRange;
 
     [SerializeField]
-    private List<string> attackIndexes;
+    private List<string> attackAnimations;
     [SerializeField]
     private List<int> attackPriority;
     [SerializeField]
@@ -103,8 +101,10 @@ public class BasicEnemy : MonoBehaviour
     private List<List<AttackPriority>> priorityLists;
 
     private string attackChosen;
+
+    private int attackIndex, attackPointIndex;
     private int abovePlayer;
-    private int attackIndex;
+
     private bool leftOfPlayer;
     private bool inRange;
     private bool isStunned;
@@ -196,15 +196,15 @@ public class BasicEnemy : MonoBehaviour
         priorityListThree = new List<AttackPriority>();
         priorityLists = new List<List<AttackPriority>>();
 
-        for (int i = 0; i < attackIndexes.Count; i++)
+        for (int i = 0; i < attackAnimations.Count; i++)
         {
             var tmp = attackPriority[i];
             if (tmp == 1)
-                priorityListOne.Add(new AttackPriority(i, attackIndexes[i]));
+                priorityListOne.Add(new AttackPriority(i, attackAnimations[i]));
             else if (tmp == 2)
-                priorityListTwo.Add(new AttackPriority(i, attackIndexes[i]));
+                priorityListTwo.Add(new AttackPriority(i, attackAnimations[i]));
             else if (tmp == 3)
-                priorityListThree.Add(new AttackPriority(i, attackIndexes[i]));
+                priorityListThree.Add(new AttackPriority(i, attackAnimations[i]));
         }
 
         priorityLists.Add(priorityListOne);
@@ -307,8 +307,11 @@ public class BasicEnemy : MonoBehaviour
         attackReady = true;
     }
 
-    private void AttackActivated() {
+    private void AttackActivated(int attackPoint) {
         //called thru animation event
+        if (attackPoint != 0)
+            attackPointIndex = attackPoint;
+
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
         attackHitbox = true;
@@ -322,8 +325,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void PickAttack() {
         isPicking = true;
-        Transform tmpAttackPoint;
         float tmpRange;
+        Vector2 tmpAttackVector;
+        Transform tmpAttackPoint;
         for (int j = 0; j < priorityLists.Count; j++)
         {
             // priorityLists[j] is the list that contains all attacks of that specific priority
@@ -331,13 +335,24 @@ public class BasicEnemy : MonoBehaviour
             {
                 for (int i = 0; i < priorityLists[j].Count; i++)
                 {
-                    tmpRange = attackRanges[priorityLists[j][i].index];
+                    // split the attackRange / 2 and add to attackPoint to split the difference 
+                    // when finding the distance between playerPosition and attackPoint, otherwise
+                    // it will check the distance from both sides of attackPoint
+                    tmpRange = attackRanges[priorityLists[j][i].index] / 2;
                     tmpAttackPoint = attackPoints[priorityLists[j][i].index];
+
+                    if (enemyMovement.GetLeftOfPlayer())
+                        tmpAttackVector = new Vector2(
+                                            tmpAttackPoint.position.x + tmpRange, 
+                                            tmpAttackPoint.position.y);
+                    else
+                        tmpAttackVector = new Vector2(
+                                            tmpAttackPoint.position.x - tmpRange,
+                                            tmpAttackPoint.position.y);
                     // iterates through each list in priorityLists to find an attack that is currently in range
-                    if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackPoint.position)
-                        < tmpRange)
-                    {
-                        attackIndex = priorityLists[j][i].index;
+                    if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector) 
+                            < tmpRange) {
+                        attackPointIndex = attackIndex = priorityLists[j][i].index;
 
                         //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
                         isPicking = false;
@@ -346,7 +361,6 @@ public class BasicEnemy : MonoBehaviour
                     }
                     // keep iterating
                 }
-                //Debug.Log("iterated through priority list " + j + ", moving onto " + (j + 1));
             }
         }
         isPicking = false;
@@ -355,7 +369,7 @@ public class BasicEnemy : MonoBehaviour
         /*while (playerDistance >= attackRanges[attackIndex])
         {
             Debug.Log("Picking new attack");
-            attackIndex = Random.Range(0, attackIndexes.Count);
+            attackIndex = Random.Range(0, attackAnimations.Count);
             yield return null;
         }
         StartCoroutine(AttackAnimation());*/
@@ -372,7 +386,7 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(StaminaRecovery());
 
         //Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");
-        attackChosen = attackIndexes[attackIndex];
+        attackChosen = attackAnimations[attackIndex];
         abovePlayer = enemyMovement.GetAbovePlayer();
         leftOfPlayer = enemyMovement.GetLeftOfPlayer();
 
@@ -418,9 +432,9 @@ public class BasicEnemy : MonoBehaviour
     private void CheckHitBox() {
         //Collider2D[] playerDetectedPlayer = Physics2D.OverlapCapsuleAll(attackPoint.position, new Vector2(1 * attackLengthMultiplier, 0.3f * attackWidthMultiplier), CapsuleDirection2D.Horizontal, 0f);
         if (enemyMovement.GetLeftOfPlayer()) 
-            hitBox = Physics2D.Raycast(attackPoints[attackIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
+            hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
         else 
-            hitBox = Physics2D.Raycast(attackPoints[attackIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
+            hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
 
         if (hitBox.collider != null) {
             hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
@@ -671,5 +685,6 @@ public class BasicEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
+        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
     }
 }

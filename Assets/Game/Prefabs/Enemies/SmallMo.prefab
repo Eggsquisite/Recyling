@@ -192,7 +192,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -109
   m_Sprite: {fileID: 827538889749247048, guid: d345ea7b195ccce4390ae2ca751b9abd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -239,7 +239,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 0.3}
+  m_Size: {x: 0.7, y: 0.4}
   m_Direction: 1
 --- !u!95 &2237502160636908987
 Animator:
@@ -289,15 +289,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 3512151542823493369}
-  detectRange: 4
+  detectRange: 3
   repeatFollowDelay: 0.5
   attackFollowDelay: 0.5
   stunFollowDelay: 0.5
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 0.5
-  maxMoveSpeed: 0.75
+  minMoveSpeed: 0.75
+  maxMoveSpeed: 1
   idleSpeedMult: 0.75
   minOffset: 3
   maxOffset: 3.5
@@ -314,33 +314,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherFollowRange: 5
+  tetherFollowRange: 6
   tetherUnfollowRange: 8
   maxHealth: 100
   maxStamina: 40
   staminaRecoveryValue: 5
   staminaRecoveryDelay: 2
   staminaRecoverySpeed: 0.5
-  emptyStaminaDelayMult: 0
-  visualizePoint: {fileID: 3512151542823493369}
-  attackPoints:
-  - {fileID: 2237502159876300119}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  visualizePoint: {fileID: 3512151542823493369}
+  attackPoints:
+  - {fileID: 2237502159876300119}
   stunDelay: 0.5
-  visualizeRange: 4
-  attackIndexes:
+  visualizeRange: 3
+  attackAnimations:
   - enemy_attack1
   attackPriority: 01000000
   attackRanges:
   - 1
-  attackDamages: 50000000
+  attackDamages: b4000000
   attackFollowDistances:
   - 0
   attackFollowFacePlayer: 00
-  minAttackDelay: 0.5
-  maxAttackDelay: 1
+  minAttackDelay: 0.75
+  maxAttackDelay: 1.5
 --- !u!114 &1780537994
 MonoBehaviour:
   m_ObjectHideFlags: 0
