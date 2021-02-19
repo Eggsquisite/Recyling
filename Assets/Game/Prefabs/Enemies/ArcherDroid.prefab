@@ -223,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 47
+  m_SortingOrder: -106
   m_Sprite: {fileID: 38890944275603932, guid: 3a2fc3efdfb85014ba2b7adb26a1b600, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -392,7 +392,7 @@ MonoBehaviour:
   attackFollowDistances:
   - -0.5
   - -1
-  attackFollowFacePlayer: 
+  attackFollowFacePlayer: 0000
   minAttackDelay: 1
   maxAttackDelay: 2
 --- !u!114 &1035896704084563224

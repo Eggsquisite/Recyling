@@ -55,3 +55,6 @@ TagManager:
   - name: MiscWalkable
     uniqueID: 1502390773
     locked: 0
+  - name: UI
+    uniqueID: 1632646537
+    locked: 0
