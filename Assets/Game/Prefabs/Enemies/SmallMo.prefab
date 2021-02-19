@@ -289,7 +289,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 3512151542823493369}
-  detectRange: 3
+  detectRange: 4
   repeatFollowDelay: 0.5
   attackFollowDelay: 0.5
   stunFollowDelay: 0.5
@@ -325,10 +325,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 3512151542823493369}
+  visualizeRange: 4
   attackPoints:
   - {fileID: 2237502159876300119}
-  stunDelay: 0.5
-  visualizeRange: 3
   attackAnimations:
   - enemy_attack1
   attackPriority: 01000000

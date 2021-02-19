@@ -26,7 +26,6 @@ public class BasicEnemy : MonoBehaviour
     private ArcherDroid archerArrow;
     private string currentState;
 
-
     [Header("Enemy Stats")]
     [SerializeField]
     private float tetherFollowRange;
@@ -45,9 +44,6 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float staminaRecoverySpeed;
 
-    /*[SerializeField]
-    private float deathFadeTime;*/
-
     private bool isDead;
     private bool isInvincible;
     private bool staminaRecovery;
@@ -62,21 +58,14 @@ public class BasicEnemy : MonoBehaviour
     private LayerMask playerLayer;
     [SerializeField]
     private Transform visualizePoint;
-    [SerializeField]
-    private List<Transform> attackPoints;
-
-
-    private RaycastHit2D playerDetected;
-    private RaycastHit2D hitBox;
-    private RaycastHit2D hitBox2;
-
-    [Header("Attack Properties")]
-    [SerializeField]
-    private float stunDelay;
-
     [SerializeField] 
     private float visualizeRange;
 
+    private RaycastHit2D hitBox, playerDetected;
+
+    [Header("Attack Properties")]
+    [SerializeField]
+    private List<Transform> attackPoints;
     [SerializeField]
     private List<string> attackAnimations;
     [SerializeField]
@@ -419,9 +408,9 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator CheckHitBox() {
         while (attackHitbox) { 
             if (enemyMovement.GetLeftOfPlayer()) 
-                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackIndex], playerLayer);
+                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackPointIndex], playerLayer);
             else 
-                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackIndex], playerLayer);
+                hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
             if (hitBox.collider != null) {
                 hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
@@ -681,6 +670,7 @@ public class BasicEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
+        Gizmos.color = Color.blue;
         Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
     }
 }
