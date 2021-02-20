@@ -117,6 +117,7 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 newPosition;
 
     private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine;
+    private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine;
 
     // Start is called before the first frame update
     void Awake() {
@@ -159,7 +160,6 @@ public class BasicEnemy : MonoBehaviour
         if (archerArrow != null)
             archerArrow.SetDamage(attackDamages[0]);
 
-        //enemyMovement.FindPlayerRepeating();
         ac = anim.runtimeAnimatorController;
 
         currentHealth = maxHealth;
@@ -263,26 +263,9 @@ public class BasicEnemy : MonoBehaviour
     }
 
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
-    private void ResetStun() {
-        // called thru invoke event in EnemyHurt()
-        isStunned = false;
-
-        StartCoroutine(enemyMovement.ResetStunFollow());
-        if (!outOfStamina) { 
-            if (IsInvoking("ResetAttack"))
-                CancelInvoke("ResetAttack");
-            
-            Invoke("ResetAttack", attackDelay);
-        }
-    }
-
-    private void ResetInvincible() {
-        // called thru invoke event in EnemyHurt()
-        isInvincible = false;
-    }
-
-    private void ResetAttack() {
+    IEnumerator ResetAttack(float value) {
         // called thru invoke in ResetStun()
+        yield return new WaitForSeconds(value);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
         attackReady = true;
     }
@@ -390,10 +373,10 @@ public class BasicEnemy : MonoBehaviour
         staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
-        if (IsInvoking("ResetAttack"))
-            CancelInvoke("ResetAttack");
+        if (resetAttackRoutine != null) 
+            StopCoroutine(resetAttackRoutine);
         if (!outOfStamina)
-            Invoke("ResetAttack", attackDelay);
+            resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
 
         /*        int tmp = Random.Range(0, 10);
                 if (attackFromLeft) { 
@@ -578,8 +561,11 @@ public class BasicEnemy : MonoBehaviour
             outOfStamina = true;
         }
         else if (outOfStamina && currentStamina >= maxStamina) {
-            if (!isStunned || !isAttacking)
-                ResetAttack();  
+            if (!isStunned || !isAttacking) {
+                if (resetAttackRoutine != null)
+                    StopCoroutine(resetAttackRoutine);
+                resetAttackRoutine = StartCoroutine(ResetAttack(0f));
+            }
             outOfStamina = false;
         } 
     }
@@ -590,7 +576,25 @@ public class BasicEnemy : MonoBehaviour
         CheckStamina();
     }
 
-    /////////////// Enemy Is Hit //////////////////
+    /////////////// Enemy Is Hit ///////////////////////////////////////////////////////////
+    IEnumerator ResetStun(float value) {
+        yield return new WaitForSeconds(value);
+        isStunned = false;
+
+        StartCoroutine(enemyMovement.ResetStunFollow());
+        if (!outOfStamina) {
+            if (IsInvoking("ResetAttack"))
+                CancelInvoke("ResetAttack");
+
+            Invoke("ResetAttack", attackDelay);
+        }
+    }
+
+    IEnumerator ResetInvincible(float value) {
+        yield return new WaitForSeconds(value);
+        isInvincible = false;
+    }
+
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
         if (isDead || isInvincible)
             return;
@@ -618,10 +622,13 @@ public class BasicEnemy : MonoBehaviour
             ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
             stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
-            Invoke("ResetInvincible", stunDuration + 0.1f);
-            if (IsInvoking("ResetStun"))
-                return;
-            Invoke("ResetStun", stunDuration + 0.1f);
+            if (invincibleRoutine != null)
+                StopCoroutine(invincibleRoutine);
+            invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.1f));
+
+            if (stunRoutine != null)
+                StopCoroutine(stunRoutine);
+            stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.1f));
         }
     }
 

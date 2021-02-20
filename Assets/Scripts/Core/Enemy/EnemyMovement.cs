@@ -106,6 +106,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void FindPlayerRepeating() {
+        StopFindPlayer();
         InvokeRepeating("FindPlayer", 0f, repeatFollowDelay);
     }
 
@@ -146,8 +147,6 @@ public class EnemyMovement : MonoBehaviour
                 //rb.MovePosition(hit.point);
                 if (Vector2.Distance(rb.position, hit.point) > 0.5f)
                     rb.MovePosition(followVelocity);
-                else;
-                    //do nothing
             }
             else
                 rb.MovePosition(followVelocity);

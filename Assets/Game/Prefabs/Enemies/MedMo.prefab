@@ -477,7 +477,7 @@ MonoBehaviour:
   detectPos: {fileID: 3776063956931524922}
   detectRange: 6
   repeatFollowDelay: 1.25
-  attackFollowDelay: 1
+  attackFollowDelay: 1.5
   stunFollowDelay: 0.5
   borderLayer:
     serializedVersion: 2
@@ -539,8 +539,8 @@ MonoBehaviour:
   - 0
   - 0
   attackFollowFacePlayer: 0000
-  minAttackDelay: 2
-  maxAttackDelay: 2.5
+  minAttackDelay: 1.5
+  maxAttackDelay: 2
 --- !u!114 &349852581221793097
 MonoBehaviour:
   m_ObjectHideFlags: 0
