@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &465226880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465226881}
+  m_Layer: 0
+  m_Name: AttackPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465226881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465226880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1293471566453540817}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1096911894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1096911895}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1096911895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096911894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1293471566453540817}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293471565054003410
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293471566453540817}
   m_Layer: 0
-  m_Name: AttackPoint2
+  m_Name: AttackPoints2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,9 +177,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293471566453540822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1096911895}
+  - {fileID: 465226881}
   m_Father: {fileID: 2006311088008999545}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -442,30 +504,32 @@ MonoBehaviour:
   tetherUnfollowRange: 12
   maxHealth: 160
   maxStamina: 80
-  staminaRecoveryValue: 5
+  staminaRecoveryValue: 7
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 3776063956931524922}
-  visualizeRange: 3
+  visualizeRange: 4
   attackDetectPoints:
   - {fileID: 2006311087221389972}
-  - {fileID: 1293471566453540817}
+  - {fileID: 1096911895}
   attackDetectRanges:
-  - 3
+  - 4
   - 6
   attackPoints:
   - {fileID: 2006311087221389972}
   - {fileID: 1293471565856136870}
   - {fileID: 1293471565054003437}
-  - {fileID: 1293471566453540817}
+  - {fileID: 1096911895}
+  - {fileID: 465226881}
   attackRanges:
   - 1
   - 1
   - 1
-  - 6
+  - 2.25
+  - 2.25
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
@@ -475,8 +539,8 @@ MonoBehaviour:
   - 0
   - 0
   attackFollowFacePlayer: 0000
-  minAttackDelay: 3
-  maxAttackDelay: 3.5
+  minAttackDelay: 2
+  maxAttackDelay: 2.5
 --- !u!114 &349852581221793097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack1:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
-  basicAttack2: []
+  - {fileID: 8300000, guid: 1d959896aaad3aa4caf52038affab422, type: 3}
+  basicAttack2:
+  - {fileID: 8300000, guid: cd55e7b612e464347b01e23bc77b4df2, type: 3}
   basicAttack3: []
   enemyHit:
   - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
@@ -519,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4675694069597551190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2006311088008999545}

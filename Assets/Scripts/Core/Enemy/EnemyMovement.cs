@@ -128,7 +128,7 @@ public class EnemyMovement : MonoBehaviour
             } 
             else if (!attackReady) {
                 if (leftOfPlayer) { 
-                    desiredPosition = playerChar + leftOffset + offsetAttackStandby;
+                    desiredPosition = playerChar + leftOffset - offsetAttackStandby;
                     followVelocity = Vector2.MoveTowards(rb.position,
                                                         desiredPosition,
                                                         baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);

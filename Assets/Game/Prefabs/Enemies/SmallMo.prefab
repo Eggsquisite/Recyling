@@ -326,13 +326,15 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 3512151542823493369}
   visualizeRange: 4
+  attackDetectPoints: []
+  attackDetectRanges: []
   attackPoints:
   - {fileID: 2237502159876300119}
+  attackRanges:
+  - 1
   attackAnimations:
   - enemy_attack1
   attackPriority: 01000000
-  attackRanges:
-  - 1
   attackDamages: b4000000
   attackFollowDistances:
   - 0
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack1:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 1d959896aaad3aa4caf52038affab422, type: 3}
   basicAttack2: []
   basicAttack3: []
   enemyHit:
