@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035896704084563225}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035896702901250803
 GameObject:
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035896702901250802}
   m_Layer: 0
-  m_Name: AttackPoint
+  m_Name: AttackPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035896704084563225}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035896703232648297
 GameObject:
@@ -179,6 +179,7 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 1035896703232648296}
+  - {fileID: 2099352093369289052}
   - {fileID: 1035896702901250802}
   - {fileID: 1035896702770273575}
   m_Father: {fileID: 0}
@@ -223,7 +224,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -106
+  m_SortingOrder: 40
   m_Sprite: {fileID: 38890944275603932, guid: 3a2fc3efdfb85014ba2b7adb26a1b600, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -317,9 +318,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack1:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 7ef935ac87279f641abbc583c44a9c7e, type: 3}
   basicAttack2:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 1d959896aaad3aa4caf52038affab422, type: 3}
   basicAttack3: []
   enemyHit:
   - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
@@ -368,33 +369,37 @@ MonoBehaviour:
   tetherUnfollowRange: 8
   maxHealth: 200
   maxStamina: 100
-  staminaRecoveryValue: 12
-  staminaRecoveryDelay: 3
+  staminaRecoveryValue: 8
+  staminaRecoveryDelay: 2
   staminaRecoverySpeed: 0.5
-  emptyStaminaDelayMult: 7.5
-  visualizePoint: {fileID: 1035896702901250802}
-  attackPoints:
-  - {fileID: 1035896702901250802}
-  - {fileID: 1035896702901250802}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  stunDelay: 0.75
-  visualizeRange: 2.5
-  attackIndexes:
+  visualizePoint: {fileID: 1035896702901250802}
+  visualizeRange: 3
+  attackDetectPoints:
+  - {fileID: 2099352093369289052}
+  - {fileID: 1035896702901250802}
+  attackDetectRanges:
+  - 5
+  - 3
+  attackPoints:
+  - {fileID: 2099352093369289052}
+  - {fileID: 1035896702901250802}
+  attackRanges:
+  - 0
+  - 2.5
+  attackAnimations:
   - enemy_attack1
   - enemy_attack2
   attackPriority: 0200000001000000
-  attackRanges:
-  - 6
-  - 2.5
-  attackDamages: 9600000078000000
+  attackDamages: b400000096000000
   attackFollowDistances:
   - -0.5
   - -1
   attackFollowFacePlayer: 0000
-  minAttackDelay: 1
-  maxAttackDelay: 2
+  minAttackDelay: 0.75
+  maxAttackDelay: 1.5
 --- !u!114 &1035896704084563224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,3 +413,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8795698285439481211, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+--- !u!1 &7454178417590991055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099352093369289052}
+  m_Layer: 0
+  m_Name: AttackPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099352093369289052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454178417590991055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1035896704084563225}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
