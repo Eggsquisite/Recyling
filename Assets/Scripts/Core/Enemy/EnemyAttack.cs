@@ -2,55 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPriority
-{
-    public int index;
-    public string attackName;
 
-    public AttackPriority(int newIndex, string newAttackName) {
-        attackName = newAttackName;
-        index = newIndex;
-    }
-}
-
-public class BasicEnemy : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     [Header("Components")]
     private Animator anim;
     private Rigidbody2D rb;
-    private SpriteRenderer sp;
     private RuntimeAnimatorController ac;
-    //private EnemyAttack enemyAttack;
     private EnemyMovement enemyMovement;
-    private EnemySounds playSound;
-    private ArcherDroid archerArrow;
+
     private string currentState;
 
-    [Header("Enemy Stats")]
-    [SerializeField]
-    private float tetherFollowRange;
-    [SerializeField]
-    private float tetherUnfollowRange;
-
-    [SerializeField]
-    private int maxHealth;
-    [SerializeField]
-    private int maxStamina;
-
-    [SerializeField]
+    [Header("Stamina Properties")]
     private int staminaRecoveryValue;
-    [SerializeField]
     private float staminaRecoveryDelay;
-    [SerializeField]
     private float staminaRecoverySpeed;
 
-    private bool isDead;
-    private bool isInvincible;
-    private bool staminaRecovery;
     private bool outOfStamina;
-    private bool outOfTetherRange;
+    private bool staminaRecovery;
 
-    private int currentHealth;
+    private int maxStamina;
     private int currentStamina;
 
     [Header("Attack Collider Properties")]
@@ -58,10 +29,10 @@ public class BasicEnemy : MonoBehaviour
     private LayerMask playerLayer;
     [SerializeField]
     private Transform visualizePoint;
-    [SerializeField] 
+    [SerializeField]
     private float visualizeRange;
 
-    private RaycastHit2D hitBox, playerDetected;
+    private RaycastHit2D hitBox;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -120,32 +91,12 @@ public class BasicEnemy : MonoBehaviour
     private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine;
 
     // Start is called before the first frame update
-    void Awake() {
-        if (anim == null) anim = GetComponent<Animator>();
-        if (sp == null) sp = GetComponent<SpriteRenderer>();
+    void Awake()
+    {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (anim == null) anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
-
-        if (playSound == null) playSound = GetComponent<EnemySounds>();
-        if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
-
-        if (archerArrow == null) archerArrow = GetComponent<ArcherDroid>();
-        if (archerArrow != null)
-            archerArrow.SetDamage(attackDamages[0]);
-
-
-        currentHealth = maxHealth;
-        currentStamina = maxStamina;
-
-        outOfTetherRange = true;
-        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
-
-        /*enemyAttack.SetMaxStamina(maxStamina);
-        enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
-        enemyAttack.SetStaminaRecoveryDelay(staminaRecoveryDelay);
-        enemyAttack.SetStaminaRecoverySpeed(staminaRecoverySpeed);*/
-
-        resetAttackRoutine = StartCoroutine(ResetAttack(0f));
+        StartCoroutine(ResetAttack(0f));
 
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
@@ -168,100 +119,20 @@ public class BasicEnemy : MonoBehaviour
         priorityLists.Add(priorityListThree);
     }
 
-    private void Update() {
-        if (isDead || outOfTetherRange)
-            return;
-
-        ///////////////////// Follow Player /////////////////////////////////////
-        CheckPlayerInRange();
-        MovementAnimation();
-
-        /////////////////////////// Attack Animation Activated //////////////////
-        //CheckStamina();
-        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
-            PickAttack();
-    }
-
-    private void FixedUpdate() {
-        if (isDead || outOfTetherRange)
-            return;
-
-        // Follow Player ////////////////////////////////////////////////////////////////
-        FollowPlayer();
-    }
-
-    /////////////////// Animation Helper Functions ////////
-    private void PlayAnimation(string newAnim) {
+    private void PlayAnimation(string newAnim)
+    {
         AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
     }
-    private void ReplayAnimation(string newAnim) {
+    private void ReplayAnimation(string newAnim)
+    {
         AnimHelper.ReplayAnimation(anim, ref currentState, newAnim);
     }
-    private float GetAnimationLength(string newAnim) {
+    private float GetAnimationLength(string newAnim)
+    {
         return AnimHelper.GetAnimClipLength(ac, newAnim);
     }
 
-    private void MovementAnimation() {
-        if (!isStunned && !isAttacking) { 
-            if (!enemyMovement.GetIsMoving())
-                PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-            else if (enemyMovement.GetIsMoving())
-                PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-        }
-    }
-
-    ////////////////// Find Player AI ////////////////////
-    private void EnemyInTetherRange() {
-        outOfTetherRange = false;
-        enemyMovement.SetFollow(true);
-        enemyMovement.FindPlayerRepeating();
-        PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-
-        CancelInvoke("CheckPlayerDistance");
-    }
-
-    private void EnemyOutsideTetherRange() {
-        outOfTetherRange = true;
-        enemyMovement.SetFollow(false);
-        PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-
-        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
-    }
-    
-    private void FollowPlayer() {
-        if (!isStunned && !isAttacking)
-            enemyMovement.FollowPlayer(attackFromLeft, attackReady);
-    }
-
-    private void CheckPlayerDistance() {
-        if (outOfTetherRange)
-            enemyMovement.FindPlayer();
-        playerDistance = enemyMovement.GetPlayerDistance();
-
-        if (playerDistance <= tetherFollowRange && outOfTetherRange)
-            EnemyInTetherRange();
-        else if (playerDistance > tetherUnfollowRange && !outOfTetherRange)
-            EnemyOutsideTetherRange();
-    }
-
-    private void CheckPlayerInRange() {
-        CheckPlayerDistance();
-
-        if (!isAttacking)
-            enemyMovement.CheckPlayerPos();
-
-        enemyMovement.CheckPlayerInRange(ref playerDetected);
-
-        if (!attackReady)
-            inRange = false;
-        else if (playerDetected.collider != null && !inRange) 
-            inRange = true;
-        else if (playerDetected.collider == null && inRange) 
-            inRange = false;
-    }
-
-    ////////////////// Attack Code ////////////////////////////////////////////////////////////
-    IEnumerator ResetAttack(float value)
+    public IEnumerator ResetAttack(float value)
     {
         // called thru invoke in ResetStun()
         yield return new WaitForSeconds(value);
@@ -281,14 +152,14 @@ public class BasicEnemy : MonoBehaviour
         StartCoroutine(CheckHitBox());
     }
 
-    private void AttackDeactivated()
+    public void AttackDeactivated()
     {
         //called thru animation event
         attackHitbox = false;
         //enemyMovement.FindPlayerRepeating();
     }
 
-    private void PickAttack()
+    public void PickAttack()
     {
         isPicking = true;
         float tmpRange;
@@ -332,8 +203,8 @@ public class BasicEnemy : MonoBehaviour
         }
         isPicking = false;
 
-        /*//Debug.Log("restarting pick ");
-        while (playerDistance >= attackRanges[attackIndex])
+        //Debug.Log("restarting pick ");
+        /*while (playerDistance >= attackRanges[attackIndex])
         {
             Debug.Log("Picking new attack");
             attackIndex = Random.Range(0, attackAnimations.Count);
@@ -369,7 +240,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
 
-    private void FinishAttack()
+    public void FinishAttack()
     {
         isAttacking = false;
         staminaRecovery = true;
@@ -384,24 +255,21 @@ public class BasicEnemy : MonoBehaviour
         if (!outOfStamina)
             resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
 
-        int tmp = Random.Range(0, 10);
-        if (attackFromLeft)
-        {
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = true;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = false;
-        }
-        else
-        {
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = false;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = true;
-        }
+        /*        int tmp = Random.Range(0, 10);
+                if (attackFromLeft) { 
+                    if (tmp >= 0 && tmp < 8)
+                        attackFromLeft = true;
+                    else if (tmp >= 8 && tmp < 10)
+                        attackFromLeft = false;
+                } else {
+                    if (tmp >= 0 && tmp < 8)
+                        attackFromLeft = false;
+                    else if (tmp >= 8 && tmp < 10)
+                        attackFromLeft = true;
+                }*/
     }
 
-    IEnumerator CheckHitBox()
+    public IEnumerator CheckHitBox()
     {
         while (attackHitbox)
         {
@@ -410,8 +278,7 @@ public class BasicEnemy : MonoBehaviour
             else
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
-            if (hitBox.collider != null)
-            {
+            if (hitBox.collider != null) {
                 hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
             }
 
@@ -444,7 +311,7 @@ public class BasicEnemy : MonoBehaviour
         attackFollowRoutine = StartCoroutine(AttackFollowThroughHorizontal());
     }
 
-    private void AttackFollowDeactivated()
+    public void AttackFollowDeactivated()
     {
         // called thru animation events
         newPosition = Vector2.zero;
@@ -461,20 +328,17 @@ public class BasicEnemy : MonoBehaviour
         // up down movement only
         while (attackFollowThruVertical)
         {
-            if (abovePlayer == 1)
-            {
+            if (abovePlayer == 1) {
                 newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
-            else if (abovePlayer == -1)
-            {
+            else if (abovePlayer == -1) {
                 newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
-            else if (abovePlayer == 0)
-            {
+            else if (abovePlayer == 0) {
                 newPosition = Vector2.zero;
             }
 
@@ -492,14 +356,12 @@ public class BasicEnemy : MonoBehaviour
             if (attackFollowFacePlayer[attackIndex])
                 enemyMovement.CheckPlayerPos();
 
-            if (leftOfPlayer)
-            {
+            if (leftOfPlayer) {
                 newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
             }
-            else
-            {
+            else {
                 newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
@@ -515,55 +377,46 @@ public class BasicEnemy : MonoBehaviour
     {
         while (attackFollowThruBoth)
         {
-            if (attackFollowFacePlayer[attackIndex])
-            {
+            if (attackFollowFacePlayer[attackIndex]) {
                 enemyMovement.CheckPlayerPos();
                 abovePlayer = enemyMovement.GetAbovePlayer();
             }
 
-            if (leftOfPlayer)
-            {
+            if (leftOfPlayer) {
                 // if left of player, always move left
-                if (abovePlayer == 1)
-                {
+                if (abovePlayer == 1) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex],
                                             attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == -1)
-                {
+                else if (abovePlayer == -1) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex],
                                             -attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == 0)
-                {
+                else if (abovePlayer == 0) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
             }
-            else if (!leftOfPlayer)
-            {
+            else if (!leftOfPlayer) {
                 // if to the right of player, always move right
-                if (abovePlayer == 1)
-                {
+                if (abovePlayer == 1) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex],
                                             attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == -1)
-                {
+                else if (abovePlayer == -1) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex],
                                             -attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == 0)
-                {
+                else if (abovePlayer == 0) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
@@ -591,20 +444,16 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckStamina()
     {
-        if (currentStamina > maxStamina)
-        {
+        if (currentStamina > maxStamina) {
             currentStamina = maxStamina;
         }
 
-        if (!outOfStamina && currentStamina <= 0)
-        {
+        if (!outOfStamina && currentStamina <= 0) {
             currentStamina = 0;
             outOfStamina = true;
         }
-        else if (outOfStamina && currentStamina >= maxStamina)
-        {
-            if (!isStunned || !isAttacking)
-            {
+        else if (outOfStamina && currentStamina >= maxStamina) {
+            if (!isStunned || !isAttacking) {
                 if (resetAttackRoutine != null)
                     StopCoroutine(resetAttackRoutine);
                 resetAttackRoutine = StartCoroutine(ResetAttack(0f));
@@ -620,111 +469,18 @@ public class BasicEnemy : MonoBehaviour
         CheckStamina();
     }
 
-    /////////////// Enemy Is Hit ///////////////////////////////////////////////////////////
-    IEnumerator ResetStun(float value) {
-        yield return new WaitForSeconds(value);
-        isStunned = false;
-
-        StartCoroutine(enemyMovement.ResetStunFollow());
-        if (!outOfStamina) {
-            if (resetAttackRoutine != null)
-                StopCoroutine(resetAttackRoutine);
-            resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
-        }
+    // GET/SET METHODS ///////////////////////////////////////////////////////////////////////
+    public void SetMaxStamina(int value) {
+        maxStamina = currentStamina = value;
+    }
+    public void SetStaminaRecoveryValue(int value) {
+        staminaRecoveryValue = value;
+    }
+    public void SetStaminaRecoveryDelay(float value) {
+        staminaRecoveryDelay = value;
     }
 
-    IEnumerator ResetInvincible(float value) {
-        yield return new WaitForSeconds(value);
-        isInvincible = false;
-    }
-
-    public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
-        if (isDead || isInvincible)
-            return;
-
-        isStunned = true;
-        isInvincible = true;
-        enemyMovement.SetFollow(false);
-        if (isAttacking) {
-            if (attackAnimationRoutine != null)
-                StopCoroutine(attackAnimationRoutine);
-            FinishAttack();
-        }
-
-        AttackDeactivated();
-        AttackFollowDeactivated();
-        currentHealth -= damageNum;
-        PushBack(distance, playerRef);
-
-        // Play sounds
-        playSound.PlayEnemyHit();
-
-        if (currentHealth <= 0)
-            StartCoroutine(Death());
-        else {
-            ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
-            stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
-
-            if (invincibleRoutine != null)
-                StopCoroutine(invincibleRoutine);
-            invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.1f));
-
-            if (stunRoutine != null)
-                StopCoroutine(stunRoutine);
-            stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.1f));
-        }
-    }
-
-    private void PushBack(float distance, Transform reference) {
-        Vector2 newPosition;
-        if (reference.transform.position.x > rb.position.x) {
-            newPosition = new Vector2(-distance, 0f) + rb.position;
-            rb.position = newPosition;
-        }
-        else if (reference.transform.position.x <= transform.position.x) {
-            newPosition = new Vector2(distance, 0f) + rb.position;
-            rb.position = newPosition;
-        }
-    }
-
-    public bool GetIsDead() {
-        return isDead;
-    }
-
-    IEnumerator Death() {
-        isDead = true;
-        enemyMovement.StopFindPlayer();
-        GetComponent<Collider2D>().enabled = false;
-        PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
-        var tmp = GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
-
-        yield return new WaitForSeconds(tmp);
-        Destroy(enemyMovement);
-        Destroy(this);
-    }
-
-    /*IEnumerator FadeAway() {
-        float alpha = sp.color.a;
-
-        for (float t = 0.0f; t < deathFadeTime; t += Time.deltaTime) {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 0.25f, t / deathFadeTime));
-            sp.color = newColor;
-            yield return null;
-        }
-
-        //Destroy(gameObject);
-    }*/
-
-    // ENEMY SPECIFIC ATTACKS /////////////////////////////////////////////////////////////////////////////
-
-
-    // GIZMOS ////////////////////////////////////////////////////////////////////////////////
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
+    public void SetStaminaRecoverySpeed(float value) {
+        staminaRecoverySpeed = value;
     }
 }

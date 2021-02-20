@@ -54,31 +54,15 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SetupVariables();
-        //InvokeRepeating("FindPlayer", 1f, repeatFollowDelay);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ///////////////////// Follow Player /////////////////////////////////////
-        //CheckPlayerInRange();
-        //FollowPlayer();
-    }
-
-    private void SetupVariables() {
-        //canFollow = true;
         RandomizeOffsetAttackStandby();
         xScaleValue = transform.localScale.x;
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
-        if (playerChar.x > transform.position.x)
-        {
+        if (playerChar.x > transform.position.x) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
-        else if (playerChar.x <= transform.position.x)
-        {
+        else if (playerChar.x <= transform.position.x) {
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
