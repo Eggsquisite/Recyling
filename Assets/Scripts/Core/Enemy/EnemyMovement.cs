@@ -43,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
+    private bool attackFromLeft;
     private float currentSpeed;
     private float baseMoveSpeed;
     private float xScaleValue;
@@ -95,11 +96,11 @@ public class EnemyMovement : MonoBehaviour
         InvokeRepeating("FindPlayer", 0f, repeatFollowDelay);
     }
 
-    public void FollowPlayer(bool attackFromLeft, bool attackReady) {
+    public void FollowPlayer(bool attackReady) {
         IsMoving();
         if (canFollow)  {
             if (attackReady) { 
-                if (leftOfPlayer) {
+                if (attackFromLeft) {
                     desiredPosition = playerChar + leftOffset;
                     followVelocity = Vector2.MoveTowards(rb.position,
                                                         desiredPosition,
@@ -113,7 +114,7 @@ public class EnemyMovement : MonoBehaviour
                 }
             } 
             else if (!attackReady) {
-                if (leftOfPlayer) { 
+                if (attackFromLeft) { 
                     desiredPosition = playerChar + leftOffset - offsetAttackStandby;
                     followVelocity = Vector2.MoveTowards(rb.position,
                                                         desiredPosition,
@@ -128,9 +129,19 @@ public class EnemyMovement : MonoBehaviour
             }
 
             RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
+            if (hit.collider != null && hit.collider.tag == "LeftBorder") {
+                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                    rb.MovePosition(followVelocity);
+                attackFromLeft = true;
+            }
+            else if (hit.collider != null && hit.collider.tag == "RightBorder") {
+                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                    rb.MovePosition(followVelocity);
+                attackFromLeft = false;
+            }
             if (hit.collider != null) {
                 //rb.MovePosition(hit.point);
-                if (Vector2.Distance(rb.position, hit.point) > 0.5f)
+                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
                     rb.MovePosition(followVelocity);
             }
             else
@@ -185,10 +196,27 @@ public class EnemyMovement : MonoBehaviour
             playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
     }
 
+    private void RandomizeAttackFromLeft() {
+        int tmp = Random.Range(0, 10);
+        if (attackFromLeft) {
+            if (tmp >= 0 && tmp < 8)
+                attackFromLeft = true;
+            else if (tmp >= 8 && tmp < 10)
+                attackFromLeft = false;
+        }
+        else if (!attackFromLeft) {
+            if (tmp >= 0 && tmp < 8)
+                attackFromLeft = false;
+            else if (tmp >= 8 && tmp < 10)
+                attackFromLeft = true;
+        }
+    }
+
     // FOLLOW PROPERTIES /////////////////////////////////////////////////////////////////////////////////////
 
     public IEnumerator ResetAttackFollow()
     {
+        RandomizeAttackFromLeft();
         yield return new WaitForSeconds(attackFollowDelay);
         canFollow = true;
         FindPlayerRepeating();

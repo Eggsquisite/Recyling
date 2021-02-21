@@ -123,19 +123,26 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.98333335
+    functionName: AttackFollowBothActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 3
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.98333335
+    functionName: SavePlayerPosition
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.15
     intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: AttackFollowHorizontalActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 8
-    intParameter: 4
     messageOptions: 0
   - time: 1.0166667
     functionName: ConsumeStamina
@@ -166,10 +173,10 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.6166667
-    functionName: AttackFollowHorizontalActivated
+    functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 8
+    floatParameter: 3
     intParameter: 4
     messageOptions: 0
   - time: 1.6166667

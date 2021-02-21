@@ -230,7 +230,7 @@ public class BasicEnemy : MonoBehaviour
     
     private void FollowPlayer() {
         if (!isStunned && !isAttacking)
-            enemyMovement.FollowPlayer(attackFromLeft, attackReady);
+            enemyMovement.FollowPlayer(attackReady);
     }
 
     private void CheckPlayerDistance() {
@@ -351,14 +351,12 @@ public class BasicEnemy : MonoBehaviour
         attackReady = false;
         staminaRecovery = false;
         enemyMovement.SetFollow(false);
+        attackFollowHit = new RaycastHit2D();
+        attackChosen = attackAnimations[attackIndex];
         if (staminaRecoveryRoutine != null)
             StopCoroutine(StaminaRecovery());
 
-        //Debug.Log("ATTACKINGGGGGGGGGGGGGGGG");
-        attackChosen = attackAnimations[attackIndex];
-        abovePlayer = enemyMovement.GetAbovePlayer();
-        leftOfPlayer = enemyMovement.GetLeftOfPlayer();
-
+        SavePlayerPosition(3);
         PlayAnimation(attackChosen);
         tmpLength = GetAnimationLength(attackChosen);
 
@@ -385,7 +383,7 @@ public class BasicEnemy : MonoBehaviour
         if (!outOfStamina)
             resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
 
-        int tmp = Random.Range(0, 10);
+/*        int tmp = Random.Range(0, 10);
         if (attackFromLeft)
         {
             if (tmp >= 0 && tmp < 8)
@@ -399,6 +397,17 @@ public class BasicEnemy : MonoBehaviour
                 attackFromLeft = false;
             else if (tmp >= 8 && tmp < 10)
                 attackFromLeft = true;
+        }*/
+    }
+
+    private void SavePlayerPosition(int flag) {
+        if (flag == 1)
+            abovePlayer = enemyMovement.GetAbovePlayer();
+        else if (flag == 2)
+            leftOfPlayer = enemyMovement.GetLeftOfPlayer();
+        else if (flag == 3) {
+            abovePlayer = enemyMovement.GetAbovePlayer();
+            leftOfPlayer = enemyMovement.GetLeftOfPlayer();
         }
     }
 
@@ -411,8 +420,7 @@ public class BasicEnemy : MonoBehaviour
             else
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
-            if (hitBox.collider != null)
-            {
+            if (hitBox.collider != null) {
                 hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
             }
 
@@ -462,6 +470,11 @@ public class BasicEnemy : MonoBehaviour
         // up down movement only
         while (attackFollowThruVertical)
         {
+            if (attackFollowFacePlayer[attackIndex]) {
+                enemyMovement.CheckPlayerPos();
+                SavePlayerPosition(1);
+            }
+
             if (abovePlayer == 1)
             {
                 newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
@@ -480,10 +493,14 @@ public class BasicEnemy : MonoBehaviour
             }
 
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
-            if (attackFollowHit.collider != null)
+            if (attackFollowHit.collider != null) {
+                if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
+                    rb.MovePosition(rb.position + newPosition);
+            } else
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+        attackFollowHit = new RaycastHit2D();
         yield break;
     }
 
@@ -492,8 +509,10 @@ public class BasicEnemy : MonoBehaviour
         // Left right movement only
         while (attackFollowThruHorizontal)
         {
-            if (attackFollowFacePlayer[attackIndex])
+            if (attackFollowFacePlayer[attackIndex]) { 
                 enemyMovement.CheckPlayerPos();
+                SavePlayerPosition(2);
+            }
 
             if (leftOfPlayer)
             {
@@ -509,10 +528,14 @@ public class BasicEnemy : MonoBehaviour
             }
 
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
-            if (attackFollowHit.collider != null)
+            if (attackFollowHit.collider != null) { 
+                if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
+                    rb.MovePosition(rb.position + newPosition);
+            } else
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+        attackFollowHit = new RaycastHit2D();
         yield break;
     }
 
@@ -520,10 +543,11 @@ public class BasicEnemy : MonoBehaviour
     {
         while (attackFollowThruBoth)
         {
-            if (attackFollowFacePlayer[attackIndex])
-            {
+            if (attackFollowFacePlayer[attackIndex]) {
+                // for changing the direction of enemy to continually face the player
                 enemyMovement.CheckPlayerPos();
-                abovePlayer = enemyMovement.GetAbovePlayer();
+                // to check if enemy should move up or down/left or right
+                SavePlayerPosition(3);
             }
 
             if (leftOfPlayer)
@@ -576,10 +600,14 @@ public class BasicEnemy : MonoBehaviour
             }
 
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
-            if (attackFollowHit.collider != null)
+            if (attackFollowHit.collider != null) {
+                if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
+                    rb.MovePosition(rb.position + newPosition);
+            } else
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+        attackFollowHit = new RaycastHit2D();
         yield break;
     }
 
@@ -733,5 +761,8 @@ public class BasicEnemy : MonoBehaviour
         Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
+        Gizmos.color = Color.green;
+        if (rb != null)
+            Gizmos.DrawLine(rb.position, rb.position + newPosition);
     }
 }

@@ -648,10 +648,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-      propertyPath: max_X
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 266036673}
