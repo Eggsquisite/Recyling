@@ -252,9 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetherFollowRange: 6
-  tetherUnfollowRange: 8
+  tetherUnfollowRange: 12
   maxHealth: 300
-  maxStamina: 120
+  maxStamina: 200
   staminaRecoveryValue: 15
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5

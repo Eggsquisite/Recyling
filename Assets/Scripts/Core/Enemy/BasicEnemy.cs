@@ -169,7 +169,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void Update() {
-        if (isDead || outOfTetherRange)
+        if (isDead)
             return;
 
         ///////////////////// Follow Player /////////////////////////////////////
@@ -382,22 +382,6 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(resetAttackRoutine);
         if (!outOfStamina)
             resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
-
-/*        int tmp = Random.Range(0, 10);
-        if (attackFromLeft)
-        {
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = true;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = false;
-        }
-        else
-        {
-            if (tmp >= 0 && tmp < 8)
-                attackFromLeft = false;
-            else if (tmp >= 8 && tmp < 10)
-                attackFromLeft = true;
-        }*/
     }
 
     private void SavePlayerPosition(int flag) {
