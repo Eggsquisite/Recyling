@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 57
+  m_SortingOrder: -76
   m_Sprite: {fileID: 8793639957104055765, guid: 4bcc4ddded587004a80c08f3a5401d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -262,18 +262,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 5761460219095272118}
+  visualizeRange: 3
+  attackDetectPoints:
+  - {fileID: 5761460219095272118}
+  - {fileID: 5761460219095272118}
+  attackDetectRanges:
+  - 2.5
+  - 3
   attackPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
-  stunDelay: 0.75
-  visualizeRange: 3
+  attackRanges:
+  - 2.5
+  - 4
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
   attackPriority: 0100000001000000
-  attackRanges:
-  - 2.5
-  - 3
   attackDamages: 9600000096000000
   attackFollowDistances:
   - 0.5

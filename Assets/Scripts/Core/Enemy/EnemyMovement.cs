@@ -49,7 +49,8 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
-    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity, direction, desiredPosition;
+    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
+    private Vector2 directionToMove, directionToPlayer, desiredPosition;
 
     // Start is called before the first frame update
     void Awake()
@@ -126,7 +127,7 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
 
-            RaycastHit2D hit = CalculateDirection();
+            RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
             if (hit.collider != null) {
                 //rb.MovePosition(hit.point);
                 if (Vector2.Distance(rb.position, hit.point) > 0.5f)
@@ -137,9 +138,14 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private RaycastHit2D CalculateDirection() {
-        direction = desiredPosition - rb.position;
+    public RaycastHit2D CalculateDirectionToMove(Vector2 direction) {
+        //directionToMove = desiredPosition - rb.position;
         return Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
+    }
+
+    public RaycastHit2D CalculateDirectionToPlayer() {
+        directionToPlayer = playerChar - rb.position;
+        return Physics2D.Raycast(rb.position, directionToPlayer, detectRange, playerLayer);
     }
 
     public void IsMoving() {
@@ -216,10 +222,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.black;
         //Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
-        if (rb != null)
-            Gizmos.DrawRay(rb.position, direction);
-        //Gizmos.DrawLine(rb.position, direction);
+        if (rb != null) { 
+            Gizmos.DrawRay(rb.position, directionToMove);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(rb.position, directionToPlayer);
+        }
     }
 }

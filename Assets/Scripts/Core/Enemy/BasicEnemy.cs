@@ -23,7 +23,7 @@ public class BasicEnemy : MonoBehaviour
     //private EnemyAttack enemyAttack;
     private EnemyMovement enemyMovement;
     private EnemySounds playSound;
-    private ArcherDroid archerArrow;
+    private Projectile projectile;
     private string currentState;
 
     [Header("Enemy Stats")]
@@ -61,7 +61,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] 
     private float visualizeRange;
 
-    private RaycastHit2D hitBox, playerDetected;
+    private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -129,9 +129,9 @@ public class BasicEnemy : MonoBehaviour
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
 
-        if (archerArrow == null) archerArrow = GetComponent<ArcherDroid>();
-        if (archerArrow != null)
-            archerArrow.SetDamage(attackDamages[0]);
+        if (projectile == null) projectile = GetComponent<Projectile>();
+        if (projectile != null)
+            projectile.SetDamage(attackDamages[0]);
 
 
         currentHealth = maxHealth;
@@ -250,7 +250,8 @@ public class BasicEnemy : MonoBehaviour
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
 
-        enemyMovement.CheckPlayerInRange(ref playerDetected);
+        //enemyMovement.CheckPlayerInRange(ref playerDetected);
+        playerDetected = enemyMovement.CalculateDirectionToPlayer();
 
         if (!attackReady)
             inRange = false;
@@ -478,7 +479,9 @@ public class BasicEnemy : MonoBehaviour
                 newPosition = Vector2.zero;
             }
 
-            rb.MovePosition(rb.position + newPosition);
+            attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
+            if (attackFollowHit.collider != null)
+                rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
         yield break;
@@ -505,7 +508,9 @@ public class BasicEnemy : MonoBehaviour
                                         * Time.fixedDeltaTime;
             }
 
-            rb.MovePosition(rb.position + newPosition);
+            attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
+            if (attackFollowHit.collider != null)
+                rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
         yield break;
@@ -570,7 +575,9 @@ public class BasicEnemy : MonoBehaviour
                 }
             }
 
-            rb.MovePosition(rb.position + newPosition);
+            attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
+            if (attackFollowHit.collider != null)
+                rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
         yield break;
