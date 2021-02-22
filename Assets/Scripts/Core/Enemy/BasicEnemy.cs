@@ -65,23 +65,23 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
-    private List<Transform> attackDetectPoints;
-    [SerializeField]
-    private List<float> attackDetectRanges;
-    [SerializeField]
     private List<Transform> attackPoints;
     [SerializeField]
     private List<float> attackRanges;
     [SerializeField]
-    private List<string> attackAnimations;
+    private List<Transform> attackDetectPoints;
     [SerializeField]
-    private List<int> attackPriority;
+    private List<float> attackDetectRanges;
+    [SerializeField]
+    private List<string> attackAnimations;
     [SerializeField]
     private List<int> attackDamages;
     [SerializeField]
-    private List<float> attackFollowDistances;
+    private List<int> attackPriority;
     [SerializeField]
     private List<bool> attackFollowFacePlayer;
+    [SerializeField]
+    private List<float> attackFollowDistances;
 
     [SerializeField]
     private float minAttackDelay;
@@ -278,6 +278,7 @@ public class BasicEnemy : MonoBehaviour
 
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
+        SavePlayerPosition(3);
         attackHitbox = true;
         StartCoroutine(CheckHitBox());
     }
@@ -356,7 +357,6 @@ public class BasicEnemy : MonoBehaviour
         if (staminaRecoveryRoutine != null)
             StopCoroutine(StaminaRecovery());
 
-        SavePlayerPosition(3);
         PlayAnimation(attackChosen);
         tmpLength = GetAnimationLength(attackChosen);
 

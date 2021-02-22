@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -76
+  m_SortingOrder: -138
   m_Sprite: {fileID: 8793639957104055765, guid: 4bcc4ddded587004a80c08f3a5401d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 4618153347026935516}
-  detectRange: 3
+  detectRange: 4
   repeatFollowDelay: 0.5
   attackFollowDelay: 1
   stunFollowDelay: 0.25
@@ -234,11 +234,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   minMoveSpeed: 1
-  maxMoveSpeed: 1.5
+  maxMoveSpeed: 1.25
   idleSpeedMult: 0.75
   minOffset: 1.5
   maxOffset: 3
-  offsetAttackStandbyRange: {x: 1, y: 0.75}
+  offsetAttackStandbyRange: {x: 1, y: 0.5}
 --- !u!114 &5761460218273841752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,11 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherFollowRange: 6
+  tetherFollowRange: 8
   tetherUnfollowRange: 12
   maxHealth: 300
   maxStamina: 200
-  staminaRecoveryValue: 15
+  staminaRecoveryValue: 30
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   playerLayer:
@@ -263,27 +263,27 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 5761460219095272118}
   visualizeRange: 2.5
-  attackDetectPoints:
-  - {fileID: 5761460219095272118}
-  - {fileID: 5761460219095272118}
-  attackDetectRanges:
-  - 2.5
-  - 4
   attackPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
   attackRanges:
   - 2.5
   - 2.5
+  attackDetectPoints:
+  - {fileID: 5761460219095272118}
+  - {fileID: 5761460219095272118}
+  attackDetectRanges:
+  - 2
+  - 4
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
-  attackPriority: 0100000001000000
   attackDamages: 9600000096000000
+  attackPriority: 0100000001000000
+  attackFollowFacePlayer: 0001
   attackFollowDistances:
   - 0.5
   - 1.5
-  attackFollowFacePlayer: 0001
   minAttackDelay: 1.5
   maxAttackDelay: 2.5
 --- !u!1 &5761460218542371028

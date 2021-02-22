@@ -430,11 +430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.55
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -467,10 +467,6 @@ PrefabInstance:
     - target: {fileID: 5761460218273841755, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761460218273841756, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
-      propertyPath: m_SortingOrder
-      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 5761460218273841759, guid: cdd011a1b6c0f2d4a8b2cd485e080ea1, type: 3}
       propertyPath: m_Name
@@ -603,6 +599,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1581406450, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1033765477905236113, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -655,29 +655,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 266036673}
-    - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-      propertyPath: leftBorder
-      value: 
-      objectReference: {fileID: 2135079563}
-    - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-      propertyPath: rightBorder
-      value: 
-      objectReference: {fileID: 2135079562}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
 --- !u!20 &2135079561 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1033765477905236115, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-  m_PrefabInstance: {fileID: 2135079560}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2135079562 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1581406450, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-  m_PrefabInstance: {fileID: 2135079560}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2135079563 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 630793616, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
   m_PrefabInstance: {fileID: 2135079560}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1293471565546622413

@@ -171,6 +171,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void CheckPlayerPos() {
+        // calculate leftOfPlayer and set scale to 1/-1 
         if (playerChar.x > transform.position.x && !leftOfPlayer) {
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
@@ -181,11 +182,13 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // case for above, below, and same y.pos as the player
-        if (playerChar.y > transform.position.y && abovePlayer != 1)
+        if (playerChar.y > transform.position.y + 0.25f && abovePlayer != 1)
             abovePlayer = 1;
-        else if (playerChar.y < transform.position.y && abovePlayer != -1)
+        else if (playerChar.y < transform.position.y - 0.25f && abovePlayer != -1)
             abovePlayer = -1;
-        else if (playerChar.y == transform.position.y && abovePlayer != 0)
+        else if (playerChar.y >= transform.position.y - 0.25f 
+                    && playerChar.y <= transform.position.y + 0.25f 
+                    && abovePlayer != 0)
             abovePlayer = 0;
     }
 

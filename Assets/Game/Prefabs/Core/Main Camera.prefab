@@ -315,6 +315,7 @@ MonoBehaviour:
   rightBorder: {fileID: 1581406450}
   min_X: 0
   max_X: 15
+  borderOffset: 7.5
   camSpeed: 1
   canFollow: 1
 --- !u!1 &4547673069174331206

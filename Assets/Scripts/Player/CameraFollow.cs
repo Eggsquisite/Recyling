@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public Transform leftBorder;
     public Transform rightBorder;
-    public float min_X, max_X;
+    public float min_X, max_X, borderOffset;
 
     [Range(0, 10)]
     public float camSpeed;
@@ -21,10 +21,10 @@ public class CameraFollow : MonoBehaviour
         leftBorder.parent = null;
         rightBorder.parent = null;
 
-        leftBorder.position = new Vector3(min_X - 7.5f,
+        leftBorder.position = new Vector3(min_X - borderOffset,
                                             transform.position.y,
                                             transform.position.z);
-        rightBorder.position = new Vector3(max_X + 7.5f,
+        rightBorder.position = new Vector3(max_X + borderOffset,
                                             transform.position.y,
                                             transform.position.z);
     }
