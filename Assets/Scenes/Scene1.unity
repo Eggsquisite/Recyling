@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: basicAttack.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 722439448608458876, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
+      propertyPath: attackRangeVisualizer
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 722439448608458877, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: UI
       value: 

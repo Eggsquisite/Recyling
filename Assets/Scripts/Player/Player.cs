@@ -571,15 +571,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AttackFollowThrough() {
+    private void AttackFollowThrough(float multiplier) {
         Vector2 newPosition;
         if (facingLeft) {
-            newPosition = new Vector2(transform.position.x - attackFollowThruDistance, transform.position.y);
+            newPosition = new Vector2(transform.position.x - (attackFollowThruDistance * multiplier),
+                                        transform.position.y);
             rb.position = newPosition;
             //transform.position = newPosition;
         } else {
-            newPosition = new Vector2(transform.position.x + attackFollowThruDistance, transform.position.y);
-            rb.position = newPosition;
+            newPosition = new Vector2(transform.position.x + (attackFollowThruDistance * multiplier), 
+                                        transform.position.y);
+            rb.MovePosition(newPosition);
             //transform.position = newPosition;
         }
     }

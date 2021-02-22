@@ -98,7 +98,7 @@ AnimationClip:
     functionName: AttackFollowThrough
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 1
     intParameter: 0
     messageOptions: 0
   - time: 0.25
@@ -113,7 +113,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 105
+    intParameter: 85
     messageOptions: 0
   - time: 0.38333333
     functionName: ComboInput
