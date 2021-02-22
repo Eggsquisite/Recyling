@@ -51,49 +51,49 @@ AnimationClip:
       value: {fileID: 827538889749247048, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 1.3333334
       value: {fileID: -5010287565412364656, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.5
+    - time: 1.5333333
       value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.6666666
+    - time: 1.7
       value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 1.8333334
-      value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 1.9166666
+      value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 2
       value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 2.0833333
+    - time: 2.2
       value: {fileID: -5569035362507985257, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 2.25
+    - time: 2.4
       value: {fileID: -5789285544991574940, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 2.4166667
+    - time: 2.5833333
       value: {fileID: 827538889749247048, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 2.5
-      value: {fileID: -5010287565412364656, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     - time: 2.6666667
-      value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 2.8333333
-      value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3
-      value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.0833333
-      value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.25
-      value: {fileID: -5569035362507985257, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.4166667
-      value: {fileID: -5789285544991574940, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.5833333
-      value: {fileID: 827538889749247048, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.6666667
       value: {fileID: -5010287565412364656, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 3.8333333
+    - time: 2.8666666
       value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 4
+    - time: 3.0666666
       value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 4.1666665
+    - time: 3.25
       value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 4.25
+    - time: 3.3333333
       value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 4.3333335
+    - time: 3.5333333
       value: {fileID: -5569035362507985257, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
-    - time: 4.4166665
+    - time: 3.7333333
+      value: {fileID: -5789285544991574940, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 3.9166667
+      value: {fileID: 827538889749247048, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4
+      value: {fileID: -5010287565412364656, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.2
+      value: {fileID: -5463148037355797382, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.4
+      value: {fileID: -5182820943178688908, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.5833335
+      value: {fileID: 7402079830906333199, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.6666665
+      value: {fileID: 1372099006290288469, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.75
+      value: {fileID: -5569035362507985257, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
+    - time: 4.8333335
       value: {fileID: -5789285544991574940, guid: af5d2d366a0d0ea499f2ca3633c239d8, type: 3}
     attribute: m_Sprite
     path: 
@@ -157,7 +157,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.4333334
+    m_StopTime: 4.8500004
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -219,210 +219,210 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.8333334
+  - time: 1.9166666
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 2
     intParameter: 4
     messageOptions: 0
-  - time: 1.8333334
+  - time: 1.9166666
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.85
+  - time: 1.9333333
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 1.85
+  - time: 1.9333333
     functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.9166667
+  - time: 2
     functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.9166667
+  - time: 2
     functionName: AttackDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4166667
-    functionName: AttackFollowBothActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 2
-    intParameter: 4
-    messageOptions: 0
-  - time: 2.4166667
+  - time: 2.5833333
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4333334
-    functionName: PlayBasicAttack1
+  - time: 2.5833333
+    functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
+    floatParameter: 2
+    intParameter: 4
     messageOptions: 0
-  - time: 2.4333334
+  - time: 2.6
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 2.5
+  - time: 2.6
+    functionName: PlayBasicAttack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.6666667
+    functionName: AttackDeactivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.6666667
     functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.5
-    functionName: AttackDeactivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3
+  - time: 3.25
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3
+  - time: 3.25
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 2
     intParameter: 4
     messageOptions: 0
-  - time: 3.0166667
-    functionName: ConsumeStamina
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 20
-    messageOptions: 0
-  - time: 3.0166667
+  - time: 3.2666667
     functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.0833335
+  - time: 3.2666667
+    functionName: ConsumeStamina
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 20
+    messageOptions: 0
+  - time: 3.3333333
     functionName: AttackDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.0833335
+  - time: 3.3333333
     functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.5833333
-    functionName: AttackActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.5833333
+  - time: 3.9166667
     functionName: AttackFollowBothActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 2
     intParameter: 4
     messageOptions: 0
-  - time: 3.6
+  - time: 3.9166667
+    functionName: AttackActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.9333334
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 3.6
+  - time: 3.9333334
     functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.6666665
+  - time: 4
+    functionName: AttackDeactivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4
     functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.6666665
-    functionName: AttackDeactivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4.1666665
-    functionName: AttackFollowBothActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 2
-    intParameter: 4
-    messageOptions: 0
-  - time: 4.1666665
+  - time: 4.5833335
     functionName: AttackActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.1833334
+  - time: 4.5833335
+    functionName: AttackFollowBothActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 2
+    intParameter: 4
+    messageOptions: 0
+  - time: 4.6
     functionName: PlayBasicAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.1833334
+  - time: 4.6
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 4.25
+  - time: 4.6666665
     functionName: AttackDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.25
+  - time: 4.6666665
     functionName: AttackFollowDeactivated
     data: 
     objectReferenceParameter: {fileID: 0}
