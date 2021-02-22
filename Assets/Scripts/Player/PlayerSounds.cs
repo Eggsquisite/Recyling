@@ -9,6 +9,10 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField]
     private List<AudioClip> basicAttack;
     [SerializeField]
+    private List<AudioClip> superAttack1;
+    [SerializeField]
+    private List<AudioClip> superAttack2;
+    [SerializeField]
     private List<AudioClip> playerHit;
 
     // Start is called before the first frame update
@@ -18,7 +22,19 @@ public class PlayerSounds : MonoBehaviour
     }
 
     public void PlayBasicAttack() {
-        var tmp = basicAttack[Random.Range(0, basicAttack.Capacity)];
+        var tmp = basicAttack[Random.Range(0, basicAttack.Count)];
+        if (tmp != null)
+            audSource.PlayOneShot(tmp);
+    }
+
+    public void PlaySuperAttack(int index)
+    {
+        AudioClip tmp = null;
+        if (index == 1)
+            tmp = superAttack1[Random.Range(0, superAttack1.Count)];
+        else if (index == 2)
+            tmp = superAttack1[Random.Range(0, superAttack2.Count)];
+
         if (tmp != null)
             audSource.PlayOneShot(tmp);
     }

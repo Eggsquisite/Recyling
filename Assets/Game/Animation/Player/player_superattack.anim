@@ -120,6 +120,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.98333335
+    functionName: PlaySuperAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
   - time: 1
     functionName: SpecialAttackHitboxActivated
     data: 
@@ -139,12 +146,12 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 200
+    intParameter: 2
     messageOptions: 0
   - time: 1.0166667
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 110
+    intParameter: 2
     messageOptions: 0

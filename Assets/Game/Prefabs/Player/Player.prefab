@@ -262,10 +262,17 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashSpeed: 3
+  dashMoveSpeed: 3
   dashCooldown: 0.25
-  dashMinTime: 0.4
-  dashHeight: 1.25
+  dashHeight: 2
+  dashEnergy: 120
+  runStamina: 8
+  runAttackStamina: 125
+  basicAttackStamina: 90
+  superAttackStamina1: 110
+  superAttackEnergy1: 150
+  superAttackStamina2: 140
+  superAttackEnergy2: 200
   damage: 15
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
@@ -325,6 +332,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
   - {fileID: 8300000, guid: 8cf1785e05cf4ab4d914887767fc6313, type: 3}
   - {fileID: 8300000, guid: 1ef9f82c3a43ffe429eb9e4a934f77b8, type: 3}
+  superAttack1:
+  - {fileID: 8300000, guid: 9bf3c498957b9a84e83b64ebb3105326, type: 3}
+  superAttack2:
+  - {fileID: 8300000, guid: 9bf3c498957b9a84e83b64ebb3105326, type: 3}
   playerHit:
   - {fileID: 8300000, guid: c3d60146026c09a4388569c7184a8339, type: 3}
   - {fileID: 8300000, guid: c92cf41cdfde8b446ba621b8648772a4, type: 3}

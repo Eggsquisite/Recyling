@@ -182,12 +182,12 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // case for above, below, and same y.pos as the player
-        if (playerChar.y > transform.position.y + 0.15f && abovePlayer != 1)
+        if (playerChar.y > transform.position.y + 0.1f && abovePlayer != 1)
             abovePlayer = 1;
-        else if (playerChar.y < transform.position.y - 0.15f && abovePlayer != -1)
+        else if (playerChar.y < transform.position.y - 0.1f && abovePlayer != -1)
             abovePlayer = -1;
-        else if (playerChar.y >= transform.position.y - 0.15f 
-                    && playerChar.y <= transform.position.y + 0.15f 
+        else if (playerChar.y >= transform.position.y - 0.1f 
+                    && playerChar.y <= transform.position.y + 0.1f 
                     && abovePlayer != 0)
             abovePlayer = 0;
     }

@@ -63,12 +63,12 @@ public class Player : MonoBehaviour
     private LayerMask enemyLayer;
 
     [Header("Dash Properties")]
+    //[SerializeField]
+    //private float dashMinTime;
     [SerializeField]
-    private float dashSpeed;
+    private float dashMoveSpeed;
     [SerializeField]
     private float dashCooldown;
-    [SerializeField]
-    private float dashMinTime;
     [SerializeField]
     private float dashHeight;
 
@@ -80,12 +80,30 @@ public class Player : MonoBehaviour
     private float dashTimer;
     private float dashCooldownTimer;
 
+    [Header("Stamina/Energy Consumption")]
+    [SerializeField]
+    private int dashEnergy;
+    [SerializeField]
+    private int runStamina;
+    [SerializeField]
+    private int runAttackStamina;
+    [SerializeField]
+    private int basicAttackStamina;
+    [SerializeField]
+    private int superAttackStamina1;
+    [SerializeField]
+    private int superAttackEnergy1;
+    [SerializeField]
+    private int superAttackStamina2;
+    [SerializeField]
+    private int superAttackEnergy2;
+
     [Header("Attack Properties")]
     [SerializeField]
     private int damage;
-    [SerializeField] [Range(0, 5f)]
+    [SerializeField] 
     private float attackRangeVisualizer;
-    [SerializeField] [Range(0, 0.5f)]
+    [SerializeField]
     private float pushbackDistance;
     [SerializeField]
     private int specialAttackDmg;
@@ -146,9 +164,6 @@ public class Player : MonoBehaviour
 
             // run attack ----------------------------------------
             RunAttack();
-
-            //attack ------------------------------------
-            Attack();
         }
     }
 
@@ -175,7 +190,7 @@ public class Player : MonoBehaviour
             else if (isRunning)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
             else if (isDashing)
-                rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + movement * dashMoveSpeed * Time.fixedDeltaTime);
         }
     }
     private void MovementAnimation() {
@@ -240,7 +255,7 @@ public class Player : MonoBehaviour
             else
                 isRunAttackPressed = true;
 
-            UI.SetStaminaRecoverable(false);
+            Attack();
         }
     }
 
@@ -252,7 +267,7 @@ public class Player : MonoBehaviour
 
         if (canReceiveInput) { 
             isSuperAttackPressed = true;
-            UI.SetEnergyRecoverable(false);
+            Attack();
         }
     }
 
@@ -270,14 +285,14 @@ public class Player : MonoBehaviour
     }
 
     public void StopDashInput() {
-        if (isDashing && dashTimer >= dashMinTime) {
+        /*if (isDashing && dashTimer >= dashMinTime) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
         else if (isDashing && dashTimer < dashMinTime)
-            stopDash = true;
+            stopDash = true;*/
     }
 
     ///
@@ -467,16 +482,23 @@ public class Player : MonoBehaviour
 
     private void Attack() {
         // case for basic attacks
-        if (isAttackPressed && canReceiveInput && attackCombo < 3) {
+        if (isAttackPressed 
+                    && canReceiveInput 
+                    && attackCombo < 3) {
             attackCombo += 1;
-            Debug.Log(attackCombo);
             AttackAnimation(attackCombo);
+            UI.SetStaminaRecoverable(false);
 
             isAttackPressed = false;
         }
-        else if (isSuperAttackPressed && canReceiveInput && attackCombo == 2) {
+        else if (isSuperAttackPressed 
+                    && canReceiveInput 
+                    && attackCombo == 2
+                    && UI.GetCurrentEnergy() >= superAttackEnergy1) {
             attackCombo += 2;
             AttackAnimation(attackCombo);
+            UI.SetEnergyRecoverable(false);
+            UI.SetStaminaRecoverable(false);
 
             isSuperAttackPressed = false;
         }
@@ -484,14 +506,19 @@ public class Player : MonoBehaviour
         else if (isRunAttackPressed) {
             attackCombo += 1;
             AttackAnimation(attackCombo);
+            UI.SetStaminaRecoverable(false);
 
             shiftKeyHeld = false;
             isRunAttackPressed = false;
         }
         // case for super attack
-        else if (isSuperAttackPressed && canReceiveInput && attackCombo == 0) {
+        else if (isSuperAttackPressed 
+                    && canReceiveInput 
+                    && attackCombo == 0 
+                    && UI.GetCurrentEnergy() >= superAttackEnergy2) {
             AttackAnimation(10);
-            //Debug.Log("attack 4 goingggg");
+            UI.SetEnergyRecoverable(false);
+            UI.SetStaminaRecoverable(false);
 
             isSuperAttackPressed = false;
         }
@@ -547,7 +574,6 @@ public class Player : MonoBehaviour
         else if (attackIndex == 10) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_SUPERATTACK);
             PlayAnimation(PlayerAnimStates.PLAYER_SUPERATTACK);
-            Debug.Log("attack 4 goingggg");
         }
         else
             return;
@@ -621,14 +647,28 @@ public class Player : MonoBehaviour
             return;
     }
 
-    private void ConsumeEnergy(int value) {
+    private void ConsumeEnergy(int index) {
         // called thru animation events
-        playerStats.SetCurrentEnergy(-value);
+        if (index == 0)
+            playerStats.SetCurrentEnergy(-dashEnergy);
+        else if (index == 1)
+            playerStats.SetCurrentEnergy(-superAttackEnergy1);
+        else if (index == 2)
+            playerStats.SetCurrentEnergy(-superAttackEnergy2);
     }
 
-    private void ConsumeStamina(int value) {
+    private void ConsumeStamina(int index) {
         // called thru animation events
-        playerStats.SetCurrentStamina(-value);
+        if (index == -2)
+            playerStats.SetCurrentStamina(-runStamina);
+        else if (index == -1)
+            playerStats.SetCurrentStamina(-runAttackStamina);
+        else if (index == 0)
+            playerStats.SetCurrentStamina(-basicAttackStamina);
+        else if (index == 1)
+            playerStats.SetCurrentStamina(-superAttackStamina1);
+        else if (index == 2)
+            playerStats.SetCurrentStamina(-superAttackStamina2);
     }
 
 

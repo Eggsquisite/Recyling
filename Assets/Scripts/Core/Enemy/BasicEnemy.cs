@@ -105,7 +105,6 @@ public class BasicEnemy : MonoBehaviour
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
-    private bool attackFromLeft;
     private bool attackFollowThruBoth;
     private bool attackFollowThruVertical;
     private bool attackFollowThruHorizontal;
@@ -276,7 +275,6 @@ public class BasicEnemy : MonoBehaviour
 
         enemyMovement.StopFindPlayer();
         enemyMovement.FindPlayer();
-        SavePlayerPosition(3);
         attackHitbox = true;
         StartCoroutine(CheckHitBox());
     }
@@ -450,30 +448,28 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator AttackFollowThroughVertical()
     {
         // up down movement only
+        if (attackFollowFacePlayer[attackIndex]) 
+            enemyMovement.CheckPlayerPos();
+        
+        SavePlayerPosition(1);
         while (attackFollowThruVertical)
         {
-            if (attackFollowFacePlayer[attackIndex]) {
-                enemyMovement.CheckPlayerPos();
-                SavePlayerPosition(1);
-            }
 
-            if (abovePlayer == 1)
-            {
+            if (abovePlayer == 1) {
                 newPosition = new Vector2(0f, attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
-            else if (abovePlayer == -1)
-            {
+            else if (abovePlayer == -1) {
                 newPosition = new Vector2(0f, -attackFollowDistances[attackIndex])
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
-            else if (abovePlayer == 0)
-            {
+            else if (abovePlayer == 0) {
                 newPosition = Vector2.zero;
             }
 
+            // raycast to check if enemy can move in that direction
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
             if (attackFollowHit.collider != null) {
                 if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
@@ -482,6 +478,8 @@ public class BasicEnemy : MonoBehaviour
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+
+        // reset border raycast check
         attackFollowHit = new RaycastHit2D();
         yield break;
     }
@@ -489,26 +487,25 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator AttackFollowThroughHorizontal()
     {
         // Left right movement only
+        if (attackFollowFacePlayer[attackIndex]) 
+            enemyMovement.CheckPlayerPos();
+        
+        SavePlayerPosition(2);
         while (attackFollowThruHorizontal)
         {
-            if (attackFollowFacePlayer[attackIndex]) { 
-                enemyMovement.CheckPlayerPos();
-                SavePlayerPosition(2);
-            }
 
-            if (leftOfPlayer)
-            {
+            if (leftOfPlayer) {
                 newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
             }
-            else
-            {
+            else {
                 newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
                                         * attackFollowThruSpeed
                                         * Time.fixedDeltaTime;
             }
 
+            // raycast to check if enemy can move in that direction
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
             if (attackFollowHit.collider != null) { 
                 if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
@@ -517,70 +514,65 @@ public class BasicEnemy : MonoBehaviour
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+
+        // reset border raycast check
         attackFollowHit = new RaycastHit2D();
         yield break;
     }
 
     IEnumerator AttackFollowThroughBoth()
     {
+        // for changing the direction of enemy to continually face the player
+        if (attackFollowFacePlayer[attackIndex]) 
+            enemyMovement.CheckPlayerPos();
+        
+        // to check if enemy should move up or down/left or right
+        SavePlayerPosition(3);
         while (attackFollowThruBoth)
         {
-            if (attackFollowFacePlayer[attackIndex]) {
-                // for changing the direction of enemy to continually face the player
-                enemyMovement.CheckPlayerPos();
-                // to check if enemy should move up or down/left or right
-                SavePlayerPosition(3);
-            }
 
-            if (leftOfPlayer)
-            {
-                // if left of player, always move left
-                if (abovePlayer == 1)
-                {
+            if (leftOfPlayer) {
+                // if left of player, always move right
+                if (abovePlayer == 1) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex],
                                             attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == -1)
-                {
+                else if (abovePlayer == -1) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex],
                                             -attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == 0)
-                {
+                else if (abovePlayer == 0) {
                     newPosition = new Vector2(attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
             }
-            else if (!leftOfPlayer)
-            {
-                // if to the right of player, always move right
-                if (abovePlayer == 1)
-                {
+            else if (!leftOfPlayer) {
+                // if to the right of player, always move left
+                if (abovePlayer == 1) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex],
                                             attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == -1)
-                {
+                else if (abovePlayer == -1) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex],
                                             -attackFollowDistances[attackIndex])
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
-                else if (abovePlayer == 0)
-                {
+                else if (abovePlayer == 0) {
                     newPosition = new Vector2(-attackFollowDistances[attackIndex], 0f)
                                             * attackFollowThruSpeed
                                             * Time.fixedDeltaTime;
                 }
             }
 
+            // raycast to check if enemy can move in that direction
             attackFollowHit = enemyMovement.CalculateDirectionToMove(rb.position + newPosition);
             if (attackFollowHit.collider != null) {
                 if (Vector2.Distance(rb.position, attackFollowHit.point) > 0.25f)
@@ -589,6 +581,8 @@ public class BasicEnemy : MonoBehaviour
                 rb.MovePosition(rb.position + newPosition);
             yield return null;
         }
+
+        // reset border raycast check
         attackFollowHit = new RaycastHit2D();
         yield break;
     }
