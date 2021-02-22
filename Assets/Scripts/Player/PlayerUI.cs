@@ -27,7 +27,6 @@ public class PlayerUI : MonoBehaviour
     private bool healthDecaying;
     private bool healthRecovering;
     private int healthRecoveryValue;
-    private float healthTimer;
     private float healthRecoveryDelay;
 
     [Header("Energy")]
@@ -42,7 +41,6 @@ public class PlayerUI : MonoBehaviour
     private bool energyDecaying;
     private bool energyRecovering;
     private int energyRecoveryValue;
-    private float energyTimer;
     private float energyRecoveryDelay;
 
     [Header("Stamina")]
@@ -57,7 +55,6 @@ public class PlayerUI : MonoBehaviour
     private bool staminaDecaying;
     private bool staminaRecovering;
     private int staminaRecoveryValue;
-    private float staminaTimer;
     private float staminaRecoveryDelay;
 
     private bool healthRecoverable, energyRecoverable, staminaRecoverable;
@@ -88,40 +85,6 @@ public class PlayerUI : MonoBehaviour
         staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.maxValue;
 
     }
-
-    private void BarUpdate() {
-/*        if (healthLost)
-            DestroyedTimer(ref healthTimer, ref healthLost, ref healthDecaying, 1);
-        else if (healthDecaying)
-            VisualDecay(healthCurrentValue, healthDestroyedValue, ref healthDecaying, 1);
-
-        if (energyLost)
-            DestroyedTimer(ref energyTimer, ref energyLost, ref energyDecaying, 2);
-        else if (energyDecaying)
-            VisualDecay(energyCurrentValue, energyDestroyedValue, ref energyDecaying, 2);
-
-        if (staminaLost)
-            DestroyedTimer(ref staminaTimer, ref staminaLost, ref staminaDecaying, 3);
-        else if (staminaDecaying)
-            VisualDecay(staminaCurrentValue, staminaDestroyedValue, ref staminaDecaying, 3);*/
-    }
-
-/*    private void DestroyedTimer(ref float timer, ref bool flag, ref bool decayFlag, int index) {
-        if (timer < visualDelay)
-            timer += Time.deltaTime;
-        else if (timer >= visualDelay) {
-            timer = 0f;
-            flag = false;
-            decayFlag = true;
-
-            if (index == 1)
-                StartCoroutine(VisualDecay(healthCurrentValue, healthDestroyedValue, 1));
-            else if (index == 2)
-                StartCoroutine(VisualDecay(energyCurrentValue, energyDestroyedValue, 2));
-            else if (index == 3)
-                StartCoroutine(VisualDecay(staminaCurrentValue, staminaDestroyedValue, 3));
-        }
-    }*/
 
     IEnumerator DestroyedTimer(int index) {
         if (index == 1 && healthRecoveryRoutine != null)
@@ -205,22 +168,6 @@ public class PlayerUI : MonoBehaviour
             staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
         }
     }
-
-/*    private void VisualDecay(Slider currentValue, Slider decayValue, ref bool decayFlag, int index) {
-        if (decayValue.value > currentValue.value) {
-            decayValue.value -= decaySpeed * Time.deltaTime;
-        } else if (decayValue.value <= currentValue.value && decayFlag) {
-            decayValue.value = currentValue.value;
-            decayFlag = false;
-
-            if (index == 1)
-                StartCoroutine(HealthRecovery());
-            else if (index == 2)
-                StartCoroutine(EnergyRecovery());
-            else if (index == 3)
-                StartCoroutine(StaminaRecovery());
-        }
-    }*/
 
     // HEALTH ///////////////////////////////////////////////////////////////////////////////////////
     public void SetMaxHealth(int newValue) {
@@ -366,8 +313,19 @@ public class PlayerUI : MonoBehaviour
         else
             staminaDestroyedValue.value += newValue;
 
-        staminaTimer = 0f;
         staminaCurrentValue.value += newValue;
+    }
+
+    public void StaminaRunning(int newValue)
+    {
+        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
+            staminaCurrentValue.value += newValue;
+            staminaDestroyedValue.value += newValue;
+
+            if (staminaRecoveryRoutine != null)
+                StopCoroutine(staminaRecoveryRoutine);
+            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
+        }
     }
     
     public int GetCurrentStamina() {

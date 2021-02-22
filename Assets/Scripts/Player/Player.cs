@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
-    private PlayerStats playerStats;
     private PlayerSounds playSounds;
     private PlayerUI UI;
     private bool isDead;
@@ -132,7 +131,6 @@ public class Player : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
-        if (playerStats == null) playerStats = GetComponent<PlayerStats>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (UI == null) UI = GetComponent<PlayerUI>();
 
@@ -247,7 +245,7 @@ public class Player : MonoBehaviour
     }
 
     public void BasicAttackInput() {
-        if (isStunned || playerStats.GetCurrentStamina() <= 0)
+        if (isStunned || UI.GetCurrentStamina() <= 0)
             return; 
 
         if (canReceiveInput) {
@@ -262,8 +260,8 @@ public class Player : MonoBehaviour
 
     public void SuperAttackInput() {
         if (isStunned 
-            || playerStats.GetCurrentStamina() <= 0 
-            || playerStats.GetCurrentEnergy() <= 0)
+            || UI.GetCurrentStamina() <= 0 
+            || UI.GetCurrentEnergy() <= 0)
             return;
 
         if (canReceiveInput) { 
@@ -273,7 +271,7 @@ public class Player : MonoBehaviour
     }
 
     public void DashInput() {
-        if (isStunned || playerStats.GetCurrentEnergy() <= 0)
+        if (isStunned || UI.GetCurrentEnergy() <= 0)
             return;
 
         if (canReceiveInput && dashReady && !isDashing && !isFalling) {
@@ -320,7 +318,7 @@ public class Player : MonoBehaviour
     }
 
     private void ResetRun() {
-        if (isRunning && playerStats.GetCurrentStamina() <= 0) { 
+        if (isRunning && UI.GetCurrentStamina() <= 0) { 
             isRunning = false;
             shiftKeyHeld = false;
             anim.SetFloat("speedMultiplier", 1f);
@@ -340,9 +338,9 @@ public class Player : MonoBehaviour
     }
 
     public void ShiftToRun(bool value) {
-        if (playerStats.GetCurrentStamina() > 0 && value)
+        if (UI.GetCurrentStamina() > 0 && value)
             shiftKeyHeld = value;
-        else if (playerStats.GetCurrentStamina() > 0 && !value)
+        else if (UI.GetCurrentStamina() > 0 && !value)
             shiftKeyHeld = value;
 
         if (!shiftKeyHeld) {
@@ -647,25 +645,25 @@ public class Player : MonoBehaviour
     private void ConsumeEnergy(int index) {
         // called thru animation events
         if (index == 0)
-            playerStats.SetCurrentEnergy(-dashEnergy);
+            UI.SetCurrentEnergy(-dashEnergy);
         else if (index == 1)
-            playerStats.SetCurrentEnergy(-superAttackEnergy1);
+            UI.SetCurrentEnergy(-superAttackEnergy1);
         else if (index == 2)
-            playerStats.SetCurrentEnergy(-superAttackEnergy2);
+            UI.SetCurrentEnergy(-superAttackEnergy2);
     }
 
     private void ConsumeStamina(int index) {
         // called thru animation events
         if (index == -2)
-            playerStats.SetCurrentStamina(-runStamina);
+            UI.StaminaRunning(-runStamina);
         else if (index == -1)
-            playerStats.SetCurrentStamina(-runAttackStamina);
+            UI.SetCurrentStamina(-runAttackStamina);
         else if (index == 0)
-            playerStats.SetCurrentStamina(-basicAttackStamina);
+            UI.SetCurrentStamina(-basicAttackStamina);
         else if (index == 1)
-            playerStats.SetCurrentStamina(-superAttackStamina1);
+            UI.SetCurrentStamina(-superAttackStamina1);
         else if (index == 2)
-            playerStats.SetCurrentStamina(-superAttackStamina2);
+            UI.SetCurrentStamina(-superAttackStamina2);
     }
 
 
@@ -685,9 +683,9 @@ public class Player : MonoBehaviour
 
         // take damage
         playSounds.PlayPlayerHit();
-        playerStats.SetCurrentHealth(-damageNum);
+        UI.SetCurrentHealth(-damageNum);
 
-        if (playerStats.GetCurrentHealth() <= 0) {
+        if (UI.GetCurrentHealth() <= 0) {
             isDead = true;
             PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
         }

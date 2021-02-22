@@ -84,6 +84,10 @@ public class BasicEnemy : MonoBehaviour
     private List<float> attackFollowDistances;
 
     [SerializeField]
+    private float minStunAttackDelay;
+    [SerializeField]
+    private float maxStunAttackDelay;
+    [SerializeField]
     private float minAttackDelay;
     [SerializeField]
     private float maxAttackDelay;
@@ -98,21 +102,22 @@ public class BasicEnemy : MonoBehaviour
     private int attackIndex, attackPointIndex;
     private int abovePlayer;
 
-    private bool leftOfPlayer;
     private bool inRange;
     private bool isStunned;
     private bool isPicking;
     private bool isAttacking;
     private bool attackReady;
     private bool attackHitbox;
+    private bool leftOfPlayer;
     private bool attackFollowThruBoth;
     private bool attackFollowThruVertical;
     private bool attackFollowThruHorizontal;
 
-    private float attackFollowThruSpeed;
+    private float stunDelay;
     private float attackDelay;
     private float stunDuration;
     private float playerDistance;
+    private float attackFollowThruSpeed;
     private Vector2 newPosition;
 
     private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine;
@@ -261,7 +266,6 @@ public class BasicEnemy : MonoBehaviour
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
     IEnumerator ResetAttack(float value)
     {
-        // called thru invoke in ResetStun()
         yield return new WaitForSeconds(value);
         attackDelay = Random.Range(minAttackDelay, maxAttackDelay);
         attackReady = true;
@@ -450,7 +454,7 @@ public class BasicEnemy : MonoBehaviour
         // up down movement only
         if (attackFollowFacePlayer[attackIndex]) 
             enemyMovement.CheckPlayerPos();
-        
+
         SavePlayerPosition(1);
         while (attackFollowThruVertical)
         {
@@ -489,7 +493,7 @@ public class BasicEnemy : MonoBehaviour
         // Left right movement only
         if (attackFollowFacePlayer[attackIndex]) 
             enemyMovement.CheckPlayerPos();
-        
+
         SavePlayerPosition(2);
         while (attackFollowThruHorizontal)
         {
@@ -525,8 +529,7 @@ public class BasicEnemy : MonoBehaviour
         // for changing the direction of enemy to continually face the player
         if (attackFollowFacePlayer[attackIndex]) 
             enemyMovement.CheckPlayerPos();
-        
-        // to check if enemy should move up or down/left or right
+
         SavePlayerPosition(3);
         while (attackFollowThruBoth)
         {
@@ -587,6 +590,16 @@ public class BasicEnemy : MonoBehaviour
         yield break;
     }
 
+    private void AttackStartSavePosition() {
+        // animation event called thru enemy attacks, useful for follow attacks that dont
+        // chase player movement but just where they were at the start of the attack
+        if (attackFollowFacePlayer[attackIndex])
+            enemyMovement.CheckPlayerPos();
+
+        enemyMovement.CheckPlayerVertical();
+        SavePlayerPosition(3);
+    }
+
     // STAMINA CODE ////////////////////////////////////////////////////////
 
     IEnumerator StaminaRecovery()
@@ -602,20 +615,14 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckStamina()
     {
-        if (currentStamina > maxStamina)
-        {
+        if (currentStamina > maxStamina) {
             currentStamina = maxStamina;
         }
 
         if (!outOfStamina && currentStamina <= 0)
-        {
-            currentStamina = 0;
             outOfStamina = true;
-        }
-        else if (outOfStamina && currentStamina >= maxStamina)
-        {
-            if (!isStunned || !isAttacking)
-            {
+        else if (outOfStamina && currentStamina >= maxStamina) {
+            if (!isStunned || !isAttacking) {
                 if (resetAttackRoutine != null)
                     StopCoroutine(resetAttackRoutine);
                 resetAttackRoutine = StartCoroutine(ResetAttack(0f));
@@ -627,7 +634,10 @@ public class BasicEnemy : MonoBehaviour
     private void ConsumeStamina(int value)
     {
         // called thru animation event
-        currentStamina -= value;
+        if (currentStamina - value < 0)
+            currentStamina = 0;
+        else
+            currentStamina -= value;
         CheckStamina();
     }
 
@@ -635,12 +645,13 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator ResetStun(float value) {
         yield return new WaitForSeconds(value);
         isStunned = false;
+        stunDelay = Random.Range(minStunAttackDelay, maxStunAttackDelay);
 
         StartCoroutine(enemyMovement.ResetStunFollow());
         if (!outOfStamina) {
             if (resetAttackRoutine != null)
                 StopCoroutine(resetAttackRoutine);
-            resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
+            resetAttackRoutine = StartCoroutine(ResetAttack(stunDelay));
         }
     }
 

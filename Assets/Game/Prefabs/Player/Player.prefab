@@ -257,7 +257,7 @@ MonoBehaviour:
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
   stopBuffer: 0.1
-  isHurtMaxTime: 0.3
+  isHurtMaxTime: 0.5
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
     serializedVersion: 2

@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
         UI.SetStaminaRecoveryDelay(staminaRecoveryDelay);
     }
 
-    //  HEALTH ////////////////////////////////////////////////////
+/*    //  HEALTH ////////////////////////////////////////////////////
 
     public int GetCurrentHealth() {
         return UI.GetCurrentHealth();
@@ -78,5 +78,5 @@ public class PlayerStats : MonoBehaviour
     }
     public void SetCurrentStamina(int newStamina) {
         UI.SetCurrentStamina(newStamina);
-    }
+    }*/
 }

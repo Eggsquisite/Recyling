@@ -285,6 +285,8 @@ MonoBehaviour:
   attackFollowDistances:
   - 1
   - 1.5
+  minStunAttackDelay: 0.25
+  maxStunAttackDelay: 0.75
   minAttackDelay: 2
   maxAttackDelay: 3
 --- !u!1 &5761460218542371028

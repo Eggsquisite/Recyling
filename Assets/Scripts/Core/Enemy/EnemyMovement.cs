@@ -181,13 +181,17 @@ public class EnemyMovement : MonoBehaviour
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
+        CheckPlayerVertical();
+    }
+
+    public void CheckPlayerVertical() {
         // case for above, below, and same y.pos as the player
-        if (playerChar.y > transform.position.y + 0.1f && abovePlayer != 1)
+        if (playerChar.y > transform.position.y + 0.05f && abovePlayer != 1)
             abovePlayer = 1;
-        else if (playerChar.y < transform.position.y - 0.1f && abovePlayer != -1)
+        else if (playerChar.y < transform.position.y - 0.05f && abovePlayer != -1)
             abovePlayer = -1;
-        else if (playerChar.y >= transform.position.y - 0.1f 
-                    && playerChar.y <= transform.position.y + 0.1f 
+        else if (playerChar.y >= transform.position.y - 0.05f
+                    && playerChar.y <= transform.position.y + 0.05f
                     && abovePlayer != 0)
             abovePlayer = 0;
     }
