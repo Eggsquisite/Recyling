@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
+    public Transform leftBorder;
+    public Transform rightBorder;
     public float min_X, max_X;
 
     [Range(0, 10)]
@@ -16,6 +18,15 @@ public class CameraFollow : MonoBehaviour
 
     private void Start() {
         originalTarget = target;
+        leftBorder.parent = null;
+        rightBorder.parent = null;
+
+        leftBorder.position = new Vector3(min_X - 7.5f,
+                                            transform.position.y,
+                                            transform.position.z);
+        rightBorder.position = new Vector3(max_X + 7.5f,
+                                            transform.position.y,
+                                            transform.position.z);
     }
 
     // Update is called once per frame
