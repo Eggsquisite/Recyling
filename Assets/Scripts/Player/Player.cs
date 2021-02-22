@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
 
         canReceiveInput = true;
         ac = anim.runtimeAnimatorController;
+        runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
     }
 
     // Update is called once per frame
@@ -162,7 +163,7 @@ public class Player : MonoBehaviour
             // idle/run animation --------------------------------
             MovementAnimation();
 
-            // run attack ----------------------------------------
+            // run attack dash --------------------------------
             RunAttack();
         }
     }
@@ -252,7 +253,7 @@ public class Player : MonoBehaviour
         if (canReceiveInput) {
             if (!isRunning)
                 isAttackPressed = true;
-            else
+            else 
                 isRunAttackPressed = true;
 
             Attack();
@@ -276,10 +277,6 @@ public class Player : MonoBehaviour
             return;
 
         if (canReceiveInput && dashReady && !isDashing && !isFalling) {
-/*            ResetWalk();
-            dashReady = false;
-            IsDashing();
-            canReceiveInput = false;*/
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
         }
     }
@@ -464,20 +461,20 @@ public class Player : MonoBehaviour
     /// <summary>
     /// ATTACK CODE ////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    private void RunAttack() { 
-        if (runAttackDash) {
-            if (runDashTimer < runDashMaxTime) { 
-                runDashTimer += Time.deltaTime;
-                rb.MovePosition(rb.position 
-                    + runDirection 
-                    * (walkSpeed + ((runSpeed - walkSpeed) / 2))
-                    * Time.fixedDeltaTime);
-            }
-            else if (runDashTimer >= runDashMaxTime) {
-                runDashTimer = 0f;
-                runAttackDash = false;
-            }
+    private void RunAttack() {
+        if (!runAttackDash)
+            return;
+        else {
+            rb.MovePosition(rb.position 
+                + runDirection 
+                * (walkSpeed + ((runSpeed - walkSpeed) / 2))
+                * Time.fixedDeltaTime);
         }
+    }
+
+    IEnumerator RunAttackDashTime() {
+        yield return new WaitForSeconds(runDashMaxTime);
+        runAttackDash = false;
     }
 
     private void Attack() {
@@ -535,8 +532,8 @@ public class Player : MonoBehaviour
         else {
             // save runDirection and start runAttackDash
             runDirection = new Vector2(xAxis, yAxis);
-            runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
             runAttackDash = true;
+            StartCoroutine(RunAttackDashTime());
         }
 
         isStopped = true;
