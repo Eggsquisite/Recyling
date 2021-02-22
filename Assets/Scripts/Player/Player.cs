@@ -106,6 +106,8 @@ public class Player : MonoBehaviour
     private bool canReceiveInput = true;
     private Vector2 runDirection;
 
+    private Coroutine resetStunRoutine, resetAttackRoutine;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -116,8 +118,8 @@ public class Player : MonoBehaviour
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (UI == null) UI = GetComponent<PlayerUI>();
 
+        canReceiveInput = true;
         ac = anim.runtimeAnimatorController;
-        ResetAttack();
     }
 
     // Update is called once per frame
@@ -126,9 +128,7 @@ public class Player : MonoBehaviour
         if (isDead)
             return;
 
-        DashFall();
         ResetRun();
-        ResetDash();
         DamageFlash();
         WalkingToRunning();
     }
@@ -143,9 +143,6 @@ public class Player : MonoBehaviour
 
             // idle/run animation --------------------------------
             MovementAnimation();
-
-            // dash -----------------------------------------------
-            Dashing();
 
             // run attack ----------------------------------------
             RunAttack();
@@ -237,14 +234,20 @@ public class Player : MonoBehaviour
         if (isStunned || playerStats.GetCurrentStamina() <= 0)
             return; 
 
-        if (canReceiveInput && !isRunning)
-            isAttackPressed = true;
-        else if (canReceiveInput && isRunning)
-            isRunAttackPressed = true;
+        if (canReceiveInput) {
+            if (!isRunning)
+                isAttackPressed = true;
+            else
+                isRunAttackPressed = true;
+
+            UI.SetStaminaRecoverable(false);
+        }
     }
 
     public void SuperAttackInput() {
-        if (isStunned || (playerStats.GetCurrentStamina() <= 0 || playerStats.GetCurrentEnergy() < 300))
+        if (isStunned 
+            || playerStats.GetCurrentStamina() <= 0 
+            || playerStats.GetCurrentEnergy() <= 0)
             return;
 
         if (canReceiveInput) { 
@@ -270,21 +273,11 @@ public class Player : MonoBehaviour
         if (isDashing && dashTimer >= dashMinTime) {
             dashTimer = 0f;
             isFalling = true;
-            ResetIsDashing();
+            isDashing = false;
             PlayAnimation(PlayerAnimStates.PLAYER_FALL);
         }
         else if (isDashing && dashTimer < dashMinTime)
             stopDash = true;
-    }
-
-    private void IsDashing() {
-        isDashing = true;
-        UI.SetEnergyRecoverable(false);
-    }
-
-    private void ResetIsDashing() {
-        isDashing = false;
-        UI.SetEnergyRecoverable(true);
     }
 
     ///
@@ -351,28 +344,40 @@ public class Player : MonoBehaviour
     /// DASH CODE /////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
-    private void DashStarting()
-    {
+    private void DashStarting() {
+        // called at begining of dash animation event
         ResetWalk();
-        IsDashing();
+        isDashing = true;
         dashReady = false;
+        isInvincible = true;
         canReceiveInput = false;
+        UI.SetEnergyRecoverable(false);
+        StartCoroutine(Dashing());
     }
     private void DashStartFalling() {
+        // called when dash animation begins falling
         dashTimer = 0f;
         isFalling = true;
         isDashing = false;
+        StartCoroutine(DashFall());
     }
 
-    private void Dashing() {
-        if (!isDashing)
-            return;
-
+    IEnumerator Dashing() {
         if (dashReady) { 
             dashReady = false;
         }
 
-        if (dashTimer < dashMinTime) {
+        while (!isFalling)
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x,
+                                        Mathf.Lerp(transform.localPosition.y,
+                                        dashHeight,
+                                        3f * Time.deltaTime));
+            yield return Time.deltaTime;
+        }
+        yield break;
+
+/*        if (dashTimer < dashMinTime) {
             dashTimer += Time.deltaTime;
             transform.localPosition = new Vector2(transform.localPosition.x,
                                         Mathf.Lerp(transform.localPosition.y,
@@ -382,7 +387,7 @@ public class Player : MonoBehaviour
             dashTimer = dashMinTime;
         }
 
-        /*if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
+        if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
             dashTimer = 0f;
             isFalling = true;
             isDashing = false;
@@ -391,11 +396,23 @@ public class Player : MonoBehaviour
         if (playerStats.GetCurrentEnergy() > 0)*/
     }
 
-    private void DashFall() {
-        if (!isFalling)
-            return;
+    IEnumerator DashFall() {
+        while (transform.localPosition.y > 0)
+        {
+            transform.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
+            yield return Time.deltaTime;
+        }
+        Stunned();
+        isFalling = false;
+        isLanding = true;
+        isInvincible = false;
+        transform.localPosition = Vector2.zero;
 
-        if (transform.localPosition.y > 0) {
+        PlayAnimation(PlayerAnimStates.PLAYER_LAND);
+        StartCoroutine(ResetLanding(GetAnimationLength(PlayerAnimStates.PLAYER_LAND)));
+        yield break;
+
+/*        if (transform.localPosition.y > 0) {
             transform.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
         }
         else if (transform.localPosition.y <= 0) {
@@ -408,46 +425,60 @@ public class Player : MonoBehaviour
 
             PlayAnimation(PlayerAnimStates.PLAYER_LAND);
             Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND));
-        }
+        }*/
     }
 
-    private void ResetLanding() {
-        ResetStun();
+    IEnumerator ResetLanding(float delay) {
+        yield return new WaitForSeconds(delay);
+
+        isStunned = false;
         isLanding = false;
-        UI.SetEnergyRecoverable(true);
         if (!isAttacking)
             canReceiveInput = true;
+        StartCoroutine(ResetDash());
+        yield break;
     }
 
-    private void ResetDash() {
-        if (dashReady && isFalling && isLanding)
-            return;
+    IEnumerator ResetDash() {
+        yield return new WaitForSeconds(dashCooldown);
 
-        if (dashCooldownTimer < dashCooldown)
-            dashCooldownTimer += Time.deltaTime;
-        else if (dashCooldownTimer >= dashCooldown) {
-            dashReady = true;
-            dashCooldownTimer = 0f;
-        }
+        dashReady = true;
+        yield break;
     }
 
     /// <summary>
     /// ATTACK CODE ////////////////////////////////////////////////////////////////////////////
     /// </summary>
+    private void RunAttack() { 
+        if (runAttackDash) {
+            if (runDashTimer < runDashMaxTime) { 
+                runDashTimer += Time.deltaTime;
+                rb.MovePosition(rb.position 
+                    + runDirection 
+                    * (walkSpeed + ((runSpeed - walkSpeed) / 2))
+                    * Time.fixedDeltaTime);
+            }
+            else if (runDashTimer >= runDashMaxTime) {
+                runDashTimer = 0f;
+                runAttackDash = false;
+            }
+        }
+    }
+
     private void Attack() {
-        // case for first attack
-        if (isAttackPressed && canReceiveInput && !isAttacking && attackCombo == 0) {
+        // case for basic attacks
+        if (isAttackPressed && canReceiveInput && attackCombo < 3) {
             attackCombo += 1;
+            Debug.Log(attackCombo);
             AttackAnimation(attackCombo);
 
             isAttackPressed = false;
         }
-        // case for combo attacks
-        else if (isAttackPressed && canReceiveInput && isAttacking && attackCombo < 3) {
-            attackCombo += 1;
+        else if (isSuperAttackPressed && canReceiveInput && attackCombo == 2) {
+            attackCombo += 2;
             AttackAnimation(attackCombo);
 
-            isAttackPressed = false;
+            isSuperAttackPressed = false;
         }
         // case for run attack
         else if (isRunAttackPressed) {
@@ -458,25 +489,14 @@ public class Player : MonoBehaviour
             isRunAttackPressed = false;
         }
         // case for super attack
-        else if (isSuperAttackPressed) {
+        else if (isSuperAttackPressed && canReceiveInput && attackCombo == 0) {
             AttackAnimation(10);
+            //Debug.Log("attack 4 goingggg");
 
             isSuperAttackPressed = false;
         }
     }
 
-    private void RunAttack() { 
-        if (runAttackDash) {
-            if (runDashTimer < runDashMaxTime) { 
-                runDashTimer += Time.deltaTime;
-                rb.MovePosition(rb.position + runDirection * runSpeed * Time.fixedDeltaTime);
-            }
-            else if (runDashTimer >= runDashMaxTime) {
-                runDashTimer = 0f;
-                runAttackDash = false;
-            }
-        }
-    }
 
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking and not running
@@ -486,31 +506,20 @@ public class Player : MonoBehaviour
             runDashTimer = 0f;
         }
         else {
+            // save runDirection and start runAttackDash
             runDirection = new Vector2(xAxis, yAxis);
             runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
-
             runAttackDash = true;
         }
 
         isStopped = true;
+        isAttacking = true;
         canReceiveInput = false;
+        GetAttackDelay(attackIndex);
 
-        // case for first attack in combo/super attack
-        if (!isAttacking) {
-            IsAttacking();
-
-            GetAttackDelay(attackIndex);
-
-            Invoke("ResetAttack", attackDelay);
-        }
-        // case for combos
-        else if (isAttacking) {
-            CancelInvoke("ResetAttack");
-
-            GetAttackDelay(attackIndex);
-
-            Invoke("ResetAttack", attackDelay);
-        }
+        if (resetAttackRoutine != null)
+            StopCoroutine(resetAttackRoutine);
+        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
     }
 
     private void GetAttackDelay(int attackIndex) {
@@ -531,31 +540,41 @@ public class Player : MonoBehaviour
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK3);
             PlayAnimation(PlayerAnimStates.PLAYER_ATTACK3);
         }
+        else if (attackIndex == 4) {
+            attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_ATTACK4);
+            PlayAnimation(PlayerAnimStates.PLAYER_ATTACK4);
+        }
         else if (attackIndex == 10) {
             attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_SUPERATTACK);
             PlayAnimation(PlayerAnimStates.PLAYER_SUPERATTACK);
+            Debug.Log("attack 4 goingggg");
         }
         else
             return;
     }
 
     private void AttackHitboxActivated(float attackRange) {
+        // called thru animation event
         Collider2D[] hitEnemies;
-        if (facingLeft) { 
-            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange), enemyLayer);
-        }
+        if (facingLeft)  
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, 
+                                (Vector2)attackPoint.position + (Vector2.left * attackRange), 
+                                enemyLayer);
         else
-            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.right * attackRange), enemyLayer);
+            hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, 
+                                (Vector2)attackPoint.position + (Vector2.right * attackRange), 
+                                enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
-                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)damage, pushbackDistance, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)damage, 
+                                                            pushbackDistance, 
+                                                            transform);
             }
         }
     }
 
-    private void SpecialAttackHitboxActivated(float attackRange)
-    {
+    private void SpecialAttackHitboxActivated(float attackRange) {
         Collider2D[] hitEnemies;
         if (facingLeft)
             hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, (Vector2)attackPoint.position + (Vector2.left * attackRange), enemyLayer);
@@ -572,6 +591,7 @@ public class Player : MonoBehaviour
     }
 
     private void AttackFollowThrough(float multiplier) {
+        // called thru animation event
         Vector2 newPosition;
         if (facingLeft) {
             newPosition = new Vector2(transform.position.x - (attackFollowThruDistance * multiplier),
@@ -586,18 +606,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void IsAttacking() {
-        isAttacking = true;
-        UI.SetStaminaRecoverable(false);
-    }
-
-    private void ResetAttack() {
+    IEnumerator ResetAttack(float delay) {
+        yield return new WaitForSeconds(delay);
         attackCombo = 0;
         isAttacking = false;
         canReceiveInput = true;
-        UI.SetStaminaRecoverable(true);
-        if (!isDashing)
-            UI.SetEnergyRecoverable(true);
     }
 
     private void ComboInput() {
@@ -609,10 +622,12 @@ public class Player : MonoBehaviour
     }
 
     private void ConsumeEnergy(int value) {
+        // called thru animation events
         playerStats.SetCurrentEnergy(-value);
     }
 
     private void ConsumeStamina(int value) {
+        // called thru animation events
         playerStats.SetCurrentStamina(-value);
     }
 
@@ -624,10 +639,12 @@ public class Player : MonoBehaviour
         if (isHurt || isInvincible)
             return; 
 
-        isHurt = true;
         Stunned();
-        ResetAttack();
-        SetInvincible();
+        isHurt = true;
+        isInvincible = true;
+        if (resetAttackRoutine != null)
+            StopCoroutine(resetAttackRoutine);
+        resetAttackRoutine = StartCoroutine(ResetAttack(0f));
 
         // take damage
         playSounds.PlayPlayerHit();
@@ -640,18 +657,22 @@ public class Player : MonoBehaviour
         else { 
             stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
-            Invoke("ResetStun", stunDuration);
+
+            if (resetStunRoutine != null)
+                StopCoroutine(resetStunRoutine);
+            resetStunRoutine = StartCoroutine(ResetStun());
         }
+    }
+
+    IEnumerator ResetStun() {
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
     }
 
     private void Stunned() {
         ResetWalk();
         isStunned = true;
         runAttackDash = false;
-    }
-
-    private void SetInvincible() {
-        isInvincible = true;
     }
 
     private void ResetInvincible() {
@@ -663,11 +684,6 @@ public class Player : MonoBehaviour
 
     public bool GetInvincible() {
         return isInvincible;
-    }
-
-    private void ResetStun() {
-        isStunned = false;
-        UI.SetStaminaRecoverable(true);
     }
 
     private void DamageFlash() {

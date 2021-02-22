@@ -267,7 +267,7 @@ MonoBehaviour:
   dashMinTime: 0.4
   dashHeight: 1.25
   damage: 15
-  attackRangeVisualizer: 1
+  attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
   specialAttackDmg: 60
   specialPushbackMultiplier: 10
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 1
+  visualDelay: 0.5
   decaySpeed: 600
   recoverySpeed: 0.03
   UI: {fileID: 0}

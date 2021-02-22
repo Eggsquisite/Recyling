@@ -138,7 +138,6 @@ public class BasicEnemy : MonoBehaviour
         currentStamina = maxStamina;
 
         outOfTetherRange = true;
-        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -216,16 +215,12 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
         PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-
-        CancelInvoke("CheckPlayerDistance");
     }
 
     private void EnemyOutsideTetherRange() {
         outOfTetherRange = true;
         enemyMovement.SetFollow(false);
         PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-
-        InvokeRepeating("CheckPlayerDistance", 0f, 0.25f);
     }
     
     private void FollowPlayer() {
@@ -246,6 +241,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void CheckPlayerInRange() {
         CheckPlayerDistance();
+
+        if (outOfTetherRange)
+            return;
 
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();

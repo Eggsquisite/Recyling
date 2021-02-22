@@ -405,11 +405,20 @@ public class PlayerUI : MonoBehaviour
     }
     public void SetHealthRecoverable(bool value) {
         healthRecoverable = value;
+        if (!healthRecoverable)
+            if (healthRecoveryRoutine != null)
+                StopCoroutine(healthRecoveryRoutine);
     }
     public void SetEnergyRecoverable(bool value) {
         energyRecoverable = value;
+        if (!energyRecoverable)
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
     }
     public void SetStaminaRecoverable(bool value) {
         staminaRecoverable = value;
+        if (!staminaRecoverable)
+            if (staminaRecoveryRoutine != null)
+                StopCoroutine(staminaRecoveryRoutine);
     }
 }
