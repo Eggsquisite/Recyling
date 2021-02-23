@@ -103,6 +103,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
+  - time: 0.81666666
+    functionName: ConsumeStamina
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 20
+    messageOptions: 0
   - time: 0.8333333
     functionName: AttackActivated
     data: 

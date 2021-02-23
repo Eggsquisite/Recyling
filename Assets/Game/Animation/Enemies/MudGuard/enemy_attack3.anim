@@ -147,7 +147,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 3
+    intParameter: 2
     messageOptions: 0
   - time: 0.4
     functionName: ConsumeStamina

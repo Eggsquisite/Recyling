@@ -260,7 +260,7 @@ MonoBehaviour:
   attackFollowFacePlayer: 000000
   attackFollowDistances:
   - 0
-  - 0.5
+  - 0
   - 1
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 1.5
