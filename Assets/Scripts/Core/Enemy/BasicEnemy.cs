@@ -60,6 +60,8 @@ public class BasicEnemy : MonoBehaviour
     private Transform visualizePoint;
     [SerializeField] 
     private float visualizeRange;
+    [SerializeField]
+    private bool detectIsRay;
 
     private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
@@ -252,8 +254,10 @@ public class BasicEnemy : MonoBehaviour
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
 
-        //enemyMovement.CheckPlayerInRange(ref playerDetected);
-        playerDetected = enemyMovement.CalculateDirectionToPlayer();
+        if (detectIsRay)
+            enemyMovement.CalculateRaycastToPlayer();
+        else
+            playerDetected = enemyMovement.CalculateDirectionToPlayer();
 
         if (!attackReady)
             inRange = false;

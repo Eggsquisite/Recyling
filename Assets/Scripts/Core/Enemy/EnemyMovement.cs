@@ -159,6 +159,13 @@ public class EnemyMovement : MonoBehaviour
         return Physics2D.Raycast(rb.position, directionToPlayer, detectRange, playerLayer);
     }
 
+    public RaycastHit2D CalculateRaycastToPlayer() {
+        if (leftOfPlayer)
+            return Physics2D.Raycast(detectPos.position, Vector2.right, detectRange, playerLayer);
+        else
+            return Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
+    }
+
     public void IsMoving() {
         dist = (Vector2)transform.position - lastUpdatePos;
         currentSpeed = dist.magnitude / Time.deltaTime;
@@ -196,12 +203,6 @@ public class EnemyMovement : MonoBehaviour
             abovePlayer = 0;
     }
 
-    public void CheckPlayerInRange(ref RaycastHit2D playerDetected) {
-        if (leftOfPlayer)
-            playerDetected = Physics2D.Raycast(detectPos.position, Vector2.right, detectRange, playerLayer);
-        else
-            playerDetected = Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
-    }
 
     private void RandomizeAttackFromLeft() {
         int tmp = Random.Range(0, 10);
