@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private Transform detectPos;
     [SerializeField]
-    private float detectRange;
+    private float detectInRange;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -156,14 +156,15 @@ public class EnemyMovement : MonoBehaviour
 
     public RaycastHit2D CalculateDirectionToPlayer() {
         directionToPlayer = playerChar - rb.position;
-        return Physics2D.Raycast(rb.position, directionToPlayer, detectRange, playerLayer);
+        return Physics2D.Raycast(rb.position, directionToPlayer, detectInRange, playerLayer);
     }
 
     public RaycastHit2D CalculateRaycastToPlayer() {
+        // useful for ranged characters or enemies that don't move vertically during attack
         if (leftOfPlayer)
-            return Physics2D.Raycast(detectPos.position, Vector2.right, detectRange, playerLayer);
+            return Physics2D.Raycast(detectPos.position, Vector2.right, detectInRange, playerLayer);
         else
-            return Physics2D.Raycast(detectPos.position, Vector2.left, detectRange, playerLayer);
+            return Physics2D.Raycast(detectPos.position, Vector2.left, detectInRange, playerLayer);
     }
 
     public void IsMoving() {
@@ -262,7 +263,7 @@ public class EnemyMovement : MonoBehaviour
         //Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
         if (rb != null) { 
             Gizmos.DrawRay(rb.position, directionToMove);
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.grey;
             Gizmos.DrawLine(rb.position, directionToPlayer);
         }
     }

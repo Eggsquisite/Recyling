@@ -255,13 +255,13 @@ public class BasicEnemy : MonoBehaviour
             enemyMovement.CheckPlayerPos();
 
         if (detectIsRay)
-            enemyMovement.CalculateRaycastToPlayer();
+            playerDetected = enemyMovement.CalculateRaycastToPlayer();
         else
             playerDetected = enemyMovement.CalculateDirectionToPlayer();
 
         if (!attackReady)
             inRange = false;
-        else if (playerDetected.collider != null && !inRange) 
+        else if (playerDetected.collider != null && !inRange)
             inRange = true;
         else if (playerDetected.collider == null && inRange) 
             inRange = false;
@@ -305,6 +305,7 @@ public class BasicEnemy : MonoBehaviour
             // priorityLists[j] is the list that contains all attacks of that specific priority
             if (priorityLists[j].Count > 0)
             {
+                priorityLists[j].Shuffle();
                 for (int i = 0; i < priorityLists[j].Count; i++)
                 {
                     // split the attackRange / 2 and add to attackPoint to split the difference 
@@ -372,8 +373,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
 
-    private void FinishAttack()
-    {
+    private void FinishAttack() {
         isAttacking = false;
         staminaRecovery = true;
         AttackDeactivated();
@@ -748,10 +748,12 @@ public class BasicEnemy : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
+        if (visualizePoint != null) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.right * visualizeRange));
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(visualizePoint.position, (Vector2)visualizePoint.position + (Vector2.left * visualizeRange));
+        }
         Gizmos.color = Color.green;
         if (rb != null)
             Gizmos.DrawLine(rb.position, rb.position + newPosition);

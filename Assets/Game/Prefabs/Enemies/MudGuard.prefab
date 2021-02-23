@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3898020908469145279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.075, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3898020908785157715}
@@ -46,13 +46,14 @@ GameObject:
   - component: {fileID: 3898020908785157713}
   - component: {fileID: 1705846100269140049}
   - component: {fileID: 3898020908785157712}
+  - component: {fileID: 6814819942192525308}
   m_Layer: 7
   m_Name: MudGuard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3898020908785157715
 Transform:
   m_ObjectHideFlags: 0
@@ -66,6 +67,7 @@ Transform:
   m_Children:
   - {fileID: 3898020909053490395}
   - {fileID: 3898020908469145278}
+  - {fileID: 806799264620761062}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -98
+  m_SortingOrder: -75
   m_Sprite: {fileID: 8793639957104055765, guid: 68afdf6c3bddec346b8be2c411952d70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -220,30 +222,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 3898020908469145278}
-  attackPoint2: {fileID: 0}
+  tetherFollowRange: 6
+  tetherUnfollowRange: 12
+  maxHealth: 120
+  maxStamina: 60
+  staminaRecoveryValue: 10
+  staminaRecoveryDelay: 3
+  staminaRecoverySpeed: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 100
-  attackChosen: 0
-  stunDelay: 0.75
-  visualizeRange: 0
-  detectRange: 0
-  attackRange1: 3.5
-  attackRange2: 1.3
-  attackRange3: 0
-  attackDamage1: 200
-  attackDamage2: 150
-  attackDamage3: 0
-  minAttackDelay: 2
+  visualizePoint: {fileID: 806799264620761062}
+  visualizeRange: 1.3
+  detectIsRay: 1
+  attackPoints:
+  - {fileID: 3898020908469145278}
+  - {fileID: 3898020908469145278}
+  attackRanges:
+  - 1.3
+  - 3.5
+  attackDetectPoints:
+  - {fileID: 3898020908469145278}
+  - {fileID: 3898020908469145278}
+  attackDetectRanges:
+  - 3.5
+  - 3.5
+  attackAnimations:
+  - enemy_attack1
+  - enemy_attack2
+  attackDamages: 78000000b4000000
+  attackPriority: 0100000001000000
+  attackFollowFacePlayer: 0000
+  attackFollowDistances:
+  - 0.3
+  - 0.5
+  minStunAttackDelay: 0.5
+  maxStunAttackDelay: 1.5
+  minAttackDelay: 1.5
   maxAttackDelay: 3
-  followDistance: 0.25
-  followDelay: 0.5
+--- !u!114 &6814819942192525308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898020908785157719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectPos: {fileID: 806799264620761062}
+  detectInRange: 3
+  repeatFollowDelay: 1
+  attackFollowDelay: 1
+  stunFollowDelay: 0.5
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
+  idleSpeedMult: 0.75
   minOffset: 1
-  maxOffset: 1.25
+  maxOffset: 2
+  offsetAttackStandbyRange: {x: 2, y: 0.25}
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,3 +371,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4427726429103902501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806799264620761062}
+  m_Layer: 0
+  m_Name: DetectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &806799264620761062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4427726429103902501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3898020908785157715}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

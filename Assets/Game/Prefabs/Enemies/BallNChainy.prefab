@@ -227,7 +227,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 4618153347026935516}
-  detectRange: 4
+  detectInRange: 4
   repeatFollowDelay: 0.5
   attackFollowDelay: 1
   stunFollowDelay: 0.25
@@ -264,6 +264,7 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 5761460219095272118}
   visualizeRange: 2.5
+  detectIsRay: 0
   attackPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
