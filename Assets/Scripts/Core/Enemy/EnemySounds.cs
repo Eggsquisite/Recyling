@@ -22,8 +22,16 @@ public class EnemySounds : MonoBehaviour
         if (audSource == null) audSource = Camera.main.GetComponent<AudioSource>();
     }
 
-    public void PlayBasicAttack1() {
-        var tmp = basicAttack1[Random.Range(0, basicAttack1.Capacity)];
+    public void PlayBasicAttack(int index) {
+        // called thru animation event
+        AudioClip tmp = null;
+        if (index == 1)
+            tmp = basicAttack1[Random.Range(0, basicAttack1.Capacity)];
+        else if (index == 2)
+            tmp = basicAttack2[Random.Range(0, basicAttack2.Capacity)];
+        else if (index == 3)
+            tmp = basicAttack3[Random.Range(0, basicAttack3.Capacity)];
+
         if (tmp != null)
             audSource.PlayOneShot(tmp);
     }

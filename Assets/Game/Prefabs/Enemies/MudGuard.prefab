@@ -157,7 +157,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7, y: 0.3}
+  m_Size: {x: 0.7, y: 0.4}
   m_Direction: 1
 --- !u!95 &3898020908785157714
 Animator:
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack1:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 7ef935ac87279f641abbc583c44a9c7e, type: 3}
   basicAttack2:
-  - {fileID: 8300000, guid: 8bfa7e26382c4b44a942571413494bd9, type: 3}
+  - {fileID: 8300000, guid: 7ef935ac87279f641abbc583c44a9c7e, type: 3}
   basicAttack3: []
   enemyHit:
   - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
@@ -225,7 +225,7 @@ MonoBehaviour:
   tetherFollowRange: 6
   tetherUnfollowRange: 12
   maxHealth: 120
-  maxStamina: 60
+  maxStamina: 75
   staminaRecoveryValue: 10
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
@@ -238,28 +238,34 @@ MonoBehaviour:
   attackPoints:
   - {fileID: 3898020908469145278}
   - {fileID: 3898020908469145278}
+  - {fileID: 3898020908469145278}
   attackRanges:
   - 1.3
   - 3.5
+  - 1.3
   attackDetectPoints:
   - {fileID: 3898020908469145278}
   - {fileID: 3898020908469145278}
+  - {fileID: 3898020908469145278}
   attackDetectRanges:
-  - 3.5
-  - 3.5
+  - 2
+  - 4
+  - 3
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
-  attackDamages: 78000000b4000000
-  attackPriority: 0100000001000000
-  attackFollowFacePlayer: 0000
+  - enemy_attack3
+  attackDamages: 78000000b400000078000000
+  attackPriority: 010000000100000001000000
+  attackFollowFacePlayer: 000000
   attackFollowDistances:
-  - 0.3
+  - 0
   - 0.5
+  - 1
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 1.5
-  minAttackDelay: 1.5
-  maxAttackDelay: 3
+  minAttackDelay: 1
+  maxAttackDelay: 2
 --- !u!114 &6814819942192525308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,9 +292,9 @@ MonoBehaviour:
   minMoveSpeed: 0.75
   maxMoveSpeed: 1.25
   idleSpeedMult: 0.75
-  minOffset: 1
-  maxOffset: 2
-  offsetAttackStandbyRange: {x: 2, y: 0.25}
+  minOffset: 0.5
+  maxOffset: 1
+  offsetAttackStandbyRange: {x: 1, y: 0.25}
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0

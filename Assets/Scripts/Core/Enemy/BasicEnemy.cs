@@ -278,6 +278,8 @@ public class BasicEnemy : MonoBehaviour
     private void AttackActivated(int attackPoint)
     {
         //called thru animation event
+        // set attackPoint to specific index if using multiple attackPoints for a single index
+        // otherwise keep at 0
         if (attackPoint != 0)
             attackPointIndex = attackPoint;
 
