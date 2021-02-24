@@ -23,4 +23,8 @@ public class EnemyAnimation : MonoBehaviour
     public float GetAnimationLength(string newAnim) {
         return AnimHelper.GetAnimClipLength(ac, newAnim);
     }
+
+    public string GetCurrentState() {
+        return currentState;
+    }
 }

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -95
+  m_SortingOrder: -35
   m_Sprite: {fileID: -8066589419829931963, guid: 0eed3d627fdd679419d4858060e8af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -224,6 +224,8 @@ MonoBehaviour:
   maxOffset: 1.5
   offsetAttackStandbyRange: {x: 1, y: 0.25}
   canTeleport: 1
+  minTeleportDuration: 2
+  maxTeleportDuration: 3
   minTeleportCooldown: 4
   maxTeleportCooldown: 7
 --- !u!114 &2611664197077241567
@@ -240,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamageThresholdPercent: 0.2
   tetherFollowRange: 6
-  tetherUnfollowRange: 8
+  tetherUnfollowRange: 10
   maxHealth: 120
   maxStamina: 120
   staminaRecoveryValue: 18

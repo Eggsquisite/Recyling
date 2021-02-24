@@ -41,30 +41,39 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private Vector2 offsetAttackStandbyRange;
 
-    [SerializeField]
-    private bool canTeleport;
-    [SerializeField]
-    private float minTeleportCooldown;
-    [SerializeField]
-    private float maxTeleportCooldown;
-
     private int abovePlayer;
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
-    private bool teleportReady;
-    private bool isTeleporting;
     private bool attackFromLeft;
 
     private float xScaleValue;
     private float currentSpeed;
     private float baseMoveSpeed;
-    private float teleportCooldown;
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
     private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
     private Vector2 directionToMove, directionToPlayer, desiredPosition;
+
+    [Header("Teleport Properties")]
+    [SerializeField]
+    private bool canTeleport;
+    [SerializeField]
+    private float minTeleportDuration;
+    [SerializeField]
+    private float maxTeleportDuration;
+    [SerializeField]
+    private float minTeleportCooldown;
+    [SerializeField]
+    private float maxTeleportCooldown;
+
+    private bool teleportReady;
+    private bool isTeleporting;
+
+    private float teleportDuration;
+    private float teleportCooldown;
+
 
     private Coroutine teleportRoutine;
 
@@ -86,6 +95,7 @@ public class EnemyMovement : MonoBehaviour
 
         teleportReady = true;
         teleportCooldown = Random.Range(minTeleportCooldown, maxTeleportCooldown);
+        teleportDuration = Random.Range(minTeleportDuration, maxTeleportDuration);
         baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0f);
         rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
@@ -197,7 +207,9 @@ public class EnemyMovement : MonoBehaviour
         currentSpeed = dist.magnitude / Time.deltaTime;
         lastUpdatePos = transform.position;
 
-        if (currentSpeed > 0 && !isMoving)
+        if (!canFollow)
+            isMoving = false;
+        else if (currentSpeed > 0 && !isMoving)
             isMoving = true;
         else if (currentSpeed <= 0 && isMoving)
             isMoving = false;
@@ -244,6 +256,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator TeleportCooldown() {
         yield return new WaitForSeconds(teleportCooldown);
         teleportCooldown = Random.Range(minTeleportCooldown, maxTeleportCooldown);
+        teleportDuration = Random.Range(minTeleportDuration, maxTeleportDuration);
         teleportReady = true;
     }
 
@@ -312,6 +325,9 @@ public class EnemyMovement : MonoBehaviour
     }
     public void SetTeleportReady(bool flag) { 
         teleportReady = flag;
+    }
+    public float GetTeleportDuration() {
+        return teleportDuration;
     }
 
     private void OnDrawGizmosSelected()

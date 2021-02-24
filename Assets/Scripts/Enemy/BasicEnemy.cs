@@ -224,12 +224,14 @@ public class BasicEnemy : MonoBehaviour
                         StopCoroutine(teleportRoutine);
                     teleportRoutine = StartCoroutine(Teleporting());
                 }
-                else if (!enemyMovement.GetCanTeleport())
+                else if (!enemyMovement.GetCanTeleport()) {
                     enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+                }
             }
-            else if (enemyMovement.GetIsMoving() && !enemyMovement.GetIsTeleporting()) 
-                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
-            
+            else {
+                if (!enemyMovement.GetIsTeleporting())
+                    enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+            }
         }
     }
 
@@ -240,7 +242,8 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetIsTeleporting(true);
         enemyMovement.SetTeleportReady(false);
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
-        yield return new WaitForSeconds(2f + enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE1));
+        yield return new WaitForSeconds(enemyMovement.GetTeleportDuration()
+            + enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE1));
 
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE2);
         enemyMovement.TeleportToPlayer();
@@ -253,14 +256,25 @@ public class BasicEnemy : MonoBehaviour
         outOfTetherRange = false;
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
-        if (!enemyMovement.GetIsTeleporting())
-            enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+
+        if (!enemyMovement.GetCanTeleport() && !enemyMovement.GetIsTeleporting())
+                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
     }
 
     private void EnemyOutsideTetherRange() {
         outOfTetherRange = true;
         enemyMovement.SetFollow(false);
-        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+        enemyMovement.StopFindPlayer();
+        enemyMovement.IsMoving();
+
+        if (!enemyMovement.GetCanTeleport())
+            enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+        else 
+            if (!enemyMovement.GetIsTeleporting()) { 
+                if (teleportRoutine != null)
+                    StopCoroutine(teleportRoutine);
+                teleportRoutine = StartCoroutine(Teleporting());
+            }
     }
     
     private void FollowPlayer() {
