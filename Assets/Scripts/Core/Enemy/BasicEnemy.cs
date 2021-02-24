@@ -71,13 +71,15 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private List<float> attackRanges;
     [SerializeField]
+    private List<int> attackDamages;
+
+    // Must have same amount 
+    [SerializeField]
     private List<Transform> attackDetectPoints;
     [SerializeField]
     private List<float> attackDetectRanges;
     [SerializeField]
     private List<string> attackAnimations;
-    [SerializeField]
-    private List<int> attackDamages;
     [SerializeField]
     private List<int> attackPriority;
     [SerializeField]
@@ -411,7 +413,7 @@ public class BasicEnemy : MonoBehaviour
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
             if (hitBox.collider != null) {
-                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackIndex]);
+                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackPointIndex]);
             }
 
             yield return null;
