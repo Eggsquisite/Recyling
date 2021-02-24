@@ -171,6 +171,10 @@ public class Player : MonoBehaviour
     {
         AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
     }
+    public void ReplayAnimation(string newAnim)
+    {
+        AnimHelper.ReplayAnimation(anim, ref currentState, newAnim);
+    }
     private float GetAnimationLength(string newAnim)
     {
         return AnimHelper.GetAnimClipLength(ac, newAnim);
@@ -672,7 +676,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public void PlayerHurt(int damageNum) {
         if (isHurt || isInvincible)
-            return; 
+            return;
+
+        if (isDashing)
+            ReplayAnimation(PlayerAnimStates.PLAYER_DASH);
 
         Stunned();
         isHurt = true;
