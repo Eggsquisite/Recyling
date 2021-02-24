@@ -974,10 +974,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MudGuard
       objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
 --- !u!1 &8089756488001865783
@@ -1126,6 +1122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageThresholdPercent: 0
   tetherFollowRange: 6
   tetherUnfollowRange: 12
   maxHealth: 120
@@ -1231,7 +1228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &8876148796027093318
 SpriteRenderer:
   m_ObjectHideFlags: 0

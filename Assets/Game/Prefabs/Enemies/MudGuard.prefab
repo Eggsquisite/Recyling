@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageThresholdPercent: 0.1
   tetherFollowRange: 6
   tetherUnfollowRange: 12
   maxHealth: 120
@@ -314,8 +315,8 @@ MonoBehaviour:
   - 1
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 1.5
-  minAttackDelay: 1
-  maxAttackDelay: 2
+  minAttackDelay: 2
+  maxAttackDelay: 3
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0

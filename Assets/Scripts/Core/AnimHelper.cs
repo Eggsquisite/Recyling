@@ -6,7 +6,7 @@ public static class AnimHelper
 {
     public static float GetAnimClipLength(RuntimeAnimatorController ac, string animation)
     {
-        float time = 0;
+        float time;
 
         for (int i = 0; i < ac.animationClips.Length; i++)
         {

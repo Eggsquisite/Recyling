@@ -16,18 +16,19 @@ public class AttackPriority
 public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
-    private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sp;
-    private RuntimeAnimatorController ac;
+    private Shader shaderGUItext;
+    private Shader shaderSpritesDefault;
     //private EnemyAttack enemyAttack;
     private EnemyMovement enemyMovement;
     private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
     private Projectile projectile;
-    private string currentState;
 
     [Header("Enemy Stats")]
+    [SerializeField]
+    private float damageThresholdPercent;
     [SerializeField]
     private float tetherFollowRange;
     [SerializeField]
@@ -46,6 +47,7 @@ public class BasicEnemy : MonoBehaviour
     private float staminaRecoverySpeed;
 
     private bool isDead;
+    private bool spriteHurt;
     private bool isInvincible;
     private bool staminaRecovery;
     private bool outOfStamina;
@@ -53,6 +55,8 @@ public class BasicEnemy : MonoBehaviour
 
     private int currentHealth;
     private int currentStamina;
+    private int damageThreshold;
+    private int currentDamageTaken;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -126,14 +130,14 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 newPosition;
 
     private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine;
-    private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine;
+    private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine, resetHurtSpriteRoutine;
 
     // Start is called before the first frame update
     void Awake() {
-        if (anim == null) anim = GetComponent<Animator>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-        ac = anim.runtimeAnimatorController;
+        if (shaderGUItext == null) shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = sp.material.shader;
 
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
@@ -143,11 +147,11 @@ public class BasicEnemy : MonoBehaviour
         if (projectile != null)
             projectile.SetDamage(attackDamages[0]);
 
+        outOfTetherRange = true;
+        damageThreshold = Mathf.RoundToInt(damageThresholdPercent * maxHealth);
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-
-        outOfTetherRange = true;
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -645,7 +649,9 @@ public class BasicEnemy : MonoBehaviour
         CheckStamina();
     }
 
-    /////////////// Enemy Is Hit ///////////////////////////////////////////////////////////
+    /// <summary>
+    ///  ENEMY IS HIT /////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     public void SetIsInvincible(bool flag) {
         // also called thru animation events
         isInvincible = flag;
@@ -673,19 +679,13 @@ public class BasicEnemy : MonoBehaviour
         if (isDead || isInvincible)
             return;
 
-        isStunned = true;
         SetIsInvincible(true);
         enemyMovement.SetFollow(false);
-        if (isAttacking) {
-            if (attackAnimationRoutine != null)
-                StopCoroutine(attackAnimationRoutine);
-            FinishAttack();
-        }
+        stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
-        AttackDeactivated();
-        AttackFollowDeactivated();
         currentHealth -= damageNum;
         PushBack(distance, playerRef);
+        StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
         playSound.PlayEnemyHit();
@@ -693,17 +693,58 @@ public class BasicEnemy : MonoBehaviour
         if (currentHealth <= 0)
             StartCoroutine(Death());
         else {
-            enemyAnimation.ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
-            stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+            // if damage threshold reached, stagger enemy
+            // else don't interrupt enemy 
+            if (currentDamageTaken >= damageThreshold) { 
+                enemyAnimation.ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
+
+                isStunned = true;
+                if (stunRoutine != null)
+                    StopCoroutine(stunRoutine);
+                stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.1f));
+
+                AttackDeactivated();
+                AttackFollowDeactivated();
+                if (isAttacking) {
+                    if (attackAnimationRoutine != null)
+                        StopCoroutine(attackAnimationRoutine);
+                    FinishAttack();
+                }
+
+                if (resetHurtSpriteRoutine != null)
+                    StopCoroutine(resetHurtSpriteRoutine);
+                resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0f));
+            }
+            else
+                SetHurtSprite();
 
             if (invincibleRoutine != null)
                 StopCoroutine(invincibleRoutine);
             invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.1f));
-
-            if (stunRoutine != null)
-                StopCoroutine(stunRoutine);
-            stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.1f));
         }
+    }
+
+    IEnumerator BeginDamageThreshold(int damageNum) {
+        currentDamageTaken += damageNum;
+        yield return new WaitForSeconds(.5f);
+        currentDamageTaken -= damageNum;
+        if (currentDamageTaken < 0)
+            currentDamageTaken = 0;
+    }
+
+    private void SetHurtSprite() {
+        sp.material.shader = shaderGUItext;
+        sp.color = Color.white;
+
+        if (resetHurtSpriteRoutine != null)
+            StopCoroutine(resetHurtSpriteRoutine);
+        resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0.05f));
+    }
+
+    IEnumerator ResetHurtSprite(float delay) {
+        yield return new WaitForSeconds(delay);
+        sp.material.shader = shaderSpritesDefault;
+        sp.color = Color.white;
     }
 
     private void PushBack(float distance, Transform reference) {
