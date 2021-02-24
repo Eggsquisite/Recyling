@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 2237502160636908991}
   - component: {fileID: 2237502160636908987}
   - component: {fileID: 2237502160636908984}
+  - component: {fileID: 5892654284561295386}
   - component: {fileID: 612666385329999305}
   - component: {fileID: 2237502160636908985}
   - component: {fileID: 1780537994}
@@ -273,6 +274,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+--- !u!114 &5892654284561295386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237502160636908990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa1938280aa1c644ac61552de4c1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &612666385329999305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +302,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 3512151542823493369}
-  detectRange: 4
+  detectInRange: 0
   repeatFollowDelay: 0.5
   attackFollowDelay: 0.5
   stunFollowDelay: 0.5
@@ -326,19 +339,22 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 3512151542823493369}
   visualizeRange: 4
-  attackDetectPoints: []
-  attackDetectRanges: []
+  detectIsRay: 0
   attackPoints:
   - {fileID: 2237502159876300119}
   attackRanges:
   - 1
+  attackDamages: b4000000
+  attackDetectPoints: []
+  attackDetectRanges: []
   attackAnimations:
   - enemy_attack1
   attackPriority: 01000000
-  attackDamages: b4000000
+  attackFollowFacePlayer: 00
   attackFollowDistances:
   - 0
-  attackFollowFacePlayer: 00
+  minStunAttackDelay: 0
+  maxStunAttackDelay: 0
   minAttackDelay: 0.75
   maxAttackDelay: 1.5
 --- !u!114 &1780537994

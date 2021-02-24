@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5761460218273841758}
   - component: {fileID: 5761460218273841754}
   - component: {fileID: 5761460218273841753}
+  - component: {fileID: 5512456606048615884}
   - component: {fileID: 7944417000441875545}
   - component: {fileID: 5761460218273841747}
   - component: {fileID: 5761460218273841752}
@@ -191,6 +192,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+--- !u!114 &5512456606048615884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761460218273841759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa1938280aa1c644ac61552de4c1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7944417000441875545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +284,7 @@ MonoBehaviour:
   attackRanges:
   - 2.5
   - 2.5
+  attackDamages: 9600000096000000
   attackDetectPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
@@ -280,7 +294,6 @@ MonoBehaviour:
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
-  attackDamages: 9600000096000000
   attackPriority: 0100000001000000
   attackFollowFacePlayer: 0001
   attackFollowDistances:

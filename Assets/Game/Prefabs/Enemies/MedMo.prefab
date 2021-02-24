@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 2006311088008999548}
   - component: {fileID: 2006311088008999544}
   - component: {fileID: 2006311088008999547}
+  - component: {fileID: 4421235365167359770}
   - component: {fileID: 890109385235261962}
   - component: {fileID: 2006311088008999546}
   - component: {fileID: 349852581221793097}
@@ -459,6 +460,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+--- !u!114 &4421235365167359770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006311088008999549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa1938280aa1c644ac61552de4c1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &890109385235261962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +488,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 3776063956931524922}
-  detectRange: 6
+  detectInRange: 0
   repeatFollowDelay: 1.25
   attackFollowDelay: 1.5
   stunFollowDelay: 0.5
@@ -512,12 +525,7 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 3776063956931524922}
   visualizeRange: 4
-  attackDetectPoints:
-  - {fileID: 2006311087221389972}
-  - {fileID: 1096911895}
-  attackDetectRanges:
-  - 4
-  - 6
+  detectIsRay: 0
   attackPoints:
   - {fileID: 2006311087221389972}
   - {fileID: 1293471565856136870}
@@ -530,15 +538,23 @@ MonoBehaviour:
   - 1
   - 2.25
   - 2.25
+  attackDamages: c8000000fa000000
+  attackDetectPoints:
+  - {fileID: 2006311087221389972}
+  - {fileID: 1096911895}
+  attackDetectRanges:
+  - 4
+  - 6
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
   attackPriority: 0200000001000000
-  attackDamages: c8000000fa000000
+  attackFollowFacePlayer: 0000
   attackFollowDistances:
   - 0
   - 0
-  attackFollowFacePlayer: 0000
+  minStunAttackDelay: 0
+  maxStunAttackDelay: 0
   minAttackDelay: 1.5
   maxAttackDelay: 2
 --- !u!114 &349852581221793097
