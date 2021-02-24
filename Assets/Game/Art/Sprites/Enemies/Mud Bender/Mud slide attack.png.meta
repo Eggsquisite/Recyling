@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: efb5371825409774ebf6d9995758cd03
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -760247291858005843
+    second: Mud slide attack_0
+  - first:
+      213: 7726070618803153610
+    second: Mud slide attack_1
+  - first:
+      213: 7314249315941840589
+    second: Mud slide attack_2
+  - first:
+      213: -7626083295822382783
+    second: Mud slide attack_3
+  - first:
+      213: -8531007237537694275
+    second: Mud slide attack_4
+  - first:
+      213: 6692732243871731608
+    second: Mud slide attack_5
+  - first:
+      213: -3153587025491014426
+    second: Mud slide attack_6
+  - first:
+      213: 2691407591260352659
+    second: Mud slide attack_7
+  - first:
+      213: 4303138032470002742
+    second: Mud slide attack_8
+  - first:
+      213: -7802221261704524627
+    second: Mud slide attack_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mud slide attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 333
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da0d953bd1f0375f0800000000000000
+      internalID: -760247291858005843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aca28571b44883b60800000000000000
+      internalID: 7726070618803153610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 259
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc67b53100f618560800000000000000
+      internalID: 7314249315941840589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14977fca5a5ba2690800000000000000
+      internalID: -7626083295822382783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 185
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd774edd16cb9980800000000000000
+      internalID: -8531007237537694275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 148
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f07c4248c51ec50800000000000000
+      internalID: 6692732243871731608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ecc3590f453c34d0800000000000000
+      internalID: -3153587025491014426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390fcdec1fcc95520800000000000000
+      internalID: 2691407591260352659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c09d4dd31d7bb30800000000000000
+      internalID: 4303138032470002742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud slide attack_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac0a15b911f8b390800000000000000
+      internalID: -7802221261704524627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

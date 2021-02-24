@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: 7757bad9b33a4e64a8cafaa32b3d032e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 999025997599386001
+    second: Mud damaged and death_0
+  - first:
+      213: -8354122086939038608
+    second: Mud damaged and death_1
+  - first:
+      213: 6974505217433537663
+    second: Mud damaged and death_2
+  - first:
+      213: -8186557821457667096
+    second: Mud damaged and death_3
+  - first:
+      213: -3347112869839749604
+    second: Mud damaged and death_4
+  - first:
+      213: -3250485221850363365
+    second: Mud damaged and death_5
+  - first:
+      213: 5913316591790612409
+    second: Mud damaged and death_6
+  - first:
+      213: -683981450819989421
+    second: Mud damaged and death_7
+  - first:
+      213: -565654214147457714
+    second: Mud damaged and death_8
+  - first:
+      213: 2333366546524723461
+    second: Mud damaged and death_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mud damaged and death_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 333
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 199aa4c0ad04ddd00800000000000000
+      internalID: 999025997599386001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ce0c55932301c80800000000000000
+      internalID: -8354122086939038608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 259
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c0c31fa8b6ac060800000000000000
+      internalID: 6974505217433537663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebe1de1901836e80800000000000000
+      internalID: -8186557821457667096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 185
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e3012249aac81d0800000000000000
+      internalID: -3347112869839749604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 148
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ac3fb99e4f3e2d0800000000000000
+      internalID: -3250485221850363365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf5a123c12501250800000000000000
+      internalID: 5913316591790612409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3501bee8e720286f0800000000000000
+      internalID: -683981450819989421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4db90c3d746628f0800000000000000
+      internalID: -565654214147457714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mud damaged and death_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 86
+        height: 37
+      alignment: 9
+      pivot: {x: 0.275, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509d268e288c16020800000000000000
+      internalID: 2333366546524723461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

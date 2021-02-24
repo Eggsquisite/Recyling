@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 3898020908785157718}
   - component: {fileID: 3898020908785157714}
   - component: {fileID: 3898020908785157713}
+  - component: {fileID: 5404177065483787859}
   - component: {fileID: 1705846100269140049}
-  - component: {fileID: 3898020908785157712}
   - component: {fileID: 6814819942192525308}
+  - component: {fileID: 3898020908785157712}
   m_Layer: 7
   m_Name: MudGuard
   m_TagString: Enemy
@@ -191,6 +192,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+--- !u!114 &5404177065483787859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898020908785157719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa1938280aa1c644ac61552de4c1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1705846100269140049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +223,35 @@ MonoBehaviour:
   basicAttack3: []
   enemyHit:
   - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
+--- !u!114 &6814819942192525308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898020908785157719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectPos: {fileID: 806799264620761062}
+  detectInRange: 4
+  repeatFollowDelay: 1
+  attackFollowDelay: 1
+  stunFollowDelay: 0.5
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  minMoveSpeed: 0.75
+  maxMoveSpeed: 1.25
+  idleSpeedMult: 0.75
+  minOffset: 0.5
+  maxOffset: 1
+  offsetAttackStandbyRange: {x: 1, y: 0.25}
 --- !u!114 &3898020908785157712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,35 +316,6 @@ MonoBehaviour:
   maxStunAttackDelay: 1.5
   minAttackDelay: 1
   maxAttackDelay: 2
---- !u!114 &6814819942192525308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3898020908785157719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cff26c459742c44835652d24c08c7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  detectPos: {fileID: 806799264620761062}
-  detectInRange: 3
-  repeatFollowDelay: 1
-  attackFollowDelay: 1
-  stunFollowDelay: 0.5
-  borderLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1.25
-  idleSpeedMult: 0.75
-  minOffset: 0.5
-  maxOffset: 1
-  offsetAttackStandbyRange: {x: 1, y: 0.25}
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class BasicEnemy : MonoBehaviour
     private RuntimeAnimatorController ac;
     //private EnemyAttack enemyAttack;
     private EnemyMovement enemyMovement;
+    private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
     private Projectile projectile;
     private string currentState;
@@ -136,6 +137,7 @@ public class BasicEnemy : MonoBehaviour
 
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
+        if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
 
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (projectile != null)
@@ -197,38 +199,32 @@ public class BasicEnemy : MonoBehaviour
         FollowPlayer();
     }
 
-    /////////////////// Animation Helper Functions ////////
-    private void PlayAnimation(string newAnim) {
-        AnimHelper.ChangeAnimationState(anim, ref currentState, newAnim);
-    }
-    private void ReplayAnimation(string newAnim) {
-        AnimHelper.ReplayAnimation(anim, ref currentState, newAnim);
-    }
-    private float GetAnimationLength(string newAnim) {
-        return AnimHelper.GetAnimClipLength(ac, newAnim);
-    }
-
+    /// <summary>
+    ///  ANIMATION /////////////////////////////////////////////////////////////////////////
+    /// </summary>
     private void MovementAnimation() {
         if (!isStunned && !isAttacking) { 
             if (!enemyMovement.GetIsMoving())
-                PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
             else if (enemyMovement.GetIsMoving())
-                PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
         }
     }
 
-    ////////////////// Find Player AI ////////////////////
+    /// <summary>
+    ///  FIND PLAYER AI //////////////////////////////////////////////////////////////////////
+    /// </summary>
     private void EnemyInTetherRange() {
         outOfTetherRange = false;
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
-        PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
     }
 
     private void EnemyOutsideTetherRange() {
         outOfTetherRange = true;
         enemyMovement.SetFollow(false);
-        PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
     }
     
     private void FollowPlayer() {
@@ -366,8 +362,8 @@ public class BasicEnemy : MonoBehaviour
         if (staminaRecoveryRoutine != null)
             StopCoroutine(StaminaRecovery());
 
-        PlayAnimation(attackChosen);
-        tmpLength = GetAnimationLength(attackChosen);
+        enemyAnimation.PlayAnimation(attackChosen);
+        tmpLength = enemyAnimation.GetAnimationLength(attackChosen);
 
         yield return new WaitForSeconds(tmpLength);
         if (!isAttacking)
@@ -650,6 +646,11 @@ public class BasicEnemy : MonoBehaviour
     }
 
     /////////////// Enemy Is Hit ///////////////////////////////////////////////////////////
+    public void SetIsInvincible(bool flag) {
+        // also called thru animation events
+        isInvincible = flag;
+    }
+    
     IEnumerator ResetStun(float value) {
         yield return new WaitForSeconds(value);
         isStunned = false;
@@ -665,7 +666,7 @@ public class BasicEnemy : MonoBehaviour
 
     IEnumerator ResetInvincible(float value) {
         yield return new WaitForSeconds(value);
-        isInvincible = false;
+        SetIsInvincible(false);
     }
 
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
@@ -673,7 +674,7 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         isStunned = true;
-        isInvincible = true;
+        SetIsInvincible(true);
         enemyMovement.SetFollow(false);
         if (isAttacking) {
             if (attackAnimationRoutine != null)
@@ -692,8 +693,8 @@ public class BasicEnemy : MonoBehaviour
         if (currentHealth <= 0)
             StartCoroutine(Death());
         else {
-            ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
-            stunDuration = GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+            enemyAnimation.ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
+            stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
             if (invincibleRoutine != null)
                 StopCoroutine(invincibleRoutine);
@@ -725,8 +726,8 @@ public class BasicEnemy : MonoBehaviour
         isDead = true;
         enemyMovement.StopFindPlayer();
         GetComponent<Collider2D>().enabled = false;
-        PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
-        var tmp = GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
+        var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
 
         yield return new WaitForSeconds(tmp);
         Destroy(enemyMovement);
