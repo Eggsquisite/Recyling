@@ -67,8 +67,6 @@ public class BasicEnemy : MonoBehaviour
     private Transform visualizePoint;
     [SerializeField] 
     private float visualizeRange;
-    [SerializeField]
-    private bool detectIsRay;
 
     private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
@@ -93,6 +91,8 @@ public class BasicEnemy : MonoBehaviour
     private List<bool> attackFollowFacePlayer;
     [SerializeField]
     private List<float> attackFollowDistances;
+    [SerializeField]
+    private List<bool> attackIsRay;
 
     [SerializeField]
     private float minStunAttackDelay;
@@ -109,6 +109,7 @@ public class BasicEnemy : MonoBehaviour
     private List<List<AttackPriority>> priorityLists;
 
     private string attackChosen;
+    private RaycastHit2D attackDetected;
 
     private int attackIndex, attackPointIndex;
     private int abovePlayer;
@@ -131,7 +132,7 @@ public class BasicEnemy : MonoBehaviour
     private float attackFollowThruSpeed;
     private Vector2 newPosition;
 
-    private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine;
+    private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine, teleportRoutine;
     private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine, resetHurtSpriteRoutine;
 
     // Start is called before the first frame update
@@ -194,7 +195,13 @@ public class BasicEnemy : MonoBehaviour
 
         /////////////////////////// Attack Animation Activated //////////////////
         //CheckStamina();
-        if (inRange && !isStunned && !isAttacking && !isPicking && attackReady && currentStamina > 0)
+        if (inRange 
+                && attackReady 
+                && !isStunned 
+                && !isAttacking 
+                && !isPicking 
+                && !enemyMovement.GetIsTeleporting()
+                && currentStamina > 0)
             PickAttack();
     }
 
@@ -210,22 +217,44 @@ public class BasicEnemy : MonoBehaviour
     ///  ANIMATION /////////////////////////////////////////////////////////////////////////
     /// </summary>
     private void MovementAnimation() {
-        if (!isStunned && !isAttacking) { 
-            if (!enemyMovement.GetIsMoving())
-                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
-            else if (enemyMovement.GetIsMoving())
+        if (!isStunned && !isAttacking) {
+            if (!enemyMovement.GetIsMoving()) {
+                if (enemyMovement.GetCanTeleport() && enemyMovement.GetTeleportReady() && !attackReady) {
+                    if (teleportRoutine != null)
+                        StopCoroutine(teleportRoutine);
+                    teleportRoutine = StartCoroutine(Teleporting());
+                }
+                else if (!enemyMovement.GetCanTeleport())
+                    enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+            }
+            else if (enemyMovement.GetIsMoving() && !enemyMovement.GetIsTeleporting()) 
                 enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+            
         }
     }
 
     /// <summary>
     ///  FIND PLAYER AI //////////////////////////////////////////////////////////////////////
     /// </summary>
+    IEnumerator Teleporting() {
+        enemyMovement.SetIsTeleporting(true);
+        enemyMovement.SetTeleportReady(false);
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
+        yield return new WaitForSeconds(2f + enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE1));
+
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE2);
+        enemyMovement.TeleportToPlayer();
+        yield return new WaitForSeconds(enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE2));
+
+        enemyMovement.SetIsTeleporting(false);
+    }
+
     private void EnemyInTetherRange() {
         outOfTetherRange = false;
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
-        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
+        if (!enemyMovement.GetIsTeleporting())
+            enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
     }
 
     private void EnemyOutsideTetherRange() {
@@ -259,10 +288,7 @@ public class BasicEnemy : MonoBehaviour
         if (!isAttacking)
             enemyMovement.CheckPlayerPos();
 
-        if (detectIsRay)
-            playerDetected = enemyMovement.CalculateRaycastToPlayer();
-        else
-            playerDetected = enemyMovement.CalculateDirectionToPlayer();
+        playerDetected = enemyMovement.DetectPlayer();
 
         if (!attackReady)
             inRange = false;
@@ -330,17 +356,42 @@ public class BasicEnemy : MonoBehaviour
                                             tmpAttackPoint.position.x - tmpRange,
                                             tmpAttackPoint.position.y);
                     // iterates through each list in priorityLists to find an attack that is currently in range
-                    if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector)
-                            < tmpRange)
-                    {
-                        attackPointIndex = attackIndex = priorityLists[j][i].index;
+                    if (attackIsRay[priorityLists[j][i].index]) {
+                        if (enemyMovement.GetLeftOfPlayer())
+                            attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
+                                                                    Vector2.right, 
+                                                                    tmpRange, 
+                                                                    playerLayer);
+                        else
+                            attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
+                                                                    Vector2.left,
+                                                                    tmpRange,
+                                                                    playerLayer);
 
-                        //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
-                        isPicking = false;
-                        attackAnimationRoutine = StartCoroutine(AttackAnimation());
-                        return;
+                        // if attackIsRay is true, use a raycast to check if player is in 
+                        // attack detect range of the attack detect point, if true continue
+                        if (attackDetected.collider != null) {
+                            attackPointIndex = attackIndex = priorityLists[j][i].index;
+
+                            //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
+                            isPicking = false;
+                            attackAnimationRoutine = StartCoroutine(AttackAnimation());
+                            return;
+                        }
                     }
-                    // keep iterating
+                    else { 
+                        if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector)
+                                < tmpRange)
+                        {
+                            attackPointIndex = attackIndex = priorityLists[j][i].index;
+
+                            //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
+                            isPicking = false;
+                            attackAnimationRoutine = StartCoroutine(AttackAnimation());
+                            return;
+                        }
+                        // keep iterating
+                    }
                 }
             }
         }
@@ -655,9 +706,12 @@ public class BasicEnemy : MonoBehaviour
     /// <summary>
     ///  ENEMY IS HIT /////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    public void SetIsInvincible(bool flag) {
+    private void SetIsInvincible(int flag) {
         // also called thru animation events
-        isInvincible = flag;
+        if (flag == 0)
+            isInvincible = false;
+        else if (flag == 1)
+            isInvincible = true;
     }
     
     /// <summary>
@@ -678,7 +732,7 @@ public class BasicEnemy : MonoBehaviour
 
     IEnumerator ResetInvincible(float value) {
         yield return new WaitForSeconds(value);
-        SetIsInvincible(false);
+        SetIsInvincible(0);
     }
 
     /// <summary>
@@ -689,7 +743,7 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         isHit = true;
-        SetIsInvincible(true);
+        SetIsInvincible(1);
         enemyMovement.SetFollow(false);
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 

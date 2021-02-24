@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
     private Transform detectPos;
     [SerializeField]
     private float detectInRange;
+    [SerializeField]
+    private bool detectIsRay;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -39,19 +41,32 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private Vector2 offsetAttackStandbyRange;
 
+    [SerializeField]
+    private bool canTeleport;
+    [SerializeField]
+    private float minTeleportCooldown;
+    [SerializeField]
+    private float maxTeleportCooldown;
+
     private int abovePlayer;
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
+    private bool teleportReady;
+    private bool isTeleporting;
     private bool attackFromLeft;
+
+    private float xScaleValue;
     private float currentSpeed;
     private float baseMoveSpeed;
-    private float xScaleValue;
+    private float teleportCooldown;
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
     private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
     private Vector2 directionToMove, directionToPlayer, desiredPosition;
+
+    private Coroutine teleportRoutine;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,6 +84,8 @@ public class EnemyMovement : MonoBehaviour
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
+        teleportReady = true;
+        teleportCooldown = Random.Range(minTeleportCooldown, maxTeleportCooldown);
         baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0f);
         rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
@@ -79,7 +96,9 @@ public class EnemyMovement : MonoBehaviour
                                     Random.Range(-offsetAttackStandbyRange.y, offsetAttackStandbyRange.y));
     }
 
-    ////////////////// Find Player AI ////////////////////
+    /// <summary>
+    /// FIND PLAYER AI /////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     public void FindPlayer() {
         // Called thru invoke
         playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -97,6 +116,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void FollowPlayer(bool attackReady) {
+        if (isTeleporting)
+            return;
+
         IsMoving();
         if (canFollow)  {
             if (attackReady) { 
@@ -154,17 +176,20 @@ public class EnemyMovement : MonoBehaviour
         return Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
     }
 
-    public RaycastHit2D CalculateDirectionToPlayer() {
-        directionToPlayer = playerChar - rb.position;
-        return Physics2D.Raycast(rb.position, directionToPlayer, detectInRange, playerLayer);
-    }
-
-    public RaycastHit2D CalculateRaycastToPlayer() {
-        // useful for ranged characters or enemies that don't move vertically during attack
-        if (leftOfPlayer)
-            return Physics2D.Raycast(detectPos.position, Vector2.right, detectInRange, playerLayer);
-        else
-            return Physics2D.Raycast(detectPos.position, Vector2.left, detectInRange, playerLayer);
+    public RaycastHit2D DetectPlayer() {
+        if (detectIsRay) { 
+            // useful for ranged characters or enemies that don't move vertically during attack
+            // CalculateRaycastToPlayer
+            if (leftOfPlayer)
+                return Physics2D.Raycast(detectPos.position, Vector2.right, detectInRange, playerLayer);
+            else
+                return Physics2D.Raycast(detectPos.position, Vector2.left, detectInRange, playerLayer);
+        }
+        else {
+            // CalculateDirectionToPlayer
+            directionToPlayer = playerChar - rb.position;
+            return Physics2D.Raycast(rb.position, directionToPlayer, detectInRange, playerLayer);
+        }            
     }
 
     public void IsMoving() {
@@ -204,6 +229,23 @@ public class EnemyMovement : MonoBehaviour
             abovePlayer = 0;
     }
 
+    public void TeleportToPlayer() {
+        teleportReady = false;
+        if (attackFromLeft)
+            rb.position = playerChar + leftOffset;
+        else
+            rb.position = playerChar + rightOffset;
+
+        if (teleportRoutine != null)
+            StopCoroutine(teleportRoutine);
+        teleportRoutine = StartCoroutine(TeleportCooldown());
+    }
+
+    IEnumerator TeleportCooldown() {
+        yield return new WaitForSeconds(teleportCooldown);
+        teleportCooldown = Random.Range(minTeleportCooldown, maxTeleportCooldown);
+        teleportReady = true;
+    }
 
     private void RandomizeAttackFromLeft() {
         int tmp = Random.Range(0, 10);
@@ -255,6 +297,21 @@ public class EnemyMovement : MonoBehaviour
     }
     public float GetPlayerDistance() {
         return Vector2.Distance(playerChar, transform.position);
+    }
+    public bool GetCanTeleport() {
+        return canTeleport;
+    }
+    public bool GetIsTeleporting() {
+        return isTeleporting;
+    }
+    public void SetIsTeleporting(bool flag) {
+        isTeleporting = flag;
+    }
+    public bool GetTeleportReady() {
+        return teleportReady;
+    }
+    public void SetTeleportReady(bool flag) { 
+        teleportReady = flag;
     }
 
     private void OnDrawGizmosSelected()
