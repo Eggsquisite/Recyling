@@ -28,7 +28,7 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private float damageThresholdPercent;
+    private float baseDamageThresholdPercent;
     [SerializeField]
     private float tetherFollowRange;
     [SerializeField]
@@ -46,8 +46,8 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float staminaRecoverySpeed;
 
+    private bool isHit;
     private bool isDead;
-    private bool spriteHurt;
     private bool isInvincible;
     private bool staminaRecovery;
     private bool outOfStamina;
@@ -57,6 +57,8 @@ public class BasicEnemy : MonoBehaviour
     private int currentStamina;
     private int damageThreshold;
     private int currentDamageTaken;
+
+    private float currentDamageThresholdPercent;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -148,7 +150,8 @@ public class BasicEnemy : MonoBehaviour
             projectile.SetDamage(attackDamages[0]);
 
         outOfTetherRange = true;
-        damageThreshold = Mathf.RoundToInt(damageThresholdPercent * maxHealth);
+        currentDamageThresholdPercent = baseDamageThresholdPercent;
+        damageThreshold = Mathf.RoundToInt(currentDamageThresholdPercent * maxHealth);
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
@@ -657,6 +660,9 @@ public class BasicEnemy : MonoBehaviour
         isInvincible = flag;
     }
     
+    /// <summary>
+    /// If enemy was stunned, will not follow/attack. Stun will turn off after a delay
+    /// </summary>
     IEnumerator ResetStun(float value) {
         yield return new WaitForSeconds(value);
         isStunned = false;
@@ -675,10 +681,14 @@ public class BasicEnemy : MonoBehaviour
         SetIsInvincible(false);
     }
 
+    /// <summary>
+    /// Called when player hits enemy
+    /// </summary>
     public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
         if (isDead || isInvincible)
             return;
 
+        isHit = true;
         SetIsInvincible(true);
         enemyMovement.SetFollow(false);
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
@@ -724,6 +734,9 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Counter that adds to currentDamageTaken to see if player did enough damage to stagger enemy
+    /// </summary>
     IEnumerator BeginDamageThreshold(int damageNum) {
         currentDamageTaken += damageNum;
         yield return new WaitForSeconds(.5f);
@@ -732,6 +745,31 @@ public class BasicEnemy : MonoBehaviour
             currentDamageTaken = 0;
     }
 
+    /// <summary>
+    /// Will call during animation events, where some attacks require a higher damage threshold 
+    /// to interrupt the enemy.
+    /// Must call the Reset at the end of that specific animation
+    /// </summary>
+    /// <param name="newValue"></param>
+    private void SetDamageThresholdPercent(float newValue) {
+        // most likely called thru animation events
+        currentDamageThresholdPercent = newValue;
+        damageThreshold = Mathf.RoundToInt(currentDamageThresholdPercent * maxHealth);
+    }
+
+    /// <summary>
+    /// Reset for damage threshold percent that should be called during an animation if 
+    /// SetDamageThresholdPercent() was called
+    /// </summary>
+    private void ResetDamageThresholdPercent() {
+        currentDamageThresholdPercent = baseDamageThresholdPercent;
+        damageThreshold = Mathf.RoundToInt(currentDamageThresholdPercent * maxHealth);
+    }
+
+    /// <summary>
+    /// To show enemy is hurt without stunning/stopping its animation/movement, which utilizes
+    /// a GUI/Text shader
+    /// </summary>
     private void SetHurtSprite() {
         sp.material.shader = shaderGUItext;
         sp.color = Color.white;
@@ -741,12 +779,18 @@ public class BasicEnemy : MonoBehaviour
         resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0.05f));
     }
 
+    /// <summary>
+    /// Called to reset the GUI/Text shader that makes the enemy white
+    /// </summary>
     IEnumerator ResetHurtSprite(float delay) {
         yield return new WaitForSeconds(delay);
         sp.material.shader = shaderSpritesDefault;
         sp.color = Color.white;
     }
 
+    /// <summary>
+    /// Pushes back enemy a set distance when hurt. Will change to rb.MovePosition 
+    /// </summary>
     private void PushBack(float distance, Transform reference) {
         Vector2 newPosition;
         if (reference.transform.position.x > rb.position.x) {
@@ -763,6 +807,10 @@ public class BasicEnemy : MonoBehaviour
         return isDead;
     }
 
+    /// <summary>
+    /// Death will disable this and enemyMovement script after playing the death animation.
+    /// Will connect to a script that allows player to continue past an area
+    /// </summary>
     IEnumerator Death() {
         isDead = true;
         enemyMovement.StopFindPlayer();
