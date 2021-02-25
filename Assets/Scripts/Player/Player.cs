@@ -74,10 +74,7 @@ public class Player : MonoBehaviour
     private bool isDashing;
     private bool isFalling;
     private bool isLanding;
-    private bool stopDash;
     private bool dashReady = true;
-    private float dashTimer;
-    private float dashCooldownTimer;
 
     [Header("Stamina/Energy Consumption")]
     [SerializeField]
@@ -112,7 +109,6 @@ public class Player : MonoBehaviour
     private float attackFollowThruDistance;
 
     private float attackDelay;
-    private float runDashTimer;
     private float runDashMaxTime;
     private int attackCombo;
     private bool isAttacking;
@@ -370,7 +366,7 @@ public class Player : MonoBehaviour
     }
     private void DashStartFalling() {
         // called when dash animation begins falling
-        dashTimer = 0f;
+        //dashTimer = 0f;
         isFalling = true;
         isDashing = false;
         StartCoroutine(DashFall());
@@ -529,7 +525,7 @@ public class Player : MonoBehaviour
         if (!isRunning || isSuperAttackPressed) { 
             runDirection = movement = Vector2.zero;
             runAttackDash = false;
-            runDashTimer = 0f;
+            //runDashTimer = 0f;
         }
         else {
             // save runDirection and start runAttackDash

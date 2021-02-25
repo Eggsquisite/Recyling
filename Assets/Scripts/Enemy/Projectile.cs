@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
+    private List<Transform> instantiatePos;
+    [SerializeField]
     private GameObject prefab;
 
     private int damage;
@@ -13,9 +15,10 @@ public class Projectile : MonoBehaviour
         damage = dmg;
     }
 
-    private void ShootProjectile() {
-        var newArrow = Instantiate(prefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(transform.localScale));
-        newArrow.GetComponent<EnemyProjectile>().SetDamage(damage);
-        newArrow.transform.localScale = transform.localScale;
+    private void ShootProjectile(int index) {
+        var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
+        newProjectile.transform.localScale = transform.localScale;
+        if (newProjectile.GetComponent<EnemyProjectile>() != null)
+            newProjectile.GetComponent<EnemyProjectile>().SetDamage(damage);
     }
 }

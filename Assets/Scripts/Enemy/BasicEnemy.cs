@@ -46,7 +46,9 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float staminaRecoverySpeed;
 
-    private bool isHit;
+    [SerializeField]
+    private bool deleteOnDeath;
+
     private bool isDead;
     private bool isInvincible;
     private bool staminaRecovery;
@@ -219,9 +221,14 @@ public class BasicEnemy : MonoBehaviour
     private void MovementAnimation() {
         if (!isStunned && !isAttacking) {
             if (!enemyMovement.GetIsMoving()) {
-                if (enemyMovement.GetCanTeleport() && enemyMovement.GetTeleportReady() && !attackReady) {
+                if (enemyMovement.GetCanTeleport() 
+                        && enemyMovement.GetTeleportReady() 
+                        && !attackReady 
+                        && !outOfTetherRange) {
                     if (teleportRoutine != null)
                         StopCoroutine(teleportRoutine);
+
+                    enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
                     teleportRoutine = StartCoroutine(Teleporting());
                 }
                 else if (!enemyMovement.GetCanTeleport()) {
@@ -241,7 +248,8 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator Teleporting() {
         enemyMovement.SetIsTeleporting(true);
         enemyMovement.SetTeleportReady(false);
-        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
+        //enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
+
         yield return new WaitForSeconds(enemyMovement.GetTeleportDuration()
             + enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE1));
 
@@ -257,7 +265,12 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
 
-        if (!enemyMovement.GetCanTeleport() && !enemyMovement.GetIsTeleporting())
+        if (enemyMovement.GetCanTeleport()) { 
+            if (teleportRoutine != null)
+                    StopCoroutine(teleportRoutine);
+                teleportRoutine = StartCoroutine(Teleporting());
+        }
+        else if (!enemyMovement.GetCanTeleport() && !enemyMovement.GetIsTeleporting())
                 enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
     }
 
@@ -270,10 +283,11 @@ public class BasicEnemy : MonoBehaviour
         if (!enemyMovement.GetCanTeleport())
             enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
         else 
-            if (!enemyMovement.GetIsTeleporting()) { 
-                if (teleportRoutine != null)
+            if (!enemyMovement.GetIsTeleporting()) {
+                enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE1);
+                /*if (teleportRoutine != null)
                     StopCoroutine(teleportRoutine);
-                teleportRoutine = StartCoroutine(Teleporting());
+                teleportRoutine = StartCoroutine(Teleporting());*/
             }
     }
     
@@ -756,7 +770,6 @@ public class BasicEnemy : MonoBehaviour
         if (isDead || isInvincible)
             return;
 
-        isHit = true;
         SetIsInvincible(1);
         enemyMovement.SetFollow(false);
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
@@ -887,6 +900,9 @@ public class BasicEnemy : MonoBehaviour
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
 
         yield return new WaitForSeconds(tmp);
+        if (deleteOnDeath)
+            Destroy(gameObject);
+
         Destroy(enemyMovement);
         Destroy(this);
     }
