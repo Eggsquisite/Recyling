@@ -509,6 +509,10 @@ PrefabInstance:
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 722439448608458877, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1262130457}
+    - target: {fileID: 722439448608458877, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: energyMaxValue
       value: 
       objectReference: {fileID: 1575223645}
@@ -681,6 +685,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
   m_PrefabInstance: {fileID: 4268789784502780194}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1262130457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6227583941533006394, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+  m_PrefabInstance: {fileID: 1512869816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804e2c1650cc9244087eeae4350ce301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1512869816
 PrefabInstance:
   m_ObjectHideFlags: 0

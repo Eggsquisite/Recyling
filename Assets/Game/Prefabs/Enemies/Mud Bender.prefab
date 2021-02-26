@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -35
+  m_SortingOrder: 137
   m_Sprite: {fileID: -8066589419829931963, guid: 0eed3d627fdd679419d4858060e8af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   detectPos: {fileID: 1807245500992063337}
   detectInRange: 3
   detectIsRay: 0
-  repeatFollowDelay: 0.25
+  repeatFollowDelay: 0.5
   attackFollowDelay: 0.25
   stunFollowDelay: 0.5
   borderLayer:
@@ -226,8 +226,8 @@ MonoBehaviour:
   canTeleport: 1
   minTeleportDuration: 2
   maxTeleportDuration: 3
-  minTeleportCooldown: 4
-  maxTeleportCooldown: 7
+  minTeleportCooldown: 6
+  maxTeleportCooldown: 10
 --- !u!114 &2611664197077241567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   staminaRecoveryValue: 18
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
+  deleteOnDeath: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
