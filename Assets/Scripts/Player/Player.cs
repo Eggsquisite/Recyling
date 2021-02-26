@@ -274,9 +274,8 @@ public class Player : MonoBehaviour
         if (isStunned || UI.GetCurrentEnergy() <= 0)
             return;
 
-        if (canReceiveInput && dashReady && !isDashing && !isFalling) {
+        if (canReceiveInput && dashReady && !isDashing && !isFalling) 
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-        }
     }
 
     public void StopDashInput() {
@@ -359,6 +358,7 @@ public class Player : MonoBehaviour
         ResetWalk();
         isDashing = true;
         dashReady = false;
+        isAttacking = false;
         isInvincible = true;
         canReceiveInput = false;
         UI.SetEnergyRecoverable(false);
@@ -631,12 +631,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackCombo = 0;
         isAttacking = false;
-        canReceiveInput = true;
+        if (!isDashing && !isFalling)
+            canReceiveInput = true;
     }
 
     private void ComboInput() {
         // called during attack animation, allows input such as combos or dodging 
-        if (isAttacking && attackCombo > 0)
+        if (isAttacking && attackCombo > 0) 
             canReceiveInput = true;
         else
             return;

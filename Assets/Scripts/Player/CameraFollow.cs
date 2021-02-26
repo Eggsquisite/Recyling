@@ -7,12 +7,13 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public Transform leftBorder;
     public Transform rightBorder;
-    public float min_X, max_X, borderOffset;
+    public float min_X, max_X;
 
     [Range(0, 10)]
     public float camSpeed;
     public bool canFollow;
 
+    private float borderOffset = 7.5f;
     private Vector2 targetOffset;
     private Transform originalTarget;
 
