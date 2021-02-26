@@ -255,6 +255,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7213628523810731646, guid: 000f0e9530407c5409c24cc5f7818bab, type: 3}
+      propertyPath: m_Value
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213628524306009513, guid: 000f0e9530407c5409c24cc5f7818bab, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 000f0e9530407c5409c24cc5f7818bab, type: 3}
 --- !u!224 &6504144174618669469 stripped
@@ -341,6 +349,14 @@ PrefabInstance:
     - target: {fileID: 5760480972943370496, guid: b81386a40a902c0418508093c2aa9835, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760480973658594395, guid: b81386a40a902c0418508093c2aa9835, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760480974189012876, guid: b81386a40a902c0418508093c2aa9835, type: 3}
+      propertyPath: m_Value
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 5760480974189012882, guid: b81386a40a902c0418508093c2aa9835, type: 3}
       propertyPath: m_Name
@@ -592,6 +608,10 @@ PrefabInstance:
     - target: {fileID: 4674527414415680101, guid: 0013a93632f721b42bd0bb3bd1c5a96b, type: 3}
       propertyPath: m_Name
       value: Current Stamina (UI)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674527414415680103, guid: 0013a93632f721b42bd0bb3bd1c5a96b, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4674527415151417148, guid: 0013a93632f721b42bd0bb3bd1c5a96b, type: 3}
       propertyPath: m_AnchorMax.x

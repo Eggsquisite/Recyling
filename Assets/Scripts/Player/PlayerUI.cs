@@ -26,7 +26,7 @@ public class PlayerUI : MonoBehaviour
     private bool healthLost;
     private bool healthDecaying;
     private bool healthRecovering;
-    private int healthRecoveryValue;
+    private float healthRecoveryValue;
     private float healthRecoveryDelay;
 
     [Header("Energy")]
@@ -40,7 +40,7 @@ public class PlayerUI : MonoBehaviour
     private bool energyLost;
     private bool energyDecaying;
     private bool energyRecovering;
-    private int energyRecoveryValue;
+    private float energyRecoveryValue;
     private float energyRecoveryDelay;
 
     [Header("Stamina")]
@@ -54,7 +54,7 @@ public class PlayerUI : MonoBehaviour
     private bool staminaLost;
     private bool staminaDecaying;
     private bool staminaRecovering;
-    private int staminaRecoveryValue;
+    private float staminaRecoveryValue;
     private float staminaRecoveryDelay;
 
     private bool healthRecoverable, energyRecoverable, staminaRecoverable;
@@ -220,10 +220,10 @@ public class PlayerUI : MonoBehaviour
         healthRecovering = false;
         yield break;
     }
-    public void SetHealthRecoveryValue(int newValue) {
+    public void SetHealthRecoveryValue(float newValue) {
         healthRecoveryValue = newValue;
     }
-    public int GetHealthRecoveryValue() {
+    public float GetHealthRecoveryValue() {
         return healthRecoveryValue;
     }
     public void SetHealthRecoveryDelay(float newValue) {
@@ -237,7 +237,7 @@ public class PlayerUI : MonoBehaviour
         energyDestroyedValue.maxValue = energyDestroyedValue.value = newValue;
     }
 
-    public void SetCurrentEnergy(int newValue) {
+    public void SetCurrentEnergy(float newValue) {
         // Reset timer and visual decay if decaying
         if (energyCurrentValue.value + newValue < energyCurrentValue.value) {
             energyLost = true;
@@ -281,10 +281,10 @@ public class PlayerUI : MonoBehaviour
         yield break;
     }
 
-    public void SetEnergyRecoveryValue(int newValue) {
+    public void SetEnergyRecoveryValue(float newValue) {
         energyRecoveryValue = newValue;
     }
-    public int GetEnergyRecoveryValue() {
+    public float GetEnergyRecoveryValue() {
         return energyRecoveryValue;
     }
     public void SetEnergyRecoveryDelay(float newValue) {
@@ -298,7 +298,7 @@ public class PlayerUI : MonoBehaviour
         staminaDestroyedValue.maxValue = staminaDestroyedValue.value = newValue;
     }
 
-    public void SetCurrentStamina(int newValue) {
+    public void SetCurrentStamina(float newValue) {
         if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
             staminaLost = true;
             staminaDecaying = false;
@@ -352,10 +352,10 @@ public class PlayerUI : MonoBehaviour
         yield break;
     }
 
-    public void SetStaminaRecoveryValue(int newValue) {
+    public void SetStaminaRecoveryValue(float newValue) {
         staminaRecoveryValue = newValue;
     }
-    public int GetStaminaRecoveryValue() {
+    public float GetStaminaRecoveryValue() {
         return staminaRecoveryValue;
     }
     public void SetStaminaRecoveryDelay(float newValue) {

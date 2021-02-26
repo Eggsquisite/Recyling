@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
     [Header("Stamina/Energy Consumption")]
     [SerializeField]
-    private int dashEnergy;
+    private int dashStamina;
     [SerializeField]
     private int runStamina;
     [SerializeField]
@@ -645,9 +645,7 @@ public class Player : MonoBehaviour
 
     private void ConsumeEnergy(int index) {
         // called thru animation events
-        if (index == 0)
-            UI.SetCurrentEnergy(-dashEnergy);
-        else if (index == 1)
+        if (index == 1)
             UI.SetCurrentEnergy(-superAttackEnergy1);
         else if (index == 2)
             UI.SetCurrentEnergy(-superAttackEnergy2);
@@ -655,7 +653,9 @@ public class Player : MonoBehaviour
 
     private void ConsumeStamina(int index) {
         // called thru animation events
-        if (index == -2)
+        if (index == -3)
+            UI.SetCurrentStamina(-dashStamina);
+        else if (index == -2)
             UI.StaminaRunning(-runStamina);
         else if (index == -1)
             UI.SetCurrentStamina(-runAttackStamina);

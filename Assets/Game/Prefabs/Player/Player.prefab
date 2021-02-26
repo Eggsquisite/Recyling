@@ -262,17 +262,17 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashMoveSpeed: 3
+  dashMoveSpeed: 4
   dashCooldown: 0.25
-  dashHeight: 2
-  dashEnergy: 120
-  runStamina: 8
-  runAttackStamina: 125
-  basicAttackStamina: 90
-  superAttackStamina1: 110
-  superAttackEnergy1: 150
-  superAttackStamina2: 140
-  superAttackEnergy2: 200
+  dashHeight: 1.5
+  dashStamina: 75
+  runStamina: 6
+  runAttackStamina: 75
+  basicAttackStamina: 60
+  superAttackStamina1: 100
+  superAttackEnergy1: 185
+  superAttackStamina2: 115
+  superAttackEnergy2: 225
   damage: 15
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
@@ -296,10 +296,10 @@ MonoBehaviour:
   maxStamina: 600
   healthRecoveryValue: 0
   healthRecoveryDelay: 0
-  energyRecoveryValue: 2
-  energyRecoveryDelay: 0.5
+  energyRecoveryValue: 0.5
+  energyRecoveryDelay: 1
   staminaRecoveryValue: 12
-  staminaRecoveryDelay: 0.75
+  staminaRecoveryDelay: 1
 --- !u!114 &722439448608458877
 MonoBehaviour:
   m_ObjectHideFlags: 0

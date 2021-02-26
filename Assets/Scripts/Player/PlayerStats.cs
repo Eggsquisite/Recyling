@@ -14,15 +14,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int maxStamina;
     [SerializeField]
-    private int healthRecoveryValue;
+    private float healthRecoveryValue;
     [SerializeField]
     private float healthRecoveryDelay;
     [SerializeField]
-    private int energyRecoveryValue;
+    private float energyRecoveryValue;
     [SerializeField]
     private float energyRecoveryDelay;
     [SerializeField]
-    private int staminaRecoveryValue;
+    private float staminaRecoveryValue;
     [SerializeField]
     private float staminaRecoveryDelay;
 
