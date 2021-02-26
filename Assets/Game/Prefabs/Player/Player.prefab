@@ -294,8 +294,8 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 500
   maxStamina: 600
-  healthRecoveryValue: 0
-  healthRecoveryDelay: 0
+  healthRecoveryValue: 0.1
+  healthRecoveryDelay: 3
   energyRecoveryValue: 0.5
   energyRecoveryDelay: 1
   staminaRecoveryValue: 12
