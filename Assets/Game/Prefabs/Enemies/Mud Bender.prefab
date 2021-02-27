@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyOnHit: 12
   baseDamageThresholdPercent: 0.2
   tetherFollowRange: 6
   tetherUnfollowRange: 10

@@ -591,6 +591,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
                                                             pushbackDistance, 
                                                             transform);
+                UI.SetCurrentEnergy(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit());
             }
         }
     }
