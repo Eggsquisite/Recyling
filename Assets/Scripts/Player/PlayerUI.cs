@@ -84,13 +84,13 @@ public class PlayerUI : MonoBehaviour
         staminaDestroyedValue = UI.GetStaminaDestroyedValue();
         /////////////////////////////////////////////////////////////////
 
+        InitializeSliders();
+    }
+
+    private void InitializeSliders() {
         healthDestroyedValue.value = healthDestroyedValue.maxValue = healthCurrentValue.value = healthCurrentValue.maxValue;
         energyDestroyedValue.value = energyDestroyedValue.maxValue = energyCurrentValue.value = energyCurrentValue.maxValue;
         staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.value = staminaCurrentValue.maxValue;
-    }
-
-    private void InitializeSliders() { 
-        
     }
 
     IEnumerator DestroyedTimer(int index) {
@@ -185,8 +185,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCurrentHealth(float newValue) {
         // Reset timer and visual decay if decaying
-        if (healthCurrentValue.value + newValue < healthCurrentValue.value)
-        {
+        if (healthCurrentValue.value + newValue < healthCurrentValue.value || healthCurrentValue.value <= 0) {
             healthLost = true;
             healthDecaying = false;
             healthRecovering = false;
@@ -237,6 +236,9 @@ public class PlayerUI : MonoBehaviour
     public void SetHealthRecoveryDelay(float newValue) {
         healthRecoveryDelay = newValue;
     }
+    public int GetHealthMaxValue() {
+        return (int)healthCurrentValue.maxValue;
+    }
 
     // ENERGY ///////////////////////////////////////////////////////////////////////////////////
     public void SetMaxEnergy(int newValue) {
@@ -247,7 +249,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCurrentEnergy(float newValue) {
         // Reset timer and visual decay if decaying
-        if (energyCurrentValue.value + newValue < energyCurrentValue.value) {
+        if (energyCurrentValue.value + newValue < energyCurrentValue.value || energyCurrentValue.value <= 0) {
             energyLost = true;
             energyDecaying = false;
             energyRecovering = false;
@@ -263,9 +265,11 @@ public class PlayerUI : MonoBehaviour
             energyDestroyedValue.value += newValue;
 
         energyCurrentValue.value += newValue;
+        if (energyCurrentValue.value < 0)
+            energyCurrentValue.value = 0;
     }
 
-    public IEnumerator RecoverEnergy(float recoveryValue) {
+    public IEnumerator EnergyRegen(float recoveryValue) {
         energyRecoveryValue += recoveryValue;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
@@ -322,7 +326,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrentStamina(float newValue) {
-        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
+        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value || staminaCurrentValue.value <= 0) {
             staminaLost = true;
             staminaDecaying = false;
             staminaRecovering = false;
@@ -333,10 +337,12 @@ public class PlayerUI : MonoBehaviour
                 StopCoroutine(staminaDestroyedTimerRoutine);
             StartCoroutine(DestroyedTimer(3));
         }
-        else
+        else // for positive cases
             staminaDestroyedValue.value += newValue;
 
         staminaCurrentValue.value += newValue;
+        if (staminaCurrentValue.value < 0)
+            staminaCurrentValue.value = 0;
     }
 
     public void StaminaRunning(int newValue) {

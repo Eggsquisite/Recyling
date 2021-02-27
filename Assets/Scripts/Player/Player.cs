@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("Movement Properties")]
     [SerializeField]
-    private float walkSpeed;
+    private float baseWalkSpeed;
     [SerializeField]
     private float runSpeed;
     [SerializeField]
@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private float yAxis;
     private float walkTimer;
     private float bufferTimer;
+    private float currentWalkSpeed;
     private bool shiftKeyHeld;
     private bool isStopped;
     private bool isWalking;
@@ -54,6 +55,13 @@ public class Player : MonoBehaviour
     private float isHurtTimer;
     private float stunDuration;
     private float flashInterval = 0.1f;
+
+    [Header("Healing Properties")]
+    [SerializeField]
+    private float healAmount;
+
+    private bool isHealing;
+    private Coroutine healRoutine, healthDelayRoutine;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -130,7 +138,7 @@ public class Player : MonoBehaviour
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (UI == null) UI = GetComponent<PlayerUI>();
 
-        canReceiveInput = true;
+        currentWalkSpeed = baseWalkSpeed;
         ac = anim.runtimeAnimatorController;
         runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
     }
@@ -142,6 +150,7 @@ public class Player : MonoBehaviour
             return;
 
         ResetRun();
+        StopHeal();
         DamageFlash();
         WalkingToRunning();
     }
@@ -185,7 +194,7 @@ public class Player : MonoBehaviour
         CheckDirection();
         if (!isAttacking) {
             if (isWalking && !isDashing)
-                rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + movement * currentWalkSpeed * Time.fixedDeltaTime);
             else if (isRunning)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
             else if (isDashing)
@@ -248,7 +257,7 @@ public class Player : MonoBehaviour
         if (isStunned || UI.GetCurrentStamina() <= 0)
             return; 
 
-        if (canReceiveInput) {
+        if (canReceiveInput && !isHealing) {
             if (!isRunning)
                 isAttackPressed = true;
             else 
@@ -274,7 +283,7 @@ public class Player : MonoBehaviour
         if (isStunned || UI.GetCurrentStamina() <= 0)
             return;
 
-        if (canReceiveInput && dashReady && !isDashing && !isFalling) 
+        if (canReceiveInput && dashReady && !isHealing && !isDashing && !isFalling) 
             PlayAnimation(PlayerAnimStates.PLAYER_DASH);
     }
 
@@ -337,7 +346,7 @@ public class Player : MonoBehaviour
     }
 
     public void ShiftToRun(bool value) {
-        if (UI.GetCurrentStamina() > 0 && value)
+        if (UI.GetCurrentStamina() > 0 && value && !isHealing)
             shiftKeyHeld = value;
         else if (UI.GetCurrentStamina() > 0 && !value)
             shiftKeyHeld = value;
@@ -465,7 +474,7 @@ public class Player : MonoBehaviour
         else {
             rb.MovePosition(rb.position 
                 + runDirection 
-                * (walkSpeed + ((runSpeed - walkSpeed) / 2))
+                * (currentWalkSpeed + ((runSpeed - currentWalkSpeed) / 2))
                 * Time.fixedDeltaTime);
         }
     }
@@ -518,7 +527,6 @@ public class Player : MonoBehaviour
             isSuperAttackPressed = false;
         }
     }
-
 
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking and not running
@@ -591,7 +599,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
                                                             pushbackDistance, 
                                                             transform);
-                StartCoroutine(UI.RecoverEnergy(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit()));
+                StartCoroutine(UI.EnergyRegen(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit()));
             }
         }
     }
@@ -679,6 +687,8 @@ public class Player : MonoBehaviour
             ReplayAnimation(PlayerAnimStates.PLAYER_DASH);
 
         Stunned();
+        StopRecoverInput();
+
         isHurt = true;
         isInvincible = true;
         if (resetAttackRoutine != null)
@@ -745,6 +755,61 @@ public class Player : MonoBehaviour
 
             isHurtTimer = 0;
         }
+    }
+
+    /// <summary>
+    /// HEAL CODE ///////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    /// 
+    public void RecoverInput() {
+        if (isHealing || isStunned || isDashing || isFalling || isAttacking
+                || UI.GetCurrentEnergy() <= 0
+                || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()) { 
+            return;
+        }
+
+        if (healRoutine != null)
+            StopCoroutine(healRoutine);
+
+        isHealing = true;
+        canReceiveInput = false;
+        healRoutine = StartCoroutine(HealthRecovery());
+    }
+
+    public void StopRecoverInput() {
+        isHealing = false;
+        currentWalkSpeed = baseWalkSpeed;
+
+        if (!isAttacking && !isDashing && !isFalling)
+            canReceiveInput = true;
+        if (healRoutine != null)
+            StopCoroutine(healRoutine);
+    }
+
+    private void StopHeal() {
+        if (UI.GetCurrentHealth() >= UI.GetHealthMaxValue() || UI.GetCurrentEnergy() <= 0) {
+            StopRecoverInput();
+        }
+    }
+
+    IEnumerator HealthRecovery() {
+        currentWalkSpeed = 0.5f;
+        while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue())
+        {
+            UI.SetCurrentHealth(healAmount * 1.25f);
+            UI.SetCurrentEnergy(-healAmount);
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        // wait for end of heal delay;
+        if (healthDelayRoutine != null)
+            StopCoroutine(healthDelayRoutine);
+        healthDelayRoutine = StartCoroutine(HealthRecoveryDelay());
+    }
+
+    IEnumerator HealthRecoveryDelay() {
+        yield return new WaitForSeconds(1.5f);
+        StopRecoverInput();
     }
 
     private void OnDrawGizmosSelected() {

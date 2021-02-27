@@ -43,6 +43,12 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
             player.StopDashInput();
 
+        // HEAL INPUT
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            player.RecoverInput();
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+            player.StopRecoverInput();
+
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
             interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);

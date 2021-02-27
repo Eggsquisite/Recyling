@@ -251,13 +251,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 722439447500652331}
-  walkSpeed: 1.5
+  baseWalkSpeed: 1.5
   runSpeed: 2.5
   verticalSpeedMult: 0.5
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
   stopBuffer: 0.1
   isHurtMaxTime: 0.5
+  healAmount: 2
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
     serializedVersion: 2
