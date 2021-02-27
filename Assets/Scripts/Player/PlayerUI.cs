@@ -267,8 +267,17 @@ public class PlayerUI : MonoBehaviour
 
     public IEnumerator RecoverEnergy(float recoveryValue) {
         energyRecoveryValue += recoveryValue;
+        if (energyRecoveryRoutine != null)
+            StopCoroutine(energyRecoveryRoutine);
+        energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
+
         yield return new WaitForSeconds(0.5f);
         energyRecoveryValue -= recoveryValue;
+        if (energyRecoveryValue <= 0) {
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
+        }
+
     }
 
     public int GetCurrentEnergy() {
