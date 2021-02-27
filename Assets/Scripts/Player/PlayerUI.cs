@@ -42,6 +42,8 @@ public class PlayerUI : MonoBehaviour
     private bool energyRecovering;
     private float energyRecoveryValue;
     private float energyRecoveryDelay;
+    private float baseEnergyRecoveryValue;
+    private float energyRecoverDuration;
 
     [Header("Stamina")]
     //[SerializeField]
@@ -66,8 +68,9 @@ public class PlayerUI : MonoBehaviour
     void Awake()
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
+        baseEnergyRecoveryValue = energyRecoveryValue;
 
-        // initialize sliders
+        // initialize sliders - these are ALL slider variables not floats
         healthMaxValue = UI.GetHealthMaxValue();
         healthCurrentValue = UI.GetHealthCurrentValue();
         healthDestroyedValue = UI.GetHealthDestroyedValue();
@@ -79,11 +82,15 @@ public class PlayerUI : MonoBehaviour
         staminaMaxValue = UI.GetStaminaMaxValue();
         staminaCurrentValue = UI.GetStaminaCurrentValue();
         staminaDestroyedValue = UI.GetStaminaDestroyedValue();
+        /////////////////////////////////////////////////////////////////
 
-        healthDestroyedValue.value = healthDestroyedValue.maxValue = healthCurrentValue.maxValue;
-        energyDestroyedValue.value = energyDestroyedValue.maxValue = energyCurrentValue.maxValue;
-        staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.maxValue;
+        healthDestroyedValue.value = healthDestroyedValue.maxValue = healthCurrentValue.value = healthCurrentValue.maxValue;
+        energyDestroyedValue.value = energyDestroyedValue.maxValue = energyCurrentValue.value = energyCurrentValue.maxValue;
+        staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.value = staminaCurrentValue.maxValue;
+    }
 
+    private void InitializeSliders() { 
+        
     }
 
     IEnumerator DestroyedTimer(int index) {
@@ -256,6 +263,12 @@ public class PlayerUI : MonoBehaviour
             energyDestroyedValue.value += newValue;
 
         energyCurrentValue.value += newValue;
+    }
+
+    public IEnumerator RecoverEnergy(float recoveryValue) {
+        energyRecoveryValue += recoveryValue;
+        yield return new WaitForSeconds(0.5f);
+        energyRecoveryValue -= recoveryValue;
     }
 
     public int GetCurrentEnergy() {

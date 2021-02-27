@@ -297,7 +297,7 @@ MonoBehaviour:
   healthRecoveryValue: 0.1
   healthRecoveryDelay: 2.5
   energyRecoveryValue: 0
-  energyRecoveryDelay: 0.5
+  energyRecoveryDelay: 0
   staminaRecoveryValue: 10
   staminaRecoveryDelay: 0.5
 --- !u!114 &722439448608458877
@@ -315,7 +315,7 @@ MonoBehaviour:
   visualDelay: 1
   decaySpeed: 600
   recoverySpeed: 0.03
-  UI: {fileID: 0}
+  UI: {fileID: 6227583941533006394, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
 --- !u!114 &722439448608458816
 MonoBehaviour:
   m_ObjectHideFlags: 0

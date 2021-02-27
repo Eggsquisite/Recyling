@@ -271,7 +271,7 @@ public class Player : MonoBehaviour
     }
 
     public void DashInput() {
-        if (isStunned || UI.GetCurrentEnergy() <= 0)
+        if (isStunned || UI.GetCurrentStamina() <= 0)
             return;
 
         if (canReceiveInput && dashReady && !isDashing && !isFalling) 
@@ -591,7 +591,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
                                                             pushbackDistance, 
                                                             transform);
-                UI.SetCurrentEnergy(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit());
+                StartCoroutine(UI.RecoverEnergy(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit()));
             }
         }
     }

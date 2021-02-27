@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     private float staminaRecoveryDelay;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         if (UI == null) UI = GetComponent<PlayerUI>();
 
