@@ -176,7 +176,7 @@ public class PlayerUI : MonoBehaviour
         healthDestroyedValue.maxValue = healthDestroyedValue.value = newValue;
     }
 
-    public void SetCurrentHealth(int newValue) {
+    public void SetCurrentHealth(float newValue) {
         // Reset timer and visual decay if decaying
         if (healthCurrentValue.value + newValue < healthCurrentValue.value)
         {
@@ -205,7 +205,8 @@ public class PlayerUI : MonoBehaviour
         healthRecovering = true;
 
         yield return new WaitForSeconds(healthRecoveryDelay);
-        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0) {
+        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0)
+        {
             if (healthLost) {
                 healthRecovering = false;
 
@@ -213,7 +214,7 @@ public class PlayerUI : MonoBehaviour
                     StopCoroutine(healthRecoveryRoutine);
                 yield break;
             }
-            SetCurrentEnergy(healthRecoveryValue);
+            SetCurrentHealth(healthRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
@@ -316,8 +317,7 @@ public class PlayerUI : MonoBehaviour
         staminaCurrentValue.value += newValue;
     }
 
-    public void StaminaRunning(int newValue)
-    {
+    public void StaminaRunning(int newValue) {
         if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
             staminaCurrentValue.value += newValue;
             staminaDestroyedValue.value += newValue;

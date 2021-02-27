@@ -265,14 +265,14 @@ MonoBehaviour:
   dashMoveSpeed: 4
   dashCooldown: 0.25
   dashHeight: 1.5
-  dashStamina: 75
+  dashStamina: 90
   runStamina: 6
-  runAttackStamina: 75
-  basicAttackStamina: 60
-  superAttackStamina1: 100
-  superAttackEnergy1: 185
-  superAttackStamina2: 115
-  superAttackEnergy2: 225
+  runAttackStamina: 90
+  basicAttackStamina: 75
+  superAttackStamina1: 115
+  superAttackEnergy1: 200
+  superAttackStamina2: 125
+  superAttackEnergy2: 250
   damage: 15
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
@@ -293,13 +293,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   maxEnergy: 500
-  maxStamina: 600
-  healthRecoveryValue: 0.1
-  healthRecoveryDelay: 3
-  energyRecoveryValue: 0.5
-  energyRecoveryDelay: 1
-  staminaRecoveryValue: 12
-  staminaRecoveryDelay: 1
+  maxStamina: 750
+  healthRecoveryValue: 0.15
+  healthRecoveryDelay: 2.5
+  energyRecoveryValue: 0
+  energyRecoveryDelay: 0.5
+  staminaRecoveryValue: 10
+  staminaRecoveryDelay: 0.5
 --- !u!114 &722439448608458877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 0.5
+  visualDelay: 1
   decaySpeed: 600
   recoverySpeed: 0.03
   UI: {fileID: 0}

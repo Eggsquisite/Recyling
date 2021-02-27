@@ -588,7 +588,7 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
-                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)damage, 
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
                                                             pushbackDistance, 
                                                             transform);
             }
@@ -605,7 +605,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy") { 
-                enemy.GetComponent<BasicEnemy>().EnemyHurt((int)specialAttackDmg, pushbackDistance * specialPushbackMultiplier, transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(specialAttackDmg, pushbackDistance * specialPushbackMultiplier, transform);
             }
 
         }
@@ -666,7 +666,6 @@ public class Player : MonoBehaviour
         else if (index == 2)
             UI.SetCurrentStamina(-superAttackStamina2);
     }
-
 
     /// <summary>
     /// DAMAGED CODE ////////////////////////////////////////////////////////////////////
