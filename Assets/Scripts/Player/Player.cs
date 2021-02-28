@@ -797,7 +797,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator HealthRecovery() {
-        currentWalkSpeed = 0.5f;
+        currentWalkSpeed = 0.25f;
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue())
         {

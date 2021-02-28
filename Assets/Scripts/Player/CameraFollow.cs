@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public Transform leftBorder;
     public Transform rightBorder;
+    public Transform bottomBorder;
 
     public float min_X, max_X, min_Y, max_Y;
     public float camSpeed;
@@ -21,19 +22,24 @@ public class CameraFollow : MonoBehaviour
     private Transform originalTarget;
 
     [Header("Camera Change Properties")]
-    public float cameraFocus;
+    public float focusSize;
+    public float focusDuration;
 
-    private float baseCameraFocus;
+    private float focusElapsed = 0.0f;
+    private float resetElapsed = 0.0f;
+    private float startingSize;
+    private float currentSize;
     private bool isFocused;
 
-    private void Start() {
-        originalTarget = target;
-        leftBorder.parent = null;
-        rightBorder.parent = null;
-        baseCameraFocus = Camera.main.orthographicSize;
+    private void Awake() {
         if (anim == null) anim = GetComponent<Animator>();
         if (cam == null) cam = GetComponent<Camera>();
+        originalTarget = target;
+        startingSize = cam.orthographicSize;
 
+        leftBorder.parent = null;
+        rightBorder.parent = null;
+        bottomBorder.parent = null;
         leftBorder.position = new Vector3(min_X - borderOffset,
                                             transform.position.y,
                                             transform.position.z);
@@ -43,13 +49,20 @@ public class CameraFollow : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (isFocused)
+            FocusCamera();
+        else
+            ResetFocusCamera();
+    }
+
     // Update is called once per frame
     void LateUpdate() {
         if (!canFollow)
             return;
         else if (isFocused)
         {
-            FocusCamera();
             Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, 
                                                     min_X, max_X),
                                                     Mathf.Clamp(target.position.y + targetOffset.y,
@@ -58,7 +71,6 @@ public class CameraFollow : MonoBehaviour
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPosition;
         } else {
-            ResetFocusCamera();
             Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x,
                                                     min_X, max_X),
                                                     2f,
@@ -74,15 +86,22 @@ public class CameraFollow : MonoBehaviour
     }
 
     public void SetIsFocused(bool flag) {
+        currentSize = cam.orthographicSize;
+        focusElapsed = 0.0f;
+        resetElapsed = 0.0f;
         isFocused = flag;
     }
 
     public void FocusCamera() {
-        cam.orthographicSize = Mathf.SmoothStep(cam.orthographicSize, 3f, Time.deltaTime);
+        focusElapsed += Time.deltaTime / focusDuration;
+        var tmp = Mathf.SmoothStep(startingSize, focusSize, focusElapsed);
+        cam.orthographicSize = tmp;
     }
 
     public void ResetFocusCamera() {
-        cam.orthographicSize = Mathf.SmoothStep(cam.orthographicSize, baseCameraFocus, Time.deltaTime);
+        resetElapsed += Time.deltaTime / focusDuration;
+        var tmp = Mathf.SmoothStep(currentSize, startingSize, resetElapsed);
+        cam.orthographicSize = tmp;
     }
 
     public void ResetCameraTarget() {

@@ -313,13 +313,14 @@ MonoBehaviour:
   target: {fileID: 0}
   leftBorder: {fileID: 630793616}
   rightBorder: {fileID: 1581406450}
+  bottomBorder: {fileID: 6338490705318072716}
   min_X: 0
   max_X: 10
-  min_Y: 0
+  min_Y: 2
   max_Y: 3
   camSpeed: 1
   canFollow: 1
-  cameraFocus: 3
+  focusSize: 3
 --- !u!1 &4547673069174331206
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,5 +376,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16, y: 1}
+  m_Size: {x: 60, y: 1}
   m_EdgeRadius: 0
