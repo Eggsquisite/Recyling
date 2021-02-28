@@ -269,7 +269,7 @@ public class PlayerUI : MonoBehaviour
             energyCurrentValue.value = 0;
     }
 
-    public IEnumerator EnergyRegen(float recoveryValue) {
+    public IEnumerator EnergyRegenOnHit(float recoveryValue) {
         energyRecoveryValue += recoveryValue;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
@@ -281,11 +281,18 @@ public class PlayerUI : MonoBehaviour
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
         }
-
     }
 
-    public int GetCurrentEnergy() {
-        return (int)energyCurrentValue.value;
+    public void EnergyWithoutDecay(float newValue) {
+        if (energyCurrentValue.value + newValue < energyCurrentValue.value)
+        {
+            energyCurrentValue.value += newValue;
+            energyDestroyedValue.value += newValue;
+
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
+        }
     }
 
     IEnumerator EnergyRecovery() {
@@ -308,6 +315,9 @@ public class PlayerUI : MonoBehaviour
         yield break;
     }
 
+    public int GetCurrentEnergy() {
+        return (int)energyCurrentValue.value;
+    }
     public void SetEnergyRecoveryValue(float newValue) {
         energyRecoveryValue = newValue;
     }
@@ -345,7 +355,7 @@ public class PlayerUI : MonoBehaviour
             staminaCurrentValue.value = 0;
     }
 
-    public void StaminaRunning(int newValue) {
+    public void StaminaWithoutDecay(float newValue) {
         if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
             staminaCurrentValue.value += newValue;
             staminaDestroyedValue.value += newValue;

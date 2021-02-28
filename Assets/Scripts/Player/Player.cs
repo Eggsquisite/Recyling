@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
 
     private bool isHealing;
     private Coroutine healRoutine, healthDelayRoutine;
+    private Coroutine focusRoutine, resetFocusRoutine;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -85,6 +86,8 @@ public class Player : MonoBehaviour
     private bool dashReady = true;
 
     [Header("Stamina/Energy Consumption")]
+    [SerializeField]
+    private float energyRegenOnHit;
     [SerializeField]
     private int dashStamina;
     [SerializeField]
@@ -599,7 +602,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
                                                             pushbackDistance, 
                                                             transform);
-                StartCoroutine(UI.EnergyRegen(enemy.GetComponent<BasicEnemy>().GetEnergyOnHit()));
+                StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit));
             }
         }
     }
@@ -665,7 +668,7 @@ public class Player : MonoBehaviour
         if (index == -3)
             UI.SetCurrentStamina(-dashStamina);
         else if (index == -2)
-            UI.StaminaRunning(-runStamina);
+            UI.StaminaWithoutDecay(-runStamina);
         else if (index == -1)
             UI.SetCurrentStamina(-runAttackStamina);
         else if (index == 0)
@@ -779,6 +782,7 @@ public class Player : MonoBehaviour
     public void StopRecoverInput() {
         isHealing = false;
         currentWalkSpeed = baseWalkSpeed;
+        Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
 
         if (!isAttacking && !isDashing && !isFalling)
             canReceiveInput = true;
@@ -794,10 +798,11 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         currentWalkSpeed = 0.5f;
+        Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue())
         {
             UI.SetCurrentHealth(healAmount * 1.25f);
-            UI.SetCurrentEnergy(-healAmount);
+            UI.EnergyWithoutDecay(-healAmount);
             yield return new WaitForSeconds(0.03f);
         }
 

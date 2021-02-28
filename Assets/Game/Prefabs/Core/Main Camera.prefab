@@ -315,8 +315,11 @@ MonoBehaviour:
   rightBorder: {fileID: 1581406450}
   min_X: 0
   max_X: 10
+  min_Y: 0
+  max_Y: 3
   camSpeed: 1
   canFollow: 1
+  cameraFocus: 3
 --- !u!1 &4547673069174331206
 GameObject:
   m_ObjectHideFlags: 0

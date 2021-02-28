@@ -28,8 +28,6 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private float energyOnHit;
-    [SerializeField]
     private float baseDamageThresholdPercent;
     [SerializeField]
     private float tetherFollowRange;
@@ -888,10 +886,6 @@ public class BasicEnemy : MonoBehaviour
 
     public bool GetIsDead() {
         return isDead;
-    }
-
-    public float GetEnergyOnHit() {
-        return energyOnHit;
     }
 
     /// <summary>
