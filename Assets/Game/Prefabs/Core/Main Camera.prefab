@@ -318,12 +318,10 @@ MonoBehaviour:
   max_X: 10
   camSpeed: 1
   canFollow: 1
-  focusSize: 2
+  focusSize: 3
   focusDuration: 1
-  focusMin_X: -3.5
-  focusMax_X: 0
-  min_Y: 0
-  max_Y: 3
+  min_Y: 1
+  max_Y: 2
 --- !u!1 &4547673069174331206
 GameObject:
   m_ObjectHideFlags: 0

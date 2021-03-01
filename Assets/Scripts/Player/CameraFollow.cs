@@ -38,8 +38,8 @@ public class CameraFollow : MonoBehaviour
         originalTarget = target;
         startingSize = cam.orthographicSize;
         currentSize = cam.orthographicSize;
-        focusMin_X = min_X - 3.5f;
-        focusMax_X = max_X + 3.5f;
+        focusMin_X = min_X - 1.5f;
+        focusMax_X = max_X + 1.5f;
 
         leftBorder.parent = null;
         rightBorder.parent = null;
