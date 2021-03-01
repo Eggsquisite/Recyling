@@ -160,19 +160,19 @@ public class PlayerUI : MonoBehaviour
 
             if (healthRecoveryRoutine != null)
                 StopCoroutine(healthRecoveryRoutine);
-            healthRecoveryRoutine = StartCoroutine(HealthRecovery());
+            healthRecoveryRoutine = StartCoroutine(HealthRecovery(healthRecoveryDelay));
         } else if (index == 2 && !energyRecovering) {
             energyDecaying = false;
 
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-            energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(energyRecoveryDelay));
         } else if (index == 3 && !staminaRecovering) {
             staminaDecaying = false;
 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
-            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
+            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery(staminaRecoveryDelay));
         }
     }
 
@@ -207,10 +207,10 @@ public class PlayerUI : MonoBehaviour
         return (int)healthCurrentValue.value;
     }
 
-    IEnumerator HealthRecovery() {
+    IEnumerator HealthRecovery(float delay) {
         healthRecovering = true;
 
-        yield return new WaitForSeconds(healthRecoveryDelay);
+        yield return new WaitForSeconds(delay);
         while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0)
         {
             if (healthLost) {
@@ -273,7 +273,7 @@ public class PlayerUI : MonoBehaviour
         energyRecoveryValue += recoveryValue;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
-        energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
+        energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
 
         yield return new WaitForSeconds(0.5f);
         energyRecoveryValue -= recoveryValue;
@@ -299,14 +299,14 @@ public class PlayerUI : MonoBehaviour
 
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-            energyRecoveryRoutine = StartCoroutine(EnergyRecovery());
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
         }
     }
 
-    IEnumerator EnergyRecovery() {
+    IEnumerator EnergyRecovery(float delay) {
         energyRecovering = true;
 
-        yield return new WaitForSeconds(energyRecoveryDelay);
+        yield return new WaitForSeconds(delay);
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
             if (energyLost) {
                 energyRecovering = false;
@@ -370,7 +370,7 @@ public class PlayerUI : MonoBehaviour
 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
-            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
+            staminaRecoveryRoutine = StartCoroutine(StaminaRecovery(0.25f));
         }
     }
     
@@ -378,10 +378,10 @@ public class PlayerUI : MonoBehaviour
         return (int)staminaCurrentValue.value;
     }
 
-    IEnumerator StaminaRecovery() {
+    IEnumerator StaminaRecovery(float delay) {
         staminaRecovering = true;
 
-        yield return new WaitForSeconds(staminaRecoveryDelay);
+        yield return new WaitForSeconds(delay);
         while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryValue > 0)
         {
             if (staminaLost) {
