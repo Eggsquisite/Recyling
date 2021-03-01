@@ -266,7 +266,7 @@ MonoBehaviour:
   dashMoveSpeed: 4
   dashCooldown: 0.25
   dashHeight: 1.5
-  energyRegenOnHit: 1.5
+  energyRegenOnHit: 2
   dashStamina: 90
   runStamina: 6
   runAttackStamina: 90

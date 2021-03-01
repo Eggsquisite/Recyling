@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
     public Transform rightBorder;
     public Transform bottomBorder;
 
-    public float min_X, max_X, min_Y, max_Y;
+    public float min_X, max_X;
     public float camSpeed;
     public bool canFollow;
 
@@ -24,9 +24,10 @@ public class CameraFollow : MonoBehaviour
     [Header("Camera Change Properties")]
     public float focusSize;
     public float focusDuration;
+    public float min_Y, max_Y;
 
-    private float focusElapsed = 0.0f;
-    private float resetElapsed = 0.0f;
+    private float focusMin_X, focusMax_X;
+    private float timeElapsed = 0.0f;
     private float startingSize;
     private float currentSize;
     private bool isFocused;
@@ -36,6 +37,9 @@ public class CameraFollow : MonoBehaviour
         if (cam == null) cam = GetComponent<Camera>();
         originalTarget = target;
         startingSize = cam.orthographicSize;
+        currentSize = cam.orthographicSize;
+        focusMin_X = min_X - 3.5f;
+        focusMax_X = max_X + 3.5f;
 
         leftBorder.parent = null;
         rightBorder.parent = null;
@@ -64,7 +68,7 @@ public class CameraFollow : MonoBehaviour
         else if (isFocused)
         {
             Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, 
-                                                    min_X, max_X),
+                                                    focusMin_X, focusMax_X),
                                                     Mathf.Clamp(target.position.y + targetOffset.y,
                                                     min_Y, max_Y), 
                                                     transform.position.z);
@@ -87,21 +91,24 @@ public class CameraFollow : MonoBehaviour
 
     public void SetIsFocused(bool flag) {
         currentSize = cam.orthographicSize;
-        focusElapsed = 0.0f;
-        resetElapsed = 0.0f;
+        timeElapsed = 0.0f;
         isFocused = flag;
     }
 
     public void FocusCamera() {
-        focusElapsed += Time.deltaTime / focusDuration;
-        var tmp = Mathf.SmoothStep(startingSize, focusSize, focusElapsed);
-        cam.orthographicSize = tmp;
+        if (timeElapsed < focusDuration) { 
+            timeElapsed += Time.deltaTime / focusDuration;
+            var tmp = Mathf.Lerp(currentSize, focusSize, timeElapsed);
+            cam.orthographicSize = tmp;
+        }
     }
 
     public void ResetFocusCamera() {
-        resetElapsed += Time.deltaTime / focusDuration;
-        var tmp = Mathf.SmoothStep(currentSize, startingSize, resetElapsed);
-        cam.orthographicSize = tmp;
+        if (timeElapsed < focusDuration) {
+            timeElapsed += Time.deltaTime / focusDuration;
+            var tmp = Mathf.Lerp(currentSize, startingSize, timeElapsed);
+            cam.orthographicSize = tmp;
+        }
     }
 
     public void ResetCameraTarget() {

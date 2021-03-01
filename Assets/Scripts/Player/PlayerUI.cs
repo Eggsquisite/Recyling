@@ -277,6 +277,9 @@ public class PlayerUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         energyRecoveryValue -= recoveryValue;
+        if (energyRecoveryValue < 0)
+            energyRecoveryValue = 0;
+
         if (energyRecoveryValue <= 0) {
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
@@ -288,6 +291,11 @@ public class PlayerUI : MonoBehaviour
         {
             energyCurrentValue.value += newValue;
             energyDestroyedValue.value += newValue;
+
+            if (energyCurrentValue.value < 0) { 
+                energyCurrentValue.value = 0;
+                energyDestroyedValue.value = 0;
+            }
 
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);

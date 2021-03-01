@@ -1743,30 +1743,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2562707792007071620, guid: ea87aef7125c8ac49b9d1718c55b1a7e, type: 3}
   m_PrefabInstance: {fileID: 1879580622}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1905962757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1033765477905236113, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-  m_PrefabInstance: {fileID: 2135079560}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1905962758
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905962757}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc4947125cbcb9a4ab880f53e509a513, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1972540761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2128,10 +2104,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1033765477905236115, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-      propertyPath: orthographic size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
       propertyPath: max_X
       value: 15
@@ -2140,6 +2112,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 266036673}
+    - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
+      propertyPath: focusMax_X
+      value: 18.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7888638849056058610, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
       propertyPath: m_Offset.x
       value: 0

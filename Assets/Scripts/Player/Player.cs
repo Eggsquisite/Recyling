@@ -784,13 +784,18 @@ public class Player : MonoBehaviour
         currentWalkSpeed = baseWalkSpeed;
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
 
-        if (!isAttacking && !isDashing && !isFalling)
-            canReceiveInput = true;
         if (healRoutine != null)
             StopCoroutine(healRoutine);
+
+        if (healthDelayRoutine != null)
+            StopCoroutine(healthDelayRoutine);
+        healthDelayRoutine = StartCoroutine(HealthRecoveryDelay());
     }
 
     private void StopHeal() {
+        if (!isHealing)
+            return;
+
         if (UI.GetCurrentHealth() >= UI.GetHealthMaxValue() || UI.GetCurrentEnergy() <= 0) {
             StopRecoverInput();
         }
@@ -805,16 +810,13 @@ public class Player : MonoBehaviour
             UI.EnergyWithoutDecay(-healAmount);
             yield return new WaitForSeconds(0.03f);
         }
-
-        // wait for end of heal delay;
-        if (healthDelayRoutine != null)
-            StopCoroutine(healthDelayRoutine);
-        healthDelayRoutine = StartCoroutine(HealthRecoveryDelay());
+        StopRecoverInput();
     }
 
     IEnumerator HealthRecoveryDelay() {
-        yield return new WaitForSeconds(1.5f);
-        StopRecoverInput();
+        yield return new WaitForSeconds(1f);
+        if (!isAttacking && !isDashing && !isFalling)
+            canReceiveInput = true;
     }
 
     private void OnDrawGizmosSelected() {
