@@ -249,7 +249,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCurrentEnergy(float newValue) {
         // Reset timer and visual decay if decaying
-        if (energyCurrentValue.value + newValue < energyCurrentValue.value || energyCurrentValue.value <= 0) {
+        if (energyCurrentValue.value + newValue < energyCurrentValue.value) {
             energyLost = true;
             energyDecaying = false;
             energyRecovering = false;
