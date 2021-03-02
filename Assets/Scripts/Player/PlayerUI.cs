@@ -172,7 +172,6 @@ public class PlayerUI : MonoBehaviour
 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
-            Debug.Log("Visual decay finished LOOK HERE TO FIX: " + staminaRecovering);
             staminaRecoveryRoutine = StartCoroutine(StaminaRecovery(staminaRecoveryDelay));
         }
     }
@@ -186,7 +185,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCurrentHealth(float newValue) {
         // Reset timer and visual decay if decaying
-        if (healthCurrentValue.value + newValue < healthCurrentValue.value || healthCurrentValue.value <= 0) {
+        if (healthCurrentValue.value + newValue < healthCurrentValue.value) {
             healthLost = true;
             healthDecaying = false;
             healthRecovering = false;
@@ -279,10 +278,10 @@ public class PlayerUI : MonoBehaviour
         if (energyRecoveryValue < 0)
             energyRecoveryValue = 0;
 
-        if (energyRecoveryValue <= 0) {
+/*        if (energyRecoveryValue <= 0) {
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-        }
+        }*/
     }
 
     public void EnergyWithoutDecay(float newValue) {
@@ -304,7 +303,6 @@ public class PlayerUI : MonoBehaviour
 
     IEnumerator EnergyRecovery(float delay) {
         energyRecovering = true;
-        Debug.Log("Starting recovery");
 
         yield return new WaitForSeconds(delay);
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
@@ -344,7 +342,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrentStamina(float newValue) {
-        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value || staminaCurrentValue.value <= 0) {
+        if (staminaCurrentValue.value + newValue < staminaCurrentValue.value) {
             staminaLost = true;
             staminaDecaying = false;
             staminaRecovering = false;
@@ -380,7 +378,6 @@ public class PlayerUI : MonoBehaviour
         staminaRecovering = true;
         yield return new WaitForSeconds(delay);
 
-        Debug.Log("Stamina recovering: " + staminaRecovering);
         while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryValue > 0)
         {
             if (staminaLost) {
@@ -395,7 +392,6 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(recoverySpeed);
         }
 
-        Debug.Log("Stopping stamina recovery");
         staminaRecovering = false;
         yield break;
     }
@@ -426,8 +422,6 @@ public class PlayerUI : MonoBehaviour
         if (!staminaRecoverable) { 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
-
-            Debug.Log("here");
         }
     }
 }
