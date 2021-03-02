@@ -172,6 +172,7 @@ public class PlayerUI : MonoBehaviour
 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
+            Debug.Log("Visual decay finished LOOK HERE TO FIX: " + staminaRecovering);
             staminaRecoveryRoutine = StartCoroutine(StaminaRecovery(staminaRecoveryDelay));
         }
     }
@@ -265,8 +266,6 @@ public class PlayerUI : MonoBehaviour
             energyDestroyedValue.value += newValue;
 
         energyCurrentValue.value += newValue;
-        if (energyCurrentValue.value < 0)
-            energyCurrentValue.value = 0;
     }
 
     public IEnumerator EnergyRegenOnHit(float recoveryValue) {
@@ -305,6 +304,7 @@ public class PlayerUI : MonoBehaviour
 
     IEnumerator EnergyRecovery(float delay) {
         energyRecovering = true;
+        Debug.Log("Starting recovery");
 
         yield return new WaitForSeconds(delay);
         while (energyCurrentValue.value < energyCurrentValue.maxValue && energyRecoveryValue > 0) {
@@ -353,14 +353,12 @@ public class PlayerUI : MonoBehaviour
                 StopCoroutine(staminaRecoveryRoutine);
             if (staminaDestroyedTimerRoutine != null)
                 StopCoroutine(staminaDestroyedTimerRoutine);
-            StartCoroutine(DestroyedTimer(3));
+            staminaDestroyedTimerRoutine = StartCoroutine(DestroyedTimer(3));
         }
         else // for positive cases
             staminaDestroyedValue.value += newValue;
 
         staminaCurrentValue.value += newValue;
-        if (staminaCurrentValue.value < 0)
-            staminaCurrentValue.value = 0;
     }
 
     public void StaminaWithoutDecay(float newValue) {
@@ -380,20 +378,24 @@ public class PlayerUI : MonoBehaviour
 
     IEnumerator StaminaRecovery(float delay) {
         staminaRecovering = true;
-
         yield return new WaitForSeconds(delay);
+
+        Debug.Log("Stamina recovering: " + staminaRecovering);
         while (staminaCurrentValue.value < staminaCurrentValue.maxValue && staminaRecoveryValue > 0)
         {
             if (staminaLost) {
                 staminaRecovering = false;
                 if (staminaRecoveryRoutine != null)
                     StopCoroutine(staminaRecoveryRoutine);
+
                 yield break;
             }
             SetCurrentStamina(staminaRecoveryValue);
+            //Debug.Log("Stamina recov value: " + staminaRecoveryValue);
             yield return new WaitForSeconds(recoverySpeed);
         }
 
+        Debug.Log("Stopping stamina recovery");
         staminaRecovering = false;
         yield break;
     }
@@ -421,8 +423,11 @@ public class PlayerUI : MonoBehaviour
     }
     public void SetStaminaRecoverable(bool value) {
         staminaRecoverable = value;
-        if (!staminaRecoverable)
+        if (!staminaRecoverable) { 
             if (staminaRecoveryRoutine != null)
                 StopCoroutine(staminaRecoveryRoutine);
+
+            Debug.Log("here");
+        }
     }
 }
