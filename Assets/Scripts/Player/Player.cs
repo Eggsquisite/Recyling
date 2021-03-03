@@ -5,11 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Components")]
+    // used for player sprite movement/animations
     [SerializeField]
-    private Rigidbody2D rb;
-
+    private Transform playerSprite;
+    [SerializeField]
     private SpriteRenderer sp;
+
     private Animator anim;
+    private Rigidbody2D rb;
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
@@ -391,63 +394,30 @@ public class Player : MonoBehaviour
 
         while (!isFalling)
         {
-            transform.localPosition = new Vector2(transform.localPosition.x,
-                                        Mathf.Lerp(transform.localPosition.y,
+            playerSprite.localPosition = new Vector2(playerSprite.localPosition.x,
+                                        Mathf.Lerp(playerSprite.localPosition.y,
                                         dashHeight,
                                         3f * Time.deltaTime));
             yield return Time.deltaTime;
         }
         yield break;
-
-/*        if (dashTimer < dashMinTime) {
-            dashTimer += Time.deltaTime;
-            transform.localPosition = new Vector2(transform.localPosition.x,
-                                        Mathf.Lerp(transform.localPosition.y,
-                                        dashHeight,
-                                        4f * Time.deltaTime));
-        } else if (dashTimer >= dashMinTime) {
-            dashTimer = dashMinTime;
-        }
-
-        if (stopDash && dashTimer >= dashMinTime || playerStats.GetCurrentEnergy() <= 0) {
-            dashTimer = 0f;
-            isFalling = true;
-            isDashing = false;
-            PlayAnimation(PlayerAnimStates.PLAYER_FALL);
-        } 
-        if (playerStats.GetCurrentEnergy() > 0)*/
     }
 
     IEnumerator DashFall() {
-        while (transform.localPosition.y > 0)
+        while (playerSprite.localPosition.y > 0)
         {
-            transform.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
+            playerSprite.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
             yield return Time.deltaTime;
         }
         Stunned();
         isFalling = false;
         isLanding = true;
         isInvincible = false;
-        transform.localPosition = Vector2.zero;
+        playerSprite.localPosition = Vector2.zero;
 
         PlayAnimation(PlayerAnimStates.PLAYER_LAND);
         StartCoroutine(ResetLanding(GetAnimationLength(PlayerAnimStates.PLAYER_LAND)));
         yield break;
-
-/*        if (transform.localPosition.y > 0) {
-            transform.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
-        }
-        else if (transform.localPosition.y <= 0) {
-            dashTimer = 0f;
-            Stunned();
-            stopDash = false;
-            isLanding = true;
-            isFalling = false;
-            transform.localPosition = Vector2.zero;
-
-            PlayAnimation(PlayerAnimStates.PLAYER_LAND);
-            Invoke("ResetLanding", GetAnimationLength(PlayerAnimStates.PLAYER_LAND));
-        }*/
     }
 
     IEnumerator ResetLanding(float delay) {

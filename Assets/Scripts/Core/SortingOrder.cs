@@ -18,6 +18,9 @@ public class SortingOrder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (sp == null)
+            return;
+
         if (reference == null)
             sp.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         else
