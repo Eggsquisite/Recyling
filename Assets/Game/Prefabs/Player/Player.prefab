@@ -314,8 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 1
-  decaySpeed: 600
+  visualDelay: 0.33
+  decaySpeed: 400
   recoverySpeed: 0.03
   UI: {fileID: 6227583941533006394, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
 --- !u!114 &722439448608458816
