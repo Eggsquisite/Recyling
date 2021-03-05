@@ -315,7 +315,7 @@ public class Player : MonoBehaviour
         if (isWalking && !isRunning) {
             if (walkTimer < walkToRunTime) { 
                 walkTimer += Time.deltaTime;
-                anim.SetFloat("speedMultiplier", 1.5f + (walkTimer / walkToRunTime));
+                anim.SetFloat("speedMultiplier", 1.25f + (walkTimer / walkToRunTime));
             }
             else if (walkTimer >= walkToRunTime) {
                 isWalking = false;
@@ -460,10 +460,12 @@ public class Player : MonoBehaviour
 
     private void Attack() {
         // case for basic attacks
-        if (isAttackPressed 
-                    && canReceiveInput 
-                    && attackCombo < 3) {
-            attackCombo += 1;
+        if (isAttackPressed && canReceiveInput) {
+            if (attackCombo < 3)
+                attackCombo += 1;
+            else if (attackCombo == 3)
+                attackCombo = 1;
+
             AttackAnimation(attackCombo);
             UI.SetStaminaRecoverable(false);
 
