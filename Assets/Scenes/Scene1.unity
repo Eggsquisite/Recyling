@@ -690,6 +690,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6248065715904606280, guid: af0ae073c2267824aa6a8f1d442b321b, type: 3}
   m_PrefabInstance: {fileID: 1787192391}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &550232169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1317516854866936819, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
+  m_PrefabInstance: {fileID: 1864363154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &550232170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550232169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a46f2ab7816cd34a807f29c07ddad9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
 --- !u!4 &571586662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6248065715904606280, guid: af0ae073c2267824aa6a8f1d442b321b, type: 3}
@@ -1618,6 +1636,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1317516853946665981, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1317516854866936816, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1665,10 +1687,6 @@ PrefabInstance:
     - target: {fileID: 1317516854866936819, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
       propertyPath: m_Name
       value: Scene Trigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 1317516854866936830, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
-      propertyPath: nextLevel
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c44ee1d992ecf1644887777ac209e6fe, type: 3}
@@ -2119,10 +2137,6 @@ PrefabInstance:
     - target: {fileID: 1033765477905236117, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
       propertyPath: focusMax_X
       value: 18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7888638849056058610, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b8eae6d430b544f90941057b5809ee, type: 3}

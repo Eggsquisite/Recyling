@@ -5,14 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
+    private Animator transition;
     public bool nextLevel = true;
     public bool previousLevel;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (transition == null) transition = Camera.main.GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
