@@ -73,6 +73,33 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask enemyLayer;
 
+    [Header("Attack Properties")]
+    [SerializeField]
+    private int damage;
+    [SerializeField] 
+    private float attackRangeVisualizer;
+    [SerializeField]
+    private float pushbackDistance;
+    [SerializeField]
+    private int specialAttackDmg;
+    [SerializeField]
+    private float specialPushbackMultiplier;
+    [SerializeField]
+    private float attackFollowThruDistance;
+
+    private float attackDelay;
+    private float runDashMaxTime;
+    private int attackCombo;
+    private bool isAttacking;
+    private bool runAttackDash;
+    private bool isAttackPressed;
+    private bool isRunAttackPressed;
+    private bool isSuperAttackPressed;
+    private bool canReceiveInput = true;
+    private Vector2 runDirection;
+
+    private Coroutine resetStunRoutine, resetAttackRoutine;
+
     [Header("Dash Properties")]
     //[SerializeField]
     //private float dashMinTime;
@@ -108,32 +135,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int superAttackEnergy2;
 
-    [Header("Attack Properties")]
-    [SerializeField]
-    private int damage;
-    [SerializeField] 
-    private float attackRangeVisualizer;
-    [SerializeField]
-    private float pushbackDistance;
-    [SerializeField]
-    private int specialAttackDmg;
-    [SerializeField]
-    private float specialPushbackMultiplier;
-    [SerializeField]
-    private float attackFollowThruDistance;
-
-    private float attackDelay;
-    private float runDashMaxTime;
-    private int attackCombo;
-    private bool isAttacking;
-    private bool runAttackDash;
-    private bool isAttackPressed;
-    private bool isRunAttackPressed;
-    private bool isSuperAttackPressed;
-    private bool canReceiveInput = true;
-    private Vector2 runDirection;
-
-    private Coroutine resetStunRoutine, resetAttackRoutine;
 
     // Start is called before the first frame update
     void Awake()
@@ -510,7 +511,7 @@ public class Player : MonoBehaviour
         }
         else {
             // save runDirection and start runAttackDash
-            runDirection = new Vector2(xAxis, yAxis);
+            runDirection = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
             runAttackDash = true;
             StartCoroutine(RunAttackDashTime());
         }

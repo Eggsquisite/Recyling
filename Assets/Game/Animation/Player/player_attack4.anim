@@ -29,18 +29,20 @@ AnimationClip:
       value: {fileID: 970891756649481477, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 0.53333336
       value: {fileID: 6431238524077387135, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.6166667
+    - time: 0.6666667
       value: {fileID: 4924634127832138359, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.7
+    - time: 0.75
       value: {fileID: -5682500048003363330, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.78333336
+    - time: 0.8333333
       value: {fileID: -6732046394712814299, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.8666667
+    - time: 0.9166667
       value: {fileID: -884597981247651217, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.95
+    - time: 1
+      value: {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+    - time: 1.1666666
       value: {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     attribute: m_Sprite
-    path: 
+    path: PlayerSprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -51,7 +53,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 533382794
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -68,12 +70,13 @@ AnimationClip:
     - {fileID: -6732046394712814299, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - {fileID: -884597981247651217, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+    - {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.96666664
+    m_StopTime: 1.1833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -100,35 +103,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.53333336
-    functionName: AttackHitboxActivated
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 4
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.53333336
-    functionName: AttackFollowThrough
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: -1
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.55
-    functionName: ConsumeStamina
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.55
+  - time: 0.51666665
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.7
+  - time: 0.51666665
+    functionName: ConsumeStamina
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: SpecialAttackHitboxActivated
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 4.5
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.55
+    functionName: AttackFollowThrough
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}
