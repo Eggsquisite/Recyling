@@ -711,6 +711,10 @@ public class Player : MonoBehaviour
         return isInvincible;
     }
 
+    public void SetInvincible(bool flag) {
+        isInvincible = flag;
+    }
+
     private void DamageFlash() {
         if (!isHurt)
             return;

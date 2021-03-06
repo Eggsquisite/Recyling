@@ -32,7 +32,8 @@ public class CameraFollow : MonoBehaviour
     private float currentSize;
     private bool isFocused;
 
-    private void Awake() {
+    private void Awake()
+    {
         if (anim == null) anim = GetComponent<Animator>();
         if (cam == null) cam = GetComponent<Camera>();
         originalTarget = target;
@@ -44,13 +45,7 @@ public class CameraFollow : MonoBehaviour
         leftBorder.parent = null;
         rightBorder.parent = null;
         bottomBorder.parent = null;
-        leftBorder.position = new Vector3(min_X - borderOffset,
-                                            transform.position.y,
-                                            transform.position.z);
-        rightBorder.position = new Vector3(max_X + borderOffset,
-                                            transform.position.y,
-                                            transform.position.z);
-
+        ResetBorders();
     }
 
     private void Update()
@@ -62,19 +57,22 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate() {
+    void LateUpdate()
+    {
         if (!canFollow)
             return;
         else if (isFocused)
         {
-            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, 
+            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x,
                                                     focusMin_X, focusMax_X),
                                                     Mathf.Clamp(target.position.y + targetOffset.y,
-                                                    min_Y, max_Y), 
+                                                    min_Y, max_Y),
                                                     transform.position.z);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPosition;
-        } else {
+        }
+        else
+        {
             Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x,
                                                     min_X, max_X),
                                                     2f,
@@ -84,35 +82,70 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void SetCameraTarget(Transform newTarget, Vector2 newOffset) {
+    public void SetCameraTarget(Transform newTarget, Vector2 newOffset)
+    {
         target = newTarget;
         targetOffset = newOffset;
     }
 
-    public void SetIsFocused(bool flag) {
+    public void SetIsFocused(bool flag)
+    {
         currentSize = cam.orthographicSize;
         timeElapsed = 0.0f;
         isFocused = flag;
     }
 
-    public void FocusCamera() {
-        if (timeElapsed < focusDuration) { 
+    public void FocusCamera()
+    {
+        if (timeElapsed < focusDuration)
+        {
             timeElapsed += Time.deltaTime / focusDuration;
             var tmp = Mathf.Lerp(currentSize, focusSize, timeElapsed);
             cam.orthographicSize = tmp;
         }
     }
 
-    public void ResetFocusCamera() {
-        if (timeElapsed < focusDuration) {
+    public void ResetFocusCamera()
+    {
+        if (timeElapsed < focusDuration)
+        {
             timeElapsed += Time.deltaTime / focusDuration;
             var tmp = Mathf.Lerp(currentSize, startingSize, timeElapsed);
             cam.orthographicSize = tmp;
         }
     }
 
-    public void ResetCameraTarget() {
+    public void ResetCameraTarget()
+    {
         target = originalTarget;
         targetOffset = Vector2.zero;
+    }
+
+    public void ResetBorders() {
+        leftBorder.position = new Vector3(min_X - borderOffset,
+                                    transform.position.y,
+                                    transform.position.z);
+        rightBorder.position = new Vector3(max_X + borderOffset,
+                                    transform.position.y,
+                                    transform.position.z);
+        bottomBorder.position = new Vector3(max_X / 2,
+                                    bottomBorder.position.y,
+                                    transform.position.z);
+    }
+
+    public float GetMinX() {
+        return min_X;
+    }
+
+    public float GetMaxX() {
+        return max_X;
+    }
+
+    public void SetMinX(float newValue) {
+        min_X = newValue;
+    }
+
+    public void SetMaxX(float newValue) {
+        max_X = newValue;
     }
 }
