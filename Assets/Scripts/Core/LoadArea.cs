@@ -8,6 +8,7 @@ public class LoadArea : MonoBehaviour
     private CameraFollow cam;
     private Animator transition;
     private Transform player;
+    private Player playerManager;
 
     // Each load area corresponds to ONE specific area that it will change the camera clamp values to
     [Header("Camera Clamp Values")]
@@ -32,27 +33,29 @@ public class LoadArea : MonoBehaviour
     {
         if (collision != null && collision.tag == "Player") {
             player = collision.gameObject.transform;
-            player.GetComponent<Player>().SetInvincible(true);
+            playerManager = collision.GetComponent<Player>();
+            playerManager.SetInvincible(true);
             StartCoroutine(LoadNextArea());
         }
     }
 
     IEnumerator LoadNextArea() {
         transition.Play("FadeIn");
+        playerManager.SetStopMovement(true);
         yield return new WaitForSeconds(0.5f);
 
         if (areaToRight) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
 
-            player.position = new Vector2(player.position.x + 3f, player.position.y);
+            player.position = new Vector2(player.position.x + 2f, player.position.y);
             // enable area
             // disable previous area
         } else if (areaToLeft) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
 
-            player.position = new Vector2(player.position.x - 3f, player.position.y);
+            player.position = new Vector2(player.position.x - 2f, player.position.y);
             // enable area
             // disable previous area
         }
@@ -64,7 +67,8 @@ public class LoadArea : MonoBehaviour
 
         yield return new WaitForSeconds(1.25f);
         cam.ResetBorders();
-        player.GetComponent<Player>().SetInvincible(false);
+        playerManager.SetStopMovement(false);
+        playerManager.SetInvincible(false);
         transition.Play("FadeOut");
     }
 }

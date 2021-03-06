@@ -143,9 +143,11 @@ public class CameraFollow : MonoBehaviour
 
     public void SetMinX(float newValue) {
         min_X = newValue;
+        focusMin_X = min_X - 1.5f;
     }
 
     public void SetMaxX(float newValue) {
         max_X = newValue;
+        focusMax_X = max_X + 1.5f;
     }
 }

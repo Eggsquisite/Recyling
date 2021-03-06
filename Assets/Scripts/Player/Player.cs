@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private float bufferTimer;
     private float currentWalkSpeed;
     private bool shiftKeyHeld;
+    private bool stopMovement;
     private bool isStopped;
     private bool isWalking;
     private bool isRunning;
@@ -197,7 +198,13 @@ public class Player : MonoBehaviour
     /// MOVEMENT CODE /////////////////////////////////////////////////////////////////////////////
     /// </summary>
     private void Movement() {
-        movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
+        if (stopMovement) { 
+            ResetWalk();
+            movement = Vector2.zero;
+        }
+        else
+            movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
+
         CheckDirection();
         if (!isAttacking) {
             if (isWalking && !isDashing)
@@ -219,6 +226,10 @@ public class Player : MonoBehaviour
             else if (isRunning)
                 PlayAnimation(PlayerAnimStates.PLAYER_RUN);
         }
+    }
+
+    public void SetStopMovement(bool flag) {
+        stopMovement = flag;
     }
 
     /// <summary>
@@ -685,16 +696,16 @@ public class Player : MonoBehaviour
 
             if (resetStunRoutine != null)
                 StopCoroutine(resetStunRoutine);
-            resetStunRoutine = StartCoroutine(ResetStun());
+            resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
         }
     }
 
-    IEnumerator ResetStun() {
-        yield return new WaitForSeconds(stunDuration);
+    IEnumerator ResetStun(float delay) {
+        yield return new WaitForSeconds(delay);
         isStunned = false;
     }
 
-    private void Stunned() {
+    public void Stunned() {
         ResetWalk();
         isStunned = true;
         runAttackDash = false;

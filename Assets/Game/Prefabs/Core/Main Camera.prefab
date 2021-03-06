@@ -317,7 +317,7 @@ MonoBehaviour:
   bottomBorder: {fileID: 6338490705318072716}
   min_X: 0
   max_X: 10
-  camSpeed: 1
+  camSpeed: 1.5
   canFollow: 1
   focusSize: 3
   focusDuration: 1
