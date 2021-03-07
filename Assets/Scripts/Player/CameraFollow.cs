@@ -97,8 +97,7 @@ public class CameraFollow : MonoBehaviour
 
     public void FocusCamera()
     {
-        if (timeElapsed < focusDuration)
-        {
+        if (timeElapsed < focusDuration) {
             timeElapsed += Time.deltaTime / focusDuration;
             var tmp = Mathf.Lerp(currentSize, focusSize, timeElapsed);
             cam.orthographicSize = tmp;
@@ -107,8 +106,7 @@ public class CameraFollow : MonoBehaviour
 
     public void ResetFocusCamera()
     {
-        if (timeElapsed < focusDuration)
-        {
+        if (timeElapsed < focusDuration) {
             timeElapsed += Time.deltaTime / focusDuration;
             var tmp = Mathf.Lerp(currentSize, startingSize, timeElapsed);
             cam.orthographicSize = tmp;

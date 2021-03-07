@@ -47,15 +47,17 @@ public class LoadArea : MonoBehaviour
         if (areaToRight) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
+            cam.transform.position = new Vector3(min_X, cam.transform.position.y, cam.transform.position.z);
+            player.position = new Vector2(player.position.x + 2.5f, player.position.y);
 
-            player.position = new Vector2(player.position.x + 2f, player.position.y);
             // enable area
             // disable previous area
         } else if (areaToLeft) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
+            cam.transform.position = new Vector3(max_X, cam.transform.position.y, cam.transform.position.z);
+            player.position = new Vector2(player.position.x - 2.5f, player.position.y);
 
-            player.position = new Vector2(player.position.x - 2f, player.position.y);
             // enable area
             // disable previous area
         }

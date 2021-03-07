@@ -21,25 +21,25 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -1617517929589703994, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.13333334
+    - time: 0.16666667
       value: {fileID: -4980844917623320644, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.26666668
+    - time: 0.33333334
       value: {fileID: 1407604909396096300, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.4
+    - time: 0.5
       value: {fileID: 970891756649481477, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 0.53333336
-      value: {fileID: 6431238524077387135, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 0.6666667
-      value: {fileID: 4924634127832138359, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+      value: {fileID: 6431238524077387135, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 0.75
-      value: {fileID: -5682500048003363330, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+      value: {fileID: 4924634127832138359, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 0.8333333
-      value: {fileID: -6732046394712814299, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+      value: {fileID: -5682500048003363330, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 0.9166667
-      value: {fileID: -884597981247651217, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+      value: {fileID: -6732046394712814299, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     - time: 1
+      value: {fileID: -884597981247651217, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
+    - time: 1.0833334
       value: {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
-    - time: 1.1666666
+    - time: 1.2666667
       value: {fileID: -1563295472426356726, guid: 6b5cbf5cc068d40439e20fa2bb82f14c, type: 3}
     attribute: m_Sprite
     path: PlayerSprite
@@ -76,7 +76,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1833333
+    m_StopTime: 1.2833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -96,35 +96,35 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.51666665
-    functionName: PlaySuperAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.51666665
-    functionName: ConsumeEnergy
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.51666665
+  - time: 0.65
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.65
+    functionName: ConsumeEnergy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.65
+    functionName: PlaySuperAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.6666667
     functionName: SpecialAttackHitboxActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 4.5
     intParameter: 0
     messageOptions: 0
-  - time: 0.55
+  - time: 0.68333334
     functionName: AttackFollowThrough
     data: 
     objectReferenceParameter: {fileID: 0}
