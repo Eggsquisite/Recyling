@@ -56,6 +56,21 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
     private Vector2 directionToMove, directionToPlayer, desiredPosition;
 
+    [Header("Patrol Properties")]
+    [SerializeField]
+    private bool canPatrol;
+    [SerializeField]
+    private Vector2 offsetPatrolDestination;
+    [SerializeField]
+    private float waitTime;
+
+    private bool patrolReady;
+
+    private Vector2 originalPos;
+    private Vector2 currentPatrolDestination;
+
+    private Coroutine patrolWaitRoutine;
+
     [Header("Teleport Properties")]
     [SerializeField]
     private bool canTeleport;
@@ -74,13 +89,13 @@ public class EnemyMovement : MonoBehaviour
     private float teleportDuration;
     private float teleportCooldown;
 
-
     private Coroutine teleportRoutine;
 
     // Start is called before the first frame update
     void Awake()
     {
         RandomizeOffsetAttackStandby();
+        originalPos = transform.position;
         xScaleValue = transform.localScale.x;
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
@@ -99,6 +114,12 @@ public class EnemyMovement : MonoBehaviour
         baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         leftOffset = new Vector2(Random.Range(-minOffset, -maxOffset), 0f);
         rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
+    }
+
+    private void FixedUpdate()
+    {
+        if (canPatrol && patrolReady)
+            Patrolling();
     }
 
     private void RandomizeOffsetAttackStandby() {
@@ -178,7 +199,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
                 rb.MovePosition(followVelocity);
-        }
+        } 
     }
 
     public RaycastHit2D CalculateDirectionToMove(Vector2 direction) {
@@ -240,6 +261,73 @@ public class EnemyMovement : MonoBehaviour
                     && abovePlayer != 0)
             abovePlayer = 0;
     }
+
+    /// <summary>
+    /// PATROL CODE //////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    
+    public void BeginPatrol() {
+        if (!canPatrol)
+            return;
+
+        RandomizeOffsetPatrol();
+        if (patrolWaitRoutine != null)
+            StopCoroutine(patrolWaitRoutine);
+        patrolWaitRoutine = StartCoroutine(PatrolWait());
+    }
+
+    public void StopPatrol() {
+        if (!canPatrol)
+            return;
+
+        patrolReady = false;
+    }
+
+    IEnumerator PatrolWait() {
+        yield return new WaitForSeconds(waitTime);
+        canFollow = false;
+        patrolReady = true;
+    }
+
+    private void Patrolling() {
+        IsMoving();
+
+        followVelocity = Vector2.MoveTowards(rb.position,
+                                                currentPatrolDestination,
+                                                baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
+
+        RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
+        if (hit.collider != null && hit.collider.tag == "LeftBorder")
+        {
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+            attackFromLeft = true;
+        }
+        else if (hit.collider != null && hit.collider.tag == "RightBorder")
+        {
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+            attackFromLeft = false;
+        }
+        if (hit.collider != null)
+        {
+            //rb.MovePosition(hit.point);
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+        }
+        else
+            rb.MovePosition(followVelocity);
+    }
+    
+    private void RandomizeOffsetPatrol() {
+        currentPatrolDestination = new Vector2(
+            originalPos.x + Random.Range(-offsetPatrolDestination.x, offsetPatrolDestination.x),
+            originalPos.y + Random.Range(-offsetPatrolDestination.y, offsetPatrolDestination.y));
+    }   
+
+    /// <summary>
+    /// TELEPORT CODE ////////////////////////////////////////////////////////////////////////////
+    /// </summary>
 
     public void TeleportToPlayer() {
         teleportReady = false;

@@ -75,8 +75,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.35}
+  m_Offset: {x: -0.025, y: 0.04}
+  m_Size: {x: 0.45, y: 0.3}
   m_Direction: 1
 --- !u!95 &1572641357111832798
 Animator:
@@ -128,7 +128,7 @@ MonoBehaviour:
   sp: {fileID: 5715822747553379095}
   baseWalkSpeed: 1.5
   runSpeed: 2.5
-  verticalSpeedMult: 0.5
+  verticalSpeedMult: 0.4
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
   stopBuffer: 0.1

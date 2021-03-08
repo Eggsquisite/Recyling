@@ -67,7 +67,7 @@ public class LoadArea : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(.5f);
         cam.ResetBorders();
         playerManager.SetStopMovement(false);
         playerManager.SetInvincible(false);

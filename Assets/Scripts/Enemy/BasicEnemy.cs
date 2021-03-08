@@ -153,6 +153,7 @@ public class BasicEnemy : MonoBehaviour
             projectile.SetDamage(attackDamages[0]);
 
         outOfTetherRange = true;
+        //enemyMovement.BeginPatrol();
         currentDamageThresholdPercent = baseDamageThresholdPercent;
         damageThreshold = Mathf.RoundToInt(currentDamageThresholdPercent * maxHealth);
 
@@ -192,6 +193,7 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         ///////////////////// Follow Player /////////////////////////////////////
+        CheckPlayerDistance();
         CheckPlayerInRange();
         MovementAnimation();
 
@@ -262,6 +264,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void EnemyInTetherRange() {
         outOfTetherRange = false;
+        //enemyMovement.StopPatrol();
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
 
@@ -279,6 +282,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         enemyMovement.StopFindPlayer();
         enemyMovement.IsMoving();
+        //enemyMovement.BeginPatrol();
 
         if (!enemyMovement.GetCanTeleport())
             enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
@@ -308,8 +312,6 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void CheckPlayerInRange() {
-        CheckPlayerDistance();
-
         if (outOfTetherRange)
             return;
 
