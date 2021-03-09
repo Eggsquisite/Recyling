@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
+    enum PlayerWeapon
+    {
+        Sword = 1,
+        Blaster = 2
+    }
+
     [Header("Components")]
     // used for player sprite movement/animations
     [SerializeField]
@@ -19,6 +26,7 @@ public class Player : MonoBehaviour
     private PlayerSounds playSounds;
     private PlayerUI UI;
     private bool isDead;
+    private PlayerWeapon playerEquipment;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -116,9 +124,7 @@ public class Player : MonoBehaviour
     private bool isLanding;
     private bool dashReady = true;
 
-    [Header("Stamina/Energy Consumption")]
-    [SerializeField]
-    private float energyRegenOnHit;
+    [Header("Stamina Properties")]
     [SerializeField]
     private int dashStamina;
     [SerializeField]
@@ -130,12 +136,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int superAttackStamina1;
     [SerializeField]
+    private int superAttackStamina2;
+
+    [Header("Energy Properties")]
+    [SerializeField]
+    private float energyRegenOnHit;
+    [SerializeField]
+    private int blasterLightEnergy;
+    [SerializeField]
+    private int blasterHeavyEnergy;
+    [SerializeField]
     private int superAttackEnergy1;
     [SerializeField]
-    private int superAttackStamina2;
-    [SerializeField]
     private int superAttackEnergy2;
-
 
     // Start is called before the first frame update
     void Awake()
@@ -148,6 +161,7 @@ public class Player : MonoBehaviour
 
         currentWalkSpeed = baseWalkSpeed;
         ac = anim.runtimeAnimatorController;
+        playerEquipment = PlayerWeapon.Sword;
         runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
     }
 
@@ -219,12 +233,24 @@ public class Player : MonoBehaviour
         // attack animations override run/idle anims
         if (!isAttacking && !isDashing && !isFalling && !isLanding)
         {
-            if (xAxis == 0 && yAxis == 0)
-                PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
-            else if (isWalking)
-                PlayAnimation(PlayerAnimStates.PLAYER_WALK);
-            else if (isRunning)
-                PlayAnimation(PlayerAnimStates.PLAYER_RUN);
+            if (playerEquipment == PlayerWeapon.Sword) 
+            { 
+                if (xAxis == 0 && yAxis == 0)
+                    PlayAnimation(PlayerAnimStates.PLAYER_IDLE);
+                else if (isWalking)
+                    PlayAnimation(PlayerAnimStates.PLAYER_WALK);
+                else if (isRunning)
+                    PlayAnimation(PlayerAnimStates.PLAYER_RUN);
+            }
+            else if (playerEquipment == PlayerWeapon.Blaster)
+            {
+                if (xAxis == 0 && yAxis == 0)
+                    PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_IDLE);
+                else if (isWalking)
+                    PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_WALK);
+                else if (isRunning)
+                    PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_RUN);
+            }
         }
     }
 
@@ -271,6 +297,32 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SwitchWeaponInput() {
+        if (isStunned || isAttacking || isDashing || isFalling || isLanding || isHealing)
+            return;
+
+        if (playerEquipment == PlayerWeapon.Blaster)
+            playerEquipment = PlayerWeapon.Sword;
+        else if (playerEquipment == PlayerWeapon.Sword)
+            playerEquipment = PlayerWeapon.Blaster;
+    }
+
+    public void BlasterAttackInput() {
+        if (isStunned || UI.GetCurrentEnergy() <= 0)
+            return;
+
+        if (canReceiveInput && !isHealing)
+            BlasterAttack();
+    }
+
+    public void SuperBlasterAttackInput() {
+        if (isStunned || UI.GetCurrentEnergy() <= 0)
+            return;
+
+        if (canReceiveInput && !isHealing)
+            SuperBlasterAttack();
+    }
+
     public void BasicAttackInput() {
         if (isStunned || UI.GetCurrentStamina() <= 0)
             return; 
@@ -291,7 +343,7 @@ public class Player : MonoBehaviour
             || UI.GetCurrentEnergy() <= 0)
             return;
 
-        if (canReceiveInput) { 
+        if (canReceiveInput && !isHealing) { 
             isSuperAttackPressed = true;
             Attack();
         }
@@ -627,7 +679,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackCombo = 0;
         isAttacking = false;
-        if (!isDashing && !isFalling)
+        if (!isDashing && !isFalling && !isHealing)
             canReceiveInput = true;
     }
 
@@ -639,9 +691,43 @@ public class Player : MonoBehaviour
             return;
     }
 
+    /// BLASTER ATTACK CODE //////////////////////////////////////////////////////////////////////
+    /// 
+
+    private void BlasterAttack() {
+        isStopped = true;
+        isAttacking = true;
+        canReceiveInput = false;
+        attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_BLASTER_LIGHT);
+        if (PlayerAnimStates.PLAYER_BLASTER_LIGHT == currentState)
+            ReplayAnimation(PlayerAnimStates.PLAYER_BLASTER_LIGHT);
+        else
+            PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_LIGHT);
+
+        if (resetAttackRoutine != null)
+            StopCoroutine(resetAttackRoutine);
+        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
+    }
+
+    private void SuperBlasterAttack() {
+        isStopped = true;
+        isAttacking = true;
+        canReceiveInput = false;
+        attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
+        PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
+
+        if (resetAttackRoutine != null)
+            StopCoroutine(resetAttackRoutine);
+        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
+    }
+
     private void ConsumeEnergy(int index) {
         // called thru animation events
-        if (index == 1)
+        if (index == -1)
+            UI.SetCurrentEnergy(-blasterLightEnergy);
+        else if (index == 0)
+            UI.SetCurrentEnergy(-blasterHeavyEnergy);
+        else if (index == 1)
             UI.SetCurrentEnergy(-superAttackEnergy1);
         else if (index == 2)
             UI.SetCurrentEnergy(-superAttackEnergy2);
@@ -661,6 +747,10 @@ public class Player : MonoBehaviour
             UI.SetCurrentStamina(-superAttackStamina1);
         else if (index == 2)
             UI.SetCurrentStamina(-superAttackStamina2);
+    }
+
+    public int GetPlayerWeapon() {
+        return (int)playerEquipment;
     }
 
     /// <summary>

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayerAnimStates 
+public static class PlayerAnimStates
 {
     public static string PLAYER_IDLE { get { return "player_idle"; } }
     public static string PLAYER_RUN { get { return "player_run"; } }
@@ -18,4 +18,9 @@ public static class PlayerAnimStates
     public static string PLAYER_DASH { get { return "player_dash"; } }
     public static string PLAYER_FALL { get { return "player_fall"; } }
     public static string PLAYER_LAND { get { return "player_land"; } }
+    public static string PLAYER_BLASTER_IDLE { get { return "player_blasteridle"; } }
+    public static string PLAYER_BLASTER_WALK { get { return "player_blasterwalk"; } }
+    public static string PLAYER_BLASTER_RUN { get { return "player_blasterrun"; } }
+    public static string PLAYER_BLASTER_LIGHT { get { return "player_blasterlight"; } }
+    public static string PLAYER_BLASTER_HEAVY { get { return "player_blasterheavy"; } }
 }

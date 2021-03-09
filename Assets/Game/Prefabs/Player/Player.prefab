@@ -147,14 +147,16 @@ MonoBehaviour:
   dashMoveSpeed: 4
   dashCooldown: 0
   dashHeight: 1
-  energyRegenOnHit: 2
-  dashStamina: 125
-  runStamina: 6
-  runAttackStamina: 95
-  basicAttackStamina: 80
-  superAttackStamina1: 110
-  superAttackEnergy1: 150
+  dashStamina: 150
+  runStamina: 8
+  runAttackStamina: 125
+  basicAttackStamina: 95
+  superAttackStamina1: 125
   superAttackStamina2: 200
+  energyRegenOnHit: 2
+  blasterLightEnergy: 15
+  blasterHeavyEnergy: 50
+  superAttackEnergy1: 150
   superAttackEnergy2: 200
 --- !u!114 &2311640890247761020
 MonoBehaviour:

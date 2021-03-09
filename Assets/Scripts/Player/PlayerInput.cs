@@ -31,11 +31,28 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftShift))
             player.ShiftToRun(false);
 
+        // SWITCH WEAPON
+        if (Input.GetKeyDown(KeyCode.Q))
+            player.SwitchWeaponInput();
+
         // ATTACK INPUTS
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            player.BasicAttackInput();
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
-            player.SuperAttackInput();
+        if (player.GetPlayerWeapon() == 1) 
+        { 
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                player.BasicAttackInput();
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+                player.SuperAttackInput();
+        } else if (player.GetPlayerWeapon() == 2) 
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+                player.BlasterAttackInput();
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+                player.SuperBlasterAttackInput();
+
+        }
+
+        // BLASTER ATTACK INPUTS 
+        
 
         // DASH INPUT
         if (Input.GetKeyDown(KeyCode.Space))
