@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: b8c3038df1d157246a4c563a417cf7df
+guid: 808e2af3d1f181b4cacbebc32e0fb3ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 808198820298474999
-    second: blaster light_0
+      213: -7351224883103741422
+    second: blaster light no projectile_0
   - first:
-      213: -652011935125116191
-    second: blaster light_1
+      213: 7416878511036905893
+    second: blaster light no projectile_1
   - first:
-      213: 3767213741287681789
-    second: blaster light_2
+      213: 6397629571211033665
+    second: blaster light no projectile_2
   - first:
-      213: -5392720758649490836
-    second: blaster light_3
+      213: 1687748041749238949
+    second: blaster light no projectile_3
   - first:
-      213: 5764102760407373333
-    second: blaster light_4
+      213: -4611819448576378225
+    second: blaster light no projectile_4
   - first:
-      213: 5945428037838555186
-    second: blaster light_5
+      213: -187312584793714640
+    second: blaster light no projectile_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blaster light_0
+      name: blaster light no projectile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f5c7c78b8c473b00800000000000000
-      internalID: 808198820298474999
+      spriteID: 21ac692dae33bf990800000000000000
+      internalID: -7351224883103741422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster light_1
+      name: blaster light no projectile_1
       rect:
         serializedVersion: 2
         x: 0
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ea6d89799693f6f0800000000000000
-      internalID: -652011935125116191
+      spriteID: 5a93590a5bb0ee660800000000000000
+      internalID: 7416878511036905893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster light_2
+      name: blaster light no projectile_2
       rect:
         serializedVersion: 2
         x: 0
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe2c6a20f4d74430800000000000000
-      internalID: 3767213741287681789
+      spriteID: 14c719ce232f8c850800000000000000
+      internalID: 6397629571211033665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster light_3
+      name: blaster light no projectile_3
       rect:
         serializedVersion: 2
         x: 0
@@ -198,35 +198,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6272d7ba053925b0800000000000000
-      internalID: -5392720758649490836
+      spriteID: 5a413d2e6e51c6710800000000000000
+      internalID: 1687748041749238949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster light_4
+      name: blaster light no projectile_4
       rect:
         serializedVersion: 2
-        x: 111
-        y: 84
-        width: 9
-        height: 1
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 64
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.42, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5161eeacbe43eff40800000000000000
-      internalID: 5764102760407373333
+      spriteID: f8afd5f55a68fffb0800000000000000
+      internalID: -4611819448576378225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster light_5
+      name: blaster light no projectile_5
       rect:
         serializedVersion: 2
         x: 0
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 238c309dc47628250800000000000000
-      internalID: 5945428037838555186
+      spriteID: 03019615238866df0800000000000000
+      internalID: -187312584793714640
       vertices: []
       indices: 
       edges: []

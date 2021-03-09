@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: ccdb63f5e7c8ca54792c493074d07264
+guid: 868d24cc19616714eb07384a84baac5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4223420279320800440
-    second: blaster heavy_0
+      213: -7482501153088851552
+    second: improved run with dust_0
   - first:
-      213: -1185149464914964534
-    second: blaster heavy_1
+      213: 7756522361591977593
+    second: improved run with dust_1
   - first:
-      213: -1987205751035909646
-    second: blaster heavy_2
+      213: 1368937176197739939
+    second: improved run with dust_2
   - first:
-      213: 3159952589616385528
-    second: blaster heavy_3
+      213: 4443114660217440537
+    second: improved run with dust_3
   - first:
-      213: -3808210855057627807
-    second: blaster heavy_4
+      213: -5227377839824499472
+    second: improved run with dust_4
   - first:
-      213: -6707462153369182807
-    second: blaster heavy_5
-  - first:
-      213: -5179193146551703216
-    second: blaster heavy_6
+      213: -2060723067622556476
+    second: improved run with dust_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,28 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blaster heavy_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 384
-        width: 128
-        height: 64
-      alignment: 9
-      pivot: {x: 0.42, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bce81e0e5a9c9a30800000000000000
-      internalID: 4223420279320800440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blaster heavy_1
+      name: improved run with dust_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acfcff147d08d8fe0800000000000000
-      internalID: -1185149464914964534
+      spriteID: 0a130b268d0d82890800000000000000
+      internalID: -7482501153088851552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster heavy_2
+      name: improved run with dust_1
       rect:
         serializedVersion: 2
         x: 0
@@ -180,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f924e9e5e60c64e0800000000000000
-      internalID: -1987205751035909646
+      spriteID: 9765017fdf3b4ab60800000000000000
+      internalID: 7756522361591977593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster heavy_3
+      name: improved run with dust_2
       rect:
         serializedVersion: 2
         x: 0
@@ -195,20 +171,20 @@ TextureImporter:
         width: 128
         height: 64
       alignment: 9
-      pivot: {x: 0.34, y: 0.25}
+      pivot: {x: 0.42, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fd092b53286adb20800000000000000
-      internalID: 3159952589616385528
+      spriteID: 3a5b71bdb117ff210800000000000000
+      internalID: 1368937176197739939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster heavy_4
+      name: improved run with dust_3
       rect:
         serializedVersion: 2
         x: 0
@@ -216,20 +192,20 @@ TextureImporter:
         width: 128
         height: 64
       alignment: 9
-      pivot: {x: 0.26, y: 0.25}
+      pivot: {x: 0.42, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 165e0827764862bc0800000000000000
-      internalID: -3808210855057627807
+      spriteID: 919479a2e3d19ad30800000000000000
+      internalID: 4443114660217440537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster heavy_5
+      name: improved run with dust_4
       rect:
         serializedVersion: 2
         x: 0
@@ -237,20 +213,20 @@ TextureImporter:
         width: 128
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.42, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ad9d0c85be4ae2a0800000000000000
-      internalID: -6707462153369182807
+      spriteID: 0fc038eec8f9477b0800000000000000
+      internalID: -5227377839824499472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blaster heavy_6
+      name: improved run with dust_5
       rect:
         serializedVersion: 2
         x: 0
@@ -258,14 +234,14 @@ TextureImporter:
         width: 128
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.42, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 059e5a4164fcf18b0800000000000000
-      internalID: -5179193146551703216
+      spriteID: 4cc77e5c947d663e0800000000000000
+      internalID: -2060723067622556476
       vertices: []
       indices: 
       edges: []
