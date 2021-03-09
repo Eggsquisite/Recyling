@@ -768,16 +768,15 @@ public class BasicEnemy : MonoBehaviour
     /// <summary>
     /// Called when player hits enemy
     /// </summary>
-    public void EnemyHurt(int damageNum, float distance, Transform playerRef) {
+    public void EnemyHurt(int damageNum, float distance) {
         if (isDead || isInvincible)
             return;
 
         SetIsInvincible(1);
-        enemyMovement.SetFollow(false);
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
         currentHealth -= damageNum;
-        PushBack(distance, playerRef);
+        PushBack(distance, enemyMovement.GetPlayerPosition());
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
@@ -789,12 +788,13 @@ public class BasicEnemy : MonoBehaviour
             // if damage threshold reached, stagger enemy
             // else don't interrupt enemy 
             if (currentDamageTaken >= damageThreshold) { 
+                enemyMovement.SetFollow(false);
                 enemyAnimation.ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
 
                 isStunned = true;
                 if (stunRoutine != null)
                     StopCoroutine(stunRoutine);
-                stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.1f));
+                stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.05f));
 
                 AttackDeactivated();
                 AttackFollowDeactivated();
@@ -808,12 +808,14 @@ public class BasicEnemy : MonoBehaviour
                     StopCoroutine(resetHurtSpriteRoutine);
                 resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0f));
             }
-            else
+            else { 
                 SetHurtSprite();
+
+            }
 
             if (invincibleRoutine != null)
                 StopCoroutine(invincibleRoutine);
-            invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.1f));
+            invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.05f));
         }
     }
 
@@ -859,7 +861,7 @@ public class BasicEnemy : MonoBehaviour
 
         if (resetHurtSpriteRoutine != null)
             StopCoroutine(resetHurtSpriteRoutine);
-        resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0.05f));
+        resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0.07f));
     }
 
     /// <summary>
@@ -874,16 +876,20 @@ public class BasicEnemy : MonoBehaviour
     /// <summary>
     /// Pushes back enemy a set distance when hurt. Will change to rb.MovePosition 
     /// </summary>
-    private void PushBack(float distance, Transform reference) {
+    private void PushBack(float distance, Vector2 reference) {
         Vector2 newPosition;
-        if (reference.transform.position.x > rb.position.x) {
+        if (reference.x > rb.position.x) {
             newPosition = new Vector2(-distance, 0f) + rb.position;
             rb.position = newPosition;
         }
-        else if (reference.transform.position.x <= transform.position.x) {
+        else if (reference.x <= transform.position.x) {
             newPosition = new Vector2(distance, 0f) + rb.position;
             rb.position = newPosition;
         }
+    }
+
+    public bool GetIsInvincible() {
+        return isInvincible;
     }
 
     public bool GetIsDead() {

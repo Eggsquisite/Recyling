@@ -27,9 +27,9 @@ AnimationClip:
       value: {fileID: 6397629571211033665, guid: 808e2af3d1f181b4cacbebc32e0fb3ab, type: 3}
     - time: 0.4
       value: {fileID: 1687748041749238949, guid: 808e2af3d1f181b4cacbebc32e0fb3ab, type: 3}
-    - time: 0.53333336
+    - time: 0.48333332
       value: {fileID: -4611819448576378225, guid: 808e2af3d1f181b4cacbebc32e0fb3ab, type: 3}
-    - time: 0.6666667
+    - time: 0.56666666
       value: {fileID: -187312584793714640, guid: 808e2af3d1f181b4cacbebc32e0fb3ab, type: 3}
     attribute: m_Sprite
     path: PlayerSprite
@@ -61,7 +61,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -81,10 +81,31 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.38333333
+    functionName: PlaySuperAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
   - time: 0.4
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: -1
+    messageOptions: 0
+  - time: 0.4
+    functionName: ShootProjectile
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.41666666
+    functionName: AttackFollowThrough
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -0.5
+    intParameter: 0
     messageOptions: 0

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private Rigidbody2D rb;
+    private Projectile projectile;
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
@@ -84,13 +85,17 @@ public class Player : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
-    private int damage;
+    private int swordDamage;
+    [SerializeField]
+    private int blasterLightDmg;
+    [SerializeField]
+    private int blasterHeavyDmg;
+    [SerializeField]
+    private int specialAttackDmg;
     [SerializeField] 
     private float attackRangeVisualizer;
     [SerializeField]
     private float pushbackDistance;
-    [SerializeField]
-    private int specialAttackDmg;
     [SerializeField]
     private float specialPushbackMultiplier;
     [SerializeField]
@@ -153,13 +158,16 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (UI == null) UI = GetComponent<PlayerUI>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
         if (anim == null) anim = GetComponent<Animator>();
+        if (projectile == null) projectile = GetComponent<Projectile>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
-        if (UI == null) UI = GetComponent<PlayerUI>();
 
         currentWalkSpeed = baseWalkSpeed;
+        projectile.SetDamage(blasterLightDmg);
+        projectile.SetSpecialDamage(blasterHeavyDmg);
         ac = anim.runtimeAnimatorController;
         playerEquipment = PlayerWeapon.Sword;
         runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
@@ -635,9 +643,7 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(damage, 
-                                                            pushbackDistance, 
-                                                            transform);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(swordDamage, pushbackDistance);
                 StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit));
             }
         }
@@ -652,10 +658,9 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.tag == "Enemy") { 
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(specialAttackDmg, pushbackDistance * specialPushbackMultiplier, transform);
+            if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) { 
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(specialAttackDmg, pushbackDistance * specialPushbackMultiplier);
             }
-
         }
     }
 

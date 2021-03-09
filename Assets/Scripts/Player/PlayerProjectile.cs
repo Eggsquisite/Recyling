@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyProjectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField]
     private float flyTime;
@@ -10,14 +10,12 @@ public class EnemyProjectile : MonoBehaviour
     private float projectileVelocity;
     private int damage;
 
-    private Animator anim;
     private Rigidbody2D rb;
     private Collider2D coll;
 
     private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-        if (anim == null) anim = GetComponent<Animator>();
         if (coll == null) coll = GetComponent<Collider2D>();
         StartCoroutine(Kill());
     }
@@ -35,19 +33,15 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !collision.GetComponent<Player>().GetInvincible()) {
-            collision.GetComponent<Player>().PlayerHurt(damage);
-            anim.Play("arrow_dissipate");
+        if (collision.tag == "Enemy" && !collision.GetComponent<BasicEnemy>().GetIsInvincible()) {
+            collision.GetComponent<BasicEnemy>().EnemyHurt(damage, 0.1f);
             coll.enabled = false;
+            Destroy(gameObject);
         }
     }
 
     IEnumerator Kill() {
         yield return new WaitForSeconds(flyTime);
-        anim.Play("arrow_dissipate");
-    }
-
-    private void Dissipate() {
         Destroy(gameObject);
     }
 

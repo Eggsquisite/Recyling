@@ -51,9 +51,6 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        // BLASTER ATTACK INPUTS 
-        
-
         // DASH INPUT
         if (Input.GetKeyDown(KeyCode.Space))
             player.DashInput();
