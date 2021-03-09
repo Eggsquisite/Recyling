@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     private List<Transform> instantiatePos;
     [SerializeField]
     private GameObject prefab;
+    [SerializeField]
+    private float adjustedVelocity;
 
     private int damage;
     private int damage2;
@@ -34,7 +36,11 @@ public class Projectile : MonoBehaviour
         newProjectile.transform.localScale = transform.localScale;
         if (newProjectile.GetComponent<EnemyProjectile>() != null)
             newProjectile.GetComponent<EnemyProjectile>().SetDamage(damage2);
-        else if (newProjectile.GetComponent<PlayerProjectile>() != null)
+        else if (newProjectile.GetComponent<PlayerProjectile>() != null) 
+        { 
             newProjectile.GetComponent<PlayerProjectile>().SetDamage(damage2);
+            if (adjustedVelocity > 0)
+                newProjectile.GetComponent<PlayerProjectile>().SetVelocity(adjustedVelocity);
+        }
     }
 }

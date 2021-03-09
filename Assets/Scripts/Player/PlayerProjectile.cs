@@ -48,4 +48,8 @@ public class PlayerProjectile : MonoBehaviour
     public void SetDamage(int dmg) {
         damage = dmg;
     }
+
+    public void SetVelocity(float speed) {
+        projectileVelocity = speed;
+    }
 }

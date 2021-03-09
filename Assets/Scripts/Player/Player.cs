@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
 
     private bool isHealing;
     private Coroutine healRoutine, healthDelayRoutine;
-    private Coroutine focusRoutine, resetFocusRoutine;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -87,11 +86,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int swordDamage;
     [SerializeField]
+    private int specialAttackDmg;
+    [SerializeField]
     private int blasterLightDmg;
     [SerializeField]
     private int blasterHeavyDmg;
-    [SerializeField]
-    private int specialAttackDmg;
     [SerializeField] 
     private float attackRangeVisualizer;
     [SerializeField]

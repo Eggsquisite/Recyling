@@ -164,16 +164,16 @@ MonoBehaviour:
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
   stopBuffer: 0.1
-  isHurtMaxTime: 0.5
+  isHurtMaxTime: 0.33
   healAmount: 2
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   swordDamage: 15
+  specialAttackDmg: 60
   blasterLightDmg: 5
   blasterHeavyDmg: 20
-  specialAttackDmg: 60
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
   specialPushbackMultiplier: 10
@@ -268,6 +268,7 @@ MonoBehaviour:
   instantiatePos:
   - {fileID: 8665927272362373859}
   prefab: {fileID: 2874704444324965930, guid: f72b2954377454242b48b94c41204433, type: 3}
+  adjustedVelocity: 12
 --- !u!1 &722439448051027863
 GameObject:
   m_ObjectHideFlags: 0
