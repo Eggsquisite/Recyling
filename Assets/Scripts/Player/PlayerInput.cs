@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private float xAxis;
     private float yAxis;
+    private bool isInteracting;
 
     private void Awake()
     {
@@ -20,36 +21,37 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // MOVEMENT INPUTS
-        xAxis = Input.GetAxisRaw("Horizontal");
-        yAxis = Input.GetAxisRaw("Vertical");
-        player.CheckForMovement(xAxis, yAxis);
+        if (!isInteracting) { 
+            // MOVEMENT INPUTS
+            xAxis = Input.GetAxisRaw("Horizontal");
+            yAxis = Input.GetAxisRaw("Vertical");
+            player.CheckForMovement(xAxis, yAxis);
 
-        // RUN INPUT
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            player.ShiftToRun(true);
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-            player.ShiftToRun(false);
+            // RUN INPUT
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+                player.ShiftToRun(true);
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+                player.ShiftToRun(false);
 
-        // SWITCH WEAPON
-        if (Input.GetKeyDown(KeyCode.Q))
-            player.SwitchWeaponInput();
+            // SWITCH WEAPON
+            if (Input.GetKeyDown(KeyCode.Q))
+                player.SwitchWeaponInput();
 
-        // ATTACK INPUTS
-        if (player.GetPlayerWeapon() == 1) 
-        { 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                player.BasicAttackInput();
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
-                player.SuperAttackInput();
-        } else if (player.GetPlayerWeapon() == 2) 
-        {
-            if (Input.GetKey(KeyCode.Mouse0))
-                player.BlasterAttackInput();
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
-                player.SuperBlasterAttackInput();
+            // ATTACK INPUTS
+            if (player.GetPlayerWeapon() == 1) 
+            { 
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                    player.BasicAttackInput();
+                else if (Input.GetKeyDown(KeyCode.Mouse1))
+                    player.SuperAttackInput();
+            } else if (player.GetPlayerWeapon() == 2) 
+            {
+                if (Input.GetKey(KeyCode.Mouse0))
+                    player.BlasterAttackInput();
+                else if (Input.GetKeyDown(KeyCode.Mouse1))
+                    player.SuperBlasterAttackInput();
 
-        }
+            }
 
         // DASH INPUT
         if (Input.GetKeyDown(KeyCode.Space))
@@ -60,12 +62,17 @@ public class PlayerInput : MonoBehaviour
             player.RecoverInput();
         else if (Input.GetKeyUp(KeyCode.LeftControl))
             player.StopRecoverInput();
+        }
 
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
             interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
-            if (interactable != null) {
+            if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) {
                 interactable.GetComponent<Interactable>().Interacting();
+                isInteracting = !isInteracting;
+
+                // If player is interacting, set movement to 0 and stop all other inputs
+                player.CheckForMovement(0f, 0f);
             }
         }
     }

@@ -52,7 +52,9 @@ public class Interactable : MonoBehaviour
             if (animations.Count != 0)
                 anim.Play(animations[1]);
             // close down UI
-
+            for (int i = 0; i < UI.Count; i++) {
+                UI[i].SetActive(false);
+            }
         }
     }
 
@@ -60,5 +62,9 @@ public class Interactable : MonoBehaviour
         isReady = false;
         yield return new WaitForSeconds(interactDelayBtwnActivations);
         isReady = true;
+    }
+
+    public bool GetIsReady() {
+        return isReady;
     }
 }

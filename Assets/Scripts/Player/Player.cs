@@ -384,7 +384,7 @@ public class Player : MonoBehaviour
         {
             if (dashReady && !isDashing && !isFalling && playerEquipment == PlayerWeapon.Sword)
                 PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-            else if (teleportReady && !isTeleporting)
+            else if (teleportReady && !isTeleporting && playerEquipment == PlayerWeapon.Blaster)
                 PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_TELEPORT);
         }
     }
