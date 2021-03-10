@@ -172,8 +172,8 @@ MonoBehaviour:
     m_Bits: 128
   swordDamage: 15
   specialAttackDmg: 60
-  blasterLightDmg: 5
-  blasterHeavyDmg: 20
+  blasterLightDmg: 7
+  blasterHeavyDmg: 21
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
   specialPushbackMultiplier: 10
@@ -182,7 +182,7 @@ MonoBehaviour:
   dashCooldown: 0.1
   dashHeight: 1
   teleportMoveSpeed: 12
-  teleportCooldown: 0.1
+  teleportCooldown: 0.25
   dashStamina: 150
   runStamina: 8
   runAttackStamina: 125
@@ -192,8 +192,8 @@ MonoBehaviour:
   blasterLightStamina: 15
   blasterHeavyStamina: 50
   energyRegenOnHit: 2
-  blasterLightEnergy: 15
-  blasterHeavyEnergy: 50
+  blasterLightEnergy: 20
+  blasterHeavyEnergy: 75
   superAttackEnergy1: 150
   superAttackEnergy2: 200
 --- !u!114 &2311640890247761020
