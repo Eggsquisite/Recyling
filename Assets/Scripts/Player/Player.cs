@@ -128,6 +128,17 @@ public class Player : MonoBehaviour
     private bool isLanding;
     private bool dashReady = true;
 
+    [Header("Teleport Properties")]
+    [SerializeField]
+    private float teleportMoveSpeed;
+    [SerializeField]
+    private float teleportCooldown;
+
+    private bool isTeleporting;
+    private bool teleportReady = true;
+
+    private Vector2 teleportDirection;
+
     [Header("Stamina Properties")]
     [SerializeField]
     private int dashStamina;
@@ -141,6 +152,10 @@ public class Player : MonoBehaviour
     private int superAttackStamina1;
     [SerializeField]
     private int superAttackStamina2;
+    [SerializeField]
+    private int blasterLightStamina;
+    [SerializeField]
+    private int blasterHeavyStamina;
 
     [Header("Energy Properties")]
     [SerializeField]
@@ -219,26 +234,31 @@ public class Player : MonoBehaviour
     /// MOVEMENT CODE /////////////////////////////////////////////////////////////////////////////
     /// </summary>
     private void Movement() {
-        if (stopMovement) { 
+        if (stopMovement) {
             ResetWalk();
             movement = Vector2.zero;
         }
+        else if (isTeleporting)
+            movement = teleportDirection;
         else
             movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
 
-        CheckDirection();
+        if (!isTeleporting)
+            CheckDirection();
         if (!isAttacking) {
-            if (isWalking && !isDashing)
+            if (isWalking && !isDashing && !isTeleporting)
                 rb.MovePosition(rb.position + movement * currentWalkSpeed * Time.fixedDeltaTime);
             else if (isRunning)
                 rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
             else if (isDashing)
                 rb.MovePosition(rb.position + movement * dashMoveSpeed * Time.fixedDeltaTime);
+            else if (isTeleporting)
+                rb.MovePosition(rb.position + movement * teleportMoveSpeed * Time.fixedDeltaTime);
         }
     }
     private void MovementAnimation() {
         // attack animations override run/idle anims
-        if (!isAttacking && !isDashing && !isFalling && !isLanding)
+        if (!isAttacking && !isDashing && !isFalling && !isLanding && !isTeleporting)
         {
             if (playerEquipment == PlayerWeapon.Sword) 
             { 
@@ -360,19 +380,13 @@ public class Player : MonoBehaviour
         if (isStunned || UI.GetCurrentStamina() <= 0)
             return;
 
-        if (canReceiveInput && dashReady && !isHealing && !isDashing && !isFalling) 
-            PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-    }
-
-    public void StopDashInput() {
-        /*if (isDashing && dashTimer >= dashMinTime) {
-            dashTimer = 0f;
-            isFalling = true;
-            isDashing = false;
-            PlayAnimation(PlayerAnimStates.PLAYER_FALL);
+        if (canReceiveInput && !isHealing)
+        {
+            if (dashReady && !isDashing && !isFalling && playerEquipment == PlayerWeapon.Sword)
+                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+            else if (teleportReady && !isTeleporting)
+                PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_TELEPORT);
         }
-        else if (isDashing && dashTimer < dashMinTime)
-            stopDash = true;*/
     }
 
     ///
@@ -447,7 +461,7 @@ public class Player : MonoBehaviour
         isAttacking = false;
         isInvincible = true;
         canReceiveInput = false;
-        UI.SetEnergyRecoverable(false);
+        UI.SetStaminaRecoverable(false);
         StartCoroutine(Dashing());
     }
     private void DashStartFalling() {
@@ -506,6 +520,51 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         dashReady = true;
+        yield break;
+    }
+
+    /// TELEPORT CODE //////////////////////////////////////////////////////////////////////////
+    /// 
+    private void TeleportStarting() {
+        // called at begining of teleport animation event
+        ResetWalk();
+        isInvincible = true;
+        isAttacking = false;
+        isTeleporting = true;
+        teleportReady = false;
+        canReceiveInput = false;
+        UI.SetStaminaRecoverable(false);
+
+        if (xAxis == 0 && facingLeft)
+            teleportDirection = new Vector2(-1f, 0f);
+        else if (xAxis == 0 && !facingLeft)
+            teleportDirection = new Vector2(1f, 0f);
+        else
+            teleportDirection = new Vector2(xAxis, 0f);
+    }
+
+    private void TeleportEnding() {
+        // called at end of teleport
+        Stunned();
+        isInvincible = false;
+        isTeleporting = false;
+        teleportDirection = Vector2.zero;
+        StartCoroutine(TeleportLanding());
+    }
+
+    IEnumerator TeleportLanding() {
+        yield return new WaitForSeconds(0.1f);
+
+        isStunned = false;
+        if (!isAttacking)
+            canReceiveInput = true;
+        StartCoroutine(ResetTeleport());
+    }
+
+    IEnumerator ResetTeleport() {
+        yield return new WaitForSeconds(teleportCooldown);
+
+        teleportReady = true;
         yield break;
     }
 
@@ -683,7 +742,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackCombo = 0;
         isAttacking = false;
-        if (!isDashing && !isFalling && !isHealing)
+        if (!isDashing && !isFalling && !isHealing && !isTeleporting)
             canReceiveInput = true;
     }
 
@@ -751,6 +810,10 @@ public class Player : MonoBehaviour
             UI.SetCurrentStamina(-superAttackStamina1);
         else if (index == 2)
             UI.SetCurrentStamina(-superAttackStamina2);
+        else if (index == 3)
+            UI.SetCurrentStamina(-blasterLightStamina);
+        else if (index == 4)
+            UI.SetCurrentStamina(-blasterHeavyStamina);
     }
 
     public int GetPlayerWeapon() {
@@ -897,7 +960,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecoveryDelay() {
         yield return new WaitForSeconds(1f);
-        if (!isAttacking && !isDashing && !isFalling)
+        if (!isAttacking && !isDashing && !isFalling && !isTeleporting)
             canReceiveInput = true;
     }
 

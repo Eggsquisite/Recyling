@@ -21,6 +21,7 @@ public static class PlayerAnimStates
     public static string PLAYER_BLASTER_IDLE { get { return "player_blasteridle"; } }
     public static string PLAYER_BLASTER_WALK { get { return "player_blasterwalk"; } }
     public static string PLAYER_BLASTER_RUN { get { return "player_blasterrun"; } }
+    public static string PLAYER_BLASTER_TELEPORT { get { return "player_teleport"; } }
     public static string PLAYER_BLASTER_LIGHT { get { return "player_blasterlight"; } }
     public static string PLAYER_BLASTER_HEAVY { get { return "player_blasterheavy"; } }
 }

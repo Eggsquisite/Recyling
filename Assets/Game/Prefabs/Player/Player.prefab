@@ -179,14 +179,18 @@ MonoBehaviour:
   specialPushbackMultiplier: 10
   attackFollowThruDistance: 0.15
   dashMoveSpeed: 4
-  dashCooldown: 0
+  dashCooldown: 0.1
   dashHeight: 1
+  teleportMoveSpeed: 12
+  teleportCooldown: 0.1
   dashStamina: 150
   runStamina: 8
   runAttackStamina: 125
   basicAttackStamina: 95
   superAttackStamina1: 125
   superAttackStamina2: 200
+  blasterLightStamina: 15
+  blasterHeavyStamina: 50
   energyRegenOnHit: 2
   blasterLightEnergy: 15
   blasterHeavyEnergy: 50

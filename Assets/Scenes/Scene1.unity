@@ -10478,6 +10478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud Summoner
       objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460522, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 931913510982460523, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
       propertyPath: m_Size.y
       value: 0.5
@@ -10640,6 +10644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MudGuard
       objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
 --- !u!1001 &6849997630593945501
@@ -10655,7 +10663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241563, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: m_SortingOrder
-      value: -22
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241564, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: m_RootOrder
@@ -10663,11 +10671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241564, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.34
+      value: 15.85
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241564, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241564, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,49 +1,49 @@
 fileFormatVersion: 2
-guid: adb633e0312bc5b48bdf8bd8b09f79e9
+guid: 27a047b5d3d91184584241c3a5f75f2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6699744644680977019
-    second: Supercharged attack_0
+      213: 2771209076344203233
+    second: Supercharged attack blue_0
   - first:
-      213: 3431564374946338229
-    second: Supercharged attack_1
+      213: -1337977306335245319
+    second: Supercharged attack blue_1
   - first:
-      213: 8547703609627722476
-    second: Supercharged attack_2
+      213: -1154509827499692280
+    second: Supercharged attack blue_2
   - first:
-      213: -5289729075586383365
-    second: Supercharged attack_3
+      213: 5937968071335314315
+    second: Supercharged attack blue_3
   - first:
-      213: -5275447098851720273
-    second: Supercharged attack_4
+      213: -246116194472493897
+    second: Supercharged attack blue_4
   - first:
-      213: -7656268466210368283
-    second: Supercharged attack_5
+      213: 4920132531606649320
+    second: Supercharged attack blue_5
   - first:
-      213: -4859206576775446874
-    second: Supercharged attack_6
+      213: 5946527419150408265
+    second: Supercharged attack blue_6
   - first:
-      213: 3124136560627913205
-    second: Supercharged attack_7
+      213: 3155990078175016600
+    second: Supercharged attack blue_7
   - first:
-      213: 51299395553635032
-    second: Supercharged attack_8
+      213: -1303110565791523480
+    second: Supercharged attack blue_8
   - first:
-      213: 4010701650213423515
-    second: Supercharged attack_9
+      213: -2059871902532429601
+    second: Supercharged attack blue_9
   - first:
-      213: -5000309722457561336
-    second: Supercharged attack_10
+      213: 5914716979814852014
+    second: Supercharged attack blue_10
   - first:
-      213: -6071832439646009680
-    second: Supercharged attack_11
+      213: -5116186297181876955
+    second: Supercharged attack blue_11
   - first:
-      213: 5141099432936839388
-    second: Supercharged attack_12
+      213: -3754762919119393109
+    second: Supercharged attack blue_12
   - first:
-      213: 6042759305570187227
-    second: Supercharged attack_13
+      213: 5050243828678847380
+    second: Supercharged attack blue_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,7 +145,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Supercharged attack_0
+      name: Supercharged attack blue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585f6ff0eb9b503a0800000000000000
-      internalID: -6699744644680977019
+      spriteID: 1e7a5d1f8ff457620800000000000000
+      internalID: 2771209076344203233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_1
+      name: Supercharged attack blue_1
       rect:
         serializedVersion: 2
         x: 0
@@ -180,14 +180,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5df882e9d5f9f20800000000000000
-      internalID: 3431564374946338229
+      spriteID: 9fb8a529abc8e6de0800000000000000
+      internalID: -1337977306335245319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_2
+      name: Supercharged attack blue_2
       rect:
         serializedVersion: 2
         x: 0
@@ -201,14 +201,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce24f21352b8f9670800000000000000
-      internalID: 8547703609627722476
+      spriteID: 80fee22cd6b5affe0800000000000000
+      internalID: -1154509827499692280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_3
+      name: Supercharged attack blue_3
       rect:
         serializedVersion: 2
         x: 0
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf14e939e6b1796b0800000000000000
-      internalID: -5289729075586383365
+      spriteID: b838d8b0086e76250800000000000000
+      internalID: 5937968071335314315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_4
+      name: Supercharged attack blue_4
       rect:
         serializedVersion: 2
         x: 0
@@ -243,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa3049960d8d9c6b0800000000000000
-      internalID: -5275447098851720273
+      spriteID: 7bcfef600ae959cf0800000000000000
+      internalID: -246116194472493897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_5
+      name: Supercharged attack blue_5
       rect:
         serializedVersion: 2
         x: 0
@@ -264,14 +264,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e4918605687fb590800000000000000
-      internalID: -7656268466210368283
+      spriteID: 8e9f1423872d74440800000000000000
+      internalID: 4920132531606649320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_6
+      name: Supercharged attack blue_6
       rect:
         serializedVersion: 2
         x: 0
@@ -285,14 +285,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6aebe051d51a09cb0800000000000000
-      internalID: -4859206576775446874
+      spriteID: 94a94918e2f468250800000000000000
+      internalID: 5946527419150408265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_7
+      name: Supercharged attack blue_7
       rect:
         serializedVersion: 2
         x: 0
@@ -306,14 +306,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f1990646a92b5b20800000000000000
-      internalID: 3124136560627913205
+      spriteID: 896774441445ccb20800000000000000
+      internalID: 3155990078175016600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_8
+      name: Supercharged attack blue_8
       rect:
         serializedVersion: 2
         x: 0
@@ -327,14 +327,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8daaa29478046b000800000000000000
-      internalID: 51299395553635032
+      spriteID: 86d10f638db6aede0800000000000000
+      internalID: -1303110565791523480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_9
+      name: Supercharged attack blue_9
       rect:
         serializedVersion: 2
         x: 0
@@ -342,20 +342,20 @@ TextureImporter:
         width: 128
         height: 64
       alignment: 9
-      pivot: {x: 0.345, y: 0.25}
+      pivot: {x: 0.35, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b994b09b6efd8a730800000000000000
-      internalID: 4010701650213423515
+      spriteID: fd81fb61b6dd963e0800000000000000
+      internalID: -2059871902532429601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_10
+      name: Supercharged attack blue_10
       rect:
         serializedVersion: 2
         x: 0
@@ -369,14 +369,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8072cf9dcc45b9ab0800000000000000
-      internalID: -5000309722457561336
+      spriteID: ea5e5d071cb451250800000000000000
+      internalID: 5914716979814852014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_11
+      name: Supercharged attack blue_11
       rect:
         serializedVersion: 2
         x: 0
@@ -390,14 +390,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b6c43be0948cbba0800000000000000
-      internalID: -6071832439646009680
+      spriteID: 52dc0cf5ba7aff8b0800000000000000
+      internalID: -5116186297181876955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_12
+      name: Supercharged attack blue_12
       rect:
         serializedVersion: 2
         x: 0
@@ -411,14 +411,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd8992f02bad85740800000000000000
-      internalID: 5141099432936839388
+      spriteID: bae6416c40764ebc0800000000000000
+      internalID: -3754762919119393109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Supercharged attack_13
+      name: Supercharged attack blue_13
       rect:
         serializedVersion: 2
         x: 0
@@ -432,8 +432,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd772bf82913cd350800000000000000
-      internalID: 6042759305570187227
+      spriteID: 49be28d3102161640800000000000000
+      internalID: 5050243828678847380
       vertices: []
       indices: 
       edges: []

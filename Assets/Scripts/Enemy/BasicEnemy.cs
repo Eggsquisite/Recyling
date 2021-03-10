@@ -60,6 +60,7 @@ public class BasicEnemy : MonoBehaviour
     private int damageThreshold;
     private int currentDamageTaken;
 
+    private float baseTetherRange;
     private float currentDamageThresholdPercent;
 
     [Header("Attack Collider Properties")]
@@ -153,6 +154,7 @@ public class BasicEnemy : MonoBehaviour
             projectile.SetDamage(attackDamages[0]);
 
         outOfTetherRange = true;
+        baseTetherRange = tetherUnfollowRange;
         //enemyMovement.BeginPatrol();
         currentDamageThresholdPercent = baseDamageThresholdPercent;
         damageThreshold = Mathf.RoundToInt(currentDamageThresholdPercent * maxHealth);
@@ -284,6 +286,11 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.IsMoving();
         //enemyMovement.BeginPatrol();
 
+/*        // If enemy unfollow range is shorter than follow range, update unfollow range to the 
+        // follow range - this allows for teleporting enemies to reteleport if enemy gets too far
+        if (tetherUnfollowRange < tetherFollowRange)
+            tetherUnfollowRange = tetherFollowRange;*/
+
         if (!enemyMovement.GetCanTeleport())
             enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
         else 
@@ -295,13 +302,8 @@ public class BasicEnemy : MonoBehaviour
             }
     }
     
-    private void FollowPlayer() {
-        if (!isStunned && !isAttacking)
-            enemyMovement.FollowPlayer(attackReady);
-    }
-
     private void CheckPlayerDistance() {
-        if (outOfTetherRange)
+        if (outOfTetherRange) 
             enemyMovement.FindPlayer();
         playerDistance = enemyMovement.GetPlayerDistance();
 
@@ -326,6 +328,10 @@ public class BasicEnemy : MonoBehaviour
             inRange = true;
         else if (playerDetected.collider == null && inRange) 
             inRange = false;
+    }
+    private void FollowPlayer() {
+        if (!isStunned && !isAttacking)
+            enemyMovement.FollowPlayer(attackReady);
     }
 
     ////////////////// Attack Code ////////////////////////////////////////////////////////////

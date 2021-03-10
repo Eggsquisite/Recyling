@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -9
+  m_SortingOrder: 4
   m_Sprite: {fileID: -8066589419829931963, guid: 0eed3d627fdd679419d4858060e8af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,8 +127,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.05}
-  m_Size: {x: 0.7, y: 0.4}
+  m_Offset: {x: -0.009470312, y: 0.050000012}
+  m_Size: {x: 1.0598944, y: 0.4000014}
   m_Direction: 1
 --- !u!95 &2611664197077241565
 Animator:
@@ -211,7 +211,7 @@ MonoBehaviour:
   detectPos: {fileID: 1807245500992063337}
   detectInRange: 3
   detectIsRay: 0
-  repeatFollowDelay: 0.5
+  repeatFollowDelay: 0.75
   attackFollowDelay: 0.25
   stunFollowDelay: 0.5
   borderLayer:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 6
-  tetherUnfollowRange: 10
+  tetherUnfollowRange: 8
   maxHealth: 120
   maxStamina: 120
   staminaRecoveryValue: 18
