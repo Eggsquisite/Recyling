@@ -127,8 +127,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 0.4, y: 0.225}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 0.5}
   m_Direction: 1
 --- !u!95 &8177908645518972485
 Animator:
@@ -223,6 +223,9 @@ MonoBehaviour:
   minOffset: 0.5
   maxOffset: 0.75
   offsetAttackStandbyRange: {x: 1, y: 0.25}
+  canPatrol: 0
+  offsetPatrolDestination: {x: 0, y: 0}
+  waitTime: 0
   canTeleport: 0
   minTeleportDuration: 0
   maxTeleportDuration: 0
@@ -240,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyOnHit: 1
+  energyGainMultiplier: 0.25
   baseDamageThresholdPercent: 0
   tetherFollowRange: 8
   tetherUnfollowRange: 12

@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyGainMultiplier: 1
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 8
   tetherUnfollowRange: 12
@@ -407,6 +408,7 @@ MonoBehaviour:
   - {fileID: 931913511192833155}
   - {fileID: 5035499315443118164}
   prefab: {fileID: 8177908645518972492, guid: b6d88a11cff3a3f4a8a19e2bf3eab8a0, type: 3}
+  adjustedVelocity: 0
 --- !u!1 &931913511192833154
 GameObject:
   m_ObjectHideFlags: 0

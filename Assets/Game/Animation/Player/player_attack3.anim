@@ -21,13 +21,13 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 3674032254321150668, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
-    - time: 0.083333336
+    - time: 0.16666667
       value: {fileID: 376876645821646040, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.25
       value: {fileID: -8086188184859414419, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
-    - time: 0.41666666
+    - time: 0.33333334
       value: {fileID: -2399815189577070854, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
-    - time: 0.5
+    - time: 0.41666666
       value: {fileID: 1266179183656452009, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.8333333
       value: {fileID: 1266179183656452009, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
@@ -81,35 +81,35 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.06666667
+  - time: 0.15
     functionName: PlayBasicAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.06666667
+  - time: 0.15
     functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
+  - time: 0.16666667
     functionName: AttackHitboxActivated
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1.2
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.18333334
     functionName: AttackFollowThrough
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 2
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.41666666
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}

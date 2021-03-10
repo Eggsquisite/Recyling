@@ -28,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
+    private float energyGainMultiplier;
+    [SerializeField]
     private float baseDamageThresholdPercent;
     [SerializeField]
     private float tetherFollowRange;
@@ -823,6 +825,10 @@ public class BasicEnemy : MonoBehaviour
                 StopCoroutine(invincibleRoutine);
             invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.05f));
         }
+    }
+
+    public float GetEnergyGainMultiplier() {
+        return energyGainMultiplier;
     }
 
     /// <summary>

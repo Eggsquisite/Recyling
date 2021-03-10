@@ -701,8 +701,9 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(swordDamage, pushbackDistance);
-                StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit));
+                var tmp = enemy.GetComponent<BasicEnemy>();
+                tmp.EnemyHurt(swordDamage, pushbackDistance);
+                StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit, tmp.GetEnergyGainMultiplier()));
             }
         }
     }
