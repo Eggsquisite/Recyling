@@ -20,25 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1587515736416496649, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 4966379858391957411, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.083333336
-      value: {fileID: -3210583064462729392, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 8911759986453612837, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.16666667
-      value: {fileID: 6662087177581645557, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 5761458163237546788, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.25
-      value: {fileID: 1163870876834651740, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - time: 0.33333334
-      value: {fileID: -3871252850633740283, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 3255404129963994888, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.41666666
-      value: {fileID: 315571798233922497, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: -4786767607533511712, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.5
-      value: {fileID: 8559241172033251702, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 8972338205680739460, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.5833333
-      value: {fileID: 4032918674474564576, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 3991396677116783961, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.6666667
-      value: {fileID: 8559241172033251702, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - time: 0.75
-      value: {fileID: 4032918674474564576, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+      value: {fileID: 8972338205680739460, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - time: 0.8333333
+      value: {fileID: 3991396677116783961, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     attribute: m_Sprite
     path: PlayerSprite
     classID: 212
@@ -58,22 +56,21 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1587515736416496649, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: -3210583064462729392, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 6662087177581645557, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 1163870876834651740, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: -3871252850633740283, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 315571798233922497, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 8559241172033251702, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 4032918674474564576, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 8559241172033251702, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
-    - {fileID: 4032918674474564576, guid: 6e4100c201f49b641874066bcecdbae5, type: 3}
+    - {fileID: 4966379858391957411, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 8911759986453612837, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 5761458163237546788, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 3255404129963994888, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: -4786767607533511712, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 8972338205680739460, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 3991396677116783961, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 8972338205680739460, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
+    - {fileID: 3991396677116783961, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.76666665
+    m_StopTime: 0.84999996
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -121,7 +118,7 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
+  - time: 0.5
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}
