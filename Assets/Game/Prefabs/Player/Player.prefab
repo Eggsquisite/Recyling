@@ -216,7 +216,7 @@ MonoBehaviour:
   energyRecoveryValue: 0
   energyRecoveryDelay: 0
   staminaRecoveryValue: 10
-  staminaRecoveryDelay: 0.5
+  staminaRecoveryDelay: 0.66
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.33
-  decaySpeed: 400
+  decaySpeed: 600
   recoverySpeed: 0.03
   UI: {fileID: 0}
 --- !u!114 &1949231004

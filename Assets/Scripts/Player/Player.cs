@@ -846,6 +846,7 @@ public class Player : MonoBehaviour
 
         Stunned();
         StopRecoverInput();
+        StopAttackFollowThrough();
 
         isHurt = true;
         isInvincible = true;
