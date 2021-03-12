@@ -333,7 +333,6 @@ MonoBehaviour:
     m_Bits: 512
   minMoveSpeed: 1.25
   maxMoveSpeed: 1.5
-  idleSpeedMult: 0.75
   minOffset: 2
   maxOffset: 3
   offsetAttackStandbyRange: {x: 2, y: 0.5}
@@ -372,6 +371,7 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 3586005031621766619}
   visualizeRange: 1.3
+  pushBackSpeed: 3
   attackPoints:
   - {fileID: 931913511192833155}
   attackRanges:
