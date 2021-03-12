@@ -172,7 +172,7 @@ MonoBehaviour:
     m_Bits: 128
   swordDamage: 15
   specialAttackDmg: 60
-  blasterLightDmg: 7
+  blasterLightDmg: 5
   blasterHeavyDmg: 21
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.5
@@ -189,7 +189,7 @@ MonoBehaviour:
   basicAttackStamina: 95
   superAttackStamina1: 125
   superAttackStamina2: 200
-  blasterLightStamina: 15
+  blasterLightStamina: 10
   blasterHeavyStamina: 50
   energyRegenOnHit: 2
   blasterLightEnergy: 20
@@ -216,7 +216,7 @@ MonoBehaviour:
   energyRecoveryValue: 0
   energyRecoveryDelay: 0
   staminaRecoveryValue: 10
-  staminaRecoveryDelay: 0.66
+  staminaRecoveryDelay: 0.75
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -781,7 +781,7 @@ public class BasicEnemy : MonoBehaviour
     /// <summary>
     /// Called when player hits enemy
     /// </summary>
-    public void EnemyHurt(int damageNum, float distance) {
+    public void EnemyHurt(int damageNum, float distance, int soundIndex) {
         if (isDead || isInvincible)
             return;
 
@@ -793,7 +793,7 @@ public class BasicEnemy : MonoBehaviour
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
-        playSound.PlayEnemyHit();
+        playSound.PlayEnemyHit(soundIndex);
 
         if (currentHealth <= 0)
             StartCoroutine(Death());

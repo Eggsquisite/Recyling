@@ -223,6 +223,7 @@ MonoBehaviour:
   basicAttack3: []
   enemyHit:
   - {fileID: 8300000, guid: 72f5556a80303b046aaff22478607603, type: 3}
+  - {fileID: 8300000, guid: 223421becde18344a9e9b166f4bea3fe, type: 3}
 --- !u!114 &6814819942192525308
 MonoBehaviour:
   m_ObjectHideFlags: 0

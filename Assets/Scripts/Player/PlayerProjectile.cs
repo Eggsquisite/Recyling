@@ -34,7 +34,7 @@ public class PlayerProjectile : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Enemy" && !collision.GetComponent<BasicEnemy>().GetIsInvincible()) {
-            collision.GetComponent<BasicEnemy>().EnemyHurt(damage, 0.1f);
+            collision.GetComponent<BasicEnemy>().EnemyHurt(damage, 0.1f, 1);
             coll.enabled = false;
             Destroy(gameObject);
         }

@@ -10749,6 +10749,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1705846100269140049, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: enemyHit.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705846100269140049, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: basicAttack1.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705846100269140049, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: basicAttack1.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_RootOrder
       value: 3

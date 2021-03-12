@@ -703,7 +703,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
                 var tmp = enemy.GetComponent<BasicEnemy>();
-                tmp.EnemyHurt(swordDamage, pushbackDistance);
+                tmp.EnemyHurt(swordDamage, pushbackDistance, 0);
                 StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit, tmp.GetEnergyGainMultiplier()));
             }
         }
@@ -719,7 +719,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) { 
-                enemy.GetComponent<BasicEnemy>().EnemyHurt(specialAttackDmg, pushbackDistance * specialPushbackMultiplier);
+                enemy.GetComponent<BasicEnemy>().EnemyHurt(specialAttackDmg, pushbackDistance * specialPushbackMultiplier, 0);
             }
         }
     }
@@ -974,7 +974,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator HealthRecoveryDelay() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         if (!isAttacking && !isDashing && !isFalling && !isTeleporting)
             canReceiveInput = true;
     }

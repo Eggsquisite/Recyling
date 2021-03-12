@@ -48,9 +48,11 @@ public class EnemySounds : MonoBehaviour
             audSource.PlayOneShot(tmp);
     }
 
-    public void PlayEnemyHit() {
-        var tmp = enemyHit[Random.Range(0, enemyHit.Capacity)];
-        if (tmp != null)
-            audSource.PlayOneShot(tmp);
+    public void PlayEnemyHit(int index) {
+        if (audSource != null) { 
+            // if (index == 0)  Hit by player melee attack
+            // if (index == 1) hit by player blaster attack
+            audSource.PlayOneShot(enemyHit[index]);
+        }
     }
 }
