@@ -31,8 +31,8 @@ public class EnemyMovement : MonoBehaviour
     private float minMoveSpeed;
     [SerializeField] 
     private float maxMoveSpeed;
-    [SerializeField]
-    private float idleSpeedMult;
+
+    private float idleSpeedMult = 1f;
 
     [SerializeField] 
     private float minOffset;

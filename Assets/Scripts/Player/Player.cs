@@ -96,9 +96,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float pushbackDistance;
     [SerializeField]
-    private float specialPushbackMultiplier;
+    private float attackFollowDistance;
     [SerializeField]
-    private float attackFollowThruDistance;
+    private float attackFollowSpeed;
 
     private float attackDelay;
     private float runDashMaxTime;
@@ -109,9 +109,10 @@ public class Player : MonoBehaviour
     private bool isRunAttackPressed;
     private bool isSuperAttackPressed;
     private bool canReceiveInput = true;
+    private float specialPushbackMultiplier = 10f;
     private Vector2 runDirection;
 
-    private Coroutine resetStunRoutine, resetAttackRoutine;
+    private Coroutine resetStunRoutine, resetAttackRoutine, attackFollowRoutine;
 
     [Header("Dash Properties")]
     //[SerializeField]
@@ -726,17 +727,29 @@ public class Player : MonoBehaviour
     private void AttackFollowThrough(float multiplier) {
         // called thru animation event
         Vector2 newPosition;
-        if (facingLeft) {
-            newPosition = new Vector2(transform.position.x - (attackFollowThruDistance * multiplier),
-                                        transform.position.y);
-            rb.position = newPosition;
-            //transform.position = newPosition;
-        } else {
-            newPosition = new Vector2(transform.position.x + (attackFollowThruDistance * multiplier), 
-                                        transform.position.y);
-            rb.MovePosition(newPosition);
-            //transform.position = newPosition;
+        newPosition = new Vector2(attackFollowDistance * multiplier, 0f);
+
+        if (attackFollowRoutine != null)
+            StopCoroutine(attackFollowRoutine);
+        attackFollowRoutine = StartCoroutine(AttackFollowMovement(newPosition));
+    }
+
+    IEnumerator AttackFollowMovement(Vector2 position) { 
+        while (true != false)
+        {
+            if (facingLeft)
+                rb.MovePosition(rb.position - position * attackFollowSpeed * Time.fixedDeltaTime);
+            else
+                rb.MovePosition(rb.position + position * attackFollowSpeed * Time.fixedDeltaTime);
+
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
+    }
+
+    private void StopAttackFollowThrough() {
+        // called thru animation event
+        if (attackFollowRoutine != null)
+            StopCoroutine(attackFollowRoutine);
     }
 
     IEnumerator ResetAttack(float delay) {

@@ -176,8 +176,8 @@ MonoBehaviour:
   blasterHeavyDmg: 21
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.1
-  specialPushbackMultiplier: 10
-  attackFollowThruDistance: 0.15
+  attackFollowDistance: 0.5
+  attackFollowSpeed: 5
   dashMoveSpeed: 4
   dashCooldown: 0.1
   dashHeight: 1
@@ -383,7 +383,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6552011547362319671
