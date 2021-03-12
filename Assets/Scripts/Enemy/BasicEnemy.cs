@@ -77,6 +77,8 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
+    private float pushBackSpeed;
+    [SerializeField]
     private List<Transform> attackPoints;
     [SerializeField]
     private List<float> attackRanges;
@@ -120,6 +122,7 @@ public class BasicEnemy : MonoBehaviour
     private int abovePlayer;
 
     private bool inRange;
+    private bool isPushed;
     private bool isStunned;
     private bool isPicking;
     private bool isAttacking;
@@ -139,6 +142,7 @@ public class BasicEnemy : MonoBehaviour
 
     private Coroutine attackAnimationRoutine, staminaRecoveryRoutine, attackFollowRoutine, teleportRoutine;
     private Coroutine invincibleRoutine, stunRoutine, resetAttackRoutine, resetHurtSpriteRoutine;
+    private Coroutine pushBackDurationRoutine, pushBackMovementRoutine;
 
     // Start is called before the first frame update
     void Awake() {
@@ -332,7 +336,7 @@ public class BasicEnemy : MonoBehaviour
             inRange = false;
     }
     private void FollowPlayer() {
-        if (!isStunned && !isAttacking)
+        if (!isStunned && !isAttacking && !isPushed)
             enemyMovement.FollowPlayer(attackReady);
     }
 
@@ -448,6 +452,7 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator AttackAnimation()
     {
         float tmpLength;
+        isPushed = false;
         isPicking = false;
         isAttacking = true;
         attackReady = false;
@@ -784,7 +789,7 @@ public class BasicEnemy : MonoBehaviour
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
         currentHealth -= damageNum;
-        PushBack(distance, enemyMovement.GetPlayerPosition());
+        PushBack(distance);
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
@@ -825,10 +830,6 @@ public class BasicEnemy : MonoBehaviour
                 StopCoroutine(invincibleRoutine);
             invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.05f));
         }
-    }
-
-    public float GetEnergyGainMultiplier() {
-        return energyGainMultiplier;
     }
 
     /// <summary>
@@ -873,7 +874,7 @@ public class BasicEnemy : MonoBehaviour
 
         if (resetHurtSpriteRoutine != null)
             StopCoroutine(resetHurtSpriteRoutine);
-        resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(0.07f));
+        resetHurtSpriteRoutine = StartCoroutine(ResetHurtSprite(stunDuration));
     }
 
     /// <summary>
@@ -888,16 +889,48 @@ public class BasicEnemy : MonoBehaviour
     /// <summary>
     /// Pushes back enemy a set distance when hurt. Will change to rb.MovePosition 
     /// </summary>
-    private void PushBack(float distance, Vector2 reference) {
+    private void PushBack(float distance) {
+        isPushed = true;
         Vector2 newPosition;
-        if (reference.x > rb.position.x) {
-            newPosition = new Vector2(-distance, 0f) + rb.position;
-            rb.position = newPosition;
+        if (enemyMovement.GetPlayerPosition().x > rb.position.x) {
+            newPosition = new Vector2(-distance, 0f);
+
+            if (pushBackDurationRoutine != null)
+                StopCoroutine(pushBackDurationRoutine);
+            pushBackDurationRoutine = StartCoroutine(PushBackDuration(newPosition, stunDuration));
         }
-        else if (reference.x <= transform.position.x) {
-            newPosition = new Vector2(distance, 0f) + rb.position;
-            rb.position = newPosition;
+        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x) {
+            newPosition = new Vector2(distance, 0f);
+
+            if (pushBackDurationRoutine != null)
+                StopCoroutine(pushBackDurationRoutine);
+            pushBackDurationRoutine = StartCoroutine(PushBackDuration(newPosition, stunDuration));
         }
+    }
+
+    IEnumerator PushBackDuration(Vector2 position, float duration) {
+        if (pushBackMovementRoutine != null)
+            StopCoroutine(pushBackMovementRoutine);
+        pushBackMovementRoutine = StartCoroutine(PushBackMovement(position));
+
+        yield return new WaitForSeconds(duration);
+
+        isPushed = false;
+        if (pushBackMovementRoutine != null)
+            StopCoroutine(pushBackMovementRoutine);
+        yield break;
+    }
+
+    IEnumerator PushBackMovement(Vector2 position) { 
+        while (true != false)
+        {
+            rb.MovePosition(rb.position + position * pushBackSpeed * Time.fixedDeltaTime);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+        }
+    }
+
+    public float GetEnergyGainMultiplier() {
+        return energyGainMultiplier;
     }
 
     public bool GetIsInvincible() {

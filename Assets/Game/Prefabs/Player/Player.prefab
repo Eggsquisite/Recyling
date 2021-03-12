@@ -175,7 +175,7 @@ MonoBehaviour:
   blasterLightDmg: 7
   blasterHeavyDmg: 21
   attackRangeVisualizer: 4.5
-  pushbackDistance: 0.1
+  pushbackDistance: 0.5
   attackFollowDistance: 0.5
   attackFollowSpeed: 5
   dashMoveSpeed: 4
