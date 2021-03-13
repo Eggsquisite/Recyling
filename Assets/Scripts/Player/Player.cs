@@ -991,6 +991,9 @@ public class Player : MonoBehaviour
     }
 
     public void StopRecoverInput() {
+        if (isHurt)
+            return;
+
         isHealing = false;
         currentWalkSpeed = baseWalkSpeed;
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
