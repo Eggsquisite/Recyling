@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     [Header("Damaged Properties")]
     [SerializeField]
     private float isHurtMaxTime;
+    [SerializeField]
+    private float pushBackSpeed;
 
     private bool isHurt;
     private bool isStunned;
@@ -68,6 +70,8 @@ public class Player : MonoBehaviour
     private float isHurtTimer;
     private float stunDuration;
     private float flashInterval = 0.1f;
+
+    private Coroutine pushBackMovementRoutine, pushBackDurationRoutine;
 
     [Header("Healing Properties")]
     [SerializeField]
@@ -181,10 +185,13 @@ public class Player : MonoBehaviour
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
 
         currentWalkSpeed = baseWalkSpeed;
+        ac = anim.runtimeAnimatorController;
+
+        playerEquipment = PlayerWeapon.Sword;
         projectile.SetDamage(blasterLightDmg);
         projectile.SetSpecialDamage(blasterHeavyDmg);
-        ac = anim.runtimeAnimatorController;
-        playerEquipment = PlayerWeapon.Sword;
+
+        stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
         runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
     }
 
@@ -837,7 +844,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// DAMAGED CODE ////////////////////////////////////////////////////////////////////
     /// </summary>
-    public void PlayerHurt(int damageNum, float pushDistance) {
+    public void PlayerHurt(int damageNum, float pushDistance, Vector2 reference) {
         if (isHurt || isInvincible)
             return;
 
@@ -847,6 +854,7 @@ public class Player : MonoBehaviour
         Stunned();
         StopRecoverInput();
         StopAttackFollowThrough();
+        PushBack(pushbackDistance, reference);
 
         isHurt = true;
         isInvincible = true;
@@ -863,12 +871,55 @@ public class Player : MonoBehaviour
             PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
         }
         else { 
-            stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
 
             if (resetStunRoutine != null)
                 StopCoroutine(resetStunRoutine);
             resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
+        }
+    }
+
+    /// <summary>
+    /// Pushes back player a set distance when hurt
+    /// </summary>
+    private void PushBack(float distance, Vector2 reference) {
+        Vector2 newPosition;
+        if (reference.x > rb.position.x)
+        {
+            newPosition = new Vector2(-distance, 0f);
+
+            if (pushBackDurationRoutine != null)
+                StopCoroutine(pushBackDurationRoutine);
+            pushBackDurationRoutine = StartCoroutine(PushBackDuration(newPosition, 0.1f));
+        }
+        else if (reference.x <= transform.position.x)
+        {
+            newPosition = new Vector2(distance, 0f);
+
+            if (pushBackDurationRoutine != null)
+                StopCoroutine(pushBackDurationRoutine);
+            pushBackDurationRoutine = StartCoroutine(PushBackDuration(newPosition, 0.1f));
+        }
+    }
+
+    IEnumerator PushBackDuration(Vector2 position, float duration)
+    {
+        if (pushBackMovementRoutine != null)
+            StopCoroutine(pushBackMovementRoutine);
+        pushBackMovementRoutine = StartCoroutine(PushBackMovement(position));
+
+        yield return new WaitForSeconds(duration);
+
+        if (pushBackMovementRoutine != null)
+            StopCoroutine(pushBackMovementRoutine);
+        yield break;
+    }
+
+    IEnumerator PushBackMovement(Vector2 position) {
+        while (true != false)
+        {
+            rb.MovePosition(rb.position + position * pushBackSpeed * Time.fixedDeltaTime);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
     }
 
@@ -884,7 +935,7 @@ public class Player : MonoBehaviour
     }
 
     private void ResetInvincible() {
-        if (isDashing || isFalling)
+        if (isDashing || isFalling || LoadArea.isLoading)
             return;
         else
             isInvincible = false;

@@ -38,7 +38,7 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && !collision.GetComponent<Player>().GetInvincible()) {
-            collision.GetComponent<Player>().PlayerHurt(damage, pushDistance);
+            collision.GetComponent<Player>().PlayerHurt(damage, pushDistance, transform.position);
             anim.Play("arrow_dissipate");
             coll.enabled = false;
         }

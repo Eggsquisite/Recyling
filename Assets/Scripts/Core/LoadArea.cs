@@ -9,6 +9,7 @@ public class LoadArea : MonoBehaviour
     private Animator transition;
     private Transform player;
     private Player playerManager;
+    public static bool isLoading;
 
     // Each load area corresponds to ONE specific area that it will change the camera clamp values to
     [Header("Camera Clamp Values")]
@@ -32,6 +33,7 @@ public class LoadArea : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null && collision.tag == "Player") {
+            isLoading = true;
             player = collision.gameObject.transform;
             playerManager = collision.GetComponent<Player>();
             playerManager.SetInvincible(true);
@@ -68,6 +70,7 @@ public class LoadArea : MonoBehaviour
         }
 
         yield return new WaitForSeconds(.5f);
+        isLoading = false;
         cam.ResetBorders();
         playerManager.SetStopMovement(false);
         playerManager.SetInvincible(false);

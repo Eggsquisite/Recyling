@@ -515,7 +515,8 @@ public class BasicEnemy : MonoBehaviour
 
             if (hitBox.collider != null) {
                 hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackPointIndex],
-                                                            attackPushDistances[attackPointIndex]);
+                                                            attackPushDistances[attackPointIndex],
+                                                            rb.position);
             }
 
             yield return null;

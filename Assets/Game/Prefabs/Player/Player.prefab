@@ -165,6 +165,7 @@ MonoBehaviour:
   walkToRunTime: 0.75
   stopBuffer: 0.1
   isHurtMaxTime: 0.33
+  pushBackSpeed: 6
   healAmount: 2
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
@@ -273,7 +274,7 @@ MonoBehaviour:
   instantiatePos:
   - {fileID: 8665927272362373859}
   pushbackDistance:
-  - 0.5
+  - 0.25
   adjustedVelocity: 12
 --- !u!1 &722439448051027863
 GameObject:
