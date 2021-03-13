@@ -852,7 +852,6 @@ public class Player : MonoBehaviour
             ReplayAnimation(PlayerAnimStates.PLAYER_DASH);
 
         Stunned();
-        StopRecoverInput();
         StopAttackFollowThrough();
         PushBack(pushbackDistance, reference);
 
@@ -1007,18 +1006,28 @@ public class Player : MonoBehaviour
         if (!isHealing)
             return;
 
-        if (UI.GetCurrentHealth() >= UI.GetHealthMaxValue() || UI.GetCurrentEnergy() <= 0) {
+        if (isHurt || UI.GetCurrentHealth() >= UI.GetHealthMaxValue() || UI.GetCurrentEnergy() <= 0) {
             StopRecoverInput();
         }
     }
 
     IEnumerator HealthRecovery() {
+        var time = 0f;
         currentWalkSpeed = 0.25f;
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
-        while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue())
+        while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
-            UI.SetCurrentHealth(healAmount * 1.25f);
+            Debug.Log(time);
             UI.EnergyWithoutDecay(-healAmount);
+            if (time < 1f)
+                UI.SetCurrentHealth(healAmount * 1f);
+            else if (time >= 1f && time < 2.5f) { 
+                UI.SetCurrentHealth(healAmount * 1.5f);
+            }
+            else if (time >= 2.5f)
+                UI.SetCurrentHealth(healAmount * 2.25f);
+
+            time += 0.03f;
             yield return new WaitForSeconds(0.03f);
         }
         StopRecoverInput();

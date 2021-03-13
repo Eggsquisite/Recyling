@@ -203,6 +203,11 @@ public class PlayerUI : MonoBehaviour
         healthCurrentValue.value += newValue;
     }
 
+    public void Healing(float newValue) {
+        // increase future health, then heal up to that amount if player is not hit
+        healthDestroyedValue.value += newValue;
+    }
+
     public int GetCurrentHealth() {
         return (int)healthCurrentValue.value;
     }
