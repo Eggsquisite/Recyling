@@ -192,7 +192,7 @@ MonoBehaviour:
   superAttackStamina2: 200
   blasterLightStamina: 10
   blasterHeavyStamina: 50
-  energyRegenOnHit: 2
+  energyRegenOnHit: 3
   blasterLightEnergy: 20
   blasterHeavyEnergy: 75
   superAttackEnergy1: 150
