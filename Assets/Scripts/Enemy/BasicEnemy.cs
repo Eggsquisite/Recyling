@@ -887,7 +887,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Pushes back enemy a set distance when hurt. Will change to rb.MovePosition 
+    /// Pushes back enemy a set distance when hurt
     /// </summary>
     private void PushBack(float distance) {
         isPushed = true;
