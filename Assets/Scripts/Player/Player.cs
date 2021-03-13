@@ -863,6 +863,7 @@ public class Player : MonoBehaviour
 
         // take damage
         playSounds.PlayPlayerHit();
+        UI.StopFutureHealthRecovery();
         UI.SetCurrentHealth(-damageNum);
 
         if (UI.GetCurrentHealth() <= 0) {
@@ -975,7 +976,7 @@ public class Player : MonoBehaviour
     /// </summary>
     /// 
     public void RecoverInput() {
-        if (isHealing || isStunned || isDashing || isFalling || isAttacking
+        if (isHealing || isStunned || isDashing || isFalling || isAttacking 
                 || UI.GetCurrentEnergy() <= 0
                 || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()) { 
             return;
@@ -993,6 +994,9 @@ public class Player : MonoBehaviour
         isHealing = false;
         currentWalkSpeed = baseWalkSpeed;
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
+
+        if (!isHurt)
+            UI.BeginFutureHealthRecovery();
 
         if (healRoutine != null)
             StopCoroutine(healRoutine);
@@ -1019,13 +1023,13 @@ public class Player : MonoBehaviour
         {
             Debug.Log(time);
             UI.EnergyWithoutDecay(-healAmount);
-            if (time < 1f)
-                UI.SetCurrentHealth(healAmount * 1f);
-            else if (time >= 1f && time < 2.5f) { 
-                UI.SetCurrentHealth(healAmount * 1.5f);
+            if (time < 0.5f)
+                UI.SetFutureHealth(healAmount * 0.75f);
+            else if (time >= 0.5f && time < 2f) { 
+                UI.SetFutureHealth(healAmount * 1.25f);
             }
-            else if (time >= 2.5f)
-                UI.SetCurrentHealth(healAmount * 2.25f);
+            else if (time >= 2f)
+                UI.SetFutureHealth(healAmount * 2.5f);
 
             time += 0.03f;
             yield return new WaitForSeconds(0.03f);

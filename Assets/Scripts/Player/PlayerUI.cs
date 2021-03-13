@@ -60,6 +60,7 @@ public class PlayerUI : MonoBehaviour
     private float staminaRecoveryDelay;
 
     private bool healthRecoverable, energyRecoverable, staminaRecoverable;
+    private Coroutine futureHealthRecoveryRoutine;
     private Coroutine healthRecoveryRoutine, energyRecoveryRoutine, staminaRecoveryRoutine;
     private Coroutine healthVisualDecayRoutine, energyVisualDecayRoutine, staminaVisualDecayRoutine;
     private Coroutine healthDestroyedTimerRoutine, energyDestroyedTimerRoutine, staminaDestroyedTimerRoutine;
@@ -203,9 +204,28 @@ public class PlayerUI : MonoBehaviour
         healthCurrentValue.value += newValue;
     }
 
-    public void Healing(float newValue) {
+    public void SetFutureHealth(float newValue) {
         // increase future health, then heal up to that amount if player is not hit
         healthDestroyedValue.value += newValue;
+    }
+
+    public void BeginFutureHealthRecovery() {
+        if (futureHealthRecoveryRoutine != null)
+            StopCoroutine(futureHealthRecoveryRoutine);
+        futureHealthRecoveryRoutine = StartCoroutine(FutureHealthRecovery());
+    }
+
+    IEnumerator FutureHealthRecovery() { 
+        while (healthCurrentValue.value < healthDestroyedValue.value && !healthDecaying)
+        {
+            healthCurrentValue.value += 10f;
+            yield return new WaitForSeconds(recoverySpeed);
+        }
+    }
+
+    public void StopFutureHealthRecovery() {
+        if (futureHealthRecoveryRoutine != null)
+            StopCoroutine(futureHealthRecoveryRoutine);
     }
 
     public int GetCurrentHealth() {
