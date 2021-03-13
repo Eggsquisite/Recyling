@@ -8,7 +8,9 @@ public class PlayerProjectile : MonoBehaviour
     private float flyTime;
     [SerializeField]
     private float projectileVelocity;
+
     private int damage;
+    private float pushDistance;
 
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -34,7 +36,7 @@ public class PlayerProjectile : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Enemy" && !collision.GetComponent<BasicEnemy>().GetIsInvincible()) {
-            collision.GetComponent<BasicEnemy>().EnemyHurt(damage, 0.1f, 1);
+            collision.GetComponent<BasicEnemy>().EnemyHurt(damage, pushDistance, 1);
             coll.enabled = false;
             Destroy(gameObject);
         }
@@ -45,8 +47,9 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetDamage(int dmg) {
+    public void SetStats(int dmg, float distance) {
         damage = dmg;
+        pushDistance = distance;
     }
 
     public void SetVelocity(float speed) {

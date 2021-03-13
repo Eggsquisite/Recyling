@@ -195,7 +195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 52
   m_Sprite: {fileID: 8793639957104055765, guid: 61ab0a2d6d7c25a498cb2268abf13996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -242,7 +242,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 1, y: 0.4}
+  m_Size: {x: 1, y: 0.5}
   m_Direction: 1
 --- !u!95 &931913510982460527
 Animator:
@@ -382,6 +382,7 @@ MonoBehaviour:
   - {fileID: 3586005031621766619}
   attackDetectRanges:
   - 5
+  attackPushDistances: []
   attackAnimations:
   - enemy_summon
   attackPriority: 01000000
@@ -405,10 +406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc37adc83d1c8a4b9448b4d5bb98564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 8177908645518972492, guid: b6d88a11cff3a3f4a8a19e2bf3eab8a0, type: 3}
   instantiatePos:
   - {fileID: 931913511192833155}
   - {fileID: 5035499315443118164}
-  prefab: {fileID: 8177908645518972492, guid: b6d88a11cff3a3f4a8a19e2bf3eab8a0, type: 3}
+  pushbackDistance:
+  - 0
+  - 0
   adjustedVelocity: 0
 --- !u!1 &931913511192833154
 GameObject:

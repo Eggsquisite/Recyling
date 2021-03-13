@@ -363,10 +363,12 @@ MonoBehaviour:
     m_Bits: 1536
   minMoveSpeed: 1
   maxMoveSpeed: 1.5
-  idleSpeedMult: 0.75
   minOffset: 4
   maxOffset: 5
   offsetAttackStandbyRange: {x: 2, y: 1}
+  canPatrol: 0
+  offsetPatrolDestination: {x: 0, y: 0}
+  waitTime: 0
   canTeleport: 0
   minTeleportDuration: 0
   maxTeleportDuration: 0
@@ -384,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyGainMultiplier: 0
   baseDamageThresholdPercent: 0
   tetherFollowRange: 6
   tetherUnfollowRange: 8
@@ -392,11 +395,13 @@ MonoBehaviour:
   staminaRecoveryValue: 8
   staminaRecoveryDelay: 2
   staminaRecoverySpeed: 0.5
+  deleteOnDeath: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 1035896702901250802}
   visualizeRange: 3
+  pushBackSpeed: 0
   attackPoints:
   - {fileID: 2099352093369289052}
   - {fileID: 1035896702901250802}
@@ -410,6 +415,7 @@ MonoBehaviour:
   attackDetectRanges:
   - 5
   - 3
+  attackPushDistances: []
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
@@ -438,6 +444,8 @@ MonoBehaviour:
   instantiatePos:
   - {fileID: 2099352093369289052}
   prefab: {fileID: 8795698285439481211, guid: 313663d9e3c101b478b1a73fcdcd8407, type: 3}
+  pushbackDistance: 0.5
+  adjustedVelocity: 0
 --- !u!1 &7454178417590991055
 GameObject:
   m_ObjectHideFlags: 0

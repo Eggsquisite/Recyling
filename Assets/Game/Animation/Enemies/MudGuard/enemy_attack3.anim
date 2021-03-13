@@ -161,7 +161,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
   - time: 0.41666666
     functionName: AttackFollowHorizontalActivated
@@ -210,7 +210,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
   - time: 1.25
     functionName: AttackFollowHorizontalActivated
@@ -259,7 +259,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
   - time: 2
     functionName: AttackFollowHorizontalActivated

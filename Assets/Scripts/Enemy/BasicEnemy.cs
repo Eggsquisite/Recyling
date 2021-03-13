@@ -84,6 +84,8 @@ public class BasicEnemy : MonoBehaviour
     private List<float> attackRanges;
     [SerializeField]
     private List<int> attackDamages;
+    [SerializeField]
+    private List<float> attackPushDistances;
 
     // Must have same amount 
     [SerializeField]
@@ -156,8 +158,10 @@ public class BasicEnemy : MonoBehaviour
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
 
         if (projectile == null) projectile = GetComponent<Projectile>();
-        if (projectile != null)
+        if (projectile != null) { 
             projectile.SetDamage(attackDamages[0]);
+
+        }
 
         outOfTetherRange = true;
         baseTetherRange = tetherUnfollowRange;
@@ -352,8 +356,8 @@ public class BasicEnemy : MonoBehaviour
     {
         //called thru animation event
         // set attackPoint to specific index if using multiple attackPoints for a single index
-        // otherwise keep at 0
-        if (attackPoint != 0)
+        // otherwise keep at -1
+        if (attackPoint != -1)
             attackPointIndex = attackPoint;
 
         enemyMovement.StopFindPlayer();
@@ -510,7 +514,8 @@ public class BasicEnemy : MonoBehaviour
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
             if (hitBox.collider != null) {
-                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackPointIndex]);
+                hitBox.collider.GetComponentInChildren<Player>().PlayerHurt(attackDamages[attackPointIndex],
+                                                            attackPushDistances[attackPointIndex]);
             }
 
             yield return null;

@@ -5,9 +5,11 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
+    private GameObject prefab;
+    [SerializeField]
     private List<Transform> instantiatePos;
     [SerializeField]
-    private GameObject prefab;
+    private List<float> pushbackDistance;
     [SerializeField]
     private float adjustedVelocity;
 
@@ -25,20 +27,23 @@ public class Projectile : MonoBehaviour
     private void ShootProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
-        if (newProjectile.GetComponent<EnemyProjectile>() != null)
-            newProjectile.GetComponent<EnemyProjectile>().SetDamage(damage);
-        else if (newProjectile.GetComponent<PlayerProjectile>() != null)
-            newProjectile.GetComponent<PlayerProjectile>().SetDamage(damage);
+        if (newProjectile.GetComponent<EnemyProjectile>() != null) { 
+            newProjectile.GetComponent<EnemyProjectile>().SetStats(damage, pushbackDistance[index]);
+
+        }
+        else if (newProjectile.GetComponent<PlayerProjectile>() != null) { 
+            newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, pushbackDistance[index]);
+        }
     }
 
     private void ShootSpecialProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
         if (newProjectile.GetComponent<EnemyProjectile>() != null)
-            newProjectile.GetComponent<EnemyProjectile>().SetDamage(damage2);
+            newProjectile.GetComponent<EnemyProjectile>().SetStats(damage2, pushbackDistance[index]);
         else if (newProjectile.GetComponent<PlayerProjectile>() != null) 
         { 
-            newProjectile.GetComponent<PlayerProjectile>().SetDamage(damage2);
+            newProjectile.GetComponent<PlayerProjectile>().SetStats(damage2, pushbackDistance[index]);
             if (adjustedVelocity > 0)
                 newProjectile.GetComponent<PlayerProjectile>().SetVelocity(adjustedVelocity);
         }

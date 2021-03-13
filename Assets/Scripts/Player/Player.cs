@@ -837,7 +837,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// DAMAGED CODE ////////////////////////////////////////////////////////////////////
     /// </summary>
-    public void PlayerHurt(int damageNum) {
+    public void PlayerHurt(int damageNum, float pushDistance) {
         if (isHurt || isInvincible)
             return;
 
