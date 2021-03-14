@@ -231,6 +231,10 @@ public class PlayerUI : MonoBehaviour
     public int GetCurrentHealth() {
         return (int)healthCurrentValue.value;
     }
+    
+    public int GetFutureHealth() {
+        return (int)healthDestroyedValue.value;
+    }
 
     IEnumerator HealthRecovery(float delay) {
         healthRecovering = true;

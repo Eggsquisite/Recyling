@@ -978,7 +978,8 @@ public class Player : MonoBehaviour
     public void RecoverInput() {
         if (isHealing || isStunned || isDashing || isFalling || isAttacking 
                 || UI.GetCurrentEnergy() <= 0
-                || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()) { 
+                || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()
+                || UI.GetFutureHealth() >= UI.GetHealthMaxValue()) { 
             return;
         }
 
@@ -991,7 +992,7 @@ public class Player : MonoBehaviour
     }
 
     public void StopRecoverInput() {
-        if (isHurt)
+        if (isHurt || !isHealing)
             return;
 
         isHealing = false;
@@ -1013,7 +1014,10 @@ public class Player : MonoBehaviour
         if (!isHealing)
             return;
 
-        if (isHurt || UI.GetCurrentHealth() >= UI.GetHealthMaxValue() || UI.GetCurrentEnergy() <= 0) {
+        if (isHurt
+            || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()
+            || UI.GetFutureHealth() >= UI.GetHealthMaxValue()
+            || UI.GetCurrentEnergy() <= 0) {
             StopRecoverInput();
         }
     }

@@ -216,8 +216,8 @@ MonoBehaviour:
   healthRecoveryDelay: 0
   energyRecoveryValue: 0
   energyRecoveryDelay: 0
-  staminaRecoveryValue: 10
-  staminaRecoveryDelay: 0.75
+  staminaRecoveryValue: 12
+  staminaRecoveryDelay: 1
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
