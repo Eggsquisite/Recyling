@@ -1028,12 +1028,14 @@ public class Player : MonoBehaviour
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
-            Debug.Log(time);
+            // increase heal amount the longer recovery is held
             UI.EnergyWithoutDecay(-healAmount);
-            if (time < 0.5f)
-                UI.SetFutureHealth(healAmount * 0.75f);
-            else if (time >= 0.5f && time < 2f) { 
-                UI.SetFutureHealth(healAmount * 1.25f);
+            if (time < 0.25f)
+                UI.SetFutureHealth(healAmount * 0.5f);
+            else if (time >= 0.25f && time < 1f)
+                UI.SetFutureHealth(healAmount * 1f);
+            else if (time >= 1f && time < 2f) { 
+                UI.SetFutureHealth(healAmount * 1.5f);
             }
             else if (time >= 2f)
                 UI.SetFutureHealth(healAmount * 2.5f);
