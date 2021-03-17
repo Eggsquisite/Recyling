@@ -165,9 +165,9 @@ public class PlayerUI : MonoBehaviour
         } else if (index == 2 && !energyRecovering) {
             energyDecaying = false;
 
-            if (energyRecoveryRoutine != null)
+/*            if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(energyRecoveryDelay));
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(energyRecoveryDelay));*/
         } else if (index == 3 && !staminaRecovering) {
             staminaDecaying = false;
 
@@ -296,21 +296,21 @@ public class PlayerUI : MonoBehaviour
         energyCurrentValue.value += newValue;
     }
 
-    public IEnumerator EnergyRegenOnHit(float recoveryValue, float multiplier) {
-        energyRecoveryValue += recoveryValue * multiplier;
+    public IEnumerator EnergyRegenOnHit(float multiplier) {
+        energyRecoveryValue += energyRecoveryValue * multiplier;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
         energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
 
         yield return new WaitForSeconds(0.5f);
-        energyRecoveryValue -= recoveryValue * multiplier;
-        if (energyRecoveryValue < 0)
+        energyRecoveryValue -= energyRecoveryValue * multiplier;
+        if (energyRecoveryValue < 0) 
             energyRecoveryValue = 0;
 
-/*        if (energyRecoveryValue <= 0) {
+        if (energyRecoveryValue <= 0) {
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-        }*/
+        }
     }
 
     public void EnergyWithoutDecay(float newValue) {
@@ -324,9 +324,9 @@ public class PlayerUI : MonoBehaviour
                 energyDestroyedValue.value = 0;
             }
 
-            if (energyRecoveryRoutine != null)
+/*            if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
-            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
+            energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));*/
         }
     }
 

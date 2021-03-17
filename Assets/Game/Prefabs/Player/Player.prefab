@@ -192,7 +192,6 @@ MonoBehaviour:
   superAttackStamina2: 200
   blasterLightStamina: 10
   blasterHeavyStamina: 50
-  energyRegenOnHit: 3
   blasterLightEnergy: 20
   blasterHeavyEnergy: 75
   superAttackEnergy1: 150
@@ -214,7 +213,7 @@ MonoBehaviour:
   maxStamina: 750
   healthRecoveryValue: 0
   healthRecoveryDelay: 0
-  energyRecoveryValue: 0
+  energyRecoveryValue: 1
   energyRecoveryDelay: 0
   staminaRecoveryValue: 12
   staminaRecoveryDelay: 1

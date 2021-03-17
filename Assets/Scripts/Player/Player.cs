@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
-    private PlayerSounds playSounds;
     private PlayerUI UI;
+    private PlayerStats playerStats;
+    private PlayerSounds playSounds;
+
     private bool isDead;
     private PlayerWeapon playerEquipment;
 
@@ -164,8 +166,6 @@ public class Player : MonoBehaviour
 
     [Header("Energy Properties")]
     [SerializeField]
-    private float energyRegenOnHit;
-    [SerializeField]
     private int blasterLightEnergy;
     [SerializeField]
     private int blasterHeavyEnergy;
@@ -183,6 +183,7 @@ public class Player : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
+        if (playerStats == null) playerStats = GetComponent<PlayerStats>();
 
         currentWalkSpeed = baseWalkSpeed;
         ac = anim.runtimeAnimatorController;
@@ -711,7 +712,7 @@ public class Player : MonoBehaviour
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
                 var tmp = enemy.GetComponent<BasicEnemy>();
                 tmp.EnemyHurt(swordDamage, pushbackDistance, 0);
-                StartCoroutine(UI.EnergyRegenOnHit(energyRegenOnHit, tmp.GetEnergyGainMultiplier()));
+                StartCoroutine(UI.EnergyRegenOnHit(tmp.GetEnergyGainMultiplier()));
             }
         }
     }
