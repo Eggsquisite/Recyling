@@ -32,11 +32,11 @@ public class PlayerStats : MonoBehaviour
     private int strength;   // attack damage
     private int stamina;    // stamina max value and regen
     private int special;    // energy max value and special damage
-    private int levelMax;
+    private int levelCap;
 
     private void Awake()
     {
-        levelMax = 20;
+        levelCap = 20;
         if (UI == null) UI = GetComponent<PlayerUI>();
         upgrades = new Dictionary<string, int>();
         upgrades.Add("vitality", 1);
@@ -70,7 +70,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void IncreaseStat(int index) {
-        if (index == 0 && upgrades["vitality"] < levelMax)
+        if (index == 0 && upgrades["vitality"] < levelCap)
             upgrades["vitality"] = upgrades["vitality"] + 1;
         else if (index == 1)
             efficiency += 1;
