@@ -27,16 +27,28 @@ public class PlayerStats : MonoBehaviour
     private float staminaRecoveryDelay;
 
     [Header("Player Stat Levels")]
-    private int vitality;   // health max value
+    private Dictionary<string, int> upgrades;   // health max value
     private int efficiency; // health recovery and energy regen
     private int strength;   // attack damage
     private int stamina;    // stamina max value and regen
     private int special;    // energy max value and special damage
+    private int levelMax;
+
+    private void Awake()
+    {
+        levelMax = 20;
+        if (UI == null) UI = GetComponent<PlayerUI>();
+        upgrades = new Dictionary<string, int>();
+        upgrades.Add("vitality", 1);
+        upgrades.Add("efficiency", 1);
+        upgrades.Add("strength", 1);
+        upgrades.Add("stamina", 1);
+        upgrades.Add("special", 1);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (UI == null) UI = GetComponent<PlayerUI>();
 
         UI.SetMaxHealth(maxHealth);
         UI.SetMaxEnergy(maxEnergy);
@@ -58,8 +70,8 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void IncreaseStat(int index) {
-        if (index == 0)
-            vitality += 1;
+        if (index == 0 && upgrades["vitality"] < levelMax)
+            upgrades["vitality"] = upgrades["vitality"] + 1;
         else if (index == 1)
             efficiency += 1;
         else if (index == 2)
@@ -69,6 +81,7 @@ public class PlayerStats : MonoBehaviour
         else if (index == 4)
             special += 1;
 
+        Debug.Log(upgrades["vitality"]);
         UpdateMaxValues(index);
     }
 
@@ -79,7 +92,7 @@ public class PlayerStats : MonoBehaviour
         }
         if (index == 0) 
         {
-            int tmp = maxHealth + vitality * 50;
+            int tmp = maxHealth + upgrades["vitality"] * 50;
             UI.SetMaxHealth(tmp);
             UI.SetCurrentHealth(tmp);
         }

@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
 
     private Collider2D interactable;
     private Player player;
+    private PlayerStats playerStats;
     private float xAxis;
     private float yAxis;
     private bool isInteracting;
@@ -16,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         if (player == null) player = GetComponent<Player>();
+        if (playerStats == null) playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -63,6 +65,9 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftControl))
             player.StopRecoverInput();
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+            playerStats.IncreaseStat(0);
 
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
