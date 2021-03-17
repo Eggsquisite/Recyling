@@ -40,6 +40,8 @@ public class PlayerUI : MonoBehaviour
     private bool energyLost;
     private bool energyDecaying;
     private bool energyRecovering;
+
+    private float energyRegenInUse;
     private float energyRecoveryValue;
     private float energyRecoveryDelay;
     private float baseEnergyRecoveryValue;
@@ -297,17 +299,20 @@ public class PlayerUI : MonoBehaviour
     }
 
     public IEnumerator EnergyRegenOnHit(float multiplier) {
-        energyRecoveryValue += energyRecoveryValue * multiplier;
+        var tmp = energyRecoveryValue;
+        energyRegenInUse += energyRecoveryValue;
+        energyRecoveryValue = energyRecoveryValue * multiplier;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
         energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
 
         yield return new WaitForSeconds(0.5f);
-        energyRecoveryValue -= energyRecoveryValue * multiplier;
-        if (energyRecoveryValue < 0) 
-            energyRecoveryValue = 0;
+        energyRecoveryValue = tmp;
+        energyRegenInUse -= energyRecoveryValue;
+        if (energyRegenInUse < 0) 
+            energyRegenInUse = 0;
 
-        if (energyRecoveryValue <= 0) {
+        if (energyRegenInUse <= 0) {
             if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
         }
