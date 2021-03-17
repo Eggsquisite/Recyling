@@ -10713,14 +10713,6 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 1200
       objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157712, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: attackFollowFacePlayer.Array.data[3]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157712, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: attackFollowFacePlayer.Array.data[4]
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_RootOrder
       value: 3

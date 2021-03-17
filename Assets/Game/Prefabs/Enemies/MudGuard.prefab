@@ -401,7 +401,7 @@ MonoBehaviour:
   - enemy_attack4
   - enemy_attack5
   attackPriority: 0100000001000000010000000100000001000000
-  attackFollowFacePlayer: 0000000000
+  attackFollowFacePlayer: 0000000101
   attackFollowDistances:
   - 0
   - 0
