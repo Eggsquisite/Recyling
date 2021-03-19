@@ -995,6 +995,7 @@ public class Player : MonoBehaviour
 
         isHealing = false;
         currentWalkSpeed = baseWalkSpeed;
+        anim.SetFloat("speedMultiplier", 1f);
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
 
         if (!isHurt)
@@ -1023,7 +1024,8 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         var time = 0f;
-        currentWalkSpeed = 0.15f;
+        currentWalkSpeed = 0.05f;
+        anim.SetFloat("speedMultiplier", 0.5f);
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {

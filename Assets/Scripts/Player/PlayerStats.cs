@@ -117,7 +117,7 @@ public class PlayerStats : MonoBehaviour
             UI.SetCurrentHealth(maxHealth);
         } else if (index == 1) // efficiency: health and energy regen
         {
-            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * 0.1f);
+            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * 0.05f);
             healthRecoveryValue = baseHealthRecovery + upgrades["efficiency"] * 0.125f;
             energyRecoveryValue = baseEnergyRecovery + upgrades["efficiency"] * 0.075f;
 
