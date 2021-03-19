@@ -166,7 +166,6 @@ MonoBehaviour:
   stopBuffer: 0.1
   isHurtMaxTime: 0.33
   pushBackSpeed: 6
-  healAmount: 2
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
     serializedVersion: 2
@@ -211,7 +210,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 500
   maxStamina: 750
-  healthRecoveryValue: 0
+  healthRecoveryValue: 2
   healthRecoveryDelay: 0
   energyRecoveryValue: 2
   energyRecoveryDelay: 0

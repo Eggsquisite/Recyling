@@ -76,9 +76,6 @@ public class Player : MonoBehaviour
     private Coroutine pushBackMovementRoutine, pushBackDurationRoutine;
 
     [Header("Healing Properties")]
-    [SerializeField]
-    private float healAmount;
-
     private bool isHealing;
     private Coroutine healRoutine, healthDelayRoutine;
 
@@ -1030,16 +1027,16 @@ public class Player : MonoBehaviour
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
             // increase heal amount the longer recovery is held
-            UI.EnergyWithoutDecay(-healAmount);
+            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue());
             if (time < 0.25f)
-                UI.SetFutureHealth(healAmount * 0.5f);
+                UI.SetFutureHealth(0.5f);
             else if (time >= 0.25f && time < 1f)
-                UI.SetFutureHealth(healAmount * 1f);
+                UI.SetFutureHealth(1f);
             else if (time >= 1f && time < 2f) { 
-                UI.SetFutureHealth(healAmount * 1.5f);
+                UI.SetFutureHealth(1.5f);
             }
             else if (time >= 2f)
-                UI.SetFutureHealth(healAmount * 2.5f);
+                UI.SetFutureHealth(2.5f);
 
             time += 0.03f;
             yield return new WaitForSeconds(0.03f);

@@ -44,8 +44,6 @@ public class PlayerUI : MonoBehaviour
     private float energyRegenInUse;
     private float energyRecoveryValue;
     private float energyRecoveryDelay;
-    private float baseEnergyRecoveryValue;
-    private float energyRecoverDuration;
 
     [Header("Stamina")]
     //[SerializeField]
@@ -71,7 +69,6 @@ public class PlayerUI : MonoBehaviour
     void Awake()
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
-        baseEnergyRecoveryValue = energyRecoveryValue;
 
         // initialize sliders - these are ALL slider variables not floats
         healthMaxValue = UI.GetHealthMaxValue();
@@ -161,13 +158,13 @@ public class PlayerUI : MonoBehaviour
         if (index == 1 && !healthRecovering) {
             healthDecaying = false;
 
-            if (healthRecoveryRoutine != null)
+            /*if (healthRecoveryRoutine != null)
                 StopCoroutine(healthRecoveryRoutine);
-            healthRecoveryRoutine = StartCoroutine(HealthRecovery(healthRecoveryDelay));
+            healthRecoveryRoutine = StartCoroutine(HealthRecovery(healthRecoveryDelay));*/
         } else if (index == 2 && !energyRecovering) {
             energyDecaying = false;
 
-/*            if (energyRecoveryRoutine != null)
+            /*if (energyRecoveryRoutine != null)
                 StopCoroutine(energyRecoveryRoutine);
             energyRecoveryRoutine = StartCoroutine(EnergyRecovery(energyRecoveryDelay));*/
         } else if (index == 3 && !staminaRecovering) {
@@ -206,9 +203,9 @@ public class PlayerUI : MonoBehaviour
         healthCurrentValue.value += newValue;
     }
 
-    public void SetFutureHealth(float newValue) {
+    public void SetFutureHealth(float multiplier) {
         // increase future health, then heal up to that amount if player is not hit
-        healthDestroyedValue.value += newValue;
+        healthDestroyedValue.value += healthRecoveryValue * multiplier;
     }
 
     public void BeginFutureHealthRecovery() {

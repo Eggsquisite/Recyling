@@ -16,11 +16,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float healthRecoveryValue;
     [SerializeField]
-    private float healthRecoveryDelay;
-    [SerializeField]
     private float energyRecoveryValue;
-    [SerializeField]
-    private float energyRecoveryDelay;
     [SerializeField]
     private float staminaRecoveryValue;
     [SerializeField]
@@ -28,11 +24,12 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Player Stat Levels")]
     private Dictionary<string, int> upgrades;   // health max value
-    private int efficiency; // health recovery and energy regen
-    private int strength;   // attack damage
-    private int stamina;    // stamina max value and regen
-    private int special;    // energy max value and special damage
     private int levelCap;
+    // vitality     - health max value
+    // efficiency   - health recovery and energy regen
+    // strength     - attack damage
+    // stamina      - stamina max value/regen
+    // special      - energy max value and special attack dmg
 
     private void Awake()
     {
@@ -62,8 +59,8 @@ public class PlayerStats : MonoBehaviour
         UI.SetEnergyRecoveryValue(energyRecoveryValue);
         UI.SetStaminaRecoveryValue(staminaRecoveryValue);
 
-        UI.SetHealthRecoveryDelay(healthRecoveryDelay);
-        UI.SetEnergyRecoveryDelay(energyRecoveryDelay);
+        //UI.SetHealthRecoveryDelay(healthRecoveryDelay);
+        //UI.SetEnergyRecoveryDelay(energyRecoveryDelay);
         UI.SetStaminaRecoveryDelay(staminaRecoveryDelay);
 
         UpdateMaxValues(-1);
@@ -73,13 +70,13 @@ public class PlayerStats : MonoBehaviour
         if (index == 0 && upgrades["vitality"] < levelCap)
             upgrades["vitality"] = upgrades["vitality"] + 1;
         else if (index == 1)
-            efficiency += 1;
+            upgrades["efficiency"] = upgrades["efficiency"] + 1;
         else if (index == 2)
-            strength += 1;
+            upgrades["strength"] = upgrades["strength"] + 1;
         else if (index == 3)
-            stamina += 1;
+            upgrades["stamina"] = upgrades["stamina"] + 1;
         else if (index == 4)
-            special += 1;
+            upgrades["special"] = upgrades["special"] + 1;
 
         Debug.Log(upgrades["vitality"]);
         UpdateMaxValues(index);
@@ -95,11 +92,19 @@ public class PlayerStats : MonoBehaviour
             int tmp = maxHealth + upgrades["vitality"] * 50;
             UI.SetMaxHealth(tmp);
             UI.SetCurrentHealth(tmp);
+        } else if (index == 1) // efficiency: health and energy regen
+        {
+            UI.SetHealthRecoveryValue(healthRecoveryValue + upgrades["efficiency"] * 1.25f);
+            UI.SetEnergyRecoveryValue(energyRecoveryValue + upgrades["efficiency"] * 1.15f);
         }
 
     }
 
     public float GetEnergyRecoveryValue() {
         return energyRecoveryValue;
+    }
+
+    public float GetHealthRecoveryValue() {
+        return healthRecoveryValue;
     }
 }
