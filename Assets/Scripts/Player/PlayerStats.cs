@@ -26,6 +26,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float staminaRecoveryDelay;
 
+    private int baseMaxHealth;
+    private int baseMaxEnergy;
+    private int baseMaxStamina;
+
     private float baseHealthRecovery;
     private float baseEnergyRecovery;
     private float baseStaminaRecoveryValue;
@@ -71,6 +75,10 @@ public class PlayerStats : MonoBehaviour
         upgrades.Add("stamina", 0);
         upgrades.Add("special", 0);
 
+        baseMaxHealth = maxHealth;
+        baseMaxEnergy = maxEnergy;
+        baseMaxStamina = maxStamina;
+
         baseHealthRecovery = healthRecoveryValue;
         baseEnergyRecovery = energyRecoveryValue;
         baseStaminaRecoveryValue = staminaRecoveryValue;
@@ -103,7 +111,6 @@ public class PlayerStats : MonoBehaviour
         //UI.SetEnergyRecoveryDelay(energyRecoveryDelay);
         UI.SetStaminaRecoveryDelay(staminaRecoveryDelay);
 
-        //IncreaseStat(-1);
         SetDamageVariables();
     }
 
@@ -142,7 +149,7 @@ public class PlayerStats : MonoBehaviour
             // vitality: max health
             upgrades["vitality"] = upgrades["vitality"] + 1;
 
-            maxHealth += upgrades["vitality"] * 50;
+            maxHealth = baseMaxHealth + upgrades["vitality"] * 50;
             UI.SetMaxHealth(maxHealth);
             UI.SetCurrentHealth(maxHealth);
 
@@ -178,7 +185,12 @@ public class PlayerStats : MonoBehaviour
             upgrades["stamina"] = upgrades["stamina"] + 1;
             Debug.Log("stamina Level: " + upgrades["stamina"]);
 
+            maxStamina = baseMaxStamina + upgrades["stamina"] * 30;
+            staminaRecoveryValue = baseStaminaRecoveryValue + upgrades["stamina"] * 0.15f; 
 
+            UI.SetMaxStamina(maxStamina);
+            UI.SetCurrentStamina(maxStamina);
+            UI.SetStaminaRecoveryValue(staminaRecoveryValue);
         }
         else if (index == 4 && upgrades["special"] < levelCap) {
             // special: energy max value and special damage (blasters too)

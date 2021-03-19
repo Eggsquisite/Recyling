@@ -67,7 +67,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
-            playerStats.IncreaseStat(2);
+            playerStats.IncreaseStat(3);
 
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
