@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     enum PlayerWeapon
     {
         Sword = 1,
-        Blaster = 2
+        Blaster = 2,
     }
 
     [Header("Components")]
@@ -86,14 +86,6 @@ public class Player : MonoBehaviour
     private LayerMask enemyLayer;
 
     [Header("Attack Properties")]
-    [SerializeField]
-    private int swordDamage;
-    [SerializeField]
-    private int specialAttackDmg;
-    [SerializeField]
-    private int blasterLightDmg;
-    [SerializeField]
-    private int blasterHeavyDmg;
     [SerializeField] 
     private float attackRangeVisualizer;
     [SerializeField]
@@ -105,7 +97,13 @@ public class Player : MonoBehaviour
 
     private float attackDelay;
     private float runDashMaxTime;
+
     private int attackCombo;
+    private int swordDamage;
+    private int specialAttackDmg;
+    private int blasterLightDmg;
+    private int blasterHeavyDmg;
+
     private bool isAttacking;
     private bool runAttackDash;
     private bool isAttackPressed;
@@ -575,7 +573,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// ATTACK CODE ////////////////////////////////////////////////////////////////////////////
+    /// ATTACK CODE ///////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     private void RunAttack() {
         if (!runAttackDash)
@@ -773,6 +771,20 @@ public class Player : MonoBehaviour
             return;
     }
 
+    public void SetSwordDamage(int newValue) {
+        swordDamage = newValue;
+    }
+    public void SetSpecialAttackDmg(int newValue) {
+        specialAttackDmg = newValue;
+    }
+    public void SetBlasterLightDmg(int newValue) {
+        blasterLightDmg = newValue;
+    }
+    public void SetBlasterHeavyDmg(int newValue) {
+        blasterHeavyDmg = newValue;
+    }
+
+    ///
     /// BLASTER ATTACK CODE //////////////////////////////////////////////////////////////////////
     /// 
 

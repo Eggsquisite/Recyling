@@ -170,10 +170,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  swordDamage: 15
-  specialAttackDmg: 60
-  blasterLightDmg: 5
-  blasterHeavyDmg: 21
   attackRangeVisualizer: 4.5
   pushbackDistance: 0.5
   attackFollowDistance: 0.5
@@ -215,6 +211,10 @@ MonoBehaviour:
   energyRecoveryValue: 1.5
   staminaRecoveryValue: 12
   staminaRecoveryDelay: 1
+  swordDamage: 15
+  specialAttackDmg: 50
+  blasterLightDmg: 5
+  blasterHeavyDmg: 30
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
