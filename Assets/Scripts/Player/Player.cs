@@ -388,6 +388,7 @@ public class Player : MonoBehaviour
 
         if (canReceiveInput && !isHealing)
         {
+            SetInvincible(true);
             if (dashReady && !isDashing && !isFalling && playerEquipment == PlayerWeapon.Sword)
                 PlayAnimation(PlayerAnimStates.PLAYER_DASH);
             else if (teleportReady && !isTeleporting && playerEquipment == PlayerWeapon.Blaster)
@@ -465,7 +466,6 @@ public class Player : MonoBehaviour
         isDashing = true;
         dashReady = false;
         isAttacking = false;
-        isInvincible = true;
         canReceiveInput = false;
         UI.SetStaminaRecoverable(false);
         StartCoroutine(Dashing());
@@ -990,7 +990,7 @@ public class Player : MonoBehaviour
     }
 
     public void StopRecoverInput() {
-        if (isHurt || !isHealing)
+        if (!isHealing)
             return;
 
         isHealing = false;
@@ -1013,6 +1013,7 @@ public class Player : MonoBehaviour
             return;
 
         if (isHurt
+            || UI.GetHealthDecaying()
             || UI.GetCurrentHealth() >= UI.GetHealthMaxValue()
             || UI.GetFutureHealth() >= UI.GetHealthMaxValue()
             || UI.GetCurrentEnergy() <= 0) {
@@ -1027,7 +1028,7 @@ public class Player : MonoBehaviour
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
             // increase heal amount the longer recovery is held
-            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue());
+            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue() * 0.75f);
             if (time < 0.25f)
                 UI.SetFutureHealth(0.5f);
             else if (time >= 0.25f && time < 1f)

@@ -16,11 +16,18 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float healthRecoveryValue;
     [SerializeField]
+    private float energyToHealthMultiplier;
+    [SerializeField]
     private float energyRecoveryValue;
     [SerializeField]
     private float staminaRecoveryValue;
     [SerializeField]
     private float staminaRecoveryDelay;
+
+    private float baseHealthRecovery;
+    private float baseEnergyRecovery;
+    private float baseStaminaRecoveryValue;
+    private float baseStaminaRecoveryDelay;
 
     [Header("Player Stat Levels")]
     private Dictionary<string, int> upgrades;   // health max value
@@ -41,6 +48,11 @@ public class PlayerStats : MonoBehaviour
         upgrades.Add("strength", 1);
         upgrades.Add("stamina", 1);
         upgrades.Add("special", 1);
+
+        baseHealthRecovery = healthRecoveryValue;
+        baseEnergyRecovery = energyRecoveryValue;
+        baseStaminaRecoveryValue = staminaRecoveryValue;
+        baseStaminaRecoveryDelay = staminaRecoveryDelay;
     }
 
     // Start is called before the first frame update
@@ -59,6 +71,8 @@ public class PlayerStats : MonoBehaviour
         UI.SetEnergyRecoveryValue(energyRecoveryValue);
         UI.SetStaminaRecoveryValue(staminaRecoveryValue);
 
+        UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
+
         //UI.SetHealthRecoveryDelay(healthRecoveryDelay);
         //UI.SetEnergyRecoveryDelay(energyRecoveryDelay);
         UI.SetStaminaRecoveryDelay(staminaRecoveryDelay);
@@ -67,18 +81,27 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void IncreaseStat(int index) {
-        if (index == 0 && upgrades["vitality"] < levelCap)
+        if (index == 0 && upgrades["vitality"] < levelCap) {
             upgrades["vitality"] = upgrades["vitality"] + 1;
-        else if (index == 1)
+            Debug.Log("Vitality Level: " + upgrades["vitality"]);
+        }
+        else if (index == 1 && upgrades["efficiency"] < levelCap) {
             upgrades["efficiency"] = upgrades["efficiency"] + 1;
-        else if (index == 2)
+            Debug.Log("efficiency Level: " + upgrades["efficiency"]);
+        }
+        else if (index == 2 && upgrades["strength"] < levelCap) {
             upgrades["strength"] = upgrades["strength"] + 1;
-        else if (index == 3)
+            Debug.Log("strength Level: " + upgrades["strength"]);
+        }
+        else if (index == 3 && upgrades["stamina"] < levelCap) {
             upgrades["stamina"] = upgrades["stamina"] + 1;
-        else if (index == 4)
+            Debug.Log("stamina Level: " + upgrades["stamina"]);
+        }
+        else if (index == 4 && upgrades["special"] < levelCap) { 
             upgrades["special"] = upgrades["special"] + 1;
+            Debug.Log("special Level: " + upgrades["special"]);
+        }
 
-        Debug.Log(upgrades["vitality"]);
         UpdateMaxValues(index);
     }
 
@@ -89,15 +112,19 @@ public class PlayerStats : MonoBehaviour
         }
         if (index == 0) 
         {
-            int tmp = maxHealth + upgrades["vitality"] * 50;
-            UI.SetMaxHealth(tmp);
-            UI.SetCurrentHealth(tmp);
+            maxHealth += upgrades["vitality"] * 50;
+            UI.SetMaxHealth(maxHealth);
+            UI.SetCurrentHealth(maxHealth);
         } else if (index == 1) // efficiency: health and energy regen
         {
-            UI.SetHealthRecoveryValue(healthRecoveryValue + upgrades["efficiency"] * 1.25f);
-            UI.SetEnergyRecoveryValue(energyRecoveryValue + upgrades["efficiency"] * 1.15f);
-        }
+            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * 0.1f);
+            healthRecoveryValue = baseHealthRecovery + upgrades["efficiency"] * 0.125f;
+            energyRecoveryValue = baseEnergyRecovery + upgrades["efficiency"] * 0.075f;
 
+            UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
+            UI.SetEnergyRecoveryValue(energyRecoveryValue);
+            UI.SetHealthRecoveryValue(healthRecoveryValue);
+        }
     }
 
     public float GetEnergyRecoveryValue() {

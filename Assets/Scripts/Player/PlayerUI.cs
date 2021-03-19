@@ -28,6 +28,7 @@ public class PlayerUI : MonoBehaviour
     private bool healthRecovering;
     private float healthRecoveryValue;
     private float healthRecoveryDelay;
+    private float energyToHealthMultiplier;
 
     [Header("Energy")]
     //[SerializeField]
@@ -267,6 +268,12 @@ public class PlayerUI : MonoBehaviour
     public int GetHealthMaxValue() {
         return (int)healthCurrentValue.maxValue;
     }
+    public bool GetHealthDecaying() {
+        return healthDecaying;
+    }
+    public void SetEnergyToHealthMultiplier(float newValue) {
+        energyToHealthMultiplier = newValue;
+    }
 
     // ENERGY ///////////////////////////////////////////////////////////////////////////////////
     public void SetMaxEnergy(int newValue) {
@@ -318,8 +325,8 @@ public class PlayerUI : MonoBehaviour
     public void EnergyWithoutDecay(float newValue) {
         if (energyCurrentValue.value + newValue < energyCurrentValue.value)
         {
-            energyCurrentValue.value += newValue;
-            energyDestroyedValue.value += newValue;
+            energyCurrentValue.value += newValue * energyToHealthMultiplier;
+            energyDestroyedValue.value += newValue * energyToHealthMultiplier;
 
             if (energyCurrentValue.value < 0) { 
                 energyCurrentValue.value = 0;
