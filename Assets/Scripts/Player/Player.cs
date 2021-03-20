@@ -89,6 +89,8 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float attackRangeVisualizer;
     [SerializeField]
+    private float attackBuffer;
+    [SerializeField]
     private float pushbackDistance;
     [SerializeField]
     private float attackFollowDistance;
@@ -368,7 +370,7 @@ public class Player : MonoBehaviour
 
             if (attackGraceRoutine != null)
                 StopCoroutine(attackGraceRoutine);
-            attackGraceRoutine = StartCoroutine(AttackGracePeriod(1));
+            attackGraceRoutine = StartCoroutine(AttackBuffer(1));
             //Attack();
         }
     }
@@ -384,7 +386,7 @@ public class Player : MonoBehaviour
 
             if (attackGraceRoutine != null)
                 StopCoroutine(attackGraceRoutine);
-            attackGraceRoutine = StartCoroutine(AttackGracePeriod(2));
+            attackGraceRoutine = StartCoroutine(AttackBuffer(2));
             //Attack();
         }
     }
@@ -646,13 +648,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator AttackGracePeriod(int index) {
+    private IEnumerator AttackBuffer(int index) {
         if (index == 1 && isSuperAttackPressed)
             isSuperAttackPressed = false;
         else if (index == 2 && isAttackPressed)
             isAttackPressed = false;
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(attackBuffer);
 
         if (index == 1 && isAttackPressed)
             isAttackPressed = false;

@@ -171,6 +171,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackRangeVisualizer: 4.5
+  attackBuffer: 0.2
   pushbackDistance: 0.5
   attackFollowDistance: 0.5
   attackFollowSpeed: 5
@@ -179,10 +180,10 @@ MonoBehaviour:
   dashHeight: 1
   teleportMoveSpeed: 12
   teleportCooldown: 0.25
-  dashStamina: 200
+  dashStamina: 225
   runStamina: 10
-  runAttackStamina: 175
-  basicAttackStamina: 150
+  runAttackStamina: 150
+  basicAttackStamina: 135
   superAttackStamina1: 125
   superAttackStamina2: 200
   blasterLightStamina: 20
@@ -208,8 +209,8 @@ MonoBehaviour:
   maxStamina: 800
   healthRecoveryValue: 2
   energyToHealthMultiplier: 1
-  energyRecoveryValue: 1.5
-  staminaRecoveryValue: 12
+  energyRecoveryValue: 2
+  staminaRecoveryValue: 14
   staminaRecoveryDelay: 0.75
   swordDamage: 15
   specialAttackDmg: 50
