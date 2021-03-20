@@ -33,7 +33,6 @@ public class PlayerStats : MonoBehaviour
     private float baseHealthRecovery;
     private float baseEnergyRecovery;
     private float baseStaminaRecoveryValue;
-    private float baseStaminaRecoveryDelay;
 
     [Header("Attack Properties")]
     [SerializeField]
@@ -50,13 +49,55 @@ public class PlayerStats : MonoBehaviour
     private int baseBlasterLightDmg;
     private int baseBlasterHeavyDmg;
 
-    private int strengthMultiplier = 10;
-    private int blasterMultiplierWeak = 5;
-    private int blasterMultiplierStrong = 5;
+    [Header("Vitality Properties")]
+    [SerializeField]
+    private int vitalityUpgradeStrong = 65;
+    [SerializeField]
+    private int vitalityUpgradeMid = 50;
+    [SerializeField]
+    private int vitalityUpgradeWeak = 20;
+
+    [Header("Efficiency Properties")]
+    [SerializeField]
+    private float healthRecoveryEfficiency = 0.125f;
+    [SerializeField]
+    private float energyRecoveryEfficiency = 0.075f;
+    [SerializeField]
+    private float energyToHealthEfficiency = 0.05f;
+
+    [Header("Strength Properties")]
+    [SerializeField]
+    private int strengthUpgrade = 10;
+
+    [Header("Stamina Properties")]
+    [SerializeField]
+    private float staminaRecoveryUpgrade = 0.15f;
+    [SerializeField]
+    private int staminaMaxUpgradeStrong = 18;
+    [SerializeField]
+    private int staminaMaxUpgradeWeak = 3;
+
+    [Header("Special Properties")]
+    [SerializeField]
+    private int specialEnergyUpgradeStrong = 35;
+    [SerializeField]
+    private int specialEnergyUpgradeWeak = 5;
+    [SerializeField]
+    private int specialAttackUpgradeStrong = 20;
+    [SerializeField]
+    private int specialAttackUpgradeWeak = 15;
+    [SerializeField]
+    private int specialBlasterLightUpgradeStrong = 3;
+    [SerializeField]
+    private int specialBlasterLightUpgradeWeak = 2;
+    [SerializeField]
+    private int specialBlasterHeavyUpgradeStrong = 12;
+    [SerializeField]
+    private int specialBlasterHeavyUpgradeWeak = 8;
 
     [Header("Player Stat Levels")]
-    private Dictionary<string, int> upgrades;   // health max value
     private int levelCap;
+    private Dictionary<string, int> upgrades;   // health max value
     // vitality     - health max value
     // efficiency   - health recovery and energy regen
     // strength     - attack damage
@@ -82,7 +123,6 @@ public class PlayerStats : MonoBehaviour
         baseHealthRecovery = healthRecoveryValue;
         baseEnergyRecovery = energyRecoveryValue;
         baseStaminaRecoveryValue = staminaRecoveryValue;
-        baseStaminaRecoveryDelay = staminaRecoveryDelay;
 
         baseSwordDmg = swordDamage;
         baseSpecialDmg = specialAttackDmg;
@@ -93,6 +133,8 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // load saved upgrade variables
+
         UI.SetMaxHealth(maxHealth);
         UI.SetMaxEnergy(maxEnergy);
         UI.SetMaxStamina(maxStamina);
@@ -118,26 +160,13 @@ public class PlayerStats : MonoBehaviour
         if (index == -1)
         {
             // VITALITY ///////////////////////////////////////////////////////////////////
-            maxHealth += upgrades["vitality"] * 50;
-            UI.SetMaxHealth(maxHealth);
-            UI.SetCurrentHealth(maxHealth);
+
 
             // EFFICIENCY /////////////////////////////////////////////////////////////////
-            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * 0.05f);
-            healthRecoveryValue = baseHealthRecovery + upgrades["efficiency"] * 0.125f;
-            energyRecoveryValue = baseEnergyRecovery + upgrades["efficiency"] * 0.075f;
 
-            UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
-            UI.SetEnergyRecoveryValue(energyRecoveryValue);
-            UI.SetHealthRecoveryValue(healthRecoveryValue);
 
             // STRENGTH ///////////////////////////////////////////////////////////////////
-            if (upgrades["strength"] <= 10) { 
-                swordDamage = baseSwordDmg + upgrades["strength"] * strengthMultiplier;
-            } else if (upgrades["strength"] > 10) {
-                swordDamage += upgrades["strength"] / 2;
-            }
-            SetDamageVariables();
+
 
             // STAMINA /////////////////////////////////////////////////////////////////////
 
@@ -148,25 +177,31 @@ public class PlayerStats : MonoBehaviour
         else if (index == 0 && upgrades["vitality"] < levelCap) {
             // vitality: max health
             upgrades["vitality"] = upgrades["vitality"] + 1;
+            Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
-            maxHealth = baseMaxHealth + upgrades["vitality"] * 50;
+            if (upgrades["vitality"] <= 10) { 
+                maxHealth += vitalityUpgradeStrong;
+            } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
+                maxHealth += vitalityUpgradeMid;
+            } else if (upgrades["vitality"] > 15) {
+                maxHealth += vitalityUpgradeWeak;
+            }
+
             UI.SetMaxHealth(maxHealth);
             UI.SetCurrentHealth(maxHealth);
-
-            Debug.Log("Vitality Level: " + upgrades["vitality"]);
         }
         else if (index == 1 && upgrades["efficiency"] < levelCap) {
             // efficiency: health and energy regen
             upgrades["efficiency"] = upgrades["efficiency"] + 1;
             Debug.Log("efficiency Level: " + upgrades["efficiency"]);
 
-            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * 0.05f);
-            healthRecoveryValue = baseHealthRecovery + upgrades["efficiency"] * 0.125f;
-            energyRecoveryValue = baseEnergyRecovery + upgrades["efficiency"] * 0.075f;
+            healthRecoveryValue += healthRecoveryEfficiency;
+            energyRecoveryValue += energyRecoveryEfficiency;
+            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * energyToHealthEfficiency);
 
-            UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
-            UI.SetEnergyRecoveryValue(energyRecoveryValue);
             UI.SetHealthRecoveryValue(healthRecoveryValue);
+            UI.SetEnergyRecoveryValue(energyRecoveryValue);
+            UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
         }
         else if (index == 2 && upgrades["strength"] < levelCap) {
             // strength: attack damage
@@ -174,10 +209,11 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("strength Level: " + upgrades["strength"]);
 
             if (upgrades["strength"] <= 10) { 
-                swordDamage = baseSwordDmg + upgrades["strength"] * strengthMultiplier;
+                swordDamage += strengthUpgrade;
             } else if (upgrades["strength"] > 10) {
                 swordDamage += upgrades["strength"] / 2;
             }
+
             SetDamageVariables();
         }
         else if (index == 3 && upgrades["stamina"] < levelCap) {
@@ -185,8 +221,12 @@ public class PlayerStats : MonoBehaviour
             upgrades["stamina"] = upgrades["stamina"] + 1;
             Debug.Log("stamina Level: " + upgrades["stamina"]);
 
-            maxStamina = baseMaxStamina + upgrades["stamina"] * 30;
-            staminaRecoveryValue = baseStaminaRecoveryValue + upgrades["stamina"] * 0.15f; 
+            staminaRecoveryValue += staminaRecoveryUpgrade; 
+            if (upgrades["stamina"] <= 15) {
+                maxStamina += staminaMaxUpgradeStrong;
+            } else if (upgrades["stamina"] > 15) {
+                maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
+            }
 
             UI.SetMaxStamina(maxStamina);
             UI.SetCurrentStamina(maxStamina);
@@ -197,7 +237,23 @@ public class PlayerStats : MonoBehaviour
             upgrades["special"] = upgrades["special"] + 1;
             Debug.Log("special Level: " + upgrades["special"]);
 
+            if (upgrades["special"] <= 10) { 
+                maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
 
+                specialAttackDmg += specialAttackUpgradeStrong;
+                blasterLightDmg += specialBlasterLightUpgradeStrong;
+                blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
+            } else if (upgrades["special"] > 10) {
+                maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
+
+                specialAttackDmg += specialAttackUpgradeWeak;
+                blasterLightDmg += specialBlasterLightUpgradeWeak;
+                blasterHeavyDmg += specialBlasterHeavyUpgradeWeak;
+            }
+
+            SetDamageVariables();
+            UI.SetMaxEnergy(maxEnergy);
+            UI.SetCurrentEnergy(maxEnergy);
         }
     }
 

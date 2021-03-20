@@ -779,9 +779,11 @@ public class Player : MonoBehaviour
     }
     public void SetBlasterLightDmg(int newValue) {
         blasterLightDmg = newValue;
+        projectile.SetDamage(blasterLightDmg);
     }
     public void SetBlasterHeavyDmg(int newValue) {
         blasterHeavyDmg = newValue;
+        projectile.SetSpecialDamage(blasterHeavyDmg);
     }
 
     ///

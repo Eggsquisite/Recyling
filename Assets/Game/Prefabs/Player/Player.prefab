@@ -175,18 +175,18 @@ MonoBehaviour:
   attackFollowDistance: 0.5
   attackFollowSpeed: 5
   dashMoveSpeed: 4
-  dashCooldown: 0.1
+  dashCooldown: 0
   dashHeight: 1
   teleportMoveSpeed: 12
   teleportCooldown: 0.25
-  dashStamina: 150
-  runStamina: 8
-  runAttackStamina: 125
-  basicAttackStamina: 95
+  dashStamina: 200
+  runStamina: 10
+  runAttackStamina: 175
+  basicAttackStamina: 150
   superAttackStamina1: 125
   superAttackStamina2: 200
-  blasterLightStamina: 10
-  blasterHeavyStamina: 50
+  blasterLightStamina: 20
+  blasterHeavyStamina: 75
   blasterLightEnergy: 20
   blasterHeavyEnergy: 75
   superAttackEnergy1: 150
@@ -205,16 +205,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   maxEnergy: 500
-  maxStamina: 750
+  maxStamina: 800
   healthRecoveryValue: 2
   energyToHealthMultiplier: 1
   energyRecoveryValue: 1.5
   staminaRecoveryValue: 12
-  staminaRecoveryDelay: 1
+  staminaRecoveryDelay: 0.75
   swordDamage: 15
   specialAttackDmg: 50
   blasterLightDmg: 5
   blasterHeavyDmg: 30
+  vitalityUpgradeStrong: 65
+  vitalityUpgradeMid: 50
+  vitalityUpgradeWeak: 20
+  healthRecoveryEfficiency: 0.125
+  energyRecoveryEfficiency: 0.075
+  energyToHealthEfficiency: 0.05
+  strengthUpgrade: 10
+  staminaRecoveryUpgrade: 0.15
+  staminaMaxUpgradeStrong: 18
+  staminaMaxUpgradeWeak: 3
+  specialEnergyUpgradeStrong: 35
+  specialEnergyUpgradeWeak: 5
+  specialAttackUpgradeStrong: 20
+  specialAttackUpgradeWeak: 15
+  specialBlasterLightUpgradeStrong: 3
+  specialBlasterLightUpgradeWeak: 2
+  specialBlasterHeavyUpgradeStrong: 12
+  specialBlasterHeavyUpgradeWeak: 8
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
