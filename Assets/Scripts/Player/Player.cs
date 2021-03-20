@@ -145,9 +145,9 @@ public class Player : MonoBehaviour
 
     private Vector2 teleportDirection;
 
-    [Header("Stamina Properties")]
+    [Header("Stamina Consumption Properties")]
     [SerializeField]
-    private int dashStamina;
+    private int dodgeStamina;
     [SerializeField]
     private int runStamina;
     [SerializeField]
@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int blasterHeavyStamina;
 
-    [Header("Energy Properties")]
+    [Header("Energy Consumption Properties")]
     [SerializeField]
     private int blasterLightEnergy;
     [SerializeField]
@@ -875,7 +875,7 @@ public class Player : MonoBehaviour
     private void ConsumeStamina(int index) {
         // called thru animation events
         if (index == -3)
-            UI.SetCurrentStamina(-dashStamina);
+            UI.SetCurrentStamina(-dodgeStamina);
         else if (index == -2)
             UI.StaminaWithoutDecay(-runStamina);
         else if (index == -1)

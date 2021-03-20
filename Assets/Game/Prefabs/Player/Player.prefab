@@ -181,7 +181,7 @@ MonoBehaviour:
   dashHeight: 1
   teleportMoveSpeed: 10
   teleportCooldown: 0.25
-  dashStamina: 225
+  dodgeStamina: 225
   runStamina: 10
   runAttackStamina: 150
   basicAttackStamina: 135
@@ -224,9 +224,9 @@ MonoBehaviour:
   energyRecoveryEfficiency: 0.075
   energyToHealthEfficiency: 0.05
   strengthUpgrade: 10
-  staminaRecoveryUpgrade: 0.15
-  staminaMaxUpgradeStrong: 18
-  staminaMaxUpgradeWeak: 3
+  staminaRecoveryUpgrade: 0.2
+  staminaMaxUpgradeStrong: 25
+  staminaMaxUpgradeWeak: 10
   specialEnergyUpgradeStrong: 35
   specialEnergyUpgradeWeak: 5
   specialAttackUpgradeStrong: 20

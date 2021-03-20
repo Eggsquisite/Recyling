@@ -27,7 +27,7 @@ AnimationClip:
       value: {fileID: -8086188184859414419, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.33333334
       value: {fileID: -2399815189577070854, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
-    - time: 0.41666666
+    - time: 0.5
       value: {fileID: 1266179183656452009, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
     - time: 0.8333333
       value: {fileID: 1266179183656452009, guid: b816543cfb79d7b4c8192936e4eab781, type: 3}
@@ -82,14 +82,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.15
-    functionName: PlayBasicAttack
+    functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.15
-    functionName: ConsumeStamina
+    functionName: PlayBasicAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -116,7 +116,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
+  - time: 0.5
     functionName: ComboInput
     data: 
     objectReferenceParameter: {fileID: 0}
