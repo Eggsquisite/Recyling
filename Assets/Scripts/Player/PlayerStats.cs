@@ -51,19 +51,19 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Vitality Properties")]
     [SerializeField]
-    private int vitalityUpgradeStrong = 65;
+    private int vitalityUpgradeStrong;
     [SerializeField]
-    private int vitalityUpgradeMid = 50;
+    private int vitalityUpgradeMid;
     [SerializeField]
-    private int vitalityUpgradeWeak = 20;
+    private int vitalityUpgradeWeak;
 
     [Header("Efficiency Properties")]
     [SerializeField]
-    private float healthRecoveryEfficiency = 0.125f;
+    private float healthRecoveryEfficiency;
     [SerializeField]
-    private float energyRecoveryEfficiency = 0.075f;
+    private float energyRecoveryEfficiency;
     [SerializeField]
-    private float energyToHealthEfficiency = 0.05f;
+    private float energyToHealthEfficiency;
 
     [Header("Strength Properties")]
     [SerializeField]
@@ -71,29 +71,29 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Stamina Properties")]
     [SerializeField]
-    private float staminaRecoveryUpgrade = 0.15f;
+    private float staminaRecoveryUpgrade;
     [SerializeField]
-    private int staminaMaxUpgradeStrong = 18;
+    private int staminaMaxUpgradeStrong;
     [SerializeField]
-    private int staminaMaxUpgradeWeak = 3;
+    private int staminaMaxUpgradeWeak;
 
     [Header("Special Properties")]
     [SerializeField]
-    private int specialEnergyUpgradeStrong = 35;
+    private int specialEnergyUpgradeStrong;
     [SerializeField]
-    private int specialEnergyUpgradeWeak = 5;
+    private int specialEnergyUpgradeWeak;
     [SerializeField]
-    private int specialAttackUpgradeStrong = 20;
+    private int specialAttackUpgradeStrong;
     [SerializeField]
-    private int specialAttackUpgradeWeak = 15;
+    private int specialAttackUpgradeWeak;
     [SerializeField]
-    private int specialBlasterLightUpgradeStrong = 3;
+    private int specialBlasterLightUpgradeStrong;
     [SerializeField]
-    private int specialBlasterLightUpgradeWeak = 2;
+    private int specialBlasterLightUpgradeWeak;
     [SerializeField]
-    private int specialBlasterHeavyUpgradeStrong = 12;
+    private int specialBlasterHeavyUpgradeStrong;
     [SerializeField]
-    private int specialBlasterHeavyUpgradeWeak = 8;
+    private int specialBlasterHeavyUpgradeWeak;
 
     [Header("Player Stat Levels")]
     private int levelCap;

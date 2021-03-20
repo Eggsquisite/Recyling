@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.33
-  decaySpeed: 600
+  decaySpeed: 750
   recoverySpeed: 0.03
   UI: {fileID: 0}
 --- !u!114 &1949231004
