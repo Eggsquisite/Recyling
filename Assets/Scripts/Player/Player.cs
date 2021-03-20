@@ -110,9 +110,10 @@ public class Player : MonoBehaviour
     private bool isRunAttackPressed;
     private bool isSuperAttackPressed;
     private bool canReceiveInput = true;
-    private float specialPushbackMultiplier = 10f;
+    private float specialPushbackMultiplier = 5f;
     private Vector2 runDirection;
 
+    private Coroutine attackGraceRoutine;
     private Coroutine resetStunRoutine, resetAttackRoutine, attackFollowRoutine;
 
     [Header("Dash Properties")]
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
         if (isDead)
             return;
 
+        Attack();
         ResetRun();
         StopHeal();
         DamageFlash();
@@ -358,13 +360,16 @@ public class Player : MonoBehaviour
         if (isStunned || UI.GetCurrentStamina() <= 0)
             return; 
 
-        if (canReceiveInput && !isHealing) {
+        if (!isHealing) {
             if (!isRunning)
                 isAttackPressed = true;
             else 
                 isRunAttackPressed = true;
 
-            Attack();
+            if (attackGraceRoutine != null)
+                StopCoroutine(attackGraceRoutine);
+            attackGraceRoutine = StartCoroutine(AttackGracePeriod(1));
+            //Attack();
         }
     }
 
@@ -374,9 +379,13 @@ public class Player : MonoBehaviour
             || UI.GetCurrentEnergy() <= 0)
             return;
 
-        if (canReceiveInput && !isHealing) { 
+        if (!isHealing) { 
             isSuperAttackPressed = true;
-            Attack();
+
+            if (attackGraceRoutine != null)
+                StopCoroutine(attackGraceRoutine);
+            attackGraceRoutine = StartCoroutine(AttackGracePeriod(2));
+            //Attack();
         }
     }
 
@@ -637,6 +646,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator AttackGracePeriod(int index) {
+        if (index == 1 && isSuperAttackPressed)
+            isSuperAttackPressed = false;
+        else if (index == 2 && isAttackPressed)
+            isAttackPressed = false;
+
+        yield return new WaitForSeconds(0.15f);
+
+        if (index == 1 && isAttackPressed)
+            isAttackPressed = false;
+        else if (index == 2 && isSuperAttackPressed)
+            isSuperAttackPressed = false;
+    }
+
     private void AttackAnimation(int attackIndex) {
         // stop movement when attacking and not running
         if (!isRunning || isSuperAttackPressed) { 
@@ -767,8 +790,6 @@ public class Player : MonoBehaviour
         // called during attack animation, allows input such as combos or dodging 
         if (isAttacking && attackCombo > 0) 
             canReceiveInput = true;
-        else
-            return;
     }
 
     public void SetSwordDamage(int newValue) {
