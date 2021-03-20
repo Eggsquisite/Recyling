@@ -108,7 +108,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.025, y: 0.04}
-  m_Size: {x: 0.45, y: 0.3}
+  m_Size: {x: 0.45, y: 0.35}
   m_Direction: 1
 --- !u!95 &1572641357111832798
 Animator:
@@ -160,7 +160,7 @@ MonoBehaviour:
   sp: {fileID: 5715822747553379095}
   baseWalkSpeed: 1.5
   runSpeed: 2.5
-  verticalSpeedMult: 0.4
+  verticalSpeedMult: 0.33
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
   stopBuffer: 0.1
@@ -175,14 +175,14 @@ MonoBehaviour:
   pushbackDistance: 0.5
   attackFollowDistance: 0.5
   attackFollowSpeed: 5
-  dodgeBuffer: 0.3
+  dodgeBuffer: 0.33
   dashMoveSpeed: 4
   dashCooldown: 0
   dashHeight: 1
   teleportMoveSpeed: 10
   teleportCooldown: 0.25
   dodgeStamina: 225
-  runStamina: 10
+  runStamina: 9
   runAttackStamina: 150
   basicAttackStamina: 135
   superAttackStamina1: 125
@@ -225,8 +225,8 @@ MonoBehaviour:
   energyToHealthEfficiency: 0.05
   strengthUpgrade: 10
   staminaRecoveryUpgrade: 0.2
-  staminaMaxUpgradeStrong: 25
-  staminaMaxUpgradeWeak: 10
+  staminaMaxUpgradeStrong: 28
+  staminaMaxUpgradeWeak: 13
   specialEnergyUpgradeStrong: 35
   specialEnergyUpgradeWeak: 5
   specialAttackUpgradeStrong: 20

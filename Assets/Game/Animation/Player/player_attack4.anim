@@ -96,22 +96,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.65
-    functionName: ConsumeStamina
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.65
+  - time: 0.6666667
     functionName: ConsumeEnergy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.65
-    functionName: PlaySuperAttack
+  - time: 0.6666667
+    functionName: ConsumeStamina
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -123,6 +116,13 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 4.5
     intParameter: 0
+    messageOptions: 0
+  - time: 0.68333334
+    functionName: PlaySuperAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0.68333334
     functionName: AttackFollowThrough

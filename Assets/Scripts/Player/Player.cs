@@ -394,7 +394,7 @@ public class Player : MonoBehaviour
     }
 
     public void DodgeInput() {
-        if (UI.GetCurrentStamina() <= 0)
+        if (isHurt || UI.GetCurrentStamina() <= 0)
             return;
 
         if (!isHealing) {
