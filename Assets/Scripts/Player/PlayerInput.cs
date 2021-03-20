@@ -55,9 +55,9 @@ public class PlayerInput : MonoBehaviour
 
             }
 
-        // DASH INPUT
+        // DODGE INPUT
         if (Input.GetKeyDown(KeyCode.Space))
-            player.DashInput();
+            player.DodgeInput();
 
         // HEAL INPUT
         if (Input.GetKeyDown(KeyCode.LeftControl))

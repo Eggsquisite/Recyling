@@ -115,12 +115,12 @@ public class Player : MonoBehaviour
     private float specialPushbackMultiplier = 5f;
     private Vector2 runDirection;
 
-    private Coroutine attackGraceRoutine;
+    private Coroutine attackBufferRoutine, dodgeBufferRoutine;
     private Coroutine resetStunRoutine, resetAttackRoutine, attackFollowRoutine;
 
     [Header("Dash Properties")]
-    //[SerializeField]
-    //private float dashMinTime;
+    [SerializeField]
+    private float dodgeBuffer;
     [SerializeField]
     private float dashMoveSpeed;
     [SerializeField]
@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
     private bool isFalling;
     private bool isLanding;
     private bool dashReady = true;
+    private bool dodgeInputPressed;
 
     [Header("Teleport Properties")]
     [SerializeField]
@@ -200,6 +201,7 @@ public class Player : MonoBehaviour
         if (isDead)
             return;
 
+        Dodge();
         Attack();
         ResetRun();
         StopHeal();
@@ -368,9 +370,9 @@ public class Player : MonoBehaviour
             else 
                 isRunAttackPressed = true;
 
-            if (attackGraceRoutine != null)
-                StopCoroutine(attackGraceRoutine);
-            attackGraceRoutine = StartCoroutine(AttackBuffer(1));
+            if (attackBufferRoutine != null)
+                StopCoroutine(attackBufferRoutine);
+            attackBufferRoutine = StartCoroutine(AttackBuffer(1));
             //Attack();
         }
     }
@@ -384,24 +386,23 @@ public class Player : MonoBehaviour
         if (!isHealing) { 
             isSuperAttackPressed = true;
 
-            if (attackGraceRoutine != null)
-                StopCoroutine(attackGraceRoutine);
-            attackGraceRoutine = StartCoroutine(AttackBuffer(2));
+            if (attackBufferRoutine != null)
+                StopCoroutine(attackBufferRoutine);
+            attackBufferRoutine = StartCoroutine(AttackBuffer(2));
             //Attack();
         }
     }
 
-    public void DashInput() {
-        if (isStunned || UI.GetCurrentStamina() <= 0)
+    public void DodgeInput() {
+        if (UI.GetCurrentStamina() <= 0)
             return;
 
-        if (canReceiveInput && !isHealing)
-        {
-            SetInvincible(true);
-            if (dashReady && !isDashing && !isFalling && playerEquipment == PlayerWeapon.Sword)
-                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
-            else if (teleportReady && !isTeleporting && playerEquipment == PlayerWeapon.Blaster)
-                PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_TELEPORT);
+        if (!isHealing) {
+            dodgeInputPressed = true;
+
+            if (dodgeBufferRoutine != null)
+                StopCoroutine(dodgeBufferRoutine);
+            dodgeBufferRoutine = StartCoroutine(DodgeBuffer());
         }
     }
 
@@ -465,10 +466,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// DODGE CODE //////////////////////////////////////////////////////////////////////////////////
+
     /// <summary>
     /// DASH CODE /////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
+    private void Dodge() {
+        if (dodgeInputPressed && canReceiveInput) { 
+            SetInvincible(true);
+            if (dashReady && !isDashing && !isFalling && playerEquipment == PlayerWeapon.Sword)
+                PlayAnimation(PlayerAnimStates.PLAYER_DASH);
+            else if (teleportReady && !isTeleporting && playerEquipment == PlayerWeapon.Blaster)
+                PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_TELEPORT);
+        }
+    }
+
+     private IEnumerator DodgeBuffer() {
+        yield return new WaitForSeconds(dodgeBuffer);
+
+        if (dodgeInputPressed)
+            dodgeInputPressed = false;
+    }
+
     private void DashStarting() {
         // called at begining of dash animation event
         ResetWalk();
@@ -892,6 +912,10 @@ public class Player : MonoBehaviour
 
         isHurt = true;
         isInvincible = true;
+        isAttackPressed = false;
+        dodgeInputPressed = false;
+        isSuperAttackPressed = false;
+
         if (resetAttackRoutine != null)
             StopCoroutine(resetAttackRoutine);
         resetAttackRoutine = StartCoroutine(ResetAttack(0f));

@@ -175,10 +175,11 @@ MonoBehaviour:
   pushbackDistance: 0.5
   attackFollowDistance: 0.5
   attackFollowSpeed: 5
+  dodgeBuffer: 0.3
   dashMoveSpeed: 4
   dashCooldown: 0
   dashHeight: 1
-  teleportMoveSpeed: 12
+  teleportMoveSpeed: 10
   teleportCooldown: 0.25
   dashStamina: 225
   runStamina: 10
