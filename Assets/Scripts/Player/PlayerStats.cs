@@ -110,6 +110,7 @@ public class PlayerStats : MonoBehaviour
         if (UI == null) UI = GetComponent<PlayerUI>();
         if (player == null) player = GetComponent<Player>();
         upgrades = new Dictionary<string, int>();
+        upgrades.Add("playerLevel", 0);
         upgrades.Add("vitality", 0);
         upgrades.Add("efficiency", 0);
         upgrades.Add("strength", 0);
@@ -189,6 +190,8 @@ public class PlayerStats : MonoBehaviour
 
             UI.SetMaxHealth(maxHealth);
             UI.SetCurrentHealth(maxHealth);
+
+            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 1 && upgrades["efficiency"] < levelCap) {
             // efficiency: health and energy regen
@@ -202,6 +205,8 @@ public class PlayerStats : MonoBehaviour
             UI.SetHealthRecoveryValue(healthRecoveryValue);
             UI.SetEnergyRecoveryValue(energyRecoveryValue);
             UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
+
+            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 2 && upgrades["strength"] < levelCap) {
             // strength: attack damage
@@ -215,6 +220,8 @@ public class PlayerStats : MonoBehaviour
             }
 
             SetDamageVariables();
+
+            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 3 && upgrades["stamina"] < levelCap) {
             // stamina: stamina max value/regen
@@ -231,6 +238,8 @@ public class PlayerStats : MonoBehaviour
             UI.SetMaxStamina(maxStamina);
             UI.SetCurrentStamina(maxStamina);
             UI.SetStaminaRecoveryValue(staminaRecoveryValue);
+
+            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 4 && upgrades["special"] < levelCap) {
             // special: energy max value and special damage (blasters too)
@@ -254,6 +263,8 @@ public class PlayerStats : MonoBehaviour
             SetDamageVariables();
             UI.SetMaxEnergy(maxEnergy);
             UI.SetCurrentEnergy(maxEnergy);
+
+            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
     }
 
