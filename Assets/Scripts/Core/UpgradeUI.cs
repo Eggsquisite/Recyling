@@ -205,12 +205,30 @@ public class UpgradeUI : MonoBehaviour
             specialIncrease.interactable = false;
         } else
         {
-            if (futureVitalityLevel >= levelCap
-                                                        || baseVitalityLevel >= levelCap)
+            if (futureVitalityLevel >= levelCap)
                 vitalityIncrease.interactable = false;
-            else if (futureVitalityLevel < levelCap
-                                                        || baseVitalityLevel < levelCap)
+            else 
                 vitalityIncrease.interactable = true;
+
+            if (futureEfficiencyLevel >= levelCap)
+                efficiencyIncrease.interactable = false;
+            else 
+                efficiencyIncrease.interactable = true;
+
+            if (futureStrengthLevel >= levelCap)
+                strengthIncrease.interactable = false;
+            else 
+                strengthIncrease.interactable = true;
+
+            if (futureStaminaLevel >= levelCap)
+                staminaIncrease.interactable = false;
+            else
+                staminaIncrease.interactable = true;
+
+            if (futureSpecialLevel >= levelCap)
+                specialIncrease.interactable = false;
+            else
+                specialIncrease.interactable = true;
         }
     }
 
@@ -221,12 +239,32 @@ public class UpgradeUI : MonoBehaviour
             vitalityLevelText.color = Color.green;
         else
             vitalityLevelText.color = Color.black;
-        
+
+        if (futureEfficiencyLevel > baseEfficiencyLevel)
+            efficiencyLevelText.color = Color.green;
+        else
+            efficiencyLevelText.color = Color.black;
+
+        if (futureStrengthLevel > baseStrengthLevel)
+            strengthLevelText.color = Color.green;
+        else
+            strengthLevelText.color = Color.black;
+
+        if (futureStaminaLevel > baseStaminaLevel)
+            staminaLevelText.color = Color.green;
+        else
+            staminaLevelText.color = Color.black;
+
+        if (futureSpecialLevel > baseSpecialLevel)
+            specialLevelText.color = Color.green;
+        else
+            specialLevelText.color = Color.black;
     }
 
     public void IncreaseStat(int index)
     {
-        if (index == 0 && futureVitalityLevel < levelCap && baseVitalityLevel < levelCap) {
+        isConfirmed = false;
+        if (index == 0 && futureVitalityLevel < levelCap) {
             futureCurrentLevel += 1;
             futureVitalityLevel += 1;
 
@@ -235,10 +273,48 @@ public class UpgradeUI : MonoBehaviour
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
+        } else if (index == 1 && futureEfficiencyLevel < levelCap)
+        {
+            futureCurrentLevel += 1;
+            futureEfficiencyLevel += 1;
+
+            ConsumeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 2 && futureStrengthLevel < levelCap)
+        {
+            futureCurrentLevel += 1;
+            futureStrengthLevel += 1;
+
+            ConsumeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 3 && futureStaminaLevel < levelCap)
+        {
+            futureCurrentLevel += 1;
+            futureStaminaLevel += 1;
+
+            ConsumeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 4 && futureSpecialLevel < levelCap)
+        {
+            futureCurrentLevel += 1;
+            futureSpecialLevel += 1;
+
+            ConsumeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
         }
 
-
-            
         ChangeLevelColor();
     }
 
@@ -246,6 +322,46 @@ public class UpgradeUI : MonoBehaviour
     {
         if (index == 0 && futureVitalityLevel > baseVitalityLevel) {
             futureVitalityLevel -= 1;
+            futureCurrentLevel -= 1;
+
+            FreeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 1 && futureEfficiencyLevel > baseEfficiencyLevel)
+        {
+            futureEfficiencyLevel -= 1;
+            futureCurrentLevel -= 1;
+
+            FreeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 2 && futureStrengthLevel > baseStrengthLevel)
+        {
+            futureStrengthLevel -= 1;
+            futureCurrentLevel -= 1;
+
+            FreeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 3 && futureStaminaLevel > baseStaminaLevel)
+        {
+            futureStaminaLevel -= 1;
+            futureCurrentLevel -= 1;
+
+            FreeCurrencyValues();
+            UpdateCurrencyText();
+
+            UpdateLevelText(1);
+            UpdateButtonInteractable();
+        } else if (index == 4 && futureSpecialLevel > baseSpecialLevel)
+        {
+            futureSpecialLevel -= 1;
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();

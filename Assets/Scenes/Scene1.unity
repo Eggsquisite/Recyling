@@ -1461,7 +1461,7 @@ GameObject:
   - component: {fileID: 404112501}
   - component: {fileID: 404112500}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Efficiency Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 543383738}
   - component: {fileID: 543383737}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Special level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1985,7 +1985,7 @@ GameObject:
   - component: {fileID: 639120237}
   - component: {fileID: 639120236}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Vitality Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2868,7 +2868,7 @@ GameObject:
   - component: {fileID: 1087048963}
   - component: {fileID: 1087048962}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Strength Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4887,7 +4887,7 @@ GameObject:
   - component: {fileID: 1865903895}
   - component: {fileID: 1865903894}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Stamina Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -79,9 +79,8 @@ public class PlayerInput : MonoBehaviour
                 // If player is interacting, set movement to 0 and stop all other inputs
                 player.CheckForMovement(0f, 0f);
             }
-        }
-        if (isInteracting) {
-            if (Vector2.Distance(interactable.transform.position, transform.position) > 1f 
+        } else if (isInteracting) {
+            if (Vector2.Distance(interactable.transform.position, transform.position) > 3f 
                     && interactable.GetComponent<Interactable>().GetIsReady()) {
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
