@@ -110,7 +110,7 @@ public class PlayerStats : MonoBehaviour
         if (UI == null) UI = GetComponent<PlayerUI>();
         if (player == null) player = GetComponent<Player>();
         upgrades = new Dictionary<string, int>();
-        upgrades.Add("playerLevel", 0);
+        upgrades.Add("playerLevel", 1);
         upgrades.Add("vitality", 0);
         upgrades.Add("efficiency", 0);
         upgrades.Add("strength", 0);
@@ -308,18 +308,18 @@ public class PlayerStats : MonoBehaviour
         return upgrades["playerLevel"];
     }
     public int GetVitalityLevel() {
-        return upgrades["vitality"];
+        return upgrades["vitality"] + 1;
     }
     public int GetEfficiencyLevel() {
-        return upgrades["efficiency"];
+        return upgrades["efficiency"] + 1;
     }
     public int GetStrengthLevel() {
-        return upgrades["strength"];
+        return upgrades["strength"] + 1;
     }
     public int GetStaminaLevel() {
-        return upgrades["stamina"];
+        return upgrades["stamina"] + 1;
     }
     public int GetSpecialLevel() {
-        return upgrades["special"];
+        return upgrades["special"] + 1;
     }
 }

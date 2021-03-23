@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UpgradeUI : MonoBehaviour
 {
     [Header("Components")]
+    // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
     [SerializeField]
     private PlayerStats playerStats;
 
@@ -16,7 +17,7 @@ public class UpgradeUI : MonoBehaviour
     private Text requiredCurrencyText;
 
     private int currentCurrency = 100;
-    private int requiredCurrency = 20;
+    private int requiredCurrency = 1;
     private int remainingCurrency;
 
     [Header("Levels Text")]
@@ -61,13 +62,24 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField]
     private Button specialIncrease;
 
-    Button buttonn;
+    [Header("Decrease Buttons")]
+    [SerializeField]
+    private Button vitalityDecrease;
+    [SerializeField]
+    private Button efficiencyDecrease;
+    [SerializeField]
+    private Button strengthDecrease;
+    [SerializeField]
+    private Button staminaDecrease;
+    [SerializeField]
+    private Button specialDecrease;
 
     void OnEnable()
     {
         UpdateCurrencyText();
         UpdateLevelValues();
         UpdateLevelText(0);
+        UpdateButtonInteractable();
     }
 
     void Start()
@@ -75,6 +87,7 @@ public class UpgradeUI : MonoBehaviour
         UpdateCurrencyText();
         UpdateLevelValues();
         UpdateLevelText(0);
+        UpdateButtonInteractable();
     }
 
     private void UpdateLevelValues()
@@ -83,7 +96,7 @@ public class UpgradeUI : MonoBehaviour
             return;
 
         levelCap = playerStats.GetLevelCap();
-        baseCurrentLevel = playerStats.GetPlayerLevel();
+        baseCurrentLevel = futureCurrentLevel = playerStats.GetPlayerLevel();
         baseVitalityLevel = futureVitalityLevel = playerStats.GetVitalityLevel();
         baseEfficiencyLevel = futureEfficiencyLevel = playerStats.GetEfficiencyLevel();
         baseStrengthLevel = futureStrengthLevel = playerStats.GetStrengthLevel();
@@ -127,11 +140,35 @@ public class UpgradeUI : MonoBehaviour
         currentCurrency += requiredCurrency;
     }
 
-    private void UpdateIncreaseButtonInteractable()
+    private void UpdateButtonInteractable()
     {
-        if (playerStats == null)
-            return;
+        // DECREASE BUTTONS
+        if (futureVitalityLevel == baseVitalityLevel)
+            vitalityDecrease.interactable = false;
+        else if (futureVitalityLevel > baseVitalityLevel)
+            vitalityDecrease.interactable = true;
 
+        if (futureEfficiencyLevel == baseEfficiencyLevel)
+            efficiencyDecrease.interactable = false;
+        else if (futureEfficiencyLevel > baseEfficiencyLevel)
+            efficiencyDecrease.interactable = true;
+
+        if (futureStrengthLevel == baseStrengthLevel)
+            strengthDecrease.interactable = false;
+        else if (futureStrengthLevel > baseStrengthLevel)
+            strengthDecrease.interactable = true;
+
+        if (futureStaminaLevel == baseStaminaLevel)
+            staminaDecrease.interactable = false;
+        else if (futureStaminaLevel > baseStaminaLevel)
+            staminaDecrease.interactable = true;
+
+        if (futureSpecialLevel == baseSpecialLevel)
+            specialDecrease.interactable = false;
+        else if (futureSpecialLevel > baseSpecialLevel)
+            specialDecrease.interactable = true;
+
+        // INCREASE BUTTONS
         if (currentCurrency < requiredCurrency)
         {
             vitalityIncrease.interactable = false;
@@ -150,11 +187,6 @@ public class UpgradeUI : MonoBehaviour
         }
     }
 
-    private void UpdateDecreaseButtonInteractable()
-    {
-
-    }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // BUTTON FUNCTIONS FOR TEXT ////////////////////////////////////////////////////////////////////////
     private void ChangeLevelColor(int index) { 
@@ -168,18 +200,16 @@ public class UpgradeUI : MonoBehaviour
 
     public void IncreaseStat(int index)
     {
-        Debug.Log("Increasing");
-
         if (index == 0 && futureVitalityLevel < levelCap || baseVitalityLevel < levelCap) {
-            futureCurrentLevel++;
-            futureVitalityLevel++;
+            futureCurrentLevel += 1;
+            futureVitalityLevel += 1;
 
             ConsumeCurrencyValues();
             UpdateCurrencyText();
 
             UpdateLevelText(1);
             ChangeLevelColor(0);
-            UpdateIncreaseButtonInteractable();
+            UpdateButtonInteractable();
         }
 
 
@@ -188,8 +218,6 @@ public class UpgradeUI : MonoBehaviour
 
     public void DecreaseStat(int index)
     {
-        Debug.Log("Decreasing");
-
         if (index == 0 && futureVitalityLevel > baseVitalityLevel) {
             futureVitalityLevel -= 1;
             futureCurrentLevel -= 1;
@@ -199,8 +227,7 @@ public class UpgradeUI : MonoBehaviour
 
             UpdateLevelText(1);
             ChangeLevelColor(0);
-            UpdateIncreaseButtonInteractable();
-            UpdateDecreaseButtonInteractable();
+            UpdateButtonInteractable();
         }
     }
 }
