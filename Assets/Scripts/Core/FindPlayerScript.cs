@@ -10,8 +10,11 @@ public class FindPlayerScript : MonoBehaviour
         player = newPlayer;
     }
 
-    public GameObject GetPlayer()
+    public PlayerStats GetPlayerStats()
     {
-        return player;
+        if (player != null)
+            return player.GetComponent<PlayerStats>();
+        else
+            return null;
     }
 }

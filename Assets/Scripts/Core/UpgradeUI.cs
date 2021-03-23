@@ -7,7 +7,7 @@ public class UpgradeUI : MonoBehaviour
 {
     [Header("Components")]
     // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
-    private FindPlayerScript player;
+    private FindPlayerScript findPlayer;
     private PlayerStats playerStats;
 
     [Header("Currency Text")]
@@ -16,7 +16,8 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField]
     private Text requiredCurrencyText;
 
-    private int currentCurrency = 100;
+    private int baseCurrency = 100;
+    private int futureCurrency;
     private int requiredCurrency = 1;
     private int remainingCurrency;
 
@@ -49,6 +50,7 @@ public class UpgradeUI : MonoBehaviour
     private int futureStaminaLevel;
     private int futureSpecialLevel;
 
+    private bool isConfirmed;
 
     [Header("Increase Buttons")]
     [SerializeField]
@@ -76,20 +78,37 @@ public class UpgradeUI : MonoBehaviour
 
     void OnEnable()
     {
+        if (findPlayer == null) findPlayer = GetComponent<FindPlayerScript>();
+        if (findPlayer != null) playerStats = findPlayer.GetPlayerStats();
+
+        isConfirmed = false;
+        UpdateCurrencyValues();
         UpdateCurrencyText();
+
         UpdateLevelValues();
         UpdateLevelText(0);
+
         UpdateButtonInteractable();
+    }
+
+    void OnDisable()
+    {
+        if (!isConfirmed)
+            Cancel();
     }
 
     void Start()
     {
-        if (player == null) player = GetComponent<FindPlayerScript>();
-        if (player != null) playerStats = player.GetComponent<PlayerStats>();
+        if (findPlayer == null) findPlayer = GetComponent<FindPlayerScript>();
+        if (findPlayer != null) playerStats = findPlayer.GetPlayerStats();
 
+        isConfirmed = false;
+        UpdateCurrencyValues();
         UpdateCurrencyText();
+
         UpdateLevelValues();
         UpdateLevelText(0);
+
         UpdateButtonInteractable();
     }
 
@@ -126,21 +145,26 @@ public class UpgradeUI : MonoBehaviour
         }
     }
 
+    private void UpdateCurrencyValues()
+    {
+        futureCurrency = baseCurrency;
+    }
+
     private void UpdateCurrencyText()
     {
-        currentCurrencyText.text = currentCurrency.ToString();
+        currentCurrencyText.text = futureCurrency.ToString();
         requiredCurrencyText.text = requiredCurrency.ToString();
     }
 
     private void ConsumeCurrencyValues()
     {
-        if (requiredCurrency <= currentCurrency)
-            currentCurrency -= requiredCurrency;
+        if (requiredCurrency <= futureCurrency)
+            futureCurrency -= requiredCurrency;
     }
 
     private void FreeCurrencyValues()
     {
-        currentCurrency += requiredCurrency;
+        futureCurrency += requiredCurrency;
     }
 
     private void UpdateButtonInteractable()
@@ -172,7 +196,7 @@ public class UpgradeUI : MonoBehaviour
             specialDecrease.interactable = true;
 
         // INCREASE BUTTONS
-        if (currentCurrency < requiredCurrency)
+        if (futureCurrency < requiredCurrency)
         {
             vitalityIncrease.interactable = false;
             efficiencyIncrease.interactable = false;
@@ -236,6 +260,7 @@ public class UpgradeUI : MonoBehaviour
 
     public void Confirm() 
     {
+        isConfirmed = true;
         // player total level will update through IncreaseStat()
         baseVitalityLevel = futureVitalityLevel;
         baseEfficiencyLevel = futureEfficiencyLevel;
@@ -249,8 +274,28 @@ public class UpgradeUI : MonoBehaviour
         playerStats.IncreaseStat(3, baseStaminaLevel);
         playerStats.IncreaseStat(4, baseSpecialLevel);
 
+        // also implement Player script having currency values
+        baseCurrency = futureCurrency;
+
         UpdateLevelValues();
         UpdateLevelText(0);
         ChangeLevelColor();
+    }
+
+    public void Cancel()
+    {
+        futureCurrentLevel = baseCurrentLevel;
+        futureVitalityLevel = baseVitalityLevel;
+        futureEfficiencyLevel = baseEfficiencyLevel;
+        futureStrengthLevel = baseStrengthLevel;
+        futureStaminaLevel = baseStaminaLevel;
+        futureSpecialLevel = baseSpecialLevel;
+
+        futureCurrency = baseCurrency;
+
+        UpdateLevelValues();
+        UpdateLevelText(0);
+        ChangeLevelColor();
+
     }
 }
