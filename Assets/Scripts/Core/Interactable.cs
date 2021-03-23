@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour
     private List<GameObject> UI;
 
     private Animator anim;
+    private GameObject player;
     private bool isActive;
     private bool isReady = true;
     private Coroutine interactRoutine;
@@ -22,10 +23,11 @@ public class Interactable : MonoBehaviour
         if (anim == null) anim = GetComponent<Animator>();
     }
 
-    public void Interacting() {
+    public void Interacting(GameObject newPlayer) {
         if (!isReady)
             return;
 
+        player = newPlayer;
         isActive = !isActive;
 
         if (isActive) {
@@ -40,6 +42,7 @@ public class Interactable : MonoBehaviour
             // open up UI
             for (int i = 0; i < UI.Count; i++) {
                 UI[i].SetActive(true);
+                UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
             }
 
         }

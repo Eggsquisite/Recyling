@@ -171,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12780216}
+  - component: {fileID: 12780218}
   - component: {fileID: 12780217}
   m_Layer: 5
   m_Name: Upgrade Menu
@@ -178,7 +179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &12780216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a542372810cf423489d6e1696dd792b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 1033035508}
   currentCurrencyText: {fileID: 884704247}
   requiredCurrencyText: {fileID: 1575599010}
   currentLevelText: {fileID: 1330614123}
@@ -239,6 +239,18 @@ MonoBehaviour:
   strengthDecrease: {fileID: 1492300011}
   staminaDecrease: {fileID: 715921846}
   specialDecrease: {fileID: 2057496943}
+--- !u!114 &12780218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12780215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149941160d5b2b24db71641f42b44a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23543783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,7 +1038,7 @@ GameObject:
   - component: {fileID: 303630226}
   - component: {fileID: 303630225}
   m_Layer: 5
-  m_Name: Decrease
+  m_Name: Efficiency Decrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1174,7 @@ GameObject:
   - component: {fileID: 359025174}
   - component: {fileID: 359025173}
   m_Layer: 5
-  m_Name: Increase
+  m_Name: Special Increase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1314,7 +1326,7 @@ GameObject:
   - component: {fileID: 373300909}
   - component: {fileID: 373300908}
   m_Layer: 5
-  m_Name: Increase
+  m_Name: Stamina Increase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1609,7 +1621,7 @@ GameObject:
   - component: {fileID: 492672237}
   - component: {fileID: 492672236}
   m_Layer: 5
-  m_Name: Increase
+  m_Name: Vitality Increase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2058,7 +2070,7 @@ GameObject:
   - component: {fileID: 715921847}
   - component: {fileID: 715921846}
   m_Layer: 5
-  m_Name: Decrease
+  m_Name: Stamina Decrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2778,17 +2790,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1033035508 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2311640890247761020, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
-  m_PrefabInstance: {fileID: 266036672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c59f0077d939aeb4986fb0a0e9aa2c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1036882563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3589599807854286721, guid: 2df899e3b220f5643974ee51ce2abec7, type: 3}
@@ -3277,7 +3278,7 @@ GameObject:
   - component: {fileID: 1411629752}
   - component: {fileID: 1411629751}
   m_Layer: 5
-  m_Name: Increase
+  m_Name: Efficiency Increase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3407,17 +3408,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 49991457}
     m_Modifications:
-    - target: {fileID: 4268789785134223636, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
+    - target: {fileID: 1185910160, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
+      propertyPath: UI.Array.data[0]
+      value: 
+      objectReference: {fileID: 12780215}
     - target: {fileID: 4268789785485986989, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_Name
       value: Altar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268789785485986994, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_RootOrder
@@ -3548,7 +3545,7 @@ GameObject:
   - component: {fileID: 1492300012}
   - component: {fileID: 1492300011}
   m_Layer: 5
-  m_Name: Decrease
+  m_Name: Strength Decrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4039,7 +4036,7 @@ GameObject:
   - component: {fileID: 1668481696}
   - component: {fileID: 1668481695}
   m_Layer: 5
-  m_Name: Decrease
+  m_Name: Vitality Decrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4175,7 +4172,7 @@ GameObject:
   - component: {fileID: 1696231724}
   - component: {fileID: 1696231723}
   m_Layer: 5
-  m_Name: Increase
+  m_Name: Strength Increase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5277,7 +5274,7 @@ GameObject:
   - component: {fileID: 2057496944}
   - component: {fileID: 2057496943}
   m_Layer: 5
-  m_Name: Decrease
+  m_Name: Special Decrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

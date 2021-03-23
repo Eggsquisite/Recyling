@@ -7,7 +7,7 @@ public class UpgradeUI : MonoBehaviour
 {
     [Header("Components")]
     // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
-    [SerializeField]
+    private FindPlayerScript player;
     private PlayerStats playerStats;
 
     [Header("Currency Text")]
@@ -84,6 +84,9 @@ public class UpgradeUI : MonoBehaviour
 
     void Start()
     {
+        if (player == null) player = GetComponent<FindPlayerScript>();
+        if (player != null) playerStats = player.GetComponent<PlayerStats>();
+
         UpdateCurrencyText();
         UpdateLevelValues();
         UpdateLevelText(0);
@@ -189,18 +192,17 @@ public class UpgradeUI : MonoBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // BUTTON FUNCTIONS FOR TEXT ////////////////////////////////////////////////////////////////////////
-    private void ChangeLevelColor(int index) { 
-        if (index == 0) {
-            if (futureVitalityLevel > baseVitalityLevel)
-                vitalityLevelText.color = Color.green;
-            else
-                vitalityLevelText.color = Color.black;
-        }
+    private void ChangeLevelColor() { 
+        if (futureVitalityLevel > baseVitalityLevel)
+            vitalityLevelText.color = Color.green;
+        else
+            vitalityLevelText.color = Color.black;
+        
     }
 
     public void IncreaseStat(int index)
     {
-        if (index == 0 && futureVitalityLevel < levelCap || baseVitalityLevel < levelCap) {
+        if (index == 0 && futureVitalityLevel < levelCap && baseVitalityLevel < levelCap) {
             futureCurrentLevel += 1;
             futureVitalityLevel += 1;
 
@@ -208,12 +210,12 @@ public class UpgradeUI : MonoBehaviour
             UpdateCurrencyText();
 
             UpdateLevelText(1);
-            ChangeLevelColor(0);
             UpdateButtonInteractable();
         }
 
 
             
+        ChangeLevelColor();
     }
 
     public void DecreaseStat(int index)
@@ -226,8 +228,29 @@ public class UpgradeUI : MonoBehaviour
             UpdateCurrencyText();
 
             UpdateLevelText(1);
-            ChangeLevelColor(0);
             UpdateButtonInteractable();
         }
+
+        ChangeLevelColor();
+    }
+
+    public void Confirm() 
+    {
+        // player total level will update through IncreaseStat()
+        baseVitalityLevel = futureVitalityLevel;
+        baseEfficiencyLevel = futureEfficiencyLevel;
+        baseStrengthLevel = futureStrengthLevel;
+        baseStaminaLevel = futureStaminaLevel;
+        baseSpecialLevel = futureSpecialLevel;
+
+        playerStats.IncreaseStat(0, baseVitalityLevel);
+        playerStats.IncreaseStat(1, baseEfficiencyLevel);
+        playerStats.IncreaseStat(2, baseStrengthLevel);
+        playerStats.IncreaseStat(3, baseStaminaLevel);
+        playerStats.IncreaseStat(4, baseSpecialLevel);
+
+        UpdateLevelValues();
+        UpdateLevelText(0);
+        ChangeLevelColor();
     }
 }

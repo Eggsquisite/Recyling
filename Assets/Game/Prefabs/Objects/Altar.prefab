@@ -321,7 +321,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -27
+  m_SortingOrder: 7
   m_Sprite: {fileID: -1994814187513576561, guid: e448f057754142c41811acba1c2d0406, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -504,7 +504,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 34
   m_Sprite: {fileID: -940293378655324830, guid: e448f057754142c41811acba1c2d0406, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -589,7 +589,8 @@ MonoBehaviour:
   animations:
   - altar_lightActivated
   - altar_lightDeactivated
-  UI: []
+  UI:
+  - {fileID: 0}
 --- !u!1 &4268789785867972683
 GameObject:
   m_ObjectHideFlags: 0

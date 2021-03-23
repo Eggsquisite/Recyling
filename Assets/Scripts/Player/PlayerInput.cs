@@ -23,7 +23,6 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isInteracting) { 
             // MOVEMENT INPUTS
             xAxis = Input.GetAxisRaw("Horizontal");
             yAxis = Input.GetAxisRaw("Vertical");
@@ -35,6 +34,7 @@ public class PlayerInput : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.LeftShift))
                 player.ShiftToRun(false);
 
+        if (!isInteracting) { 
             // SWITCH WEAPON
             if (Input.GetKeyDown(KeyCode.Q))
                 player.SwitchWeaponInput();
@@ -73,11 +73,18 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) {
             interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
             if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) {
-                interactable.GetComponent<Interactable>().Interacting();
+                interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
 
                 // If player is interacting, set movement to 0 and stop all other inputs
                 player.CheckForMovement(0f, 0f);
+            }
+        }
+        if (isInteracting) {
+            if (Vector2.Distance(interactable.transform.position, transform.position) > 1f 
+                    && interactable.GetComponent<Interactable>().GetIsReady()) {
+                interactable.GetComponent<Interactable>().Interacting(gameObject);
+                isInteracting = !isInteracting;
             }
         }
     }
