@@ -389,6 +389,9 @@ public class EnemyMovement : MonoBehaviour
             CancelInvoke("FindPlayer");
     }
     public GameObject GetPlayer() {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+
         return player;
     }
     public bool GetLeftOfPlayer() {

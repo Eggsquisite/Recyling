@@ -968,6 +968,7 @@ public class BasicEnemy : MonoBehaviour
         Destroy(this);
     }
 
+    // Called through death animation event, will change to an IEnumerator to add value over X seconds
     private void GiveCurrency() {
         var tmp = enemyMovement.GetPlayer().GetComponent<PlayerUI>();
         tmp.SetCurrency(currencyOnDeath);
