@@ -157,7 +157,7 @@ public class PlayerStats : MonoBehaviour
         SetDamageVariables();
     }
 
-    public void IncreaseStat(int index) {
+    public void IncreaseStat(int index, int newLevel) {
         if (index == -1)
         {
             // VITALITY ///////////////////////////////////////////////////////////////////
@@ -177,94 +177,108 @@ public class PlayerStats : MonoBehaviour
         }
         else if (index == 0 && upgrades["vitality"] < levelCap) {
             // vitality: max health
-            upgrades["vitality"] = upgrades["vitality"] + 1;
-            Debug.Log("Vitality Level: " + upgrades["vitality"]);
+            for (int i = upgrades["vitality"]; i < newLevel; i++)
+            {
+                upgrades["vitality"] = upgrades["vitality"] + 1;
+                Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
-            if (upgrades["vitality"] <= 10) { 
-                maxHealth += vitalityUpgradeStrong;
-            } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
-                maxHealth += vitalityUpgradeMid;
-            } else if (upgrades["vitality"] > 15) {
-                maxHealth += vitalityUpgradeWeak;
+                if (upgrades["vitality"] <= 10) { 
+                    maxHealth += vitalityUpgradeStrong;
+                } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
+                    maxHealth += vitalityUpgradeMid;
+                } else if (upgrades["vitality"] > 15) {
+                    maxHealth += vitalityUpgradeWeak;
+                }
+
+                UI.SetMaxHealth(maxHealth);
+                UI.SetCurrentHealth(maxHealth);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
-
-            UI.SetMaxHealth(maxHealth);
-            UI.SetCurrentHealth(maxHealth);
-
-            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 1 && upgrades["efficiency"] < levelCap) {
             // efficiency: health and energy regen
-            upgrades["efficiency"] = upgrades["efficiency"] + 1;
-            Debug.Log("efficiency Level: " + upgrades["efficiency"]);
+            for (int i = upgrades["efficiency"]; i < newLevel; i++)
+            {
+                upgrades["efficiency"] = upgrades["efficiency"] + 1;
+                Debug.Log("efficiency Level: " + upgrades["efficiency"]);
 
-            healthRecoveryValue += healthRecoveryEfficiency;
-            energyRecoveryValue += energyRecoveryEfficiency;
-            energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * energyToHealthEfficiency);
+                healthRecoveryValue += healthRecoveryEfficiency;
+                energyRecoveryValue += energyRecoveryEfficiency;
+                energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * energyToHealthEfficiency);
 
-            UI.SetHealthRecoveryValue(healthRecoveryValue);
-            UI.SetEnergyRecoveryValue(energyRecoveryValue);
-            UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
+                UI.SetHealthRecoveryValue(healthRecoveryValue);
+                UI.SetEnergyRecoveryValue(energyRecoveryValue);
+                UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
 
-            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
         }
         else if (index == 2 && upgrades["strength"] < levelCap) {
             // strength: attack damage
-            upgrades["strength"] = upgrades["strength"] + 1;
-            Debug.Log("strength Level: " + upgrades["strength"]);
+            for (int i = upgrades["strength"]; i < newLevel; i++)
+            {
+                upgrades["strength"] = upgrades["strength"] + 1;
+                Debug.Log("strength Level: " + upgrades["strength"]);
 
-            if (upgrades["strength"] <= 10) { 
-                swordDamage += strengthUpgrade;
-            } else if (upgrades["strength"] > 10) {
-                swordDamage += upgrades["strength"] / 2;
+                if (upgrades["strength"] <= 10) { 
+                    swordDamage += strengthUpgrade;
+                } else if (upgrades["strength"] > 10) {
+                    swordDamage += upgrades["strength"] / 2;
+                }
+
+                SetDamageVariables();
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
-
-            SetDamageVariables();
-
-            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 3 && upgrades["stamina"] < levelCap) {
             // stamina: stamina max value/regen
-            upgrades["stamina"] = upgrades["stamina"] + 1;
-            Debug.Log("stamina Level: " + upgrades["stamina"]);
+            for (int i = upgrades["stamina"]; i < newLevel; i++)
+            {
+                upgrades["stamina"] = upgrades["stamina"] + 1;
+                Debug.Log("stamina Level: " + upgrades["stamina"]);
 
-            staminaRecoveryValue += staminaRecoveryUpgrade; 
-            if (upgrades["stamina"] <= 15) {
-                maxStamina += staminaMaxUpgradeStrong;
-            } else if (upgrades["stamina"] > 15) {
-                maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
+                staminaRecoveryValue += staminaRecoveryUpgrade; 
+                if (upgrades["stamina"] <= 15) {
+                    maxStamina += staminaMaxUpgradeStrong;
+                } else if (upgrades["stamina"] > 15) {
+                    maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
+                }
+
+                UI.SetMaxStamina(maxStamina);
+                UI.SetCurrentStamina(maxStamina);
+                UI.SetStaminaRecoveryValue(staminaRecoveryValue);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
-
-            UI.SetMaxStamina(maxStamina);
-            UI.SetCurrentStamina(maxStamina);
-            UI.SetStaminaRecoveryValue(staminaRecoveryValue);
-
-            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
         else if (index == 4 && upgrades["special"] < levelCap) {
             // special: energy max value and special damage (blasters too)
-            upgrades["special"] = upgrades["special"] + 1;
-            Debug.Log("special Level: " + upgrades["special"]);
+            for (int i = upgrades["special"]; i < newLevel; i++)
+            {
+                upgrades["special"] = upgrades["special"] + 1;
+                Debug.Log("special Level: " + upgrades["special"]);
 
-            if (upgrades["special"] <= 10) { 
-                maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
+                if (upgrades["special"] <= 10) { 
+                    maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
 
-                specialAttackDmg += specialAttackUpgradeStrong;
-                blasterLightDmg += specialBlasterLightUpgradeStrong;
-                blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
-            } else if (upgrades["special"] > 10) {
-                maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
+                    specialAttackDmg += specialAttackUpgradeStrong;
+                    blasterLightDmg += specialBlasterLightUpgradeStrong;
+                    blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
+                } else if (upgrades["special"] > 10) {
+                    maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
 
-                specialAttackDmg += specialAttackUpgradeWeak;
-                blasterLightDmg += specialBlasterLightUpgradeWeak;
-                blasterHeavyDmg += specialBlasterHeavyUpgradeWeak;
+                    specialAttackDmg += specialAttackUpgradeWeak;
+                    blasterLightDmg += specialBlasterLightUpgradeWeak;
+                    blasterHeavyDmg += specialBlasterHeavyUpgradeWeak;
+                }
+
+                SetDamageVariables();
+                UI.SetMaxEnergy(maxEnergy);
+                UI.SetCurrentEnergy(maxEnergy);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
-
-            SetDamageVariables();
-            UI.SetMaxEnergy(maxEnergy);
-            UI.SetCurrentEnergy(maxEnergy);
-
-            upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
         }
     }
 
@@ -282,5 +296,27 @@ public class PlayerStats : MonoBehaviour
 
     public float GetHealthRecoveryValue() {
         return healthRecoveryValue;
+    }
+
+
+    /// GET CURRENT/UPGRADE LEVELS
+    /// 
+    public int GetPlayerLevel() {
+        return upgrades["playerLevel"];
+    }
+    public int GetVitalityLevel() {
+        return upgrades["vitality"];
+    }
+    public int GetEfficiencyLevel() {
+        return upgrades["efficiency"];
+    }
+    public int GetStrengthLevel() {
+        return upgrades["strength"];
+    }
+    public int GetStaminaLevel() {
+        return upgrades["stamina"];
+    }
+    public int GetSpecialLevel() {
+        return upgrades["special"];
     }
 }

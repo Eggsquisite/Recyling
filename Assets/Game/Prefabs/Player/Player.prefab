@@ -225,8 +225,8 @@ MonoBehaviour:
   energyToHealthEfficiency: 0.05
   strengthUpgrade: 10
   staminaRecoveryUpgrade: 0.2
-  staminaMaxUpgradeStrong: 28
-  staminaMaxUpgradeWeak: 13
+  staminaMaxUpgradeStrong: 35
+  staminaMaxUpgradeWeak: 5
   specialEnergyUpgradeStrong: 35
   specialEnergyUpgradeWeak: 5
   specialAttackUpgradeStrong: 20
