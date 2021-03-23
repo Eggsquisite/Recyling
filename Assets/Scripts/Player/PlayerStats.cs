@@ -298,7 +298,6 @@ public class PlayerStats : MonoBehaviour
         return healthRecoveryValue;
     }
 
-
     /// GET CURRENT/UPGRADE LEVELS
     /// 
     public int GetLevelCap() {

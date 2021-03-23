@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ResourceUI : MonoBehaviour
 {
+    [Header("Currency")]
+    [SerializeField]
+    private Text currencyText;
+
     [Header("Health")]
     [SerializeField]
     private Slider healthMaxValue;
@@ -29,6 +33,9 @@ public class ResourceUI : MonoBehaviour
     [SerializeField]
     private Slider staminaDestroyedValue;
 
+    public Text GetCurrencyText() {
+        return currencyText;
+    }
     public Slider GetHealthMaxValue() {
         return healthMaxValue;
     }

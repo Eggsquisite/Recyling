@@ -17,4 +17,12 @@ public class FindPlayerScript : MonoBehaviour
         else
             return null;
     }
+
+    public PlayerUI GetPlayerUI() 
+    {
+        if (player != null)
+            return player.GetComponent<PlayerUI>();
+        else
+            return null;
+    }
 }

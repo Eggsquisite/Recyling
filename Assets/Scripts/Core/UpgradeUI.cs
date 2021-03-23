@@ -9,6 +9,7 @@ public class UpgradeUI : MonoBehaviour
     // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
     private FindPlayerScript findPlayer;
     private PlayerStats playerStats;
+    private PlayerUI playerUI;
 
     [Header("Currency Text")]
     [SerializeField]
@@ -82,10 +83,13 @@ public class UpgradeUI : MonoBehaviour
     void OnEnable()
     {
         if (findPlayer == null) findPlayer = GetComponent<FindPlayerScript>();
-        if (findPlayer != null) playerStats = findPlayer.GetPlayerStats();
+        if (findPlayer != null) {
+            playerStats = findPlayer.GetPlayerStats();
+            playerUI = findPlayer.GetPlayerUI();
+        }
 
         isConfirmed = false;
-        UpdateCurrencyValues();
+        GetCurrencyValues();
         UpdateCurrencyText();
 
         UpdateLevelValues();
@@ -103,10 +107,13 @@ public class UpgradeUI : MonoBehaviour
     void Start()
     {
         if (findPlayer == null) findPlayer = GetComponent<FindPlayerScript>();
-        if (findPlayer != null) playerStats = findPlayer.GetPlayerStats();
+        if (findPlayer != null) {
+            playerStats = findPlayer.GetPlayerStats();
+            playerUI = findPlayer.GetPlayerUI();
+        }
 
         isConfirmed = false;
-        UpdateCurrencyValues();
+        GetCurrencyValues();
         UpdateCurrencyText();
 
         UpdateLevelValues();
@@ -150,9 +157,12 @@ public class UpgradeUI : MonoBehaviour
         }
     }
 
-    private void UpdateCurrencyValues()
+    private void GetCurrencyValues()
     {
-        futureCurrency = baseCurrency;
+        if (playerUI == null)
+            return; 
+
+        baseCurrency = futureCurrency = playerUI.GetCurrency();
     }
 
     private void UpdateCurrencyText()
@@ -409,6 +419,7 @@ public class UpgradeUI : MonoBehaviour
 
         // also implement Player script having currency values
         baseCurrency = futureCurrency;
+        playerUI.SetCurrency(-(playerUI.GetCurrency() - baseCurrency));
 
         UpdateLevelValues();
         UpdateLevelText(0);

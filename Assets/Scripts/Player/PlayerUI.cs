@@ -15,6 +15,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private ResourceUI UI;
 
+    [Header("Currency")]
+    private Text currencyText;
+    private int playerCurrency;
+
     [Header("Health")]
     //[SerializeField]
     private Slider healthMaxValue;
@@ -70,6 +74,8 @@ public class PlayerUI : MonoBehaviour
     void Awake()
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
+        currencyText = UI.GetCurrencyText();
+        currencyText.text = playerCurrency.ToString();
 
         // initialize sliders - these are ALL slider variables not floats
         healthMaxValue = UI.GetHealthMaxValue();
@@ -93,6 +99,17 @@ public class PlayerUI : MonoBehaviour
         energyDestroyedValue.value = energyDestroyedValue.maxValue = energyCurrentValue.value = energyCurrentValue.maxValue;
         staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.value = staminaCurrentValue.maxValue;
     }
+
+    public void SetCurrency(int newValue) {
+        playerCurrency += newValue;
+        currencyText.text = playerCurrency.ToString();
+    }
+
+    public int GetCurrency() {
+        return playerCurrency;
+    }
+
+    /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////
 
     IEnumerator DestroyedTimer(int index) {
         if (index == 1 && healthRecoveryRoutine != null)

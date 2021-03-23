@@ -28,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
+    private int currencyOnDeath;
+    [SerializeField]
     private float energyGainMultiplier;
     [SerializeField]
     private float baseDamageThresholdPercent;
@@ -964,6 +966,11 @@ public class BasicEnemy : MonoBehaviour
 
         Destroy(enemyMovement);
         Destroy(this);
+    }
+
+    private void GiveCurrency() {
+        var tmp = enemyMovement.GetPlayer().GetComponent<PlayerUI>();
+        tmp.SetCurrency(currencyOnDeath);
     }
 
     /*IEnumerator FadeAway() {

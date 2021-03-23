@@ -16,6 +16,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private bool detectIsRay;
 
+    private GameObject player;
+    private Vector2 playerChar;
+
     [Header("Follow Properties")]
     [SerializeField]
     private float repeatFollowDelay;
@@ -53,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
-    private Vector2 leftOffset, rightOffset, playerChar, dist, followVelocity;
+    private Vector2 leftOffset, rightOffset, dist, followVelocity;
     private Vector2 directionToMove, directionToPlayer, desiredPosition;
 
     [Header("Patrol Properties")]
@@ -132,7 +135,8 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     public void FindPlayer() {
         // Called thru invoke
-        playerChar = GameObject.FindGameObjectWithTag("Player").transform.position;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerChar = player.transform.position;
         if (canFollow)
             RandomizeOffsetAttackStandby();
     }
@@ -383,6 +387,9 @@ public class EnemyMovement : MonoBehaviour
         canFollow = flag;
         if (!flag)
             CancelInvoke("FindPlayer");
+    }
+    public GameObject GetPlayer() {
+        return player;
     }
     public bool GetLeftOfPlayer() {
         return leftOfPlayer;

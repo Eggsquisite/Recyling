@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
     private bool isDead;
     private PlayerWeapon playerEquipment;
 
-    
-
     [Header("Movement Properties")]
     [SerializeField]
     private float baseWalkSpeed;
@@ -910,7 +908,7 @@ public class Player : MonoBehaviour
 
         Stunned();
         StopAttackFollowThrough();
-        PushBack(pushbackDistance, reference);
+        PushBack(pushDistance, reference);
 
         isHurt = true;
         isInvincible = true;
@@ -928,8 +926,7 @@ public class Player : MonoBehaviour
         UI.SetCurrentHealth(-damageNum);
 
         if (UI.GetCurrentHealth() <= 0) {
-            isDead = true;
-            PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
+            Death();
         }
         else { 
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
@@ -938,6 +935,14 @@ public class Player : MonoBehaviour
                 StopCoroutine(resetStunRoutine);
             resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
         }
+    }
+
+    private void Death() {
+        isDead = true;
+        UI.SetCurrency(-UI.GetCurrency());
+        PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
+        // find a way to place dead body
+        // restart the scene
     }
 
     /// <summary>
