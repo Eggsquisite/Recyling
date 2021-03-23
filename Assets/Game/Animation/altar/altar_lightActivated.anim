@@ -40,7 +40,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Altar Light_DarkBrown/BigSlices_Planet Two_0
+    path: Altar Light_DarkBrown/Altar Light
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -51,7 +51,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 982410128
+      path: 297107739
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -104,7 +104,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Altar Light_DarkBrown/BigSlices_Planet Two_0
+    path: Altar Light_DarkBrown/Altar Light
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -132,7 +132,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Altar Light_DarkBrown/BigSlices_Planet Two_0
+    path: Altar Light_DarkBrown/Altar Light
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -160,10 +160,17 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Altar Light_DarkBrown/BigSlices_Planet Two_0
+    path: Altar Light_DarkBrown/Altar Light
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: OpenUI
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

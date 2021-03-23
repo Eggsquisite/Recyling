@@ -80,7 +80,7 @@ public class PlayerInput : MonoBehaviour
                 player.CheckForMovement(0f, 0f);
             }
         } else if (isInteracting) {
-            if (Vector2.Distance(interactable.transform.position, transform.position) > 3f 
+            if (Vector2.Distance(interactable.transform.position, transform.position) > 2.5f 
                     && interactable.GetComponent<Interactable>().GetIsReady()) {
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;

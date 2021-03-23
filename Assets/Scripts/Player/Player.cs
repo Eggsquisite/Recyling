@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private bool isDead;
     private PlayerWeapon playerEquipment;
 
+    
+
     [Header("Movement Properties")]
     [SerializeField]
     private float baseWalkSpeed;

@@ -38,13 +38,6 @@ public class Interactable : MonoBehaviour
             // play animations if available
             if (animations.Count != 0)
                 anim.Play(animations[0]);
-
-            // open up UI
-            for (int i = 0; i < UI.Count; i++) {
-                UI[i].SetActive(true);
-                UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
-            }
-
         }
         else {
             if (interactRoutine != null)
@@ -54,10 +47,21 @@ public class Interactable : MonoBehaviour
             // play animations if available
             if (animations.Count != 0)
                 anim.Play(animations[1]);
-            // close down UI
-            for (int i = 0; i < UI.Count; i++) {
-                UI[i].SetActive(false);
-            }
+        }
+    }
+
+    private void OpenUI() {
+        // open up UI
+        for (int i = 0; i < UI.Count; i++) {
+            UI[i].SetActive(true);
+            UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
+        }
+    }
+
+    private void CloseUI() { 
+        // close down UI
+        for (int i = 0; i < UI.Count; i++) {
+            UI[i].SetActive(false);
         }
     }
 

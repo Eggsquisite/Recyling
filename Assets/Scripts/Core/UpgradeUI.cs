@@ -18,7 +18,7 @@ public class UpgradeUI : MonoBehaviour
 
     private int baseCurrency = 100;
     private int futureCurrency;
-    private int requiredCurrency = 1;
+    private int requiredCurrency = 10;
     private int remainingCurrency;
 
     [Header("Levels Text")]
