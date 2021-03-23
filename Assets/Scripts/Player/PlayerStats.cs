@@ -301,6 +301,9 @@ public class PlayerStats : MonoBehaviour
 
     /// GET CURRENT/UPGRADE LEVELS
     /// 
+    public int GetLevelCap() {
+        return levelCap;
+    }
     public int GetPlayerLevel() {
         return upgrades["playerLevel"];
     }
