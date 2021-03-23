@@ -229,6 +229,7 @@ MonoBehaviour:
   strengthLevelText: {fileID: 1087048962}
   staminaLevelText: {fileID: 1865903894}
   specialLevelText: {fileID: 543383737}
+  confirm: {fileID: 903948337}
   vitalityIncrease: {fileID: 492672236}
   efficiencyIncrease: {fileID: 1411629751}
   strengthIncrease: {fileID: 1696231723}
@@ -2598,7 +2599,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.67058825, g: 0.21176471, b: 0.21176471, a: 0}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 0.29411766}
@@ -2619,7 +2620,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903948335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 12780217}
+        m_TargetAssemblyTypeName: UpgradeUI, Assembly-CSharp
+        m_MethodName: Confirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &913575816
 PrefabInstance:
   m_ObjectHideFlags: 0

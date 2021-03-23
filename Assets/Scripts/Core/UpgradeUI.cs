@@ -51,8 +51,11 @@ public class UpgradeUI : MonoBehaviour
     private int futureSpecialLevel;
 
     private bool isConfirmed;
+    private int upgradeCounter;
 
     [Header("Increase Buttons")]
+    [SerializeField]
+    private Button confirm;
     [SerializeField]
     private Button vitalityIncrease;
     [SerializeField]
@@ -117,6 +120,8 @@ public class UpgradeUI : MonoBehaviour
         if (playerStats == null)
             return;
 
+        upgradeCounter = 0;
+        CheckUpgradeCount(0);
         levelCap = playerStats.GetLevelCap();
         baseCurrentLevel = futureCurrentLevel = playerStats.GetPlayerLevel();
         baseVitalityLevel = futureVitalityLevel = playerStats.GetVitalityLevel();
@@ -263,6 +268,7 @@ public class UpgradeUI : MonoBehaviour
 
     public void IncreaseStat(int index)
     {
+        CheckUpgradeCount(1);
         isConfirmed = false;
         if (index == 0 && futureVitalityLevel < levelCap) {
             futureCurrentLevel += 1;
@@ -320,6 +326,7 @@ public class UpgradeUI : MonoBehaviour
 
     public void DecreaseStat(int index)
     {
+        CheckUpgradeCount(-1);
         if (index == 0 && futureVitalityLevel > baseVitalityLevel) {
             futureVitalityLevel -= 1;
             futureCurrentLevel -= 1;
@@ -374,6 +381,16 @@ public class UpgradeUI : MonoBehaviour
         ChangeLevelColor();
     }
 
+    private void CheckUpgradeCount(int value)
+    {
+        upgradeCounter += value;
+
+        if (upgradeCounter > 0)
+            confirm.interactable = true;
+        else
+            confirm.interactable = false;
+    }
+
     public void Confirm() 
     {
         isConfirmed = true;
@@ -396,6 +413,7 @@ public class UpgradeUI : MonoBehaviour
         UpdateLevelValues();
         UpdateLevelText(0);
         ChangeLevelColor();
+        UpdateButtonInteractable();
     }
 
     public void Cancel()
@@ -412,6 +430,6 @@ public class UpgradeUI : MonoBehaviour
         UpdateLevelValues();
         UpdateLevelText(0);
         ChangeLevelColor();
-
+        UpdateButtonInteractable();
     }
 }

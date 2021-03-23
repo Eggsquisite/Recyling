@@ -219,7 +219,7 @@ MonoBehaviour:
   blasterHeavyDmg: 30
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
-  vitalityUpgradeWeak: 20
+  vitalityUpgradeWeak: 35
   healthRecoveryEfficiency: 0.125
   energyRecoveryEfficiency: 0.075
   energyToHealthEfficiency: 0.05
