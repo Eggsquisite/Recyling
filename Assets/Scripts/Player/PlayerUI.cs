@@ -141,7 +141,7 @@ public class PlayerUI : MonoBehaviour
         isAdding = true;
         while (baseCurrency < tmp)
         {
-            baseCurrency += 0.05f;
+            baseCurrency += 1f;
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
             yield return null;
