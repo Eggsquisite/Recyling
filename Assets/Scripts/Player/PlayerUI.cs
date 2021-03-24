@@ -19,9 +19,13 @@ public class PlayerUI : MonoBehaviour
     private Text currencyText;
     private Text futureCurrencyText;
 
+    private bool isAdding;
     private float baseCurrency;
+
+    private int baseTmp;
     private int currencyTmp;
     private int futureCurrency;
+
     private Coroutine addCurrencyRoutine;
 
     [Header("Health")]
@@ -109,11 +113,13 @@ public class PlayerUI : MonoBehaviour
         staminaDestroyedValue.value = staminaDestroyedValue.maxValue = staminaCurrentValue.value = staminaCurrentValue.maxValue;
     }
 
+    /// CURRENCY CODE ///////////////////////////////////////////////////////////////////////////
     public void SetCurrency(int newValue) {
         if (newValue > 0) {
             if (addCurrencyRoutine != null)
                 StopCoroutine(addCurrencyRoutine);
-            addCurrencyRoutine = StartCoroutine(AddCurrency(newValue));
+
+            addCurrencyRoutine = StartCoroutine(AddCurrencyValues(newValue));
         } else { 
             baseCurrency += newValue;
             currencyTmp = Mathf.RoundToInt(baseCurrency);
@@ -121,13 +127,19 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    IEnumerator AddCurrency(int newValue) {
+    IEnumerator AddCurrencyValues(int newValue) {
         futureCurrency += newValue;
         futureCurrencyText.gameObject.SetActive(true);
         futureCurrencyText.text = "+" + futureCurrency.ToString();
-        yield return new WaitForSeconds(1f);
-
-        while (baseCurrency < futureCurrency)
+        
+        if (!isAdding) { 
+            yield return new WaitForSeconds(0.5f);
+            baseTmp = Mathf.RoundToInt(baseCurrency);
+        }
+    
+        int tmp = baseTmp + futureCurrency;
+        isAdding = true;
+        while (baseCurrency < tmp)
         {
             baseCurrency += 0.05f;
             currencyTmp = Mathf.RoundToInt(baseCurrency);
@@ -135,6 +147,9 @@ public class PlayerUI : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+        isAdding = false;
+        futureCurrency = 0;
         futureCurrencyText.gameObject.SetActive(false);
     }
 
@@ -143,7 +158,6 @@ public class PlayerUI : MonoBehaviour
     }
 
     /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////
-
     IEnumerator DestroyedTimer(int index) {
         if (index == 1 && healthRecoveryRoutine != null)
             StopCoroutine(healthRecoveryRoutine);
