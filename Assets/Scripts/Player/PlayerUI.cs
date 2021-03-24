@@ -17,7 +17,12 @@ public class PlayerUI : MonoBehaviour
 
     [Header("Currency")]
     private Text currencyText;
-    private int playerCurrency;
+    private Text futureCurrencyText;
+
+    private float baseCurrency;
+    private int currencyTmp;
+    private int futureCurrency;
+    private Coroutine addCurrencyRoutine;
 
     [Header("Health")]
     //[SerializeField]
@@ -75,7 +80,11 @@ public class PlayerUI : MonoBehaviour
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
         currencyText = UI.GetCurrencyText();
-        currencyText.text = playerCurrency.ToString();
+        futureCurrencyText = UI.GetFutureCurrencyText();
+
+        currencyTmp = Mathf.RoundToInt(baseCurrency);
+        currencyText.text = currencyTmp.ToString();
+        futureCurrencyText.gameObject.SetActive(false);
 
         // initialize sliders - these are ALL slider variables not floats
         healthMaxValue = UI.GetHealthMaxValue();
@@ -101,12 +110,36 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void SetCurrency(int newValue) {
-        playerCurrency += newValue;
-        currencyText.text = playerCurrency.ToString();
+        if (newValue > 0) {
+            if (addCurrencyRoutine != null)
+                StopCoroutine(addCurrencyRoutine);
+            addCurrencyRoutine = StartCoroutine(AddCurrency(newValue));
+        } else { 
+            baseCurrency += newValue;
+            currencyTmp = Mathf.RoundToInt(baseCurrency);
+            currencyText.text = currencyTmp.ToString();
+        }
+    }
+
+    IEnumerator AddCurrency(int newValue) {
+        futureCurrency += newValue;
+        futureCurrencyText.gameObject.SetActive(true);
+        futureCurrencyText.text = "+" + futureCurrency.ToString();
+        yield return new WaitForSeconds(1f);
+
+        while (baseCurrency < futureCurrency)
+        {
+            baseCurrency += 0.05f;
+            currencyTmp = Mathf.RoundToInt(baseCurrency);
+            currencyText.text = currencyTmp.ToString();
+            yield return null;
+        }
+
+        futureCurrencyText.gameObject.SetActive(false);
     }
 
     public int GetCurrency() {
-        return playerCurrency;
+        return Mathf.RoundToInt(baseCurrency);
     }
 
     /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////

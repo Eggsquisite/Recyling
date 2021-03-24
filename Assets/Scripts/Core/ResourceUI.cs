@@ -8,6 +8,8 @@ public class ResourceUI : MonoBehaviour
     [Header("Currency")]
     [SerializeField]
     private Text currencyText;
+    [SerializeField]
+    private Text futureCurrencyText;
 
     [Header("Health")]
     [SerializeField]
@@ -35,6 +37,9 @@ public class ResourceUI : MonoBehaviour
 
     public Text GetCurrencyText() {
         return currencyText;
+    }
+    public Text GetFutureCurrencyText() {
+        return futureCurrencyText;
     }
     public Slider GetHealthMaxValue() {
         return healthMaxValue;
