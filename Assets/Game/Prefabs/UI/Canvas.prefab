@@ -111,8 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 7655899858105297981}
-  currentCurrencyText: {fileID: 884704247}
-  requiredCurrencyText: {fileID: 1575599010}
+  requiredEnergyText: {fileID: 1575599010}
   currentLevelText: {fileID: 1330614123}
   vitalityLevelText: {fileID: 639120236}
   efficiencyLevelText: {fileID: 404112500}
@@ -3549,7 +3548,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a491c279c1fddd64dad44fbce5a54ed7, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

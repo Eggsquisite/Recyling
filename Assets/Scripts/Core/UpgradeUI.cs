@@ -13,16 +13,19 @@ public class UpgradeUI : MonoBehaviour
     private PlayerStats playerStats;
     private PlayerUI playerUI;
 
-    [Header("Currency Text")]
+    [Header("Energy Text")]
+/*    [SerializeField]
+    private Text currentCurrencyText;*/
     [SerializeField]
-    private Text currentCurrencyText;
-    [SerializeField]
-    private Text requiredCurrencyText;
+    private Text requiredEnergyText;
 
-    private int baseCurrency = 100;
     private int futureCurrency;
-    private int requiredCurrency = 10;
+    private int requiredEnergy;
     private int remainingCurrency;
+
+    [Header("Energy-Currency")]
+    private int baseEnergy;
+    private int futureEnergy;
 
     [Header("Levels Text")]
     [SerializeField]
@@ -95,8 +98,8 @@ public class UpgradeUI : MonoBehaviour
             anim.Play("upgradeUI_enable");
 
         isConfirmed = false;
-        GetCurrencyValues();
-        UpdateCurrencyText();
+        GetEnergyValues();
+        GetRequiredEnergyValue(true);
 
         UpdateLevelValues();
         UpdateLevelText(0);
@@ -106,7 +109,7 @@ public class UpgradeUI : MonoBehaviour
 
     void OnDisable()
     {
-        if (anim != null)
+        if (anim != null && !isActiveAndEnabled)
             anim.Play("upgradeUI_disable");
 
         if (!isConfirmed)
@@ -126,8 +129,8 @@ public class UpgradeUI : MonoBehaviour
             playerUI = findPlayer.GetPlayerUI();
         }
 
-        GetCurrencyValues();
-        UpdateCurrencyText();
+        GetEnergyValues();
+        GetRequiredEnergyValue(true);
 
         UpdateLevelValues();
         UpdateLevelText(0);
@@ -170,29 +173,52 @@ public class UpgradeUI : MonoBehaviour
         }
     }
 
-    private void GetCurrencyValues()
+    private void GetEnergyValues()
     {
         if (playerUI == null)
-            return; 
+            return;
 
-        baseCurrency = futureCurrency = playerUI.GetCurrency();
+        //baseCurrency = futureCurrency = playerUI.GetCurrency();
+        baseEnergy = futureEnergy = Mathf.RoundToInt(playerUI.GetCurrentEnergy());
     }
 
-    private void UpdateCurrencyText()
+    private void GetRequiredEnergyValue(bool flag)
     {
-        currentCurrencyText.text = futureCurrency.ToString();
-        requiredCurrencyText.text = requiredCurrency.ToString();
+        if (playerUI == null)
+            return;
+
+        //currentCurrencyText.text = futureCurrency.ToString();
+        if (flag) // increase
+            requiredEnergy = playerUI.GetRequiredEnergyIncrease(futureCurrentLevel);
+        else
+            requiredEnergy = playerUI.GetRequiredEnergyDecrease(futureCurrentLevel);
+
+        requiredEnergyText.text = requiredEnergy.ToString();
+    }
+
+    private void UpdateRequiredEnergyText() { 
+        requiredEnergyText.text = requiredEnergy.ToString();
     }
 
     private void ConsumeCurrencyValues()
     {
-        if (requiredCurrency <= futureCurrency)
-            futureCurrency -= requiredCurrency;
+        if (playerUI == null)
+            return;
+
+        if (requiredEnergy <= futureEnergy) { 
+            playerUI.SetCurrentEnergyUI(-requiredEnergy);
+            futureEnergy = Mathf.RoundToInt(playerUI.GetCurrentEnergy());
+        }
     }
 
     private void FreeCurrencyValues()
     {
-        futureCurrency += requiredCurrency;
+        if (playerUI == null)
+            return;
+
+        //futureCurrency += requiredCurrency;
+        playerUI.SetCurrentEnergyUI(+requiredEnergy);
+        futureEnergy = Mathf.RoundToInt(playerUI.GetCurrentEnergy());
     }
 
     private void UpdateButtonInteractable()
@@ -224,7 +250,7 @@ public class UpgradeUI : MonoBehaviour
             specialDecrease.interactable = true;
 
         // INCREASE BUTTONS
-        if (futureCurrency < requiredCurrency)
+        if (futureEnergy < requiredEnergy)
         {
             vitalityIncrease.interactable = false;
             efficiencyIncrease.interactable = false;
@@ -298,7 +324,7 @@ public class UpgradeUI : MonoBehaviour
             futureVitalityLevel += 1;
 
             ConsumeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(true);
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -308,7 +334,7 @@ public class UpgradeUI : MonoBehaviour
             futureEfficiencyLevel += 1;
 
             ConsumeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(true);
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -318,7 +344,7 @@ public class UpgradeUI : MonoBehaviour
             futureStrengthLevel += 1;
 
             ConsumeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(true);
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -328,7 +354,7 @@ public class UpgradeUI : MonoBehaviour
             futureStaminaLevel += 1;
 
             ConsumeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(true);
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -338,7 +364,7 @@ public class UpgradeUI : MonoBehaviour
             futureSpecialLevel += 1;
 
             ConsumeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(true);
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -355,7 +381,8 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(false);
+            UpdateRequiredEnergyText();
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -365,7 +392,8 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(false);
+            UpdateRequiredEnergyText();
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -375,7 +403,8 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(false);
+            UpdateRequiredEnergyText();
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -385,7 +414,8 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(false);
+            UpdateRequiredEnergyText();
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -395,7 +425,8 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            UpdateCurrencyText();
+            GetRequiredEnergyValue(false);
+            UpdateRequiredEnergyText();
 
             UpdateLevelText(1);
             UpdateButtonInteractable();
@@ -431,8 +462,11 @@ public class UpgradeUI : MonoBehaviour
         playerStats.IncreaseStat(4, baseSpecialLevel);
 
         // also implement Player script having currency values
-        baseCurrency = futureCurrency;
-        playerUI.SetCurrency(-(playerUI.GetCurrency() - baseCurrency));
+        //baseCurrency = futureCurrency;
+        //playerUI.SetCurrency(-(playerUI.GetCurrency() - baseCurrency));
+
+        // using energy instead of currency
+        playerUI.ConfirmCurrentEnergyUI();
 
         UpdateLevelValues();
         UpdateLevelText(0);
@@ -449,11 +483,15 @@ public class UpgradeUI : MonoBehaviour
         futureStaminaLevel = baseStaminaLevel;
         futureSpecialLevel = baseSpecialLevel;
 
-        futureCurrency = baseCurrency;
+        //futureCurrency = baseCurrency;
+        futureEnergy = baseEnergy;
 
         UpdateLevelValues();
         UpdateLevelText(0);
         ChangeLevelColor();
         UpdateButtonInteractable();
+
+        playerUI.CancelCurrentEnergyUI();
+        playerUI.CancelRequiredEnergy(baseCurrentLevel);
     }
 }

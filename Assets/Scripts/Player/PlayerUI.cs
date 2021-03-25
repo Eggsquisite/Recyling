@@ -15,6 +15,15 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private ResourceUI UI;
 
+    [Header("Energy Upgrade")]
+    [SerializeField]
+    private int requiredEnergy;
+    [SerializeField]
+    private int requiredEnergyModifier;
+
+    private int prevRequiredEnergy;
+    private float levelCounter;
+
     [Header("Currency")]
     private Text currencyText;
     private Text futureCurrencyText;
@@ -155,6 +164,60 @@ public class PlayerUI : MonoBehaviour
     public int GetCurrency() {
         return Mathf.RoundToInt(baseCurrency);
     }
+
+    public int GetRequiredEnergy() {
+        return requiredEnergy;
+    }
+    public int GetRequiredEnergyModifier() {
+        return requiredEnergyModifier;
+    }
+
+    public int GetRequiredEnergyIncrease(int futureLevel) {
+        /*levelCounter = futureLevel / 5;
+        if (levelCounter % 1 == 0) {
+            tmpLevel++;
+            requiredEnergy += requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
+        } else if (levelCounter % 1 != 0 && levelCounter < tmpLevel) {
+            tmpLevel--;
+            requiredEnergy -= requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
+        }*/
+
+        if (futureLevel % 5 == 0 && futureLevel > 0) {
+            levelCounter++;
+            prevRequiredEnergy = requiredEnergy;
+            Debug.Log("Level counter increase: " + levelCounter);
+            requiredEnergy += requiredEnergyModifier;
+        }
+
+        return requiredEnergy;
+    }
+
+    public int GetRequiredEnergyDecrease(int futureLevel) {
+        /*levelCounter = futureLevel / 5;
+        if (levelCounter % 1 == 0) {
+            tmpLevel++;
+            requiredEnergy += requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
+        } else if (levelCounter % 1 != 0 && levelCounter < tmpLevel) {
+            tmpLevel--;
+            requiredEnergy -= requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
+        }*/
+
+        if (futureLevel / 5 < levelCounter) {
+            Debug.Log("Previous: " + requiredEnergy + " - " + prevRequiredEnergy);
+            requiredEnergy = prevRequiredEnergy;
+            levelCounter--;
+        }
+
+        return requiredEnergy;
+    }
+
+    public void CancelRequiredEnergy(int level) { 
+        if (level / 5 < levelCounter) {
+            requiredEnergy = prevRequiredEnergy;
+            levelCounter--;
+        }
+    }
+
 
     /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////
     IEnumerator DestroyedTimer(int index) {
@@ -424,7 +487,27 @@ public class PlayerUI : MonoBehaviour
         energyRecovering = false;
         yield break;
     }
+    public void SetCurrentEnergyUI(float newValue) {
+        energyCurrentValue.value += newValue;
+    }
+    public void ConfirmCurrentEnergyUI() {
+        if (energyCurrentValue.value < energyDestroyedValue.value){
+            energyLost = true;
+            energyDecaying = false;
+            energyRecovering = false;
 
+            if (energyRecoveryRoutine != null)
+                StopCoroutine(energyRecoveryRoutine);
+
+            if (energyDestroyedTimerRoutine != null)
+                StopCoroutine(energyDestroyedTimerRoutine);
+            energyDestroyedTimerRoutine = StartCoroutine(DestroyedTimer(2));
+        }
+    }
+    public void CancelCurrentEnergyUI() {
+        if (energyCurrentValue.value < energyDestroyedValue.value)
+            energyCurrentValue.value = energyDestroyedValue.value;
+    }
     public int GetCurrentEnergy() {
         return (int)energyCurrentValue.value;
     }
