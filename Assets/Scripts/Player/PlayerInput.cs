@@ -71,10 +71,23 @@ public class PlayerInput : MonoBehaviour
 
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
-            interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
-            if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) {
+            if (!isInteracting) { 
+                interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
+
+                if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) { 
+                    interactable.GetComponent<Interactable>().Interacting(gameObject);
+                    isInteracting = !isInteracting;
+
+                    if (Vector2.Distance(interactable.transform.position, transform.position) > 1f)
+                        interactable = null;
+                }
+            }
+            else if (isInteracting 
+                        && interactable != null
+                        && interactable.GetComponent<Interactable>().GetIsReady()) { 
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
+                interactable = null;
 
                 // If player is interacting, set movement to 0 and stop all other inputs
                 player.CheckForMovement(0f, 0f);
@@ -84,6 +97,7 @@ public class PlayerInput : MonoBehaviour
                     && interactable.GetComponent<Interactable>().GetIsReady()) {
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
+                interactable = null;
             }
         }
     }

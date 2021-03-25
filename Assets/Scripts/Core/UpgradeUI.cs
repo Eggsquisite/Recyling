@@ -7,6 +7,8 @@ public class UpgradeUI : MonoBehaviour
 {
     [Header("Components")]
     // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
+    [SerializeField]
+    private Animator anim;
     private FindPlayerScript findPlayer;
     private PlayerStats playerStats;
     private PlayerUI playerUI;
@@ -83,10 +85,14 @@ public class UpgradeUI : MonoBehaviour
     void OnEnable()
     {
         if (findPlayer == null) findPlayer = GetComponent<FindPlayerScript>();
-        if (findPlayer != null) {
+        if (findPlayer != null)
+        {
             playerStats = findPlayer.GetPlayerStats();
             playerUI = findPlayer.GetPlayerUI();
         }
+
+        if (anim != null)
+            anim.Play("upgradeUI_enable");
 
         isConfirmed = false;
         GetCurrencyValues();
@@ -100,8 +106,16 @@ public class UpgradeUI : MonoBehaviour
 
     void OnDisable()
     {
+        if (anim != null)
+            anim.Play("upgradeUI_disable");
+
         if (!isConfirmed)
             Cancel();
+    }
+
+    private void Awake()
+    {
+        isConfirmed = false;
     }
 
     void Start()
@@ -112,7 +126,6 @@ public class UpgradeUI : MonoBehaviour
             playerUI = findPlayer.GetPlayerUI();
         }
 
-        isConfirmed = false;
         GetCurrencyValues();
         UpdateCurrencyText();
 
