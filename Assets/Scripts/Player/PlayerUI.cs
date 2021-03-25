@@ -8,9 +8,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private float visualDelay;
     [SerializeField]
-    private float decaySpeed;
+    private float updateSpeed;
     [SerializeField]
-    private float recoveryModifier;
+    private float updateModifier;
 
     [SerializeField]
     private ResourceUI UI;
@@ -55,9 +55,8 @@ public class PlayerUI : MonoBehaviour
     private bool energyDecaying;
     private bool energyRecovering;
 
-    private float energyRegenInUse;
+    private float energyRegenInUse = 0f;
     private float energyRecoveryValue;
-    private float energyRecoveryDelay;
 
     [Header("Stamina")]
     //[SerializeField]
@@ -215,7 +214,7 @@ public class PlayerUI : MonoBehaviour
                 yield break;
             }
 
-            decayValue.value -= decaySpeed * Time.deltaTime;
+            decayValue.value -= updateSpeed * updateModifier * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
         decayValue.value = currentTmp;
@@ -270,7 +269,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetFutureHealth(float multiplier) {
         // increase future health, then heal up to that amount if player is not hit
-        healthDestroyedValue.value += healthRecoveryValue * recoveryModifier * multiplier;
+        healthDestroyedValue.value += healthRecoveryValue * updateModifier * multiplier * Time.deltaTime;
     }
 
     public void BeginFutureHealthRecovery() {
@@ -283,7 +282,7 @@ public class PlayerUI : MonoBehaviour
         // visual health fill up
         while (healthCurrentValue.value < healthDestroyedValue.value && !healthDecaying)
         {
-            healthCurrentValue.value += 1f;
+            healthCurrentValue.value += updateSpeed * updateModifier * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
@@ -370,15 +369,16 @@ public class PlayerUI : MonoBehaviour
 
     public IEnumerator EnergyRegenOnHit(float multiplier) {
         var tmp = energyRecoveryValue;
-        energyRegenInUse += energyRecoveryValue;
-        energyRecoveryValue = energyRecoveryValue * multiplier;
+        energyRegenInUse += 1f;
+        energyRecoveryValue = energyRecoveryValue * energyRegenInUse * multiplier;
+        Debug.Log(energyRecoveryValue);
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
         energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
 
         yield return new WaitForSeconds(0.5f);
         energyRecoveryValue = tmp;
-        energyRegenInUse -= energyRecoveryValue;
+        energyRegenInUse -= 1f;
         if (energyRegenInUse < 0) 
             energyRegenInUse = 0;
 
@@ -391,8 +391,8 @@ public class PlayerUI : MonoBehaviour
     public void EnergyWithoutDecay(float newValue) {
         if (energyCurrentValue.value + newValue < energyCurrentValue.value)
         {
-            energyCurrentValue.value += newValue * energyToHealthMultiplier * recoveryModifier;
-            energyDestroyedValue.value += newValue * energyToHealthMultiplier * recoveryModifier;
+            energyCurrentValue.value += newValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
+            energyDestroyedValue.value += newValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
 
             if (energyCurrentValue.value < 0) { 
                 energyCurrentValue.value = 0;
@@ -417,7 +417,7 @@ public class PlayerUI : MonoBehaviour
                     StopCoroutine(energyRecoveryRoutine);
                 yield break;
             }
-            SetCurrentEnergy(energyRecoveryValue * recoveryModifier * Time.deltaTime);
+            SetCurrentEnergy(energyRecoveryValue * updateModifier * Time.deltaTime);
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
@@ -434,10 +434,6 @@ public class PlayerUI : MonoBehaviour
     public float GetEnergyRecoveryValue() {
         return energyRecoveryValue;
     }
-    public void SetEnergyRecoveryDelay(float newValue) {
-        energyRecoveryDelay = newValue;
-    }
-
     // STAMINA ///////////////////////////////////////////////////////////////////////////////////
     public void SetMaxStamina(int newValue) {
         staminaMaxValue.value = newValue;
@@ -491,7 +487,7 @@ public class PlayerUI : MonoBehaviour
 
                 yield break;
             }
-            SetCurrentStamina(staminaRecoveryValue * recoveryModifier * Time.deltaTime);
+            SetCurrentStamina(staminaRecoveryValue * updateModifier * Time.deltaTime);
             //Debug.Log("Stamina recov value: " + staminaRecoveryValue);
             yield return new WaitForSeconds(Time.deltaTime);
         }

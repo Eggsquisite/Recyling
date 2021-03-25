@@ -1098,15 +1098,15 @@ public class Player : MonoBehaviour
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
             // increase heal amount the longer recovery is held
-            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue() * Time.deltaTime);
-            if (time < 0.25f)
-                UI.SetFutureHealth(0.5f * Time.deltaTime);
-            else if (time >= 0.25f && time < 1f)
-                UI.SetFutureHealth(1f * Time.deltaTime);
+            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue());
+            if (time < 0.15f)
+                UI.SetFutureHealth(0.75f);
+            else if (time >= 0.15f && time < 1.25f)
+                UI.SetFutureHealth(1f);
             else if (time >= 1f && time < 2f) 
-                UI.SetFutureHealth(1.5f * Time.deltaTime);
+                UI.SetFutureHealth(1.75f);
             else if (time >= 2f)
-                UI.SetFutureHealth(2.5f * Time.deltaTime);
+                UI.SetFutureHealth(2.5f);
 
             time += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
