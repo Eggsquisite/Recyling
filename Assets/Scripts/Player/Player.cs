@@ -1098,19 +1098,18 @@ public class Player : MonoBehaviour
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
             // increase heal amount the longer recovery is held
-            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue() * 0.75f);
+            UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue() * Time.deltaTime);
             if (time < 0.25f)
-                UI.SetFutureHealth(0.5f);
+                UI.SetFutureHealth(0.5f * Time.deltaTime);
             else if (time >= 0.25f && time < 1f)
-                UI.SetFutureHealth(1f);
-            else if (time >= 1f && time < 2f) { 
-                UI.SetFutureHealth(1.5f);
-            }
+                UI.SetFutureHealth(1f * Time.deltaTime);
+            else if (time >= 1f && time < 2f) 
+                UI.SetFutureHealth(1.5f * Time.deltaTime);
             else if (time >= 2f)
-                UI.SetFutureHealth(2.5f);
+                UI.SetFutureHealth(2.5f * Time.deltaTime);
 
-            time += 0.03f;
-            yield return new WaitForSeconds(0.03f);
+            time += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         StopRecoverInput();
     }

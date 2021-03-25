@@ -208,10 +208,10 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 500
   maxStamina: 800
-  healthRecoveryValue: 2
+  healthRecoveryValue: 15
   energyToHealthMultiplier: 1
-  energyRecoveryValue: 2
-  staminaRecoveryValue: 14
+  energyRecoveryValue: 20
+  staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.75
   swordDamage: 15
   specialAttackDmg: 50
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualDelay: 0.33
   decaySpeed: 750
-  recoverySpeed: 0.03
+  recoveryModifier: 10
   UI: {fileID: 0}
 --- !u!114 &1949231004
 MonoBehaviour:
