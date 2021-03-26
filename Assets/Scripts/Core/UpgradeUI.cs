@@ -109,7 +109,7 @@ public class UpgradeUI : MonoBehaviour
 
     void OnDisable()
     {
-        if (anim != null && !isActiveAndEnabled)
+        if (anim != null)
             anim.Play("upgradeUI_disable");
 
         if (!isConfirmed)
@@ -119,6 +119,8 @@ public class UpgradeUI : MonoBehaviour
     private void Awake()
     {
         isConfirmed = false;
+        if (anim != null)
+            anim.keepAnimatorControllerStateOnDisable = true;
     }
 
     void Start()
