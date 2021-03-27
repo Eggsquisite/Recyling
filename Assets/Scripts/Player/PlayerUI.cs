@@ -15,24 +15,24 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private ResourceUI UI;
 
-    [Header("Energy Upgrade")]
+    [Header("Currency Upgrade")]
     [SerializeField]
-    private int requiredEnergy;
+    private int requiredCurrency;
     [SerializeField]
-    private int requiredEnergyModifier;
+    private int requiredCurrencyModifier;
 
-    private int prevRequiredEnergy;
     private float levelCounter;
+    private int prevRequiredCurrency;
 
     [Header("Currency")]
     private Text currencyText;
     private Text futureCurrencyText;
 
     private bool isAdding;
-    private float baseCurrency;
 
     private int baseTmp;
     private int currencyTmp;
+    private float baseCurrency;
     private int futureCurrency;
 
     private Coroutine addCurrencyRoutine;
@@ -64,7 +64,7 @@ public class PlayerUI : MonoBehaviour
     private bool energyDecaying;
     private bool energyRecovering;
 
-    private float energyRegenInUse = 0f;
+    private int energyRegenInUse = 0;
     private float energyRecoveryValue;
 
     [Header("Stamina")]
@@ -149,10 +149,10 @@ public class PlayerUI : MonoBehaviour
         isAdding = true;
         while (baseCurrency < tmp)
         {
-            baseCurrency += 1f;
+            baseCurrency += 10f * updateModifier * Time.deltaTime;
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -165,14 +165,14 @@ public class PlayerUI : MonoBehaviour
         return Mathf.RoundToInt(baseCurrency);
     }
 
-    public int GetRequiredEnergy() {
-        return requiredEnergy;
+    public int GetRequiredCurrency() {
+        return requiredCurrency;
     }
-    public int GetRequiredEnergyModifier() {
-        return requiredEnergyModifier;
+    public int GetRequiredCurrencyModifier() {
+        return requiredCurrencyModifier;
     }
 
-    public int GetRequiredEnergyIncrease(int futureLevel) {
+    public int GetRequiredCurrencyIncrease(int futureLevel) {
         /*levelCounter = futureLevel / 5;
         if (levelCounter % 1 == 0) {
             tmpLevel++;
@@ -184,15 +184,15 @@ public class PlayerUI : MonoBehaviour
 
         if (futureLevel % 5 == 0 && futureLevel > 0) {
             levelCounter++;
-            prevRequiredEnergy = requiredEnergy;
+            prevRequiredCurrency = requiredCurrency;
             Debug.Log("Level counter increase: " + levelCounter);
-            requiredEnergy += requiredEnergyModifier;
+            requiredCurrency += requiredCurrencyModifier;
         }
 
-        return requiredEnergy;
+        return requiredCurrency;
     }
 
-    public int GetRequiredEnergyDecrease(int futureLevel) {
+    public int GetRequiredCurrencyDecrease(int futureLevel) {
         /*levelCounter = futureLevel / 5;
         if (levelCounter % 1 == 0) {
             tmpLevel++;
@@ -203,21 +203,24 @@ public class PlayerUI : MonoBehaviour
         }*/
 
         if (futureLevel / 5 < levelCounter) {
-            Debug.Log("Previous: " + requiredEnergy + " - " + prevRequiredEnergy);
-            requiredEnergy = prevRequiredEnergy;
+            Debug.Log("Previous: " + requiredCurrency + " - " + prevRequiredCurrency);
+            requiredCurrency = prevRequiredCurrency;
             levelCounter--;
         }
 
-        return requiredEnergy;
+        return requiredCurrency;
     }
 
-    public void CancelRequiredEnergy(int level) { 
+    public void CancelRequiredCurrency(int level) { 
         if (level / 5 < levelCounter) {
-            requiredEnergy = prevRequiredEnergy;
+            requiredCurrency = prevRequiredCurrency;
             levelCounter--;
         }
     }
 
+    public void SetCurrentCurrencyUI(float newValue) {
+        energyCurrentValue.value += newValue;
+    }
 
     /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////
     IEnumerator DestroyedTimer(int index) {
@@ -430,18 +433,17 @@ public class PlayerUI : MonoBehaviour
         energyCurrentValue.value += newValue;
     }
 
-    public IEnumerator EnergyRegenOnHit(float multiplier) {
+    public IEnumerator EnergyRegenOnHit(float energyRegenMultiplier) {
         var tmp = energyRecoveryValue;
-        energyRegenInUse += 1f;
-        energyRecoveryValue = energyRecoveryValue * energyRegenInUse * multiplier;
-        Debug.Log(energyRecoveryValue);
+        energyRegenInUse += 1;
+        energyRecoveryValue = energyRecoveryValue * energyRegenInUse * energyRegenMultiplier;
         if (energyRecoveryRoutine != null)
             StopCoroutine(energyRecoveryRoutine);
         energyRecoveryRoutine = StartCoroutine(EnergyRecovery(0f));
 
         yield return new WaitForSeconds(0.5f);
         energyRecoveryValue = tmp;
-        energyRegenInUse -= 1f;
+        energyRegenInUse -= 1;
         if (energyRegenInUse < 0) 
             energyRegenInUse = 0;
 
@@ -486,27 +488,6 @@ public class PlayerUI : MonoBehaviour
 
         energyRecovering = false;
         yield break;
-    }
-    public void SetCurrentEnergyUI(float newValue) {
-        energyCurrentValue.value += newValue;
-    }
-    public void ConfirmCurrentEnergyUI() {
-        if (energyCurrentValue.value < energyDestroyedValue.value){
-            energyLost = true;
-            energyDecaying = false;
-            energyRecovering = false;
-
-            if (energyRecoveryRoutine != null)
-                StopCoroutine(energyRecoveryRoutine);
-
-            if (energyDestroyedTimerRoutine != null)
-                StopCoroutine(energyDestroyedTimerRoutine);
-            energyDestroyedTimerRoutine = StartCoroutine(DestroyedTimer(2));
-        }
-    }
-    public void CancelCurrentEnergyUI() {
-        if (energyCurrentValue.value < energyDestroyedValue.value)
-            energyCurrentValue.value = energyDestroyedValue.value;
     }
     public int GetCurrentEnergy() {
         return (int)energyCurrentValue.value;

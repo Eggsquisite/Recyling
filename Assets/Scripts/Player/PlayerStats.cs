@@ -57,13 +57,13 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int vitalityUpgradeWeak;
 
-    [Header("Efficiency Properties")]
+    [Header("Focus Properties")]
     [SerializeField]
-    private float healthRecoveryEfficiency;
+    private float healthRecoveryFocus;
     [SerializeField]
-    private float energyRecoveryEfficiency;
+    private float energyRecoveryFocus;
     [SerializeField]
-    private float energyToHealthEfficiency;
+    private float energyToHealthFocus;
 
     [Header("Strength Properties")]
     [SerializeField]
@@ -99,7 +99,7 @@ public class PlayerStats : MonoBehaviour
     private int levelCap;
     private Dictionary<string, int> upgrades;   // health max value
     // vitality     - health max value
-    // efficiency   - health recovery and energy regen
+    // focus   - health recovery and energy regen
     // strength     - attack damage
     // stamina      - stamina max value/regen
     // special      - energy max value and special attack dmg
@@ -112,7 +112,7 @@ public class PlayerStats : MonoBehaviour
         upgrades = new Dictionary<string, int>();
         upgrades.Add("playerLevel", 1);
         upgrades.Add("vitality", 1);
-        upgrades.Add("efficiency", 1);
+        upgrades.Add("focus", 1);
         upgrades.Add("strength", 1);
         upgrades.Add("stamina", 1);
         upgrades.Add("special", 1);
@@ -196,16 +196,16 @@ public class PlayerStats : MonoBehaviour
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
         }
-        else if (index == 1 && upgrades["efficiency"] < levelCap) {
-            // efficiency: health and energy regen
-            for (int i = upgrades["efficiency"]; i < newLevel; i++)
+        else if (index == 1 && upgrades["focus"] < levelCap) {
+            // focus: health and energy regen
+            for (int i = upgrades["focus"]; i < newLevel; i++)
             {
-                upgrades["efficiency"] = upgrades["efficiency"] + 1;
-                Debug.Log("efficiency Level: " + upgrades["efficiency"]);
+                upgrades["focus"] = upgrades["focus"] + 1;
+                Debug.Log("focus Level: " + upgrades["focus"]);
 
-                healthRecoveryValue += healthRecoveryEfficiency;
-                energyRecoveryValue += energyRecoveryEfficiency;
-                energyToHealthMultiplier = 1 / (1 + upgrades["efficiency"] * energyToHealthEfficiency);
+                healthRecoveryValue += healthRecoveryFocus;
+                energyRecoveryValue += energyRecoveryFocus;
+                energyToHealthMultiplier = 1 / (1 + upgrades["focus"] * energyToHealthFocus);
 
                 UI.SetHealthRecoveryValue(healthRecoveryValue);
                 UI.SetEnergyRecoveryValue(energyRecoveryValue);
@@ -309,8 +309,8 @@ public class PlayerStats : MonoBehaviour
     public int GetVitalityLevel() {
         return upgrades["vitality"];
     }
-    public int GetEfficiencyLevel() {
-        return upgrades["efficiency"];
+    public int GetFocusLevel() {
+        return upgrades["focus"];
     }
     public int GetStrengthLevel() {
         return upgrades["strength"];

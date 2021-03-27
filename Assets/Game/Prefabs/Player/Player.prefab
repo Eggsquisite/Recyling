@@ -251,8 +251,8 @@ MonoBehaviour:
   updateSpeed: 80
   updateModifier: 10
   UI: {fileID: 0}
-  requiredEnergy: 100
-  requiredEnergyModifier: 125
+  requiredCurrency: 10
+  requiredCurrencyModifier: 5
 --- !u!114 &1949231004
 MonoBehaviour:
   m_ObjectHideFlags: 0
