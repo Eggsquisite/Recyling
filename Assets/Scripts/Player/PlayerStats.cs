@@ -59,11 +59,11 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Focus Properties")]
     [SerializeField]
-    private float healthRecoveryFocus;
+    private float healthFocusUpgrade;
     [SerializeField]
-    private float energyRecoveryFocus;
+    private float energyFocusUpgrade;
     [SerializeField]
-    private float energyToHealthFocus;
+    private float energyToHealthFocusUpgrade;
 
     [Header("Strength Properties")]
     [SerializeField]
@@ -203,9 +203,9 @@ public class PlayerStats : MonoBehaviour
                 upgrades["focus"] = upgrades["focus"] + 1;
                 Debug.Log("focus Level: " + upgrades["focus"]);
 
-                healthRecoveryValue += healthRecoveryFocus;
-                energyRecoveryValue += energyRecoveryFocus;
-                energyToHealthMultiplier = 1 / (1 + upgrades["focus"] * energyToHealthFocus);
+                healthRecoveryValue += healthFocusUpgrade;
+                energyRecoveryValue += energyFocusUpgrade;
+                energyToHealthMultiplier = 1 / (1 + upgrades["focus"] * energyToHealthFocusUpgrade);
 
                 UI.SetHealthRecoveryValue(healthRecoveryValue);
                 UI.SetEnergyRecoveryValue(energyRecoveryValue);

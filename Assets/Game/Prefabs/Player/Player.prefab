@@ -221,9 +221,9 @@ MonoBehaviour:
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
-  healthRecoveryFocus: 0
-  energyRecoveryFocus: 0
-  energyToHealthFocus: 0
+  healthFocusUpgrade: 2.5
+  energyFocusUpgrade: 1.25
+  energyToHealthFocusUpgrade: 0.03
   strengthUpgrade: 10
   staminaRecoveryUpgrade: 0.2
   staminaMaxUpgradeStrong: 35
@@ -253,7 +253,7 @@ MonoBehaviour:
   updateModifier: 10
   UI: {fileID: 0}
   requiredCurrency: 10
-  requiredCurrencyModifier: 5
+  baseRequiredCurrencyModifier: 5
 --- !u!114 &1949231004
 MonoBehaviour:
   m_ObjectHideFlags: 0

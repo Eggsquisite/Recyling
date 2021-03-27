@@ -17,12 +17,14 @@ public class PlayerUI : MonoBehaviour
 
     [Header("Currency Upgrade")]
     [SerializeField]
-    private int requiredCurrency;
+    private float requiredCurrency;
     [SerializeField]
-    private int requiredCurrencyModifier;
+    private int baseRequiredCurrencyModifier;
+
+    private int prevRequiredCurrency;
 
     private float levelCounter;
-    private int prevRequiredCurrency;
+    private float requiredCurrencyModifier;
 
     [Header("Currency")]
     private Text currencyText;
@@ -92,6 +94,7 @@ public class PlayerUI : MonoBehaviour
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
         currencyText = UI.GetCurrencyText();
+        requiredCurrencyModifier = baseRequiredCurrencyModifier + 1.25f;
         futureCurrencyText = UI.GetFutureCurrencyText();
 
         currencyTmp = Mathf.RoundToInt(baseCurrency);
@@ -149,7 +152,10 @@ public class PlayerUI : MonoBehaviour
         isAdding = true;
         while (baseCurrency < tmp)
         {
-            baseCurrency += 10f * updateModifier * Time.deltaTime;
+            baseCurrency += tmp / 10 * updateModifier * Time.deltaTime;
+            if (baseCurrency > tmp)
+                baseCurrency = tmp;
+
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
             yield return new WaitForSeconds(Time.deltaTime);
@@ -165,61 +171,12 @@ public class PlayerUI : MonoBehaviour
         return Mathf.RoundToInt(baseCurrency);
     }
 
-    public int GetRequiredCurrency() {
-        return requiredCurrency;
-    }
-    public int GetRequiredCurrencyModifier() {
-        return requiredCurrencyModifier;
-    }
-
-    public int GetRequiredCurrencyIncrease(int futureLevel) {
-        /*levelCounter = futureLevel / 5;
-        if (levelCounter % 1 == 0) {
-            tmpLevel++;
-            requiredEnergy += requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
-        } else if (levelCounter % 1 != 0 && levelCounter < tmpLevel) {
-            tmpLevel--;
-            requiredEnergy -= requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
-        }*/
-
-        if (futureLevel % 5 == 0 && futureLevel > 0) {
-            levelCounter++;
-            prevRequiredCurrency = requiredCurrency;
-            Debug.Log("Level counter increase: " + levelCounter);
-            requiredCurrency += requiredCurrencyModifier;
-        }
-
-        return requiredCurrency;
-    }
-
-    public int GetRequiredCurrencyDecrease(int futureLevel) {
-        /*levelCounter = futureLevel / 5;
-        if (levelCounter % 1 == 0) {
-            tmpLevel++;
-            requiredEnergy += requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
-        } else if (levelCounter % 1 != 0 && levelCounter < tmpLevel) {
-            tmpLevel--;
-            requiredEnergy -= requiredEnergyModifier * Mathf.RoundToInt(levelCounter);
-        }*/
-
-        if (futureLevel / 5 < levelCounter) {
-            Debug.Log("Previous: " + requiredCurrency + " - " + prevRequiredCurrency);
-            requiredCurrency = prevRequiredCurrency;
-            levelCounter--;
-        }
-
-        return requiredCurrency;
-    }
-
-    public void CancelRequiredCurrency(int level) { 
-        if (level / 5 < levelCounter) {
-            requiredCurrency = prevRequiredCurrency;
-            levelCounter--;
-        }
-    }
-
-    public void SetCurrentCurrencyUI(float newValue) {
-        energyCurrentValue.value += newValue;
+    public int GetRequiredCurrency(int futureLevel) {
+        requiredCurrencyModifier = baseRequiredCurrencyModifier + futureLevel * 1.25f;
+        requiredCurrency = Mathf.Abs(requiredCurrencyModifier * (futureLevel^3) 
+                            + requiredCurrencyModifier * 2 * (futureLevel^2)
+                            + 24);
+        return Mathf.RoundToInt(requiredCurrency);
     }
 
     /// TIMER AND VISUAL DECAY ///////////////////////////////////////////////////////////////////////////

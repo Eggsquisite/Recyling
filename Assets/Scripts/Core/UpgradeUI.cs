@@ -90,7 +90,7 @@ public class UpgradeUI : MonoBehaviour
 
         isConfirmed = false;
         GetCurrencyValues();
-        GetRequiredCurrencyValue(true);
+        GetRequiredCurrencyValue();
 
         UpdateLevelValues();
         UpdateLevelText();
@@ -118,7 +118,7 @@ public class UpgradeUI : MonoBehaviour
         }
 
         GetCurrencyValues();
-        GetRequiredCurrencyValue(true);
+        GetRequiredCurrencyValue();
 
         UpdateLevelValues();
         UpdateLevelText();
@@ -164,16 +164,13 @@ public class UpgradeUI : MonoBehaviour
         baseCurrency = futureCurrency = playerUI.GetCurrency();
     }
 
-    private void GetRequiredCurrencyValue(bool flag)
+    private void GetRequiredCurrencyValue()
     {
         if (playerUI == null)
             return;
 
         currentCurrencyText.text = futureCurrency.ToString();
-        if (flag) // increase
-            requiredCurrency = playerUI.GetRequiredCurrencyIncrease(futureCurrentLevel);
-        else
-            requiredCurrency = playerUI.GetRequiredCurrencyDecrease(futureCurrentLevel);
+        requiredCurrency = playerUI.GetRequiredCurrency(futureCurrentLevel);
 
         requiredCurrencyText.text = requiredCurrency.ToString();
     }
@@ -296,7 +293,7 @@ public class UpgradeUI : MonoBehaviour
             futureVitalityLevel += 1;
 
             ConsumeCurrencyValues();
-            GetRequiredCurrencyValue(true);
+            GetRequiredCurrencyValue();
 
             UpdateLevelText();
             UpdateButtonInteractable();
@@ -306,7 +303,7 @@ public class UpgradeUI : MonoBehaviour
             futureFocusLevel += 1;
 
             ConsumeCurrencyValues();
-            GetRequiredCurrencyValue(true);
+            GetRequiredCurrencyValue();
 
             UpdateLevelText();
             UpdateButtonInteractable();
@@ -316,7 +313,7 @@ public class UpgradeUI : MonoBehaviour
             futureStrengthLevel += 1;
 
             ConsumeCurrencyValues();
-            GetRequiredCurrencyValue(true);
+            GetRequiredCurrencyValue();
 
             UpdateLevelText();
             UpdateButtonInteractable();
@@ -326,7 +323,7 @@ public class UpgradeUI : MonoBehaviour
             futureStaminaLevel += 1;
 
             ConsumeCurrencyValues();
-            GetRequiredCurrencyValue(true);
+            GetRequiredCurrencyValue();
 
             UpdateLevelText();
             UpdateButtonInteractable();
@@ -336,7 +333,7 @@ public class UpgradeUI : MonoBehaviour
             futureSpecialLevel += 1;
 
             ConsumeCurrencyValues();
-            GetRequiredCurrencyValue(true);
+            GetRequiredCurrencyValue();
 
             UpdateLevelText();
             UpdateButtonInteractable();
@@ -353,7 +350,7 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            GetRequiredCurrencyValue(false);
+            GetRequiredCurrencyValue();
             UpdateRequiredCurrencyText();
 
             UpdateLevelText();
@@ -364,7 +361,7 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            GetRequiredCurrencyValue(false);
+            GetRequiredCurrencyValue();
             UpdateRequiredCurrencyText();
 
             UpdateLevelText();
@@ -375,7 +372,7 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            GetRequiredCurrencyValue(false);
+            GetRequiredCurrencyValue();
             UpdateRequiredCurrencyText();
 
             UpdateLevelText();
@@ -386,7 +383,7 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            GetRequiredCurrencyValue(false);
+            GetRequiredCurrencyValue();
             UpdateRequiredCurrencyText();
 
             UpdateLevelText();
@@ -397,7 +394,7 @@ public class UpgradeUI : MonoBehaviour
             futureCurrentLevel -= 1;
 
             FreeCurrencyValues();
-            GetRequiredCurrencyValue(false);
+            GetRequiredCurrencyValue();
             UpdateRequiredCurrencyText();
 
             UpdateLevelText();
@@ -460,7 +457,5 @@ public class UpgradeUI : MonoBehaviour
         UpdateLevelText();
         ChangeLevelColor();
         UpdateButtonInteractable();
-
-        playerUI.CancelRequiredCurrency(baseCurrentLevel);
     }
 }

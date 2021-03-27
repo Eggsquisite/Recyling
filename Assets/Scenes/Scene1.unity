@@ -10939,7 +10939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157712, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: currencyOnDeath
-      value: 10
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_RootOrder
