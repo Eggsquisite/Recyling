@@ -160,6 +160,7 @@ MonoBehaviour:
   sp: {fileID: 5715822747553379095}
   baseWalkSpeed: 1.5
   runSpeed: 2.5
+  healWalkSpeedMultiplier: 0.25
   verticalSpeedMult: 0.33
   horizontalSpeedMult: 1.25
   walkToRunTime: 0.75
@@ -220,9 +221,9 @@ MonoBehaviour:
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
-  healthRecoveryEfficiency: 2
-  energyRecoveryEfficiency: 1.25
-  energyToHealthEfficiency: 0.05
+  healthRecoveryFocus: 0
+  energyRecoveryFocus: 0
+  energyToHealthFocus: 0
   strengthUpgrade: 10
   staminaRecoveryUpgrade: 0.2
   staminaMaxUpgradeStrong: 35

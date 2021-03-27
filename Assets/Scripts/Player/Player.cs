@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float runSpeed;
     [SerializeField]
+    private float healWalkSpeedMultiplier;
+    [SerializeField]
     private float verticalSpeedMult;
     [SerializeField]
     private float horizontalSpeedMult;
@@ -1092,7 +1094,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         var time = 0f;
-        currentWalkSpeed = 0.05f;
+        currentWalkSpeed *= healWalkSpeedMultiplier;
         anim.SetFloat("speedMultiplier", 0.5f);
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
