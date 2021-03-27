@@ -7,8 +7,6 @@ public class UpgradeUI : MonoBehaviour
 {
     [Header("Components")]
     // CAN ENABLE USE OF COMPONENTS THROUGH EVENTS //////////////// ******************************
-    [SerializeField]
-    private Animator anim;
     private FindPlayerScript findPlayer;
     private PlayerStats playerStats;
     private PlayerUI playerUI;
@@ -94,24 +92,18 @@ public class UpgradeUI : MonoBehaviour
             playerUI = findPlayer.GetPlayerUI();
         }
 
-        if (anim != null)
-            anim.Play("upgradeUI_enable");
-
         isConfirmed = false;
         GetEnergyValues();
         GetRequiredEnergyValue(true);
 
         UpdateLevelValues();
-        UpdateLevelText(0);
+        UpdateLevelText();
 
         UpdateButtonInteractable();
     }
 
     void OnDisable()
     {
-        if (anim != null)
-            anim.Play("upgradeUI_disable");
-
         if (!isConfirmed)
             Cancel();
     }
@@ -119,8 +111,6 @@ public class UpgradeUI : MonoBehaviour
     private void Awake()
     {
         isConfirmed = false;
-        if (anim != null)
-            anim.keepAnimatorControllerStateOnDisable = true;
     }
 
     void Start()
@@ -135,7 +125,7 @@ public class UpgradeUI : MonoBehaviour
         GetRequiredEnergyValue(true);
 
         UpdateLevelValues();
-        UpdateLevelText(0);
+        UpdateLevelText();
 
         UpdateButtonInteractable();
     }
@@ -156,23 +146,18 @@ public class UpgradeUI : MonoBehaviour
         baseSpecialLevel = futureSpecialLevel = playerStats.GetSpecialLevel();
     }
 
-    private void UpdateLevelText(int index)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="index"></param>
+    private void UpdateLevelText()
     {
-        if (index == 0) { 
-            currentLevelText.text = baseCurrentLevel.ToString();
-            vitalityLevelText.text = baseVitalityLevel.ToString();
-            efficiencyLevelText.text = baseEfficiencyLevel.ToString();
-            strengthLevelText.text = baseStrengthLevel.ToString();
-            staminaLevelText.text = baseStaminaLevel.ToString();
-            specialLevelText.text = baseSpecialLevel.ToString();
-        } else if (index == 1) {
-            currentLevelText.text = futureCurrentLevel.ToString();
-            vitalityLevelText.text = futureVitalityLevel.ToString();
-            efficiencyLevelText.text = futureEfficiencyLevel.ToString();
-            strengthLevelText.text = futureStrengthLevel.ToString();
-            staminaLevelText.text = futureStaminaLevel.ToString();
-            specialLevelText.text = futureSpecialLevel.ToString();
-        }
+        currentLevelText.text = futureCurrentLevel.ToString();
+        vitalityLevelText.text = futureVitalityLevel.ToString();
+        efficiencyLevelText.text = futureEfficiencyLevel.ToString();
+        strengthLevelText.text = futureStrengthLevel.ToString();
+        staminaLevelText.text = futureStaminaLevel.ToString();
+        specialLevelText.text = futureSpecialLevel.ToString();
     }
 
     private void GetEnergyValues()
@@ -328,7 +313,7 @@ public class UpgradeUI : MonoBehaviour
             ConsumeCurrencyValues();
             GetRequiredEnergyValue(true);
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 1 && futureEfficiencyLevel < levelCap)
         {
@@ -338,7 +323,7 @@ public class UpgradeUI : MonoBehaviour
             ConsumeCurrencyValues();
             GetRequiredEnergyValue(true);
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 2 && futureStrengthLevel < levelCap)
         {
@@ -348,7 +333,7 @@ public class UpgradeUI : MonoBehaviour
             ConsumeCurrencyValues();
             GetRequiredEnergyValue(true);
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 3 && futureStaminaLevel < levelCap)
         {
@@ -358,7 +343,7 @@ public class UpgradeUI : MonoBehaviour
             ConsumeCurrencyValues();
             GetRequiredEnergyValue(true);
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 4 && futureSpecialLevel < levelCap)
         {
@@ -368,7 +353,7 @@ public class UpgradeUI : MonoBehaviour
             ConsumeCurrencyValues();
             GetRequiredEnergyValue(true);
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         }
 
@@ -386,7 +371,7 @@ public class UpgradeUI : MonoBehaviour
             GetRequiredEnergyValue(false);
             UpdateRequiredEnergyText();
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 1 && futureEfficiencyLevel > baseEfficiencyLevel)
         {
@@ -397,7 +382,7 @@ public class UpgradeUI : MonoBehaviour
             GetRequiredEnergyValue(false);
             UpdateRequiredEnergyText();
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 2 && futureStrengthLevel > baseStrengthLevel)
         {
@@ -408,7 +393,7 @@ public class UpgradeUI : MonoBehaviour
             GetRequiredEnergyValue(false);
             UpdateRequiredEnergyText();
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 3 && futureStaminaLevel > baseStaminaLevel)
         {
@@ -419,7 +404,7 @@ public class UpgradeUI : MonoBehaviour
             GetRequiredEnergyValue(false);
             UpdateRequiredEnergyText();
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         } else if (index == 4 && futureSpecialLevel > baseSpecialLevel)
         {
@@ -430,7 +415,7 @@ public class UpgradeUI : MonoBehaviour
             GetRequiredEnergyValue(false);
             UpdateRequiredEnergyText();
 
-            UpdateLevelText(1);
+            UpdateLevelText();
             UpdateButtonInteractable();
         }
 
@@ -471,7 +456,7 @@ public class UpgradeUI : MonoBehaviour
         playerUI.ConfirmCurrentEnergyUI();
 
         UpdateLevelValues();
-        UpdateLevelText(0);
+        UpdateLevelText();
         ChangeLevelColor();
         UpdateButtonInteractable();
     }
@@ -489,7 +474,7 @@ public class UpgradeUI : MonoBehaviour
         futureEnergy = baseEnergy;
 
         UpdateLevelValues();
-        UpdateLevelText(0);
+        UpdateLevelText();
         ChangeLevelColor();
         UpdateButtonInteractable();
 

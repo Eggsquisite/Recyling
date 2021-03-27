@@ -608,10 +608,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 443365228, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
-      propertyPath: m_Name
-      value: Required Energy
-      objectReference: {fileID: 0}
     - target: {fileID: 290629231420890737, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -795,10 +791,6 @@ PrefabInstance:
     - target: {fileID: 6504144176202011740, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7655899858105297981, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7720697983569304485, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.x
