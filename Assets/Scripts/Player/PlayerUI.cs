@@ -94,7 +94,7 @@ public class PlayerUI : MonoBehaviour
     {
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
         currencyText = UI.GetCurrencyText();
-        requiredCurrencyModifier = baseRequiredCurrencyModifier + 1.25f;
+        requiredCurrencyModifier = baseRequiredCurrencyModifier * 1.33f;
         futureCurrencyText = UI.GetFutureCurrencyText();
 
         currencyTmp = Mathf.RoundToInt(baseCurrency);
@@ -172,10 +172,8 @@ public class PlayerUI : MonoBehaviour
     }
 
     public int GetRequiredCurrency(int futureLevel) {
-        requiredCurrencyModifier = baseRequiredCurrencyModifier + futureLevel * 1.25f;
-        requiredCurrency = Mathf.Abs(requiredCurrencyModifier * (futureLevel^3) 
-                            + requiredCurrencyModifier * 2 * (futureLevel^2)
-                            + 24);
+        requiredCurrencyModifier = baseRequiredCurrencyModifier * 1.33f * futureLevel;
+        requiredCurrency += requiredCurrencyModifier;
         return Mathf.RoundToInt(requiredCurrency);
     }
 
