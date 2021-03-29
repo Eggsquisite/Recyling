@@ -18,6 +18,12 @@ public class LoadArea : MonoBehaviour
     [SerializeField]
     private float max_X;
 
+    [Header("Areas")]
+    [SerializeField]
+    private GameObject areaToDisable;
+    [SerializeField]
+    private GameObject areaToEnable;
+
     [Header("Direction")]
     public bool areaToRight;
     public bool areaToLeft;
@@ -45,6 +51,9 @@ public class LoadArea : MonoBehaviour
         transition.Play("FadeIn");
         playerManager.SetStopMovement(true);
         yield return new WaitForSeconds(0.5f);
+
+        areaToDisable.SetActive(false);
+        areaToEnable.SetActive(true);
 
         if (areaToRight) {
             cam.SetMinX(min_X);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1317516854866936817}
   - component: {fileID: 1317516854866936830}
   m_Layer: 13
-  m_Name: Scene Trigger
+  m_Name: Area Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +72,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min_X: 0
   max_X: 45
+  areaToDisable: {fileID: 0}
+  areaToEnable: {fileID: 0}
   areaToRight: 1
   areaToLeft: 0
   areaAbove: 0

@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
     private Camera cam;
 
     [Header("Follow Properties")]
-    public Transform target;
     public Transform leftBorder;
     public Transform rightBorder;
     public Transform bottomBorder;
@@ -17,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     public float camSpeed;
     public bool canFollow;
 
+    private Transform target;
     private float borderOffset = 7.5f;
     private Vector2 targetOffset;
     private Transform originalTarget;
@@ -36,6 +36,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (anim == null) anim = GetComponent<Animator>();
         if (cam == null) cam = GetComponent<Camera>();
+        if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
         originalTarget = target;
         startingSize = cam.orthographicSize;
         currentSize = cam.orthographicSize;
