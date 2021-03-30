@@ -1393,18 +1393,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 49991457}
     m_Modifications:
-    - target: {fileID: 985400471, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_Name
-      value: Altar Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 985400472, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 985400472, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 1185910160, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: UI.Array.data[0]
       value: 
@@ -1416,10 +1404,6 @@ PrefabInstance:
     - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_LocalPosition.x

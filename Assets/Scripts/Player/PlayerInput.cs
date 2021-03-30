@@ -84,6 +84,7 @@ public class PlayerInput : MonoBehaviour
             }
             else if (isInteracting 
                         && interactable != null
+                        && Vector2.Distance(interactable.transform.position, transform.position) <= 2.5f
                         && interactable.GetComponent<Interactable>().GetIsReady()) { 
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
@@ -92,14 +93,14 @@ public class PlayerInput : MonoBehaviour
                 // If player is interacting, set movement to 0 and stop all other inputs
                 player.CheckForMovement(0f, 0f);
             }
-        } else if (isInteracting) {
-            if (Vector2.Distance(interactable.transform.position, transform.position) > 2.5f 
+        } else if (isInteracting 
+                    && interactable != null 
+                    && Vector2.Distance(interactable.transform.position, transform.position) > 2.5f 
                     && interactable.GetComponent<Interactable>().GetIsReady()) {
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
                 interactable = null;
-            }
-        }
+        } 
     }
 
     private void OnDrawGizmosSelected()
