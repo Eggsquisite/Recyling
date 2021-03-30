@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8653353758414253557}
   - component: {fileID: 8653353758414253558}
-  - component: {fileID: 9143954947639868649}
   - component: {fileID: 1326184733}
   m_Layer: 0
   m_Name: Lightpole
@@ -45,6 +44,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -97
+  m_SortingOrder: 158
   m_Sprite: {fileID: 4823205176051326445, guid: 07d34f3fb3b35ad4097576a77ae5e198, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -85,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9143954947639868649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8653353758414253559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ebc61bf894f4e47b024f8531ad72b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reference: {fileID: 0}
 --- !u!114 &1326184733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +141,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -182,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -169
+  m_SortingOrder: 86
   m_Sprite: {fileID: -4406490145820995202, guid: 07d34f3fb3b35ad4097576a77ae5e198, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
