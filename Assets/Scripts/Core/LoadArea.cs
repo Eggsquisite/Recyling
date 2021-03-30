@@ -17,7 +17,11 @@ public class LoadArea : MonoBehaviour
     private Animator transition;
     private Transform player;
     private Player playerManager;
+
+    private static bool loadReady = true;
     public static bool isLoading;
+
+    private Coroutine loadReadyRoutine;
 
     // Each load area corresponds to ONE specific area that it will change the camera clamp values to
     [Header("Camera Clamp Values")]
@@ -38,20 +42,26 @@ public class LoadArea : MonoBehaviour
     [SerializeField]
     private Direction areaToLoad;
 
-    private void Start()
+    private void Awake()
     {
         if (cam == null) cam = Camera.main.GetComponent<CameraFollow>();
         if (transition == null) transition = cam.GetComponentInChildren<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision != null && collision.tag == "Player") {
+        if (collision != null && collision.tag == "Player" && loadReady) {
             isLoading = true;
+            loadReady = false;
+
             player = collision.gameObject.transform;
             playerManager = collision.GetComponent<Player>();
             playerManager.SetInvincible(true);
+
             StartCoroutine(LoadNextArea());
+            if (loadReadyRoutine != null)
+                StopCoroutine(LoadReadyTimer());
+            loadReadyRoutine = StartCoroutine(LoadReadyTimer());
         }
     }
 
@@ -92,5 +102,10 @@ public class LoadArea : MonoBehaviour
         playerManager.SetStopMovement(false);
         playerManager.SetInvincible(false);
         transition.Play("FadeOut");
+    }
+
+    IEnumerator LoadReadyTimer() {
+        yield return new WaitForSeconds(2.5f);
+        loadReady = true;
     }
 }
