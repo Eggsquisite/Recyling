@@ -74,7 +74,5 @@ MonoBehaviour:
   max_X: 45
   areaToDisable: {fileID: 0}
   areaToEnable: {fileID: 0}
-  areaToRight: 1
-  areaToLeft: 0
-  areaAbove: 0
-  areaBelow: 0
+  distanceToLoadPlayer: 3
+  areaToLoad: 0

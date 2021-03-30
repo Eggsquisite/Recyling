@@ -92,6 +92,9 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (UI == null)
+            Debug.Log("Canvas UI is Not Assigned to PlayerUI.cs in Inspector");
+
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
         currencyText = UI.GetCurrencyText();
         requiredCurrencyModifier = baseRequiredCurrencyModifier * 1.33f;
@@ -263,6 +266,7 @@ public class PlayerUI : MonoBehaviour
 
     // HEALTH ///////////////////////////////////////////////////////////////////////////////////////
     public void SetMaxHealth(int newValue) {
+        // IF THROWING ERROR, ASSIGN CANVAS IN INSPECTOR
         healthMaxValue.value = newValue;
         healthCurrentValue.maxValue = healthCurrentValue.value = newValue;
         healthDestroyedValue.maxValue = healthDestroyedValue.value = newValue;

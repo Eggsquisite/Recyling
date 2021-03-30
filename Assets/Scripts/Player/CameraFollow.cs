@@ -8,13 +8,20 @@ public class CameraFollow : MonoBehaviour
     private Camera cam;
 
     [Header("Follow Properties")]
-    public Transform leftBorder;
-    public Transform rightBorder;
-    public Transform bottomBorder;
-
-    public float min_X, max_X;
-    public float camSpeed;
-    public bool canFollow;
+    [SerializeField]
+    private Transform leftBorder;
+    [SerializeField]
+    private Transform rightBorder;
+    [SerializeField]
+    private Transform bottomBorder;
+    [SerializeField]
+    public float min_X;
+    [SerializeField]
+    private float max_X;
+    [SerializeField]
+    private float camSpeed;
+    [SerializeField]
+    private bool canFollow;
 
     private Transform target;
     private float borderOffset = 7.5f;
@@ -38,6 +45,7 @@ public class CameraFollow : MonoBehaviour
         if (cam == null) cam = GetComponent<Camera>();
         if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
         originalTarget = target;
+
         startingSize = cam.orthographicSize;
         currentSize = cam.orthographicSize;
         focusMin_X = min_X - 1.5f;
@@ -60,7 +68,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!canFollow)
+        if (!canFollow || target == null)
             return;
         else if (isFocused)
         {

@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum Direction
+{
+    Left, 
+    Right,
+    Up,
+    Down
+}
+
 public class LoadArea : MonoBehaviour
 {
     private CameraFollow cam;
@@ -25,10 +33,10 @@ public class LoadArea : MonoBehaviour
     private GameObject areaToEnable;
 
     [Header("Direction")]
-    public bool areaToRight;
-    public bool areaToLeft;
-    public bool areaAbove;
-    public bool areaBelow;
+    [SerializeField]
+    private float distanceToLoadPlayer;
+    [SerializeField]
+    private Direction areaToLoad;
 
     private void Start()
     {
@@ -55,26 +63,26 @@ public class LoadArea : MonoBehaviour
         areaToDisable.SetActive(false);
         areaToEnable.SetActive(true);
 
-        if (areaToRight) {
+        if (areaToLoad == Direction.Right) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
             cam.transform.position = new Vector3(min_X, cam.transform.position.y, cam.transform.position.z);
-            player.position = new Vector2(player.position.x + 2.5f, player.position.y);
+            player.position = new Vector2(player.position.x + distanceToLoadPlayer, player.position.y);
 
             // enable area
             // disable previous area
-        } else if (areaToLeft) {
+        } else if (areaToLoad == Direction.Left) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
             cam.transform.position = new Vector3(max_X, cam.transform.position.y, cam.transform.position.z);
-            player.position = new Vector2(player.position.x - 2.5f, player.position.y);
+            player.position = new Vector2(player.position.x - distanceToLoadPlayer, player.position.y);
 
             // enable area
             // disable previous area
         }
-        else if (areaAbove) { 
+        else if (areaToLoad == Direction.Up) { 
 
-        } else if (areaBelow) { 
+        } else if (areaToLoad == Direction.Down) { 
 
         }
 
