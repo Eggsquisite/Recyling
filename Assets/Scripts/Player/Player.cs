@@ -912,6 +912,9 @@ public class Player : MonoBehaviour
         StopAttackFollowThrough();
         PushBack(pushDistance, reference);
 
+        if (isAttacking)
+            UI.SetCurrentStamina(-0.1f);
+
         isHurt = true;
         isInvincible = true;
         isAttackPressed = false;
