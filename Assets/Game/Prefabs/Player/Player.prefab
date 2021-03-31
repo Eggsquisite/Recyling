@@ -252,7 +252,7 @@ MonoBehaviour:
   updateSpeed: 80
   updateModifier: 10
   UI: {fileID: 0}
-  requiredCurrency: 10
+  requiredCurrency: 0
   baseRequiredCurrencyModifier: 5
 --- !u!114 &1949231004
 MonoBehaviour:

@@ -89,11 +89,12 @@ public class UpgradeUI : MonoBehaviour
         }
 
         isConfirmed = false;
-        GetCurrencyValues();
-        GetRequiredCurrencyValue();
 
         UpdateLevelValues();
         UpdateLevelText();
+
+        GetCurrencyValues();
+        GetRequiredCurrencyValue();
 
         UpdateButtonInteractable();
     }
@@ -117,11 +118,11 @@ public class UpgradeUI : MonoBehaviour
             playerUI = findPlayer.GetPlayerUI();
         }
 
-        GetCurrencyValues();
-        GetRequiredCurrencyValue();
-
         UpdateLevelValues();
         UpdateLevelText();
+
+        GetCurrencyValues();
+        GetRequiredCurrencyValue();
 
         UpdateButtonInteractable();
     }

@@ -17,13 +17,11 @@ public class PlayerUI : MonoBehaviour
 
     [Header("Currency Upgrade")]
     [SerializeField]
-    private float requiredCurrency;
-    [SerializeField]
     private int baseRequiredCurrencyModifier;
 
     private int prevRequiredCurrency;
 
-    private float levelCounter;
+    private float requiredCurrency;
     private float requiredCurrencyModifier;
 
     [Header("Currency")]
@@ -51,7 +49,6 @@ public class PlayerUI : MonoBehaviour
     private bool healthDecaying;
     private bool healthRecovering;
     private float healthRecoveryValue;
-    private float healthRecoveryDelay;
     private float energyToHealthMultiplier;
 
     [Header("Energy")]
@@ -97,8 +94,6 @@ public class PlayerUI : MonoBehaviour
 
         healthRecoverable = energyRecoverable = staminaRecoverable = true;
         currencyText = UI.GetCurrencyText();
-        requiredCurrencyModifier = baseRequiredCurrencyModifier * 1.33f;
-        requiredCurrency = baseRequiredCurrencyModifier * 1.18f + baseRequiredCurrencyModifier;
         futureCurrencyText = UI.GetFutureCurrencyText();
 
         currencyTmp = Mathf.RoundToInt(baseCurrency);
@@ -352,9 +347,6 @@ public class PlayerUI : MonoBehaviour
     }
     public float GetHealthRecoveryValue() {
         return healthRecoveryValue;
-    }
-    public void SetHealthRecoveryDelay(float newValue) {
-        healthRecoveryDelay = newValue;
     }
     public int GetHealthMaxValue() {
         return (int)healthCurrentValue.maxValue;

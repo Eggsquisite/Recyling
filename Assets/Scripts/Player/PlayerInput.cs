@@ -10,8 +10,10 @@ public class PlayerInput : MonoBehaviour
     private Collider2D interactable;
     private Player player;
     private PlayerStats playerStats;
+
     private float xAxis;
     private float yAxis;
+
     private bool isInteracting;
 
     private void Awake()
@@ -78,8 +80,10 @@ public class PlayerInput : MonoBehaviour
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
                     isInteracting = !isInteracting;
 
-                    if (Vector2.Distance(interactable.transform.position, transform.position) > 1f)
+                    if (Vector2.Distance(interactable.transform.position, transform.position) > 1f) { 
                         interactable = null;
+                        isInteracting = !isInteracting;
+                    }
                 }
             }
             else if (isInteracting 
