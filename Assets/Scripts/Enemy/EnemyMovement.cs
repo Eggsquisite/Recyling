@@ -121,8 +121,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canPatrol && patrolReady)
-            Patrolling();
+        if (canPatrol && patrolReady) 
+            Patrolling(); 
     }
 
     private void RandomizeOffsetAttackStandby() {

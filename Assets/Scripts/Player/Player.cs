@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private Projectile projectile;
     private RuntimeAnimatorController ac;
 
+    public Transform spawnPoint;
+
     [Header("Player Stats")]
     private PlayerUI UI;
     private PlayerStats playerStats;
@@ -195,6 +197,7 @@ public class Player : MonoBehaviour
 
         stunDuration = GetAnimationLength(PlayerAnimStates.PLAYER_HURT);
         runDashMaxTime = GetAnimationLength(PlayerAnimStates.PLAYER_RUNATTACK);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -1123,6 +1126,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (!isAttacking && !isDashing && !isFalling && !isTeleporting)
             canReceiveInput = true;
+    }
+
+    public void SetCollider(bool flag) {
+        GetComponent<Collider2D>().enabled = flag;
+    }
+
+    public void SetSpawnPoint(Transform spawnPnt) {
+        spawnPoint = spawnPnt;
     }
 
     private void OnDrawGizmosSelected() {

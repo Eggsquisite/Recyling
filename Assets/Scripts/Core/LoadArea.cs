@@ -30,11 +30,13 @@ public class LoadArea : MonoBehaviour
     [SerializeField]
     private float max_X;
 
-    [Header("Areas")]
+    [Header("Enemy Areas")]
     [SerializeField]
-    private GameObject areaToDisable;
+    private GameObject enemiesToDisable;
     [SerializeField]
-    private GameObject areaToEnable;
+    private GameObject enemiesToEnable;
+
+    private GameObject[] enemies;
 
     [Header("Direction")]
     [SerializeField]
@@ -68,11 +70,21 @@ public class LoadArea : MonoBehaviour
     IEnumerator LoadNextArea() {
         transition.Play("FadeIn");
         playerManager.SetStopMovement(true);
+        playerManager.SetCollider(false);
         yield return new WaitForSeconds(0.5f);
 
-        areaToDisable.SetActive(false);
-        areaToEnable.SetActive(true);
-
+        foreach (Transform enemy in enemiesToDisable.GetComponentsInChildren<Transform>())
+        {
+            if (enemy.GetComponent<BasicEnemy>() != null)
+                enemy.GetComponent<BasicEnemy>().SetIsInactive(true);
+        }
+        
+        foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
+        {
+            if (enemy.GetComponent<BasicEnemy>() != null)
+                enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
+        }
+        
         if (areaToLoad == Direction.Right) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
@@ -96,12 +108,15 @@ public class LoadArea : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.25f);
         isLoading = false;
         cam.ResetBorders();
-        playerManager.SetStopMovement(false);
-        playerManager.SetInvincible(false);
         transition.Play("FadeOut");
+        playerManager.SetStopMovement(false);
+
+        yield return new WaitForSeconds(1f);
+        playerManager.SetInvincible(false);
+        playerManager.SetCollider(true);
     }
 
     IEnumerator LoadReadyTimer() {

@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 722439448608458872}
   sp: {fileID: 5715822747553379095}
+  spawnPoint: {fileID: 0}
   baseWalkSpeed: 1.5
   runSpeed: 2.5
   healWalkSpeedMultiplier: 0.25
@@ -209,7 +210,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 750
   maxStamina: 900
-  healthRecoveryValue: 10
+  healthRecoveryValue: 20
   energyToHealthMultiplier: 1
   energyRecoveryValue: 7.5
   staminaRecoveryValue: 50
@@ -252,7 +253,6 @@ MonoBehaviour:
   updateSpeed: 80
   updateModifier: 10
   UI: {fileID: 0}
-  requiredCurrency: 0
   baseRequiredCurrencyModifier: 5
 --- !u!114 &1949231004
 MonoBehaviour:

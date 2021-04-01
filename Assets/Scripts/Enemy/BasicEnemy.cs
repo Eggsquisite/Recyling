@@ -25,6 +25,7 @@ public class BasicEnemy : MonoBehaviour
     private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
     private Projectile projectile;
+    private Vector2 resetSpawnSpoint;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -54,6 +55,7 @@ public class BasicEnemy : MonoBehaviour
     private bool deleteOnDeath;
 
     private bool isDead;
+    private bool isInactive;
     private bool isInvincible;
     private bool staminaRecovery;
     private bool outOfStamina;
@@ -66,6 +68,8 @@ public class BasicEnemy : MonoBehaviour
 
     private float baseTetherRange;
     private float currentDamageThresholdPercent;
+
+    private Coroutine deathRoutine;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -165,6 +169,8 @@ public class BasicEnemy : MonoBehaviour
 
         }
 
+        resetSpawnSpoint = transform.position;
+
         outOfTetherRange = true;
         baseTetherRange = tetherUnfollowRange;
         //enemyMovement.BeginPatrol();
@@ -224,7 +230,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (isDead || outOfTetherRange)
+        if (isDead || isInactive || outOfTetherRange)
             return;
 
         // Follow Player ////////////////////////////////////////////////////////////////
@@ -296,6 +302,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         enemyMovement.StopFindPlayer();
         enemyMovement.IsMoving();
+        SetIsInactive(false);
         //enemyMovement.BeginPatrol();
 
 /*        // If enemy unfollow range is shorter than follow range, update unfollow range to the 
@@ -803,8 +810,11 @@ public class BasicEnemy : MonoBehaviour
         // Play sounds
         playSound.PlayEnemyHit(soundIndex);
 
-        if (currentHealth <= 0)
-            StartCoroutine(Death());
+        if (currentHealth <= 0) {
+            if (deathRoutine != null)
+                StopCoroutine(deathRoutine);
+            deathRoutine = StartCoroutine(Death());
+        }
         else {
             // if damage threshold reached, stagger enemy
             // else don't interrupt enemy 
@@ -963,10 +973,10 @@ public class BasicEnemy : MonoBehaviour
         yield return new WaitForSeconds(tmp);
         GiveCurrency();
         if (deleteOnDeath)
-            Destroy(gameObject);
+            sp.enabled = false;
 
-        Destroy(enemyMovement);
-        Destroy(this);
+        //Destroy(enemyMovement);
+        //Destroy(this);
     }
 
     // Called through death animation event
@@ -986,8 +996,36 @@ public class BasicEnemy : MonoBehaviour
         //Destroy(gameObject);
     }*/
 
-    // ENEMY SPECIFIC ATTACKS /////////////////////////////////////////////////////////////////////////////
+    // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
+    public void ResetToSpawn()
+    {
+        if (deathRoutine != null)
+            StopCoroutine(deathRoutine);
 
+        SetIsInactive(true);
+        transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
+
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
+        isInvincible = false;
+        outOfStamina = false;
+        attackReady = true;
+        if (isAttacking)
+            FinishAttack();
+
+
+        if (isDead) { 
+            isDead = false;
+            sp.enabled = true;
+            enemyMovement.FindPlayerRepeating();
+            GetComponent<Collider2D>().enabled = true;
+            enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
+        }
+    }
+
+    public void SetIsInactive(bool flag) {
+        isInactive = flag;
+    }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////
 

@@ -80,9 +80,11 @@ public class PlayerInput : MonoBehaviour
                     interactable = tmp;
                 if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) { 
                     // If player is interacting, set movement to 0 and stop all other inputs
-                    player.CheckForMovement(0f, 0f);
                     isInteracting = !isInteracting;
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
+
+                    player.CheckForMovement(0f, 0f);
+                    player.SetSpawnPoint(interactable.GetComponent<Interactable>().GetSpawnPoint());
                 }
             } else if (isInteracting) 
             { 

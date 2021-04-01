@@ -5,12 +5,19 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
+    private bool resetEnemiesOnUse;
+    [SerializeField]
+    private bool setSpawnPoint;
+    [SerializeField]
+    private Transform spawnPoint;
+    [SerializeField]
     private float interactDelayBtwnActivations;
     [SerializeField]
     private List<string> animations;
     [SerializeField]
     private List<GameObject> UI;
 
+    private ResetEnemies reset;
     private Animator anim;
     private GameObject player;
     private bool isActive;
@@ -18,9 +25,10 @@ public class Interactable : MonoBehaviour
     private Coroutine interactRoutine;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (anim == null) anim = GetComponent<Animator>();
+        if (reset == null) reset = GetComponent<ResetEnemies>();
     }
 
     public void Interacting(GameObject newPlayer) {
@@ -56,6 +64,9 @@ public class Interactable : MonoBehaviour
             UI[i].SetActive(true);
             UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
         }
+
+        if (resetEnemiesOnUse)
+            reset.ResetAllEnemies();
     }
 
     private void CloseUI() { 
@@ -69,6 +80,13 @@ public class Interactable : MonoBehaviour
         isReady = false;
         yield return new WaitForSeconds(interactDelayBtwnActivations);
         isReady = true;
+    }
+
+    public Transform GetSpawnPoint() {
+        if (spawnPoint == null)
+            return null;
+
+        return spawnPoint;
     }
 
     public bool GetIsReady() {
