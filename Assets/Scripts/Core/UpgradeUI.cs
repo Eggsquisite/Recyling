@@ -432,8 +432,7 @@ public class UpgradeUI : MonoBehaviour
         playerStats.IncreaseStat(3, baseStaminaLevel);
         playerStats.IncreaseStat(4, baseSpecialLevel);
 
-        // also implement Player script having currency values
-        //baseCurrency = futureCurrency;
+        baseCurrency = futureCurrency;
         playerUI.SetCurrency(-(playerUI.GetCurrency() - baseCurrency));
 
         UpdateLevelValues();

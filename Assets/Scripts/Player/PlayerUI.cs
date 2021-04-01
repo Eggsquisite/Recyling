@@ -132,6 +132,7 @@ public class PlayerUI : MonoBehaviour
             addCurrencyRoutine = StartCoroutine(AddCurrencyValues(newValue));
         } else { 
             baseCurrency += newValue;
+            Debug.Log("Setting new currency: " + baseCurrency);
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
         }
