@@ -42,7 +42,7 @@ public class LoadArea : MonoBehaviour
     [SerializeField]
     private Direction areaToLoad;
 
-    private void Awake()
+    private void Awake() 
     {
         if (cam == null) cam = Camera.main.GetComponent<CameraFollow>();
         if (transition == null) transition = cam.GetComponentInChildren<Animator>();

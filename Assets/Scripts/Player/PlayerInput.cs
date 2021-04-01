@@ -73,10 +73,36 @@ public class PlayerInput : MonoBehaviour
 
         // INTERACTION INPUT
         if (Input.GetKeyDown(KeyCode.E)) {
-            if (!isInteracting) { 
-                interactable = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
-
+            if (!isInteracting) 
+            {
+                var tmp = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
+                if (tmp != null)
+                    interactable = tmp;
                 if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) { 
+                    isInteracting = !isInteracting;
+                    interactable.GetComponent<Interactable>().Interacting(gameObject);
+                }
+            } else if (isInteracting) 
+            { 
+                if (interactable != null 
+                        && interactable.GetComponent<Interactable>().GetIsReady()
+                        && Vector2.Distance(interactable.transform.position, transform.position) <= 1.5f) {
+                    isInteracting = !isInteracting;
+                    interactable.GetComponent<Interactable>().Interacting(gameObject);
+                    interactable = null;
+                }
+            }
+        }
+
+        if (isInteracting 
+                && interactable != null 
+                && Vector2.Distance(interactable.transform.position, transform.position) > 1.5f) {
+            isInteracting = !isInteracting;
+            interactable.GetComponent<Interactable>().Interacting(gameObject);
+            interactable = null;
+        }
+
+                /*if (interactable != null && interactable.GetComponent<Interactable>().GetIsReady()) { 
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
                     isInteracting = !isInteracting;
 
@@ -104,7 +130,7 @@ public class PlayerInput : MonoBehaviour
                 interactable.GetComponent<Interactable>().Interacting(gameObject);
                 isInteracting = !isInteracting;
                 interactable = null;
-        } 
+        } */
     }
 
     private void OnDrawGizmosSelected()
