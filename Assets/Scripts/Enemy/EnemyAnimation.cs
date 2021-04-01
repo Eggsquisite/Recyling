@@ -12,6 +12,7 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (anim == null) anim = GetComponent<Animator>();
         ac = anim.runtimeAnimatorController;
+        anim.keepAnimatorControllerStateOnDisable = true;
     }
 
     public void PlayAnimation(string newAnim) {
