@@ -188,7 +188,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void FreeCurrencyValues()
     {
-        futureCurrency += requiredCurrency;
+        futureCurrency += playerUI.GetRequiredCurrency(futureCurrentLevel);
     }
 
     private void UpdateButtonInteractable()

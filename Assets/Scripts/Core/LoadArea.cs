@@ -112,11 +112,11 @@ public class LoadArea : MonoBehaviour
         isLoading = false;
         cam.ResetBorders();
         transition.Play("FadeOut");
+        playerManager.SetCollider(true);
         playerManager.SetStopMovement(false);
 
         yield return new WaitForSeconds(1f);
         playerManager.SetInvincible(false);
-        playerManager.SetCollider(true);
     }
 
     IEnumerator LoadReadyTimer() {

@@ -1013,7 +1013,6 @@ public class BasicEnemy : MonoBehaviour
         if (isAttacking)
             FinishAttack();
 
-
         if (isDead) { 
             isDead = false;
             sp.enabled = true;
@@ -1025,6 +1024,8 @@ public class BasicEnemy : MonoBehaviour
 
     public void SetIsInactive(bool flag) {
         isInactive = flag;
+        if (isAttacking && isInactive)
+            FinishAttack();
     }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////
