@@ -302,7 +302,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.SetFollow(false);
         enemyMovement.StopFindPlayer();
         enemyMovement.IsMoving();
-        SetIsInactive(false);
+        //SetIsInactive(false);
         //enemyMovement.BeginPatrol();
 
 /*        // If enemy unfollow range is shorter than follow range, update unfollow range to the 
@@ -1023,9 +1023,9 @@ public class BasicEnemy : MonoBehaviour
     }
 
     public void SetIsInactive(bool flag) {
-        isInactive = flag;
-        if (isAttacking && isInactive)
+        if (isAttacking && flag)
             FinishAttack();
+        isInactive = flag;
     }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////
