@@ -819,18 +819,18 @@ public class Player : MonoBehaviour
             canReceiveInput = true;
     }
 
-    public void SetSwordDamage(int newValue) {
-        swordDamage = newValue;
+    public void SetSwordDamage(float newValue) {
+        swordDamage = Mathf.RoundToInt(newValue);
     }
-    public void SetSpecialAttackDmg(int newValue) {
-        specialAttackDmg = newValue;
+    public void SetSpecialAttackDmg(float newValue) {
+        specialAttackDmg = Mathf.RoundToInt(newValue);
     }
-    public void SetBlasterLightDmg(int newValue) {
-        blasterLightDmg = newValue;
+    public void SetBlasterLightDmg(float newValue) {
+        blasterLightDmg = Mathf.RoundToInt(newValue);
         projectile.SetDamage(blasterLightDmg);
     }
-    public void SetBlasterHeavyDmg(int newValue) {
-        blasterHeavyDmg = newValue;
+    public void SetBlasterHeavyDmg(float newValue) {
+        blasterHeavyDmg = Mathf.RoundToInt(newValue);
         projectile.SetSpecialDamage(blasterHeavyDmg);
     }
 

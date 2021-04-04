@@ -36,18 +36,18 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
-    private int swordDamage;
+    private float swordDamage;
     [SerializeField]
-    private int specialAttackDmg;
+    private float specialAttackDmg;
     [SerializeField]
-    private int blasterLightDmg;
+    private float blasterLightDmg;
     [SerializeField]
-    private int blasterHeavyDmg;
+    private float blasterHeavyDmg;
 
-    private int baseSwordDmg;
-    private int baseSpecialDmg;
-    private int baseBlasterLightDmg;
-    private int baseBlasterHeavyDmg;
+    private float baseSwordDmg;
+    private float baseSpecialDmg;
+    private float baseBlasterLightDmg;
+    private float baseBlasterHeavyDmg;
 
     [Header("Vitality Properties")]
     [SerializeField]
@@ -67,7 +67,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Strength Properties")]
     [SerializeField]
-    private int strengthUpgrade = 10;
+    private float strengthUpgrade = 10;
 
     [Header("Stamina Properties")]
     [SerializeField]
@@ -83,17 +83,17 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int specialEnergyUpgradeWeak;
     [SerializeField]
-    private int specialAttackUpgradeStrong;
+    private float specialAttackUpgradeStrong;
     [SerializeField]
-    private int specialAttackUpgradeWeak;
+    private float specialAttackUpgradeWeak;
     [SerializeField]
-    private int specialBlasterLightUpgradeStrong;
+    private float specialBlasterLightUpgradeStrong;
     [SerializeField]
-    private int specialBlasterLightUpgradeWeak;
+    private float specialBlasterLightUpgradeWeak;
     [SerializeField]
-    private int specialBlasterHeavyUpgradeStrong;
+    private float specialBlasterHeavyUpgradeStrong;
     [SerializeField]
-    private int specialBlasterHeavyUpgradeWeak;
+    private float specialBlasterHeavyUpgradeWeak;
 
     [Header("Player Stat Levels")]
     private int levelCap;

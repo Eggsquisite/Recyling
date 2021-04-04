@@ -16,12 +16,12 @@ public class Projectile : MonoBehaviour
     private int damage;
     private int damage2;
 
-    public void SetDamage(int dmg) {
-        damage = dmg;
+    public void SetDamage(float dmg) {
+        damage = Mathf.RoundToInt(dmg);
     }
 
-    public void SetSpecialDamage(int dmg) {
-        damage2 = dmg;
+    public void SetSpecialDamage(float dmg) {
+        damage2 = Mathf.RoundToInt(dmg);
     }
 
     private void ShootProjectile(int index) {

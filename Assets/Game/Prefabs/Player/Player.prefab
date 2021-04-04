@@ -215,10 +215,10 @@ MonoBehaviour:
   energyRecoveryValue: 15
   staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.5
-  swordDamage: 15
-  specialAttackDmg: 50
-  blasterLightDmg: 5
-  blasterHeavyDmg: 30
+  swordDamage: 18
+  specialAttackDmg: 55
+  blasterLightDmg: 7
+  blasterHeavyDmg: 32
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
@@ -231,12 +231,12 @@ MonoBehaviour:
   staminaMaxUpgradeWeak: 5
   specialEnergyUpgradeStrong: 35
   specialEnergyUpgradeWeak: 5
-  specialAttackUpgradeStrong: 20
-  specialAttackUpgradeWeak: 15
-  specialBlasterLightUpgradeStrong: 3
-  specialBlasterLightUpgradeWeak: 2
-  specialBlasterHeavyUpgradeStrong: 12
-  specialBlasterHeavyUpgradeWeak: 8
+  specialAttackUpgradeStrong: 18.33
+  specialAttackUpgradeWeak: 12.5
+  specialBlasterLightUpgradeStrong: 2.25
+  specialBlasterLightUpgradeWeak: 1.5
+  specialBlasterHeavyUpgradeStrong: 12.5
+  specialBlasterHeavyUpgradeWeak: 7.75
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 40
+  m_SortingOrder: 161
   m_Sprite: {fileID: 21300000, guid: 4a29ad7413689d7439c897f4a0d2867b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
