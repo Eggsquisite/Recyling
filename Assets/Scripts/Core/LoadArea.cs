@@ -36,6 +36,12 @@ public class LoadArea : MonoBehaviour
     [SerializeField]
     private GameObject enemiesToEnable;
 
+    [Header("Backgrounds")]
+    [SerializeField]
+    private GameObject backgroundToDisable;
+    [SerializeField]
+    private GameObject backgroundToEnable;
+
     private GameObject[] enemies;
 
     [Header("Direction")]
@@ -84,7 +90,12 @@ public class LoadArea : MonoBehaviour
             if (enemy.GetComponent<BasicEnemy>() != null)
                 enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
         }
-        
+
+        if (backgroundToEnable != null && backgroundToDisable != null) { 
+            backgroundToDisable.SetActive(false);
+            backgroundToEnable.SetActive(true);
+        }
+
         if (areaToLoad == Direction.Right) {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
