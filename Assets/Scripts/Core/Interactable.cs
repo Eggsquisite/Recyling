@@ -7,6 +7,8 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private bool resetEnemiesOnUse;
     [SerializeField]
+    private bool healOnUse;
+    [SerializeField]
     private bool setSpawnPoint;
     [SerializeField]
     private Transform spawnPoint;
@@ -63,6 +65,9 @@ public class Interactable : MonoBehaviour
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(true);
             UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
+
+            if (healOnUse)
+                player.GetComponent<PlayerStats>().RefreshResources();
         }
 
         if (resetEnemiesOnUse)

@@ -623,9 +623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215efc4dd1327b64e920bbe737cba243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetEnemiesOnUse: 1
+  healOnUse: 1
   setSpawnPoint: 1
   spawnPoint: {fileID: 328384638}
-  resetEnemiesOnUse: 1
   interactDelayBtwnActivations: 1
   animations:
   - altar_lightActivated

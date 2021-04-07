@@ -157,6 +157,13 @@ public class PlayerStats : MonoBehaviour
         SetDamageVariables();
     }
 
+    public void RefreshResources()
+    {
+        UI.SetCurrentHealth(maxHealth);
+        UI.SetCurrentEnergy(maxEnergy);
+        UI.SetCurrentStamina(maxStamina);
+    }
+
     public void IncreaseStat(int index, int newLevel) {
         if (index == -1)
         {

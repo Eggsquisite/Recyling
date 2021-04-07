@@ -10981,18 +10981,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 1748060059239125272, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: max_X
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1748060059239125272, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: min_X
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1748060059239125279, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 17
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
 --- !u!1001 &2110586330
