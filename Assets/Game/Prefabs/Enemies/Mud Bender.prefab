@@ -213,7 +213,7 @@ MonoBehaviour:
   detectPos: {fileID: 1807245500992063337}
   detectInRange: 3
   detectIsRay: 0
-  repeatFollowDelay: 0.75
+  repeatFollowDelay: 0.25
   attackFollowDelay: 0.25
   stunFollowDelay: 0.5
   borderLayer:
