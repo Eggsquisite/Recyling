@@ -241,7 +241,7 @@ public class BasicEnemy : MonoBehaviour
     ///  ANIMATION /////////////////////////////////////////////////////////////////////////
     /// </summary>
     private void MovementAnimation() {
-        if (!isStunned && !isAttacking) {
+        if (!isStunned && !isAttacking && !isInactive) {
             if (!enemyMovement.GetIsMoving()) {
                 if (enemyMovement.GetCanTeleport() 
                         && enemyMovement.GetTeleportReady() 
@@ -274,6 +274,9 @@ public class BasicEnemy : MonoBehaviour
 
         yield return new WaitForSeconds(enemyMovement.GetTeleportDuration()
             + enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_TELE1));
+
+        if (isInactive)
+            yield break;
 
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_TELE2);
         enemyMovement.TeleportToPlayer();
