@@ -374,7 +374,7 @@ MonoBehaviour:
     m_Bits: 64
   visualizePoint: {fileID: 806799264620761062}
   visualizeRange: 1.3
-  pushBackSpeed: 4
+  hurtPushBackSpeed: 4
   attackPoints:
   - {fileID: 3898020908469145278}
   - {fileID: 3898020908469145278}

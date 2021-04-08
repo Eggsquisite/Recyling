@@ -83,7 +83,7 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [SerializeField]
-    private float pushBackSpeed;
+    private float hurtPushBackSpeed;
     [SerializeField]
     private List<Transform> attackPoints;
     [SerializeField]
@@ -942,7 +942,7 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator PushBackMovement(Vector2 position) { 
         while (true != false)
         {
-            rb.MovePosition(rb.position + position * pushBackSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + position * hurtPushBackSpeed * Time.fixedDeltaTime);
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
     }
