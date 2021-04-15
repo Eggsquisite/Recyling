@@ -4,7 +4,27 @@ using UnityEngine;
 
 public class ResetEnemies : MonoBehaviour
 {
-    private GameObject[] enemies;
+    private static ResetEnemies _instance;
+    private static GameObject[] enemies;
+
+    public static ResetEnemies Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<ResetEnemies>();
+            }
+
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     private void Start()
     {
