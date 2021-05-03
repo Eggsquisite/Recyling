@@ -91,7 +91,7 @@ public class PlayerInput : MonoBehaviour
             { 
                 if (interactable != null 
                         && interactable.GetComponent<Interactable>().GetIsReady()
-                        && Vector2.Distance(interactable.transform.position, transform.position) <= 1.5f) {
+                        && Vector2.Distance(interactable.transform.position, transform.position) <= 2.5f) {
                     isInteracting = false;
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
                     interactable = null;
@@ -101,7 +101,7 @@ public class PlayerInput : MonoBehaviour
 
         if (isInteracting 
                 && interactable != null 
-                && Vector2.Distance(interactable.transform.position, transform.position) > 1.5f) {
+                && Vector2.Distance(interactable.transform.position, transform.position) > 2.5f) {
             isInteracting = false;
             interactable.GetComponent<Interactable>().Interacting(gameObject);
             interactable = null;

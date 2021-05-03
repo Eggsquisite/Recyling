@@ -8,6 +8,7 @@ TagManager:
   - LeftBorder
   - RightBorder
   - Area
+  - ResetEnemies
   layers:
   - Default
   - TransparentFX

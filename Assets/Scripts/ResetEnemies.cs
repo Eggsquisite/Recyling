@@ -13,7 +13,7 @@ public class ResetEnemies : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<ResetEnemies>();
+                _instance = FindObjectOfType<ResetEnemies>();
             }
 
             return _instance;
