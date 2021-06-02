@@ -1134,6 +1134,7 @@ public class Player : MonoBehaviour
 
     public void SetSpawnPoint(Transform spawnPnt) {
         spawnPoint = spawnPnt;
+        // UNECESSARY SPAWN SAVING IS DONE IN PLAYERINPUT.CS
     }
 
     private void OnDrawGizmosSelected() {

@@ -85,6 +85,8 @@ public class PlayerInput : MonoBehaviour
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
 
                     player.CheckForMovement(0f, 0f);
+
+                    // SAVE SPAWN POINT HERE *************************
                     player.SetSpawnPoint(interactable.GetComponent<Interactable>().GetSpawnPoint());
                 }
             } else if (isInteracting) 
