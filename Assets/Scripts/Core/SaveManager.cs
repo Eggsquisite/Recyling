@@ -7,7 +7,15 @@ using System.Xml.Serialization;
 
 public class SaveManager : MonoBehaviour
 {
+    public static SaveManager instance;
     public SaveData activeSave;
+    public bool hasLoaded;
+
+    private void Awake()
+    {
+        instance = this;
+        Load();
+    }
 
     // Start is called before the first frame update
     void Start()
