@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     enum PlayerWeapon
     {
         Sword = 1,
@@ -180,6 +182,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // low key singleton
+        instance = this;
+
         if (UI == null) UI = GetComponent<PlayerUI>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (sp == null) sp = GetComponent<SpriteRenderer>();
@@ -1130,11 +1135,6 @@ public class Player : MonoBehaviour
 
     public void SetCollider(bool flag) {
         GetComponent<Collider2D>().enabled = flag;
-    }
-
-    public void SetSpawnPoint(Transform spawnPnt) {
-        spawnPoint = spawnPnt;
-        // UNECESSARY SPAWN SAVING IS DONE IN PLAYERINPUT.CS
     }
 
     private void OnDrawGizmosSelected() {

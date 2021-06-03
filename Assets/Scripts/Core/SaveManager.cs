@@ -59,6 +59,18 @@ public class SaveManager : MonoBehaviour
             stream.Close();
 
             Debug.Log("Save: " + activeSave.saveName + " loaded!");
+
+            hasLoaded = true;
+        }
+    }
+
+    public void DeleteSaveData()
+    {
+        string dataPath = Application.persistentDataPath;
+
+        if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+        {
+            File.Delete(dataPath + "/" + activeSave.saveName + ".save");
         }
     }
 }
@@ -71,6 +83,10 @@ public class SaveData
 
     // player level and stats
     //public int playerLevel;       // may not need, just add all levels together to get player level
+    public int playerCurrency;
+    public int playerHealth;
+    public int playerEnergy;
+
     public int playerVitalityLevel;
     public int playerFocusLevel;
     public int playerStrengthLevel;
@@ -80,6 +96,7 @@ public class SaveData
     // player death and respawn positions
     public Vector3 playerDeathPosition;
     public Vector3 playerRespawnPosition;
+    public Vector3 playerCurrentPosition;
 
     // enemy save data
     public bool spawnBossOne;
