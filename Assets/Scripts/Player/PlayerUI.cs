@@ -169,8 +169,14 @@ public class PlayerUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         isAdding = false;
+        SaveCurrency();
         futureCurrency = 0;
         futureCurrencyText.gameObject.SetActive(false);
+    }
+
+    private void SaveCurrency()
+    {
+        SaveManager.instance.activeSave.playerCurrency = Mathf.RoundToInt(baseCurrency);
     }
 
     public int GetCurrency() {

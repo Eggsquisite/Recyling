@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour
             respawnPosition = currentPosition = SaveManager.instance.activeSave.playerRespawnPosition;
             Player.instance.transform.position = respawnPosition;
 
-            currency = SaveManager.instance.activeSave.playerCurrency;
-        }    
+            currency = Player.instance.LoadCurrency(SaveManager.instance.activeSave.playerCurrency);
+        } else
+        {
+            currency = 0;
+        }
     }
 
     // Update is called once per frame
