@@ -89,7 +89,6 @@ public class PlayerInput : MonoBehaviour
                     // SAVE SPAWN POINT HERE *************************
                     SaveManager.instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
                     Debug.Log(SaveManager.instance.activeSave.playerRespawnPosition);
-                    //player.SetSpawnPoint(interactable.GetComponent<Interactable>().GetSpawnPoint());
                 }
             } else if (isInteracting) 
             { 

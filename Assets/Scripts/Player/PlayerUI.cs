@@ -124,6 +124,12 @@ public class PlayerUI : MonoBehaviour
     }
 
     /// CURRENCY CODE ///////////////////////////////////////////////////////////////////////////
+    public void LoadCurrency(int newValue)
+    {
+        baseCurrency = newValue;
+        currencyText.text = newValue.ToString();
+    } 
+
     public void SetCurrency(int newValue) {
         if (newValue > 0) {
             if (addCurrencyRoutine != null)

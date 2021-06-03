@@ -205,6 +205,15 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    /// <summary>
+    /// LOAD STUFF ////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    /// 
+    public void LoadCurrency(int loadedCurrency)
+    {
+        UI.LoadCurrency(loadedCurrency);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -1136,6 +1145,7 @@ public class Player : MonoBehaviour
     public void SetCollider(bool flag) {
         GetComponent<Collider2D>().enabled = flag;
     }
+
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.green;
