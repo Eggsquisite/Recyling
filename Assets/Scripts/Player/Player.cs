@@ -209,9 +209,16 @@ public class Player : MonoBehaviour
     /// LOAD STUFF ////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
-    public void LoadCurrency(int loadedCurrency)
-    {
+    public void LoadCurrency(int loadedCurrency) {
         UI.LoadCurrency(loadedCurrency);
+    }
+
+    public void LoadHealth(float loadedHealth) {
+        UI.LoadCurrentHealth(loadedHealth);
+    }
+
+    public void LoadEnergy(float loadedEnergy) {
+        UI.LoadCurrentEnergy(loadedEnergy);
     }
 
     // Update is called once per frame
@@ -1144,6 +1151,19 @@ public class Player : MonoBehaviour
 
     public void SetCollider(bool flag) {
         GetComponent<Collider2D>().enabled = flag;
+    }
+
+    // GET PLAYER STATS FOR SAVING /////////////////////////////////////////////////////////////////////
+    public int GetHealth() {
+        return UI.GetCurrentHealth();
+    }
+
+    public int GetEnergy() {
+        return UI.GetCurrentEnergy();
+    }
+
+    public int GetCurrency() {
+        return UI.GetCurrency();
     }
 
 

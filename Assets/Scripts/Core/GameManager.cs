@@ -24,7 +24,13 @@ public class GameManager : MonoBehaviour
             respawnPosition = currentPosition = SaveManager.instance.activeSave.playerRespawnPosition;
             Player.instance.transform.position = respawnPosition;
 
-            currency = Player.instance.LoadCurrency(SaveManager.instance.activeSave.playerCurrency);
+            currency = SaveManager.instance.activeSave.playerCurrency;
+            health = SaveManager.instance.activeSave.playerHealth;
+            energy = SaveManager.instance.activeSave.playerEnergy;
+
+            Player.instance.LoadCurrency(currency);
+            Player.instance.LoadHealth(health);
+            Player.instance.LoadEnergy(energy);
         } else
         {
             currency = 0;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 public class SaveManager : MonoBehaviour
@@ -14,7 +13,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Load();
+       // Load();
     }
 
     // Start is called before the first frame update
@@ -26,7 +25,18 @@ public class SaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Save();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DeleteSaveData();
+        }
     }
 
     public void Save()
@@ -37,6 +47,11 @@ public class SaveManager : MonoBehaviour
 
         // Location of where to create/save the fileStream
         var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
+
+        if (stream.Position > 0)
+        {
+            stream.Position = 0;
+        }
 
         // Serialize the actual object to save (SaveData using its saveName)
         serializer.Serialize(stream, activeSave);
@@ -55,6 +70,7 @@ public class SaveManager : MonoBehaviour
 
             // Location of where to open the save
             var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
+
             activeSave = serializer.Deserialize(stream) as SaveData;
             stream.Close();
 
@@ -72,6 +88,21 @@ public class SaveManager : MonoBehaviour
         {
             File.Delete(dataPath + "/" + activeSave.saveName + ".save");
         }
+    }
+
+    public void SaveCurrency(int newValue) {
+        instance.activeSave.playerCurrency = newValue;
+        Save();
+    }
+
+    public void SaveHealth(int newValue) {
+        instance.activeSave.playerHealth = newValue;
+        Save();
+    }
+
+    public void SaveEnergy(int newValue) {
+        instance.activeSave.playerEnergy = newValue;
+        Save();
     }
 }
 

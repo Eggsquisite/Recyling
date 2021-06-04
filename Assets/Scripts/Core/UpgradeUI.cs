@@ -439,6 +439,7 @@ public class UpgradeUI : MonoBehaviour
         UpdateLevelText();
         ChangeLevelColor();
         UpdateButtonInteractable();
+        SaveManager.instance.SaveCurrency(Mathf.RoundToInt(baseCurrency));
     }
 
     public void Cancel()

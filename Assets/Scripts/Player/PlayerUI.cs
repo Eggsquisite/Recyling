@@ -169,14 +169,9 @@ public class PlayerUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         isAdding = false;
-        SaveCurrency();
         futureCurrency = 0;
         futureCurrencyText.gameObject.SetActive(false);
-    }
-
-    private void SaveCurrency()
-    {
-        SaveManager.instance.activeSave.playerCurrency = Mathf.RoundToInt(baseCurrency);
+        SaveManager.instance.SaveCurrency(Mathf.RoundToInt(baseCurrency));
     }
 
     public int GetCurrency() {
@@ -274,6 +269,10 @@ public class PlayerUI : MonoBehaviour
     }
 
     // HEALTH ///////////////////////////////////////////////////////////////////////////////////////
+    public void LoadCurrentHealth(float newValue) {
+        healthDestroyedValue.value = healthCurrentValue.value = newValue;
+    }
+
     public void SetMaxHealth(int newValue) {
         // IF THROWING ERROR, ASSIGN CANVAS IN INSPECTOR
         healthMaxValue.value = newValue;
@@ -372,6 +371,10 @@ public class PlayerUI : MonoBehaviour
     }
 
     // ENERGY ///////////////////////////////////////////////////////////////////////////////////
+    public void LoadCurrentEnergy(float newValue) {
+        energyDestroyedValue.value = energyCurrentValue.value = newValue;
+    }
+
     public void SetMaxEnergy(int newValue) {
         energyMaxValue.value = newValue;
         energyCurrentValue.maxValue = energyCurrentValue.value = newValue;
