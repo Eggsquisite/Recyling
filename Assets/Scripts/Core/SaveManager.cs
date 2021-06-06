@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
     public SaveData activeSave;
+    public string saveGame;
     public bool hasLoaded;
 
     private void Awake()
@@ -24,6 +25,7 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        SavePlayerValues();
         string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
         var serializer = new XmlSerializer(typeof(SaveData));
 
@@ -33,28 +35,11 @@ public class SaveManager : MonoBehaviour
             stream.Close();
         }
 
-        /*string dataPath = Application.persistentDataPath;
-
-        var serializer = new XmlSerializer(typeof(SaveData));
-
-        // Location of where to create/save the fileStream
-        var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
-
-        if (stream.Position > 0)
-        {
-            stream.Position = 0;
-        }
-
-        // Serialize the actual object to save (SaveData using its saveName)
-        serializer.Serialize(stream, activeSave);*/
-        //stream.Close();
-
         Debug.Log("save: " + activeSave.saveName + " created!");
     }
 
     public void Load()
     {
-        string dataPath = Application.persistentDataPath;
         string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
 
         //if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
@@ -66,20 +51,6 @@ public class SaveManager : MonoBehaviour
             {
                 activeSave = (SaveData)(serializer.Deserialize(reader)) as SaveData;
             }
-        
-
-        /*var serializer = new XmlSerializer(typeof(SaveData));
-
-        // Location of where to open the save
-        var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
-
-        if (stream.Position > 0)
-        {
-            stream.Position = 0;
-        }
-
-        activeSave = (SaveData)serializer.Deserialize(stream);
-        stream.Close();*/
 
             Debug.Log("Save: " + activeSave.saveName + " loaded!");
 
@@ -89,12 +60,11 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteSaveData()
     {
-        string dataPath = Application.persistentDataPath;
+        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
 
-        if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
-        {
-            File.Delete(dataPath + "/" + activeSave.saveName + ".save");
-        }
+        if (File.Exists(filePath))
+            File.Delete(filePath);
+        
     }
 
     public void SaveCurrency(int newValue) {
@@ -110,6 +80,15 @@ public class SaveManager : MonoBehaviour
     public void SaveEnergy(int newValue) {
         instance.activeSave.playerEnergy = newValue;
         Save();
+    }
+
+    private void SavePlayerValues() {
+        if (activeSave.saveName == saveGame) 
+        {
+            activeSave.playerHealth = Player.instance.GetHealth();
+            activeSave.playerEnergy = Player.instance.GetEnergy();
+            activeSave.playerCurrency = Player.instance.GetCurrency();
+        }
     }
 }
 

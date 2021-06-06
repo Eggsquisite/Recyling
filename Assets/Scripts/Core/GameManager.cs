@@ -17,12 +17,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        respawnPosition = currentPosition = Player.instance.transform.position;
+        currentPosition = Player.instance.transform.position;
 
         if (SaveManager.instance.hasLoaded)
         {
             respawnPosition = currentPosition = SaveManager.instance.activeSave.playerRespawnPosition;
-            Player.instance.transform.position = respawnPosition;
 
             currency = SaveManager.instance.activeSave.playerCurrency;
             health = SaveManager.instance.activeSave.playerHealth;
