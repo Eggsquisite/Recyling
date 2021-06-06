@@ -49,7 +49,7 @@ public class SaveManager : MonoBehaviour
             XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
             using (StringReader reader = new StringReader(fileText))
             {
-                activeSave = (SaveData)(serializer.Deserialize(reader)) as SaveData;
+                activeSave = (SaveData)serializer.Deserialize(reader);
             }
 
             Debug.Log("Save: " + activeSave.saveName + " loaded!");
@@ -88,6 +88,14 @@ public class SaveManager : MonoBehaviour
             activeSave.playerHealth = Player.instance.GetHealth();
             activeSave.playerEnergy = Player.instance.GetEnergy();
             activeSave.playerCurrency = Player.instance.GetCurrency();
+
+            activeSave.playerVitalityLevel = Player.instance.GetVitalityLevel();
+            activeSave.playerFocusLevel = Player.instance.GetFocusLevel();
+            activeSave.playerStrengthLevel = Player.instance.GetStrengthLevel();
+            activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
+            activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
+
+            activeSave.playerCurrentPosition = Player.instance.transform.position;
         }
     }
 }

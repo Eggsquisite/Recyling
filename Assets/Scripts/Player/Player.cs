@@ -1166,6 +1166,29 @@ public class Player : MonoBehaviour
         return UI.GetCurrency();
     }
 
+    public int GetVitalityLevel() {
+        return playerStats.GetVitalityLevel();
+    }
+
+    public int GetFocusLevel() {
+        return playerStats.GetFocusLevel();
+    }
+
+    public int GetStrengthLevel() {
+        return playerStats.GetStrengthLevel();
+    }
+
+    public int GetStaminaLevel() {
+        return playerStats.GetStaminaLevel();
+    }
+
+    public int GetSpecialLevel() {
+        return playerStats.GetSpecialLevel();
+    }
+
+    public void LoadPlayerLevels() {
+        playerStats.IncreaseStat(-1, 0);
+    }
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.green;

@@ -165,12 +165,30 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void IncreaseStat(int index, int newLevel) {
-        if (index == -1)
+        if (index == -1) // FOR LOADING
         {
             // VITALITY ///////////////////////////////////////////////////////////////////
+            for (int i = upgrades["vitality"]; i < SaveManager.instance.activeSave.playerVitalityLevel; i++)
+            {
+                upgrades["vitality"] = upgrades["vitality"] + 1;
+                Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
+                if (upgrades["vitality"] <= 10) { 
+                    maxHealth += vitalityUpgradeStrong;
+                } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
+                    maxHealth += vitalityUpgradeMid;
+                } else if (upgrades["vitality"] > 15) {
+                    maxHealth += vitalityUpgradeWeak;
+                }
+
+                UI.SetMaxHealth(maxHealth);
+                UI.SetCurrentHealth(maxHealth);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
 
             // EFFICIENCY /////////////////////////////////////////////////////////////////
+
 
 
             // STRENGTH ///////////////////////////////////////////////////////////////////

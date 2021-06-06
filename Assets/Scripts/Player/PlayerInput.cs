@@ -88,8 +88,6 @@ public class PlayerInput : MonoBehaviour
 
                     // SAVE SPAWN POINT HERE *************************
                     SaveManager.instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
-                    SaveManager.instance.activeSave.playerHealth = Player.instance.GetHealth();
-                    SaveManager.instance.Save();
                 }
             } else if (isInteracting) 
             { 
@@ -99,6 +97,8 @@ public class PlayerInput : MonoBehaviour
                     isInteracting = false;
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
                     interactable = null;
+
+                    SaveManager.instance.Save();
                 }
             }
         }
@@ -109,6 +109,8 @@ public class PlayerInput : MonoBehaviour
             isInteracting = false;
             interactable.GetComponent<Interactable>().Interacting(gameObject);
             interactable = null;
+
+            SaveManager.instance.Save();
         }
     }
 

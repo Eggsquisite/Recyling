@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         if (SaveManager.instance.hasLoaded)
         {
             respawnPosition = currentPosition = SaveManager.instance.activeSave.playerRespawnPosition;
+            Player.instance.LoadPlayerLevels();
 
             currency = SaveManager.instance.activeSave.playerCurrency;
             health = SaveManager.instance.activeSave.playerHealth;
