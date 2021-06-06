@@ -6934,6 +6934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeSave:
     saveName: save1
+    playerCurrency: 0
+    playerHealth: 0
+    playerEnergy: 0
     playerVitalityLevel: 0
     playerFocusLevel: 0
     playerStrengthLevel: 0
@@ -6941,6 +6944,7 @@ MonoBehaviour:
     playerSpecialLevel: 0
     playerDeathPosition: {x: 0, y: 0, z: 0}
     playerRespawnPosition: {x: 0, y: 0, z: 0}
+    playerCurrentPosition: {x: 0, y: 0, z: 0}
     spawnBossOne: 0
     spawnBossTwo: 0
     spawnBossThree: 0
@@ -8072,6 +8076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1572567295}
+  - component: {fileID: 1572567296}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -8093,6 +8098,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572567296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572567294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7ecb7b070109447b4e1d9a343c9664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  currency: 0
+  deathPosition: {x: 0, y: 0, z: 0}
+  respawnPosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1585955528
 GameObject:
   m_ObjectHideFlags: 0

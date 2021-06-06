@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-       // Load();
+        Load();
     }
 
     // Start is called before the first frame update
@@ -22,26 +22,18 @@ public class SaveManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Load();
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            DeleteSaveData();
-        }
-    }
-
     public void Save()
     {
-        string dataPath = Application.persistentDataPath;
+        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
+        var serializer = new XmlSerializer(typeof(SaveData));
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            serializer.Serialize(stream, activeSave);
+            stream.Close();
+        }
+
+        /*string dataPath = Application.persistentDataPath;
 
         var serializer = new XmlSerializer(typeof(SaveData));
 
@@ -54,8 +46,8 @@ public class SaveManager : MonoBehaviour
         }
 
         // Serialize the actual object to save (SaveData using its saveName)
-        serializer.Serialize(stream, activeSave);
-        stream.Close();
+        serializer.Serialize(stream, activeSave);*/
+        //stream.Close();
 
         Debug.Log("save: " + activeSave.saveName + " created!");
     }
@@ -63,16 +55,31 @@ public class SaveManager : MonoBehaviour
     public void Load()
     {
         string dataPath = Application.persistentDataPath;
+        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
 
-        if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+        //if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+        if (File.Exists(filePath))
         {
-            var serializer = new XmlSerializer(typeof(SaveData));
+            string fileText = File.ReadAllText(filePath);
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            using (StringReader reader = new StringReader(fileText))
+            {
+                activeSave = (SaveData)(serializer.Deserialize(reader)) as SaveData;
+            }
+        
 
-            // Location of where to open the save
-            var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
+        /*var serializer = new XmlSerializer(typeof(SaveData));
 
-            activeSave = serializer.Deserialize(stream) as SaveData;
-            stream.Close();
+        // Location of where to open the save
+        var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
+
+        if (stream.Position > 0)
+        {
+            stream.Position = 0;
+        }
+
+        activeSave = (SaveData)serializer.Deserialize(stream);
+        stream.Close();*/
 
             Debug.Log("Save: " + activeSave.saveName + " loaded!");
 
@@ -107,6 +114,7 @@ public class SaveManager : MonoBehaviour
 }
 
 [System.Serializable]
+
 public class SaveData
 {
     // denotes which save the player wants to use
