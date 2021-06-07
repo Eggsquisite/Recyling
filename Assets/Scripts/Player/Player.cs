@@ -205,22 +205,6 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>
-    /// LOAD STUFF ////////////////////////////////////////////////////////////////////////////////////////
-    /// </summary>
-    /// 
-    public void LoadCurrency(int loadedCurrency) {
-        UI.LoadCurrency(loadedCurrency);
-    }
-
-    public void LoadHealth(float loadedHealth) {
-        UI.LoadCurrentHealth(loadedHealth);
-    }
-
-    public void LoadEnergy(float loadedEnergy) {
-        UI.LoadCurrentEnergy(loadedEnergy);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -1153,6 +1137,21 @@ public class Player : MonoBehaviour
         GetComponent<Collider2D>().enabled = flag;
     }
 
+    /// <summary>
+    /// LOAD STUFF ////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    public void LoadCurrency(int loadedCurrency) {
+        UI.LoadCurrency(loadedCurrency);
+    }
+
+    public void LoadHealth(float loadedHealth) {
+        UI.LoadCurrentHealth(loadedHealth);
+    }
+
+    public void LoadEnergy(float loadedEnergy) {
+        UI.LoadCurrentEnergy(loadedEnergy);
+    }
+
     // GET PLAYER STATS FOR SAVING /////////////////////////////////////////////////////////////////////
     public int GetHealth() {
         return UI.GetCurrentHealth();
@@ -1188,6 +1187,13 @@ public class Player : MonoBehaviour
 
     public void LoadPlayerLevels() {
         playerStats.IncreaseStat(-1, 0);
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.instance.activeSave.playerCurrentPosition = transform.position;
+        SaveManager.instance.Save();
+        Debug.Log("Saving current position...");
     }
 
     private void OnDrawGizmosSelected() {

@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        CheckSave();
         Load();
     }
 
@@ -25,8 +26,9 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        CheckSave();
         SavePlayerValues();
-        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
+        string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
         var serializer = new XmlSerializer(typeof(SaveData));
 
         using (var stream = new FileStream(filePath, FileMode.Create))
@@ -40,7 +42,8 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
+        CheckSave();
+        string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
 
         //if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
         if (File.Exists(filePath))
@@ -52,9 +55,17 @@ public class SaveManager : MonoBehaviour
                 activeSave = (SaveData)serializer.Deserialize(reader);
             }
 
-            Debug.Log("Save: " + activeSave.saveName + " loaded!");
+            Debug.Log("Load: " + activeSave.saveName + " loaded!");
 
             hasLoaded = true;
+        }
+    }
+
+    private void CheckSave() {
+        if (activeSave.saveName != saveGame)
+        { 
+            activeSave.saveName = saveGame;
+            Debug.Log("Changing savename: " + activeSave.saveName);
         }
     }
 
@@ -96,6 +107,10 @@ public class SaveManager : MonoBehaviour
             activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
             activeSave.playerCurrentPosition = Player.instance.transform.position;
+        }
+        else
+        {
+            activeSave.saveName = saveGame;
         }
     }
 }

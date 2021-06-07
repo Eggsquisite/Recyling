@@ -5,35 +5,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    private SaveData activeSave;
 
-    public int health;
-    public int energy;
-    public int currency;
-
-    public Vector3 deathPosition;
-    public Vector3 respawnPosition;
-    public Vector3 currentPosition;
+    public Vector3 newSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPosition = Player.instance.transform.position;
+        activeSave = SaveManager.instance.activeSave;
 
         if (SaveManager.instance.hasLoaded)
         {
-            respawnPosition = currentPosition = SaveManager.instance.activeSave.playerRespawnPosition;
+            // player loads in at their last position
+            Player.instance.transform.position = activeSave.playerCurrentPosition;
+
             Player.instance.LoadPlayerLevels();
-
-            currency = SaveManager.instance.activeSave.playerCurrency;
-            health = SaveManager.instance.activeSave.playerHealth;
-            energy = SaveManager.instance.activeSave.playerEnergy;
-
-            Player.instance.LoadCurrency(currency);
-            Player.instance.LoadHealth(health);
-            Player.instance.LoadEnergy(energy);
+            Player.instance.LoadCurrency(activeSave.playerCurrency);
+            Player.instance.LoadHealth(activeSave.playerHealth);
+            Player.instance.LoadEnergy(activeSave.playerEnergy);
         } else
         {
-            currency = 0;
+            // player starts at starting position
+            Player.instance.transform.position = newSpawn;
+            activeSave.playerRespawnPosition = newSpawn;
         }
     }
 

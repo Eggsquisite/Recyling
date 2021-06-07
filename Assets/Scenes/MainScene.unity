@@ -6933,7 +6933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeSave:
-    saveName: save1
+    saveName: save5
     playerCurrency: 0
     playerHealth: 0
     playerEnergy: 0
@@ -8111,12 +8111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7ecb7b070109447b4e1d9a343c9664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  energy: 900
-  currency: 0
-  deathPosition: {x: 0, y: 0, z: 0}
-  respawnPosition: {x: 0, y: 0, z: 0}
-  currentPosition: {x: 0, y: 0, z: 0}
+  newSpawn: {x: 4.75, y: -1, z: 0}
 --- !u!1 &1585955528
 GameObject:
   m_ObjectHideFlags: 0
@@ -10505,11 +10500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722439447500652326, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.09
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: 722439447500652326, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.77
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 722439447500652326, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10561,7 +10556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5715822747553379095, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 177
+      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}

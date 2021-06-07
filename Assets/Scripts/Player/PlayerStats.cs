@@ -171,7 +171,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["vitality"]; i < SaveManager.instance.activeSave.playerVitalityLevel; i++)
             {
                 upgrades["vitality"] = upgrades["vitality"] + 1;
-                Debug.Log("Vitality Level: " + upgrades["vitality"]);
+                //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
                 if (upgrades["vitality"] <= 10) { 
                     maxHealth += vitalityUpgradeStrong;
@@ -191,7 +191,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["focus"]; i < SaveManager.instance.activeSave.playerFocusLevel; i++)
             {
                 upgrades["focus"] = upgrades["focus"] + 1;
-                Debug.Log("focus Level: " + upgrades["focus"]);
+                //Debug.Log("focus Level: " + upgrades["focus"]);
 
                 healthRecoveryValue += healthFocusUpgrade;
                 energyRecoveryValue += energyFocusUpgrade;
@@ -208,7 +208,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["strength"]; i < SaveManager.instance.activeSave.playerStrengthLevel; i++)
             {
                 upgrades["strength"] = upgrades["strength"] + 1;
-                Debug.Log("strength Level: " + upgrades["strength"]);
+                //Debug.Log("strength Level: " + upgrades["strength"]);
 
                 if (upgrades["strength"] <= 10) { 
                     swordDamage += strengthUpgrade;
@@ -224,7 +224,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["stamina"]; i < SaveManager.instance.activeSave.playerStaminaLevel; i++)
             {
                 upgrades["stamina"] = upgrades["stamina"] + 1;
-                Debug.Log("stamina Level: " + upgrades["stamina"]);
+                //Debug.Log("stamina Level: " + upgrades["stamina"]);
 
                 staminaRecoveryValue += staminaRecoveryUpgrade; 
                 if (upgrades["stamina"] <= 15) {
@@ -244,7 +244,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["special"]; i < SaveManager.instance.activeSave.playerSpecialLevel; i++)
             {
                 upgrades["special"] = upgrades["special"] + 1;
-                Debug.Log("special Level: " + upgrades["special"]);
+                //Debug.Log("special Level: " + upgrades["special"]);
 
                 if (upgrades["special"] <= 10) { 
                     maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
@@ -272,7 +272,7 @@ public class PlayerStats : MonoBehaviour
             for (int i = upgrades["vitality"]; i < newLevel; i++)
             {
                 upgrades["vitality"] = upgrades["vitality"] + 1;
-                Debug.Log("Vitality Level: " + upgrades["vitality"]);
+                //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
                 if (upgrades["vitality"] <= 10) { 
                     maxHealth += vitalityUpgradeStrong;
