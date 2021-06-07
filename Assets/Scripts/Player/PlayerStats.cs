@@ -187,18 +187,85 @@ public class PlayerStats : MonoBehaviour
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
 
-            // EFFICIENCY /////////////////////////////////////////////////////////////////
+            // FOCUS ///////////////////////////////////////////////////////////////////////
+            for (int i = upgrades["focus"]; i < SaveManager.instance.activeSave.playerFocusLevel; i++)
+            {
+                upgrades["focus"] = upgrades["focus"] + 1;
+                Debug.Log("focus Level: " + upgrades["focus"]);
 
+                healthRecoveryValue += healthFocusUpgrade;
+                energyRecoveryValue += energyFocusUpgrade;
+                energyToHealthMultiplier = 1 / (1 + upgrades["focus"] * energyToHealthFocusUpgrade);
 
+                UI.SetHealthRecoveryValue(healthRecoveryValue);
+                UI.SetEnergyRecoveryValue(energyRecoveryValue);
+                UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
 
             // STRENGTH ///////////////////////////////////////////////////////////////////
+            for (int i = upgrades["strength"]; i < SaveManager.instance.activeSave.playerStrengthLevel; i++)
+            {
+                upgrades["strength"] = upgrades["strength"] + 1;
+                Debug.Log("strength Level: " + upgrades["strength"]);
 
+                if (upgrades["strength"] <= 10) { 
+                    swordDamage += strengthUpgrade;
+                } else if (upgrades["strength"] > 10) {
+                    swordDamage += upgrades["strength"] / 2;
+                }
+
+                SetDamageVariables();
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
 
             // STAMINA /////////////////////////////////////////////////////////////////////
+            for (int i = upgrades["stamina"]; i < SaveManager.instance.activeSave.playerStaminaLevel; i++)
+            {
+                upgrades["stamina"] = upgrades["stamina"] + 1;
+                Debug.Log("stamina Level: " + upgrades["stamina"]);
 
+                staminaRecoveryValue += staminaRecoveryUpgrade; 
+                if (upgrades["stamina"] <= 15) {
+                    maxStamina += staminaMaxUpgradeStrong;
+                } else if (upgrades["stamina"] > 15) {
+                    maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
+                }
+
+                UI.SetMaxStamina(maxStamina);
+                UI.SetCurrentStamina(maxStamina);
+                UI.SetStaminaRecoveryValue(staminaRecoveryValue);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
 
             // SPECIAL /////////////////////////////////////////////////////////////////////
+            for (int i = upgrades["special"]; i < SaveManager.instance.activeSave.playerSpecialLevel; i++)
+            {
+                upgrades["special"] = upgrades["special"] + 1;
+                Debug.Log("special Level: " + upgrades["special"]);
 
+                if (upgrades["special"] <= 10) { 
+                    maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
+
+                    specialAttackDmg += specialAttackUpgradeStrong;
+                    blasterLightDmg += specialBlasterLightUpgradeStrong;
+                    blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
+                } else if (upgrades["special"] > 10) {
+                    maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
+
+                    specialAttackDmg += specialAttackUpgradeWeak;
+                    blasterLightDmg += specialBlasterLightUpgradeWeak;
+                    blasterHeavyDmg += specialBlasterHeavyUpgradeWeak;
+                }
+
+                SetDamageVariables();
+                UI.SetMaxEnergy(maxEnergy);
+                UI.SetCurrentEnergy(maxEnergy);
+
+                upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+            }
         }
         else if (index == 0 && upgrades["vitality"] < levelCap) {
             // vitality: max health
