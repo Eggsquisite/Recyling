@@ -14,14 +14,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        CheckSave();
         Load();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     public void Save()
@@ -110,18 +103,22 @@ public class SaveManager : MonoBehaviour
 public class SaveData
 {
     // denotes which save the player wants to use
+    [Header("Save Name")]
     public string saveName;
 
     // denotes where the camera should be in regards to min/max values
+    [Header("Camera Clamp Values")]
     public float minCameraPos;
     public float maxCameraPos;
 
     // player level and stats
     //public int playerLevel;       // may not need, just add all levels together to get player level
+    [Header("Player Stats")]
     public int playerCurrency;
     public int playerHealth;
     public int playerEnergy;
 
+    [Header("Player Levels")]
     public int playerVitalityLevel;
     public int playerFocusLevel;
     public int playerStrengthLevel;
@@ -129,12 +126,17 @@ public class SaveData
     public int playerSpecialLevel;
 
     // player death and respawn positions
+    [Header("Player Positional Values")]
     public Vector3 playerDeathPosition;
     public Vector3 playerRespawnPosition;
     public Vector3 playerCurrentPosition;
 
     // enemy save data
+    [Header("Enemy Spawn Values")]
     public bool spawnBossOne;
     public bool spawnBossTwo;
     public bool spawnBossThree;
+
+    // need to have individual saving for each enemy in case an enemy is dead and player restarts game,
+    // rezzing the enemy
 }
