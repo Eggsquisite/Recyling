@@ -148,13 +148,19 @@ public class CameraFollow : MonoBehaviour
         return max_X;
     }
 
+    public void SetCamSpeed(float newValue) {
+        camSpeed = newValue;
+    }
+
     public void SetMinX(float newValue) {
         min_X = newValue;
         focusMin_X = min_X - 1.5f;
+        SaveManager.instance.activeSave.minCameraPos = newValue;
     }
 
     public void SetMaxX(float newValue) {
         max_X = newValue;
         focusMax_X = max_X + 1.5f;
+        SaveManager.instance.activeSave.maxCameraPos = newValue;
     }
 }

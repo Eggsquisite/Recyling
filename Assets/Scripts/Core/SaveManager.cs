@@ -63,15 +63,12 @@ public class SaveManager : MonoBehaviour
 
     private void CheckSave() {
         if (activeSave.saveName != saveGame)
-        { 
             activeSave.saveName = saveGame;
-            Debug.Log("Changing savename: " + activeSave.saveName);
-        }
     }
 
     public void DeleteSaveData()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, "filename.xml");
+        string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
 
         if (File.Exists(filePath))
             File.Delete(filePath);
@@ -94,24 +91,17 @@ public class SaveManager : MonoBehaviour
     }
 
     private void SavePlayerValues() {
-        if (activeSave.saveName == saveGame) 
-        {
-            activeSave.playerHealth = Player.instance.GetHealth();
-            activeSave.playerEnergy = Player.instance.GetEnergy();
-            activeSave.playerCurrency = Player.instance.GetCurrency();
+        activeSave.playerHealth = Player.instance.GetHealth();
+        activeSave.playerEnergy = Player.instance.GetEnergy();
+        activeSave.playerCurrency = Player.instance.GetCurrency();
 
-            activeSave.playerVitalityLevel = Player.instance.GetVitalityLevel();
-            activeSave.playerFocusLevel = Player.instance.GetFocusLevel();
-            activeSave.playerStrengthLevel = Player.instance.GetStrengthLevel();
-            activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
-            activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
+        activeSave.playerVitalityLevel = Player.instance.GetVitalityLevel();
+        activeSave.playerFocusLevel = Player.instance.GetFocusLevel();
+        activeSave.playerStrengthLevel = Player.instance.GetStrengthLevel();
+        activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
+        activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
-            activeSave.playerCurrentPosition = Player.instance.transform.position;
-        }
-        else
-        {
-            activeSave.saveName = saveGame;
-        }
+        activeSave.playerCurrentPosition = Player.instance.transform.position;
     }
 }
 
@@ -121,6 +111,10 @@ public class SaveData
 {
     // denotes which save the player wants to use
     public string saveName;
+
+    // denotes where the camera should be in regards to min/max values
+    public float minCameraPos;
+    public float maxCameraPos;
 
     // player level and stats
     //public int playerLevel;       // may not need, just add all levels together to get player level

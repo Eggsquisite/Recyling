@@ -1152,7 +1152,7 @@ public class Player : MonoBehaviour
         UI.LoadCurrentEnergy(loadedEnergy);
     }
 
-    // GET PLAYER STATS FOR SAVING /////////////////////////////////////////////////////////////////////
+    /// GET PLAYER STATS FOR SAVING /////////////////////////////////////////////////////////////////////
     public int GetHealth() {
         return UI.GetCurrentHealth();
     }
