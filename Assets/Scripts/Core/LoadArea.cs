@@ -134,4 +134,14 @@ public class LoadArea : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         loadReady = true;
     }
+
+
+    // FOR AREA MANAGER TO REFERENCE WHEN LOADING GAME
+    public float GetMinCamX() {
+        return min_X;
+    }
+
+    public float GetMaxCamX() {
+        return max_X;
+    }
 }
