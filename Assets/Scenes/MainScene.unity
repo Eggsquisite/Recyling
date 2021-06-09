@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 2
   min_X: 17
   max_X: 17
   enemiesToDisable: {fileID: 3781810322380137323}
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 4
   min_X: 64
   max_X: 77
   enemiesToDisable: {fileID: 383563133}
@@ -1033,6 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 4
   min_X: 64
   max_X: 77
   enemiesToDisable: {fileID: 3781810322380137323}
@@ -1775,6 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 3
   min_X: 34
   max_X: 46
   enemiesToDisable: {fileID: 1771466993877585867}
@@ -6934,6 +6938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeSave:
     saveName: save1
+    areaToLoadIndex: 0
     minCameraPos: 0
     maxCameraPos: 0
     playerCurrency: 0
@@ -7601,6 +7606,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 757794985079296046, guid: 0724090a48b1d2c46b7ae1543ec6fe2d, type: 3}
   m_PrefabInstance: {fileID: 1311078936}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1362614947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362614948}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362614948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362614947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365239918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10900,6 +10935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 5
   min_X: 94
   max_X: 108
   enemiesToDisable: {fileID: 1771466993877585867}
@@ -10978,6 +11014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 3
   min_X: 34
   max_X: 46
   enemiesToDisable: {fileID: 488144193}
@@ -11335,7 +11372,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7186152942636204692, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
 --- !u!4 &2125912130 stripped
 Transform:
@@ -11420,6 +11458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 1
   min_X: 0
   max_X: 0
   enemiesToDisable: {fileID: 488144193}
@@ -11556,6 +11595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaToLoadIndex: 2
   min_X: 17
   max_X: 17
   enemiesToDisable: {fileID: 808502902}

@@ -26,6 +26,8 @@ public class LoadArea : MonoBehaviour
     // Each load area corresponds to ONE specific area that it will change the camera clamp values to
     [Header("Camera Clamp Values")]
     [SerializeField]
+    private int areaToLoadIndex;
+    [SerializeField]
     private float min_X;
     [SerializeField]
     private float max_X;
@@ -73,10 +75,29 @@ public class LoadArea : MonoBehaviour
         }
     }
 
+    public void LoadAreaFromSave() {
+        cam.SetMinX(min_X);
+        cam.SetMaxX(max_X);
+
+        foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
+        {
+            if (enemy.GetComponent<BasicEnemy>() != null)
+                enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
+        }
+
+        if (backgroundToEnable != null && backgroundToDisable != null)
+        {
+            backgroundToDisable.SetActive(false);
+            backgroundToEnable.SetActive(true);
+        }
+    }
+
     IEnumerator LoadNextArea() {
         transition.Play("FadeIn");
-        playerManager.SetStopMovement(true);
         playerManager.SetCollider(false);
+        playerManager.SetStopMovement(true);
+        SaveManager.instance.activeSave.areaToLoadIndex = areaToLoadIndex;
+
         yield return new WaitForSeconds(0.5f);
 
         foreach (Transform enemy in enemiesToDisable.GetComponentsInChildren<Transform>())
@@ -143,5 +164,9 @@ public class LoadArea : MonoBehaviour
 
     public float GetMaxCamX() {
         return max_X;
+    }
+
+    public int GetAreaIndex() {
+        return areaToLoadIndex;
     }
 }

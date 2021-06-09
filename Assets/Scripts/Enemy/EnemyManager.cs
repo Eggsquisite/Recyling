@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetEnemies : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
-    private static ResetEnemies _instance;
+    private static EnemyManager instance;
     private static GameObject[] enemies;
 
-    public static ResetEnemies Instance
+    public static EnemyManager Instance
     {
         get
         {
-            if (_instance == null)
+            if (instance == null)
             {
-                _instance = FindObjectOfType<ResetEnemies>();
+                instance = FindObjectOfType<EnemyManager>();
             }
 
-            return _instance;
+            return instance;
         }
     }
 
@@ -36,6 +36,13 @@ public class ResetEnemies : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             enemy.GetComponent<BasicEnemy>().ResetToSpawn();
+        }
+    }
+
+    public void DisableAllEnemies() { 
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<BasicEnemy>().SetIsInactive(true);
         }
     }
 }

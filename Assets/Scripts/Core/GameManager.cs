@@ -18,17 +18,21 @@ public class GameManager : MonoBehaviour
 
         if (SaveManager.instance.hasLoaded)
         {
+            // Disable all enemies
+            EnemyManager.Instance.DisableAllEnemies();
+
             // player loads in at their last position
-            cam.SetCamSpeed(100f);
+            StartCoroutine(ResetCamSpeed());
+            AreaManager.instance.LoadArea();
             Player.instance.transform.position = activeSave.playerCurrentPosition;
 
             Player.instance.LoadPlayerLevels();
             Player.instance.LoadCurrency(activeSave.playerCurrency);
             Player.instance.LoadHealth(activeSave.playerHealth);
             Player.instance.LoadEnergy(activeSave.playerEnergy);
-            cam.SetMinX(activeSave.minCameraPos);
-            cam.SetMaxX(activeSave.maxCameraPos);
-            StartCoroutine(ResetCamSpeed());
+            //cam.SetMinX(activeSave.minCameraPos);
+            //cam.SetMaxX(activeSave.maxCameraPos);
+
         } else
         {
             // player starts at starting position
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator ResetCamSpeed() {
+        cam.SetCamSpeed(100f);
         yield return new WaitForSeconds(0.25f);
         cam.SetCamSpeed(1.5f);
     }

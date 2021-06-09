@@ -19,7 +19,6 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private List<GameObject> UI;
 
-    private ResetEnemies reset;
     private Animator anim;
     private GameObject player;
     private bool isActive;
@@ -30,7 +29,6 @@ public class Interactable : MonoBehaviour
     void Awake()
     {
         if (anim == null) anim = GetComponent<Animator>();
-        if (reset == null) reset = GetComponent<ResetEnemies>();
     }
 
     public void Interacting(GameObject newPlayer) {
@@ -71,7 +69,7 @@ public class Interactable : MonoBehaviour
         }
 
         if (resetEnemiesOnUse)
-            reset.ResetAllEnemies();
+            EnemyManager.Instance.ResetAllEnemies();
     }
 
     private void CloseUI() { 

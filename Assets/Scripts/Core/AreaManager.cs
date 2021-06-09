@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class AreaManager : MonoBehaviour
 {
+    public static AreaManager instance;
     public List<LoadArea> areaLoader;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool areaFound;
+
+    private void Awake()
+    {
+        instance = this;
+        areaFound = false;
+    }
+
+    public void LoadArea()
     {
         if (areaLoader.Count > 0)
         {
-            foreach (LoadArea area in areaLoader)
+            for (int i = 0; i < areaLoader.Count; i++)
             {
+                if (areaFound)
+                    return;
 
+                if (areaLoader[i].GetAreaIndex() == SaveManager.instance.activeSave.areaToLoadIndex)
+                {
+                    areaLoader[i].LoadAreaFromSave();
+                    areaFound = true;
+                }
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
