@@ -1732,6 +1732,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 1238755015665784943, guid: e5dc9374ee9eedc47b4e9aeb1e016590, type: 3}
+      propertyPath: m_CellGap.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238755015665784943, guid: e5dc9374ee9eedc47b4e9aeb1e016590, type: 3}
+      propertyPath: m_CellGap.y
+      value: -0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5dc9374ee9eedc47b4e9aeb1e016590, type: 3}
 --- !u!1 &561190270

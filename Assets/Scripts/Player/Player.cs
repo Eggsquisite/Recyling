@@ -762,9 +762,12 @@ public class Player : MonoBehaviour
             if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
                 var tmp = enemy.GetComponent<BasicEnemy>();
                 tmp.EnemyHurt(swordDamage, pushbackDistance, 0);
-                StartCoroutine(UI.EnergyRegenOnHit(tmp.GetEnergyGainMultiplier()));
             }
         }
+    }
+
+    public void RegainEnergy(float energyGain) {
+        StartCoroutine(UI.EnergyRegenOnHit(energyGain));
     }
 
     private void SpecialAttackHitboxActivated(float attackRange) {

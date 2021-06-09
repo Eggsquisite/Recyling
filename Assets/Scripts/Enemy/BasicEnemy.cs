@@ -804,6 +804,7 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         SetIsInvincible(1);
+        Player.instance.RegainEnergy(GetEnergyGainMultiplier());
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
         currentHealth -= damageNum;
