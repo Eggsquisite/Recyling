@@ -31,8 +31,7 @@ public class EnemyManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-    public void ResetAllEnemies()
-    {
+    public void ResetAllEnemies() {
         foreach (GameObject enemy in enemies)
         {
             enemy.GetComponent<BasicEnemy>().ResetToSpawn();

@@ -117,22 +117,19 @@ public class LoadArea : MonoBehaviour
             backgroundToEnable.SetActive(true);
         }
 
-        if (areaToLoad == Direction.Right) {
+        if (areaToLoad == Direction.Right) 
+        {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
             cam.transform.position = new Vector3(min_X, cam.transform.position.y, cam.transform.position.z);
             player.position = new Vector2(player.position.x + distanceToLoadPlayer, player.position.y);
-
-            // enable area
-            // disable previous area
-        } else if (areaToLoad == Direction.Left) {
+        } 
+        else if (areaToLoad == Direction.Left) 
+        {
             cam.SetMinX(min_X);
             cam.SetMaxX(max_X);
             cam.transform.position = new Vector3(max_X, cam.transform.position.y, cam.transform.position.z);
             player.position = new Vector2(player.position.x - distanceToLoadPlayer, player.position.y);
-
-            // enable area
-            // disable previous area
         }
         else if (areaToLoad == Direction.Up) { 
 

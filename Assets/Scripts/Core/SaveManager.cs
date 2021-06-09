@@ -94,12 +94,11 @@ public class SaveManager : MonoBehaviour
         activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
         activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
-        activeSave.playerCurrentPosition = Player.instance.transform.position;
+        //activeSave.playerCurrentPosition = Player.instance.transform.position;
     }
 }
 
 [System.Serializable]
-
 public class SaveData
 {
     // denotes which save the player wants to use
