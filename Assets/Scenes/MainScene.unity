@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -1.87
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990213, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_SortingOrder
-      value: 199
+      value: 187
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990218, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_Name
@@ -1227,11 +1227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.62
+      value: 47.77
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1267,7 +1267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_SortingOrder
-      value: -20
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
@@ -6960,10 +6960,11 @@ MonoBehaviour:
     playerDeathPosition: {x: 0, y: 0, z: 0}
     playerRespawnPosition: {x: 0, y: 0, z: 0}
     playerCurrentPosition: {x: 0, y: 0, z: 0}
+    enemyData: []
     spawnBossOne: 0
     spawnBossTwo: 0
     spawnBossThree: 0
-  saveGame: save2
+  saveGame: save6
   hasLoaded: 0
 --- !u!1001 &1179281695
 PrefabInstance:
@@ -7657,6 +7658,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb1074567182fc4a89dfb15835831a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    id: 
+    isDead: 0
+    startPosition: {x: 0, y: 0, z: 0}
+    deathPosition: {x: 0, y: 0, z: 0}
+  dataList: []
 --- !u!1 &1365239918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10773,11 +10780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.95
+      value: 45.67
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10813,7 +10820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_SortingOrder
-      value: 147
+      value: 172
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name

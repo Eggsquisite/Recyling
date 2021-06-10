@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ResetCamSpeed() {
         cam.SetCamSpeed(100f);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
         cam.SetCamSpeed(1.5f);
     }
 
