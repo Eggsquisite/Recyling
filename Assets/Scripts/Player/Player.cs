@@ -1195,6 +1195,7 @@ public class Player : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveManager.instance.activeSave.playerCurrentPosition = transform.position;
+        SaveManager.instance.Save();
         Debug.Log("Saving current position...");
     }
 

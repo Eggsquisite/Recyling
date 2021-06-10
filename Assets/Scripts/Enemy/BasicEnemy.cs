@@ -966,7 +966,20 @@ public class BasicEnemy : MonoBehaviour
     public void IsDead()
     {
         Debug.Log("Starting death for " + name + "...");
-        deathRoutine = StartCoroutine(Death());
+        deathRoutine = StartCoroutine(LoadDeath());
+    }
+
+    IEnumerator LoadDeath() {
+        isDead = true;
+        enemyMovement.StopFindPlayer();
+        GetComponent<Collider2D>().enabled = false;
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
+        var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
+        transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
+
+        yield return new WaitForSeconds(tmp);
+        if (deleteOnDeath)
+            sp.enabled = false;
     }
 
     /// <summary>

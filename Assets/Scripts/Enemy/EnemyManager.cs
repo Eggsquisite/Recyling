@@ -63,7 +63,6 @@ public class EnemyManager : MonoBehaviour
             dataList = SaveManager.instance.LoadEnemyData();
             for (int i = 0; i < enemies.Length; i++)
             {
-                Debug.Log("Loading enemy values...");
                 if (dataList[i].isDead)
                 {
                     enemies[i].GetComponent<BasicEnemy>().IsDead();
@@ -113,10 +112,20 @@ public class EnemyManager : MonoBehaviour
         return false;
     }
 
+    public Vector2 GetDeathPosition(Transform obj, string id) {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].name == id)
+            {
+                return dataList[i].deathPosition;
+            }
+        }
+
+        return obj.transform.position;
+    }
+
     public List<EnemyData> GetData() {
         List<EnemyData> newList = new List<EnemyData>();
-        Debug.Log("Refreshing and retrieving enemy data...");
-
         for (int i = 0; i < enemies.Length; i++)
         {
             data = new EnemyData();
