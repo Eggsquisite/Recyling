@@ -32,28 +32,45 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = 0; i < enemies.Length; i++)
+
+        if (!SaveManager.instance.hasLoaded)
+        { 
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                data = new EnemyData();
+                var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
+
+                data.id = tmpEnemy.name;
+                data.isDead = tmpEnemy.GetIsDead();
+
+                if (data.isDead)
+                    tmpEnemy.IsDead();
+
+                data.startPosition = tmpEnemy.GetSpawnPoint();
+
+                if (data.isDead)
+                    data.deathPosition = tmpEnemy.transform.position;
+                else
+                    data.deathPosition = tmpEnemy.GetSpawnPoint();
+
+                dataList.Add(data);
+            }
+
+            SaveManager.instance.Save();
+        } else
         {
-            var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
-
-            data.id = tmpEnemy.name;
-            data.isDead = tmpEnemy.GetIsDead();
-
-            if (data.isDead)
-                tmpEnemy.IsDead();
-
-            data.startPosition = tmpEnemy.GetSpawnPoint();
-
-            if (data.isDead)
-                data.deathPosition = tmpEnemy.transform.position;
-            else
-                data.deathPosition = tmpEnemy.GetSpawnPoint();
-
-            Debug.Log(data.id + " is added!");
-            dataList.Add(data);
+            dataList = new List<EnemyData>();
+            dataList = SaveManager.instance.LoadEnemyData();
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Debug.Log("Loading enemy values...");
+                if (dataList[i].isDead)
+                {
+                    enemies[i].GetComponent<BasicEnemy>().IsDead();
+                    enemies[i].transform.position = dataList[i].deathPosition;
+                }
+            }
         }
-        
-        SaveManager.instance.Save();
     }
 
     public void ResetAllEnemies() {
@@ -97,11 +114,12 @@ public class EnemyManager : MonoBehaviour
     }
 
     public List<EnemyData> GetData() {
-        //dataList = new List<EnemyData>();
+        List<EnemyData> newList = new List<EnemyData>();
         Debug.Log("Refreshing and retrieving enemy data...");
 
-/*        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
+            data = new EnemyData();
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
             data.id = tmpEnemy.name;
@@ -114,10 +132,10 @@ public class EnemyManager : MonoBehaviour
             else
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
 
-            dataList.Add(data);
-        }*/
-
-        return dataList;
+            newList.Add(data);
+        }
+        
+        return newList;
     }
 }
 

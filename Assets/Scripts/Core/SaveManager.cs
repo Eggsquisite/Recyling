@@ -100,6 +100,14 @@ public class SaveManager : MonoBehaviour
 
     private void GetEnemyData() {
         activeSave.enemyData = EnemyManager.Instance.GetData();
+        for (int i = 0; i < activeSave.enemyData.Count; i++)
+        {
+            Debug.Log(activeSave.enemyData[i].id);
+        }
+    }
+
+    public List<EnemyData> LoadEnemyData() {
+        return activeSave.enemyData;
     }
 
     private void OnApplicationQuit()
