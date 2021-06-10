@@ -1196,7 +1196,6 @@ public class Player : MonoBehaviour
     {
         SaveManager.instance.activeSave.playerCurrentPosition = transform.position;
         SaveManager.instance.Save();
-        Debug.Log("Saving current position...");
     }
 
     private void OnDrawGizmosSelected() {

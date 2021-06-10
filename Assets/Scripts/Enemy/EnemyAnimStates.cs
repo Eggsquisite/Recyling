@@ -14,4 +14,5 @@ public static class EnemyAnimStates
     public static string ENEMY_ATTACK4 { get { return "enemy_attack4"; } }
     public static string ENEMY_HURT { get { return "enemy_hurt"; } }
     public static string ENEMY_DEATH { get { return "enemy_death"; } }
+    public static string ENEMY_DEAD { get { return "enemy_dead"; } }
 }

@@ -965,7 +965,6 @@ public class BasicEnemy : MonoBehaviour
 
     public void IsDead()
     {
-        Debug.Log("Starting death for " + name + "...");
         deathRoutine = StartCoroutine(LoadDeath());
     }
 
@@ -973,8 +972,8 @@ public class BasicEnemy : MonoBehaviour
         isDead = true;
         enemyMovement.StopFindPlayer();
         GetComponent<Collider2D>().enabled = false;
-        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
-        var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
+        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEAD);
+        var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEAD);
         transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
 
         yield return new WaitForSeconds(tmp);
