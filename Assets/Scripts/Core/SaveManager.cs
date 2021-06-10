@@ -20,7 +20,8 @@ public class SaveManager : MonoBehaviour
     public void Save()
     {
         CheckSave();
-        SavePlayerValues();
+        GetEnemyData();
+        GetPlayerValues();
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
         var serializer = new XmlSerializer(typeof(SaveData));
 
@@ -29,6 +30,7 @@ public class SaveManager : MonoBehaviour
             serializer.Serialize(stream, activeSave);
             stream.Close();
         }
+
 
         Debug.Log("save: " + activeSave.saveName + " created!");
     }
@@ -83,7 +85,7 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    private void SavePlayerValues() {
+    private void GetPlayerValues() {
         activeSave.playerHealth = Player.instance.GetHealth();
         activeSave.playerEnergy = Player.instance.GetEnergy();
         activeSave.playerCurrency = Player.instance.GetCurrency();
@@ -95,6 +97,10 @@ public class SaveManager : MonoBehaviour
         activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
         //activeSave.playerCurrentPosition = Player.instance.transform.position;
+    }
+
+    private void GetEnemyData() {
+        activeSave.enemyData = EnemyManager.Instance.GetData();
     }
 }
 
@@ -132,6 +138,9 @@ public class SaveData
     public Vector3 playerCurrentPosition;
 
     // enemy save data
+    [Header("Enemy Data")]
+    public List<EnemyData> enemyData;
+
     [Header("Enemy Spawn Values")]
     public bool spawnBossOne;
     public bool spawnBossTwo;

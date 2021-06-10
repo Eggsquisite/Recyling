@@ -1032,6 +1032,11 @@ public class BasicEnemy : MonoBehaviour
         isInactive = flag;
     }
 
+    // FOR LOADING ///////////////////////////////////////////////////////////////////////////
+    public Vector2 GetSpawnPoint() {
+        return resetSpawnSpoint;
+    }
+
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////
 
     private void OnDrawGizmosSelected()
