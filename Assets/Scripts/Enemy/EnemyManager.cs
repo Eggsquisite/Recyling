@@ -7,6 +7,9 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager instance;
     private static GameObject[] enemies;
 
+    public EnemyData data;
+    public List<EnemyData> dataList;
+
     public static EnemyManager Instance
     {
         get
@@ -29,6 +32,28 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
+
+            data.id = tmpEnemy.name;
+            data.isDead = tmpEnemy.GetIsDead();
+
+            if (data.isDead)
+                tmpEnemy.IsDead();
+
+            data.startPosition = tmpEnemy.GetSpawnPoint();
+
+            if (data.isDead)
+                data.deathPosition = tmpEnemy.transform.position;
+            else
+                data.deathPosition = tmpEnemy.GetSpawnPoint();
+
+            Debug.Log(data.id + " is added!");
+            dataList.Add(data);
+        }
+        
+        SaveManager.instance.Save();
     }
 
     public void ResetAllEnemies() {
@@ -45,11 +70,37 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public List<EnemyData> GetData() {
-        List<EnemyData> dataList = new List<EnemyData>();
-        EnemyData data = new EnemyData();
-
+    public void SetIsDead(string id, Vector2 deathPosition) { 
         for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].name == id) { 
+                dataList[i].isDead = true;
+                dataList[i].deathPosition = deathPosition;
+            }
+        }
+
+        SaveManager.instance.Save();
+    }
+
+    public bool GetIsDead(string id) {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].name == id) {
+                if (dataList[i].isDead)
+                    enemies[i].transform.position = dataList[i].deathPosition;
+
+                return dataList[i].isDead;
+            }
+        }
+
+        return false;
+    }
+
+    public List<EnemyData> GetData() {
+        //dataList = new List<EnemyData>();
+        Debug.Log("Refreshing and retrieving enemy data...");
+
+/*        for (int i = 0; i < enemies.Length; i++)
         {
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
@@ -64,8 +115,7 @@ public class EnemyManager : MonoBehaviour
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
 
             dataList.Add(data);
-            //Debug.Log(dataList[i].id + " is added!");
-        }
+        }*/
 
         return dataList;
     }

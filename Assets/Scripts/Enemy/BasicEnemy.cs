@@ -963,6 +963,12 @@ public class BasicEnemy : MonoBehaviour
         return isDead;
     }
 
+    public void IsDead()
+    {
+        Debug.Log("Starting death for " + name + "...");
+        deathRoutine = StartCoroutine(Death());
+    }
+
     /// <summary>
     /// Death will disable this and enemyMovement script after playing the death animation.
     /// Will connect to a script that allows player to continue past an area
@@ -973,6 +979,7 @@ public class BasicEnemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
+        EnemyManager.Instance.SetIsDead(name, transform.position);
 
         yield return new WaitForSeconds(tmp);
         GiveCurrency();

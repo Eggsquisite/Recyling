@@ -1192,7 +1192,7 @@ public class Player : MonoBehaviour
         playerStats.IncreaseStat(-1, 0);
     }
 
-    private void OnDisable()
+    private void OnApplicationQuit()
     {
         SaveManager.instance.activeSave.playerCurrentPosition = transform.position;
         SaveManager.instance.Save();

@@ -31,7 +31,6 @@ public class SaveManager : MonoBehaviour
             stream.Close();
         }
 
-
         Debug.Log("save: " + activeSave.saveName + " created!");
     }
 
@@ -101,6 +100,11 @@ public class SaveManager : MonoBehaviour
 
     private void GetEnemyData() {
         activeSave.enemyData = EnemyManager.Instance.GetData();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Save();
     }
 }
 
