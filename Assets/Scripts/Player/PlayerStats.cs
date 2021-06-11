@@ -168,6 +168,7 @@ public class PlayerStats : MonoBehaviour
         if (index == -1) // FOR LOADING
         {
             // VITALITY ///////////////////////////////////////////////////////////////////
+            // affects health growth
             for (int i = upgrades["vitality"]; i < SaveManager.instance.activeSave.playerVitalityLevel; i++)
             {
                 upgrades["vitality"] = upgrades["vitality"] + 1;
@@ -188,6 +189,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             // FOCUS ///////////////////////////////////////////////////////////////////////
+            // affects recovery efficiency 
             for (int i = upgrades["focus"]; i < SaveManager.instance.activeSave.playerFocusLevel; i++)
             {
                 upgrades["focus"] = upgrades["focus"] + 1;
@@ -205,6 +207,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             // STRENGTH ///////////////////////////////////////////////////////////////////
+            // affects player M1 damage
             for (int i = upgrades["strength"]; i < SaveManager.instance.activeSave.playerStrengthLevel; i++)
             {
                 upgrades["strength"] = upgrades["strength"] + 1;
@@ -221,6 +224,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             // STAMINA /////////////////////////////////////////////////////////////////////
+            // affects stamina growth and recovery speed
             for (int i = upgrades["stamina"]; i < SaveManager.instance.activeSave.playerStaminaLevel; i++)
             {
                 upgrades["stamina"] = upgrades["stamina"] + 1;
@@ -241,6 +245,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             // SPECIAL /////////////////////////////////////////////////////////////////////
+            // affects special damage (blaster attacks, M2)
             for (int i = upgrades["special"]; i < SaveManager.instance.activeSave.playerSpecialLevel; i++)
             {
                 upgrades["special"] = upgrades["special"] + 1;

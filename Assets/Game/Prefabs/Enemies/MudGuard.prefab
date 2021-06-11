@@ -358,16 +358,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 115
+  maxStamina: 120
+  staminaRecoveryValue: 15
+  staminaRecoveryDelay: 3
+  staminaRecoverySpeed: 0.5
   currencyOnDeath: 55
   energyGainMultiplier: 1
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 6
   tetherUnfollowRange: 8
-  maxHealth: 120
-  maxStamina: 120
-  staminaRecoveryValue: 15
-  staminaRecoveryDelay: 3
-  staminaRecoverySpeed: 0.5
   deleteOnDeath: 0
   playerLayer:
     serializedVersion: 2

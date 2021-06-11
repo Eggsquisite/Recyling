@@ -215,7 +215,7 @@ MonoBehaviour:
   energyRecoveryValue: 11.33
   staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.5
-  swordDamage: 18
+  swordDamage: 17
   specialAttackDmg: 55
   blasterLightDmg: 7
   blasterHeavyDmg: 32

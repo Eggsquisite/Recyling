@@ -746,6 +746,10 @@ public class Player : MonoBehaviour
             return;
     }
 
+    public void RegainEnergy(float energyGainMultiplier) {
+        StartCoroutine(UI.EnergyRegenOnHit(energyGainMultiplier + (GetStrengthLevel() * 0.15f)));
+    }
+
     private void AttackHitboxActivated(float attackRange) {
         // called thru animation event
         Collider2D[] hitEnemies;
@@ -764,10 +768,6 @@ public class Player : MonoBehaviour
                 tmp.EnemyHurt(swordDamage, pushbackDistance, 0);
             }
         }
-    }
-
-    public void RegainEnergy(float energyGain) {
-        StartCoroutine(UI.EnergyRegenOnHit(energyGain));
     }
 
     private void SpecialAttackHitboxActivated(float attackRange) {
