@@ -210,7 +210,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 750
   maxStamina: 900
-  healthRecoveryValue: 12.5
+  healthRecoveryValue: 10
   energyToHealthMultiplier: 1
   energyRecoveryValue: 11.33
   staminaRecoveryValue: 50
@@ -225,8 +225,8 @@ MonoBehaviour:
   healthFocusUpgrade: 2.5
   energyFocusUpgrade: 1.25
   energyToHealthFocusUpgrade: 0.03
-  strengthUpgrade: 11.5
-  staminaRecoveryUpgrade: 0.2
+  strengthUpgrade: 5.25
+  staminaRecoveryUpgrade: 0.1
   staminaMaxUpgradeStrong: 35
   staminaMaxUpgradeWeak: 5
   specialEnergyUpgradeStrong: 35

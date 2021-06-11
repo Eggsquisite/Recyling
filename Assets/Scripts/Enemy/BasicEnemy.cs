@@ -29,17 +29,6 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField]
-    private int currencyOnDeath;
-    [SerializeField]
-    private float energyGainMultiplier;
-    [SerializeField]
-    private float baseDamageThresholdPercent;
-    [SerializeField]
-    private float tetherFollowRange;
-    [SerializeField]
-    private float tetherUnfollowRange;
-
-    [SerializeField]
     private int maxHealth;
     [SerializeField]
     private int maxStamina;
@@ -50,6 +39,18 @@ public class BasicEnemy : MonoBehaviour
     private float staminaRecoveryDelay;
     [SerializeField]
     private float staminaRecoverySpeed;
+
+    [SerializeField]
+    private int currencyOnDeath;
+    [SerializeField]
+    private float energyGainMultiplier;
+    [SerializeField]
+    private float baseDamageThresholdPercent;
+    [SerializeField]
+    private float tetherFollowRange;
+    [SerializeField]
+    private float tetherUnfollowRange;
+
 
     [SerializeField]
     private bool deleteOnDeath;
