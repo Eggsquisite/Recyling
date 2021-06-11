@@ -974,13 +974,12 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator LoadDeath() {
         isDead = true;
         enemyMovement.StopFindPlayer();
-        GetComponent<Collider2D>().enabled = false;
+        enemyMovement.SetDirection(facingLeft);
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEAD);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEAD);
-        transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
 
-        enemyMovement.SetDirection(facingLeft);
-        Debug.Log(name + " is facing: " + facingLeft);
+        GetComponent<Collider2D>().enabled = false;
+        transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
 
         yield return new WaitForSeconds(tmp);
         if (deleteOnDeath)

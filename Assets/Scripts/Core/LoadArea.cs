@@ -78,12 +78,7 @@ public class LoadArea : MonoBehaviour
     public void LoadAreaFromSave() {
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
-
-        foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
-        {
-            if (enemy.GetComponent<BasicEnemy>() != null)
-                enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
-        }
+        StartCoroutine(EnableEnemies());
 
         if (backgroundToEnable != null && backgroundToDisable != null)
         {
@@ -104,12 +99,6 @@ public class LoadArea : MonoBehaviour
         {
             if (enemy.GetComponent<BasicEnemy>() != null)
                 enemy.GetComponent<BasicEnemy>().SetIsInactive(true);
-        }
-        
-        foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
-        {
-            if (enemy.GetComponent<BasicEnemy>() != null)
-                enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
         }
 
         if (backgroundToEnable != null && backgroundToDisable != null) { 
@@ -141,11 +130,22 @@ public class LoadArea : MonoBehaviour
         isLoading = false;
         cam.ResetBorders();
         transition.Play("FadeOut");
+        StartCoroutine(EnableEnemies());
         playerManager.SetCollider(true);
         playerManager.SetStopMovement(false);
 
         yield return new WaitForSeconds(1f);
         playerManager.SetInvincible(false);
+    }
+
+    IEnumerator EnableEnemies()
+    {
+        yield return new WaitForSeconds(1f);
+        foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
+        {
+            if (enemy.GetComponent<BasicEnemy>() != null)
+                enemy.GetComponent<BasicEnemy>().SetIsInactive(false);
+        }
     }
 
     IEnumerator LoadReadyTimer() {
