@@ -55,6 +55,7 @@ public class BasicEnemy : MonoBehaviour
     private bool deleteOnDeath;
 
     private bool isDead;
+    private bool facingLeft;
     private bool isInactive;
     private bool isInvincible;
     private bool staminaRecovery;
@@ -963,8 +964,9 @@ public class BasicEnemy : MonoBehaviour
         return isDead;
     }
 
-    public void IsDead()
+    public void IsDead(bool facing)
     {
+        facingLeft = facing;
         deathRoutine = StartCoroutine(LoadDeath());
     }
 
@@ -975,6 +977,9 @@ public class BasicEnemy : MonoBehaviour
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEAD);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEAD);
         transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
+
+        enemyMovement.SetDirection(facingLeft);
+        Debug.Log(name + " is facing: " + facingLeft);
 
         yield return new WaitForSeconds(tmp);
         if (deleteOnDeath)
@@ -991,7 +996,7 @@ public class BasicEnemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
-        EnemyManager.Instance.SetIsDead(name, transform.position);
+        EnemyManager.Instance.SetIsDead(name, transform.position, enemyMovement.GetFacingDirection());
 
         yield return new WaitForSeconds(tmp);
         GiveCurrency();
@@ -1026,6 +1031,7 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(deathRoutine);
 
         SetIsInactive(true);
+        enemyMovement.ResetDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
         currentHealth = maxHealth;

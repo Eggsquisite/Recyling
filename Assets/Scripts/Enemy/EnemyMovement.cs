@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private bool detectIsRay;
 
+    private bool facingLeft;
     private GameObject player;
     private Vector2 playerChar;
 
@@ -103,10 +104,12 @@ public class EnemyMovement : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
         if (playerChar.x > transform.position.x) {
+            facingLeft = false;
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
         else if (playerChar.x <= transform.position.x) {
+            facingLeft = true;
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
@@ -243,15 +246,44 @@ public class EnemyMovement : MonoBehaviour
     public void CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
         if (playerChar.x > transform.position.x && !leftOfPlayer) {
+            facingLeft = false;
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
         else if (playerChar.x <= transform.position.x && leftOfPlayer) {
+            facingLeft = true;
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
         CheckPlayerVertical();
+    }
+
+    public void SetDirection(bool left) {
+        if (left)
+        {
+            facingLeft = true;
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        } else
+        {
+            facingLeft = false;
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+        }
+    }
+
+    public void ResetDirection() {
+        if (playerChar.x > transform.position.x)
+        {
+            facingLeft = false;
+            leftOfPlayer = true;
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+        }
+        else if (playerChar.x <= transform.position.x)
+        {
+            facingLeft = true;
+            leftOfPlayer = false;
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        }
     }
 
     public void CheckPlayerVertical() {
@@ -426,6 +458,10 @@ public class EnemyMovement : MonoBehaviour
     }
     public float GetTeleportDuration() {
         return teleportDuration;
+    }
+
+    public bool GetFacingDirection() {
+        return facingLeft;
     }
 
     private void OnDrawGizmosSelected()

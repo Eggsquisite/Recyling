@@ -42,17 +42,8 @@ public class EnemyManager : MonoBehaviour
 
                 data.id = tmpEnemy.name;
                 data.isDead = tmpEnemy.GetIsDead();
-
-                if (data.isDead)
-                    tmpEnemy.IsDead();
-
                 data.startPosition = tmpEnemy.GetSpawnPoint();
-
-                if (data.isDead)
-                    data.deathPosition = tmpEnemy.transform.position;
-                else
-                    data.deathPosition = tmpEnemy.GetSpawnPoint();
-
+                data.deathPosition = tmpEnemy.GetSpawnPoint();
                 dataList.Add(data);
             }
 
@@ -65,7 +56,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if (dataList[i].isDead)
                 {
-                    enemies[i].GetComponent<BasicEnemy>().IsDead();
+                    enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }
             }
@@ -86,12 +77,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void SetIsDead(string id, Vector2 deathPosition) { 
+    public void SetIsDead(string id, Vector2 deathPosition, bool facing) { 
         for (int i = 0; i < enemies.Length; i++)
         {
             if (enemies[i].name == id) { 
                 dataList[i].isDead = true;
                 dataList[i].deathPosition = deathPosition;
+                dataList[i].facingLeft = facing;
+                Debug.Log(name + " is facing: " + facing);
             }
         }
 
@@ -109,6 +102,18 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
+        return false;
+    }
+
+    public bool GetFacing(string id)
+    {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].name == id)
+            {
+                return dataList[i].facingLeft;
+            }
+        }
         return false;
     }
 
@@ -153,6 +158,7 @@ public class EnemyData
 {
     public string id;
     public bool isDead;
+    public bool facingLeft;
 
     public Vector3 startPosition;
     public Vector3 deathPosition;
