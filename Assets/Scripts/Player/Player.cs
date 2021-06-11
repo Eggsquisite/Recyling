@@ -1116,13 +1116,13 @@ public class Player : MonoBehaviour
             // increase heal amount the longer recovery is held
             UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue());
             if (time < 0.15f)
-                UI.SetFutureHealth(1.25f);
+                UI.SetFutureHealth(1f);
             else if (time >= 0.15f && time < 1.25f)
                 UI.SetFutureHealth(1.5f);
             else if (time >= 1f && time < 2f) 
-                UI.SetFutureHealth(2.25f);
+                UI.SetFutureHealth(2f);
             else if (time >= 2f)
-                UI.SetFutureHealth(3f);
+                UI.SetFutureHealth(2.75f);
 
             time += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);

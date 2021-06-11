@@ -7661,6 +7661,7 @@ MonoBehaviour:
   data:
     id: 
     isDead: 0
+    facingLeft: 0
     startPosition: {x: 0, y: 0, z: 0}
     deathPosition: {x: 0, y: 0, z: 0}
   dataList: []
@@ -9313,15 +9314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8813410e80b5604ba958ed01fc2abf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaLoader:
-  - {fileID: 1317516853577225207}
-  - {fileID: 1317516854424288924}
-  - {fileID: 20701162}
-  - {fileID: 2057648087}
-  - {fileID: 561190272}
-  - {fileID: 185124600}
-  - {fileID: 52971608}
-  - {fileID: 2010942048}
 --- !u!1 &1915462467
 GameObject:
   m_ObjectHideFlags: 0
