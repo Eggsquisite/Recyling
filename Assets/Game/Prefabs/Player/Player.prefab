@@ -211,7 +211,7 @@ MonoBehaviour:
   maxEnergy: 750
   maxStamina: 900
   healthRecoveryValue: 10
-  energyToHealthMultiplier: 1
+  energyToHealthMultiplier: 0.9
   energyRecoveryValue: 11.33
   staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.5
