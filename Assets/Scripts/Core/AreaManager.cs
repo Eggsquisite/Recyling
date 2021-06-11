@@ -5,7 +5,7 @@ using UnityEngine;
 public class AreaManager : MonoBehaviour
 {
     public static AreaManager instance;
-    public List<LoadArea> areaLoader;
+    private LoadArea[] areaLoader;
 
     private bool areaFound;
 
@@ -13,13 +13,15 @@ public class AreaManager : MonoBehaviour
     {
         instance = this;
         areaFound = false;
+
+        areaLoader = GetComponentsInChildren<LoadArea>();
     }
 
     public void LoadArea()
     {
-        if (areaLoader.Count > 0)
+        if (areaLoader.Length > 0)
         {
-            for (int i = 0; i < areaLoader.Count; i++)
+            for (int i = 0; i < areaLoader.Length; i++)
             {
                 if (areaFound)
                     return;
