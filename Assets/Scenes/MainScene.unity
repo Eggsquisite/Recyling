@@ -9182,10 +9182,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: 38
-      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (1)
@@ -11316,17 +11312,9 @@ PrefabInstance:
       propertyPath: UI.Array.data[0]
       value: 
       objectReference: {fileID: 1927270653}
-    - target: {fileID: 4268789785134223636, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_SortingOrder
-      value: -27
-      objectReference: {fileID: 0}
     - target: {fileID: 4268789785485986989, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_Name
       value: Altar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268789785485986994, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_RootOrder
@@ -11372,8 +11360,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7186152942636204692, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
 --- !u!4 &2125912130 stripped
 Transform:

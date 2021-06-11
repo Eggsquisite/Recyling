@@ -477,7 +477,6 @@ GameObject:
   - component: {fileID: 4268789785485986993}
   - component: {fileID: 1185910162}
   - component: {fileID: 1185910160}
-  - component: {fileID: 7186152942636204692}
   m_Layer: 12
   m_Name: Altar
   m_TagString: Untagged
@@ -633,18 +632,6 @@ MonoBehaviour:
   - altar_lightDeactivated
   UI:
   - {fileID: 0}
---- !u!114 &7186152942636204692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4268789785485986989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb1074567182fc4a89dfb15835831a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4268789785867972683
 GameObject:
   m_ObjectHideFlags: 0

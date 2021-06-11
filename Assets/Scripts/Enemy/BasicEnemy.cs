@@ -84,6 +84,7 @@ public class BasicEnemy : MonoBehaviour
     private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
     [Header("Attack Properties")]
+    [Header("Attack Stats")]
     [SerializeField]
     private float hurtPushBackSpeed;
     [SerializeField]
@@ -95,6 +96,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private List<float> attackPushDistances;
 
+    [Header("Corresponding Attack Properties")]
     // Must have same amount 
     [SerializeField]
     private List<Transform> attackDetectPoints;
@@ -226,6 +228,7 @@ public class BasicEnemy : MonoBehaviour
                 && !isStunned 
                 && !isAttacking 
                 && !isPicking 
+                && !isInactive
                 && !enemyMovement.GetIsTeleporting()
                 && currentStamina > 0)
             PickAttack();
@@ -298,7 +301,7 @@ public class BasicEnemy : MonoBehaviour
                     StopCoroutine(teleportRoutine);
                 teleportRoutine = StartCoroutine(Teleporting());
         }
-        else if (!enemyMovement.GetCanTeleport() && !enemyMovement.GetIsTeleporting())
+        else if (!enemyMovement.GetCanTeleport() && !enemyMovement.GetIsTeleporting() && !isInactive)
                 enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_RUN);
     }
 
@@ -353,6 +356,7 @@ public class BasicEnemy : MonoBehaviour
         else if (playerDetected.collider == null && inRange) 
             inRange = false;
     }
+
     private void FollowPlayer() {
         if (!isStunned && !isAttacking && !isPushed)
             enemyMovement.FollowPlayer(attackReady);
