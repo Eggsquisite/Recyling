@@ -117,6 +117,7 @@ public class SaveData
     // denotes where the camera should be in regards to min/max values
     [Header("Camera Clamp Values")]
     public int areaToLoadIndex;
+    public int areaToRespawnIndex;
     public float minCameraPos;
     public float maxCameraPos;
 

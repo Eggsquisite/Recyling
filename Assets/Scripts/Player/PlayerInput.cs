@@ -88,6 +88,8 @@ public class PlayerInput : MonoBehaviour
 
                     // SAVE SPAWN POINT HERE *************************
                     SaveManager.instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
+                    SaveManager.instance.activeSave.areaToRespawnIndex = SaveManager.instance.activeSave.areaToLoadIndex;
+                    SaveManager.instance.Save();
                 }
             } else if (isInteracting) 
             { 

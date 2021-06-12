@@ -396,8 +396,8 @@ MonoBehaviour:
   attackIsRay: 00
   minStunAttackDelay: 1
   maxStunAttackDelay: 2
-  minAttackDelay: 5
-  maxAttackDelay: 7.5
+  minAttackDelay: 7.5
+  maxAttackDelay: 10
 --- !u!114 &931913510982460515
 MonoBehaviour:
   m_ObjectHideFlags: 0
