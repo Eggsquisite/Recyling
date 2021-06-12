@@ -223,9 +223,10 @@ MonoBehaviour:
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
   healthFocusUpgrade: 2.5
-  energyFocusUpgrade: 1.25
+  energyFocusUpgrade: 1
   energyToHealthFocusUpgrade: 0.03
   strengthUpgrade: 5.25
+  energyFocusUpgradeWeak: 0.25
   staminaRecoveryUpgrade: 0.1
   staminaMaxUpgradeStrong: 35
   staminaMaxUpgradeWeak: 5

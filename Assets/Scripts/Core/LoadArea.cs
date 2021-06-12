@@ -140,7 +140,7 @@ public class LoadArea : MonoBehaviour
 
     IEnumerator EnableEnemies()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
         {
             if (enemy.GetComponent<BasicEnemy>() != null)

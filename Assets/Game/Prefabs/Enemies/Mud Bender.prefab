@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &941536482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941536483}
+  m_Layer: 0
+  m_Name: AttackPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941536483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941536482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2611664197077241564}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1928331372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928331373}
+  m_Layer: 0
+  m_Name: AttackPoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928331373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928331372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2611664197077241564}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2087131127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087131128}
+  m_Layer: 0
+  m_Name: AttackPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087131128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087131127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2611664197077241564}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2611664197077241560
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,8 +127,11 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 2611664197345868884}
-  - {fileID: 2611664197826840113}
   - {fileID: 1807245500992063337}
+  - {fileID: 2611664197826840113}
+  - {fileID: 2087131128}
+  - {fileID: 941536483}
+  - {fileID: 1928331373}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +175,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 140
   m_Sprite: {fileID: -8066589419829931963, guid: 0eed3d627fdd679419d4858060e8af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -230,7 +323,7 @@ MonoBehaviour:
   canTeleport: 1
   minTeleportDuration: 2
   maxTeleportDuration: 3
-  minTeleportCooldown: 6
+  minTeleportCooldown: 8
   maxTeleportCooldown: 10
 --- !u!114 &2611664197077241567
 MonoBehaviour:
@@ -246,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 85
   maxStamina: 120
-  staminaRecoveryValue: 18
+  staminaRecoveryValue: 15
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   currencyOnDeath: 80
@@ -258,31 +351,44 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualizePoint: {fileID: 1807245500992063337}
-  visualizeRange: 0.75
+  visualizePoint: {fileID: 1928331373}
+  visualizeRange: 1.75
   hurtPushBackSpeed: 4
   attackPoints:
   - {fileID: 2611664197826840113}
+  - {fileID: 2087131128}
+  - {fileID: 941536483}
+  - {fileID: 1928331373}
   attackRanges:
   - 0.75
-  attackDamages: b4000000
+  - 1.1
+  - 1.25
+  - 1.75
+  attackDamages: 96000000b4000000b4000000b4000000
   attackPushDistances:
   - 1
+  - 1.5
+  - 1.5
+  - 1.5
   attackDetectPoints:
+  - {fileID: 2611664197826840113}
   - {fileID: 2611664197826840113}
   attackDetectRanges:
   - 3
+  - 3
   attackAnimations:
   - enemy_attack1
-  attackPriority: 01000000
-  attackFollowFacePlayer: 00
+  - enemy_attack2
+  attackPriority: 0100000001000000
+  attackFollowFacePlayer: 0000
   attackFollowDistances:
-  - 1.5
-  attackIsRay: 01
+  - 1
+  - 1
+  attackIsRay: 0101
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 1.5
-  minAttackDelay: 2
-  maxAttackDelay: 3
+  minAttackDelay: 1.5
+  maxAttackDelay: 2.5
 --- !u!1 &2611664197345868883
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +500,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2611664197077241564}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3410493922933376938
 GameObject:
@@ -424,5 +530,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2611664197077241564}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

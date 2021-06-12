@@ -84,7 +84,6 @@ public class EnemyManager : MonoBehaviour
                 dataList[i].isDead = true;
                 dataList[i].deathPosition = deathPosition;
                 dataList[i].facingLeft = facing;
-                Debug.Log(name + " is facing: " + facing);
             }
         }
 

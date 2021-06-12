@@ -747,7 +747,7 @@ public class Player : MonoBehaviour
     }
 
     public void RegainEnergy(float energyGainMultiplier) {
-        StartCoroutine(UI.EnergyRegenOnHit(energyGainMultiplier + (GetStrengthLevel() * 0.15f)));
+        StartCoroutine(UI.EnergyRegenOnHit(energyGainMultiplier));
     }
 
     private void AttackHitboxActivated(float attackRange) {
@@ -1120,9 +1120,9 @@ public class Player : MonoBehaviour
             else if (time >= 0.15f && time < 1.25f)
                 UI.SetFutureHealth(1.5f);
             else if (time >= 1f && time < 2f) 
-                UI.SetFutureHealth(2f);
+                UI.SetFutureHealth(2.25f);
             else if (time >= 2f)
-                UI.SetFutureHealth(2.75f);
+                UI.SetFutureHealth(3.25f);
 
             time += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);

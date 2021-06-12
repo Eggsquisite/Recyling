@@ -68,6 +68,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Strength Properties")]
     [SerializeField]
     private float strengthUpgrade = 10;
+    [SerializeField]
+    private float energyFocusUpgradeWeak;
 
     [Header("Stamina Properties")]
     [SerializeField]
@@ -207,7 +209,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             // STRENGTH ///////////////////////////////////////////////////////////////////
-            // affects player M1 damage
+            // affects player M1 damage and slightly increases energy recovery
             for (int i = upgrades["strength"]; i < SaveManager.instance.activeSave.playerStrengthLevel; i++)
             {
                 upgrades["strength"] = upgrades["strength"] + 1;
@@ -218,6 +220,9 @@ public class PlayerStats : MonoBehaviour
                 } else if (upgrades["strength"] > 10) {
                     swordDamage += upgrades["strength"] / 2;
                 }
+
+                energyRecoveryValue += energyFocusUpgradeWeak;
+                UI.SetEnergyRecoveryValue(energyRecoveryValue);
 
                 SetDamageVariables();
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;

@@ -84,7 +84,7 @@ public class BasicEnemy : MonoBehaviour
     private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
     [Header("Attack Properties")]
-    [Header("Attack Stats")]
+    [Header("Attack Stats (Tied to Animation Played)")]
     [SerializeField]
     private float hurtPushBackSpeed;
     [SerializeField]
@@ -370,6 +370,7 @@ public class BasicEnemy : MonoBehaviour
         attackReady = true;
     }
 
+    // CHOOSE WHICH ATTACK ANIMATION TO PLAY
     private void AttackActivated(int attackPoint)
     {
         //called thru animation event
@@ -512,10 +513,13 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void SavePlayerPosition(int flag) {
+        // vertical position
         if (flag == 1)
             abovePlayer = enemyMovement.GetAbovePlayer();
+        // horizontal position
         else if (flag == 2)
             leftOfPlayer = enemyMovement.GetLeftOfPlayer();
+        // both positions
         else if (flag == 3) {
             abovePlayer = enemyMovement.GetAbovePlayer();
             leftOfPlayer = enemyMovement.GetLeftOfPlayer();
@@ -972,10 +976,10 @@ public class BasicEnemy : MonoBehaviour
     public void IsDead(bool facing)
     {
         facingLeft = facing;
-        deathRoutine = StartCoroutine(LoadDeath());
+        deathRoutine = StartCoroutine(LoadDead());
     }
 
-    IEnumerator LoadDeath() {
+    IEnumerator LoadDead() {
         isDead = true;
         enemyMovement.StopFindPlayer();
         enemyMovement.SetDirection(facingLeft);
