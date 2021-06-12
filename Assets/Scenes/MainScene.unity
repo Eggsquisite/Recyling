@@ -1508,7 +1508,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 516148834}
   m_Father: {fileID: 1302632658}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7409,6 +7410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea87aef7125c8ac49b9d1718c55b1a7e, type: 3}
+--- !u!4 &516148834 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+  m_PrefabInstance: {fileID: 2001544866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &532680023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9469,7 +9475,7 @@ MonoBehaviour:
   enemiesToEnable: {fileID: 1411532331}
   backgroundToDisable: {fileID: 0}
   backgroundToEnable: {fileID: 0}
-  distanceToLoadPlayer: 4
+  distanceToLoadPlayer: 3
   areaToLoad: 0
 --- !u!61 &635214789
 BoxCollider2D:
@@ -10521,7 +10527,7 @@ MonoBehaviour:
   enemiesToEnable: {fileID: 310792328}
   backgroundToDisable: {fileID: 0}
   backgroundToEnable: {fileID: 0}
-  distanceToLoadPlayer: 4
+  distanceToLoadPlayer: 3
   areaToLoad: 1
 --- !u!61 &960126668
 BoxCollider2D:
@@ -24336,6 +24342,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
   m_PrefabInstance: {fileID: 1984500688}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2001544866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 383563134}
+    m_Modifications:
+    - target: {fileID: 931913510982460522, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_Name
+      value: Mud Summoner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 95.37836
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7785536
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931913510982460526, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0361127e88d51004e86596fe25b0e45f, type: 3}
 --- !u!1 &2010497698
 GameObject:
   m_ObjectHideFlags: 0
