@@ -42,6 +42,7 @@ public class EnemyManager : MonoBehaviour
 
                 data.id = tmpEnemy.name;
                 data.isDead = tmpEnemy.GetIsDead();
+                data.facingLeft = tmpEnemy.GetFacing();
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
                 dataList.Add(data);
@@ -52,11 +53,11 @@ public class EnemyManager : MonoBehaviour
         {
             dataList = new List<EnemyData>();
             dataList = SaveManager.instance.LoadEnemyData();
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < dataList.Count; i++)
             {
                 if (dataList[i].isDead)
                 {
-                    Debug.Log(enemies[i].name + " is loading facing left: " + dataList[i].facingLeft);
+                    Debug.Log(dataList[i].id + " is loading facing left: " + dataList[i].facingLeft);
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }
@@ -81,21 +82,16 @@ public class EnemyManager : MonoBehaviour
     public void SetIsDead(string id, Vector2 deathPosition, bool facing) { 
         for (int i = 0; i < enemies.Length; i++)
         {
-            var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
-
-            Debug.Log(tmpEnemy.name);
-            Debug.Log("dataList: " + dataList[i].id + dataList[i].facingLeft);
-
-            if (enemies[i].name == id)
+            if (dataList[i].id == id)
             {
                 dataList[i].isDead = true;
                 dataList[i].deathPosition = deathPosition;
-                dataList[i].facingLeft = facing;
+                dataList[i].facingLeft = true;
                 Debug.Log(enemies[i].name + " is facing: " + dataList[i].facingLeft);
             }
         }
 
-        SaveManager.instance.Save();
+        //SaveManager.instance.Save();
     }
 
     public bool GetIsDead(string id) {

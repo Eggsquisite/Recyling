@@ -103,6 +103,11 @@ public class SaveManager : MonoBehaviour
     }
 
     public List<EnemyData> LoadEnemyData() {
+        Debug.Log("Loading enemy data...");
+        for (int i = 0; i < activeSave.enemyData.Count; i++)
+        {
+            Debug.Log(activeSave.enemyData[i].id + " is " + activeSave.enemyData[i].facingLeft);
+        }
         return activeSave.enemyData;
     }
 }

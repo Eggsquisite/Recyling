@@ -979,6 +979,10 @@ public class BasicEnemy : MonoBehaviour
         deathRoutine = StartCoroutine(LoadDead());
     }
 
+    public bool GetFacing() {
+        return enemyMovement.GetFacingDirection();
+    }
+
     IEnumerator LoadDead() {
         isDead = true;
         enemyMovement.StopFindPlayer();
