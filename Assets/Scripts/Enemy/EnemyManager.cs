@@ -56,6 +56,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if (dataList[i].isDead)
                 {
+                    Debug.Log(enemies[i].name + " is loading facing left: " + dataList[i].facingLeft);
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }
@@ -80,10 +81,17 @@ public class EnemyManager : MonoBehaviour
     public void SetIsDead(string id, Vector2 deathPosition, bool facing) { 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].name == id) { 
+            var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
+
+            Debug.Log(tmpEnemy.name);
+            Debug.Log("dataList: " + dataList[i].id + dataList[i].facingLeft);
+
+            if (enemies[i].name == id)
+            {
                 dataList[i].isDead = true;
                 dataList[i].deathPosition = deathPosition;
                 dataList[i].facingLeft = facing;
+                Debug.Log(enemies[i].name + " is facing: " + dataList[i].facingLeft);
             }
         }
 

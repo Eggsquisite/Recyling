@@ -369,7 +369,7 @@ MonoBehaviour:
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 8
   tetherUnfollowRange: 12
-  deleteOnDeath: 1
+  deleteOnDeath: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
