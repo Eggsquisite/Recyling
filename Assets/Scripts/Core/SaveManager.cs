@@ -20,7 +20,9 @@ public class SaveManager : MonoBehaviour
     public void Save()
     {
         CheckSave();
-        GetEnemyData();
+        if (activeSave.enemyData == null)
+            GetEnemyData();
+
         GetPlayerValues();
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
         var serializer = new XmlSerializer(typeof(SaveData));
@@ -103,11 +105,6 @@ public class SaveManager : MonoBehaviour
     }
 
     public List<EnemyData> LoadEnemyData() {
-        Debug.Log("Loading enemy data...");
-        for (int i = 0; i < activeSave.enemyData.Count; i++)
-        {
-            Debug.Log(activeSave.enemyData[i].id + " is " + activeSave.enemyData[i].facingLeft);
-        }
         return activeSave.enemyData;
     }
 }

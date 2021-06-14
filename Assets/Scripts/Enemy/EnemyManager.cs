@@ -42,7 +42,7 @@ public class EnemyManager : MonoBehaviour
 
                 data.id = tmpEnemy.name;
                 data.isDead = tmpEnemy.GetIsDead();
-                data.facingLeft = tmpEnemy.GetFacing();
+                data.facingLeft = true;
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
                 dataList.Add(data);
@@ -85,39 +85,10 @@ public class EnemyManager : MonoBehaviour
             if (dataList[i].id == id)
             {
                 dataList[i].isDead = true;
+                dataList[i].facingLeft = facing;
                 dataList[i].deathPosition = deathPosition;
-                dataList[i].facingLeft = true;
-                Debug.Log(enemies[i].name + " is facing: " + dataList[i].facingLeft);
             }
         }
-
-        //SaveManager.instance.Save();
-    }
-
-    public bool GetIsDead(string id) {
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i].name == id) {
-                if (dataList[i].isDead)
-                    enemies[i].transform.position = dataList[i].deathPosition;
-
-                return dataList[i].isDead;
-            }
-        }
-
-        return false;
-    }
-
-    public bool GetFacing(string id)
-    {
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i].name == id)
-            {
-                return dataList[i].facingLeft;
-            }
-        }
-        return false;
     }
 
     public Vector2 GetDeathPosition(Transform obj, string id) {
@@ -140,6 +111,7 @@ public class EnemyManager : MonoBehaviour
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
             data.id = tmpEnemy.name;
+            data.facingLeft = false;
             data.isDead = tmpEnemy.GetIsDead();
 
             data.startPosition = tmpEnemy.GetSpawnPoint();
