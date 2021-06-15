@@ -91,7 +91,7 @@ public class LoadArea : MonoBehaviour
         transition.Play("FadeIn");
         playerManager.SetCollider(false);
         playerManager.SetStopMovement(true);
-        SaveManager.instance.activeSave.areaToLoadIndex = areaToLoadIndex;
+        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         yield return new WaitForSeconds(0.5f);
 

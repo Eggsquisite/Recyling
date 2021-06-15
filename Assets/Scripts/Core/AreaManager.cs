@@ -17,7 +17,7 @@ public class AreaManager : MonoBehaviour
         areaLoader = GetComponentsInChildren<LoadArea>();
     }
 
-    public void LoadArea()
+    public void LoadArea(int index)
     {
         if (areaLoader.Length > 0)
         {
@@ -26,7 +26,7 @@ public class AreaManager : MonoBehaviour
                 if (areaFound)
                     return;
 
-                if (areaLoader[i].GetAreaIndex() == SaveManager.instance.activeSave.areaToLoadIndex)
+                if (areaLoader[i].GetAreaIndex() == index)
                 {
                     areaLoader[i].LoadAreaFromSave();
                     areaFound = true;

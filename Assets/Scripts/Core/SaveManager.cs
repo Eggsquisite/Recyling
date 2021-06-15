@@ -71,21 +71,6 @@ public class SaveManager : MonoBehaviour
         
     }
 
-    public void SaveCurrency(int newValue) {
-        instance.activeSave.playerCurrency = newValue;
-        Save();
-    }
-
-    public void SaveHealth(int newValue) {
-        instance.activeSave.playerHealth = newValue;
-        Save();
-    }
-
-    public void SaveEnergy(int newValue) {
-        instance.activeSave.playerEnergy = newValue;
-        Save();
-    }
-
     private void GetPlayerValues() {
         activeSave.playerHealth = Player.instance.GetHealth();
         activeSave.playerEnergy = Player.instance.GetEnergy();
@@ -107,6 +92,32 @@ public class SaveManager : MonoBehaviour
     public List<EnemyData> LoadEnemyData() {
         return activeSave.enemyData;
     }
+
+    // ALL SAVE REFERENCES //////////////////////////////////////////////////////////////////////////
+    public void SaveCurrency(int newValue) {
+        instance.activeSave.playerCurrency = newValue;
+        Save();
+    }
+
+    public void SaveHealth(int newValue) {
+        instance.activeSave.playerHealth = newValue;
+        Save();
+    }
+
+    public void SaveEnergy(int newValue) {
+        instance.activeSave.playerEnergy = newValue;
+        Save();
+    }
+
+    public void SaveAreaToLoad(int index) {
+        instance.activeSave.areaToLoadIndex = index;
+    }
+
+    public void SaveSpawnPoint() {
+        instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
+        instance.activeSave.areaToRespawnIndex = instance.activeSave.areaToLoadIndex;
+        Save();
+    }
 }
 
 [System.Serializable]
@@ -118,6 +129,7 @@ public class SaveData
 
     // denotes where the camera should be in regards to min/max values
     [Header("Camera Clamp Values")]
+    // variables saved in PlayerInput.cs
     public int areaToLoadIndex;
     public int areaToRespawnIndex;
     public float minCameraPos;
@@ -127,6 +139,7 @@ public class SaveData
     //public int playerLevel;       // may not need, just add all levels together to get player level
     [Header("Player Stats")]
     public int playerCurrency;
+    public int playerLostCurrency;
     public int playerHealth;
     public int playerEnergy;
 

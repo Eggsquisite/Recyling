@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private SaveData activeSave;
+    public SaveData activeSave;
     private CameraFollow cam;
 
     public Vector3 newSpawn;
@@ -23,15 +23,13 @@ public class GameManager : MonoBehaviour
 
             // player loads in at their last position
             StartCoroutine(ResetCamSpeed());
-            AreaManager.instance.LoadArea();
+            AreaManager.instance.LoadArea(SaveManager.instance.activeSave.areaToLoadIndex);
             Player.instance.transform.position = activeSave.playerCurrentPosition;
 
             Player.instance.LoadPlayerLevels();
             Player.instance.LoadCurrency(activeSave.playerCurrency);
             Player.instance.LoadHealth(activeSave.playerHealth);
             Player.instance.LoadEnergy(activeSave.playerEnergy);
-            //cam.SetMinX(activeSave.minCameraPos);
-            //cam.SetMaxX(activeSave.maxCameraPos);
 
         } else
         {
@@ -49,9 +47,15 @@ public class GameManager : MonoBehaviour
         cam.SetCamSpeed(1.5f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BeginRespawn(int currency)
     {
-        
+        activeSave.playerLostCurrency = currency;
+        StartCoroutine(RespawnPlayer());
+    }
+
+    IEnumerator RespawnPlayer() {
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(ResetCamSpeed());
+        AreaManager.instance.LoadArea(SaveManager.instance.activeSave.areaToRespawnIndex);
     }
 }

@@ -57,7 +57,6 @@ public class EnemyManager : MonoBehaviour
             {
                 if (dataList[i].isDead)
                 {
-                    Debug.Log(dataList[i].id + " is loading facing left: " + dataList[i].facingLeft);
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }

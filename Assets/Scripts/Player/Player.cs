@@ -955,10 +955,10 @@ public class Player : MonoBehaviour
 
     private void Death() {
         isDead = true;
-        UI.SetCurrency(-UI.GetCurrency());
+        GameManager.instance.BeginRespawn(GetCurrency());
+        UI.SetCurrency(-GetCurrency());
         PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
         // find a way to place dead body
-        // restart the scene
     }
 
     /// <summary>
