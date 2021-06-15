@@ -12107,6 +12107,7 @@ MonoBehaviour:
     minCameraPos: 0
     maxCameraPos: 0
     playerCurrency: 0
+    playerLostCurrency: 0
     playerHealth: 0
     playerEnergy: 0
     playerVitalityLevel: 0
@@ -21336,6 +21337,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7ecb7b070109447b4e1d9a343c9664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeSave:
+    saveName: 
+    areaToLoadIndex: 0
+    areaToRespawnIndex: 0
+    minCameraPos: 0
+    maxCameraPos: 0
+    playerCurrency: 0
+    playerLostCurrency: 0
+    playerHealth: 0
+    playerEnergy: 0
+    playerVitalityLevel: 0
+    playerFocusLevel: 0
+    playerStrengthLevel: 0
+    playerStaminaLevel: 0
+    playerSpecialLevel: 0
+    playerDeathPosition: {x: 0, y: 0, z: 0}
+    playerRespawnPosition: {x: 0, y: 0, z: 0}
+    playerCurrentPosition: {x: 0, y: 0, z: 0}
+    enemyData: []
+    spawnBossOne: 0
+    spawnBossTwo: 0
+    spawnBossThree: 0
   newSpawn: {x: 4.75, y: -1, z: 0}
 --- !u!1 &1585955528
 GameObject:
@@ -22496,10 +22519,6 @@ PrefabInstance:
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
