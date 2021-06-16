@@ -961,6 +961,10 @@ public class Player : MonoBehaviour
         // find a way to place dead body
     }
 
+    public void Respawn() {
+        isDead = false;
+    }
+
     /// <summary>
     /// Pushes back player a set distance when hurt
     /// </summary>

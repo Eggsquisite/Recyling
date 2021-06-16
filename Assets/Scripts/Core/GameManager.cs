@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 
     public Vector3 newSpawn;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +59,9 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator RespawnPlayer() {
+        // wait 2 seconds before transitioning back to respawn location
         yield return new WaitForSeconds(2f);
+
         StartCoroutine(ResetCamSpeed());
         AreaManager.instance.LoadArea(SaveManager.instance.activeSave.areaToRespawnIndex);
     }
