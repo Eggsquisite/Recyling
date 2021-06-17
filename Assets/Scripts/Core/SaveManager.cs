@@ -68,10 +68,6 @@ public class SaveManager : MonoBehaviour
         
     }
 
-    private void GetEnemyData() {
-        activeSave.enemyData = EnemyManager.Instance.GetData();
-    }
-
     public List<EnemyData> LoadEnemyData() {
         return activeSave.enemyData;
     }
@@ -99,7 +95,6 @@ public class SaveManager : MonoBehaviour
     public void SaveSpawnPoint() {
         instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
         instance.activeSave.areaToRespawnIndex = instance.activeSave.areaToLoadIndex;
-        Save();
     }
 
     public void SavePlayerValues() {
@@ -118,9 +113,8 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public void SaveEnemies(List<EnemyData> data) {
-        //GetEnemyData();
-        activeSave.enemyData = data;
+    public void SaveEnemies() {
+        activeSave.enemyData = EnemyManager.Instance.UpdateEnemyData();
         Save();
     }
 }

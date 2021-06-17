@@ -1008,7 +1008,7 @@ public class BasicEnemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
-        EnemyManager.Instance.SetIsDead(name, transform.position, enemyMovement.GetFacingDirection());
+        EnemyManager.Instance.EnemyDead();
 
         yield return new WaitForSeconds(tmp);
         GiveCurrency();

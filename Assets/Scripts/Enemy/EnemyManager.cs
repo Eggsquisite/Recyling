@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
                 dataList.Add(data);
             }
 
-            SaveManager.instance.SaveEnemies(dataList);
+            SaveManager.instance.SaveEnemies();
         } else
         {
             dataList = new List<EnemyData>();
@@ -81,7 +81,7 @@ public class EnemyManager : MonoBehaviour
             dataList.Add(data);
         }
 
-        SaveManager.instance.SaveEnemies(dataList);
+        SaveManager.instance.SaveEnemies();
     }
 
     public void DisableAllEnemies() { 
@@ -89,20 +89,6 @@ public class EnemyManager : MonoBehaviour
         {
             enemy.GetComponent<BasicEnemy>().SetIsInactive(true);
         }
-    }
-
-    public void SetIsDead(string id, Vector2 deathPosition, bool facing) { 
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (dataList[i].id == id)
-            {
-                dataList[i].isDead = true;
-                dataList[i].facingLeft = facing;
-                dataList[i].deathPosition = deathPosition;
-            }
-        }
-
-        SaveManager.instance.SaveEnemies(dataList);
     }
 
     public Vector2 GetDeathPosition(Transform obj, string id) {
@@ -116,8 +102,12 @@ public class EnemyManager : MonoBehaviour
 
         return obj.transform.position;
     }
+    
+    public void EnemyDead() {
+        SaveManager.instance.SaveEnemies();
+    }
 
-    public List<EnemyData> GetData() {
+    public List<EnemyData> UpdateEnemyData() {
         List<EnemyData> newList = new List<EnemyData>();
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -125,7 +115,7 @@ public class EnemyManager : MonoBehaviour
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
             data.id = tmpEnemy.name;
-            data.facingLeft = false;
+            data.facingLeft = tmpEnemy.GetFacing();
             data.isDead = tmpEnemy.GetIsDead();
 
             data.startPosition = tmpEnemy.GetSpawnPoint();
@@ -143,7 +133,7 @@ public class EnemyManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveManager.instance.SaveEnemies(dataList);
+        SaveManager.instance.SaveEnemies();
     }
 }
 
