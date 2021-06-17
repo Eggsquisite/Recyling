@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < enemies.Length; i++)
             {
                 data = new EnemyData();
+                dataList = new List<EnemyData>();
                 var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
                 data.id = tmpEnemy.name;
@@ -48,7 +49,7 @@ public class EnemyManager : MonoBehaviour
                 dataList.Add(data);
             }
 
-            SaveManager.instance.Save();
+            SaveManager.instance.SaveEnemies(dataList);
         } else
         {
             dataList = new List<EnemyData>();
@@ -65,10 +66,22 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void ResetAllEnemies() {
-        foreach (GameObject enemy in enemies)
+        for (int i = 0; i < enemies.Length; i++)
         {
-            enemy.GetComponent<BasicEnemy>().ResetToSpawn();
+            data = new EnemyData();
+            dataList = new List<EnemyData>();
+            var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
+
+            tmpEnemy.ResetToSpawn();
+            data.id = tmpEnemy.name;
+            data.isDead = false;
+            data.facingLeft = tmpEnemy.GetFacing();
+            data.startPosition = tmpEnemy.GetSpawnPoint();
+            data.deathPosition = tmpEnemy.GetSpawnPoint();
+            dataList.Add(data);
         }
+
+        SaveManager.instance.SaveEnemies(dataList);
     }
 
     public void DisableAllEnemies() { 
@@ -88,6 +101,8 @@ public class EnemyManager : MonoBehaviour
                 dataList[i].deathPosition = deathPosition;
             }
         }
+
+        SaveManager.instance.SaveEnemies(dataList);
     }
 
     public Vector2 GetDeathPosition(Transform obj, string id) {
@@ -124,6 +139,11 @@ public class EnemyManager : MonoBehaviour
         }
         
         return newList;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveManager.instance.SaveEnemies(dataList);
     }
 }
 

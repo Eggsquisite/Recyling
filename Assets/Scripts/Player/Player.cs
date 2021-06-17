@@ -1198,8 +1198,7 @@ public class Player : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveManager.instance.activeSave.playerCurrentPosition = transform.position;
-        SaveManager.instance.Save();
+        SaveManager.instance.SavePlayerValues();
     }
 
     private void OnDrawGizmosSelected() {

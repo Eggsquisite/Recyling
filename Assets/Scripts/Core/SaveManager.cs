@@ -20,10 +20,7 @@ public class SaveManager : MonoBehaviour
     public void Save()
     {
         CheckSave();
-        if (activeSave.enemyData == null)
-            GetEnemyData();
-
-        GetPlayerValues();
+        //GetPlayerValues();
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
         var serializer = new XmlSerializer(typeof(SaveData));
 
@@ -71,20 +68,6 @@ public class SaveManager : MonoBehaviour
         
     }
 
-    private void GetPlayerValues() {
-        activeSave.playerHealth = Player.instance.GetHealth();
-        activeSave.playerEnergy = Player.instance.GetEnergy();
-        activeSave.playerCurrency = Player.instance.GetCurrency();
-
-        activeSave.playerVitalityLevel = Player.instance.GetVitalityLevel();
-        activeSave.playerFocusLevel = Player.instance.GetFocusLevel();
-        activeSave.playerStrengthLevel = Player.instance.GetStrengthLevel();
-        activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
-        activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
-
-        //activeSave.playerCurrentPosition = Player.instance.transform.position;
-    }
-
     private void GetEnemyData() {
         activeSave.enemyData = EnemyManager.Instance.GetData();
     }
@@ -116,6 +99,28 @@ public class SaveManager : MonoBehaviour
     public void SaveSpawnPoint() {
         instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
         instance.activeSave.areaToRespawnIndex = instance.activeSave.areaToLoadIndex;
+        Save();
+    }
+
+    public void SavePlayerValues() {
+        activeSave.playerCurrentPosition = Player.instance.transform.position;
+        activeSave.playerHealth = Player.instance.GetHealth();
+        activeSave.playerEnergy = Player.instance.GetEnergy();
+        activeSave.playerCurrency = Player.instance.GetCurrency();
+
+        activeSave.playerVitalityLevel = Player.instance.GetVitalityLevel();
+        activeSave.playerFocusLevel = Player.instance.GetFocusLevel();
+        activeSave.playerStrengthLevel = Player.instance.GetStrengthLevel();
+        activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
+        activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
+
+        //activeSave.playerCurrentPosition = Player.instance.transform.position;
+        Save();
+    }
+
+    public void SaveEnemies(List<EnemyData> data) {
+        //GetEnemyData();
+        activeSave.enemyData = data;
         Save();
     }
 }
