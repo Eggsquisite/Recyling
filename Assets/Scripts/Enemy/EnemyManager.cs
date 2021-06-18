@@ -103,7 +103,16 @@ public class EnemyManager : MonoBehaviour
         return obj.transform.position;
     }
     
-    public void EnemyDead() {
+    public void EnemyDead(string id) {
+        for (int i = 0; i < dataList.Count; i++)
+        {
+            if (id == dataList[i].id)
+            {
+                dataList[i].isDead = true;
+                Debug.Log(dataList[i].isDead);
+            }
+        }
+
         SaveManager.instance.SaveEnemies();
     }
 
