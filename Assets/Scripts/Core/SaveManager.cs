@@ -90,6 +90,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveAreaToLoad(int index) {
         instance.activeSave.areaToLoadIndex = index;
+        Save();
     }
 
     public void SaveSpawnPoint() {

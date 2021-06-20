@@ -65,8 +65,8 @@ public class LoadArea : MonoBehaviour
             loadReady = false;
 
             player = collision.gameObject.transform;
-            playerManager = collision.GetComponent<Player>();
-            playerManager.SetInvincible(true);
+            //playerManager = collision.GetComponent<Player>();
+            //playerManager.SetInvincible(true);
 
             StartCoroutine(LoadNextArea());
             if (loadReadyRoutine != null)
@@ -76,21 +76,26 @@ public class LoadArea : MonoBehaviour
     }
 
     public void LoadAreaFromSave() {
+        //transition.Play("FadeIn");
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
-        StartCoroutine(EnableEnemies());
+        Player.instance.SetInvincible(true);
+        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         if (backgroundToEnable != null && backgroundToDisable != null)
         {
             backgroundToDisable.SetActive(false);
             backgroundToEnable.SetActive(true);
         }
+
+        StartCoroutine(LoadReady());
     }
 
     IEnumerator LoadNextArea() {
         transition.Play("FadeIn");
-        playerManager.SetCollider(false);
-        playerManager.SetStopMovement(true);
+        Player.instance.SetCollider(false);
+        Player.instance.SetStopMovement(true);
+        Player.instance.SetInvincible(true);
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         yield return new WaitForSeconds(0.5f);
@@ -126,16 +131,20 @@ public class LoadArea : MonoBehaviour
 
         }
 
+        StartCoroutine(LoadReady());
+    }
+
+    IEnumerator LoadReady() {
         yield return new WaitForSeconds(0.25f);
         isLoading = false;
         cam.ResetBorders();
         transition.Play("FadeOut");
         StartCoroutine(EnableEnemies());
-        playerManager.SetCollider(true);
-        playerManager.SetStopMovement(false);
+        Player.instance.SetCollider(true);
+        Player.instance.SetStopMovement(false);
 
         yield return new WaitForSeconds(1f);
-        playerManager.SetInvincible(false);
+        Player.instance.SetInvincible(false);
     }
 
     IEnumerator EnableEnemies()

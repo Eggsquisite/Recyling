@@ -9,6 +9,7 @@ public static class PlayerAnimStates
     public static string PLAYER_WALK { get { return "player_walk"; } }
     public static string PLAYER_HURT { get { return "player_hurt"; } }
     public static string PLAYER_DEATH { get { return "player_death"; } }
+    public static string PLAYER_RESPAWN { get { return "player_respawn"; } }
     public static string PLAYER_ATTACK1 { get { return "player_attack1"; } }
     public static string PLAYER_ATTACK2 { get { return "player_attack2"; } }
     public static string PLAYER_ATTACK3 { get { return "player_attack3"; } }

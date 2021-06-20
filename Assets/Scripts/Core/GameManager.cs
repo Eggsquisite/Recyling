@@ -66,5 +66,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ResetCamSpeed());
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex);
         Player.instance.transform.position = activeSave.playerRespawnPosition;
+
+        Player.instance.Respawn();
     }
 }

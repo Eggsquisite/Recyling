@@ -963,6 +963,12 @@ public class Player : MonoBehaviour
 
     public void Respawn() {
         isDead = false;
+        playerStats.RefreshResources();
+        PlayAnimation(PlayerAnimStates.PLAYER_RESPAWN);
+
+        if (resetStunRoutine != null)
+            StopCoroutine(resetStunRoutine);
+        resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
     }
 
     /// <summary>
