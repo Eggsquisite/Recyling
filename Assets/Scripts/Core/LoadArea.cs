@@ -16,7 +16,6 @@ public class LoadArea : MonoBehaviour
     private CameraFollow cam;
     private Animator transition;
     private Transform player;
-    private Player playerManager;
 
     private static bool loadReady = true;
     public static bool isLoading;
@@ -65,8 +64,8 @@ public class LoadArea : MonoBehaviour
             loadReady = false;
 
             player = collision.gameObject.transform;
-            //playerManager = collision.GetComponent<Player>();
             //playerManager.SetInvincible(true);
+            //playerManager = collision.GetComponent<Player>();
 
             StartCoroutine(LoadNextArea());
             if (loadReadyRoutine != null)
@@ -82,8 +81,7 @@ public class LoadArea : MonoBehaviour
         Player.instance.SetInvincible(true);
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
-        if (backgroundToEnable != null && backgroundToDisable != null)
-        {
+        if (backgroundToEnable != null && backgroundToDisable != null) {
             backgroundToDisable.SetActive(false);
             backgroundToEnable.SetActive(true);
         }
@@ -94,8 +92,8 @@ public class LoadArea : MonoBehaviour
     IEnumerator LoadNextArea() {
         transition.Play("FadeIn");
         Player.instance.SetCollider(false);
-        Player.instance.SetStopMovement(true);
         Player.instance.SetInvincible(true);
+        Player.instance.SetStopMovement(true);
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         yield return new WaitForSeconds(0.5f);

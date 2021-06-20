@@ -61,12 +61,13 @@ public class GameManager : MonoBehaviour
     IEnumerator RespawnPlayer() {
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         StartCoroutine(ResetCamSpeed());
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex);
         Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         Player.instance.Respawn();
+        EnemyManager.Instance.ResetAllEnemies();
     }
 }
