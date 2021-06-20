@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
             // player loads in at their last position
             StartCoroutine(ResetCamSpeed());
-            AreaManager.instance.LoadArea(SaveManager.instance.activeSave.areaToLoadIndex);
+            AreaManager.instance.LoadArea(activeSave.areaToLoadIndex);
             Player.instance.transform.position = activeSave.playerCurrentPosition;
 
             Player.instance.LoadPlayerLevels();
@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator RespawnPlayer() {
         // wait 2 seconds before transitioning back to respawn location
+        Debug.Log("Respawning");
         yield return new WaitForSeconds(2f);
 
         StartCoroutine(ResetCamSpeed());
-        AreaManager.instance.LoadArea(SaveManager.instance.activeSave.areaToRespawnIndex);
+        AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex);
+        Player.instance.transform.position = activeSave.playerRespawnPosition;
     }
 }

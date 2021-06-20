@@ -19,6 +19,7 @@ public class AreaManager : MonoBehaviour
 
     public void LoadArea(int index)
     {
+        areaFound = false;
         if (areaLoader.Length > 0)
         {
             for (int i = 0; i < areaLoader.Length; i++)
