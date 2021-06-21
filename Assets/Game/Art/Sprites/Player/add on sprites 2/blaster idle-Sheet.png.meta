@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: d7eb91c0007fb164ba41cb6c0404bc5f
+guid: 42b0f83a35a40724fa16cc5d6db29e3d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -440787928292665409
-    second: IdleAnim_0
+      213: -6457469759949397074
+    second: blaster idle-Sheet_0
   - first:
-      213: 1291758820037178699
-    second: IdleAnim_1
+      213: -5867786140337857684
+    second: blaster idle-Sheet_1
   - first:
-      213: -3706686117131545920
-    second: IdleAnim_2
+      213: 5519514659030156999
+    second: blaster idle-Sheet_2
   - first:
-      213: -2956362412339814474
-    second: IdleAnim_3
+      213: 2697728884387334320
+    second: blaster idle-Sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IdleAnim_0
+      name: blaster idle-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,14 +117,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7d5d0f6b102e9f0800000000000000
-      internalID: -440787928292665409
+      spriteID: ea3a36a67757266a0800000000000000
+      internalID: -6457469759949397074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleAnim_1
+      name: blaster idle-Sheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -138,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b453bc38dcf3de110800000000000000
-      internalID: 1291758820037178699
+      spriteID: c6b933f189f619ea0800000000000000
+      internalID: -5867786140337857684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleAnim_2
+      name: blaster idle-Sheet_2
       rect:
         serializedVersion: 2
         x: 256
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c290868d943f8cc0800000000000000
-      internalID: -3706686117131545920
+      spriteID: 7c6cd08b651499c40800000000000000
+      internalID: 5519514659030156999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleAnim_3
+      name: blaster idle-Sheet_3
       rect:
         serializedVersion: 2
         x: 384
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bf1b29ac04e8f6d0800000000000000
-      internalID: -2956362412339814474
+      spriteID: 0b8c73e8022407520800000000000000
+      internalID: 2697728884387334320
       vertices: []
       indices: 
       edges: []
