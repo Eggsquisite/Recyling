@@ -870,7 +870,7 @@ public class Player : MonoBehaviour
 
         if (resetAttackRoutine != null)
             StopCoroutine(resetAttackRoutine);
-        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
+        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay - 0.02f));
     }
 
     private void ConsumeEnergy(int index) {
