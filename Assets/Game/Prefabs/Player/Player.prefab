@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.5
-  updateSpeed: 80
+  updateSpeed: 85
   updateModifier: 10
   UI: {fileID: 0}
   baseRequiredCurrencyModifier: 5
