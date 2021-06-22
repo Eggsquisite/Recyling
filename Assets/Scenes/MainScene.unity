@@ -21359,6 +21359,7 @@ MonoBehaviour:
     spawnBossOne: 0
     spawnBossTwo: 0
     spawnBossThree: 0
+  deathObject: {fileID: 0}
   newSpawn: {x: 4.75, y: -1, z: 0}
 --- !u!1 &1585955528
 GameObject:
