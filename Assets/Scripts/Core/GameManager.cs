@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public SaveData activeSave;
     private CameraFollow cam;
 
+    public GameObject deathObject;
     public Vector3 newSpawn;
 
     private void Awake()
@@ -62,6 +63,11 @@ public class GameManager : MonoBehaviour
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
         yield return new WaitForSeconds(3f);
+
+        // spawn deathObject at players death position
+        if (deathObject != null) {
+            Instantiate(deathObject, Player.instance.transform.position, Quaternion.identity);
+        }
 
         StartCoroutine(ResetCamSpeed());
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex);
