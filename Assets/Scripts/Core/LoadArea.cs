@@ -84,7 +84,7 @@ public class LoadArea : MonoBehaviour
         else
             transition.Play("Faded");
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.5f);
 
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
