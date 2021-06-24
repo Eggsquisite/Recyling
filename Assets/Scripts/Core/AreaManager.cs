@@ -33,7 +33,7 @@ public class AreaManager : MonoBehaviour
 
                 if (areaLoader[i].GetAreaIndex() == index)
                 {
-                    areaLoader[i].LoadAreaFromSave(flag);
+                    StartCoroutine(areaLoader[i].LoadAreaFromSave(flag));
                     areaFound = true;
                 }
             }

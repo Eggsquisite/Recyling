@@ -955,20 +955,26 @@ public class Player : MonoBehaviour
 
     private void Death() {
         isDead = true;
-        GameManager.instance.BeginRespawn(GetCurrency());
-        UI.SetCurrency(-GetCurrency());
         PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
         // find a way to place dead body
     }
 
+    private void BeginRespawn() {
+        GameManager.instance.BeginRespawn(GetCurrency());
+        UI.SetCurrency(-GetCurrency());
+    }
+
     public void Respawn() {
         isDead = false;
-        playerStats.RefreshResources();
         PlayAnimation(PlayerAnimStates.PLAYER_RESPAWN);
 
         if (resetStunRoutine != null)
             StopCoroutine(resetStunRoutine);
         resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
+    }
+
+    public void RefreshResources() {
+        playerStats.RefreshResources();
     }
 
     /// <summary>

@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
             AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
             Player.instance.transform.position = activeSave.playerCurrentPosition;
 
+            Player.instance.SetInvincible(true);
             Player.instance.LoadPlayerLevels();
             Player.instance.LoadCurrency(activeSave.playerCurrency);
             Player.instance.LoadHealth(activeSave.playerHealth);
@@ -73,10 +74,8 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(ResetCamSpeed());
+        Player.instance.SetInvincible(true);
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
         Player.instance.transform.position = activeSave.playerRespawnPosition;
-
-        Player.instance.Respawn();
-        EnemyManager.Instance.ResetAllEnemies();
     }
 }

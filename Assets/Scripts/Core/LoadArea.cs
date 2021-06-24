@@ -78,23 +78,26 @@ public class LoadArea : MonoBehaviour
         
     }
 
-    public void LoadAreaFromSave(bool deadFlag) {
+    public IEnumerator LoadAreaFromSave(bool deadFlag) {
         if (deadFlag)
-            transition.Play("Faded");
+            transition.Play("DeadFadeIn");
         else
             transition.Play("Faded");
 
+        yield return new WaitForSeconds(0.15f);
+
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
-        Player.instance.SetInvincible(true);
+
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
-        if (backgroundToEnable != null && backgroundToDisable != null) {
+        if (backgroundToEnable != null && backgroundToDisable != null)
+        {
             backgroundToDisable.SetActive(false);
             backgroundToEnable.SetActive(true);
         }
 
-        StartCoroutine(LoadReady(2f));
+        StartCoroutine(LoadReady(.5f, deadFlag));
     }
 
     IEnumerator LoadNextArea() {
@@ -137,19 +140,27 @@ public class LoadArea : MonoBehaviour
 
         }
 
-        StartCoroutine(LoadReady(0.25f));
+        StartCoroutine(LoadReady(0.25f, false));
     }
 
-    IEnumerator LoadReady(float waitTime) {
+    IEnumerator LoadReady(float waitTime, bool deadFlag) {
         yield return new WaitForSeconds(waitTime);
         isLoading = false;
         cam.ResetBorders();
         transition.Play("FadeOut");
+
         StartCoroutine(EnableEnemies());
+        if (deadFlag)
+            EnemyManager.Instance.ResetAllEnemies();
+
+        Player.instance.RefreshResources();
         Player.instance.SetCollider(true);
         Player.instance.SetStopMovement(false);
 
         yield return new WaitForSeconds(1f);
+        if (deadFlag)
+            Player.instance.Respawn();
+
         Player.instance.SetInvincible(false);
     }
 
