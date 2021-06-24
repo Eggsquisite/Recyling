@@ -381,7 +381,7 @@ MonoBehaviour:
   attackRanges:
   - 1.3
   - 3.5
-  attackDamages: 8c000000b4000000
+  attackDamages: a0000000d2000000
   attackPushDistances:
   - 0.5
   - 1

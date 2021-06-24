@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public SaveData activeSave;
     private CameraFollow cam;
+    private Animator transition;
 
     public GameObject deathObject;
     public Vector3 newSpawn;
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         activeSave = SaveManager.instance.activeSave;
-        cam = Camera.main.GetComponent<CameraFollow>();
+        if (cam == null) cam = Camera.main.GetComponent<CameraFollow>();
+        if (transition == null) transition = cam.GetComponentInChildren<Animator>();
 
         if (SaveManager.instance.hasLoaded)
         {
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
 
             // player loads in at their last position
             StartCoroutine(ResetCamSpeed());
-            AreaManager.instance.LoadArea(activeSave.areaToLoadIndex);
+            AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
             Player.instance.transform.position = activeSave.playerCurrentPosition;
 
             Player.instance.LoadPlayerLevels();
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
     IEnumerator RespawnPlayer() {
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
+        transition.Play("PlayerDead");
         yield return new WaitForSeconds(3f);
 
         // spawn deathObject at players death position
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(ResetCamSpeed());
-        AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex);
+        AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
         Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         Player.instance.Respawn();

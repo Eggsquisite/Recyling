@@ -17,7 +17,11 @@ public class AreaManager : MonoBehaviour
         areaLoader = GetComponentsInChildren<LoadArea>();
     }
 
-    public void LoadArea(int index)
+    public void CameraFade() { 
+        
+    }
+
+    public void LoadArea(int index, bool flag)
     {
         areaFound = false;
         if (areaLoader.Length > 0)
@@ -29,7 +33,7 @@ public class AreaManager : MonoBehaviour
 
                 if (areaLoader[i].GetAreaIndex() == index)
                 {
-                    areaLoader[i].LoadAreaFromSave();
+                    areaLoader[i].LoadAreaFromSave(flag);
                     areaFound = true;
                 }
             }

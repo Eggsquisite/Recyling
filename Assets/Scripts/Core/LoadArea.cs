@@ -74,8 +74,16 @@ public class LoadArea : MonoBehaviour
         }
     }
 
-    public void LoadAreaFromSave() {
-        //transition.Play("FadeIn");
+    public void CameraFade() { 
+        
+    }
+
+    public void LoadAreaFromSave(bool deadFlag) {
+        if (deadFlag)
+            transition.Play("Faded");
+        else
+            transition.Play("Faded");
+
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
         Player.instance.SetInvincible(true);
@@ -86,7 +94,7 @@ public class LoadArea : MonoBehaviour
             backgroundToEnable.SetActive(true);
         }
 
-        StartCoroutine(LoadReady());
+        StartCoroutine(LoadReady(2f));
     }
 
     IEnumerator LoadNextArea() {
@@ -129,11 +137,11 @@ public class LoadArea : MonoBehaviour
 
         }
 
-        StartCoroutine(LoadReady());
+        StartCoroutine(LoadReady(0.25f));
     }
 
-    IEnumerator LoadReady() {
-        yield return new WaitForSeconds(0.25f);
+    IEnumerator LoadReady(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
         isLoading = false;
         cam.ResetBorders();
         transition.Play("FadeOut");
