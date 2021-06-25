@@ -22787,6 +22787,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4960649387091035664, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+      propertyPath: m_ScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960649387091035664, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4960649387091035665, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_Camera
       value: 

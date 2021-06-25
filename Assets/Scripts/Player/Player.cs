@@ -960,6 +960,7 @@ public class Player : MonoBehaviour
     }
 
     private void BeginRespawn() {
+        // called at the end of the Player_Death Animation
         GameManager.instance.BeginRespawn(GetCurrency());
         UI.SetCurrency(-GetCurrency());
     }
@@ -970,7 +971,7 @@ public class Player : MonoBehaviour
 
         if (resetStunRoutine != null)
             StopCoroutine(resetStunRoutine);
-        resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
+        resetStunRoutine = StartCoroutine(ResetStun(1f));
     }
 
     public void RefreshResources() {
