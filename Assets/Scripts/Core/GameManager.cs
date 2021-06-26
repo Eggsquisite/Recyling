@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
         transition.Play("PlayerDead");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         // spawn deathObject at players death position
         if (deathObject != null) {
