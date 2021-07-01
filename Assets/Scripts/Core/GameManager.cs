@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawning");
         transition.Play("PlayerDead");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         if (deathPanel != null) deathPanel.SetActive(true);
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3f);
 
         // spawn deathObject at players death position
         if (deathObject != null) {
@@ -80,11 +80,10 @@ public class GameManager : MonoBehaviour
 
         if (deathPanel != null) deathPanel.SetActive(false);
         StartCoroutine(ResetCamSpeed());
-        Player.instance.SetInvincible(true);
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
-        Player.instance.transform.position = activeSave.playerRespawnPosition;
 
-        yield return new WaitForSeconds(0.5f);
         Player.instance.RefreshResources();
+        Player.instance.SetInvincible(true);
+        Player.instance.transform.position = activeSave.playerRespawnPosition;
     }
 }

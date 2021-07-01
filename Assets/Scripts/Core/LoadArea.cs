@@ -75,12 +75,12 @@ public class LoadArea : MonoBehaviour
     }
 
     public IEnumerator LoadAreaFromSave(bool deadFlag) {
-        if (deadFlag)
+/*        if (deadFlag)
             transition.Play("DeadFadeIn");
-        else
-            transition.Play("Faded");
+        else*/
+        transition.Play("Faded");
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0f);
 
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
