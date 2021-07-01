@@ -149,15 +149,16 @@ public class LoadArea : MonoBehaviour
         if (deadFlag)
             EnemyManager.Instance.ResetAllEnemies();
 
-        Player.instance.RefreshResources();
         Player.instance.SetCollider(true);
         Player.instance.SetStopMovement(false);
 
         yield return new WaitForSeconds(1f);
-        if (deadFlag)
-            Player.instance.Respawn();
-
         Player.instance.SetInvincible(false);
+
+        if (deadFlag) { 
+            Player.instance.Respawn();
+            //Player.instance.RefreshResources();
+        }
     }
 
     IEnumerator EnableEnemies()
