@@ -947,9 +947,7 @@ public class Player : MonoBehaviour
         else { 
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
 
-            if (resetStunRoutine != null)
-                StopCoroutine(resetStunRoutine);
-            resetStunRoutine = StartCoroutine(ResetStun(stunDuration));
+            StartResetStunRoutine(stunDuration);
         }
     }
 
@@ -969,9 +967,7 @@ public class Player : MonoBehaviour
         isDead = false;
         PlayAnimation(PlayerAnimStates.PLAYER_RESPAWN);
 
-        if (resetStunRoutine != null)
-            StopCoroutine(resetStunRoutine);
-        resetStunRoutine = StartCoroutine(ResetStun(1f));
+        StartResetStunRoutine(1f);
     }
 
     public void RefreshResources() {
@@ -1031,6 +1027,12 @@ public class Player : MonoBehaviour
         ResetWalk();
         isStunned = true;
         runAttackDash = false;
+    }
+
+    public void StartResetStunRoutine(float delay) {
+        if (resetStunRoutine != null)
+            StopCoroutine(resetStunRoutine);
+        resetStunRoutine = StartCoroutine(ResetStun(delay));
     }
 
     private void ResetInvincible() {

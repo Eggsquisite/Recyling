@@ -21,6 +21,7 @@ public class BasicEnemy : MonoBehaviour
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
     //private EnemyAttack enemyAttack;
+    private EnemyHealthbar healthBar;
     private EnemyMovement enemyMovement;
     private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
@@ -163,6 +164,7 @@ public class BasicEnemy : MonoBehaviour
         if (shaderGUItext == null) shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = sp.material.shader;
 
+        if (healthBar == null) healthBar = GetComponent<EnemyHealthbar>();
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
@@ -183,6 +185,8 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+        if (healthBar != null)
+        healthBar.SetMaxHealth(maxHealth);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -191,10 +195,10 @@ public class BasicEnemy : MonoBehaviour
 
         resetAttackRoutine = StartCoroutine(ResetAttack(0f));
 
+        priorityLists = new List<List<AttackPriority>>();
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
         priorityListThree = new List<AttackPriority>();
-        priorityLists = new List<List<AttackPriority>>();
 
         for (int i = 0; i < attackAnimations.Count; i++)
         {
@@ -817,8 +821,10 @@ public class BasicEnemy : MonoBehaviour
         Player.instance.RegainEnergy(GetEnergyGainMultiplier());
         stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
 
-        currentHealth -= damageNum;
         PushBack(distance);
+        currentHealth -= damageNum;
+        if (healthBar != null)
+            healthBar.SetCurrentHealth(damageNum);
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds

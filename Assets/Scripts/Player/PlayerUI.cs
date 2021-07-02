@@ -138,7 +138,7 @@ public class PlayerUI : MonoBehaviour
             addCurrencyRoutine = StartCoroutine(AddCurrencyValues(newValue));
         } else { 
             baseCurrency += newValue;
-            Debug.Log("Setting new currency: " + baseCurrency);
+            //Debug.Log("Setting new currency: " + baseCurrency);
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
         }
@@ -148,7 +148,7 @@ public class PlayerUI : MonoBehaviour
         futureCurrency += newValue;
         futureCurrencyText.gameObject.SetActive(true);
         futureCurrencyText.text = "+" + futureCurrency.ToString();
-        
+
         if (!isAdding) { 
             yield return new WaitForSeconds(0.5f);
             baseTmp = Mathf.RoundToInt(baseCurrency);
