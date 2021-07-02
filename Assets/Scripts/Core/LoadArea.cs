@@ -101,7 +101,7 @@ public class LoadArea : MonoBehaviour
         Player.instance.SetCollider(false);
         Player.instance.SetInvincible(true);
         Player.instance.SetStopMovement(true);
-        Player.instance.Stunned();
+        //Player.instance.Stunned();
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         yield return new WaitForSeconds(0.5f);
@@ -152,7 +152,7 @@ public class LoadArea : MonoBehaviour
 
         Player.instance.SetCollider(true);
         Player.instance.SetStopMovement(false);
-        Player.instance.StartResetStunRoutine(0f);
+        //Player.instance.StartResetStunRoutine(0f);
 
         yield return new WaitForSeconds(1f);
         Player.instance.SetInvincible(false);

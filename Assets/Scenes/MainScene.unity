@@ -1613,7 +1613,7 @@ Transform:
   m_GameObject: {fileID: 437836908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.53, y: 1.15, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1788546091}
   m_RootOrder: 0
@@ -1658,7 +1658,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1632646537
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 10123409ee41ba74896695d6db15a14b, type: 3}
   m_Color: {r: 0.8396226, g: 0.45545566, b: 0.45545566, a: 1}
   m_FlipX: 0
@@ -9943,7 +9943,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 10123409ee41ba74896695d6db15a14b, type: 3}
-  m_Color: {r: 0.6415094, g: 0.56585974, b: 0.56585974, a: 1}
+  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12988,7 +12988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6730c63eaaaa70c4c88e96d364d4ff13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 1, z: 0}
+  healthBar: {fileID: 437836909}
 --- !u!1001 &1333480226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22744,6 +22744,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3781810322380137320}
     m_Modifications:
     - target: {fileID: 3898020908785157712, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1062560603}
+    - target: {fileID: 3898020908785157712, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: attackDamages.Array.data[0]
       value: 500
       objectReference: {fileID: 0}
@@ -22753,11 +22757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.58
+      value: 35.95
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22793,7 +22797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157716, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_SortingOrder
-      value: 37
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name

@@ -16,17 +16,22 @@ public class AttackPriority
 public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField]
+    private GameObject healthBar;
+
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
     //private EnemyAttack enemyAttack;
-    private EnemyHealthbar healthBar;
+    private EnemyHealthbar healthFill;
     private EnemyMovement enemyMovement;
     private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
     private Projectile projectile;
     private Vector2 resetSpawnSpoint;
+
+    private Coroutine healthBarRoutine;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -51,7 +56,6 @@ public class BasicEnemy : MonoBehaviour
     private float tetherFollowRange;
     [SerializeField]
     private float tetherUnfollowRange;
-
 
     [SerializeField]
     private bool deleteOnDeath;
@@ -164,7 +168,7 @@ public class BasicEnemy : MonoBehaviour
         if (shaderGUItext == null) shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = sp.material.shader;
 
-        if (healthBar == null) healthBar = GetComponent<EnemyHealthbar>();
+        if (healthFill == null) healthFill = GetComponent<EnemyHealthbar>();
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
@@ -172,7 +176,6 @@ public class BasicEnemy : MonoBehaviour
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (projectile != null) { 
             projectile.SetDamage(attackDamages[0]);
-
         }
 
         resetSpawnSpoint = transform.position;
@@ -185,8 +188,8 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-        if (healthBar != null)
-        healthBar.SetMaxHealth(maxHealth);
+        if (healthFill != null) healthFill.SetMaxHealth(maxHealth);
+        if (healthBar != null) healthBar.SetActive(false);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -823,8 +826,14 @@ public class BasicEnemy : MonoBehaviour
 
         PushBack(distance);
         currentHealth -= damageNum;
-        if (healthBar != null)
-            healthBar.SetCurrentHealth(damageNum);
+        if (healthBar != null && healthFill != null) {
+            healthBar.SetActive(true);
+            healthFill.SetCurrentHealth(damageNum);
+
+            if (healthBarRoutine != null)
+                StopCoroutine(healthBarRoutine);
+            healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
+        }
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
@@ -868,6 +877,11 @@ public class BasicEnemy : MonoBehaviour
                 StopCoroutine(invincibleRoutine);
             invincibleRoutine = StartCoroutine(ResetInvincible(stunDuration + 0.05f));
         }
+    }
+
+    IEnumerator HealthBarVisibility(float delay) {
+        yield return new WaitForSeconds(delay);
+        healthBar.SetActive(false);
     }
 
     /// <summary>
@@ -1052,8 +1066,11 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.ResetDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
+        if (healthFill != null)
+            healthFill.ResetHealth();
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+
         isInvincible = false;
         outOfStamina = false;
         attackReady = true;
