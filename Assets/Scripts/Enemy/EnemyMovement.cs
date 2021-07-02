@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     private bool detectIsRay;
 
     private bool facingLeft;
-    private GameObject player;
+    // GameObject player;
     private Vector2 playerChar;
 
     [Header("Follow Properties")]
@@ -138,8 +138,9 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     public void FindPlayer() {
         // Called thru invoke
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerChar = player.transform.position;
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerChar = player.transform.position;
+        playerChar = Player.instance.transform.position;
         if (canFollow)
             RandomizeOffsetAttackStandby();
     }
@@ -421,10 +422,11 @@ public class EnemyMovement : MonoBehaviour
             CancelInvoke("FindPlayer");
     }
     public GameObject GetPlayer() {
-        if (player == null)
+        /*if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
 
-        return player;
+        return player;*/
+        return null;
     }
     public bool GetLeftOfPlayer() {
         return leftOfPlayer;

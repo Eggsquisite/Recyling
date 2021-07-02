@@ -944,14 +944,14 @@ public class BasicEnemy : MonoBehaviour
     private void PushBack(float distance) {
         isPushed = true;
         Vector2 newPosition;
-        if (enemyMovement.GetPlayerPosition().x > rb.position.x) {
+        if (Player.instance.transform.position.x > rb.position.x) {
             newPosition = new Vector2(-distance, 0f);
 
             if (pushBackDurationRoutine != null)
                 StopCoroutine(pushBackDurationRoutine);
             pushBackDurationRoutine = StartCoroutine(PushBackDuration(newPosition, stunDuration));
         }
-        else if (enemyMovement.GetPlayerPosition().x <= transform.position.x) {
+        else if (/*enemyMovement.GetPlayerPosition()*/ Player.instance.transform.position.x <= transform.position.x) {
             newPosition = new Vector2(distance, 0f);
 
             if (pushBackDurationRoutine != null)
@@ -1041,7 +1041,8 @@ public class BasicEnemy : MonoBehaviour
 
     // Called through death animation event
     private void GiveCurrency() {
-        enemyMovement.GetPlayer().GetComponent<PlayerUI>().SetCurrency(currencyOnDeath);
+        //enemyMovement.GetPlayer().GetComponent<PlayerUI>().SetCurrency(currencyOnDeath);
+        Player.instance.GetComponent<PlayerUI>().SetCurrency(currencyOnDeath);
     }
 
     /*IEnumerator FadeAway() {
@@ -1057,7 +1058,7 @@ public class BasicEnemy : MonoBehaviour
     }*/
 
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
-    public void ResetToSpawn()
+            public void ResetToSpawn()
     {
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
