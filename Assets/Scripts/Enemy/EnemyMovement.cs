@@ -244,7 +244,7 @@ public class EnemyMovement : MonoBehaviour
             isMoving = false;
     }
 
-    public void CheckPlayerPos() {
+    public bool CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
         if (playerChar.x > transform.position.x && !leftOfPlayer) {
             facingLeft = false;
@@ -258,6 +258,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         CheckPlayerVertical();
+        return facingLeft;
     }
 
     public void SetDirection(bool left) {

@@ -217,6 +217,9 @@ public class BasicEnemy : MonoBehaviour
         priorityLists.Add(priorityListOne);
         priorityLists.Add(priorityListTwo);
         priorityLists.Add(priorityListThree);
+
+        if (healthFill != null)
+            Debug.Log(healthFill.transform.localScale.x + " " + name);
     }
 
     private void Update() {
@@ -352,7 +355,14 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         if (!isAttacking)
-            enemyMovement.CheckPlayerPos();
+            facingLeft = enemyMovement.CheckPlayerPos();
+
+        if (healthBar != null) { 
+            if (facingLeft && healthBar.transform.localScale.x > 0) 
+                healthBar.transform.localScale = new Vector3(-1, healthFill.transform.localScale.y);
+            else if (!facingLeft && healthBar.transform.localScale.x < 0)
+                healthBar.transform.localScale = new Vector3(1, healthFill.transform.localScale.y);
+        }
 
         playerDetected = enemyMovement.DetectPlayer();
 
@@ -593,7 +603,7 @@ public class BasicEnemy : MonoBehaviour
     {
         // up down movement only
         if (attackFollowFacePlayer[attackIndex]) 
-            enemyMovement.CheckPlayerPos();
+            facingLeft = enemyMovement.CheckPlayerPos();
 
         SavePlayerPosition(1);
         while (attackFollowThruVertical)
@@ -632,7 +642,7 @@ public class BasicEnemy : MonoBehaviour
     {
         // Left right movement only
         if (attackFollowFacePlayer[attackIndex]) 
-            enemyMovement.CheckPlayerPos();
+            facingLeft = enemyMovement.CheckPlayerPos();
 
         SavePlayerPosition(2);
         while (attackFollowThruHorizontal)
@@ -668,7 +678,7 @@ public class BasicEnemy : MonoBehaviour
     {
         // for changing the direction of enemy to continually face the player
         if (attackFollowFacePlayer[attackIndex]) 
-            enemyMovement.CheckPlayerPos();
+            facingLeft = enemyMovement.CheckPlayerPos();
 
         SavePlayerPosition(3);
         while (attackFollowThruBoth)
@@ -734,7 +744,7 @@ public class BasicEnemy : MonoBehaviour
         // animation event called thru enemy attacks, useful for follow attacks that dont
         // chase player movement but just where they were at the start of the attack
         if (attackFollowFacePlayer[attackIndex])
-            enemyMovement.CheckPlayerPos();
+            facingLeft = enemyMovement.CheckPlayerPos();
 
         enemyMovement.CheckPlayerVertical();
         SavePlayerPosition(3);
