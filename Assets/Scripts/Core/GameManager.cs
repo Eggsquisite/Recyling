@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
             } else {
                 AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, false);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
+                Player.instance.LoadCurrency(0);
 
                 Player.instance.RefreshResources();
                 activeSave.playerIsDead = false;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
         transition.Play("PlayerDead");
+        activeSave.playerDeathPosition = Player.instance.transform.position;
         Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         yield return new WaitForSeconds(0.25f);
