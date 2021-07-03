@@ -21,7 +21,7 @@ public class AreaManager : MonoBehaviour
         
     }
 
-    public void LoadArea(int index, bool flag)
+    public void LoadArea(int index, bool deadFlag)
     {
         areaFound = false;
         if (areaLoader.Length > 0)
@@ -33,7 +33,7 @@ public class AreaManager : MonoBehaviour
 
                 if (areaLoader[i].GetAreaIndex() == index)
                 {
-                    StartCoroutine(areaLoader[i].LoadAreaFromSave(flag));
+                    StartCoroutine(areaLoader[i].LoadAreaFromSave(deadFlag));
                     areaFound = true;
                 }
             }

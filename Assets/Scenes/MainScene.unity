@@ -22496,6 +22496,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3781810322380137320}
     m_Modifications:
+    - target: {fileID: 437836910, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437836910, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437836910, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.53187966
+      objectReference: {fileID: 0}
+    - target: {fileID: 437836910, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 762515768, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.50222504
+      objectReference: {fileID: 0}
+    - target: {fileID: 762515768, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.50222504
+      objectReference: {fileID: 0}
+    - target: {fileID: 762515768, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062560604, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -24560,6 +24592,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 8}
   m_EdgeRadius: 0
+--- !u!1 &2050431853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1062560603, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+  m_PrefabInstance: {fileID: 1902049014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2050431855
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050431853}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e18b4ef8020e850428cd3661a50f3826, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2057648085
 GameObject:
   m_ObjectHideFlags: 0

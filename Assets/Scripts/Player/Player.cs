@@ -951,6 +951,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool CheckDead() {
+        return isDead;
+    }
+
     private void Death() {
         isDead = true;
         PlayAnimation(PlayerAnimStates.PLAYER_DEATH);

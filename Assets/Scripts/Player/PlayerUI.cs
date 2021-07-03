@@ -138,10 +138,18 @@ public class PlayerUI : MonoBehaviour
             addCurrencyRoutine = StartCoroutine(AddCurrencyValues(newValue));
         } else { 
             baseCurrency += newValue;
-            //Debug.Log("Setting new currency: " + baseCurrency);
+            futureCurrency = newValue;
+            futureCurrencyText.gameObject.SetActive(true);
+            futureCurrencyText.text = futureCurrency.ToString();
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
         }
+    }
+
+    public void TurnOffText() {
+        // called during animation event
+        futureCurrency = 0;
+        futureCurrencyText.gameObject.SetActive(false);
     }
 
     IEnumerator AddCurrencyValues(int newValue) {
@@ -169,8 +177,7 @@ public class PlayerUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         isAdding = false;
-        futureCurrency = 0;
-        futureCurrencyText.gameObject.SetActive(false);
+        TurnOffText();
         SaveManager.instance.SaveCurrency(Mathf.RoundToInt(baseCurrency));
     }
 

@@ -100,6 +100,7 @@ public class SaveManager : MonoBehaviour
 
     public void SavePlayerValues() {
         activeSave.playerCurrentPosition = Player.instance.transform.position;
+        activeSave.playerIsDead = Player.instance.CheckDead();
         activeSave.playerHealth = Player.instance.GetHealth();
         activeSave.playerEnergy = Player.instance.GetEnergy();
         activeSave.playerCurrency = Player.instance.GetCurrency();
@@ -138,6 +139,7 @@ public class SaveData
     // player level and stats
     //public int playerLevel;       // may not need, just add all levels together to get player level
     [Header("Player Stats")]
+    public bool playerIsDead;
     public int playerCurrency;
     public int playerLostCurrency;
     public int playerHealth;

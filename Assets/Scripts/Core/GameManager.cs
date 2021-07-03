@@ -32,14 +32,24 @@ public class GameManager : MonoBehaviour
 
             // player loads in at their last position
             StartCoroutine(ResetCamSpeed());
-            AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
-            Player.instance.transform.position = activeSave.playerCurrentPosition;
 
             Player.instance.SetInvincible(true);
             Player.instance.LoadPlayerLevels();
-            Player.instance.LoadCurrency(activeSave.playerCurrency);
-            Player.instance.LoadHealth(activeSave.playerHealth);
-            Player.instance.LoadEnergy(activeSave.playerEnergy);
+
+            if (!activeSave.playerIsDead) { 
+                AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
+                Player.instance.transform.position = activeSave.playerCurrentPosition;
+
+                Player.instance.LoadCurrency(activeSave.playerCurrency);
+                Player.instance.LoadHealth(activeSave.playerHealth);
+                Player.instance.LoadEnergy(activeSave.playerEnergy);
+            } else {
+                AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, false);
+                Player.instance.transform.position = activeSave.playerRespawnPosition;
+
+                Player.instance.RefreshResources();
+                activeSave.playerIsDead = false;
+            }
 
         } else
         {
@@ -67,6 +77,7 @@ public class GameManager : MonoBehaviour
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
         transition.Play("PlayerDead");
+        Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         yield return new WaitForSeconds(0.25f);
         if (deathPanel != null) deathPanel.SetActive(true);
@@ -84,6 +95,6 @@ public class GameManager : MonoBehaviour
 
         Player.instance.RefreshResources();
         Player.instance.SetInvincible(true);
-        Player.instance.transform.position = activeSave.playerRespawnPosition;
+        //Player.instance.transform.position = activeSave.playerRespawnPosition;
     }
 }
