@@ -1402,7 +1402,7 @@ Transform:
   - {fileID: 2104433643}
   - {fileID: 176072627}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &365237354
 Grid:
@@ -12106,6 +12106,7 @@ MonoBehaviour:
     areaToRespawnIndex: 0
     minCameraPos: 0
     maxCameraPos: 0
+    playerIsDead: 0
     playerCurrency: 0
     playerLostCurrency: 0
     playerHealth: 0
@@ -21344,6 +21345,7 @@ MonoBehaviour:
     areaToRespawnIndex: 0
     minCameraPos: 0
     maxCameraPos: 0
+    playerIsDead: 0
     playerCurrency: 0
     playerLostCurrency: 0
     playerHealth: 0
@@ -22692,7 +22694,7 @@ Transform:
   - {fileID: 499603950}
   - {fileID: 1360465053}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914860955
 MonoBehaviour:
