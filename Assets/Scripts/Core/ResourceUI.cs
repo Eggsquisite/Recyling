@@ -7,9 +7,9 @@ public class ResourceUI : MonoBehaviour
 {
     [Header("Currency")]
     [SerializeField]
-    private Text currencyText;
+    private TMPro.TextMeshProUGUI currencyText;
     [SerializeField]
-    private Text futureCurrencyText;
+    private TMPro.TextMeshProUGUI futureCurrencyText;
 
     [Header("Health")]
     [SerializeField]
@@ -35,10 +35,10 @@ public class ResourceUI : MonoBehaviour
     [SerializeField]
     private Slider staminaDestroyedValue;
 
-    public Text GetCurrencyText() {
+    public TMPro.TextMeshProUGUI GetCurrencyText() {
         return currencyText;
     }
-    public Text GetFutureCurrencyText() {
+    public TMPro.TextMeshProUGUI GetFutureCurrencyText() {
         return futureCurrencyText;
     }
     public Slider GetHealthMaxValue() {

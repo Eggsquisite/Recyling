@@ -25,8 +25,10 @@ public class PlayerUI : MonoBehaviour
     private float requiredCurrencyModifier;
 
     [Header("Currency")]
-    private Text currencyText;
-    private Text futureCurrencyText;
+    //private Text currencyText;
+    //private Text futureCurrencyText;
+    private TMPro.TextMeshProUGUI currencyText;
+    private TMPro.TextMeshProUGUI futureCurrencyText;
 
     private bool isAdding;
 

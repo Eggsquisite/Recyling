@@ -766,7 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthFill: {fileID: 437836909}
   healthDestroy: {fileID: 465873771350897838}
-  waitTime: 0.5
+  waitTime: 0.75
   visualDestroySpeed: 0.25
 --- !u!1 &3898020909053490396
 GameObject:

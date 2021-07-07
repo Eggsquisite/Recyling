@@ -13,9 +13,9 @@ public class UpgradeUI : MonoBehaviour
 
     [Header("Currency Text")]
     [SerializeField]
-    private Text currentCurrencyText;
+    private TMPro.TextMeshProUGUI currentCurrencyText;
     [SerializeField]
-    private Text requiredCurrencyText;
+    private TMPro.TextMeshProUGUI requiredCurrencyText;
 
     private int baseCurrency = 100;
     private int futureCurrency;
@@ -23,17 +23,17 @@ public class UpgradeUI : MonoBehaviour
 
     [Header("Levels Text")]
     [SerializeField]
-    private Text currentLevelText;
+    private TMPro.TextMeshProUGUI currentLevelText;
     [SerializeField]
-    private Text vitalityLevelText;
+    private TMPro.TextMeshProUGUI vitalityLevelText;
     [SerializeField]
-    private Text focusLevelText;
+    private TMPro.TextMeshProUGUI focusLevelText;
     [SerializeField]
-    private Text strengthLevelText;
+    private TMPro.TextMeshProUGUI strengthLevelText;
     [SerializeField]
-    private Text staminaLevelText;
+    private TMPro.TextMeshProUGUI staminaLevelText;
     [SerializeField]
-    private Text specialLevelText;
+    private TMPro.TextMeshProUGUI specialLevelText;
 
     private int levelCap;
     private int baseCurrentLevel;
