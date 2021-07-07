@@ -6,24 +6,46 @@ using UnityEngine.UI;
 public class EnemyHealthbar : MonoBehaviour
 {
     [SerializeField]
-    private Transform healthBar;
+    private Transform healthFill;
+    [SerializeField]
+    private Transform healthDestroy;
+
+    [SerializeField]
+    private float waitTime;
+    [SerializeField]
+    private float visualDestroySpeed;
 
     private int maxHealth;
     private int currentHealth;
+    private bool updateHealth;
+
+    private Coroutine waitTimeRoutine;
 
     private void Start()
     {
-        if (healthBar != null)
-            healthBar.localScale = new Vector3(1f, healthBar.localScale.y);
+        if (healthFill != null && healthDestroy != null) { 
+            healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
+            healthDestroy.localScale = new Vector3(1f, healthDestroy.localScale.y);
+        }
     }
 
     private void Update()
     {
-/*        if (healthBar != null)
-            if (healthBar.parent.localScale.x < 0)
-                healthBar.localScale = new Vector3(-healthBar.localScale.x, healthBar.localScale.y);
+/*        if (healthFill != null)
+            if (healthFill.parent.localScale.x < 0)
+                healthFill.localScale = new Vector3(-healthFill.localScale.x, healthFill.localScale.y);
             else
-                healthBar.localScale = new Vector3(healthBar.localScale.x, healthBar.localScale.y);*/
+                healthFill.localScale = new Vector3(healthFill.localScale.x, healthFill.localScale.y);*/
+
+        if (updateHealth) { 
+            if (healthDestroy.localScale.x > healthFill.localScale.x) {
+                healthDestroy.localScale = new Vector3(healthDestroy.localScale.x - visualDestroySpeed * Time.deltaTime, 
+                                                        healthDestroy.localScale.y);
+            } else { 
+                healthDestroy.localScale = new Vector3(healthFill.localScale.x, healthDestroy.localScale.y);
+                updateHealth = false;
+            }
+        }
     }
 
     public void SetMaxHealth(int newValue) {
@@ -32,7 +54,7 @@ public class EnemyHealthbar : MonoBehaviour
 
     public void ResetHealth() {
         currentHealth = maxHealth;
-        healthBar.localScale = new Vector3(1f, healthBar.localScale.y);
+        healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
     }
 
     public void SetCurrentHealth(int newValue) {
@@ -42,6 +64,16 @@ public class EnemyHealthbar : MonoBehaviour
 
         float tmpCurrent = currentHealth;
         float tmpMax = maxHealth;
-        healthBar.localScale = new Vector3(tmpCurrent / tmpMax, healthBar.localScale.y);
+        healthFill.localScale = new Vector3(tmpCurrent / tmpMax, healthFill.localScale.y);
+
+        if (waitTimeRoutine != null)
+            StopCoroutine(waitTimeRoutine);
+        waitTimeRoutine = StartCoroutine(UpdateHealthVisual());
+    }
+
+    private IEnumerator UpdateHealthVisual() {
+        updateHealth = false;
+        yield return new WaitForSeconds(waitTime);
+        updateHealth = true;
     }
 }
