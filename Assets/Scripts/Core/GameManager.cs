@@ -99,4 +99,8 @@ public class GameManager : MonoBehaviour
         Player.instance.SetInvincible(true);
         //Player.instance.transform.position = activeSave.playerRespawnPosition;
     }
+
+    public void RescanPathfinding() {
+      
+    }
 }

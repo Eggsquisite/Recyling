@@ -135,7 +135,7 @@ public class CameraFollow : MonoBehaviour
         rightBorder.position = new Vector3(max_X + borderOffset,
                                     transform.position.y,
                                     transform.position.z);
-        bottomBorder.position = new Vector3(max_X / 2,
+        bottomBorder.position = new Vector3((min_X + max_X) / 2,
                                     bottomBorder.position.y,
                                     transform.position.z);
     }

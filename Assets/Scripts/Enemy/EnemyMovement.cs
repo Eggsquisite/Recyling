@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class EnemyMovement : MonoBehaviour
     private bool facingLeft;
     // GameObject player;
     private Vector2 playerChar;
+
+    [Header("Pathfinding Properties")]
+    [SerializeField]
+    private Path path;
+
+    private Seeker seeker;
+    private int currentWaypoint;
+    private bool reachedEndOfPath;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -102,6 +111,7 @@ public class EnemyMovement : MonoBehaviour
         originalPos = transform.position;
         xScaleValue = transform.localScale.x;
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (seeker == null) seeker = GetComponent<Seeker>();
 
         if (playerChar.x > transform.position.x) {
             facingLeft = false;
