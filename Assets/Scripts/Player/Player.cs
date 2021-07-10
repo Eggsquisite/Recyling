@@ -1141,11 +1141,11 @@ public class Player : MonoBehaviour
             if (time < 0.15f)
                 UI.SetFutureHealth(1f);
             else if (time >= 0.15f && time < 1.25f)
+                UI.SetFutureHealth(1.25f);
+            else if (time >= 1.25f && time < 2f) 
                 UI.SetFutureHealth(1.5f);
-            else if (time >= 1f && time < 2f) 
-                UI.SetFutureHealth(2.25f);
             else if (time >= 2f)
-                UI.SetFutureHealth(3.25f);
+                UI.SetFutureHealth(2.5f);
 
             time += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);

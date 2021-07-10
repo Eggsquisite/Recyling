@@ -199,6 +199,7 @@ public class PlayerStats : MonoBehaviour
 
                 healthRecoveryValue += healthFocusUpgrade;
                 energyRecoveryValue += energyFocusUpgrade;
+                // energyToHealth affects the ratio of energy consumed when healing
                 energyToHealthMultiplier = 1 / (1 + upgrades["focus"] * energyToHealthFocusUpgrade);
 
                 UI.SetHealthRecoveryValue(healthRecoveryValue);

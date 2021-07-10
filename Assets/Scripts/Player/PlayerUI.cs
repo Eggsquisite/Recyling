@@ -309,9 +309,9 @@ public class PlayerUI : MonoBehaviour
         healthCurrentValue.value += newValue;
     }
 
-    public void SetFutureHealth(float multiplier) {
+    public void SetFutureHealth(float healthMultiplier) {
         // increase future health, then heal up to that amount if player is not hit
-        healthDestroyedValue.value += healthRecoveryValue * updateModifier * multiplier * Time.deltaTime;
+        healthDestroyedValue.value += healthRecoveryValue * updateModifier * healthMultiplier * Time.deltaTime;
     }
 
     public void BeginFutureHealthRecovery() {
@@ -430,15 +430,15 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void EnergyWithoutDecay(float newValue) {
-        if (energyCurrentValue.value + newValue < energyCurrentValue.value)
+    public void EnergyWithoutDecay(float healthRecoveryValue) {
+        if (energyCurrentValue.value + healthRecoveryValue < energyCurrentValue.value)
         {
-            energyCurrentValue.value += newValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
-            energyDestroyedValue.value += newValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
+            energyCurrentValue.value += healthRecoveryValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
+            energyDestroyedValue.value += healthRecoveryValue * energyToHealthMultiplier * updateModifier * Time.deltaTime;
 
             if (energyCurrentValue.value < 0) { 
                 energyCurrentValue.value = 0;
-                energyDestroyedValue.value = 0;
+                energyDestroyedValue.value = 0; 
             }
 
 /*            if (energyRecoveryRoutine != null)
