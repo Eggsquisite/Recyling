@@ -431,10 +431,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6730c63eaaaa70c4c88e96d364d4ff13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarParent: {fileID: 1062560604}
   healthFill: {fileID: 437836909}
   healthDestroy: {fileID: 465873771350897838}
   waitTime: 0.5
   visualDestroySpeed: 0.5
+  isBoss: 0
 --- !u!1 &3898020909053490396
 GameObject:
   m_ObjectHideFlags: 0

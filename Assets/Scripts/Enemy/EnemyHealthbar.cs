@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class EnemyHealthbar : MonoBehaviour
 {
     [SerializeField]
+    private Transform healthBarParent;
+    [SerializeField]
     private Transform healthFill;
     [SerializeField]
     private Transform healthDestroy;
@@ -14,6 +16,8 @@ public class EnemyHealthbar : MonoBehaviour
     private float waitTime;
     [SerializeField]
     private float visualDestroySpeed;
+    [SerializeField]
+    private bool isBoss;
 
     private int maxHealth;
     private int currentHealth;
@@ -26,6 +30,10 @@ public class EnemyHealthbar : MonoBehaviour
         if (healthFill != null && healthDestroy != null) { 
             healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
             healthDestroy.localScale = new Vector3(1f, healthDestroy.localScale.y);
+        }
+
+        if (isBoss) {
+            //healthBarParent.parent = null;
         }
     }
 
