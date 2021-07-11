@@ -56,6 +56,10 @@ public class EnemyHealthbar : MonoBehaviour
         }
     }
 
+    public bool GetIsBoss() {
+        return isBoss;
+    }
+
     public void SetMaxHealth(int newValue) {
         maxHealth = currentHealth = newValue;
     }

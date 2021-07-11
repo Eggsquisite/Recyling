@@ -156,6 +156,7 @@ public class LoadArea : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         Player.instance.SetInvincible(false);
+        GameManager.instance.RescanPathfinding();
 
         if (deadFlag) { 
             Player.instance.Respawn();

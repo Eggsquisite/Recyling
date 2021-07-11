@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBigBoi : MonoBehaviour
+public class BigBossBoi : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
@@ -179,8 +179,17 @@ public class BossBigBoi : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-        if (healthFill != null) healthFill.SetMaxHealth(maxHealth);
-        if (healthBar != null) healthBar.SetActive(false);
+        if (healthFill != null && healthBar != null)
+        {
+            healthFill.SetMaxHealth(maxHealth);
+
+            // if not a boss, turn off healthbar initially
+            if (!healthFill.GetIsBoss())
+                healthBar.SetActive(false);
+        }
+
+        if (healthFill)
+            if (healthBar != null) healthBar.SetActive(false);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -879,7 +888,8 @@ public class BossBigBoi : MonoBehaviour
 
         PushBack(distance);
         currentHealth -= damageNum;
-        if (healthBar != null && healthFill != null)
+        // if not a boss, set health bar active/inactive
+        if (healthBar != null && healthFill != null && !healthFill.GetIsBoss())
         {
             healthBar.SetActive(true);
             healthFill.SetCurrentHealth(damageNum);

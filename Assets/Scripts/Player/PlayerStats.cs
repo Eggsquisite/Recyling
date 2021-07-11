@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     private int maxStamina;
     [SerializeField]
     private float healthRecoveryValue;
-    [SerializeField]
+    [SerializeField] [Tooltip("Ratio of energy consumption when healing. Lower number means higher healing efficiency")]
     private float energyToHealthMultiplier;
     [SerializeField]
     private float energyRecoveryValue;
@@ -312,6 +312,7 @@ public class PlayerStats : MonoBehaviour
 
                 UI.SetHealthRecoveryValue(healthRecoveryValue);
                 UI.SetEnergyRecoveryValue(energyRecoveryValue);
+                // affects ratio of energy consumption when healing. Lower number is better efficiency
                 UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;

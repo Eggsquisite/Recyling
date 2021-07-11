@@ -174,7 +174,7 @@ public class BasicEnemy : MonoBehaviour
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
 
         if (projectile == null) projectile = GetComponent<Projectile>();
-        if (projectile != null) { 
+        if (projectile != null) {
             projectile.SetDamage(attackDamages[0]);
         }
 
@@ -188,7 +188,15 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-        if (healthFill != null) healthFill.SetMaxHealth(maxHealth);
+        if (healthFill != null && healthBar != null) {
+            healthFill.SetMaxHealth(maxHealth);
+
+            // if not a boss, turn off healthbar initially
+            if (!healthFill.GetIsBoss())
+                healthBar.SetActive(false);
+        }
+        
+        if (healthFill)
         if (healthBar != null) healthBar.SetActive(false);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
@@ -836,7 +844,8 @@ public class BasicEnemy : MonoBehaviour
 
         PushBack(distance);
         currentHealth -= damageNum;
-        if (healthBar != null && healthFill != null) {
+        // if not a boss, set health bar active/inactive
+        if (healthBar != null && healthFill != null && !healthFill.GetIsBoss()) {
             healthBar.SetActive(true);
             healthFill.SetCurrentHealth(damageNum);
 

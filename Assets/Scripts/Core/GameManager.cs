@@ -101,6 +101,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void RescanPathfinding() {
-      
+        AstarPath.active.Scan();
     }
 }
