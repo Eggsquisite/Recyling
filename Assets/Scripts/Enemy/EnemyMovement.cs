@@ -24,10 +24,12 @@ public class EnemyMovement : MonoBehaviour
     [Header("Pathfinding Properties")]
     [SerializeField]
     private Path path;
+    [SerializeField]
+    private float nextWaypointDistance = 3f;
 
     private Seeker seeker;
     private int currentWaypoint;
-    private bool reachedEndOfPath;
+    private bool reachedEndOfPath, followPath;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -135,29 +137,42 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         if (seeker != null)
+            InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+
+    private void UpdatePath()
+    {
+        if (seeker.IsDone()) 
             seeker.StartPath(rb.position, Player.instance.transform.position, OnPathComplete);
     }
 
     private void FixedUpdate()
     {
         if (canPatrol && patrolReady) 
-            Patrolling(); 
-    }
+            Patrolling();
 
-    private void Update()
-    {
         if (path == null)
             return;
 
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-            reachedEndOfPath = false;
+        if (followPath) { 
+            if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+                reachedEndOfPath = false;
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * baseMoveSpeed * Time.deltaTime;
+
+            rb.AddForce(force);
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDistance) {
+                currentWaypoint++;
+            }
+        }
     }
 
     /// <summary>
@@ -206,8 +221,10 @@ public class EnemyMovement : MonoBehaviour
 
         IsMoving();
         if (canFollow)  {
-            if (attackReady) { 
-                // if attack is ready, enemy moves closer to player to trigger an attack
+            followPath = true;
+            if (attackReady)
+            {
+                /*// if attack is ready, enemy moves closer to player to trigger an attack
                 if (attackFromLeft) {
                     desiredPosition = playerChar + leftOffset;
                     followVelocity = Vector2.MoveTowards(rb.position,
@@ -254,7 +271,8 @@ public class EnemyMovement : MonoBehaviour
                     rb.MovePosition(followVelocity);
             }
             else
-                rb.MovePosition(followVelocity);
+                rb.MovePosition(followVelocity);*/
+            }
         } 
     }
 

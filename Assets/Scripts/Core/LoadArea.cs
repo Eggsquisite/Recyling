@@ -59,7 +59,8 @@ public class LoadArea : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision != null && collision.tag == "Player" && loadReady) {
+        // if player is not currently fighting a boss, load next area
+        if (collision != null && collision.tag == "Player" && loadReady && !GameManager.instance.GetIsFightingBoss()) {
             isLoading = true;
             loadReady = false;
 

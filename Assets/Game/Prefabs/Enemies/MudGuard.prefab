@@ -224,7 +224,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -330,6 +330,7 @@ MonoBehaviour:
   detectPos: {fileID: 806799264620761062}
   detectInRange: 4
   detectIsRay: 0
+  nextWaypointDistance: 3
   repeatFollowDelay: 1
   attackFollowDelay: 1
   stunFollowDelay: 0.75

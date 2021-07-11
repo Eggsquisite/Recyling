@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject deathObject;
     public Vector3 newGameSpawn;
 
+    private bool isFightingBoss;
+
     private void Awake()
     {
         instance = this;
@@ -101,6 +103,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void RescanPathfinding() {
-        AstarPath.active.Scan();
+        //AstarPath.active.Scan();
+    }
+
+    public void SetIsFightingBoss(bool flag) {
+        isFightingBoss = flag;
+    }
+
+    public bool GetIsFightingBoss() {
+        return isFightingBoss;
     }
 }

@@ -1077,7 +1077,7 @@ public class BasicEnemy : MonoBehaviour
     }*/
 
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
-            public void ResetToSpawn()
+    public void ResetToSpawn()
     {
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
