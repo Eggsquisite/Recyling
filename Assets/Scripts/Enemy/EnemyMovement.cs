@@ -132,12 +132,48 @@ public class EnemyMovement : MonoBehaviour
         rightOffset = new Vector2(Random.Range(minOffset, maxOffset), 0f);
     }
 
+    private void Start()
+    {
+        if (seeker != null)
+            seeker.StartPath(rb.position, Player.instance.transform.position, OnPathComplete);
+    }
+
     private void FixedUpdate()
     {
         if (canPatrol && patrolReady) 
             Patrolling(); 
     }
 
+    private void Update()
+    {
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+            reachedEndOfPath = false;
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+    }
+
+    /// <summary>
+    /// Check if there is a path generated from seeker script
+    /// </summary>
+    /// <param name="p"></param>
+    private void OnPathComplete(Path p) { 
+        if (!p.error) {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    /// <summary>
+    /// Randomizes the y position at which the enemy will hover around the player
+    /// </summary>
     private void RandomizeOffsetAttackStandby() {
         offsetAttackStandby = new Vector2(offsetAttackStandbyRange.x,
                                     Random.Range(-offsetAttackStandbyRange.y, offsetAttackStandbyRange.y));
