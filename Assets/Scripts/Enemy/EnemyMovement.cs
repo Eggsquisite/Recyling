@@ -207,6 +207,7 @@ public class EnemyMovement : MonoBehaviour
         IsMoving();
         if (canFollow)  {
             if (attackReady) { 
+                // if attack is ready, enemy moves closer to player to trigger an attack
                 if (attackFromLeft) {
                     desiredPosition = playerChar + leftOffset;
                     followVelocity = Vector2.MoveTowards(rb.position,
@@ -221,6 +222,7 @@ public class EnemyMovement : MonoBehaviour
                 }
             } 
             else if (!attackReady) {
+                // if attack is NOT ready, enemy stands further away using the standby offset
                 if (attackFromLeft) { 
                     desiredPosition = playerChar + leftOffset - offsetAttackStandby;
                     followVelocity = Vector2.MoveTowards(rb.position,
