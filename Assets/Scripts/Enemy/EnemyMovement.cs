@@ -23,13 +23,18 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Pathfinding Properties")]
     [SerializeField]
+    private bool usePathfinding;
+    [SerializeField]
     private Path path;
     [SerializeField]
     private float nextWaypointDistance = 3f;
 
+    private Vector2 force;
+    private Vector2 direction;
     private Seeker seeker;
     private int currentWaypoint;
-    private bool reachedEndOfPath, followPath;
+    private float distanceToWaypoint;
+    private bool reachedEndOfPath;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -118,12 +123,12 @@ public class EnemyMovement : MonoBehaviour
         if (playerChar.x > transform.position.x) {
             facingLeft = false;
             leftOfPlayer = true;
-            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+            //transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
         else if (playerChar.x <= transform.position.x) {
             facingLeft = true;
             leftOfPlayer = false;
-            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+            //transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
         teleportReady = true;
@@ -136,43 +141,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        if (seeker != null)
+        if (seeker != null && usePathfinding)
             InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
-    private void UpdatePath()
-    {
-        if (seeker.IsDone()) 
-            seeker.StartPath(rb.position, Player.instance.transform.position, OnPathComplete);
-    }
 
     private void FixedUpdate()
     {
         if (canPatrol && patrolReady) 
             Patrolling();
-
-        if (path == null)
-            return;
-
-        if (followPath) { 
-            if (currentWaypoint >= path.vectorPath.Count)
-            {
-                reachedEndOfPath = true;
-                return;
-            }
-            else
-                reachedEndOfPath = false;
-
-            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * baseMoveSpeed * Time.deltaTime;
-
-            rb.AddForce(force);
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < nextWaypointDistance) {
-                currentWaypoint++;
-            }
-        }
     }
 
     /// <summary>
@@ -184,6 +161,12 @@ public class EnemyMovement : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    private void UpdatePath()
+    {
+        if (seeker.IsDone()) 
+            seeker.StartPath(rb.position, Player.instance.transform.position, OnPathComplete);
     }
 
     /// <summary>
@@ -208,6 +191,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void StopFindPlayer() {
         CancelInvoke("FindPlayer");
+        rb.velocity = Vector2.zero;
     }
 
     public void FindPlayerRepeating() {
@@ -221,60 +205,128 @@ public class EnemyMovement : MonoBehaviour
 
         IsMoving();
         if (canFollow)  {
-            followPath = true;
-            if (attackReady)
-            {
-                /*// if attack is ready, enemy moves closer to player to trigger an attack
-                if (attackFromLeft) {
-                    desiredPosition = playerChar + leftOffset;
-                    followVelocity = Vector2.MoveTowards(rb.position,
-                                                        desiredPosition,
-                                                        baseMoveSpeed * Time.fixedDeltaTime);
-                }
-                else {
-                    desiredPosition = playerChar + rightOffset;
-                    followVelocity = Vector2.MoveTowards(rb.position,
-                                                        desiredPosition,
-                                                        baseMoveSpeed * Time.fixedDeltaTime);
-                }
-            } 
-            else if (!attackReady) {
-                // if attack is NOT ready, enemy stands further away using the standby offset
-                if (attackFromLeft) { 
-                    desiredPosition = playerChar + leftOffset - offsetAttackStandby;
-                    followVelocity = Vector2.MoveTowards(rb.position,
-                                                        desiredPosition,
-                                                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
-                }
-                else {
-                    desiredPosition = playerChar + rightOffset + offsetAttackStandby;
-                    followVelocity = Vector2.MoveTowards(rb.position,
-                                                        desiredPosition,
-                                                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
-                }
-            }
-
-            RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
-            if (hit.collider != null && hit.collider.tag == "LeftBorder") {
-                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
-                    rb.MovePosition(followVelocity);
-                attackFromLeft = true;
-            }
-            else if (hit.collider != null && hit.collider.tag == "RightBorder") {
-                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
-                    rb.MovePosition(followVelocity);
-                attackFromLeft = false;
-            }
-            if (hit.collider != null) {
-                //rb.MovePosition(hit.point);
-                if (Vector2.Distance(rb.position, hit.point) > 0.25f)
-                    rb.MovePosition(followVelocity);
-            }
+            if (usePathfinding)
+                Pathfinding(attackReady);
             else
-                rb.MovePosition(followVelocity);*/
-            }
+                OriginalMovement(attackReady);
         } 
     }
+
+    /// <summary>
+    /// Code for movement that utilizes pathfinding. Movement is slightly odd
+    /// </summary>
+    /// <param name="attackReady"></param>
+    private void Pathfinding(bool attackReady) {
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+            reachedEndOfPath = false;
+
+        if (attackReady)
+        {
+            if (attackFromLeft)
+                direction = ((Vector2)path.vectorPath[currentWaypoint] +
+                    leftOffset -
+                    rb.position).normalized;
+            else
+                direction = ((Vector2)path.vectorPath[currentWaypoint] +
+                    rightOffset -
+                    rb.position).normalized;
+        }
+        else if (!attackReady)
+        {
+            if (attackFromLeft)
+                direction = ((Vector2)path.vectorPath[currentWaypoint] +
+                    leftOffset -
+                    offsetAttackStandby -
+                    rb.position).normalized;
+            else
+                direction = ((Vector2)path.vectorPath[currentWaypoint] +
+                    rightOffset +
+                    offsetAttackStandby -
+                    rb.position).normalized;
+        }
+
+        force = direction * baseMoveSpeed * Time.deltaTime;
+        rb.AddForce(force);
+
+        distanceToWaypoint = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distanceToWaypoint < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+    }
+
+    /// <summary>
+    /// Code for original movement that doesnt utilize pathfinding
+    /// </summary>
+    /// <param name="attackReady"></param>
+    private void OriginalMovement(bool attackReady) {
+        // if attack is ready, enemy moves closer to player to trigger an attack
+        if (attackReady) { 
+            if (attackFromLeft)
+            {
+                desiredPosition = playerChar + leftOffset;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                desiredPosition = playerChar + rightOffset;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed * Time.fixedDeltaTime);
+            }
+        }
+        else if (!attackReady) {
+            // if attack is NOT ready, enemy stands further away using the standby offset
+            if (attackFromLeft) { 
+                desiredPosition = playerChar + leftOffset - offsetAttackStandby;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed* idleSpeedMult * Time.fixedDeltaTime);
+            }
+            else
+            {
+                desiredPosition = playerChar + rightOffset + offsetAttackStandby;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                desiredPosition,
+                                                baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
+            }
+        }
+
+        RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
+        if (hit.collider != null && hit.collider.tag == "LeftBorder")
+        {
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+            attackFromLeft = true;
+        }
+        else if (hit.collider != null && hit.collider.tag == "RightBorder")
+        {
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+            attackFromLeft = false;
+        }
+        if (hit.collider != null)
+        {
+            //rb.MovePosition(hit.point);
+            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+                rb.MovePosition(followVelocity);
+        }
+        else { 
+            rb.MovePosition(followVelocity);
+        }
+    }
+
 
     public RaycastHit2D CalculateDirectionToMove(Vector2 direction) {
         //directionToMove = desiredPosition - rb.position;
@@ -312,12 +364,12 @@ public class EnemyMovement : MonoBehaviour
 
     public bool CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
-        if (playerChar.x > transform.position.x && !leftOfPlayer) {
+        if (playerChar.x > transform.position.x && transform.localScale.x != xScaleValue) {
             facingLeft = false;
             leftOfPlayer = true;
             transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
-        else if (playerChar.x <= transform.position.x && leftOfPlayer) {
+        else if (playerChar.x <= transform.position.x && transform.localScale.x != -xScaleValue) {
             facingLeft = true;
             leftOfPlayer = false;
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
@@ -486,7 +538,7 @@ public class EnemyMovement : MonoBehaviour
     public void SetFollow(bool flag) {
         canFollow = flag;
         if (!flag)
-            CancelInvoke("FindPlayer");
+            StopFindPlayer();
     }
     public GameObject GetPlayer() {
         /*if (player == null)

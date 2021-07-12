@@ -330,18 +330,19 @@ MonoBehaviour:
   detectPos: {fileID: 806799264620761062}
   detectInRange: 4
   detectIsRay: 0
-  nextWaypointDistance: 3
-  repeatFollowDelay: 1
+  usePathfinding: 0
+  nextWaypointDistance: 1.5
+  repeatFollowDelay: 0.5
   attackFollowDelay: 1
   stunFollowDelay: 0.75
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1.25
+  minMoveSpeed: 0.5
+  maxMoveSpeed: 1
   minOffset: 0.5
   maxOffset: 1
-  offsetAttackStandbyRange: {x: 1, y: 0.25}
+  offsetAttackStandbyRange: {x: 2, y: 0.25}
   canPatrol: 1
   offsetPatrolDestination: {x: 0.5, y: 2}
   waitTime: 2

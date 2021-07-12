@@ -29889,6 +29889,8 @@ MonoBehaviour:
   detectPos: {fileID: 806799265187410215}
   detectInRange: 4
   detectIsRay: 0
+  usePathfinding: 0
+  nextWaypointDistance: 3
   repeatFollowDelay: 1
   attackFollowDelay: 1
   stunFollowDelay: 0.75
