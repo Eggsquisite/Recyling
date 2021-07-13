@@ -62,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 offsetAttackStandbyRange;
 
     private int abovePlayer;
+    private bool isStuck;
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
@@ -328,23 +329,39 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
         if (hit.collider != null && hit.collider.tag == "LeftBorder")
         {
+            isStuck = false;
             if (Vector2.Distance(rb.position, hit.point) > 0.25f)
                 rb.MovePosition(followVelocity);
             attackFromLeft = true;
         }
         else if (hit.collider != null && hit.collider.tag == "RightBorder")
         {
+            isStuck = false;
             if (Vector2.Distance(rb.position, hit.point) > 0.25f)
                 rb.MovePosition(followVelocity);
             attackFromLeft = false;
         }
         if (hit.collider != null)
         {
+            isStuck = true;
+            var tmpDistance = 1f;
             //rb.MovePosition(hit.point);
             if (Vector2.Distance(rb.position, hit.point) > 0.5f)
                 rb.MovePosition(followVelocity);
             else if (Vector2.Distance(rb.position, hit.point) <= 0.5f) { 
-                desiredPosition = UpdateDirection();
+                desiredPosition = UpdateDirection(tmpDistance);
+
+                // Check to make sure values arent crazy high
+/*                if (desiredPosition.x > tmpDistance)
+                    desiredPosition.x = tmpDistance;
+                else if (desiredPosition.x < -tmpDistance)
+                    desiredPosition.x = -tmpDistance;
+
+                if (desiredPosition.y > tmpDistance)
+                    desiredPosition.y = tmpDistance;
+                else if (desiredPosition.y < -tmpDistance)
+                    desiredPosition.y = -tmpDistance;*/
+
                 if (attackReady) {
                     followVelocity = Vector2.MoveTowards(rb.position,
                                                         desiredPosition,
@@ -356,11 +373,12 @@ public class EnemyMovement : MonoBehaviour
                                                         baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
                 }
 
-                Debug.Log("Updated position: " + desiredPosition);
+                //Debug.Log("Updated position: " + desiredPosition);
                 rb.MovePosition(followVelocity);
             }
         }
         else {
+            isStuck = false;
             rb.MovePosition(followVelocity);
         }
     }
@@ -371,37 +389,64 @@ public class EnemyMovement : MonoBehaviour
         return Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
     }
 
-    private Vector2 UpdateDirection() {
+    private Vector2 UpdateDirection(float tmpDistance) {
         // check # directions around the enemy for a space to move, then move there
-        var tmpDistance = 1f;
-
         // starting from top left, going clockwise
-        if (CheckDirection(-tmpDistance, tmpDistance)) {
-            return updatedDirection;
+        if (CheckDirection(tmpDistance, 0f))
+        {
+            if (CheckDirection(0f, tmpDistance))
+                return updatedDirection;
+            else if (CheckDirection(0f, -tmpDistance))
+                return updatedDirection;
         } 
-        else if (CheckDirection(0f, tmpDistance)) {
-            return updatedDirection;
+        else if (CheckDirection(-tmpDistance, 0f))
+        {
+            if (CheckDirection(0f, tmpDistance))
+                return updatedDirection;
+            if (CheckDirection(0f, -tmpDistance))
+                return updatedDirection;
         } 
-        else if (CheckDirection(tmpDistance, tmpDistance)) {
-            return updatedDirection;
-        } 
-        else if (CheckDirection(tmpDistance, 0f)) {
-            return updatedDirection;
-        } 
-        else if (CheckDirection(tmpDistance, -tmpDistance)) {
-            return updatedDirection;
-        } 
-        else if (CheckDirection(0f, -tmpDistance)) {
-            return updatedDirection;
-        } 
-        else if (CheckDirection(-tmpDistance, -tmpDistance)) {
-            return updatedDirection;
-        } 
-        else if (CheckDirection(-tmpDistance, 0f)) {
-            return updatedDirection;
+        else // if can't move left/right, move straight up/down
+        {
+            Debug.Log("Moving up/down");
+            if (CheckDirection(0f, tmpDistance * 2f))
+                return updatedDirection;
+            if (CheckDirection(0f, -tmpDistance * 2f))
+                return updatedDirection;
         }
 
-        return desiredPosition;
+
+        /*        if (CheckDirection(-tmpDistance, tmpDistance)) {
+                    return updatedDirection;
+                } 
+                if (CheckDirection(0f, tmpDistance)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(tmpDistance, tmpDistance)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(tmpDistance, 0f)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(tmpDistance, -tmpDistance)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(0f, -tmpDistance)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(-tmpDistance, -tmpDistance)) {
+                    return updatedDirection;
+                } 
+                else if (CheckDirection(-tmpDistance, 0f)) {
+                    return updatedDirection;
+                }*/
+
+        if (playerChar.y > rb.position.y)
+            updatedDirection = new Vector2(0f, tmpDistance);
+        else if (playerChar.y < rb.position.y)
+            updatedDirection = new Vector2(0f, -tmpDistance);
+        
+        return updatedDirection;
     }
 
     private bool CheckDirection(float x, float y) {
