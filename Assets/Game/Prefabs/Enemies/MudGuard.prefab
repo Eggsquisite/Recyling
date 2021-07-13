@@ -230,7 +230,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &3898020908785157718
 CapsuleCollider2D:
@@ -338,7 +338,7 @@ MonoBehaviour:
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 0.5
+  minMoveSpeed: 0.75
   maxMoveSpeed: 1
   minOffset: 0.5
   maxOffset: 1

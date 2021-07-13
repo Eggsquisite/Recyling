@@ -71,6 +71,7 @@ public class EnemyMovement : MonoBehaviour
     private float currentSpeed;
     private float baseMoveSpeed;
 
+    private Vector2 updatedDirection;
     private Vector2 offsetAttackStandby;
     private Vector2 lastUpdatePos = Vector2.zero;
     private Vector2 leftOffset, rightOffset, dist, followVelocity;
@@ -230,31 +231,52 @@ public class EnemyMovement : MonoBehaviour
 
         if (attackReady)
         {
-            if (attackFromLeft)
+            if (attackFromLeft) {
+/*                desiredPosition = playerChar + leftOffset;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed * Time.fixedDeltaTime);*/
                 direction = ((Vector2)path.vectorPath[currentWaypoint] +
                     leftOffset -
                     rb.position).normalized;
-            else
+            }
+            else {
+/*                desiredPosition = playerChar + rightOffset;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed * Time.fixedDeltaTime);*/
                 direction = ((Vector2)path.vectorPath[currentWaypoint] +
                     rightOffset -
                     rb.position).normalized;
+            }
         }
         else if (!attackReady)
         {
-            if (attackFromLeft)
+            if (attackFromLeft) {
+/*                desiredPosition = playerChar + leftOffset - offsetAttackStandby;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                    desiredPosition,
+                                                    baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
                 direction = ((Vector2)path.vectorPath[currentWaypoint] +
                     leftOffset -
                     offsetAttackStandby -
                     rb.position).normalized;
-            else
+            }
+            else {
+/*                desiredPosition = playerChar + rightOffset + offsetAttackStandby;
+                followVelocity = Vector2.MoveTowards(rb.position,
+                                                desiredPosition,
+                                                baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);*/
                 direction = ((Vector2)path.vectorPath[currentWaypoint] +
                     rightOffset +
                     offsetAttackStandby -
                     rb.position).normalized;
+            }
         }
 
         force = direction * baseMoveSpeed * Time.deltaTime;
         rb.AddForce(force);
+        //rb.MovePosition(followVelocity);
 
         distanceToWaypoint = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -319,10 +341,26 @@ public class EnemyMovement : MonoBehaviour
         if (hit.collider != null)
         {
             //rb.MovePosition(hit.point);
-            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+            if (Vector2.Distance(rb.position, hit.point) > 0.5f)
                 rb.MovePosition(followVelocity);
+            else if (Vector2.Distance(rb.position, hit.point) <= 0.5f) { 
+                desiredPosition = UpdateDirection();
+                if (attackReady) {
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                                                        desiredPosition,
+                                                        baseMoveSpeed * Time.fixedDeltaTime);
+                }
+                else {
+                    followVelocity = Vector2.MoveTowards(rb.position,
+                                                        desiredPosition,
+                                                        baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
+                }
+
+                Debug.Log("Updated position: " + desiredPosition);
+                rb.MovePosition(followVelocity);
+            }
         }
-        else { 
+        else {
             rb.MovePosition(followVelocity);
         }
     }
@@ -331,6 +369,50 @@ public class EnemyMovement : MonoBehaviour
     public RaycastHit2D CalculateDirectionToMove(Vector2 direction) {
         //directionToMove = desiredPosition - rb.position;
         return Physics2D.Raycast(rb.position, direction, direction.magnitude, borderLayer);
+    }
+
+    private Vector2 UpdateDirection() {
+        // check # directions around the enemy for a space to move, then move there
+        var tmpDistance = 1f;
+
+        // starting from top left, going clockwise
+        if (CheckDirection(-tmpDistance, tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(0f, tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(tmpDistance, tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(tmpDistance, 0f)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(tmpDistance, -tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(0f, -tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(-tmpDistance, -tmpDistance)) {
+            return updatedDirection;
+        } 
+        else if (CheckDirection(-tmpDistance, 0f)) {
+            return updatedDirection;
+        }
+
+        return desiredPosition;
+    }
+
+    private bool CheckDirection(float x, float y) {
+        var tmpDirection = new Vector2(x, y);
+        RaycastHit2D hit = CalculateDirectionToMove((tmpDirection - rb.position).normalized);
+        if (hit.collider != null && hit.collider.tag != "LeftBorder" && hit.collider.tag != "RightBorder") {
+            updatedDirection = tmpDirection;
+            return true;
+        }
+
+        return false;
     }
 
     public RaycastHit2D DetectPlayer() {
@@ -590,7 +672,6 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.color = Color.black;
         //Gizmos.DrawLine(detectPos.position, (Vector2)detectPos.position + (Vector2.right * detectRange));
         if (rb != null) { 
-            Gizmos.DrawRay(rb.position, directionToMove);
             Gizmos.color = Color.grey;
             Gizmos.DrawLine(rb.position, directionToPlayer);
         }
