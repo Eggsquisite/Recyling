@@ -392,28 +392,46 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 UpdateDirection(float tmpDistance) {
         // check # directions around the enemy for a space to move, then move there
         // starting from top left, going clockwise
-        if (CheckDirection(tmpDistance, 0f))
-        {
-            if (CheckDirection(0f, tmpDistance))
-                return updatedDirection;
-            else if (CheckDirection(0f, -tmpDistance))
-                return updatedDirection;
-        } 
-        else if (CheckDirection(-tmpDistance, 0f))
-        {
-            if (CheckDirection(0f, tmpDistance))
-                return updatedDirection;
-            if (CheckDirection(0f, -tmpDistance))
-                return updatedDirection;
-        } 
-        else // if can't move left/right, move straight up/down
-        {
-            Debug.Log("Moving up/down");
-            if (CheckDirection(0f, tmpDistance * 2f))
-                return updatedDirection;
-            if (CheckDirection(0f, -tmpDistance * 2f))
-                return updatedDirection;
+        if (Player.instance.transform.position.x > rb.position.x) { 
+            if (CheckDirection(tmpDistance, 0f))
+            {
+                if (CheckDirection(0f, tmpDistance))
+                    return updatedDirection;
+                else if (CheckDirection(0f, -tmpDistance))
+                    return updatedDirection;
+            } 
+            else if (CheckDirection(-tmpDistance, 0f))
+            {
+                if (CheckDirection(0f, tmpDistance))
+                    return updatedDirection;
+                if (CheckDirection(0f, -tmpDistance))
+                    return updatedDirection;
+            } 
         }
+        else if (Player.instance.transform.position.x < rb.position.x) {
+            if (CheckDirection(tmpDistance, 0f))
+            {
+                if (CheckDirection(0f, tmpDistance))
+                    return updatedDirection;
+                else if (CheckDirection(0f, -tmpDistance))
+                    return updatedDirection;
+            }
+            else if (CheckDirection(-tmpDistance, 0f))
+            {
+                if (CheckDirection(0f, tmpDistance))
+                    return updatedDirection;
+                if (CheckDirection(0f, -tmpDistance))
+                    return updatedDirection;
+            }
+        }
+
+        Debug.Log("Moving up/down");
+/*        if (CheckDirection(0f, tmpDistance * 2f))
+            return updatedDirection;
+        if (CheckDirection(0f, -tmpDistance * 2f))
+            return updatedDirection;*/
+
+        return updatedDirection;
 
 
         /*        if (CheckDirection(-tmpDistance, tmpDistance)) {
@@ -440,13 +458,6 @@ public class EnemyMovement : MonoBehaviour
                 else if (CheckDirection(-tmpDistance, 0f)) {
                     return updatedDirection;
                 }*/
-
-        if (playerChar.y > rb.position.y)
-            updatedDirection = new Vector2(0f, tmpDistance);
-        else if (playerChar.y < rb.position.y)
-            updatedDirection = new Vector2(0f, -tmpDistance);
-        
-        return updatedDirection;
     }
 
     private bool CheckDirection(float x, float y) {
