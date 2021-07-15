@@ -1023,18 +1023,21 @@ public class BasicEnemy : MonoBehaviour
     }
 
     IEnumerator LoadDead() {
-        isDead = true;
-        enemyMovement.StopFindPlayer();
-        enemyMovement.SetDirection(facingLeft);
-        enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEAD);
-        var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEAD);
+        // if player is not dead, enemy does not need to be revived in the circumstance: player exited game before enemies revived
+        if (!SaveManager.instance.activeSave.playerIsDead) { 
+            isDead = true;
+            enemyMovement.StopFindPlayer();
+            enemyMovement.SetDirection(facingLeft);
+            enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEAD);
+            var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEAD);
 
-        GetComponent<Collider2D>().enabled = false;
-        transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
+            GetComponent<Collider2D>().enabled = false;
+            transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
 
-        yield return new WaitForSeconds(tmp);
-        if (deleteOnDeath)
-            sp.enabled = false;
+            yield return new WaitForSeconds(tmp);
+            if (deleteOnDeath)
+                sp.enabled = false;
+        }
     }
 
     /// <summary>

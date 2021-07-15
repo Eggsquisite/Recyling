@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
                 Player.instance.LoadHealth(activeSave.playerHealth);
                 Player.instance.LoadEnergy(activeSave.playerEnergy);
             } else {
+                EnemyManager.Instance.ResetAllEnemies();
                 AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, false);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
                 Player.instance.LoadCurrency(0);
@@ -81,12 +82,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawning");
         transition.Play("PlayerDead");
         activeSave.playerDeathPosition = Player.instance.transform.position;
-        Player.instance.transform.position = activeSave.playerRespawnPosition;
+        // this will move the camera 
+        //Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         yield return new WaitForSeconds(0.25f);
         if (deathPanel != null) deathPanel.SetActive(true);
 
         yield return new WaitForSeconds(3f);
+        Debug.Log("Moving camera");
 
         // spawn deathObject at players death position
         if (deathObject != null) {
@@ -96,6 +99,7 @@ public class GameManager : MonoBehaviour
         if (deathPanel != null) deathPanel.SetActive(false);
         StartCoroutine(ResetCamSpeed());
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
+        Player.instance.transform.position = activeSave.playerRespawnPosition;
 
         Player.instance.RefreshResources();
         Player.instance.SetInvincible(true);
