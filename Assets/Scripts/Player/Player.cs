@@ -19,13 +19,13 @@ public class Player : MonoBehaviour
     private Transform playerSprite;
     [SerializeField]
     private SpriteRenderer sp;
+    [SerializeField]
+    private ParticleSystem ps;
 
     private Animator anim;
     private Rigidbody2D rb;
     private Projectile projectile;
     private RuntimeAnimatorController ac;
-
-    public Transform spawnPoint;
 
     [Header("Player Stats")]
     private PlayerUI UI;
@@ -192,6 +192,7 @@ public class Player : MonoBehaviour
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
+        if (ps != null) ps.gameObject.SetActive(false);
 
         currentWalkSpeed = baseWalkSpeed;
         ac = anim.runtimeAnimatorController;
@@ -1131,6 +1132,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         var time = 0f;
+        if (ps != null) ps.gameObject.SetActive(true);
         currentWalkSpeed *= healWalkSpeedMultiplier;
         anim.SetFloat("speedMultiplier", 0.5f);
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
@@ -1155,6 +1157,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecoveryDelay() {
         yield return new WaitForSeconds(0.5f);
+        if (ps != null) ps.gameObject.SetActive(false);
         if (!isAttacking && !isDashing && !isFalling && !isTeleporting)
             canReceiveInput = true;
     }
