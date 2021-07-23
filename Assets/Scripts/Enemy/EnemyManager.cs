@@ -23,6 +23,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// FINDING SAVE DATA -> %APPDATA%/LocalLow/DefaultCompany/ForBruder
+    /// </summary>
+
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -43,6 +48,7 @@ public class EnemyManager : MonoBehaviour
 
                 data.id = tmpEnemy.name;
                 data.isDead = tmpEnemy.GetIsDead();
+                //data.isBoss = tmpEnemy.GetIsBoss();
                 data.facingLeft = true;
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
@@ -56,7 +62,8 @@ public class EnemyManager : MonoBehaviour
             dataList = SaveManager.instance.LoadEnemyData();
             for (int i = 0; i < dataList.Count; i++)
             {
-                if (dataList[i].isDead)
+                // if enemy is dead and not a boss, load their dead body at the position they died
+                if (dataList[i].isDead && !dataList[i].isBossDead)
                 {
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
@@ -66,21 +73,30 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void ResetAllEnemies() {
+        List<EnemyData> newList = new List<EnemyData>();
         for (int i = 0; i < enemies.Length; i++)
         {
             data = new EnemyData();
-            dataList = new List<EnemyData>();
+            //dataList = new List<EnemyData>();
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
             tmpEnemy.ResetToSpawn();
             data.id = tmpEnemy.name;
-            data.isDead = false;
-            data.facingLeft = tmpEnemy.GetFacing();
-            data.startPosition = tmpEnemy.GetSpawnPoint();
-            data.deathPosition = tmpEnemy.GetSpawnPoint();
-            dataList.Add(data);
+            // if enemy is not a boss and dead, reset them, otherwise don't reset a dead boss
+            if (dataList[i].id == data.id && !dataList[i].isBossDead) { 
+                data.isDead = false;
+                data.facingLeft = tmpEnemy.GetFacing();
+                data.startPosition = tmpEnemy.GetSpawnPoint();
+                data.deathPosition = tmpEnemy.GetSpawnPoint();
+            }
+            else if (dataList[i].id == data.id && dataList[i].isBossDead && dataList[i].isDead) { 
+                data.isDead = true;
+            }
+
+            newList.Add(data);
         }
 
+        dataList = newList;
         SaveManager.instance.SaveEnemies();
     }
 
@@ -109,6 +125,7 @@ public class EnemyManager : MonoBehaviour
             if (id == dataList[i].id)
             {
                 dataList[i].isDead = true;
+                dataList[i].isBossDead = true;
                 Debug.Log(dataList[i].isDead);
             }
         }
@@ -126,6 +143,7 @@ public class EnemyManager : MonoBehaviour
             data.id = tmpEnemy.name;
             data.facingLeft = tmpEnemy.GetFacing();
             data.isDead = tmpEnemy.GetIsDead();
+            //data.isBoss = tmpEnemy.GetIsBoss();
 
             data.startPosition = tmpEnemy.GetSpawnPoint();
 
@@ -151,6 +169,7 @@ public class EnemyData
 {
     public string id;
     public bool isDead;
+    public bool isBossDead;
     public bool facingLeft;
 
     public Vector3 startPosition;

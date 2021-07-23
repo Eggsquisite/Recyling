@@ -132,8 +132,8 @@ public class GameManager : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            float x = Random.Range(-0.5f, 0.5f) * magnitude;
+            float y = Random.Range(-0.5f, 0.5f) * magnitude;
 
             cam.transform.parent.localPosition = new Vector3(x, y, originalPos.z);
 

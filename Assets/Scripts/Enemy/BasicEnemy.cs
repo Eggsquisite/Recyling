@@ -59,6 +59,8 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField]
     private bool deleteOnDeath;
+    [SerializeField]
+    private bool isBoss;
 
     private bool isDead;
     private bool facingLeft;
@@ -1013,6 +1015,10 @@ public class BasicEnemy : MonoBehaviour
         return isDead;
     }
 
+    public bool GetIsBoss() {
+        return isBoss;
+    }
+
     public void IsDead(bool facing)
     {
         facingLeft = facing;
@@ -1036,7 +1042,7 @@ public class BasicEnemy : MonoBehaviour
             transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
 
             yield return new WaitForSeconds(tmp);
-            if (deleteOnDeath)
+            if (deleteOnDeath || isBoss)
                 sp.enabled = false;
         }
     }
@@ -1088,6 +1094,9 @@ public class BasicEnemy : MonoBehaviour
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
     public void ResetToSpawn()
     {
+        if (isBoss)
+            return;
+
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
 

@@ -13319,6 +13319,7 @@ MonoBehaviour:
   data:
     id: 
     isDead: 0
+    isBossDead: 0
     facingLeft: 0
     startPosition: {x: 0, y: 0, z: 0}
     deathPosition: {x: 0, y: 0, z: 0}
@@ -29544,7 +29545,8 @@ MonoBehaviour:
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 6
   tetherUnfollowRange: 8
-  deleteOnDeath: 0
+  deleteOnDeath: 1
+  isBoss: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -29729,7 +29731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &3898020908218038423
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
