@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Vector3 newGameSpawn;
 
     private bool isFightingBoss;
+    private Coroutine cameraShakeRoutine;
 
     private void Awake()
     {
@@ -116,5 +117,30 @@ public class GameManager : MonoBehaviour
 
     public bool GetIsFightingBoss() {
         return isFightingBoss;
+    }
+
+    public void BeginCameraShake(float duration, float magnitude) {
+        if (cameraShakeRoutine != null)
+            StopCoroutine(cameraShakeRoutine);
+        cameraShakeRoutine = StartCoroutine(CameraShake(duration, magnitude));
+    }
+
+    IEnumerator CameraShake(float duration, float magnitude) {
+        Vector3 originalPos = cam.transform.parent.transform.position;
+
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            cam.transform.parent.localPosition = new Vector3(x, y, originalPos.z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        cam.transform.parent.localPosition = originalPos;
     }
 }

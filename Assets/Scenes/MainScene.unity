@@ -1558,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MudGuard (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
 --- !u!4 &369829488 stripped
@@ -7364,7 +7368,7 @@ GameObject:
   - component: {fileID: 488349085}
   - component: {fileID: 1484383662}
   m_Layer: 7
-  m_Name: HealthBar
+  m_Name: HealthBar Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10628,7 +10632,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 10123409ee41ba74896695d6db15a14b, type: 3}
-  m_Color: {r: 1, g: 0.53187966, b: 0, a: 1}
+  m_Color: {r: 0.5294118, g: 0.14117648, b: 0.043137256, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -22593,7 +22597,7 @@ MonoBehaviour:
   healthDestroy: {fileID: 465873771857988207}
   waitTime: 0.5
   visualDestroySpeed: 0.5
-  isBoss: 1
+  isBoss: 0
 --- !u!1001 &1846947094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22885,6 +22889,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3781810322380137320}
     m_Modifications:
+    - target: {fileID: 1062560603, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157715, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -22932,6 +22940,10 @@ PrefabInstance:
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_Name
       value: MudGuard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
@@ -24664,6 +24676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MudGuard (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
 --- !u!4 &1973967642 stripped
@@ -25261,19 +25277,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1592857431640230681, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
       propertyPath: m_Name
-      value: Camera
+      value: CameraHolder
       objectReference: {fileID: 0}
-    - target: {fileID: 1748060059239125279, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904248650681122899, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904248650681122899, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 1748060059239125278, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
+      propertyPath: orthographic size
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
@@ -27706,7 +27714,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 10123409ee41ba74896695d6db15a14b, type: 3}
-  m_Color: {r: 0.5660378, g: 0.10341073, b: 0, a: 0.49019608}
+  m_Color: {r: 1, g: 0.5882353, b: 0.11764707, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -29725,7 +29733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &3898020908218038423
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -29739,8 +29747,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.04}
-  m_Size: {x: 0.75, y: 0.45}
+  m_Offset: {x: -0.08859529, y: 0.000000010561381}
+  m_Size: {x: 2.0408702, y: 0.4712726}
   m_Direction: 1
 --- !u!4 &3898020908486576666
 Transform:

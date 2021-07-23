@@ -839,11 +839,13 @@ public class BasicEnemy : MonoBehaviour
             return;
 
         SetIsInvincible(1);
-        Player.instance.RegainEnergy(GetEnergyGainMultiplier());
-        stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
-
         PushBack(distance);
         currentHealth -= damageNum;
+        stunDuration = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_HURT);
+
+        // Player regains energy on hitting enemy with a normal attack
+        Player.instance.RegainEnergy(GetEnergyGainMultiplier());
+
         // if not a boss, set health bar active/inactive
         if (healthBar != null && healthFill != null && !healthFill.GetIsBoss()) {
             healthBar.SetActive(true);
@@ -853,10 +855,10 @@ public class BasicEnemy : MonoBehaviour
                 StopCoroutine(healthBarRoutine);
             healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
         }
-        StartCoroutine(BeginDamageThreshold(damageNum));
 
         // Play sounds
         playSound.PlayEnemyHit(soundIndex);
+        StartCoroutine(BeginDamageThreshold(damageNum));
 
         if (currentHealth <= 0) {
             if (deathRoutine != null)
@@ -889,7 +891,6 @@ public class BasicEnemy : MonoBehaviour
             }
             else { 
                 SetHurtSprite();
-
             }
 
             if (invincibleRoutine != null)
@@ -1054,6 +1055,11 @@ public class BasicEnemy : MonoBehaviour
 
         yield return new WaitForSeconds(tmp);
         GiveCurrency();
+
+        if (healthBarRoutine != null)
+            StopCoroutine(healthBarRoutine);
+        healthBarRoutine = StartCoroutine(HealthBarVisibility(1f));
+
         if (deleteOnDeath)
             sp.enabled = false;
 
