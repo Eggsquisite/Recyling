@@ -25279,10 +25279,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraHolder
       objectReference: {fileID: 0}
-    - target: {fileID: 1748060059239125278, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
-      propertyPath: orthographic size
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca570894ab27bd4cb1fdeb707296207, type: 3}
 --- !u!1001 &2110586330
@@ -29733,7 +29729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &3898020908218038423
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

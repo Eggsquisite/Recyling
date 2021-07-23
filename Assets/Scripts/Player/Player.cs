@@ -922,7 +922,7 @@ public class Player : MonoBehaviour
 
         Stunned();
         StopAttackFollowThrough();
-        GameManager.instance.BeginCameraShake(0.25f, 0.05f);
+        GameManager.instance.BeginCameraShake(stunDuration, 0.05f);
         PushBack(pushDistance, reference);
 
         if (isAttacking)
