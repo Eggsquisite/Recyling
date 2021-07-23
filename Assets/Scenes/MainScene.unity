@@ -13319,7 +13319,7 @@ MonoBehaviour:
   data:
     id: 
     isDead: 0
-    isBossDead: 0
+    isBoss: 0
     facingLeft: 0
     startPosition: {x: 0, y: 0, z: 0}
     deathPosition: {x: 0, y: 0, z: 0}
@@ -29546,7 +29546,7 @@ MonoBehaviour:
   tetherFollowRange: 6
   tetherUnfollowRange: 8
   deleteOnDeath: 1
-  isBoss: 1
+  isBoss: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

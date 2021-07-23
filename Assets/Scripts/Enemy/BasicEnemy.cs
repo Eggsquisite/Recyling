@@ -1094,8 +1094,8 @@ public class BasicEnemy : MonoBehaviour
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
     public void ResetToSpawn()
     {
-        if (isBoss)
-            return;
+        if (isBoss) ;
+            //return;
 
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
@@ -1104,10 +1104,7 @@ public class BasicEnemy : MonoBehaviour
         enemyMovement.ResetDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
-        if (healthFill != null)
-            healthFill.ResetHealth();
-        currentHealth = maxHealth;
-        currentStamina = maxStamina;
+        //ResetHealth();
 
         isInvincible = false;
         outOfStamina = false;
@@ -1122,6 +1119,14 @@ public class BasicEnemy : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
             enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_IDLE);
         }
+    }
+
+    public void ResetHealth()
+    {
+        if (healthFill != null)
+            healthFill.ResetHealth();
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
     }
 
     public void SetIsInactive(bool flag) {

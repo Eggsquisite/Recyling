@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+        // case for new game
         if (!SaveManager.instance.hasLoaded)
         { 
             for (int i = 0; i < enemies.Length; i++)
@@ -48,7 +49,7 @@ public class EnemyManager : MonoBehaviour
 
                 data.id = tmpEnemy.name;
                 data.isDead = tmpEnemy.GetIsDead();
-                //data.isBoss = tmpEnemy.GetIsBoss();
+                data.isBoss = tmpEnemy.GetIsBoss();
                 data.facingLeft = true;
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
@@ -58,13 +59,15 @@ public class EnemyManager : MonoBehaviour
             SaveManager.instance.SaveEnemies();
         } else
         {
+            // case for loading in a game
             dataList = new List<EnemyData>();
             dataList = SaveManager.instance.LoadEnemyData();
             for (int i = 0; i < dataList.Count; i++)
             {
                 // if enemy is dead and not a boss, load their dead body at the position they died
-                if (dataList[i].isDead && !dataList[i].isBossDead)
+                if (dataList[i].isDead)
                 {
+                    Debug.Log(dataList[i].id + " is dead! and is boss: " + dataList[i].isBoss);
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }
@@ -80,22 +83,31 @@ public class EnemyManager : MonoBehaviour
             //dataList = new List<EnemyData>();
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
-            tmpEnemy.ResetToSpawn();
-            data.id = tmpEnemy.name;
-            // if enemy is not a boss and dead, reset them, otherwise don't reset a dead boss
-            if (dataList[i].id == data.id && !dataList[i].isBossDead) { 
-                data.isDead = false;
+            if (dataList[i].isBoss && dataList[i].isDead)
+            {
+                data.id = tmpEnemy.name;
+                data.isDead = true;
+                data.isBoss = tmpEnemy.GetIsBoss();
                 data.facingLeft = tmpEnemy.GetFacing();
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
+                Debug.Log(dataList[i].id + " boss is dead!");
             }
-            else if (dataList[i].id == data.id && dataList[i].isBossDead && dataList[i].isDead) { 
-                data.isDead = true;
+            else { 
+                // if enemy is NOT a boss and IS dead, reset them
+                tmpEnemy.ResetToSpawn();
+                data.id = tmpEnemy.name;
+                data.isDead = false;
+                data.isBoss = tmpEnemy.GetIsBoss();
+                data.facingLeft = tmpEnemy.GetFacing();
+                data.startPosition = tmpEnemy.GetSpawnPoint();
+                data.deathPosition = tmpEnemy.GetSpawnPoint();
             }
 
             newList.Add(data);
         }
 
+        dataList = new List<EnemyData>();
         dataList = newList;
         SaveManager.instance.SaveEnemies();
     }
@@ -125,7 +137,6 @@ public class EnemyManager : MonoBehaviour
             if (id == dataList[i].id)
             {
                 dataList[i].isDead = true;
-                dataList[i].isBossDead = true;
                 Debug.Log(dataList[i].isDead);
             }
         }
@@ -141,9 +152,10 @@ public class EnemyManager : MonoBehaviour
             var tmpEnemy = enemies[i].GetComponent<BasicEnemy>();
 
             data.id = tmpEnemy.name;
-            data.facingLeft = tmpEnemy.GetFacing();
             data.isDead = tmpEnemy.GetIsDead();
-            //data.isBoss = tmpEnemy.GetIsBoss();
+            data.isBoss = tmpEnemy.GetIsBoss();
+
+            data.facingLeft = tmpEnemy.GetFacing();
 
             data.startPosition = tmpEnemy.GetSpawnPoint();
 
@@ -169,7 +181,7 @@ public class EnemyData
 {
     public string id;
     public bool isDead;
-    public bool isBossDead;
+    public bool isBoss;
     public bool facingLeft;
 
     public Vector3 startPosition;
