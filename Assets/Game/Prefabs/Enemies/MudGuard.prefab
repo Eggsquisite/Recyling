@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1062560603}
+  healthBarParent: {fileID: 1062560603}
   maxHealth: 115
   maxStamina: 120
   staminaRecoveryValue: 15
@@ -376,6 +376,7 @@ MonoBehaviour:
   tetherFollowRange: 6
   tetherUnfollowRange: 8
   deleteOnDeath: 0
+  isBoss: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

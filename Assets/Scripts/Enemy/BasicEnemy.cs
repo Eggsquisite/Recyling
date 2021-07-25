@@ -17,7 +17,7 @@ public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private GameObject healthBar;
+    private GameObject healthBarParent;
 
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -190,16 +190,16 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-        if (healthFill != null && healthBar != null) {
+        if (healthFill != null && healthBarParent != null) {
             healthFill.SetMaxHealth(maxHealth);
 
             // if not a boss, turn off healthbar initially
-            if (!healthFill.GetIsBoss())
-                healthBar.SetActive(false);
+            if (isBoss)
+                healthBarParent.SetActive(false);
         }
         
         if (healthFill)
-        if (healthBar != null) healthBar.SetActive(false);
+            if (healthBarParent != null) healthBarParent.SetActive(false);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -227,9 +227,6 @@ public class BasicEnemy : MonoBehaviour
         priorityLists.Add(priorityListOne);
         priorityLists.Add(priorityListTwo);
         priorityLists.Add(priorityListThree);
-
-        if (healthFill != null)
-            Debug.Log(healthFill.transform.localScale.x + " " + name);
     }
 
     private void Update() {
@@ -367,12 +364,16 @@ public class BasicEnemy : MonoBehaviour
         if (!isAttacking)
             facingLeft = enemyMovement.CheckPlayerPos();
 
-        if (healthBar != null) { 
-            if (facingLeft && healthBar.transform.localScale.x > 0) 
-                healthBar.transform.localScale = new Vector3(-1, healthFill.transform.localScale.y);
-            else if (!facingLeft && healthBar.transform.localScale.x < 0)
-                healthBar.transform.localScale = new Vector3(1, healthFill.transform.localScale.y);
-        }
+/*        if (healthBarParent != null) { 
+            if (transform.localScale.x < 0 && healthBarParent.transform.localScale.x < 0) { 
+                healthBarParent.transform.localScale = new Vector3(-healthBarParent.transform.localScale.x, healthBarParent.transform.localScale.y);
+                Debug.Log("facing left health bar");
+            }
+            else if (transform.localScale.x > 0 && healthBarParent.transform.localScale.x > 0) { 
+                healthBarParent.transform.localScale = new Vector3(healthBarParent.transform.localScale.x, healthBarParent.transform.localScale.y);
+                Debug.Log("facing right health bar");
+            }
+        }*/
 
         playerDetected = enemyMovement.DetectPlayer();
 
@@ -849,8 +850,8 @@ public class BasicEnemy : MonoBehaviour
         Player.instance.RegainEnergy(GetEnergyGainMultiplier());
 
         // if not a boss, set health bar active/inactive
-        if (healthBar != null && healthFill != null && !healthFill.GetIsBoss()) {
-            healthBar.SetActive(true);
+        if (healthBarParent != null && healthFill != null /*&& !isBoss*/) {
+            healthBarParent.SetActive(true);
             healthFill.SetCurrentHealth(damageNum);
 
             if (healthBarRoutine != null)
@@ -903,7 +904,7 @@ public class BasicEnemy : MonoBehaviour
 
     IEnumerator HealthBarVisibility(float delay) {
         yield return new WaitForSeconds(delay);
-        healthBar.SetActive(false);
+        healthBarParent.SetActive(false);
     }
 
     /// <summary>
@@ -1040,6 +1041,7 @@ public class BasicEnemy : MonoBehaviour
 
             GetComponent<Collider2D>().enabled = false;
             transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
+            healthFill.UpdateHealthbarDirection();
 
             yield return new WaitForSeconds(tmp);
             if (deleteOnDeath || isBoss)
@@ -1102,6 +1104,7 @@ public class BasicEnemy : MonoBehaviour
 
         SetIsInactive(true);
         enemyMovement.ResetDirection();
+        healthFill.UpdateHealthbarDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
         //ResetHealth();

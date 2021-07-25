@@ -16,34 +16,49 @@ public class EnemyHealthbar : MonoBehaviour
     private float waitTime;
     [SerializeField]
     private float visualDestroySpeed;
-    [SerializeField]
-    private bool isBoss;
 
+    private float totalHealthPercent;
     private int maxHealth;
     private int currentHealth;
     private bool updateHealth;
+    private bool facingLeft;
 
     private Coroutine waitTimeRoutine;
+
+    private void Awake()
+    {
+        if (healthFill != null)
+            totalHealthPercent = healthFill.localScale.x;
+
+        if (transform.localScale.x >= 0)
+            facingLeft = false;
+        else
+            facingLeft = true;
+    }
 
     private void Start()
     {
         if (healthFill != null && healthDestroy != null) { 
-            healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
-            healthDestroy.localScale = new Vector3(1f, healthDestroy.localScale.y);
-        }
-
-        if (isBoss) {
-            //healthBarParent.parent = null;
+            healthFill.localScale = new Vector3(healthFill.localScale.x, healthFill.localScale.y);
+            healthDestroy.localScale = new Vector3(healthDestroy.localScale.x, healthDestroy.localScale.y);
         }
     }
 
     private void Update()
     {
-/*        if (healthFill != null)
-            if (healthFill.parent.localScale.x < 0)
-                healthFill.localScale = new Vector3(-healthFill.localScale.x, healthFill.localScale.y);
-            else
-                healthFill.localScale = new Vector3(healthFill.localScale.x, healthFill.localScale.y);*/
+        // change direction of health bar
+        if (healthFill != null) { 
+            if (transform.localScale.x > 0 && facingLeft) {
+                facingLeft = false;
+                Debug.Log(name + " is facing right");
+                healthBarParent.localScale = new Vector3(Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
+            }
+            else if (transform.localScale.x < 0 && !facingLeft) {
+                facingLeft = true;
+                Debug.Log(name + " is facing left");
+                healthBarParent.localScale = new Vector3(-Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
+            }
+        }
 
         if (updateHealth) { 
             if (healthDestroy.localScale.x > healthFill.localScale.x) {
@@ -56,17 +71,13 @@ public class EnemyHealthbar : MonoBehaviour
         }
     }
 
-    public bool GetIsBoss() {
-        return isBoss;
-    }
-
     public void SetMaxHealth(int newValue) {
         maxHealth = currentHealth = newValue;
     }
 
     public void ResetHealth() {
         currentHealth = maxHealth;
-        healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
+        healthFill.localScale = new Vector3(totalHealthPercent, healthFill.localScale.y);
     }
 
     public void SetCurrentHealth(int newValue) {
@@ -87,5 +98,17 @@ public class EnemyHealthbar : MonoBehaviour
         updateHealth = false;
         yield return new WaitForSeconds(waitTime);
         updateHealth = true;
+    }
+
+    public void UpdateHealthbarDirection() { 
+        if (healthFill != null)
+            if (transform.localScale.x > 0) {
+                facingLeft = true;
+                healthBarParent.localScale = new Vector3(Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
+            }
+            else if (transform.localScale.x < 0) {
+                facingLeft = false;
+                healthBarParent.localScale = new Vector3(-Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
+            }
     }
 }
