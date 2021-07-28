@@ -38,9 +38,10 @@ public class EnemyHealthbar : MonoBehaviour
 
     private void Start()
     {
+        // set both health bars to full
         if (healthFill != null && healthDestroy != null) { 
-            healthFill.localScale = new Vector3(healthFill.localScale.x, healthFill.localScale.y);
-            healthDestroy.localScale = new Vector3(healthDestroy.localScale.x, healthDestroy.localScale.y);
+            healthFill.localScale = new Vector3(1f, healthFill.localScale.y);
+            healthDestroy.localScale = new Vector3(1f, healthDestroy.localScale.y);
         }
     }
 

@@ -91,7 +91,9 @@ public class EnemyManager : MonoBehaviour
                 data.facingLeft = tmpEnemy.GetFacing();
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
+
                 Debug.Log(dataList[i].id + " boss is dead and not respawning!");
+                newList.Add(data);
             }
             else { 
                 // if enemy is NOT a boss and IS dead, reset them
@@ -102,9 +104,10 @@ public class EnemyManager : MonoBehaviour
                 data.facingLeft = tmpEnemy.GetFacing();
                 data.startPosition = tmpEnemy.GetSpawnPoint();
                 data.deathPosition = tmpEnemy.GetSpawnPoint();
+
+                newList.Add(data);
             }
 
-            newList.Add(data);
         }
 
         dataList = new List<EnemyData>();
@@ -153,7 +156,8 @@ public class EnemyManager : MonoBehaviour
             data.id = tmpEnemy.name;
             data.isDead = tmpEnemy.GetIsDead();
             data.isBoss = tmpEnemy.GetIsBoss();
-            Debug.Log(data.id + " is a boss: " + data.isBoss);
+            if (data.isBoss)
+                Debug.Log(data.id + " is a boss: " + data.isBoss);
 
             data.facingLeft = tmpEnemy.GetFacing();
 

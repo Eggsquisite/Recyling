@@ -1102,9 +1102,11 @@ public class BasicEnemy : MonoBehaviour
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
 
+        ResetHealth();
         SetIsInactive(true);
         enemyMovement.ResetDirection();
-        healthFill.UpdateHealthbarDirection();
+        if (healthFill != null)
+            healthFill.UpdateHealthbarDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
         //ResetHealth();
