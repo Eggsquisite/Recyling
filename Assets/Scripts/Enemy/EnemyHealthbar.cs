@@ -51,12 +51,10 @@ public class EnemyHealthbar : MonoBehaviour
         if (healthFill != null) { 
             if (transform.localScale.x > 0 && facingLeft) {
                 facingLeft = false;
-                Debug.Log(name + " is facing right");
                 healthBarParent.localScale = new Vector3(Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
             }
             else if (transform.localScale.x < 0 && !facingLeft) {
                 facingLeft = true;
-                Debug.Log(name + " is facing left");
                 healthBarParent.localScale = new Vector3(-Mathf.Abs(healthBarParent.localScale.x), healthBarParent.localScale.y);
             }
         }

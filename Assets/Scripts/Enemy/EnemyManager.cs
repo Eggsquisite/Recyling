@@ -156,8 +156,6 @@ public class EnemyManager : MonoBehaviour
             data.id = tmpEnemy.name;
             data.isDead = tmpEnemy.GetIsDead();
             data.isBoss = tmpEnemy.GetIsBoss();
-            if (data.isBoss)
-                Debug.Log(data.id + " is a boss: " + data.isBoss);
 
             data.facingLeft = tmpEnemy.GetFacing();
 

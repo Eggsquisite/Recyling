@@ -18,6 +18,8 @@ public class BasicEnemy : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private GameObject healthBarParent;
+    [SerializeField]
+    private TextMesh dmgValueText;
 
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -31,7 +33,10 @@ public class BasicEnemy : MonoBehaviour
     private Projectile projectile;
     private Vector2 resetSpawnSpoint;
 
+    private int dmgValue;
+
     private Coroutine healthBarRoutine;
+    private Coroutine dmgValueRoutine;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -849,10 +854,15 @@ public class BasicEnemy : MonoBehaviour
         // Player regains energy on hitting enemy with a normal attack
         Player.instance.RegainEnergy(GetEnergyGainMultiplier());
 
+        if (dmgValueRoutine != null)
+            StopCoroutine(dmgValueRoutine);
+        dmgValueRoutine = StartCoroutine(HealthBarDmgText(damageNum));
+
         // if not a boss, set health bar active/inactive
         if (healthBarParent != null && healthFill != null /*&& !isBoss*/) {
             healthBarParent.SetActive(true);
             healthFill.SetCurrentHealth(damageNum);
+
 
             if (healthBarRoutine != null)
                 StopCoroutine(healthBarRoutine);
@@ -903,8 +913,25 @@ public class BasicEnemy : MonoBehaviour
     }
 
     IEnumerator HealthBarVisibility(float delay) {
-        yield return new WaitForSeconds(delay);
+        if (dmgValueText != null)
+            dmgValueText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(delay / 2);
+        dmgValueText.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(delay / 2);
         healthBarParent.SetActive(false);
+    }
+
+    IEnumerator HealthBarDmgText(int damageNum) {
+        dmgValue += damageNum;
+        var tmpString = "-";
+        dmgValueText.text = tmpString + dmgValue.ToString();
+
+        yield return new WaitForSeconds(1f);
+
+        dmgValue = 0;
+        Debug.Log("Damage value reset: " + dmgValue);
     }
 
     /// <summary>
