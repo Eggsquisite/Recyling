@@ -29545,7 +29545,7 @@ MonoBehaviour:
   tetherFollowRange: 10
   tetherUnfollowRange: 15
   deleteOnDeath: 1
-  isBoss: 0
+  isBoss: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
