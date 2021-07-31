@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private CameraFollow cam;
     private Animator transition;
 
+    public GameObject bossHealthBar;
     public GameObject deathPanel;
     public GameObject deathObject;
     public Vector3 newGameSpawn;
@@ -142,5 +143,11 @@ public class GameManager : MonoBehaviour
         }
 
         cam.transform.parent.localPosition = originalPos;
+    }
+
+    public void SetBossHealthbar(bool flag) { 
+        if (bossHealthBar != null) {
+            bossHealthBar.SetActive(flag);
+        }
     }
 }
