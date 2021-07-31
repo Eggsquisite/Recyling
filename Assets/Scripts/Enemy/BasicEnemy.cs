@@ -1136,8 +1136,6 @@ public class BasicEnemy : MonoBehaviour
             healthFill.UpdateHealthbarDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
 
-        //ResetHealth();
-
         isInvincible = false;
         outOfStamina = false;
         attackReady = true;

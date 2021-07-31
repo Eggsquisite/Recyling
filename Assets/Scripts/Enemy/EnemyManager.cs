@@ -67,7 +67,7 @@ public class EnemyManager : MonoBehaviour
                 // if enemy is dead and not a boss, load their dead body at the position they died
                 if (dataList[i].isDead)
                 {
-                    Debug.Log(dataList[i].id + " is dead! and is boss: " + dataList[i].isBoss);
+                    //Debug.Log(dataList[i].id + " is dead! and is boss: " + dataList[i].isBoss);
                     enemies[i].GetComponent<BasicEnemy>().IsDead(dataList[i].facingLeft);
                     enemies[i].transform.position = dataList[i].deathPosition;
                 }
