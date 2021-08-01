@@ -26,6 +26,7 @@ public class BasicEnemy : MonoBehaviour
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
     //private EnemyAttack enemyAttack;
+    private BossHealthbar bossHealthbar;
     private EnemyHealthbar healthFill;
     private EnemyMovement enemyMovement;
     private EnemyAnimation enemyAnimation;
@@ -96,7 +97,7 @@ public class BasicEnemy : MonoBehaviour
     private RaycastHit2D hitBox, playerDetected, attackFollowHit;
 
     [Header("Attack Properties")]
-    [Header("Attack Stats (Tied to Animation Played)")]
+    [Header("Attack Stats (Tied to AttackActivated in Animation Played)")]
     [SerializeField]
     private float hurtPushBackSpeed;
     [SerializeField]
@@ -108,7 +109,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private List<float> attackPushDistances;
 
-    [Header("Corresponding Attack Properties")]
+    [Header("Corresponding Attack Properties (Tied to Each Attack Animation")]
     // Must have same amount 
     [SerializeField]
     private List<Transform> attackDetectPoints;
@@ -179,6 +180,11 @@ public class BasicEnemy : MonoBehaviour
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
+        if (isBoss && bossHealthbar == null) bossHealthbar = GetComponent<BossHealthbar>();
+
+        if (bossHealthbar != null && isBoss) { 
+            bossHealthbar.SetHealthbar(false);
+        }
 
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (projectile != null) {
@@ -315,6 +321,11 @@ public class BasicEnemy : MonoBehaviour
     private void EnemyInTetherRange() {
         outOfTetherRange = false;
         //enemyMovement.StopPatrol();
+        // If boss is in tether range, set healthbar true
+        if (isBoss) { 
+            bossHealthbar.SetHealthbar(true);
+            bossHealthbar.SetMaxHealth(maxHealth);
+        }
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
 
@@ -859,7 +870,7 @@ public class BasicEnemy : MonoBehaviour
         dmgValueRoutine = StartCoroutine(HealthBarDmgText(damageNum));
 
         // if not a boss, set health bar active/inactive
-        if (healthBarParent != null && healthFill != null /*&& !isBoss*/) {
+        if (healthBarParent != null && healthFill != null && !isBoss) {
             healthBarParent.SetActive(true);
             healthFill.SetCurrentHealth(damageNum);
 
@@ -867,6 +878,8 @@ public class BasicEnemy : MonoBehaviour
             if (healthBarRoutine != null)
                 StopCoroutine(healthBarRoutine);
             healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
+        } else if (isBoss) {
+            bossHealthbar.UpdateHealth(damageNum);
         }
 
         // Play sounds
@@ -916,22 +929,23 @@ public class BasicEnemy : MonoBehaviour
         if (dmgValueText != null)
             dmgValueText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(delay / 2);
-        dmgValueText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(delay * 0.2f);
+        if (dmgValueText != null)
+            dmgValueText.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(delay / 2);
+        yield return new WaitForSeconds(delay * 0.8f);
         healthBarParent.SetActive(false);
     }
 
     IEnumerator HealthBarDmgText(int damageNum) {
         dmgValue += damageNum;
         var tmpString = "-";
-        dmgValueText.text = tmpString + dmgValue.ToString();
+        if (dmgValueText != null)
+            dmgValueText.text = tmpString + dmgValue.ToString();
 
         yield return new WaitForSeconds(1f);
 
         dmgValue = 0;
-        Debug.Log("Damage value reset: " + dmgValue);
     }
 
     /// <summary>
@@ -1047,6 +1061,10 @@ public class BasicEnemy : MonoBehaviour
         return isBoss;
     }
 
+    public int GetMaxHealth() {
+        return maxHealth;
+    }
+
     public void IsDead(bool facing)
     {
         facingLeft = facing;
@@ -1088,6 +1106,9 @@ public class BasicEnemy : MonoBehaviour
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
         EnemyManager.Instance.EnemyDead(name);
 
+        if (isBoss)
+            bossHealthbar.SetHealthbar(false);
+
         yield return new WaitForSeconds(tmp);
         GiveCurrency();
 
@@ -1123,8 +1144,8 @@ public class BasicEnemy : MonoBehaviour
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
     public void ResetToSpawn()
     {
-        if (isBoss) ;
-            //return;
+        if (isBoss)
+            bossHealthbar.SetHealthbar(false);
 
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
@@ -1160,8 +1181,10 @@ public class BasicEnemy : MonoBehaviour
     }
 
     public void SetIsInactive(bool flag) {
-        if (isAttacking && flag)
+        if (isAttacking && flag) { 
             FinishAttack();
+            GameManager.instance.SetBossHealthbar(false);
+        }
         isInactive = flag;
     }
 
