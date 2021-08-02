@@ -365,7 +365,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 5015679225200605190}
-  dmgValueText: {fileID: 5015679224943597190}
   maxHealth: 115
   maxStamina: 120
   staminaRecoveryValue: 15
@@ -440,7 +439,9 @@ MonoBehaviour:
   healthBarParent: {fileID: 5015679225200605185}
   healthFill: {fileID: 5015679225650136880}
   healthDestroy: {fileID: 4894383739741450227}
-  waitTime: 0.5
+  dmgValueText: {fileID: 5015679224943597190}
+  visualWaitDelay: 0.5
+  updateTextDelay: 1.5
   visualDestroySpeed: 0.5
 --- !u!114 &879956139
 MonoBehaviour:

@@ -7956,6 +7956,7 @@ MonoBehaviour:
   currentHealthSlider: {fileID: 208002504}
   damagedText: {fileID: 1309443466}
   updateWaitDelay: 0.5
+  updateDamageDelay: 1.5
   healthVisualSpeed: 50
 --- !u!1 &626123605
 GameObject:
@@ -13344,7 +13345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: -169
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
   m_sharedMaterial: {fileID: -1597413469492962879, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
@@ -22076,7 +22077,7 @@ MonoBehaviour:
     spawnBossOne: 0
     spawnBossTwo: 0
     spawnBossThree: 0
-  bossHealthBar: {fileID: 0}
+  bossHealthBar: {fileID: 618974424}
   deathPanel: {fileID: 1715202717}
   deathObject: {fileID: 0}
   newGameSpawn: {x: -4.75, y: -1, z: 0}
@@ -23338,7 +23339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3898020908785157719, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536c509940c9a34484b0af58dca72a7, type: 3}
@@ -29905,7 +29906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 0}
-  dmgValueText: {fileID: 0}
   maxHealth: 500
   maxStamina: 200
   staminaRecoveryValue: 50

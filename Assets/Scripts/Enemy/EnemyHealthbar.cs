@@ -11,19 +11,24 @@ public class EnemyHealthbar : MonoBehaviour
     private Transform healthFill;
     [SerializeField]
     private Transform healthDestroy;
+    [SerializeField]
+    private TextMesh dmgValueText;
 
     [SerializeField]
-    private float waitTime;
+    private float visualWaitDelay;
+    [SerializeField]
+    private float updateTextDelay;
     [SerializeField]
     private float visualDestroySpeed;
 
     private float totalHealthPercent;
+    private int tmpDmg;
     private int maxHealth;
     private int currentHealth;
     private bool updateHealth;
     private bool facingLeft;
 
-    private Coroutine waitTimeRoutine;
+    private Coroutine visualDelayRoutine, updateTextDelayRoutine;
 
     private void Awake()
     {
@@ -88,15 +93,30 @@ public class EnemyHealthbar : MonoBehaviour
         float tmpMax = maxHealth;
         healthFill.localScale = new Vector3(tmpCurrent / tmpMax, healthFill.localScale.y);
 
-        if (waitTimeRoutine != null)
-            StopCoroutine(waitTimeRoutine);
-        waitTimeRoutine = StartCoroutine(UpdateHealthVisual());
+        if (visualDelayRoutine != null)
+            StopCoroutine(visualDelayRoutine);
+        visualDelayRoutine = StartCoroutine(UpdateHealthVisual());
+
+        if (updateTextDelayRoutine != null)
+            StopCoroutine(updateTextDelayRoutine);
+        updateTextDelayRoutine = StartCoroutine(UpdateTextRoutine(newValue));
     }
 
     private IEnumerator UpdateHealthVisual() {
         updateHealth = false;
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(visualWaitDelay);
         updateHealth = true;
+    }
+
+    private IEnumerator UpdateTextRoutine(int damage) {
+        tmpDmg += damage;
+        var tmpString = "-";
+        dmgValueText.text = tmpString + tmpDmg.ToString();
+
+        yield return new WaitForSeconds(updateTextDelay);
+
+        tmpDmg = 0;
+        dmgValueText.text = "";
     }
 
     public void UpdateHealthbarDirection() { 

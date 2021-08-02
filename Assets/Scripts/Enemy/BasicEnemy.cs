@@ -18,8 +18,6 @@ public class BasicEnemy : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private GameObject healthBarParent;
-    [SerializeField]
-    private TextMesh dmgValueText;
 
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -34,10 +32,7 @@ public class BasicEnemy : MonoBehaviour
     private Projectile projectile;
     private Vector2 resetSpawnSpoint;
 
-    private int dmgValue;
-
     private Coroutine healthBarRoutine;
-    private Coroutine dmgValueRoutine;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -865,20 +860,20 @@ public class BasicEnemy : MonoBehaviour
         // Player regains energy on hitting enemy with a normal attack
         Player.instance.RegainEnergy(GetEnergyGainMultiplier());
 
-        if (dmgValueRoutine != null)
-            StopCoroutine(dmgValueRoutine);
-        dmgValueRoutine = StartCoroutine(HealthBarDmgText(damageNum));
-
-        // if not a boss, set health bar active/inactive
-        if (healthBarParent != null && healthFill != null && !isBoss) {
-            healthBarParent.SetActive(true);
-            healthFill.SetCurrentHealth(damageNum);
+        if (!isBoss) { 
+            // if not a boss, set health bar active/inactive
+            if (healthBarParent != null && healthFill != null && !isBoss) {
+                healthBarParent.SetActive(true);
+                // updates health text and visuals
+                healthFill.SetCurrentHealth(damageNum);
 
 
-            if (healthBarRoutine != null)
-                StopCoroutine(healthBarRoutine);
-            healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
-        } else if (isBoss) {
+                if (healthBarRoutine != null)
+                    StopCoroutine(healthBarRoutine);
+                healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
+            } 
+        }
+        else if (isBoss) {
             bossHealthbar.UpdateHealth(damageNum);
         }
 
@@ -926,26 +921,9 @@ public class BasicEnemy : MonoBehaviour
     }
 
     IEnumerator HealthBarVisibility(float delay) {
-        if (dmgValueText != null)
-            dmgValueText.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(delay * 0.2f);
-        if (dmgValueText != null)
-            dmgValueText.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(delay * 0.8f);
+        healthBarParent.SetActive(true);
+        yield return new WaitForSeconds(delay);
         healthBarParent.SetActive(false);
-    }
-
-    IEnumerator HealthBarDmgText(int damageNum) {
-        dmgValue += damageNum;
-        var tmpString = "-";
-        if (dmgValueText != null)
-            dmgValueText.text = tmpString + dmgValue.ToString();
-
-        yield return new WaitForSeconds(1f);
-
-        dmgValue = 0;
     }
 
     /// <summary>
