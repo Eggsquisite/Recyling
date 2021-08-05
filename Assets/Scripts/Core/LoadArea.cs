@@ -142,6 +142,9 @@ public class LoadArea : MonoBehaviour
     }
 
     IEnumerator LoadReady(float waitTime, bool deadFlag) {
+        // when loading into a new scene, case for deleting boss healthbar if not already
+        GameManager.instance.SetBossHealthbar(false);
+
         yield return new WaitForSeconds(waitTime);
         isLoading = false;
         cam.ResetBorders();
@@ -165,8 +168,7 @@ public class LoadArea : MonoBehaviour
         }
     }
 
-    IEnumerator EnableEnemies()
-    {
+    IEnumerator EnableEnemies() {
         yield return new WaitForSeconds(1.5f);
         foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
         {
