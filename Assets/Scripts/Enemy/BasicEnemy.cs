@@ -17,7 +17,7 @@ public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private GameObject healthBarParent;
+    [Tooltip("For Non Bosses")] private GameObject healthBarParent;
 
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -177,9 +177,6 @@ public class BasicEnemy : MonoBehaviour
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
         if (isBoss && bossHealthbar == null) bossHealthbar = GetComponent<BossHealthbar>();
 
-        if (bossHealthbar != null && isBoss) { 
-            bossHealthbar.SetHealthbar(false);
-        }
 
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (projectile != null) {
@@ -196,16 +193,15 @@ public class BasicEnemy : MonoBehaviour
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-        if (healthFill != null && healthBarParent != null) {
-            healthFill.SetMaxHealth(maxHealth);
 
-            // if not a boss, turn off healthbar initially
-            if (isBoss)
-                healthBarParent.SetActive(false);
+        if (bossHealthbar != null && isBoss) { 
+            bossHealthbar.SetHealthbar(false);
+        } 
+        else if (healthFill != null && healthBarParent != null) {
+            // turn off healthbar initially
+            healthBarParent.SetActive(false);
+            healthFill.SetMaxHealth(maxHealth);
         }
-        
-        if (healthFill)
-            if (healthBarParent != null) healthBarParent.SetActive(false);
 
         /*enemyAttack.SetMaxStamina(maxStamina);
         enemyAttack.SetStaminaRecoveryValue(staminaRecoveryValue);
@@ -243,6 +239,7 @@ public class BasicEnemy : MonoBehaviour
         CheckPlayerDistance();
         CheckPlayerInRange();
         MovementAnimation();
+        CheckBossHealthBar();
 
         /////////////////////////// Attack Animation Activated //////////////////
         //CheckStamina();
@@ -316,11 +313,7 @@ public class BasicEnemy : MonoBehaviour
     private void EnemyInTetherRange() {
         outOfTetherRange = false;
         //enemyMovement.StopPatrol();
-        // If boss is in tether range, set healthbar true
-        if (isBoss) { 
-            bossHealthbar.SetHealthbar(true);
-            bossHealthbar.SetMaxHealth(maxHealth);
-        }
+
         enemyMovement.SetFollow(true);
         enemyMovement.FindPlayerRepeating();
 
@@ -399,6 +392,19 @@ public class BasicEnemy : MonoBehaviour
     private void FollowPlayer() {
         if (!isStunned && !isAttacking && !isPushed)
             enemyMovement.FollowPlayer(attackReady);
+    }
+
+    private void CheckBossHealthBar() {
+        // If boss is in tether range and set to active, set healthbar true
+        if (isBoss && !outOfTetherRange && bossHealthbar != null && !bossHealthbar.GetHealthBar()) {
+            if (!isInactive) { 
+                bossHealthbar.SetHealthbar(true);
+                bossHealthbar.SetMaxHealth(maxHealth);
+                Debug.Log("Boss is active and is boss " + name);
+            } else {
+                bossHealthbar.SetHealthbar(false);
+            }
+        }
     }
 
     ////////////////// Attack Code ////////////////////////////////////////////////////////////
@@ -1161,7 +1167,8 @@ public class BasicEnemy : MonoBehaviour
     public void SetIsInactive(bool flag) {
         if (isAttacking && flag) { 
             FinishAttack();
-            GameManager.instance.SetBossHealthbar(false);
+            if (isBoss)
+                GameManager.instance.SetBossHealthbar(false);
         }
         isInactive = flag;
     }

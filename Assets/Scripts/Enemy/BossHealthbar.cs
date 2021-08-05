@@ -17,6 +17,10 @@ public class BossHealthbar : MonoBehaviour
         bossHealthUI.gameObject.SetActive(flag);
     }
 
+    public bool GetHealthBar() {
+        return bossHealthUI.gameObject.activeSelf;
+    }
+
     public void SetMaxHealth(int maxHealth) {
         bossHealthUI.SetMaxHealth(maxHealth);
     }
