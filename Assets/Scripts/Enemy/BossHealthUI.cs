@@ -11,6 +11,8 @@ public class BossHealthUI : MonoBehaviour
     private Slider currentHealthSlider;
     [SerializeField]
     private TMPro.TextMeshProUGUI damagedText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI bossNameText;
 
     [SerializeField]
     private float updateWaitDelay;
@@ -39,6 +41,10 @@ public class BossHealthUI : MonoBehaviour
     public void SetMaxHealth(int maxHealth) {
         currentHealthSlider.value = currentHealthSlider.maxValue = maxHealth;
         futureHealthSlider.value = futureHealthSlider.maxValue = maxHealth;
+    }
+
+    public void SetBossName(string name) {
+        bossNameText.text = name;
     }
 
     public void UpdateHealth(int damagedHealth) {

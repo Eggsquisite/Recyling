@@ -58,7 +58,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private float tetherUnfollowRange;
 
-    [SerializeField]
+    [SerializeField] [Tooltip("Delete sprite on death")]
     private bool deleteOnDeath;
     [SerializeField]
     private bool isBoss;
@@ -400,6 +400,7 @@ public class BasicEnemy : MonoBehaviour
             if (!isInactive) { 
                 bossHealthbar.SetHealthbar(true);
                 bossHealthbar.SetMaxHealth(maxHealth);
+                bossHealthbar.SetBossName(name);
                 Debug.Log("Boss is active and is boss " + name);
             } else {
                 bossHealthbar.SetHealthbar(false);
@@ -867,8 +868,8 @@ public class BasicEnemy : MonoBehaviour
         Player.instance.RegainEnergy(GetEnergyGainMultiplier());
 
         if (!isBoss) { 
-            // if not a boss, set health bar active/inactive
-            if (healthBarParent != null && healthFill != null && !isBoss) {
+            // if not a boss, set health bar active/inactive when hit
+            if (healthBarParent != null && healthFill != null) {
                 healthBarParent.SetActive(true);
                 // updates health text and visuals
                 healthFill.SetCurrentHealth(damageNum);
@@ -880,6 +881,7 @@ public class BasicEnemy : MonoBehaviour
             } 
         }
         else if (isBoss) {
+            // if boss, update enemy health through BossHealthBar.cs
             bossHealthbar.UpdateHealth(damageNum);
         }
 
