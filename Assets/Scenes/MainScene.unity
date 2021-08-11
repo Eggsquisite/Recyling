@@ -29201,49 +29201,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 806799265187410215}
-  visualizeRange: 2.97
-  hurtPushBackSpeed: 4
+  visualizeRange: 3.75
+  hurtPushBackSpeed: 2
   attackPoints:
   - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
   attackRanges:
-  - 1.3
-  - 3.5
-  attackDamages: f4010000d2000000
+  - 3.75
+  attackDamages: 40010000
   attackPushDistances:
-  - 0.5
-  - 1
+  - 1.5
   attackDetectPoints:
   - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
   attackDetectRanges:
-  - 2.5
-  - 4
-  - 2.5
-  - 2.5
-  - 4
+  - 4.25
   attackAnimations:
   - enemy_attack1
-  - enemy_attack2
-  - enemy_attack3
-  - enemy_attack4
-  - enemy_attack5
-  attackPriority: 0100000001000000010000000100000001000000
-  attackFollowFacePlayer: 0000000000
+  attackPriority: 01000000
+  attackFollowFacePlayer: 01
   attackFollowDistances:
   - 0
-  - 0
-  - 0.75
-  - 0
-  - 0.75
-  attackIsRay: 0101010101
+  attackIsRay: 01
   minStunAttackDelay: 1
   maxStunAttackDelay: 1.5
-  minAttackDelay: 2
-  maxAttackDelay: 3
+  minAttackDelay: 4
+  maxAttackDelay: 5
 --- !u!4 &3898020908218038418
 Transform:
   m_ObjectHideFlags: 0
