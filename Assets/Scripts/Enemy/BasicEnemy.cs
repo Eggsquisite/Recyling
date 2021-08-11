@@ -93,13 +93,13 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Attack Properties")]
     [Header("Attack Stats (Tied to AttackActivated in Animation Played)")]
-    [SerializeField]
+    [SerializeField] [Tooltip ("Speed enemy is pushed back")]
     private float hurtPushBackSpeed;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Attack point (Transform) used for each attack")]
     private List<Transform> attackPoints;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Range for each attack")]
     private List<float> attackRanges;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Damage for each attack")]
     private List<int> attackDamages;
     [SerializeField]
     private List<float> attackPushDistances;
@@ -108,22 +108,22 @@ public class BasicEnemy : MonoBehaviour
     // Must have same amount 
     [SerializeField]
     private List<Transform> attackDetectPoints;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Range that enemy will begin picking attacks")]
     private List<float> attackDetectRanges;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Name of animation to be played")]
     private List<string> attackAnimations;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Enemy attacks work off priority. 1 > greater priority, 3 > least priority")]
     private List<int> attackPriority;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Does enemy face player before attack")]
     private List<bool> attackFollowFacePlayer;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Distance enemy moves during attack follow through")]
     private List<float> attackFollowDistances;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Does attack use raycast (for projectiles or straight attacks")]
     private List<bool> attackIsRay;
 
-    [SerializeField]
+    [SerializeField] [Tooltip("If enemy is stunned, will not follow/attack after delay")]
     private float minStunAttackDelay;
-    [SerializeField]
+    [SerializeField] [Tooltip("If enemy is stunned, will not follow/attack after delay")]
     private float maxStunAttackDelay;
     [SerializeField]
     private float minAttackDelay;

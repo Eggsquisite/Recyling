@@ -37,11 +37,11 @@ public class EnemyMovement : MonoBehaviour
     //private bool reachedEndOfPath;
 
     [Header("Follow Properties")]
-    [SerializeField]
+    [SerializeField] [Tooltip("Delay before enemy relocates player; smaller delay creates smoother movement")]
     private float repeatFollowDelay;
-    [SerializeField]
+    [SerializeField] [Tooltip("Delay before enemy relocates player after an attack")]
     private float attackFollowDelay;
-    [SerializeField]
+    [SerializeField] [Tooltip("Delay after enemy is stunned before moving")]
     private float stunFollowDelay;
 
     [Header("Movement Properties")]
@@ -54,11 +54,11 @@ public class EnemyMovement : MonoBehaviour
 
     private float idleSpeedMult = 1f;
 
-    [SerializeField] 
+    [SerializeField] [Tooltip("Minimum offset for enemy to move left/right of player")]
     private float minOffset;
-    [SerializeField] 
+    [SerializeField] [Tooltip("Max offset for enemy to move left/right of player")]
     private float maxOffset;
-    [SerializeField]
+    [SerializeField] [Tooltip("Offset of offset that player stands at when not ready to attack")]
     private Vector2 offsetAttackStandbyRange;
 
     private int abovePlayer;
@@ -94,7 +94,7 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine patrolWaitRoutine;
 
     [Header("Teleport Properties")]
-    [SerializeField]
+    [SerializeField] [Tooltip("If enemy teleports instead of walks when following player")]
     private bool canTeleport;
     [SerializeField]
     private float minTeleportDuration;
