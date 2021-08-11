@@ -98,7 +98,7 @@ public class PlayerInput : MonoBehaviour
                     interactable.GetComponent<Interactable>().Interacting(gameObject);
                     interactable = null;
 
-                    SaveManager.instance.Save();
+                    SaveManager.instance.Save(); // after interacting
                 }
             }
         }
@@ -110,7 +110,7 @@ public class PlayerInput : MonoBehaviour
             interactable.GetComponent<Interactable>().Interacting(gameObject);
             interactable = null;
 
-            SaveManager.instance.Save();
+            SaveManager.instance.Save(); // after interacting
         }
     }
 

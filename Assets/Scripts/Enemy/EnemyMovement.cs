@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
     private Seeker seeker;
     private int currentWaypoint;
     private float distanceToWaypoint;
-    private bool reachedEndOfPath;
+    //private bool reachedEndOfPath;
 
     [Header("Follow Properties")]
     [SerializeField]
@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 offsetAttackStandbyRange;
 
     private int abovePlayer;
-    private bool isStuck;
+    //private bool isStuck;
     private bool isMoving;
     private bool canFollow;
     private bool leftOfPlayer;
@@ -224,11 +224,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            reachedEndOfPath = true;
+            //reachedEndOfPath = true;
             return;
         }
-        else
-            reachedEndOfPath = false;
+        //else
+            //reachedEndOfPath = false;
 
         if (attackReady)
         {
@@ -329,21 +329,21 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
         if (hit.collider != null && hit.collider.tag == "LeftBorder")
         {
-            isStuck = false;
+            //isStuck = false;
             if (Vector2.Distance(rb.position, hit.point) > 0.25f)
                 rb.MovePosition(followVelocity);
             attackFromLeft = true;
         }
         else if (hit.collider != null && hit.collider.tag == "RightBorder")
         {
-            isStuck = false;
+            //isStuck = false;
             if (Vector2.Distance(rb.position, hit.point) > 0.25f)
                 rb.MovePosition(followVelocity);
             attackFromLeft = false;
         }
         if (hit.collider != null)
         {
-            isStuck = true;
+            //isStuck = true;
             var tmpDistance = 1f;
             //rb.MovePosition(hit.point);
             if (Vector2.Distance(rb.position, hit.point) > 0.5f)
@@ -378,7 +378,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         else {
-            isStuck = false;
+            //isStuck = false;
             rb.MovePosition(followVelocity);
         }
     }

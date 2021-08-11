@@ -75,22 +75,22 @@ public class SaveManager : MonoBehaviour
     // ALL SAVE REFERENCES //////////////////////////////////////////////////////////////////////////
     public void SaveCurrency(int newValue) {
         instance.activeSave.playerCurrency = newValue;
-        Save();
+        Save(); // after updating currency
     }
 
     public void SaveHealth(int newValue) {
         instance.activeSave.playerHealth = newValue;
-        Save();
+        //Save();
     }
 
     public void SaveEnergy(int newValue) {
         instance.activeSave.playerEnergy = newValue;
-        Save();
+        //Save();
     }
 
     public void SaveAreaToLoad(int index) {
         instance.activeSave.areaToLoadIndex = index;
-        Save();
+        Save(); // after loading a new area
     }
 
     public void SaveSpawnPoint() {
@@ -112,12 +112,12 @@ public class SaveManager : MonoBehaviour
         activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
         //activeSave.playerCurrentPosition = Player.instance.transform.position;
-        Save();
+        Save(); // after quitting the game
     }
 
     public void SaveEnemies() {
         activeSave.enemyData = EnemyManager.Instance.UpdateEnemyData();
-        Save();
+        Save(); // after saving enemies
     }
 }
 

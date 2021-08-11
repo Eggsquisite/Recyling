@@ -22860,6 +22860,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12780215, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1131960671, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29366,7 +29370,7 @@ GameObject:
   - component: {fileID: 3898020908218038424}
   - component: {fileID: 575602372}
   m_Layer: 7
-  m_Name: BigBoi
+  m_Name: Big Boi
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

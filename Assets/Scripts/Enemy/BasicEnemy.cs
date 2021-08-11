@@ -558,6 +558,10 @@ public class BasicEnemy : MonoBehaviour
             resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
     }
 
+    /// <summary>
+    /// Used to save vertical, horizontal, or both for attack follow thru's
+    /// </summary>
+    /// <param name="flag"></param>
     private void SavePlayerPosition(int flag) {
         // vertical position
         if (flag == 1)
