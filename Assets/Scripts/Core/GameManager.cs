@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
     private CameraFollow cam;
     private Animator transition;
 
+    public float cameraShakeSpeed;
     public GameObject bossHealthBar;
     public GameObject deathPanel;
     public GameObject deathObject;
     public Vector3 newGameSpawn;
 
     private bool isFightingBoss;
+    private Vector3 tmpVector;
     private Coroutine cameraShakeRoutine;
 
     private void Awake()
@@ -133,10 +135,16 @@ public class GameManager : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Random.Range(-0.75f, 0.75f) * magnitude;
-            float y = Random.Range(-0.15f, 0.15f) * magnitude;
+            if (cam.transform.localPosition != tmpVector) { 
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-0.15f, 0.15f) * magnitude;
 
-            cam.transform.parent.localPosition = new Vector3(x, y, originalPos.z);
+                tmpVector = new Vector3(x, y, originalPos.z);
+            }
+
+            cam.transform.parent.localPosition = Vector3.MoveTowards(cam.transform.parent.localPosition,
+                                                                        tmpVector,
+                                                                        cameraShakeSpeed * Time.deltaTime);
 
             elapsed += Time.deltaTime;
             yield return null;

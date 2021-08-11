@@ -21497,6 +21497,7 @@ MonoBehaviour:
     spawnBossOne: 0
     spawnBossTwo: 0
     spawnBossThree: 0
+  cameraShakeSpeed: 10
   bossHealthBar: {fileID: 618974424}
   deathPanel: {fileID: 1715202717}
   deathObject: {fileID: 0}
