@@ -219,7 +219,44 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: shadow
-  m_FloatCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: shadow (1)
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
@@ -237,10 +274,8 @@ AnimationClip:
     - time: 1
       value: {fileID: -1830872217821513764, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     - time: 1.1666666
-      value: {fileID: -2483195296972616419, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
+      value: {fileID: 4499777696111675907, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     - time: 1.3333334
-      value: {fileID: -5513405728946551120, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
-    - time: 1.5
       value: {fileID: 4499777696111675907, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     attribute: m_Sprite
     path: 
@@ -268,6 +303,13 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 3659799402
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 0
       attribute: 0
       script: {fileID: 0}
@@ -282,20 +324,19 @@ AnimationClip:
     - {fileID: 3239612369098460425, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     - {fileID: 4763917504357454978, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     - {fileID: -1830872217821513764, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
-    - {fileID: -2483195296972616419, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
-    - {fileID: -5513405728946551120, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
+    - {fileID: 4499777696111675907, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
     - {fileID: 4499777696111675907, guid: 5b7564f63d4ada848add3e5ff187a444, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5166667
+    m_StopTime: 1.35
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -933,6 +974,43 @@ AnimationClip:
     path: shadow
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: shadow (1)
+    classID: 1
+    script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
@@ -942,14 +1020,14 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 25
+    intParameter: 30
     messageOptions: 0
   - time: 0.65
     functionName: PlayBasicAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0.6666667
     functionName: AttackActivated

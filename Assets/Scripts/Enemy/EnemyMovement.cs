@@ -291,9 +291,11 @@ public class EnemyMovement : MonoBehaviour
     /// Code for original movement that doesnt utilize pathfinding
     /// </summary>
     /// <param name="attackReady"></param>
-    private void OriginalMovement(bool attackReady) {
+    private void OriginalMovement(bool attackReady)
+    {
         // if attack is ready, enemy moves closer to player to trigger an attack
-        if (attackReady) { 
+        if (attackReady)
+        {
             if (attackFromLeft)
             {
                 desiredPosition = playerChar + leftOffset;
@@ -309,13 +311,15 @@ public class EnemyMovement : MonoBehaviour
                                                     baseMoveSpeed * Time.fixedDeltaTime);
             }
         }
-        else if (!attackReady) {
+        else if (!attackReady)
+        {
             // if attack is NOT ready, enemy stands further away using the standby offset
-            if (attackFromLeft) { 
+            if (attackFromLeft)
+            {
                 desiredPosition = playerChar + leftOffset - offsetAttackStandby;
                 followVelocity = Vector2.MoveTowards(rb.position,
                                                     desiredPosition,
-                                                    baseMoveSpeed* idleSpeedMult * Time.fixedDeltaTime);
+                                                    baseMoveSpeed * idleSpeedMult * Time.fixedDeltaTime);
             }
             else
             {
@@ -329,30 +333,29 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D hit = CalculateDirectionToMove(desiredPosition - rb.position);
         if (hit.collider != null && hit.collider.tag == "LeftBorder")
         {
-            //isStuck = false;
-            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+            if (Vector2.Distance(rb.position, hit.point) > 0.4f)
+            {
                 rb.MovePosition(followVelocity);
+            }
             attackFromLeft = true;
         }
         else if (hit.collider != null && hit.collider.tag == "RightBorder")
         {
-            //isStuck = false;
-            if (Vector2.Distance(rb.position, hit.point) > 0.25f)
+            if (Vector2.Distance(rb.position, hit.point) > 0.4f)
                 rb.MovePosition(followVelocity);
             attackFromLeft = false;
         }
         if (hit.collider != null)
         {
-            //isStuck = true;
-            var tmpDistance = 1f;
+            //var tmpDistance = 1f;
             //rb.MovePosition(hit.point);
             if (Vector2.Distance(rb.position, hit.point) > 0.5f)
                 rb.MovePosition(followVelocity);
-            else if (Vector2.Distance(rb.position, hit.point) <= 0.5f) { 
+            /*else if (Vector2.Distance(rb.position, hit.point) <= 0.5f) { 
                 desiredPosition = UpdateDirection(tmpDistance);
 
                 // Check to make sure values arent crazy high
-/*                if (desiredPosition.x > tmpDistance)
+*//*                if (desiredPosition.x > tmpDistance)
                     desiredPosition.x = tmpDistance;
                 else if (desiredPosition.x < -tmpDistance)
                     desiredPosition.x = -tmpDistance;
@@ -360,7 +363,7 @@ public class EnemyMovement : MonoBehaviour
                 if (desiredPosition.y > tmpDistance)
                     desiredPosition.y = tmpDistance;
                 else if (desiredPosition.y < -tmpDistance)
-                    desiredPosition.y = -tmpDistance;*/
+                    desiredPosition.y = -tmpDistance;*//*
 
                 if (attackReady) {
                     followVelocity = Vector2.MoveTowards(rb.position,
@@ -374,8 +377,7 @@ public class EnemyMovement : MonoBehaviour
                 }
 
                 //Debug.Log("Updated position: " + desiredPosition);
-                rb.MovePosition(followVelocity);
-            }
+                rb.MovePosition(followVelocity);*/
         }
         else {
             //isStuck = false;
@@ -686,6 +688,7 @@ public class EnemyMovement : MonoBehaviour
         return null;
     }
     public bool GetLeftOfPlayer() {
+        CheckPlayerPos();
         return leftOfPlayer;
     }
     public int GetAbovePlayer() {

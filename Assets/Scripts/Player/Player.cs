@@ -1071,8 +1071,8 @@ public class Player : MonoBehaviour
             isHurtTimer += Time.deltaTime;
         else if (isHurtTimer >= isHurtMaxTime) {
             isHurt = false;
-            ResetInvincible();
             sp.enabled = true;
+            ResetInvincible();
 
             isHurtTimer = 0;
         }

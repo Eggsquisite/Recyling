@@ -93,7 +93,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &722439447500652332
 CapsuleCollider2D:
@@ -109,7 +109,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.025, y: 0.02}
-  m_Size: {x: 0.45, y: 0.3}
+  m_Size: {x: 0.55, y: 0.35}
   m_Direction: 1
 --- !u!95 &1572641357111832798
 Animator:
@@ -400,7 +400,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 99
+  m_SortingOrder: 25
   m_Sprite: {fileID: 21300000, guid: 4a29ad7413689d7439c897f4a0d2867b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

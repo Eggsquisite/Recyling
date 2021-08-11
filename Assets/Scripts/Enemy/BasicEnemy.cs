@@ -582,7 +582,7 @@ public class BasicEnemy : MonoBehaviour
         {
             if (enemyMovement.GetLeftOfPlayer())
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.right, attackRanges[attackPointIndex], playerLayer);
-            else
+            else if (!enemyMovement.GetLeftOfPlayer())
                 hitBox = Physics2D.Raycast(attackPoints[attackPointIndex].position, Vector2.left, attackRanges[attackPointIndex], playerLayer);
 
             if (hitBox.collider != null) {
@@ -781,6 +781,10 @@ public class BasicEnemy : MonoBehaviour
 
         enemyMovement.CheckPlayerVertical();
         SavePlayerPosition(3);
+    }
+
+    private void CameraShakeEvent(float magnitude) {
+        GameManager.instance.BeginCameraShake(0.2f, magnitude);
     }
 
     // STAMINA CODE ////////////////////////////////////////////////////////
