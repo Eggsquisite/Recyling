@@ -29321,21 +29321,21 @@ MonoBehaviour:
   - {fileID: 3898020909035270271}
   - {fileID: 3898020909035270271}
   attackDetectRanges:
-  - 4.5
-  - 2
+  - 4.25
+  - 1.5
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
   attackPriority: 0100000001000000
-  attackFollowFacePlayer: 0101
+  attackFollowFacePlayer: 0001
   attackFollowDistances:
   - 0
   - 2
   attackIsRay: 0100
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 0.5
-  minAttackDelay: 1.5
-  maxAttackDelay: 3
+  minAttackDelay: 0.5
+  maxAttackDelay: 0.75
 --- !u!4 &3898020908218038418
 Transform:
   m_ObjectHideFlags: 0
@@ -29676,7 +29676,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectPos: {fileID: 806799265187410215}
-  detectInRange: 4
+  detectInRange: 3
   detectIsRay: 0
   usePathfinding: 0
   nextWaypointDistance: 3

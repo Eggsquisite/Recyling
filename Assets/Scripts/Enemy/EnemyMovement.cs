@@ -187,6 +187,7 @@ public class EnemyMovement : MonoBehaviour
         //player = GameObject.FindGameObjectWithTag("Player");
         //playerChar = player.transform.position;
         playerChar = Player.instance.transform.position;
+        facingLeft = CheckPlayerPos();
         if (canFollow)
             RandomizeOffsetAttackStandby();
     }
