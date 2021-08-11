@@ -213,7 +213,7 @@ MonoBehaviour:
   maxStamina: 900
   healthRecoveryValue: 7.5
   energyToHealthMultiplier: 0.9
-  energyRecoveryValue: 11.33
+  energyRecoveryValue: 12
   staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.5
   swordDamage: 17
