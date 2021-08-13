@@ -16,8 +16,8 @@ public class AttackPriority
 public class BasicEnemy : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField]
-    [Tooltip("For Non Bosses")] private GameObject healthBarParent;
+    [SerializeField] [Tooltip("For Non Bosses")] 
+    private GameObject healthBarParent;
 
     private Rigidbody2D rb;
     private SpriteRenderer sp;
@@ -124,6 +124,8 @@ public class BasicEnemy : MonoBehaviour
     private List<float> attackFollowDistances;
     [SerializeField] [Tooltip ("Does attack use raycast (for projectiles or straight attacks")]
     private List<bool> attackIsRay;
+    [SerializeField] [Tooltip ("Does this attack only get used during a bosses second phase?")]
+    private List<bool> boss2ndPhaseAttack;
 
     [SerializeField] [Tooltip("If enemy is stunned, will not follow/attack after delay")]
     private float minStunAttackDelay;
@@ -217,7 +219,7 @@ public class BasicEnemy : MonoBehaviour
         enemyAttack.SetStaminaRecoverySpeed(staminaRecoverySpeed);*/
 
         resetAttackRoutine = StartCoroutine(ResetAttack(0f));
-
+        
         priorityLists = new List<List<AttackPriority>>();
         priorityListOne = new List<AttackPriority>();
         priorityListTwo = new List<AttackPriority>();
@@ -225,6 +227,8 @@ public class BasicEnemy : MonoBehaviour
 
         for (int i = 0; i < attackAnimations.Count; i++)
         {
+            // Get the priority of each attackAnimation, then set that into its corresponding priorityList
+            // 1 > higher priority / 3 > lowest priority
             var tmp = attackPriority[i];
             if (tmp == 1)
                 priorityListOne.Add(new AttackPriority(i, attackAnimations[i]));
@@ -453,20 +457,45 @@ public class BasicEnemy : MonoBehaviour
     private void PickAttack()
     {
         isPicking = true;
-        float tmpRange;
-        Vector2 tmpAttackVector;
-        Transform tmpAttackPoint;
-        for (int j = 0; j < priorityLists.Count; j++)
+        //float tmpRange;
+        //Vector2 tmpAttackVector;
+        //Transform tmpAttackPoint;
+        for (int j = 0; j < priorityLists.Count; j++) // j < 3 because there are always 3 priorityLists
         {
             // priorityLists[j] is the list that contains all attacks of that specific priority
             if (priorityLists[j].Count > 0)
             {
+                // Shuffle the attackAnimations and their corresponding indexes in the list
                 priorityLists[j].Shuffle();
-                for (int i = 0; i < priorityLists[j].Count; i++)
+                for (int i = 0; i < priorityLists[j].Count; i++) // priorityLists[j][i] gets the AttackPriority
                 {
-                    // split the attackRange / 2 and add to attackPoint to split the difference 
+                    if (isBoss)
+                    {
+                        // if the selected attack is a 2ndPhaseAttack and boss IS in 2ndPhase, choose attack
+                        if (boss2ndPhaseAttack[priorityLists[j][i].index] && bossPhases.GetSecondPhase())
+                        {
+                            ConfirmAttack(j, i);
+                        }   
+                        // if the selected attack is NOT a 2ndPhaseAttack, choose attack
+                        else if (!boss2ndPhaseAttack[priorityLists[j][i].index])
+                        {
+                            ConfirmAttack(j, i);
+                        }
+                        // else - keep iterating through the list
+                    }
+                    else
+                    {
+                        // if enemy is NOT a boss and selected attack is NOT a 2ndPhaseAttack, choose attack
+                        if (!boss2ndPhaseAttack[priorityLists[j][i].index])
+                        {
+                            ConfirmAttack(j, i);
+                        }
+                        // else - keep iterating through the list
+                    }
+
+ /*                   // split the attackRange / 2 and add to attackPoint to split the difference 
                     // when finding the distance between playerPosition and attackPoint, otherwise
-                    // it will check the distance from both sides of attackPoint
+                    // it would check the distance from both sides of attackPoint
                     tmpRange = attackDetectRanges[priorityLists[j][i].index] / 2;
                     tmpAttackPoint = attackDetectPoints[priorityLists[j][i].index];
 
@@ -479,7 +508,7 @@ public class BasicEnemy : MonoBehaviour
                                             tmpAttackPoint.position.x - tmpRange,
                                             tmpAttackPoint.position.y);
                     // iterates through each list in priorityLists to find an attack that is currently in range
-                    if (attackIsRay[priorityLists[j][i].index]) {
+                    if (attackIsRay[priorityLists[j][i].index]) { // utilizes a ray attack
                         if (enemyMovement.GetLeftOfPlayer())
                             attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
                                                                     Vector2.right, 
@@ -504,8 +533,8 @@ public class BasicEnemy : MonoBehaviour
                     }
                     else { 
                         if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector)
-                                < tmpRange)
-                        {
+                                < tmpRange) 
+                        { // utilizes distance from attackPoint  
                             attackPointIndex = attackIndex = priorityLists[j][i].index;
 
                             //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
@@ -514,7 +543,7 @@ public class BasicEnemy : MonoBehaviour
                             return;
                         }
                         // keep iterating
-                    }
+                    }*/
                 }
             }
         }
@@ -528,6 +557,67 @@ public class BasicEnemy : MonoBehaviour
             yield return null;
         }
         StartCoroutine(AttackAnimation());*/
+    }
+
+    private void ConfirmAttack(int j, int i)
+    {
+        float tmpRange;
+        Vector2 tmpAttackVector;
+        Transform tmpAttackPoint;
+
+        // split the attackRange / 2 and add to attackPoint to split the difference 
+        // when finding the distance between playerPosition and attackPoint, otherwise
+        // it would check the distance from both sides of attackPoint
+        tmpRange = attackDetectRanges[priorityLists[j][i].index] / 2;
+        tmpAttackPoint = attackDetectPoints[priorityLists[j][i].index];
+
+        if (enemyMovement.GetLeftOfPlayer())
+            tmpAttackVector = new Vector2(
+                                tmpAttackPoint.position.x + tmpRange,
+                                tmpAttackPoint.position.y);
+        else
+            tmpAttackVector = new Vector2(
+                                tmpAttackPoint.position.x - tmpRange,
+                                tmpAttackPoint.position.y);
+        // iterates through each list in priorityLists to find an attack that is currently in range
+        if (attackIsRay[priorityLists[j][i].index])
+        { // utilizes a ray attack
+            if (enemyMovement.GetLeftOfPlayer())
+                attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
+                                                        Vector2.right,
+                                                        tmpRange,
+                                                        playerLayer);
+            else
+                attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
+                                                        Vector2.left,
+                                                        tmpRange,
+                                                        playerLayer);
+
+            // if attackIsRay is true, use a raycast to check if player is in 
+            // attack detect range of the attack detect point, if true continue
+            if (attackDetected.collider != null)
+            {
+                attackPointIndex = attackIndex = priorityLists[j][i].index;
+
+                //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
+                isPicking = false;
+                attackAnimationRoutine = StartCoroutine(AttackAnimation());
+                return;
+            }
+        }
+        else
+        {
+            if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector)
+                    < tmpRange)
+            { // utilizes distance from attackPoint  
+                attackPointIndex = attackIndex = priorityLists[j][i].index;
+
+                //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
+                isPicking = false;
+                attackAnimationRoutine = StartCoroutine(AttackAnimation());
+                return;
+            }
+        }
     }
 
     IEnumerator AttackAnimation()
@@ -561,7 +651,10 @@ public class BasicEnemy : MonoBehaviour
         AttackDeactivated();
         AttackFollowDeactivated();
 
+        if (staminaRecoveryRoutine != null)
+            StopCoroutine(StaminaRecovery());
         staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
+
         StartCoroutine(enemyMovement.ResetAttackFollow());
 
         if (resetAttackRoutine != null)
@@ -803,9 +896,11 @@ public class BasicEnemy : MonoBehaviour
 
     IEnumerator StaminaRecovery()
     {
+        Debug.Log("Beginning stamina recovery delay");
         yield return new WaitForSeconds(staminaRecoveryDelay);
         while (currentStamina < maxStamina && staminaRecovery && !isAttacking)
         {
+            Debug.Log("Recovering stamina");
             currentStamina += staminaRecoveryValue;
             CheckStamina();
             yield return new WaitForSeconds(staminaRecoverySpeed);

@@ -925,6 +925,7 @@ public class Player : MonoBehaviour
         GameManager.instance.BeginCameraShake(stunDuration, 0.05f);
         PushBack(pushDistance, reference);
 
+        // if hurt and attacking, do something
         if (isAttacking)
             UI.SetCurrentStamina(-0.1f);
 
@@ -948,7 +949,6 @@ public class Player : MonoBehaviour
         }
         else { 
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
-
             StartResetStunRoutine(stunDuration);
         }
     }

@@ -866,7 +866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134971273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 0, z: 0}
+  m_LocalPosition: {x: -1.8, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3898020908218038418}
@@ -29285,8 +29285,8 @@ MonoBehaviour:
   healthBarParent: {fileID: 0}
   maxHealth: 500
   maxStamina: 200
-  staminaRecoveryValue: 50
-  staminaRecoveryDelay: 3
+  staminaRecoveryValue: 25
+  staminaRecoveryDelay: 5
   staminaRecoverySpeed: 0.5
   currencyOnDeath: 555
   energyGainMultiplier: 1.1
@@ -29298,8 +29298,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualizePoint: {fileID: 1286017555}
-  visualizeRange: 1.5
+  visualizePoint: {fileID: 134971274}
+  visualizeRange: 3
   hurtPushBackSpeed: 2
   attackPoints:
   - {fileID: 3898020909035270271}
@@ -29334,8 +29334,9 @@ MonoBehaviour:
   attackFollowDistances:
   - 0
   - 2
-  - 2
+  - 4
   attackIsRay: 010000
+  boss2ndPhaseAttack: 000001
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 0.5
   minAttackDelay: 0.5
