@@ -29320,18 +29320,22 @@ MonoBehaviour:
   attackDetectPoints:
   - {fileID: 3898020909035270271}
   - {fileID: 3898020909035270271}
+  - {fileID: 3898020909035270271}
   attackDetectRanges:
   - 4.25
+  - 1.5
   - 1.5
   attackAnimations:
   - enemy_attack1
   - enemy_attack2
-  attackPriority: 0100000001000000
-  attackFollowFacePlayer: 0001
+  - enemy_attack3
+  attackPriority: 010000000100000001000000
+  attackFollowFacePlayer: 000101
   attackFollowDistances:
   - 0
   - 2
-  attackIsRay: 0100
+  - 2
+  attackIsRay: 010000
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 0.5
   minAttackDelay: 0.5

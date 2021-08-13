@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private bool detectIsRay;
 
     private bool facingLeft;
+    private bool isAttacking;
     // GameObject player;
     private Vector2 playerChar;
 
@@ -125,12 +126,12 @@ public class EnemyMovement : MonoBehaviour
         if (playerChar.x > transform.position.x) {
             facingLeft = false;
             leftOfPlayer = true;
-            //transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
         else if (playerChar.x <= transform.position.x) {
             facingLeft = true;
             leftOfPlayer = false;
-            //transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
         teleportReady = true;
@@ -505,6 +506,9 @@ public class EnemyMovement : MonoBehaviour
 
     public bool CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
+        if (isAttacking)
+            return facingLeft;
+
         if (playerChar.x > transform.position.x && transform.localScale.x != xScaleValue) {
             facingLeft = false;
             leftOfPlayer = true;
@@ -518,6 +522,10 @@ public class EnemyMovement : MonoBehaviour
 
         CheckPlayerVertical();
         return facingLeft;
+    }
+
+    public void SetIsAttacking(bool flag) {
+        isAttacking = flag;
     }
 
     public void SetDirection(bool left) {

@@ -104,6 +104,9 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField]
     private List<float> attackPushDistances;
 
+    [Tooltip("Used for each type of attack")]
+    private int attackPointIndex;
+
     [Header("Corresponding Attack Properties (Tied to Each Attack Animation")]
     // Must have same amount 
     [SerializeField]
@@ -138,7 +141,8 @@ public class BasicEnemy : MonoBehaviour
     private string attackChosen;
     private RaycastHit2D attackDetected;
 
-    private int attackIndex, attackPointIndex;
+    [Tooltip("Used for each attack animation")]
+    private int attackIndex;
     private int abovePlayer;
 
     private bool inRange;
@@ -426,7 +430,11 @@ public class BasicEnemy : MonoBehaviour
             attackPointIndex = attackPoint;
 
         enemyMovement.StopFindPlayer();
-        enemyMovement.FindPlayer();
+
+        // If enemy follows player movement, enable sprite direction change
+        if (attackFollowFacePlayer[attackIndex])
+            enemyMovement.FindPlayer();
+
         attackHitbox = true;
         StartCoroutine(CheckHitBox());
     }
