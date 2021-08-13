@@ -29680,8 +29680,8 @@ MonoBehaviour:
   detectIsRay: 0
   usePathfinding: 0
   nextWaypointDistance: 3
-  repeatFollowDelay: 2
-  attackFollowDelay: 1.5
+  repeatFollowDelay: 1.5
+  attackFollowDelay: 0.5
   stunFollowDelay: 0.75
   borderLayer:
     serializedVersion: 2
