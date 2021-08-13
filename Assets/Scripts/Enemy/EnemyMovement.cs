@@ -506,9 +506,6 @@ public class EnemyMovement : MonoBehaviour
 
     public bool CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
-        if (isAttacking)
-            return facingLeft;
-
         if (playerChar.x > transform.position.x && transform.localScale.x != xScaleValue) {
             facingLeft = false;
             leftOfPlayer = true;
@@ -522,10 +519,6 @@ public class EnemyMovement : MonoBehaviour
 
         CheckPlayerVertical();
         return facingLeft;
-    }
-
-    public void SetIsAttacking(bool flag) {
-        isAttacking = flag;
     }
 
     public void SetDirection(bool left) {

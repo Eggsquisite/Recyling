@@ -24,14 +24,15 @@ public class BasicEnemy : MonoBehaviour
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
     //private EnemyAttack enemyAttack;
-    private BossHealthbar bossHealthbar;
     private EnemyHealthbar healthFill;
     private EnemyMovement enemyMovement;
     private EnemyAnimation enemyAnimation;
     private EnemySounds playSound;
+    private BossHealthbar bossHealthbar;
+    private BossPhases bossPhases;
     private Projectile projectile;
-    private Vector2 resetSpawnSpoint;
 
+    private Vector2 resetSpawnSpoint;
     private Coroutine healthBarRoutine;
 
     [Header("Enemy Stats")]
@@ -179,7 +180,10 @@ public class BasicEnemy : MonoBehaviour
         if (playSound == null) playSound = GetComponent<EnemySounds>();
         if (enemyMovement == null) enemyMovement = GetComponent<EnemyMovement>();
         if (enemyAnimation == null) enemyAnimation = GetComponent<EnemyAnimation>();
-        if (isBoss && bossHealthbar == null) bossHealthbar = GetComponent<BossHealthbar>();
+        if (isBoss) { 
+            if (bossHealthbar == null) bossHealthbar = GetComponent<BossHealthbar>();
+            if (bossPhases == null) bossPhases = GetComponent<BossPhases>();
+        }
 
 
         if (projectile == null) projectile = GetComponent<Projectile>();

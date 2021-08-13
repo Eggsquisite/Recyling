@@ -22848,7 +22848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914398069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.45, y: -0.5, z: 0}
+  m_LocalPosition: {x: -2.7, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3898020908218038418}
@@ -29298,8 +29298,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualizePoint: {fileID: 3898020909035270271}
-  visualizeRange: 3.75
+  visualizePoint: {fileID: 1286017555}
+  visualizeRange: 1.5
   hurtPushBackSpeed: 2
   attackPoints:
   - {fileID: 3898020909035270271}
@@ -29472,6 +29472,7 @@ GameObject:
   - component: {fileID: 6814819942700732733}
   - component: {fileID: 3898020908218038417}
   - component: {fileID: 3898020908218038424}
+  - component: {fileID: 3898020908218038425}
   - component: {fileID: 575602372}
   m_Layer: 7
   m_Name: Big Boi
@@ -29509,6 +29510,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHealthUI: {fileID: 618974426}
+--- !u!114 &3898020908218038425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898020908218038422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c8834b4ec8b184093cdee81cdce1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3898020908486576666
 Transform:
   m_ObjectHideFlags: 0
