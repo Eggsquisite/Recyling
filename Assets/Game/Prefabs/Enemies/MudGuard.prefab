@@ -420,6 +420,7 @@ MonoBehaviour:
   - 0
   - 0.75
   attackIsRay: 0101010101
+  boss2ndPhaseAttack: 0000000000
   minStunAttackDelay: 1
   maxStunAttackDelay: 1.5
   minAttackDelay: 2

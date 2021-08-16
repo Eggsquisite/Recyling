@@ -483,7 +483,7 @@ public class BasicEnemy : MonoBehaviour
                         }
                         // else - keep iterating through the list
                     }
-                    else
+                    else if (!isBoss)
                     {
                         // if enemy is NOT a boss and selected attack is NOT a 2ndPhaseAttack, choose attack
                         if (!boss2ndPhaseAttack[priorityLists[j][i].index])
@@ -651,12 +651,13 @@ public class BasicEnemy : MonoBehaviour
 
     private void FinishAttack() {
         isAttacking = false;
-        staminaRecovery = true;
+        staminaRecovery = false;
+        //staminaRecovery = true;
         AttackDeactivated();
         AttackFollowDeactivated();
 
         if (staminaRecoveryRoutine != null)
-            StopCoroutine(StaminaRecovery());
+            StopCoroutine(staminaRecoveryRoutine);
         staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());
 
         StartCoroutine(enemyMovement.ResetAttackFollow());
@@ -900,11 +901,10 @@ public class BasicEnemy : MonoBehaviour
 
     IEnumerator StaminaRecovery()
     {
-        Debug.Log("Beginning stamina recovery delay");
         yield return new WaitForSeconds(staminaRecoveryDelay);
+        staminaRecovery = true;
         while (currentStamina < maxStamina && staminaRecovery && !isAttacking)
         {
-            Debug.Log("Recovering stamina");
             currentStamina += staminaRecoveryValue;
             CheckStamina();
             yield return new WaitForSeconds(staminaRecoverySpeed);

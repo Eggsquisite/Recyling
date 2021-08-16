@@ -48,7 +48,6 @@ public class BossHealthUI : MonoBehaviour
     }
 
     public void UpdateHealth(int damagedHealth) {
-        Debug.Log("Updating boss health");
         currentHealthSlider.value -= damagedHealth;
 
         if (updateHealthRoutine != null)

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BossPhases : MonoBehaviour
 {
+    [Header("Components")]
+    private BasicEnemy enemy;
+
+    [SerializeField]
+    private float healthThresholdPercent;
+
     private int currentPhase;
     private bool secondPhase;
 
