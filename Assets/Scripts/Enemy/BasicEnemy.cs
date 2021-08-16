@@ -601,6 +601,8 @@ public class BasicEnemy : MonoBehaviour
 
                 //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
                 isPicking = false;
+                if (attackAnimationRoutine != null)
+                    StopCoroutine(attackAnimationRoutine);
                 attackAnimationRoutine = StartCoroutine(AttackAnimation());
                 return;
             }
@@ -614,6 +616,8 @@ public class BasicEnemy : MonoBehaviour
 
                 //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
                 isPicking = false;
+                if (attackAnimationRoutine != null)
+                    StopCoroutine(attackAnimationRoutine);
                 attackAnimationRoutine = StartCoroutine(AttackAnimation());
                 return;
             }
