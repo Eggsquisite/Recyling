@@ -88,7 +88,7 @@ public class BasicEnemy : MonoBehaviour
     private float baseTetherRange;
     private float currentDamageThresholdPercent;
 
-    private Coroutine deathRoutine;
+    private Coroutine deathRoutine, damageThresholdRoutine;
 
     [Header("Attack Collider Properties")]
     [SerializeField]
@@ -886,8 +886,10 @@ public class BasicEnemy : MonoBehaviour
             currentStamina = maxStamina;
         }
 
-        if (!outOfStamina && currentStamina <= 0)
+        if (!outOfStamina && currentStamina <= 0) { 
+            currentStamina = 0;
             outOfStamina = true;
+        }
         else if (outOfStamina && currentStamina >= maxStamina) {
             if (!isStunned || !isAttacking) {
                 if (resetAttackRoutine != null)
@@ -926,6 +928,9 @@ public class BasicEnemy : MonoBehaviour
         yield return new WaitForSeconds(value);
         isStunned = false;
         stunDelay = Random.Range(minStunAttackDelay, maxStunAttackDelay);
+
+        // extra case just in case enemy hitbox stays active
+        AttackDeactivated();
 
         StartCoroutine(enemyMovement.ResetStunFollow());
         if (!outOfStamina) {
@@ -973,14 +978,18 @@ public class BasicEnemy : MonoBehaviour
             bossHealthbar.UpdateHealth(damageNum);
 
             // if health threshold reached, begin next phase using variables from BossPhases.cs
-            if (currentHealth / maxHealth <= phaseThresholdPercent && !isNextPhase)
+            if (currentHealth / (float)maxHealth <= phaseThresholdPercent && !isNextPhase) { 
                 BeginNextPhase();
+            }
         }
 
         // Play sounds
         playSound.PlayEnemyHit(soundIndex);
-        // Begin damage threshold timer
-        StartCoroutine(BeginDamageThreshold(damageNum));
+
+        // Begin damage threshold timer, and reset whenever enemy is hit
+        if (damageThresholdRoutine != null)
+            StopCoroutine(damageThresholdRoutine);
+        damageThresholdRoutine = StartCoroutine(BeginDamageThreshold(damageNum));
 
         if (currentHealth <= 0) {
             if (deathRoutine != null)
@@ -988,16 +997,17 @@ public class BasicEnemy : MonoBehaviour
             deathRoutine = StartCoroutine(Death());
         }
         else {
-            // if damage threshold reached, stagger enemy
+            // if damage threshold reached, stagger enemy and reset damage threshold
             // else don't interrupt enemy 
             if (currentDamageTaken >= damageThreshold) { 
+                currentDamageTaken = 0;
                 enemyMovement.SetFollow(false);
                 enemyAnimation.ReplayAnimation(EnemyAnimStates.ENEMY_HURT);
 
                 isStunned = true;
                 if (stunRoutine != null)
                     StopCoroutine(stunRoutine);
-                stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.05f));
+                stunRoutine = StartCoroutine(ResetStun(stunDuration + 0.07f));
 
                 AttackDeactivated();
                 AttackFollowDeactivated();
@@ -1022,6 +1032,9 @@ public class BasicEnemy : MonoBehaviour
     }
 
     IEnumerator HealthBarVisibility(float delay) {
+        if (isBoss)
+            yield return null;
+
         healthBarParent.SetActive(true);
         yield return new WaitForSeconds(delay);
         healthBarParent.SetActive(false);
@@ -1173,7 +1186,8 @@ public class BasicEnemy : MonoBehaviour
 
             GetComponent<Collider2D>().enabled = false;
             transform.position = EnemyManager.Instance.GetDeathPosition(transform, name);
-            healthFill.UpdateHealthbarDirection();
+            if (healthFill != null)
+                healthFill.UpdateHealthbarDirection();
 
             yield return new WaitForSeconds(tmp);
             if (deleteOnDeath || isBoss)

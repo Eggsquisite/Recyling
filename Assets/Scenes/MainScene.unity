@@ -29315,7 +29315,7 @@ MonoBehaviour:
   - 3
   - 1.5
   - 1.5
-  attackDamages: 00000000000000000000000000000000
+  attackDamages: 0a0000000a0000000500000005000000
   attackPushDistances:
   - 1.5
   - 0.5
@@ -29341,9 +29341,9 @@ MonoBehaviour:
   - 4
   attackIsRay: 010000
   boss2ndPhaseAttack: 000001
-  minStunAttackDelay: 0.5
-  maxStunAttackDelay: 0.5
-  minAttackDelay: 0.75
+  minStunAttackDelay: 0.75
+  maxStunAttackDelay: 0.75
+  minAttackDelay: 0.85
   maxAttackDelay: 1.25
 --- !u!4 &3898020908218038418
 Transform:
@@ -29499,8 +29499,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08859529, y: 0.000000010561381}
-  m_Size: {x: 2.0408702, y: 0.4712726}
+  m_Offset: {x: -0.08859531, y: -0.04244251}
+  m_Size: {x: 2.0408707, y: 0.55615884}
   m_Direction: 1
 --- !u!114 &3898020908218038424
 MonoBehaviour:
@@ -29528,7 +29528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthThresholdPercent: 0.75
-  animSpeedMult: 1.15
+  animSpeedMult: 1.1
   moveSpeedMult: 1.25
   attackDelayReduction: 0.1
 --- !u!4 &3898020908486576666

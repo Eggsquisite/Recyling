@@ -859,7 +859,9 @@ public class Player : MonoBehaviour
 
         if (resetAttackRoutine != null)
             StopCoroutine(resetAttackRoutine);
-        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay));
+        // set attack delay slightly longer than animation to prevent spam shooting and make each shot 
+        // more powerful
+        resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay + 0.15f));
     }
 
     private void SuperBlasterAttack() {
@@ -1136,11 +1138,13 @@ public class Player : MonoBehaviour
         if (ps != null) ps.gameObject.SetActive(true);
         currentWalkSpeed *= healWalkSpeedMultiplier;
         anim.SetFloat("speedMultiplier", 0.5f);
+
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(true);
         while (isHealing || UI.GetCurrentHealth() < UI.GetHealthMaxValue() || isHurt)
         {
-            // increase heal amount the longer recovery is held
+            // consume energy to heal an equal amount (multiplied by energyToHealthMultiplier)
             UI.EnergyWithoutDecay(-playerStats.GetHealthRecoveryValue());
+            // increase heal amount the longer recovery is held
             if (time < 0.15f)
                 UI.SetFutureHealth(1f);
             else if (time >= 0.15f && time < 1.25f)

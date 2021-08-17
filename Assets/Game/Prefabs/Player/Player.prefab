@@ -192,10 +192,10 @@ MonoBehaviour:
   superAttackStamina2: 200
   blasterLightStamina: 20
   blasterHeavyStamina: 75
-  blasterLightEnergy: 20
-  blasterHeavyEnergy: 75
-  superAttackEnergy1: 150
-  superAttackEnergy2: 200
+  blasterLightEnergy: 150
+  blasterHeavyEnergy: 225
+  superAttackEnergy1: 200
+  superAttackEnergy2: 250
 --- !u!114 &2311640890247761020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,13 +213,13 @@ MonoBehaviour:
   maxStamina: 900
   healthRecoveryValue: 7.5
   energyToHealthMultiplier: 0.9
-  energyRecoveryValue: 12
+  energyRecoveryValue: 20
   staminaRecoveryValue: 50
   staminaRecoveryDelay: 0.5
-  swordDamage: 17
+  swordDamage: 15
   specialAttackDmg: 55
-  blasterLightDmg: 7
-  blasterHeavyDmg: 32
+  blasterLightDmg: 25
+  blasterHeavyDmg: 55
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 0.5
+  visualDelay: 0.75
   updateSpeed: 85
   updateModifier: 10
   UI: {fileID: 0}

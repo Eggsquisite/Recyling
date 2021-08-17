@@ -90,7 +90,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveAreaToLoad(int index) {
         instance.activeSave.areaToLoadIndex = index;
-        Save(); // after loading a new area
+        Save(); // after loading a new area (not including boss arena's)
     }
 
     public void SaveSpawnPoint() {

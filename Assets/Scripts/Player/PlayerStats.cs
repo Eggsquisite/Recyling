@@ -58,11 +58,11 @@ public class PlayerStats : MonoBehaviour
     private int vitalityUpgradeWeak;
 
     [Header("Focus Properties")]
-    [SerializeField]
+    [SerializeField] [Tooltip ("Amount of health recovered when healing")]
     private float healthFocusUpgrade;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Amount of energy gained when basic attacking an enemy")]
     private float energyFocusUpgrade;
-    [SerializeField]
+    [SerializeField] [Tooltip ("Efficiency at which energy is consumed to recover a set amount of health")]
     private float energyToHealthFocusUpgrade;
 
     [Header("Strength Properties")]
