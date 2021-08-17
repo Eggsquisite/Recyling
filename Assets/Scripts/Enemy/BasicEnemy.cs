@@ -39,6 +39,7 @@ public class BasicEnemy : MonoBehaviour
     private float phaseThresholdPercent = 0f;
     private float animSpeedMult = 1f;
     private float moveSpeedMult = 1f;
+    private float reducedAttackDelay = 0f;
 
     private bool isNextPhase;
 
@@ -254,8 +255,9 @@ public class BasicEnemy : MonoBehaviour
     {
         if (isBoss)
             bossPhases.InitializePhaseVariables(out phaseThresholdPercent, 
-                out animSpeedMult,
-                out moveSpeedMult);
+                                                    out animSpeedMult,
+                                                    out moveSpeedMult,
+                                                    out reducedAttackDelay);
     }
 
     private void Update() {
@@ -1298,6 +1300,9 @@ public class BasicEnemy : MonoBehaviour
         // increase enemy move speed
         enemyMovement.SetMoveSpeed(moveSpeedMult);
 
+        // reduce attack delay / increase attack frequency
+        minAttackDelay -= reducedAttackDelay;
+        maxAttackDelay -= reducedAttackDelay;
     }
 
     private void ResetPhaseVariables() {
@@ -1308,6 +1313,9 @@ public class BasicEnemy : MonoBehaviour
 
         enemyAnimation.SetAnimSpeed(1f);
         enemyMovement.ResetMoveSpeed();
+
+        minAttackDelay += reducedAttackDelay;
+        maxAttackDelay += reducedAttackDelay;
     }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////

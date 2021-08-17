@@ -866,7 +866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134971273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8, y: -0.1, z: 0}
+  m_LocalPosition: {x: -1.8, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3898020908218038418}
@@ -25410,7 +25410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4427726428596220388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3898020908218038418}
@@ -29323,11 +29323,11 @@ MonoBehaviour:
   - 0.5
   attackDetectPoints:
   - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
-  - {fileID: 3898020909035270271}
+  - {fileID: 806799265187410215}
+  - {fileID: 806799265187410215}
   attackDetectRanges:
   - 4.25
-  - 1.5
+  - 1.25
   - 1.5
   attackAnimations:
   - enemy_attack1
@@ -29528,8 +29528,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthThresholdPercent: 0.75
-  increasedAnimSpeed: 1.25
-  increasedMoveSpeed: 1.25
+  animSpeedMult: 1.15
+  moveSpeedMult: 1.25
+  attackDelayReduction: 0.1
 --- !u!4 &3898020908486576666
 Transform:
   m_ObjectHideFlags: 0

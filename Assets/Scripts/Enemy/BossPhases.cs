@@ -13,6 +13,8 @@ public class BossPhases : MonoBehaviour
     private float animSpeedMult;
     [SerializeField]
     private float moveSpeedMult;
+    [SerializeField] [Tooltip("Amount to reduce both min/max attack delay")]
+    private float attackDelayReduction;
 
     private int currentPhase;
 
@@ -24,10 +26,12 @@ public class BossPhases : MonoBehaviour
 
     public void InitializePhaseVariables(out float thresholdPercent,
                                                 out float animSpeed,
-                                                out float moveSpeed) 
+                                                out float moveSpeed,
+                                                out float attackDelay) 
     {
         thresholdPercent = healthThresholdPercent;
         animSpeed = animSpeedMult;
         moveSpeed = moveSpeedMult;
+        attackDelay = attackDelayReduction;
     }
 }
