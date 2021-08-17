@@ -89,6 +89,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
+            // y offset allows camera to follow player more closely
             Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, min_X, max_X),
                                             Mathf.Clamp(target.position.y + 1.25f, min_Y, max_Y),
                                             transform.position.z);
@@ -112,6 +113,7 @@ public class CameraFollow : MonoBehaviour
 
     public void FocusCamera()
     {
+        // need to slow camera zoom
         if (timeElapsed < focusDuration + 1f) {
             timeElapsed += Time.deltaTime / focusDuration;
             var tmp = Mathf.Lerp(currentSize, focusSize, timeElapsed);
