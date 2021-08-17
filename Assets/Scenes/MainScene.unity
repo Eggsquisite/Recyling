@@ -29343,8 +29343,8 @@ MonoBehaviour:
   boss2ndPhaseAttack: 000001
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 0.5
-  minAttackDelay: 0.5
-  maxAttackDelay: 0.75
+  minAttackDelay: 0.75
+  maxAttackDelay: 1.25
 --- !u!4 &3898020908218038418
 Transform:
   m_ObjectHideFlags: 0
@@ -29527,7 +29527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c8834b4ec8b184093cdee81cdce1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthThresholdPercent: 0
+  healthThresholdPercent: 0.8
 --- !u!4 &3898020908486576666
 Transform:
   m_ObjectHideFlags: 0

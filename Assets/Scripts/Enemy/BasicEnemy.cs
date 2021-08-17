@@ -35,6 +35,12 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 resetSpawnSpoint;
     private Coroutine healthBarRoutine;
 
+    [Header("Boss Variables")]
+    private float phaseThresholdPercent = 0f;
+    private float increasedAnimSpeed = 1f;
+
+    private bool isNextPhase;
+
     [Header("Enemy Stats")]
     [SerializeField]
     private int maxHealth;
@@ -241,6 +247,13 @@ public class BasicEnemy : MonoBehaviour
         priorityLists.Add(priorityListOne);
         priorityLists.Add(priorityListTwo);
         priorityLists.Add(priorityListThree);
+    }
+
+    private void Start()
+    {
+        if (isBoss)
+            bossPhases.InitializePhaseVariables(out phaseThresholdPercent, 
+                out increasedAnimSpeed);
     }
 
     private void Update() {
@@ -472,7 +485,7 @@ public class BasicEnemy : MonoBehaviour
                     if (isBoss)
                     {
                         // if the selected attack is a 2ndPhaseAttack and boss IS in 2ndPhase, choose attack
-                        if (boss2ndPhaseAttack[priorityLists[j][i].index] && bossPhases.GetSecondPhase())
+                        if (boss2ndPhaseAttack[priorityLists[j][i].index] && isNextPhase)
                         {
                             ConfirmAttack(j, i);
                         }   
@@ -492,58 +505,6 @@ public class BasicEnemy : MonoBehaviour
                         }
                         // else - keep iterating through the list
                     }
-
- /*                   // split the attackRange / 2 and add to attackPoint to split the difference 
-                    // when finding the distance between playerPosition and attackPoint, otherwise
-                    // it would check the distance from both sides of attackPoint
-                    tmpRange = attackDetectRanges[priorityLists[j][i].index] / 2;
-                    tmpAttackPoint = attackDetectPoints[priorityLists[j][i].index];
-
-                    if (enemyMovement.GetLeftOfPlayer())
-                        tmpAttackVector = new Vector2(
-                                            tmpAttackPoint.position.x + tmpRange,
-                                            tmpAttackPoint.position.y);
-                    else
-                        tmpAttackVector = new Vector2(
-                                            tmpAttackPoint.position.x - tmpRange,
-                                            tmpAttackPoint.position.y);
-                    // iterates through each list in priorityLists to find an attack that is currently in range
-                    if (attackIsRay[priorityLists[j][i].index]) { // utilizes a ray attack
-                        if (enemyMovement.GetLeftOfPlayer())
-                            attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
-                                                                    Vector2.right, 
-                                                                    tmpRange, 
-                                                                    playerLayer);
-                        else
-                            attackDetected = Physics2D.Raycast(tmpAttackPoint.position,
-                                                                    Vector2.left,
-                                                                    tmpRange,
-                                                                    playerLayer);
-
-                        // if attackIsRay is true, use a raycast to check if player is in 
-                        // attack detect range of the attack detect point, if true continue
-                        if (attackDetected.collider != null) {
-                            attackPointIndex = attackIndex = priorityLists[j][i].index;
-
-                            //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
-                            isPicking = false;
-                            attackAnimationRoutine = StartCoroutine(AttackAnimation());
-                            return;
-                        }
-                    }
-                    else { 
-                        if (Vector2.Distance(enemyMovement.GetPlayerPosition(), tmpAttackVector)
-                                < tmpRange) 
-                        { // utilizes distance from attackPoint  
-                            attackPointIndex = attackIndex = priorityLists[j][i].index;
-
-                            //Debug.Log("Found attack, stopping pick attack: " + j + " " + i);
-                            isPicking = false;
-                            attackAnimationRoutine = StartCoroutine(AttackAnimation());
-                            return;
-                        }
-                        // keep iterating
-                    }*/
                 }
             }
         }
@@ -1002,10 +963,15 @@ public class BasicEnemy : MonoBehaviour
         else if (isBoss) {
             // if boss, update enemy health through BossHealthBar.cs
             bossHealthbar.UpdateHealth(damageNum);
+
+            // if health threshold reached, begin next phase using variables from BossPhases.cs
+            if (currentHealth / maxHealth <= phaseThresholdPercent)
+                BeginNextPhase();
         }
 
         // Play sounds
         playSound.PlayEnemyHit(soundIndex);
+        // Begin damage threshold timer
         StartCoroutine(BeginDamageThreshold(damageNum));
 
         if (currentHealth <= 0) {
@@ -1104,7 +1070,15 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator ResetHurtSprite(float delay) {
         yield return new WaitForSeconds(delay);
         sp.material.shader = shaderSpritesDefault;
-        sp.color = Color.white;
+        if (!isBoss)
+            sp.color = Color.white;
+        else
+        {
+            if (!isNextPhase)
+                sp.color = Color.white;
+            else
+                sp.color = Color.yellow;
+        }
     }
 
     /// <summary>
@@ -1249,8 +1223,10 @@ public class BasicEnemy : MonoBehaviour
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
     public void ResetToSpawn()
     {
-        if (isBoss)
+        if (isBoss) { 
+            isNextPhase = false;
             bossHealthbar.SetHealthbar(false);
+        }
 
         if (deathRoutine != null)
             StopCoroutine(deathRoutine);
@@ -1297,6 +1273,22 @@ public class BasicEnemy : MonoBehaviour
     // FOR LOADING ///////////////////////////////////////////////////////////////////////////
     public Vector2 GetSpawnPoint() {
         return resetSpawnSpoint;
+    }
+
+    // FOR BOSS PHASE STUFF
+    private void BeginNextPhase() {
+        Debug.Log(name + " is starting next phase!");
+        isNextPhase = true;
+
+        // play animation
+        
+        // change sprite color
+        sp.material.shader = shaderGUItext;
+        sp.color = Color.red;
+
+        // increase enemy animation speed
+        enemyAnimation.SetAnimSpeed(increasedAnimSpeed);
+
     }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////

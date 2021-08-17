@@ -28,4 +28,8 @@ public class EnemyAnimation : MonoBehaviour
     public string GetCurrentState() {
         return currentState;
     }
+
+    public void SetAnimSpeed(float speedMultiplier) {
+        anim.SetFloat("animSpeed", speedMultiplier);
+    }
 }
