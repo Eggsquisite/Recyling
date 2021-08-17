@@ -37,7 +37,8 @@ public class BasicEnemy : MonoBehaviour
 
     [Header("Boss Variables")]
     private float phaseThresholdPercent = 0f;
-    private float increasedAnimSpeed = 1f;
+    private float animSpeedMult = 1f;
+    private float moveSpeedMult = 1f;
 
     private bool isNextPhase;
 
@@ -253,7 +254,8 @@ public class BasicEnemy : MonoBehaviour
     {
         if (isBoss)
             bossPhases.InitializePhaseVariables(out phaseThresholdPercent, 
-                out increasedAnimSpeed);
+                out animSpeedMult,
+                out moveSpeedMult);
     }
 
     private void Update() {
@@ -600,7 +602,11 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(StaminaRecovery());
 
         enemyAnimation.PlayAnimation(attackChosen);
-        tmpLength = enemyAnimation.GetAnimationLength(attackChosen);
+        if (isBoss && isNextPhase)
+            // divide animation length by increasedAnimSpeed if Boss to account for increasedAnimSpeed
+            tmpLength = enemyAnimation.GetAnimationLength(attackChosen) / animSpeedMult;
+        else
+            tmpLength = enemyAnimation.GetAnimationLength(attackChosen);
 
         yield return new WaitForSeconds(tmpLength);
         if (!isAttacking)
@@ -965,7 +971,7 @@ public class BasicEnemy : MonoBehaviour
             bossHealthbar.UpdateHealth(damageNum);
 
             // if health threshold reached, begin next phase using variables from BossPhases.cs
-            if (currentHealth / maxHealth <= phaseThresholdPercent)
+            if (currentHealth / maxHealth <= phaseThresholdPercent && !isNextPhase)
                 BeginNextPhase();
         }
 
@@ -1223,8 +1229,8 @@ public class BasicEnemy : MonoBehaviour
     // ENEMY RESET /////////////////////////////////////////////////////////////////////////////
     public void ResetToSpawn()
     {
-        if (isBoss) { 
-            isNextPhase = false;
+        if (isBoss) {
+            ResetPhaseVariables();
             bossHealthbar.SetHealthbar(false);
         }
 
@@ -1287,8 +1293,21 @@ public class BasicEnemy : MonoBehaviour
         sp.color = Color.red;
 
         // increase enemy animation speed
-        enemyAnimation.SetAnimSpeed(increasedAnimSpeed);
+        enemyAnimation.SetAnimSpeed(animSpeedMult);
 
+        // increase enemy move speed
+        enemyMovement.SetMoveSpeed(moveSpeedMult);
+
+    }
+
+    private void ResetPhaseVariables() {
+        isNextPhase = false;
+
+        sp.material.shader = shaderGUItext;
+        sp.color = Color.white;
+
+        enemyAnimation.SetAnimSpeed(1f);
+        enemyMovement.ResetMoveSpeed();
     }
 
     // GIZMOS ////////////////////////////////////////////////////////////////////////////////

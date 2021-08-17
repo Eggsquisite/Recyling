@@ -55,9 +55,9 @@ public class EnemyMovement : MonoBehaviour
 
     private float idleSpeedMult = 1f;
 
-    [SerializeField] [Tooltip("Minimum offset for enemy to move left/right of player")]
+    [SerializeField] [Tooltip("Minimum distance offset for enemy to move left/right of player")]
     private float minOffset;
-    [SerializeField] [Tooltip("Max offset for enemy to move left/right of player")]
+    [SerializeField] [Tooltip("Max distance offset for enemy to move left/right of player")]
     private float maxOffset;
     [SerializeField] [Tooltip("Offset of offset that player stands at when not ready to attack")]
     private Vector2 offsetAttackStandbyRange;
@@ -173,7 +173,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Randomizes the y position at which the enemy will hover around the player
+    /// Randomizes the x and y position at which the enemy will hover around the player when attack is not ready
     /// </summary>
     private void RandomizeOffsetAttackStandby() {
         offsetAttackStandby = new Vector2(offsetAttackStandbyRange.x,
@@ -726,6 +726,14 @@ public class EnemyMovement : MonoBehaviour
 
     public bool GetFacingDirection() {
         return facingLeft;
+    }
+
+    public void SetMoveSpeed(float multiplier) {
+        baseMoveSpeed *= multiplier;
+    }
+
+    public void ResetMoveSpeed() { 
+        baseMoveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
     }
 
     private void OnDrawGizmosSelected()
