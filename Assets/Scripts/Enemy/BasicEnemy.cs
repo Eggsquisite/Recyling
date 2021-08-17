@@ -601,7 +601,7 @@ public class BasicEnemy : MonoBehaviour
         attackFollowHit = new RaycastHit2D();
         attackChosen = attackAnimations[attackIndex];
         if (staminaRecoveryRoutine != null)
-            StopCoroutine(StaminaRecovery());
+            StopCoroutine(staminaRecoveryRoutine);
 
         enemyAnimation.PlayAnimation(attackChosen);
         if (isBoss && isNextPhase)

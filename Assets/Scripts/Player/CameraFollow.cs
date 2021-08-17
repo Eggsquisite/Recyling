@@ -19,19 +19,24 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float max_X;
     [SerializeField]
+    private float min_Y;
+    [SerializeField]
+    private float max_Y;
+    [SerializeField]
     private float camSpeed;
     [SerializeField]
     private bool canFollow;
 
-    private Transform target;
-    private float borderOffset = 7.5f;
     private Vector2 targetOffset;
+    private Transform target;
     private Transform originalTarget;
+
+    private float borderOffset = 7.5f;
 
     [Header("Camera Change Properties")]
     public float focusSize;
     public float focusDuration;
-    public float min_Y, max_Y;
+    public float focusMin_Y, focusMax_Y;
 
     private float focusMin_X, focusMax_X;
     private float timeElapsed = 0.0f;
@@ -43,8 +48,6 @@ public class CameraFollow : MonoBehaviour
     {
         if (anim == null) anim = GetComponent<Animator>();
         if (cam == null) cam = GetComponent<Camera>();
-        if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
-        originalTarget = target;
 
         startingSize = cam.orthographicSize;
         currentSize = cam.orthographicSize;
@@ -55,6 +58,12 @@ public class CameraFollow : MonoBehaviour
         rightBorder.parent = null;
         bottomBorder.parent = null;
         ResetBorders();
+    }
+
+    private void Start()
+    {
+        if (target == null) target = Player.instance.transform;
+        originalTarget = target;
     }
 
     private void Update()
@@ -72,20 +81,17 @@ public class CameraFollow : MonoBehaviour
             return;
         else if (isFocused)
         {
-            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x,
-                                                    focusMin_X, focusMax_X),
-                                                    Mathf.Clamp(target.position.y + targetOffset.y,
-                                                    min_Y, max_Y),
-                                                    transform.position.z);
+            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, focusMin_X, focusMax_X),
+                                            Mathf.Clamp(target.position.y + 1.25f, focusMin_Y, focusMax_Y),
+                                            transform.position.z);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPosition;
         }
         else
         {
-            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x,
-                                                    min_X, max_X),
-                                                    2f,
-                                                    transform.position.z);
+            Vector3 targetPosition = new Vector3(Mathf.Clamp(target.position.x + targetOffset.x, min_X, max_X),
+                                            Mathf.Clamp(target.position.y + 1.25f, min_Y, max_Y),
+                                            transform.position.z);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPosition;
         }
@@ -94,7 +100,7 @@ public class CameraFollow : MonoBehaviour
     public void SetCameraTarget(Transform newTarget, Vector2 newOffset)
     {
         target = newTarget;
-        targetOffset = newOffset;
+        //targetOffset = newOffset;
     }
 
     public void SetIsFocused(bool flag)
@@ -138,14 +144,6 @@ public class CameraFollow : MonoBehaviour
         bottomBorder.position = new Vector3((min_X + max_X) / 2,
                                     bottomBorder.position.y,
                                     transform.position.z);
-    }
-
-    public float GetMinX() {
-        return min_X;
-    }
-
-    public float GetMaxX() {
-        return max_X;
     }
 
     public void SetCamSpeed(float newValue) {

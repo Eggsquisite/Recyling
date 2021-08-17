@@ -15,7 +15,7 @@ public class BattleTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player") 
-            Camera.main.GetComponent<CameraFollow>().SetCameraTarget(transform, cameraOffset);
+        //if (collision.tag == "Player") 
+            //Camera.main.GetComponent<CameraFollow>().SetCameraTarget(transform, cameraOffset);
     }
 }
