@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float isHurtMaxTime;
     [SerializeField]
-    private float pushBackSpeed;
+    private float hurtPushBackSpeed;
 
     private bool isHurt;
     private bool isStunned;
@@ -117,6 +117,8 @@ public class Player : MonoBehaviour
     private bool isAttackPressed;
     private bool isRunAttackPressed;
     private bool isSuperAttackPressed;
+    private bool isBlasterAttackPressed;
+    private bool isBlasterSuperAttackPressed;
     private bool canReceiveInput = true;
     private float specialPushbackMultiplier = 5f;
     private Vector2 runDirection;
@@ -356,52 +358,57 @@ public class Player : MonoBehaviour
     }
 
     public void BlasterAttackInput() {
-        if (isStunned || UI.GetCurrentEnergy() <= 0)
+        if (isStunned || isHealing || UI.GetCurrentEnergy() <= blasterLightEnergy)
             return;
 
-        if (canReceiveInput && !isHealing)
-            BlasterAttack();
+        isBlasterAttackPressed = true;
+
+        if (attackBufferRoutine != null)
+            StopCoroutine(attackBufferRoutine);
+        attackBufferRoutine = StartCoroutine(AttackBuffer(3));
+        //BlasterAttack();
     }
 
     public void SuperBlasterAttackInput() {
-        if (isStunned || UI.GetCurrentEnergy() <= 0)
+        if (isStunned || isHealing || UI.GetCurrentEnergy() <= blasterHeavyEnergy)
             return;
 
-        if (canReceiveInput && !isHealing)
-            SuperBlasterAttack();
+        isBlasterSuperAttackPressed = true;
+
+        if (attackBufferRoutine != null)
+            StopCoroutine(attackBufferRoutine);
+        attackBufferRoutine = StartCoroutine(AttackBuffer(4));
+        //SuperBlasterAttack();
     }
 
     public void BasicAttackInput() {
-        if (isStunned || UI.GetCurrentStamina() <= 0)
+        if (isStunned || isHealing || UI.GetCurrentStamina() <= 0)
             return; 
 
-        if (!isHealing) {
-            if (!isRunning)
-                isAttackPressed = true;
-            else 
-                isRunAttackPressed = true;
+        if (!isRunning)
+            isAttackPressed = true;
+        else 
+            isRunAttackPressed = true;
 
-            if (attackBufferRoutine != null)
-                StopCoroutine(attackBufferRoutine);
-            attackBufferRoutine = StartCoroutine(AttackBuffer(1));
-            //Attack();
-        }
+        if (attackBufferRoutine != null)
+            StopCoroutine(attackBufferRoutine);
+        attackBufferRoutine = StartCoroutine(AttackBuffer(1));
+        //Attack();
     }
 
     public void SuperAttackInput() {
-        if (isStunned 
+        if (isStunned
+            || isHealing
             || UI.GetCurrentStamina() <= 0 
             || UI.GetCurrentEnergy() <= 0)
             return;
 
-        if (!isHealing) { 
-            isSuperAttackPressed = true;
+        isSuperAttackPressed = true;
 
-            if (attackBufferRoutine != null)
-                StopCoroutine(attackBufferRoutine);
-            attackBufferRoutine = StartCoroutine(AttackBuffer(2));
-            //Attack();
-        }
+        if (attackBufferRoutine != null)
+            StopCoroutine(attackBufferRoutine);
+        attackBufferRoutine = StartCoroutine(AttackBuffer(2));
+        //Attack();
     }
 
     public void DodgeInput() {
@@ -634,8 +641,11 @@ public class Player : MonoBehaviour
     }
 
     private void Attack() {
+        if (!canReceiveInput)
+            return;
+
         // case for basic attacks
-        if (isAttackPressed && canReceiveInput) {
+        if (isAttackPressed) {
             if (attackCombo < 3)
                 attackCombo += 1;
             else if (attackCombo == 3)
@@ -646,8 +656,8 @@ public class Player : MonoBehaviour
 
             isAttackPressed = false;
         }
-        else if (isSuperAttackPressed 
-                    && canReceiveInput 
+        // case for smaller super attack
+        else if (isSuperAttackPressed
                     && attackCombo == 2
                     && UI.GetCurrentEnergy() >= superAttackEnergy1) {
             attackCombo += 2;
@@ -666,31 +676,51 @@ public class Player : MonoBehaviour
             shiftKeyHeld = false;
             isRunAttackPressed = false;
         }
-        // case for super attack
-        else if (isSuperAttackPressed 
-                    && canReceiveInput 
-                    && attackCombo == 0 
+        // case for BIG super attack
+        else if (isSuperAttackPressed
+                    && attackCombo == 0
                     && UI.GetCurrentEnergy() >= superAttackEnergy2) {
             AttackAnimation(10);
             UI.SetEnergyRecoverable(false);
             UI.SetStaminaRecoverable(false);
 
             isSuperAttackPressed = false;
+        } 
+        // case for blaster light attack
+        else if (isBlasterAttackPressed)
+        {
+            BlasterAttack();
+        }
+        // case for blaster super attack
+        else if (isBlasterSuperAttackPressed)
+        {
+            SuperBlasterAttack();
         }
     }
 
     private IEnumerator AttackBuffer(int index) {
+        // depending on which attack is pressed, set the other attack false
         if (index == 1 && isSuperAttackPressed)
             isSuperAttackPressed = false;
         else if (index == 2 && isAttackPressed)
             isAttackPressed = false;
+        // cases for BLASTER
+        else if (index == 3 && isBlasterSuperAttackPressed)
+            isBlasterSuperAttackPressed = false;
+        else if (index == 4 && isBlasterAttackPressed)
+            isBlasterAttackPressed = false;
 
+        // isAttackPressed or isSuperAttackPressed stays true until the buffer runs out
         yield return new WaitForSeconds(attackBuffer);
 
         if (index == 1 && isAttackPressed)
             isAttackPressed = false;
         else if (index == 2 && isSuperAttackPressed)
             isSuperAttackPressed = false;
+        else if (index == 3 && isBlasterAttackPressed)
+            isBlasterAttackPressed = false;
+        else if (index == 4 && isBlasterSuperAttackPressed)
+            isBlasterSuperAttackPressed = false;
     }
 
     private void AttackAnimation(int attackIndex) {
@@ -851,6 +881,7 @@ public class Player : MonoBehaviour
         isStopped = true;
         isAttacking = true;
         canReceiveInput = false;
+        isBlasterAttackPressed = false;
         attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_BLASTER_LIGHT);
         if (PlayerAnimStates.PLAYER_BLASTER_LIGHT == currentState)
             ReplayAnimation(PlayerAnimStates.PLAYER_BLASTER_LIGHT);
@@ -868,6 +899,7 @@ public class Player : MonoBehaviour
         isStopped = true;
         isAttacking = true;
         canReceiveInput = false;
+        isBlasterSuperAttackPressed = false;
         attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
         PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
 
@@ -1021,7 +1053,7 @@ public class Player : MonoBehaviour
     IEnumerator PushBackMovement(Vector2 position) {
         while (true != false)
         {
-            rb.MovePosition(rb.position + position * pushBackSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + position * hurtPushBackSpeed * Time.fixedDeltaTime);
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
     }

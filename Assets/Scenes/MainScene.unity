@@ -29291,7 +29291,7 @@ MonoBehaviour:
   maxStamina: 200
   staminaRecoveryValue: 25
   staminaRecoveryDelay: 2.5
-  staminaRecoverySpeed: 0.5
+  staminaRecoverySpeed: 0.25
   currencyOnDeath: 555
   energyGainMultiplier: 1.1
   baseDamageThresholdPercent: 0.05

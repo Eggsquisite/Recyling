@@ -168,7 +168,7 @@ MonoBehaviour:
   walkToRunTime: 0.75
   stopBuffer: 0.1
   isHurtMaxTime: 0.33
-  pushBackSpeed: 6
+  hurtPushBackSpeed: 6
   attackPoint: {fileID: 722439448051027864}
   enemyLayer:
     serializedVersion: 2
@@ -211,7 +211,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxEnergy: 750
   maxStamina: 900
-  healthRecoveryValue: 7.5
+  healthRecoveryValue: 10
   energyToHealthMultiplier: 0.9
   energyRecoveryValue: 20
   staminaRecoveryValue: 50
@@ -223,11 +223,11 @@ MonoBehaviour:
   vitalityUpgradeStrong: 65
   vitalityUpgradeMid: 50
   vitalityUpgradeWeak: 35
-  healthFocusUpgrade: 0.5
-  energyFocusUpgrade: 0.25
+  healthFocusUpgrade: 1
+  energyFocusUpgrade: 0.5
   energyToHealthFocusUpgrade: 0.03
-  strengthUpgrade: 5.25
-  energyFocusUpgradeWeak: 0.25
+  strengthUpgrade: 2.25
+  energyFocusUpgradeWeak: 0.15
   staminaRecoveryUpgrade: 0.1
   staminaMaxUpgradeStrong: 35
   staminaMaxUpgradeWeak: 5
