@@ -157,13 +157,6 @@ public class GameManager : MonoBehaviour
     public void SetBossHealthbar(bool flag) { 
         if (bossHealthBar != null) {
             bossHealthBar.SetActive(flag);
-            Debug.Log("Setting boss healthbar");
-
-            if (flag) {
-                isFightingBoss = true;
-            } else {
-                isFightingBoss = false;
-            }
         }
     }
 
@@ -174,9 +167,12 @@ public class GameManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetBossArenaIndex(int index) {
         bossArenaIndex = index;
+        isFightingBoss = true;
     }
 
     public void BossDefeated() {
+        isFightingBoss = false;
+
         if (bossArenaIndex == 1)
             activeSave.bossArenaOneDefeated = true;
         else if (bossArenaIndex == 2)

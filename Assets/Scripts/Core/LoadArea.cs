@@ -64,16 +64,7 @@ public class LoadArea : MonoBehaviour
 
     private void Start()
     {
-
-        // if bossArena is true, check SaveManager to see if boss has already been defeated, in which case
-        // set to false
-        if (liveBossArena) { 
-            GameManager.instance.SetBossArenaIndex(bossArenaIndex);
-            // If this value is true, that means the corresponding boss is TRUE and has been DEFEATED
-            if (GameManager.instance.CheckBossArenaIndex(bossArenaIndex)) {
-                liveBossArena = false;
-            }
-        }
+        CheckBossArena();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -102,6 +93,7 @@ public class LoadArea : MonoBehaviour
 
         yield return new WaitForSeconds(0f);
 
+        CheckBossArena();
         SaveArea();
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
@@ -122,9 +114,13 @@ public class LoadArea : MonoBehaviour
         Player.instance.SetStopMovement(true);
         //Player.instance.Stunned();
 
-        // Save index of current area if bossArena is false
+        CheckBossArena();
+        // Save index of current area if bossArena is false, else current area is a bossArena 
         if (!liveBossArena)
             SaveArea();
+        else { 
+            GameManager.instance.SetBossArenaIndex(bossArenaIndex);
+        }
 
         yield return new WaitForSeconds(0.5f);
 
@@ -217,6 +213,14 @@ public class LoadArea : MonoBehaviour
     /// </summary>
     private void SaveArea() {
         SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
+    }
+
+    private void CheckBossArena() {
+        // If this value is true, that means the corresponding boss is TRUE and has been DEFEATED
+        if (GameManager.instance.CheckBossArenaIndex(bossArenaIndex)) {
+            liveBossArena = false;
+            Debug.Log("Saving area: " + liveBossArena);
+        }
     }
 
     // FOR AREA MANAGER TO REFERENCE WHEN LOADING GAME
