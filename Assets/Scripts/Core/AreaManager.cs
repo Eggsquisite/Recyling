@@ -14,11 +14,8 @@ public class AreaManager : MonoBehaviour
         instance = this;
         areaFound = false;
 
+        // areaLoader contains array of each area, loads area using index
         areaLoader = GetComponentsInChildren<LoadArea>();
-    }
-
-    public void CameraFade() { 
-        
     }
 
     public void LoadArea(int index, bool deadFlag)

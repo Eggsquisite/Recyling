@@ -99,7 +99,16 @@ public class SaveManager : MonoBehaviour
     }
 
     public void SavePlayerValues() {
-        activeSave.playerCurrentPosition = Player.instance.transform.position;
+        // if player is not in a boss arena/fighting a boss, save their current position
+        if (!GameManager.instance.GetIsFightingBoss())
+            activeSave.playerCurrentPosition = Player.instance.transform.position;
+        else
+        {
+            // if player is IN a boss arena, set their last saved position at the area beforehand
+            Debug.Log("Player is in boss arena and saving");
+            var tmpVector = new Vector2(activeSave.maxCameraPos + 7.5f, Player.instance.transform.position.y);
+            activeSave.playerCurrentPosition = tmpVector;
+        }
         activeSave.playerIsDead = Player.instance.CheckDead();
         activeSave.playerHealth = Player.instance.GetHealth();
         activeSave.playerEnergy = Player.instance.GetEnergy();
@@ -111,7 +120,6 @@ public class SaveManager : MonoBehaviour
         activeSave.playerStaminaLevel = Player.instance.GetStaminaLevel();
         activeSave.playerSpecialLevel = Player.instance.GetSpecialLevel();
 
-        //activeSave.playerCurrentPosition = Player.instance.transform.position;
         Save(); // after quitting the game
     }
 
@@ -162,11 +170,9 @@ public class SaveData
     [Header("Enemy Data")]
     public List<EnemyData> enemyData;
 
-    [Header("Enemy Spawn Values")]
-    public bool spawnBossOne;
-    public bool spawnBossTwo;
-    public bool spawnBossThree;
-
-    // need to have individual saving for each enemy in case an enemy is dead and player restarts game,
-    // rezzing the enemy
+    // values are set to true when boss has been defeated, signalling boss arena code
+    [Header("Boss Arena Values")]
+    public bool bossArenaOneDefeated;
+    public bool bossArenaTwoDefeated;
+    public bool bossArenaThreeDefeated;
 }

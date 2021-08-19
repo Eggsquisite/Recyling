@@ -42,6 +42,7 @@ public class BasicEnemy : MonoBehaviour
     private float reducedAttackDelay = 0f;
 
     private bool isNextPhase;
+    private bool isBossHealthbarActive;
 
     [Header("Enemy Stats")]
     [SerializeField]
@@ -426,13 +427,16 @@ public class BasicEnemy : MonoBehaviour
     private void CheckBossHealthBar() {
         // If boss is in tether range and set to active, set healthbar true
         if (isBoss && !outOfTetherRange && bossHealthbar != null && !bossHealthbar.GetHealthBar()) {
-            if (!isInactive) { 
+            if (!isInactive && !isBossHealthbarActive) { 
                 bossHealthbar.SetHealthbar(true);
                 bossHealthbar.SetMaxHealth(maxHealth);
                 bossHealthbar.SetBossName(name);
+
+                isBossHealthbarActive = true;
                 Debug.Log("Boss is active and is boss " + name);
-            } else {
+            } else if (isInactive && isBossHealthbarActive) {
                 bossHealthbar.SetHealthbar(false);
+                isBossHealthbarActive = false;
             }
         }
     }
@@ -1207,8 +1211,11 @@ public class BasicEnemy : MonoBehaviour
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);
         EnemyManager.Instance.EnemyDead(name);
 
-        if (isBoss)
+        // if enemy is a boss, set boss healthbar inactive and set bossDefeated at current bossArenaIndex 
+        if (isBoss) { 
             bossHealthbar.SetHealthbar(false);
+            GameManager.instance.BossDefeated();
+        }
 
         yield return new WaitForSeconds(tmp);
         GiveCurrency();
@@ -1286,7 +1293,7 @@ public class BasicEnemy : MonoBehaviour
     public void SetIsInactive(bool flag) {
         if (isAttacking && flag) { 
             FinishAttack();
-            if (isBoss)
+            if (isBoss) 
                 GameManager.instance.SetBossHealthbar(false);
         }
         isInactive = flag;

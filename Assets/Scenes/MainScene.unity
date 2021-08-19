@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 2
   min_X: 17
   max_X: 17
@@ -256,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.87
+      value: -2.31
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -292,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990213, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_SortingOrder
-      value: 187
+      value: 231
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990218, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_Name
@@ -384,6 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 4
   min_X: 64
   max_X: 77
@@ -1095,6 +1099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 4
   min_X: 64
   max_X: 77
@@ -1360,6 +1366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 6
   min_X: 125
   max_X: 139
@@ -7348,6 +7356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 7
   min_X: 155
   max_X: 169
@@ -7558,6 +7568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 1
+  bossArenaIndex: 1
   areaToLoadIndex: 3
   min_X: 34
   max_X: 46
@@ -9546,6 +9558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 6
   min_X: 125
   max_X: 139
@@ -10598,6 +10612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 7
   min_X: 155
   max_X: 169
@@ -12284,9 +12300,9 @@ MonoBehaviour:
     playerRespawnPosition: {x: 0, y: 0, z: 0}
     playerCurrentPosition: {x: 0, y: 0, z: 0}
     enemyData: []
-    spawnBossOne: 0
-    spawnBossTwo: 0
-    spawnBossThree: 0
+    bossArenaOneDefeated: 0
+    bossArenaTwoDefeated: 0
+    bossArenaThreeDefeated: 0
   saveGame: save6
   hasLoaded: 0
 --- !u!1001 &1179281695
@@ -13078,6 +13094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 8
   min_X: 186
   max_X: 186
@@ -21554,9 +21572,9 @@ MonoBehaviour:
     playerRespawnPosition: {x: 0, y: 0, z: 0}
     playerCurrentPosition: {x: 0, y: 0, z: 0}
     enemyData: []
-    spawnBossOne: 0
-    spawnBossTwo: 0
-    spawnBossThree: 0
+    bossArenaOneDefeated: 0
+    bossArenaTwoDefeated: 0
+    bossArenaThreeDefeated: 0
   cameraShakeSpeed: 10
   bossHealthBar: {fileID: 618974424}
   deathPanel: {fileID: 1715202717}
@@ -22771,11 +22789,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.05
+      value: 28.05
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.11
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990212, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22811,7 +22829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990213, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_SortingOrder
-      value: 111
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 5253151492761990218, guid: d0959b01309dc5f4f880b0466b8e9aad, type: 3}
       propertyPath: m_Name
@@ -22959,21 +22977,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1131960671, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 618974424, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1131960671, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.492
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131960671, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1593020019, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1593020019, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2061706152, guid: b90e5c344e42aa44b80a0dd9965bf666, type: 3}
       propertyPath: m_Color.a
@@ -24786,6 +24808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 5
   min_X: 94
   max_X: 108
@@ -24865,6 +24889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 1
+  bossArenaIndex: 1
   areaToLoadIndex: 3
   min_X: 34
   max_X: 46
@@ -25301,6 +25327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 5
   min_X: 94
   max_X: 108
@@ -25428,6 +25456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 1
   min_X: 0
   max_X: 0
@@ -25565,6 +25595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadfe18745b2e5c4cb03a1cfb80c4a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liveBossArena: 0
+  bossArenaIndex: 0
   areaToLoadIndex: 2
   min_X: 17
   max_X: 17
@@ -29353,7 +29385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3898020908218038422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.32, y: -1.15, z: 0}
+  m_LocalPosition: {x: 31.22, y: 0.07, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 3898020908486576666}
@@ -29446,7 +29478,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 115
+  m_SortingOrder: -7
   m_Sprite: {fileID: 8793639957104055765, guid: 40f99622fadaa6e458578202c92ae288, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -29706,8 +29738,8 @@ MonoBehaviour:
   detectIsRay: 0
   usePathfinding: 0
   nextWaypointDistance: 3
-  repeatFollowDelay: 1.5
-  attackFollowDelay: 0.5
+  repeatFollowDelay: 0.5
+  attackFollowDelay: 1
   stunFollowDelay: 0.75
   borderLayer:
     serializedVersion: 2

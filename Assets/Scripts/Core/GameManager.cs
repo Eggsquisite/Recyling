@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject deathObject;
     public Vector3 newGameSpawn;
 
+    private int bossArenaIndex;
     private bool isFightingBoss;
     private Vector3 tmpVector;
     private Coroutine cameraShakeRoutine;
@@ -114,10 +115,6 @@ public class GameManager : MonoBehaviour
         //AstarPath.active.Scan();
     }
 
-    public void SetIsFightingBoss(bool flag) {
-        isFightingBoss = flag;
-    }
-
     public bool GetIsFightingBoss() {
         return isFightingBoss;
     }
@@ -153,9 +150,54 @@ public class GameManager : MonoBehaviour
         cam.transform.parent.localPosition = originalPos;
     }
 
+    /// <summary>
+    /// Set boss healthbar active based off of flag - if flag is true, set isFightingBoss true
+    /// </summary>
+    /// <param name="flag"></param>
     public void SetBossHealthbar(bool flag) { 
         if (bossHealthBar != null) {
             bossHealthBar.SetActive(flag);
+            Debug.Log("Setting boss healthbar");
+
+            if (flag) {
+                isFightingBoss = true;
+            } else {
+                isFightingBoss = false;
+            }
         }
+    }
+
+    /// <summary>
+    /// When a boss arena is loaded, set bossArenaIndex to the index of the boss arena
+    /// When player beats the boss, set that index false in SaveManager 
+    /// </summary>
+    /// <param name="index"></param>
+    public void SetBossArenaIndex(int index) {
+        bossArenaIndex = index;
+    }
+
+    public void BossDefeated() {
+        if (bossArenaIndex == 1)
+            activeSave.bossArenaOneDefeated = true;
+        else if (bossArenaIndex == 2)
+            activeSave.bossArenaTwoDefeated = true;
+        else if (bossArenaIndex == 3)
+            activeSave.bossArenaThreeDefeated = true;
+    }
+
+    /// <summary>
+    /// Called when game is Loaded, 
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public bool CheckBossArenaIndex(int index) { 
+        if (index == 1) {
+            return activeSave.bossArenaOneDefeated;
+        } else if (index == 2) {
+            return activeSave.bossArenaTwoDefeated;
+        } else if (index == 3) {
+            return activeSave.bossArenaThreeDefeated;
+        }
+        return false;
     }
 }

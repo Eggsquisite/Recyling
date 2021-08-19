@@ -14,7 +14,8 @@ public class BossHealthbar : MonoBehaviour
     }
 
     public void SetHealthbar(bool flag) {
-        bossHealthUI.gameObject.SetActive(flag);
+        //bossHealthUI.gameObject.SetActive(flag);
+        GameManager.instance.SetBossHealthbar(flag);
     }
 
     public void SetBossName(string name) {

@@ -17,6 +17,11 @@ public class LoadArea : MonoBehaviour
     private Animator transition;
     private Transform player;
 
+    [SerializeField]
+    private bool liveBossArena;
+    [SerializeField] [Tooltip ("If bossArena is true, give arena an index to reference")]
+    private int bossArenaIndex;
+
     private static bool loadReady = true;
     public static bool isLoading;
 
@@ -57,6 +62,20 @@ public class LoadArea : MonoBehaviour
         if (transition == null) transition = cam.GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+
+        // if bossArena is true, check SaveManager to see if boss has already been defeated, in which case
+        // set to false
+        if (liveBossArena) { 
+            GameManager.instance.SetBossArenaIndex(bossArenaIndex);
+            // If this value is true, that means the corresponding boss is TRUE and has been DEFEATED
+            if (GameManager.instance.CheckBossArenaIndex(bossArenaIndex)) {
+                liveBossArena = false;
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         // if player is not currently fighting a boss, load next area
@@ -83,10 +102,9 @@ public class LoadArea : MonoBehaviour
 
         yield return new WaitForSeconds(0f);
 
+        SaveArea();
         cam.SetMinX(min_X);
         cam.SetMaxX(max_X);
-
-        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
 
         if (backgroundToEnable != null && backgroundToDisable != null)
         {
@@ -103,21 +121,27 @@ public class LoadArea : MonoBehaviour
         Player.instance.SetInvincible(true);
         Player.instance.SetStopMovement(true);
         //Player.instance.Stunned();
-        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
+
+        // Save index of current area if bossArena is false
+        if (!liveBossArena)
+            SaveArea();
 
         yield return new WaitForSeconds(0.5f);
 
+        // Disable all enemies in the current area
         foreach (Transform enemy in enemiesToDisable.GetComponentsInChildren<Transform>())
         {
             if (enemy.GetComponent<BasicEnemy>() != null)
                 enemy.GetComponent<BasicEnemy>().SetIsInactive(true);
         }
 
+        // Disable current background scripts and enable next background scripts
         if (backgroundToEnable != null && backgroundToDisable != null) { 
             backgroundToDisable.SetActive(false);
             backgroundToEnable.SetActive(true);
         }
 
+        // Depending on Direction value, move camera to the corresponding position
         if (areaToLoad == Direction.Right) 
         {
             cam.SetMinX(min_X);
@@ -142,7 +166,7 @@ public class LoadArea : MonoBehaviour
     }
 
     IEnumerator LoadReady(float waitTime, bool deadFlag) {
-        // when loading into a new scene, case for deleting boss healthbar if not already
+        // when loading into a new scene, case for deleting boss healthbar if not already set inactive
         GameManager.instance.SetBossHealthbar(false);
 
         yield return new WaitForSeconds(waitTime);
@@ -151,6 +175,7 @@ public class LoadArea : MonoBehaviour
         transition.Play("FadeOut");
 
         StartCoroutine(EnableEnemies());
+        // If player is dead, reset all enemies (excluding dead bosses)
         if (deadFlag)
             EnemyManager.Instance.ResetAllEnemies();
 
@@ -160,7 +185,7 @@ public class LoadArea : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         Player.instance.SetInvincible(false);
-        GameManager.instance.RescanPathfinding();
+        //GameManager.instance.RescanPathfinding();
 
         if (deadFlag) { 
             Player.instance.Respawn();
@@ -169,6 +194,7 @@ public class LoadArea : MonoBehaviour
     }
 
     IEnumerator EnableEnemies() {
+        // Wait to enable enemies to prevent enemies attacking while player loads in
         yield return new WaitForSeconds(1.5f);
         foreach (Transform enemy in enemiesToEnable.GetComponentsInChildren<Transform>())
         {
@@ -177,11 +203,21 @@ public class LoadArea : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Delay before player can load into another area
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LoadReadyTimer() {
         yield return new WaitForSeconds(2.5f);
         loadReady = true;
     }
 
+    /// <summary>
+    /// Save the current index (position in array of areaLoader) to load
+    /// </summary>
+    private void SaveArea() {
+        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
+    }
 
     // FOR AREA MANAGER TO REFERENCE WHEN LOADING GAME
     public float GetMinCamX() {
