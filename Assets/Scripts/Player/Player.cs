@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
         if (ps != null) ps.gameObject.SetActive(false);
 
+        sp.enabled = true;
         currentWalkSpeed = baseWalkSpeed;
         ac = anim.runtimeAnimatorController;
 

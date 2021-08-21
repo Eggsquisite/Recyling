@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             Player.instance.LoadPlayerLevels();
 
             if (!activeSave.playerIsDead) { 
-                AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, true);
+                AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
                 Player.instance.transform.position = activeSave.playerCurrentPosition;
 
                 Player.instance.LoadCurrency(activeSave.playerCurrency);
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                 Player.instance.LoadEnergy(activeSave.playerEnergy);
             } else {
                 EnemyManager.Instance.ResetAllEnemies();
-                AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, false);
+                AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
                 Player.instance.LoadCurrency(0);
 

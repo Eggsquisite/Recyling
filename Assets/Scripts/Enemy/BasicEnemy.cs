@@ -1329,12 +1329,15 @@ public class BasicEnemy : MonoBehaviour
     private void ResetPhaseVariables() {
         isNextPhase = false;
 
+        // Reset sprite color
         sp.material.shader = shaderSpritesDefault;
         sp.color = Color.white;
 
+        // Reset animation/move speeds
         enemyAnimation.SetAnimSpeed(1f);
         enemyMovement.ResetMoveSpeed();
 
+        // Reset attack delays
         minAttackDelay += reducedAttackDelay;
         maxAttackDelay += reducedAttackDelay;
     }

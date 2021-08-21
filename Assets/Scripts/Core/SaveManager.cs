@@ -11,6 +11,9 @@ public class SaveManager : MonoBehaviour
     public string saveGame;
     public bool hasLoaded;
 
+    private float tmpMinX;
+    private float tmpMaxX;
+
     private void Awake()
     {
         instance = this;
@@ -104,9 +107,11 @@ public class SaveManager : MonoBehaviour
             activeSave.playerCurrentPosition = Player.instance.transform.position;
         else
         {
+            AreaManager.instance.GetAreaCamValues(activeSave.areaToLoadIndex, out tmpMinX, out tmpMaxX);
             // if player is IN a boss arena, set their last saved position at the area beforehand
-            var tmpVector = new Vector2(activeSave.minCameraPos - 7.5f, Player.instance.transform.position.y);
+            var tmpVector = new Vector2(tmpMaxX + 5f, Player.instance.transform.position.y);
             activeSave.playerCurrentPosition = tmpVector;
+            Debug.Log("Player current position save value: " + activeSave.playerCurrentPosition);
         }
         activeSave.playerIsDead = Player.instance.CheckDead();
         activeSave.playerHealth = Player.instance.GetHealth();

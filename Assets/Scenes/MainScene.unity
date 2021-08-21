@@ -25224,6 +25224,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1038067049}
     m_Modifications:
+    - target: {fileID: 985400473, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1185910160, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: UI.Array.data[0]
       value: 
@@ -25231,6 +25235,10 @@ PrefabInstance:
     - target: {fileID: 4268789785485986989, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_Name
       value: Altar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268789785485986994, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4268789785485986995, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_RootOrder

@@ -41,4 +41,24 @@ public class AreaManager : MonoBehaviour
             }
         }
     }
+
+    public void GetAreaCamValues(int index, out float minX, out float maxX)
+    {
+        if (areaLoader.Length > 0)
+        {
+            for (int i = 0; i < areaLoader.Length; i++)
+            {
+                if (areaLoader[i].GetAreaIndex() == index)
+                {
+                    minX = areaLoader[i].GetMinCamX();
+                    maxX = areaLoader[i].GetMaxCamX();
+                    return;
+                }
+            }
+        }
+
+        // if area not found
+        minX = 0f;
+        maxX = 0f;
+    }
 }
