@@ -105,8 +105,7 @@ public class SaveManager : MonoBehaviour
         else
         {
             // if player is IN a boss arena, set their last saved position at the area beforehand
-            var tmpVector = new Vector2(activeSave.maxCameraPos + 7.5f, Player.instance.transform.position.y);
-            Debug.Log("Player is in boss arena and saving: START FIXING HERE" + activeSave.maxCameraPos);
+            var tmpVector = new Vector2(activeSave.minCameraPos - 7.5f, Player.instance.transform.position.y);
             activeSave.playerCurrentPosition = tmpVector;
         }
         activeSave.playerIsDead = Player.instance.CheckDead();

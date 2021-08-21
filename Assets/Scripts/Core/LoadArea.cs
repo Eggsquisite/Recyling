@@ -115,12 +115,7 @@ public class LoadArea : MonoBehaviour
         //Player.instance.Stunned();
 
         CheckBossArena();
-        // Save index of current area if bossArena is false, else current area is a bossArena 
-        if (!liveBossArena)
-            SaveArea();
-        else { 
-            GameManager.instance.SetBossArenaIndex(bossArenaIndex);
-        }
+        SaveArea();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -212,14 +207,20 @@ public class LoadArea : MonoBehaviour
     /// Save the current index (position in array of areaLoader) to load
     /// </summary>
     private void SaveArea() {
-        SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
+        // Save index of current area if bossArena is false, else current area is a bossArena 
+        if (!liveBossArena)
+            SaveManager.instance.SaveAreaToLoad(areaToLoadIndex);
+        else { 
+            // Since game is LEFT TO RIGHT, save the area before (to the left) of the boss arena
+            SaveManager.instance.SaveAreaToLoad(areaToLoadIndex - 1);
+            GameManager.instance.SetBossArenaIndex(bossArenaIndex);
+        }
     }
 
     private void CheckBossArena() {
         // If this value is true, that means the corresponding boss is TRUE and has been DEFEATED
         if (GameManager.instance.CheckBossArenaIndex(bossArenaIndex)) {
             liveBossArena = false;
-            Debug.Log("Saving area: " + liveBossArena);
         }
     }
 

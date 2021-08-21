@@ -18,6 +18,11 @@ public class AreaManager : MonoBehaviour
         areaLoader = GetComponentsInChildren<LoadArea>();
     }
 
+    /// <summary>
+    /// Load in index to get the corresponding area
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="deadFlag"></param>
     public void LoadArea(int index, bool deadFlag)
     {
         areaFound = false;

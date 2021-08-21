@@ -433,7 +433,7 @@ public class BasicEnemy : MonoBehaviour
                 bossHealthbar.SetBossName(name);
 
                 isBossHealthbarActive = true;
-                Debug.Log("Boss is active and is boss " + name);
+                //Debug.Log("Boss is active and is boss " + name);
             } else if (isInactive && isBossHealthbarActive) {
                 bossHealthbar.SetHealthbar(false);
                 isBossHealthbarActive = false;
@@ -971,7 +971,6 @@ public class BasicEnemy : MonoBehaviour
                 // updates health text and visuals
                 healthFill.SetCurrentHealth(damageNum);
 
-
                 if (healthBarRoutine != null)
                     StopCoroutine(healthBarRoutine);
                 healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
@@ -1194,7 +1193,7 @@ public class BasicEnemy : MonoBehaviour
                 healthFill.UpdateHealthbarDirection();
 
             yield return new WaitForSeconds(tmp);
-            if (deleteOnDeath || isBoss)
+            if (deleteOnDeath /*|| isBoss*/)
                 sp.enabled = false;
         }
     }
@@ -1263,6 +1262,7 @@ public class BasicEnemy : MonoBehaviour
         ResetHealth();
         SetIsInactive(true);
         enemyMovement.ResetDirection();
+        
         if (healthFill != null)
             healthFill.UpdateHealthbarDirection();
         transform.position = new Vector2(resetSpawnSpoint.x, resetSpawnSpoint.y);
@@ -1329,7 +1329,7 @@ public class BasicEnemy : MonoBehaviour
     private void ResetPhaseVariables() {
         isNextPhase = false;
 
-        sp.material.shader = shaderGUItext;
+        sp.material.shader = shaderSpritesDefault;
         sp.color = Color.white;
 
         enemyAnimation.SetAnimSpeed(1f);

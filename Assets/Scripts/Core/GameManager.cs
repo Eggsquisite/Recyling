@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             Player.instance.LoadPlayerLevels();
 
             if (!activeSave.playerIsDead) { 
-                AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
+                AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, true);
                 Player.instance.transform.position = activeSave.playerCurrentPosition;
 
                 Player.instance.LoadCurrency(activeSave.playerCurrency);
