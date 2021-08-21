@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
 
     public void BossDefeated() {
         isFightingBoss = false;
+        SaveManager.instance.SaveAreaToLoad(activeSave.areaToLoadIndex + 1);
 
         if (bossArenaIndex == 1)
             activeSave.bossArenaOneDefeated = true;
