@@ -74,12 +74,9 @@ public class Player : MonoBehaviour
     private bool isHurt;
     private bool isStunned;
     private bool isInvincible;
-    private float flashTimer;
-    private float isHurtTimer;
     private float stunDuration;
-    private float flashInterval = 0.1f;
 
-    private Coroutine pushBackMovementRoutine, pushBackDurationRoutine;
+    private Coroutine pushBackMovementRoutine, pushBackDurationRoutine, isHurtRoutine;
 
     [Header("Healing Properties")]
     private bool isHealing;
@@ -219,7 +216,6 @@ public class Player : MonoBehaviour
         Attack();
         ResetRun();
         StopHeal();
-        DamageFlash();
         WalkingToRunning();
     }
 
@@ -974,6 +970,10 @@ public class Player : MonoBehaviour
             StopCoroutine(resetAttackRoutine);
         resetAttackRoutine = StartCoroutine(ResetAttack(0f));
 
+        if (isHurtRoutine != null)
+            StopCoroutine(isHurtRoutine);
+        isHurtRoutine = StartCoroutine(BeginIsHurtTimer());
+
         // take damage
         playSounds.PlayPlayerHit();
         UI.StopFutureHealthRecovery();
@@ -1091,26 +1091,11 @@ public class Player : MonoBehaviour
         isInvincible = flag;
     }
 
-    private void DamageFlash() {
-        if (!isHurt)
-            return;
-
-        if (flashTimer < flashInterval)
-            flashTimer += Time.deltaTime;
-        else if (flashTimer >= flashInterval) {
-            sp.enabled = !sp.enabled;
-            flashTimer = 0;
-        }
-
-        if (isHurtTimer < isHurtMaxTime)
-            isHurtTimer += Time.deltaTime;
-        else if (isHurtTimer >= isHurtMaxTime) {
-            isHurt = false;
-            sp.enabled = true;
-            ResetInvincible();
-
-            isHurtTimer = 0;
-        }
+    private IEnumerator BeginIsHurtTimer() {
+        yield return new WaitForSeconds(isHurtMaxTime);
+        isHurt = false;
+        sp.enabled = true;
+        ResetInvincible();
     }
 
     /// <summary>
@@ -1168,7 +1153,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HealthRecovery() {
         var time = 0f;
-        if (ps != null) ps.gameObject.SetActive(true);
+        //if (ps != null) ps.gameObject.SetActive(true);
         currentWalkSpeed *= healWalkSpeedMultiplier;
         anim.SetFloat("speedMultiplier", 0.5f);
 
