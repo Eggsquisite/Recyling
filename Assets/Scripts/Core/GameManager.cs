@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     IEnumerator RespawnPlayer() {
         // wait 2 seconds before transitioning back to respawn location
         Debug.Log("Respawning");
+        SetIsFightingBoss(false);
         transition.Play("PlayerDead");
         activeSave.playerDeathPosition = Player.instance.transform.position;
         // this will move the camera 
@@ -113,10 +114,6 @@ public class GameManager : MonoBehaviour
 
     public void RescanPathfinding() {
         //AstarPath.active.Scan();
-    }
-
-    public bool GetIsFightingBoss() {
-        return isFightingBoss;
     }
 
     public void BeginCameraShake(float duration, float magnitude) {
@@ -167,11 +164,11 @@ public class GameManager : MonoBehaviour
     /// <param name="index"></param>
     public void SetBossArenaIndex(int index) {
         bossArenaIndex = index;
-        isFightingBoss = true;
+        SetIsFightingBoss(true);
     }
 
     public void BossDefeated() {
-        isFightingBoss = false;
+        SetIsFightingBoss(false);
         SaveManager.instance.SaveAreaToLoad(activeSave.areaToLoadIndex + 1);
 
         if (bossArenaIndex == 1)
@@ -180,6 +177,14 @@ public class GameManager : MonoBehaviour
             activeSave.bossArenaTwoDefeated = true;
         else if (bossArenaIndex == 3)
             activeSave.bossArenaThreeDefeated = true;
+    }
+
+    private void SetIsFightingBoss(bool flag) {
+        isFightingBoss = flag;
+    }
+
+    public bool GetIsFightingBoss() {
+        return isFightingBoss;
     }
 
     /// <summary>

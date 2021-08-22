@@ -1304,7 +1304,7 @@ public class BasicEnemy : MonoBehaviour
         return resetSpawnSpoint;
     }
 
-    // FOR BOSS PHASE STUFF
+    // FOR BOSS PHASE STUFF //////////////////////////////////////////////////////////////////
     private void BeginNextPhase() {
         Debug.Log(name + " is starting next phase!");
         isNextPhase = true;

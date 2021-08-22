@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private Projectile projectile;
+    private Shader shaderGUItext;
+    private Shader shaderSpritesDefault;
     private RuntimeAnimatorController ac;
 
     [Header("Player Stats")]
@@ -191,7 +193,9 @@ public class Player : MonoBehaviour
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
-        if (ps != null) ps.gameObject.SetActive(false);
+        //if (ps != null) ps.gameObject.SetActive(false);   code for particle system, will probably not use does not fit art style
+        if (shaderGUItext == null) shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = sp.material.shader;
 
         sp.enabled = true;
         currentWalkSpeed = baseWalkSpeed;
@@ -945,7 +949,7 @@ public class Player : MonoBehaviour
     /// DAMAGED CODE ////////////////////////////////////////////////////////////////////
     /// </summary>
     public void PlayerHurt(int damageNum, float pushDistance, Vector2 reference) {
-        if (isHurt || isInvincible)
+        if (isHurt || isInvincible || isDead)
             return;
 
         if (isDashing)
@@ -988,10 +992,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool CheckDead() {
-        return isDead;
-    }
-
     private void Death() {
         isDead = true;
         PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
@@ -1006,6 +1006,7 @@ public class Player : MonoBehaviour
 
     public void Respawn() {
         isDead = false;
+        ChangeSpriteColor(0);
         PlayAnimation(PlayerAnimStates.PLAYER_RESPAWN);
 
         StartResetStunRoutine(1f);
@@ -1013,6 +1014,10 @@ public class Player : MonoBehaviour
 
     public void RefreshResources() {
         playerStats.RefreshResources();
+    }
+
+    public bool GetIsDead() {
+        return isDead;
     }
 
     /// <summary>
@@ -1123,6 +1128,7 @@ public class Player : MonoBehaviour
             return;
 
         isHealing = false;
+        ChangeSpriteColor(0);
         currentWalkSpeed = baseWalkSpeed;
         anim.SetFloat("speedMultiplier", 1f);
         Camera.main.GetComponent<CameraFollow>().SetIsFocused(false);
@@ -1154,6 +1160,8 @@ public class Player : MonoBehaviour
     IEnumerator HealthRecovery() {
         var time = 0f;
         //if (ps != null) ps.gameObject.SetActive(true);
+
+        ChangeSpriteColor(1);
         currentWalkSpeed *= healWalkSpeedMultiplier;
         anim.SetFloat("speedMultiplier", 0.5f);
 
@@ -1175,6 +1183,7 @@ public class Player : MonoBehaviour
             time += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
+
         StopRecoverInput();
     }
 
@@ -1183,6 +1192,19 @@ public class Player : MonoBehaviour
         if (ps != null) ps.gameObject.SetActive(false);
         if (!isAttacking && !isDashing && !isFalling && !isTeleporting)
             canReceiveInput = true;
+    }
+
+    private void ChangeSpriteColor(int index)
+    {
+        if (index == 0) {
+            sp.material.shader = shaderSpritesDefault;
+            sp.color = Color.white;
+        }
+        // healing case
+        else if (index == 1) {
+            sp.material.shader = shaderGUItext;
+            sp.color = Color.red;
+        }
     }
 
     public void SetCollider(bool flag) {

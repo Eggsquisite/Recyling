@@ -113,7 +113,7 @@ public class SaveManager : MonoBehaviour
             activeSave.playerCurrentPosition = tmpVector;
             Debug.Log("Player current position save value: " + activeSave.playerCurrentPosition);
         }
-        activeSave.playerIsDead = Player.instance.CheckDead();
+        activeSave.playerIsDead = Player.instance.GetIsDead();
         activeSave.playerHealth = Player.instance.GetHealth();
         activeSave.playerEnergy = Player.instance.GetEnergy();
         activeSave.playerCurrency = Player.instance.GetCurrency();
