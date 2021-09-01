@@ -143,6 +143,9 @@ TextureImporter:
   - first:
       213: -1994814187513576561
     second: BigSlices_Planet Two_46
+  - first:
+      213: 4598934297087726875
+    second: BigSlices_Planet Two_47
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -174,8 +177,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -331,10 +334,10 @@ TextureImporter:
       name: BigSlices_Planet Two_4
       rect:
         serializedVersion: 2
-        x: 166
+        x: 171
         y: 97
-        width: 11
-        height: 31
+        width: 6
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,7 +381,7 @@ TextureImporter:
         width: 24
         height: 29
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.5, y: 0.275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1218,7 +1221,7 @@ TextureImporter:
         width: 22
         height: 29
       alignment: 9
-      pivot: {x: 0.5, y: 0.45}
+      pivot: {x: 0.5, y: 0.48}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1226,6 +1229,27 @@ TextureImporter:
       bones: []
       spriteID: f830850c01ff054e0800000000000000
       internalID: -1994814187513576561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigSlices_Planet Two_47
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 97
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1556438062b2df30800000000000000
+      internalID: 4598934297087726875
       vertices: []
       indices: 
       edges: []

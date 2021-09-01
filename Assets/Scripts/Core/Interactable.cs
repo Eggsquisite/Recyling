@@ -20,15 +20,19 @@ public class Interactable : MonoBehaviour
     private List<GameObject> UI;
 
     private Animator anim;
+    private Collider2D coll;
     private GameObject player;
+
     private bool isActive;
     private bool isReady = true;
+    private bool isPlayerInRange;
     private Coroutine interactRoutine;
 
     // Start is called before the first frame update
     void Awake()
     {
         if (anim == null) anim = GetComponent<Animator>();
+        if (coll == null) coll = GetComponent<Collider2D>();
     }
 
     public void Interacting(GameObject newPlayer) {
