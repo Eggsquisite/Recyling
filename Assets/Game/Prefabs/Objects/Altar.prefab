@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_Sprite: {fileID: -6756601461856547328, guid: e448f057754142c41811acba1c2d0406, type: 3}
   m_Color: {r: 0.5686275, g: 0.05882353, b: 0.05882353, a: 1}
   m_FlipX: 0
@@ -294,7 +294,8 @@ GameObject:
   - component: {fileID: 4268789785134223637}
   - component: {fileID: 4268789785134223636}
   - component: {fileID: 4268789785134223639}
-  m_Layer: 12
+  - component: {fileID: 1042309103}
+  m_Layer: 0
   m_Name: Altar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,6 +381,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
+  prtSystem: {fileID: 0}
+--- !u!68 &1042309103
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268789785134223638}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.38, y: -0.3}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.4510937, y: 0.36250016}
+  - {x: 0.43914795, y: -0.16624013}
+  - {x: -0.0747776, y: -0.16869077}
+  - {x: 1.0192938, y: 0.382387}
+  - {x: 1.3842249, y: 0.38048232}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &4268789785353503790
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,9 +501,9 @@ GameObject:
   - component: {fileID: 4268789785485986995}
   - component: {fileID: 4268789785485986994}
   - component: {fileID: 4268789785485986992}
-  - component: {fileID: 4268789785485986993}
   - component: {fileID: 1185910162}
   - component: {fileID: 1185910160}
+  - component: {fileID: 6643423448556706140}
   m_Layer: 12
   m_Name: Altar
   m_TagString: Untagged
@@ -566,31 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
---- !u!68 &4268789785485986993
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4268789785485986989}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 1.4510937, y: 0.36250016}
-  - {x: 0.43914795, y: -0.16624013}
-  - {x: -0.0747776, y: -0.16869077}
-  - {x: 1.0192938, y: 0.382387}
-  - {x: 1.3842249, y: 0.38048232}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  prtSystem: {fileID: 0}
 --- !u!95 &1185910162
 Animator:
   serializedVersion: 3
@@ -632,6 +635,22 @@ MonoBehaviour:
   - altar_lightDeactivated
   UI:
   - {fileID: 0}
+--- !u!58 &6643423448556706140
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268789785485986989}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.75, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &4268789785867972683
 GameObject:
   m_ObjectHideFlags: 0

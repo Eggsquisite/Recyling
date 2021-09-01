@@ -867,6 +867,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     private void CameraShakeEvent(float magnitude) {
+        // called thru animation events for certain attack animations
         GameManager.instance.BeginCameraShake(0.2f, magnitude);
     }
 
