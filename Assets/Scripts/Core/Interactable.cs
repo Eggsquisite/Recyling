@@ -35,8 +35,30 @@ public class Interactable : MonoBehaviour
         if (coll == null) coll = GetComponent<Collider2D>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            PlayerIsInRange(collision.GetComponent<PlayerInput>());
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player") 
+            PlayerIsOutOfRange(collision.GetComponent<PlayerInput>());
+    }
+
+    private void PlayerIsInRange(PlayerInput pi) {
+        pi.SetIsInInteractRange(true);
+        pi.AddInteractObject(this);
+    }
+
+    private void PlayerIsOutOfRange(PlayerInput pi) {
+        pi.SetIsInInteractRange(false);
+        pi.RemoveInteractObject(this);
+    }
+
     public void Interacting(GameObject newPlayer) {
-        if (!isReady)
+        if (!isReady) // FIX HERE
             return;
 
         player = newPlayer;
@@ -81,6 +103,10 @@ public class Interactable : MonoBehaviour
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(false);
         }
+    }
+
+    public bool GetIsActive() {
+        return isActive;
     }
 
     IEnumerator InteractDelay() {

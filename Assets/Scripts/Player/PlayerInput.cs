@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour
     private LayerMask interactableLayer;
 
     private Collider2D interactable;
+    public Interactable interactObject;
+    public List<Interactable> interactList;
     private Player player;
     private PlayerStats playerStats;
 
@@ -15,11 +17,14 @@ public class PlayerInput : MonoBehaviour
     private float yAxis;
 
     private bool isInteracting;
+    private bool isInInteractRange;
 
     private void Awake()
     {
         if (player == null) player = GetComponent<Player>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
+
+        interactList = new List<Interactable>();
     }
 
     // Update is called once per frame
@@ -71,8 +76,9 @@ public class PlayerInput : MonoBehaviour
                 playerStats.IncreaseStat(3, 4);
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////
         // INTERACTION INPUT
-        if (Input.GetKeyDown(KeyCode.E)) {
+/*        if (Input.GetKeyDown(KeyCode.E)) {
             if (!isInteracting) 
             {
                 var tmp = Physics2D.OverlapCircle(transform.position, 1f, interactableLayer);
@@ -111,7 +117,78 @@ public class PlayerInput : MonoBehaviour
             interactable = null;
 
             SaveManager.instance.Save(); // after interacting
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.E)) { 
+            if (isInInteractRange) {
+                interactObject = CheckInteractListDistances();
+                if (interactObject != null) {
+                    isInteracting = !isInteracting;
+                    interactObject.Interacting(gameObject);
+                }
+            }
         }
+    }
+
+    private Interactable CheckInteractListDistances() {
+        float tmpDistance = 0f;
+        float currentDistance = 0f;
+        int smallestIndex = 0;
+
+        if (interactList.Count == 0) {
+            return null;
+        }
+        else if (interactList.Count == 1) {
+            return interactList[0];
+        }
+        else if (interactList.Count > 1)
+        {
+            currentDistance = Vector2.Distance(transform.position, interactList[0].transform.position);
+            for (int i = 1; i < interactList.Count; i++) {
+                tmpDistance = Vector2.Distance(transform.position, interactList[i].transform.position);
+                if (tmpDistance < currentDistance) { 
+                    currentDistance = tmpDistance;
+                    smallestIndex = i;
+                }
+            }
+
+            return interactList[smallestIndex];
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// If player is out of interact range and is interacting with an object, turn off that interactable
+    /// </summary>
+    /// <param name="flag"></param>
+    public void SetIsInInteractRange(bool flag) {
+        isInInteractRange = flag;
+        if (!flag) {
+            isInteracting = false;
+
+            if (interactObject != null && interactObject.GetIsActive()) {
+                Debug.Log("Turning off");
+                interactObject.Interacting(gameObject);
+            }
+        }
+    }
+
+    public void AddInteractObject(Interactable newObject) {
+        interactList.Add(newObject);
+    }
+
+    /// <summary>
+    /// If removing an interact object from the list (as when player is out of its interact collider), 
+    /// remove it from the interactList and deactivate if it is active
+    /// </summary>
+    /// <param name="index"></param>
+    public void RemoveInteractObject(Interactable tmpObject) {
+        if (tmpObject.GetIsActive()) { 
+            tmpObject.Interacting(gameObject);
+        }
+
+        interactList.Remove(tmpObject);
     }
 
     private void OnDrawGizmosSelected()
