@@ -58,9 +58,6 @@ public class Interactable : MonoBehaviour
     }
 
     public void Interacting(GameObject newPlayer) {
-        if (!isReady) // FIX HERE
-            return;
-
         player = newPlayer;
         isActive = !isActive;
 

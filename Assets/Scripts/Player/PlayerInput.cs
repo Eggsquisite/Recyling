@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     private float xAxis;
     private float yAxis;
 
+    private int smallestIndex;
     private bool isInteracting;
     private bool isInInteractRange;
 
@@ -122,7 +123,8 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) { 
             if (isInInteractRange) {
                 interactObject = CheckInteractListDistances();
-                if (interactObject != null) {
+                DisableOtherInteractables();
+                if (interactObject != null && interactObject.GetIsReady()) {
                     isInteracting = !isInteracting;
                     interactObject.Interacting(gameObject);
                 }
@@ -133,12 +135,13 @@ public class PlayerInput : MonoBehaviour
     private Interactable CheckInteractListDistances() {
         float tmpDistance = 0f;
         float currentDistance = 0f;
-        int smallestIndex = 0;
+        smallestIndex = 0;
 
         if (interactList.Count == 0) {
             return null;
         }
         else if (interactList.Count == 1) {
+            smallestIndex = 0;
             return interactList[0];
         }
         else if (interactList.Count > 1)
@@ -156,6 +159,18 @@ public class PlayerInput : MonoBehaviour
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Iterate through interact list, and turn off each active interactable whenever player begins 
+    /// a new interaction
+    /// </summary>
+    private void DisableOtherInteractables() {
+        for(int i = 0; i < interactList.Count; i++)
+        {
+            if (interactList[i].GetIsActive() && i != smallestIndex)
+                interactList[i].Interacting(gameObject);
+        }
     }
 
     /// <summary>
