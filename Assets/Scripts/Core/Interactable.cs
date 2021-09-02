@@ -48,12 +48,12 @@ public class Interactable : MonoBehaviour
     }
 
     private void PlayerIsInRange(PlayerInput pi) {
-        pi.SetIsInInteractRange(true);
+        //pi.SetIsInInteractRange(true);
         pi.AddInteractObject(this);
     }
 
     private void PlayerIsOutOfRange(PlayerInput pi) {
-        pi.SetIsInInteractRange(false);
+        //pi.SetIsInInteractRange(false);
         pi.RemoveInteractObject(this);
     }
 

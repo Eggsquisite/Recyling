@@ -127,11 +127,19 @@ public class PlayerInput : MonoBehaviour
                 if (interactObject != null && interactObject.GetIsReady()) {
                     isInteracting = !isInteracting;
                     interactObject.Interacting(gameObject);
+
+                    // SAVE SPAWN POINT HERE *************************
+                    SaveManager.instance.SaveSpawnPoint();
+                    SaveManager.instance.Save(); // saving when interacting
                 }
             }
         }
     }
 
+    /// <summary>
+    /// Iterates through all the interac
+    /// </summary>
+    /// <returns></returns>
     private Interactable CheckInteractListDistances() {
         float tmpDistance = 0f;
         float currentDistance = 0f;
@@ -149,6 +157,7 @@ public class PlayerInput : MonoBehaviour
             currentDistance = Vector2.Distance(transform.position, interactList[0].transform.position);
             for (int i = 1; i < interactList.Count; i++) {
                 tmpDistance = Vector2.Distance(transform.position, interactList[i].transform.position);
+                Debug.Log(tmpDistance);
                 if (tmpDistance < currentDistance) { 
                     currentDistance = tmpDistance;
                     smallestIndex = i;
@@ -185,6 +194,8 @@ public class PlayerInput : MonoBehaviour
             if (interactObject != null && interactObject.GetIsActive()) {
                 Debug.Log("Turning off");
                 interactObject.Interacting(gameObject);
+
+                SaveManager.instance.Save(); // saving when out of range of interactable 
             }
         }
     }
@@ -204,6 +215,18 @@ public class PlayerInput : MonoBehaviour
         }
 
         interactList.Remove(tmpObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Interactable")
+            isInInteractRange = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Interactable")
+            isInInteractRange = false;
     }
 
     private void OnDrawGizmosSelected()

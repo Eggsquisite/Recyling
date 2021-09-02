@@ -9,6 +9,7 @@ TagManager:
   - RightBorder
   - Area
   - ResetEnemies
+  - Interactable
   layers:
   - Default
   - TransparentFX
