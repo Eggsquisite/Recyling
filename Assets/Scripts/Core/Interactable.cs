@@ -69,6 +69,10 @@ public class Interactable : MonoBehaviour
             // play animations if available
             if (animations.Count != 0)
                 anim.Play(animations[0]);
+
+            // reset enemies if set
+            if (resetEnemiesOnUse)
+                EnemyManager.Instance.ResetAllEnemies();
         }
         else {
             if (interactRoutine != null)
@@ -90,9 +94,6 @@ public class Interactable : MonoBehaviour
             if (healOnUse)
                 player.GetComponent<PlayerStats>().RefreshResources();
         }
-
-        if (resetEnemiesOnUse)
-            EnemyManager.Instance.ResetAllEnemies();
     }
 
     private void CloseUI() { 
