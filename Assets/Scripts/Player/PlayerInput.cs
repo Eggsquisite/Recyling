@@ -137,7 +137,8 @@ public class PlayerInput : MonoBehaviour
     }
 
     /// <summary>
-    /// Iterates through all the interac
+    /// Iterates through all the interactions in contact with player and picks the closest one
+    /// NOT WORKING CORRECTLY, ALWAYS CHOOSING LAST ELEMENT IN ARRAY REGARDLESS OF DISTANCE
     /// </summary>
     /// <returns></returns>
     private Interactable CheckInteractListDistances() {
@@ -154,10 +155,10 @@ public class PlayerInput : MonoBehaviour
         }
         else if (interactList.Count > 1)
         {
+            smallestIndex = 0;
             currentDistance = Vector2.Distance(transform.position, interactList[0].transform.position);
             for (int i = 1; i < interactList.Count; i++) {
                 tmpDistance = Vector2.Distance(transform.position, interactList[i].transform.position);
-                Debug.Log(tmpDistance);
                 if (tmpDistance < currentDistance) { 
                     currentDistance = tmpDistance;
                     smallestIndex = i;

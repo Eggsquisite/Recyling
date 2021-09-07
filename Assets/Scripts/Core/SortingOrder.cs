@@ -24,5 +24,7 @@ public class SortingOrder : MonoBehaviour
 
         if (reference == null)
             sp.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        else
+            sp.sortingOrder = Mathf.RoundToInt(reference.position.y * 100f) * -1;
     }
 }
