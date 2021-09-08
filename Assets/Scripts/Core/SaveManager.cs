@@ -96,8 +96,9 @@ public class SaveManager : MonoBehaviour
         Save(); // after loading a new area (not including boss arena's)
     }
 
-    public void SaveSpawnPoint() {
-        instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
+    public void SaveSpawnPoint(Transform spawnPoint) {
+        //instance.activeSave.playerRespawnPosition = Player.instance.transform.position;
+        instance.activeSave.playerRespawnPosition = spawnPoint.position;
         instance.activeSave.areaToRespawnIndex = instance.activeSave.areaToLoadIndex;
     }
 

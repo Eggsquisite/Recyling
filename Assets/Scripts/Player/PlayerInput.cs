@@ -125,11 +125,12 @@ public class PlayerInput : MonoBehaviour
                 interactObject = CheckInteractListDistances();
                 DisableOtherInteractables();
                 if (interactObject != null && interactObject.GetIsReady()) {
-                    isInteracting = !isInteracting;
-                    interactObject.Interacting(gameObject);
+                    if (!interactObject.GetIsActive())
+                        isInteracting = true;
+                    else
+                        isInteracting = false;
 
-                    // SAVE SPAWN POINT HERE *************************
-                    SaveManager.instance.SaveSpawnPoint();
+                    interactObject.Interacting(gameObject);
                     SaveManager.instance.Save(); // saving when interacting
                 }
             }
@@ -212,6 +213,7 @@ public class PlayerInput : MonoBehaviour
     /// <param name="index"></param>
     public void RemoveInteractObject(Interactable tmpObject) {
         if (tmpObject.GetIsActive()) { 
+            isInteracting = false;
             tmpObject.Interacting(gameObject);
         }
 

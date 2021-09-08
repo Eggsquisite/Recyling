@@ -5,6 +5,8 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
+    private bool deathPickup;
+    [SerializeField]
     private bool resetEnemiesOnUse;
     [SerializeField]
     private bool healOnUse;
@@ -62,6 +64,7 @@ public class Interactable : MonoBehaviour
         isActive = !isActive;
 
         if (isActive) {
+            // begin delay on next interaction
             if (interactRoutine != null)
                 StopCoroutine(interactRoutine);
             interactRoutine = StartCoroutine(InteractDelay());
@@ -70,9 +73,7 @@ public class Interactable : MonoBehaviour
             if (animations.Count != 0)
                 anim.Play(animations[0]);
 
-            // reset enemies if set
-            if (resetEnemiesOnUse)
-                EnemyManager.Instance.ResetAllEnemies();
+            ChooseInteraction();
         }
         else {
             if (interactRoutine != null)
@@ -85,19 +86,35 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    private void ChooseInteraction() {
+        // reset enemies if set
+        if (resetEnemiesOnUse)
+            EnemyManager.Instance.ResetAllEnemies();
+
+        if (healOnUse)
+            player.GetComponent<PlayerStats>().RefreshResources();
+
+        // SAVE SPAWN POINT HERE *************************
+        if (setSpawnPoint && spawnPoint != null) { 
+            SaveManager.instance.SaveSpawnPoint(spawnPoint);
+        }
+
+        if (deathPickup) {
+            var tmp = GetComponent<DeathPickup>();
+            tmp.InteractActivated();
+        }
+    }
+
     private void OpenUI() {
-        // open up UI
+        // open up UI - called during animation event
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(true);
             UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
-
-            if (healOnUse)
-                player.GetComponent<PlayerStats>().RefreshResources();
         }
     }
 
     private void CloseUI() { 
-        // close down UI
+        // close down UI - called during animation event
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(false);
         }
@@ -113,6 +130,10 @@ public class Interactable : MonoBehaviour
         isReady = true;
     }
 
+    /// <summary>
+    /// Not currently used: spawn point is just player position when they use the altar
+    /// </summary>
+    /// <returns></returns>
     public Transform GetSpawnPoint() {
         if (spawnPoint == null)
             return null;

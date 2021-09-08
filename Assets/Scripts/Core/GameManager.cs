@@ -88,7 +88,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawning");
         SetIsFightingBoss(false);
         transition.Play("PlayerDead");
+
+        // spawn in death pickup
         activeSave.playerDeathPosition = Player.instance.transform.position;
+        var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
+        tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
+
         // this will move the camera 
         //Player.instance.transform.position = activeSave.playerRespawnPosition;
 

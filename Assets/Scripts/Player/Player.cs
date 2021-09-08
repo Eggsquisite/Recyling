@@ -995,6 +995,7 @@ public class Player : MonoBehaviour
     private void Death() {
         isDead = true;
         PlayAnimation(PlayerAnimStates.PLAYER_DEATH);
+
         // find a way to place dead body
     }
 
