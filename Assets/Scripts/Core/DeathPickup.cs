@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathPickup : MonoBehaviour
 {
-    private int currencyStored;
+    public int currencyStored;
 
     public void InteractActivated() {
         Player.instance.GetComponent<PlayerUI>().SetCurrency(currencyStored);
@@ -12,6 +12,7 @@ public class DeathPickup : MonoBehaviour
 
     public void SetCurrencyStored(int newValue) {
         currencyStored = newValue;
+        Debug.Log("Setting currency: " + newValue);
     }
 
     public int GetCurrencyStored() {

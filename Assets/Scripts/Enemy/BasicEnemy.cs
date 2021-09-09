@@ -931,6 +931,9 @@ public class BasicEnemy : MonoBehaviour
     /// </summary>
     IEnumerator ResetStun(float value) {
         yield return new WaitForSeconds(value);
+        if (isDead)
+            yield return null;
+
         isStunned = false;
         stunDelay = Random.Range(minStunAttackDelay, maxStunAttackDelay);
 
@@ -1205,7 +1208,7 @@ public class BasicEnemy : MonoBehaviour
     /// </summary>
     IEnumerator Death() {
         isDead = true;
-        enemyMovement.StopFindPlayer();
+        enemyMovement.EnemyDeath();
         GetComponent<Collider2D>().enabled = false;
         enemyAnimation.PlayAnimation(EnemyAnimStates.ENEMY_DEATH);
         var tmp = enemyAnimation.GetAnimationLength(EnemyAnimStates.ENEMY_DEATH);

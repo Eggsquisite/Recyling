@@ -70,7 +70,7 @@ public class Interactable : MonoBehaviour
             interactRoutine = StartCoroutine(InteractDelay());
 
             // play animations if available
-            if (animations.Count != 0)
+            if (animations.Count > 0)
                 anim.Play(animations[0]);
 
             ChooseInteraction();
@@ -81,7 +81,7 @@ public class Interactable : MonoBehaviour
             interactRoutine = StartCoroutine(InteractDelay());
 
             // play animations if available
-            if (animations.Count != 0)
+            if (animations.Count > 1)
                 anim.Play(animations[1]);
         }
     }
@@ -107,14 +107,20 @@ public class Interactable : MonoBehaviour
 
     private void OpenUI() {
         // open up UI - called during animation event
+        if (UI == null && UI.Count == 0)
+            return;
+
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(true);
             UI[i].GetComponent<FindPlayerScript>().PlayerFound(player);
         }
     }
 
-    private void CloseUI() { 
+    private void CloseUI() {
         // close down UI - called during animation event
+        if (UI == null && UI.Count == 0)
+            return;
+
         for (int i = 0; i < UI.Count; i++) {
             UI[i].SetActive(false);
         }

@@ -27569,10 +27569,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2898559017384746198, guid: dfc1aa8958045464796dacd5dbee113f, type: 3}
-      propertyPath: UI.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2898559017384746202, guid: dfc1aa8958045464796dacd5dbee113f, type: 3}
       propertyPath: m_Name
       value: DeathObject

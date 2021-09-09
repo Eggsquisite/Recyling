@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     private bool facingLeft;
     private bool isAttacking;
+    private bool isDead;
     // GameObject player;
     private Vector2 playerChar;
 
@@ -187,6 +188,9 @@ public class EnemyMovement : MonoBehaviour
         // Called thru invoke
         //player = GameObject.FindGameObjectWithTag("Player");
         //playerChar = player.transform.position;
+        if (isDead)
+            return;
+
         playerChar = Player.instance.transform.position;
         facingLeft = CheckPlayerPos();
         if (canFollow)
@@ -506,6 +510,9 @@ public class EnemyMovement : MonoBehaviour
 
     public bool CheckPlayerPos() {
         // calculate leftOfPlayer and set scale to 1/-1 
+        if (isDead)
+            return false;
+
         if (playerChar.x > transform.position.x && transform.localScale.x != xScaleValue) {
             facingLeft = false;
             leftOfPlayer = true;
@@ -660,6 +667,12 @@ public class EnemyMovement : MonoBehaviour
             else if (tmp >= 8 && tmp < 10)
                 attackFromLeft = true;
         }
+    }
+
+    public void EnemyDeath() {
+        isDead = true;
+        canFollow = false;
+        StopFindPlayer();
     }
 
     // FOLLOW PROPERTIES /////////////////////////////////////////////////////////////////////////////////////

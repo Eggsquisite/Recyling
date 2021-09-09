@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             EnemyManager.Instance.DisableAllEnemies();
 
             // player loads in at their last position
-            StartCoroutine(ResetCamSpeed());
+            StartCoroutine(IncreaseCamSpeed());
 
             Player.instance.SetInvincible(true);
             Player.instance.LoadPlayerLevels();
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator ResetCamSpeed() {
+    IEnumerator IncreaseCamSpeed() {
         cam.SetCamSpeed(100f);
         yield return new WaitForSeconds(1f);
         cam.SetCamSpeed(1.5f);
@@ -89,10 +89,7 @@ public class GameManager : MonoBehaviour
         SetIsFightingBoss(false);
         transition.Play("PlayerDead");
 
-        // spawn in death pickup
         activeSave.playerDeathPosition = Player.instance.transform.position;
-        var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
-        tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
 
         // this will move the camera 
         //Player.instance.transform.position = activeSave.playerRespawnPosition;
@@ -101,15 +98,15 @@ public class GameManager : MonoBehaviour
         if (deathPanel != null) deathPanel.SetActive(true);
 
         yield return new WaitForSeconds(3f);
-        Debug.Log("Moving camera");
-
-        // spawn deathObject at players death position
-        if (deathObject != null) {
-            Instantiate(deathObject, Player.instance.transform.position, Quaternion.identity);
-        }
 
         if (deathPanel != null) deathPanel.SetActive(false);
-        StartCoroutine(ResetCamSpeed());
+        // spawn deathObject at players death position
+        if (deathObject != null) {
+            var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
+            tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
+        }
+
+        StartCoroutine(IncreaseCamSpeed());
         AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
         Player.instance.transform.position = activeSave.playerRespawnPosition;
 
