@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
                 Player.instance.LoadCurrency(0);
 
+                // spawn deathObject at players death position
+                if (deathObject != null) {
+                    var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
+                    tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
+                }
+
                 Player.instance.RefreshResources();
                 activeSave.playerIsDead = false;
             }

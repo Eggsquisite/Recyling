@@ -153,6 +153,7 @@ public class SaveData
     //public int playerLevel;       // may not need, just add all levels together to get player level
     [Header("Player Stats")]
     public bool playerIsDead;
+    public bool spawnDeathObject;
     public int playerCurrency;
     public int playerLostCurrency;
     public int playerHealth;
