@@ -8,6 +8,7 @@ public class DeathPickup : MonoBehaviour
 
     public void InteractActivated() {
         Player.instance.GetComponent<PlayerUI>().SetCurrency(currencyStored);
+        SaveManager.instance.SaveSpawnDeathObject(false);
     }
 
     public void SetCurrencyStored(int newValue) {

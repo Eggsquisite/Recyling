@@ -44,6 +44,12 @@ public class GameManager : MonoBehaviour
             Player.instance.SetInvincible(true);
             Player.instance.LoadPlayerLevels();
 
+            // if spawn DeathObject is true, spawn it at players' death position
+            if (deathObject != null && activeSave.spawnDeathObject) {
+                var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
+                tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
+            }
+
             if (!activeSave.playerIsDead) { 
                 AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
                 Player.instance.transform.position = activeSave.playerCurrentPosition;
@@ -56,12 +62,6 @@ public class GameManager : MonoBehaviour
                 AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
                 Player.instance.LoadCurrency(0);
-
-                // spawn deathObject at players death position
-                if (deathObject != null) {
-                    var tmp = Instantiate(deathObject, activeSave.playerDeathPosition, Quaternion.identity, null);
-                    tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
-                }
 
                 Player.instance.RefreshResources();
                 activeSave.playerIsDead = false;
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         SetIsFightingBoss(false);
         transition.Play("PlayerDead");
 
+        SaveManager.instance.SaveSpawnDeathObject(true);
         activeSave.playerDeathPosition = Player.instance.transform.position;
 
         // this will move the camera 

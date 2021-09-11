@@ -102,6 +102,10 @@ public class SaveManager : MonoBehaviour
         instance.activeSave.areaToRespawnIndex = instance.activeSave.areaToLoadIndex;
     }
 
+    public void SaveSpawnDeathObject(bool flag) {
+        activeSave.spawnDeathObject = flag;
+    }
+
     public void SavePlayerValues() {
         // if player is not in a boss arena/fighting a boss, save their current position
         if (!GameManager.instance.GetIsFightingBoss())
