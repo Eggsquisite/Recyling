@@ -145,6 +145,8 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 4096
+  interactObject: {fileID: 0}
+  interactList: []
 --- !u!114 &2992016163585843310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ MonoBehaviour:
   energyToHealthMultiplier: 0.9
   energyRecoveryValue: 20
   staminaRecoveryValue: 50
-  staminaRecoveryDelay: 0.5
+  staminaRecoveryDelay: 0.33
   swordDamage: 15
   specialAttackDmg: 55
   blasterLightDmg: 25
@@ -251,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 0.75
+  visualDelay: 0.5
   updateSpeed: 85
   updateModifier: 10
   UI: {fileID: 0}
@@ -425,7 +427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 722439447500652326}
-  prtSystem: {fileID: 0}
 --- !u!1 &722439448694995756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,4 +5330,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 0}
-  prtSystem: {fileID: 809160177216871053}

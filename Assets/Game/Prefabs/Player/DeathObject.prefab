@@ -153,7 +153,7 @@ MonoBehaviour:
   healOnUse: 0
   setSpawnPoint: 0
   spawnPoint: {fileID: 0}
-  interactDelayBtwnActivations: 2
+  interactDelayBtwnActivations: 0.5
   animations:
   - pickedUp
   UI: []
@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8346ff9f8573c843a00c8edbb7986b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyStored: 0

@@ -646,14 +646,18 @@ public class BasicEnemy : MonoBehaviour
     /// </summary>
     /// <param name="flag"></param>
     private void SavePlayerPosition(int flag) {
+        // do nothing
+        if (flag == 0)
+            return;
         // vertical position
-        if (flag == 1)
+        else if (flag == 1)
             abovePlayer = enemyMovement.GetAbovePlayer();
         // horizontal position
         else if (flag == 2)
             leftOfPlayer = enemyMovement.GetLeftOfPlayer();
         // both positions
-        else if (flag == 3) {
+        else if (flag == 3)
+        {
             abovePlayer = enemyMovement.GetAbovePlayer();
             leftOfPlayer = enemyMovement.GetLeftOfPlayer();
         }
