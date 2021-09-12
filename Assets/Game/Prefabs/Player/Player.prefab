@@ -185,6 +185,7 @@ MonoBehaviour:
   dashMoveSpeed: 4
   dashCooldown: 0
   dashHeight: 1
+  dashFallSpeed: 4
   teleportMoveSpeed: 10
   teleportCooldown: 0.25
   dodgeStamina: 225
@@ -256,8 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strengthUpgrade1: 5
   strengthUpgrade2: 10
-  strengthUpgradeValue1: 1.15
-  strengthUpgradeValue2: 0
+  strengthUpgradeValue1: 1.2
+  strengthUpgradeValue2: 8
   specialUpgrade1: 5
   specialUpgrade2: 10
   focusUpgrade1: 5

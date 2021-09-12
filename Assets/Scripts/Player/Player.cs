@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
     private int vitalityUpgradeLevel;
     private int staminaUpgradeLevel;
 
+    private bool jetpackDamage;
+
     [Header("Movement Properties")]
     [SerializeField]
     private float baseWalkSpeed;
@@ -142,6 +144,8 @@ public class Player : MonoBehaviour
     private float dashCooldown;
     [SerializeField]
     private float dashHeight;
+    [SerializeField]
+    private float dashFallSpeed;
 
     private bool isDashing;
     private bool isFalling;
@@ -276,8 +280,9 @@ public class Player : MonoBehaviour
         else
             movement = new Vector2(xAxis * horizontalSpeedMult, yAxis * verticalSpeedMult);
 
-        if (!isTeleporting)
+        if (!isTeleporting && !isStunned)
             CheckDirection();
+
         if (!isAttacking) {
             if (isWalking && !isDashing && !isTeleporting)
                 rb.MovePosition(rb.position + movement * currentWalkSpeed * Time.fixedDeltaTime);
@@ -554,7 +559,7 @@ public class Player : MonoBehaviour
     IEnumerator DashFall() {
         while (playerSprite.localPosition.y > 0)
         {
-            playerSprite.Translate(0, -4f * Time.deltaTime, 0f, transform.parent);
+            playerSprite.Translate(0, -dashFallSpeed * Time.deltaTime, 0f, transform.parent);
             yield return Time.deltaTime;
         }
         Stunned();
@@ -789,6 +794,25 @@ public class Player : MonoBehaviour
 
     public void RegainEnergy(float energyGainMultiplier) {
         StartCoroutine(UI.EnergyRegenOnHit(energyGainMultiplier));
+    }
+
+    /// <summary>
+    /// Attack for when jetpack attack is set to true
+    /// </summary>
+    private void JetpackHitboxActivated() {
+        if (!jetpackDamage)
+            return;
+
+        Debug.Log("Activating jetpack damage");
+        Collider2D[] hitEnemies;
+        hitEnemies = Physics2D.OverlapCircleAll(transform.position, 1f);
+
+        foreach (Collider2D enemy in hitEnemies) {
+            if (enemy.tag == "Enemy" && enemy.GetComponent<BasicEnemy>() != null) {
+                var tmp = enemy.GetComponent<BasicEnemy>();
+                tmp.EnemyHurt(swordDamage, pushbackDistance, 0);
+            }
+        }
     }
 
     private void AttackHitboxActivated(float attackRange) {
@@ -1038,6 +1062,8 @@ public class Player : MonoBehaviour
         if (reference.x > rb.position.x)
         {
             newPosition = new Vector2(-distance, 0f);
+            facingLeft = false;
+            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
 
             if (pushBackDurationRoutine != null)
                 StopCoroutine(pushBackDurationRoutine);
@@ -1046,6 +1072,8 @@ public class Player : MonoBehaviour
         else if (reference.x <= transform.position.x)
         {
             newPosition = new Vector2(distance, 0f);
+            facingLeft = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 
             if (pushBackDurationRoutine != null)
                 StopCoroutine(pushBackDurationRoutine);
@@ -1236,7 +1264,11 @@ public class Player : MonoBehaviour
         else if (strengthUpgradeLevel == 1) {
             anim.SetFloat("attackMultiplier", playerUpgrades.GetStrengthUpgradeValues(1));
         } 
-        else if (strengthUpgradeLevel == 2) { 
+        else if (strengthUpgradeLevel == 2) {
+            jetpackDamage = true;
+            dashFallSpeed = playerUpgrades.GetStrengthUpgradeValues(2);
+        }
+        else if (strengthUpgradeLevel == 3) { 
             
         }
     }

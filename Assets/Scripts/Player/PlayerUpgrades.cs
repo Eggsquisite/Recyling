@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour
 {
-    private PlayerStats playerStats;
-
     [Header("Strength Upgrade Properties")]
     [SerializeField]
     private int strengthUpgrade1;
@@ -13,7 +11,7 @@ public class PlayerUpgrades : MonoBehaviour
     private int strengthUpgrade2;
     [SerializeField] [Tooltip("Faster attack speed multiplier")]
     private float strengthUpgradeValue1;
-    [SerializeField] [Tooltip("Dunno yet")]
+    [SerializeField] [Tooltip("Player damages surrounding enemies when landing from jetpack")]
     private float strengthUpgradeValue2;
 
     [Header("Special Upgrade Properties")]
@@ -45,11 +43,6 @@ public class PlayerUpgrades : MonoBehaviour
     private int focusUpgradeLevel;
     private int vitalityUpgradeLevel;
     private int staminaUpgradeLevel;
-
-    private void Awake()
-    {
-        if (playerStats == null) GetComponent<PlayerStats>();
-    }
 
     public int CheckStrengthUpgrade(int strengthLevel) {
         if (strengthLevel < strengthUpgrade1)

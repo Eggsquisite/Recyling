@@ -145,7 +145,13 @@ public class PlayerUI : MonoBehaviour
             futureCurrencyText.text = futureCurrency.ToString();
             currencyTmp = Mathf.RoundToInt(baseCurrency);
             currencyText.text = currencyTmp.ToString();
+            StartCoroutine(TurnOffTextRoutine());
         }
+    }
+
+    IEnumerator TurnOffTextRoutine() {
+        yield return new WaitForSeconds(3f);
+        TurnOffText();
     }
 
     public void TurnOffText() {
