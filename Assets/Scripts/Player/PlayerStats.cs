@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Components")]
     private PlayerUI UI;
     private Player player;
+    private PlayerUpgrades playerUpgrades;
 
     [Header("Player Stats")]
     [SerializeField]
@@ -108,9 +109,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        levelCap = 20;
         if (UI == null) UI = GetComponent<PlayerUI>();
         if (player == null) player = GetComponent<Player>();
+        if (playerUpgrades == null) playerUpgrades = GetComponent<PlayerUpgrades>();
+
+        levelCap = 20;
         upgrades = new Dictionary<string, int>();
         upgrades.Add("playerLevel", 1);
         upgrades.Add("vitality", 1);
@@ -392,6 +395,10 @@ public class PlayerStats : MonoBehaviour
         player.SetSpecialAttackDmg(specialAttackDmg);
         player.SetBlasterLightDmg(blasterLightDmg);
         player.SetBlasterHeavyDmg(blasterHeavyDmg);
+    }
+
+    public void CheckUpgradeLevels(out int strengthUpgradeLevel) {
+        strengthUpgradeLevel = playerUpgrades.CheckStrengthUpgrade(upgrades["strength"]);
     }
 
     public float GetEnergyRecoveryValue() {

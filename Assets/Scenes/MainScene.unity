@@ -21580,7 +21580,7 @@ MonoBehaviour:
   cameraShakeSpeed: 10
   bossHealthBar: {fileID: 618974424}
   deathPanel: {fileID: 1715202717}
-  deathObject: {fileID: 0}
+  deathObject: {fileID: 2898559017384746202, guid: dfc1aa8958045464796dacd5dbee113f, type: 3}
   newGameSpawn: {x: -4.75, y: -1, z: 0}
 --- !u!114 &1572567297
 MonoBehaviour:
@@ -24270,13 +24270,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5715822747553379095, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 73
-      objectReference: {fileID: 0}
-    - target: {fileID: 6686863144973974037, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 8626295925790624473, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
+      propertyPath: strengthUpgradeValue1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}

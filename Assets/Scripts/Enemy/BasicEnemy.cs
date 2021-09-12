@@ -254,6 +254,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Start()
     {
+        // Initialize variables by passing into bossPhases.cs thru reference
         if (isBoss)
             bossPhases.InitializePhaseVariables(out phaseThresholdPercent, 
                                                     out animSpeedMult,
@@ -1057,7 +1058,8 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator BeginDamageThreshold(int damageNum) {
         currentDamageTaken += damageNum;
         yield return new WaitForSeconds(.5f);
-        currentDamageTaken -= damageNum;
+        //currentDamageTaken -= damageNum;
+        currentDamageTaken = 0;
         if (currentDamageTaken < 0)
             currentDamageTaken = 0;
     }

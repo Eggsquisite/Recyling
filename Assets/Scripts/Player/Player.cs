@@ -33,9 +33,17 @@ public class Player : MonoBehaviour
     private PlayerUI UI;
     private PlayerStats playerStats;
     private PlayerSounds playSounds;
+    private PlayerUpgrades playerUpgrades;
 
     private bool isDead;
     private PlayerWeapon playerEquipment;
+
+    [Header("Player Upgrade Levels")]
+    private int strengthUpgradeLevel;
+    private int specialUpgradeLevel;
+    private int focusUpgradeLevel;
+    private int vitalityUpgradeLevel;
+    private int staminaUpgradeLevel;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -93,7 +101,7 @@ public class Player : MonoBehaviour
     [Header("Attack Properties")]
     [SerializeField] 
     private float attackRangeVisualizer;
-    [SerializeField]
+    [SerializeField] [Tooltip("Begins when an input is executed; that value will stay true until the buffer runs out")]
     private float attackBuffer;
     [SerializeField]
     private float pushbackDistance;
@@ -193,6 +201,7 @@ public class Player : MonoBehaviour
         if (projectile == null) projectile = GetComponent<Projectile>();
         if (playSounds == null) playSounds = GetComponent<PlayerSounds>();
         if (playerStats == null) playerStats = GetComponent<PlayerStats>();
+        if (playerUpgrades == null) playerUpgrades = GetComponent<PlayerUpgrades>();
         //if (ps != null) ps.gameObject.SetActive(false);   code for particle system, will probably not use does not fit art style
         if (shaderGUItext == null) shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = sp.material.shader;
@@ -1212,9 +1221,35 @@ public class Player : MonoBehaviour
         GetComponent<Collider2D>().enabled = flag;
     }
 
+
+    /// PLAYER UPGRADING STUFF ////////////////////////////////////////////////////////////////////////////
+
+    private void UpdatePlayerUpgrades() {
+        playerStats.CheckUpgradeLevels(out strengthUpgradeLevel);
+
+        UpdateStrengthUpgrades();
+    }
+
+    private void UpdateStrengthUpgrades() {
+        if (strengthUpgradeLevel == 0)
+            return;
+        else if (strengthUpgradeLevel == 1) {
+            anim.SetFloat("attackMultiplier", playerUpgrades.GetStrengthUpgradeValues(1));
+        } 
+        else if (strengthUpgradeLevel == 2) { 
+            
+        }
+    }
+
     /// <summary>
     /// LOAD STUFF ////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
+    /// For loading player levels
+    public void LoadPlayerLevels() {
+        playerStats.IncreaseStat(-1, 0);
+        UpdatePlayerUpgrades();
+    }
+
     public void LoadCurrency(int loadedCurrency) {
         UI.LoadCurrency(loadedCurrency);
     }
@@ -1258,10 +1293,6 @@ public class Player : MonoBehaviour
 
     public int GetSpecialLevel() {
         return playerStats.GetSpecialLevel();
-    }
-
-    public void LoadPlayerLevels() {
-        playerStats.IncreaseStat(-1, 0);
     }
 
     private void OnApplicationQuit()

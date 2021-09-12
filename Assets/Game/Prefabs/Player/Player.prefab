@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6520951190633150043}
   - component: {fileID: 2992016163585843310}
   - component: {fileID: 2311640890247761020}
+  - component: {fileID: 8626295925790624473}
   - component: {fileID: 1949231003}
   - component: {fileID: 1949231004}
   - component: {fileID: 5999778514312686344}
@@ -241,6 +242,30 @@ MonoBehaviour:
   specialBlasterLightUpgradeWeak: 1.5
   specialBlasterHeavyUpgradeStrong: 12.5
   specialBlasterHeavyUpgradeWeak: 7.75
+--- !u!114 &8626295925790624473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722439447500652325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f00f726cc12fe64192c9fe8efa5030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strengthUpgrade1: 5
+  strengthUpgrade2: 10
+  strengthUpgradeValue1: 1.15
+  strengthUpgradeValue2: 0
+  specialUpgrade1: 5
+  specialUpgrade2: 10
+  focusUpgrade1: 5
+  focusUpgrade2: 10
+  vitalityUpgrade1: 5
+  vitalityUpgrade2: 10
+  staminaUpgrade1: 5
+  staminaUpgrade2: 10
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.5
-  updateSpeed: 85
+  updateSpeed: 100
   updateModifier: 10
   UI: {fileID: 0}
   baseRequiredCurrencyModifier: 5
@@ -402,7 +427,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 73
   m_Sprite: {fileID: 21300000, guid: 4a29ad7413689d7439c897f4a0d2867b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -528,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4280852138401593940
 Transform:
   m_ObjectHideFlags: 0

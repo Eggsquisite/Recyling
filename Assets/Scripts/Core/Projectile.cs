@@ -24,6 +24,10 @@ public class Projectile : MonoBehaviour
         damage2 = Mathf.RoundToInt(dmg);
     }
 
+    /// <summary>
+    /// Called through animation event
+    /// </summary>
+    /// <param name="index"></param>
     private void ShootProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
@@ -36,6 +40,10 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called through animation event
+    /// </summary>
+    /// <param name="index"></param>
     private void ShootSpecialProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
