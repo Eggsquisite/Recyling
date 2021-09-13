@@ -165,6 +165,7 @@ public class BasicEnemy : MonoBehaviour
     private bool attackReady;
     private bool attackHitbox;
     private bool leftOfPlayer;
+    private bool attackFacePlayer;
     private bool attackFollowThruBoth;
     private bool attackFollowThruVertical;
     private bool attackFollowThruHorizontal;
@@ -396,7 +397,9 @@ public class BasicEnemy : MonoBehaviour
         if (outOfTetherRange)
             return;
 
-        if (!isAttacking)
+        // if enemy is not attack, face player at its regular intervals
+        // if enemy is attacking AND can follow the player AND is in the time frame of the animation to look at player, do so
+        if (!isAttacking || (isAttacking && attackFacePlayer && attackFollowFacePlayer[attackIndex]))
             facingLeft = enemyMovement.CheckPlayerPos();
 
 /*        if (healthBarParent != null) { 
