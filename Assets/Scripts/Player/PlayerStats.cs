@@ -178,11 +178,11 @@ public class PlayerStats : MonoBehaviour
                 upgrades["vitality"] = upgrades["vitality"] + 1;
                 //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
-                if (upgrades["vitality"] <= 10) { 
+                if (upgrades["vitality"] <= 4) { 
                     maxHealth += vitalityUpgradeStrong;
-                } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
+                } else if (upgrades["vitality"] > 4 && upgrades["vitality"] <= 7) {
                     maxHealth += vitalityUpgradeMid;
-                } else if (upgrades["vitality"] > 15) {
+                } else if (upgrades["vitality"] > 7) {
                     maxHealth += vitalityUpgradeWeak;
                 }
 
@@ -218,12 +218,7 @@ public class PlayerStats : MonoBehaviour
                 upgrades["strength"] = upgrades["strength"] + 1;
                 //Debug.Log("strength Level: " + upgrades["strength"]);
 
-                if (upgrades["strength"] <= 10) { 
-                    swordDamage += strengthUpgrade;
-                } else if (upgrades["strength"] > 10) {
-                    swordDamage += upgrades["strength"] / 2;
-                }
-
+                swordDamage += strengthUpgrade;
                 energyRecoveryValue += energyFocusUpgradeWeak;
                 UI.SetEnergyRecoveryValue(energyRecoveryValue);
 
@@ -239,9 +234,9 @@ public class PlayerStats : MonoBehaviour
                 //Debug.Log("stamina Level: " + upgrades["stamina"]);
 
                 staminaRecoveryValue += staminaRecoveryUpgrade; 
-                if (upgrades["stamina"] <= 15) {
+                if (upgrades["stamina"] <= 7) {
                     maxStamina += staminaMaxUpgradeStrong;
-                } else if (upgrades["stamina"] > 15) {
+                } else if (upgrades["stamina"] > 7) {
                     maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
                 }
 
@@ -259,13 +254,13 @@ public class PlayerStats : MonoBehaviour
                 upgrades["special"] = upgrades["special"] + 1;
                 //Debug.Log("special Level: " + upgrades["special"]);
 
-                if (upgrades["special"] <= 10) { 
+                if (upgrades["special"] <= 7) { 
                     maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
 
                     specialAttackDmg += specialAttackUpgradeStrong;
                     blasterLightDmg += specialBlasterLightUpgradeStrong;
                     blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
-                } else if (upgrades["special"] > 10) {
+                } else if (upgrades["special"] > 7) {
                     maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
 
                     specialAttackDmg += specialAttackUpgradeWeak;
@@ -280,6 +275,8 @@ public class PlayerStats : MonoBehaviour
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////
         else if (index == 0 && upgrades["vitality"] < levelCap) {
             // vitality: max health
             for (int i = upgrades["vitality"]; i < newLevel; i++)
@@ -287,11 +284,11 @@ public class PlayerStats : MonoBehaviour
                 upgrades["vitality"] = upgrades["vitality"] + 1;
                 //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
-                if (upgrades["vitality"] <= 10) { 
+                if (upgrades["vitality"] <= 4) { 
                     maxHealth += vitalityUpgradeStrong;
-                } else if (upgrades["vitality"] > 10 && upgrades["vitality"] <= 15) {
+                } else if (upgrades["vitality"] > 4 && upgrades["vitality"] <= 7) {
                     maxHealth += vitalityUpgradeMid;
-                } else if (upgrades["vitality"] > 15) {
+                } else if (upgrades["vitality"] > 7) {
                     maxHealth += vitalityUpgradeWeak;
                 }
 
@@ -327,11 +324,9 @@ public class PlayerStats : MonoBehaviour
                 upgrades["strength"] = upgrades["strength"] + 1;
                 Debug.Log("strength Level: " + upgrades["strength"]);
 
-                if (upgrades["strength"] <= 10) { 
-                    swordDamage += strengthUpgrade;
-                } else if (upgrades["strength"] > 10) {
-                    swordDamage += upgrades["strength"] / 2;
-                }
+                swordDamage += strengthUpgrade;
+                energyRecoveryValue += energyFocusUpgradeWeak;
+                UI.SetEnergyRecoveryValue(energyRecoveryValue);
 
                 SetDamageVariables();
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
@@ -345,9 +340,9 @@ public class PlayerStats : MonoBehaviour
                 Debug.Log("stamina Level: " + upgrades["stamina"]);
 
                 staminaRecoveryValue += staminaRecoveryUpgrade; 
-                if (upgrades["stamina"] <= 15) {
+                if (upgrades["stamina"] <= 7) {
                     maxStamina += staminaMaxUpgradeStrong;
-                } else if (upgrades["stamina"] > 15) {
+                } else if (upgrades["stamina"] > 7) {
                     maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
                 }
 
@@ -365,13 +360,13 @@ public class PlayerStats : MonoBehaviour
                 upgrades["special"] = upgrades["special"] + 1;
                 Debug.Log("special Level: " + upgrades["special"]);
 
-                if (upgrades["special"] <= 10) { 
+                if (upgrades["special"] <= 7) { 
                     maxEnergy = baseMaxEnergy + upgrades["special"] * specialEnergyUpgradeStrong;
 
                     specialAttackDmg += specialAttackUpgradeStrong;
                     blasterLightDmg += specialBlasterLightUpgradeStrong;
                     blasterHeavyDmg += specialBlasterHeavyUpgradeStrong;
-                } else if (upgrades["special"] > 10) {
+                } else if (upgrades["special"] > 7) {
                     maxEnergy += levelCap % upgrades["special"] * 3 + specialEnergyUpgradeWeak;
 
                     specialAttackDmg += specialAttackUpgradeWeak;
