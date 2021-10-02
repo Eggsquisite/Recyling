@@ -6,9 +6,9 @@ public class PlayerUpgrades : MonoBehaviour
 {
     [Header("Strength Upgrade Properties")]
     [SerializeField]
-    private int strengthUpgrade1;
+    private int strengthUpgradeThreshold1;
     [SerializeField]
-    private int strengthUpgrade2;
+    private int strengthUpgradeThreshold2;
     [SerializeField] [Tooltip("Faster attack speed multiplier")]
     private float strengthUpgradeValue1;
     [SerializeField] [Tooltip("Player damages surrounding enemies when landing from jetpack")]
@@ -16,27 +16,27 @@ public class PlayerUpgrades : MonoBehaviour
 
     [Header("Special Upgrade Properties")]
     [SerializeField]
-    private int specialUpgrade1;
+    private int specialUpgradeThreshold1;
     [SerializeField]
-    private int specialUpgrade2;
+    private int specialUpgradeThreshold2;
 
     [Header("Focus Upgrade Properties")]
     [SerializeField]
-    private int focusUpgrade1;
+    private int focusUpgradeThreshold1;
     [SerializeField]
-    private int focusUpgrade2;
+    private int focusUpgradeThreshold2;
 
     [Header("Vitality Upgrade Properties")]
     [SerializeField]
-    private int vitalityUpgrade1;
+    private int vitalityUpgradeThreshold1;
     [SerializeField]
-    private int vitalityUpgrade2;
+    private int vitalityUpgradeThreshold2;
 
     [Header("Stamina Upgrade Properties")]
     [SerializeField]
-    private int staminaUpgrade1;
+    private int staminaUpgradeThreshold1;
     [SerializeField]
-    private int staminaUpgrade2;
+    private int staminaUpgradeThreshold2;
 
     private int strengthUpgradeLevel;
     private int specialUpgradeLevel;
@@ -45,11 +45,11 @@ public class PlayerUpgrades : MonoBehaviour
     private int staminaUpgradeLevel;
 
     public int CheckStrengthUpgrade(int strengthLevel) {
-        if (strengthLevel < strengthUpgrade1)
+        if (strengthLevel < strengthUpgradeThreshold1)
             return 0;
-        else if (strengthLevel >= strengthUpgrade1 && strengthLevel < strengthUpgrade2)
+        else if (strengthLevel >= strengthUpgradeThreshold1 && strengthLevel < strengthUpgradeThreshold2)
             return 1;
-        else if (strengthLevel >= strengthUpgrade2)
+        else if (strengthLevel >= strengthUpgradeThreshold2)
             return 2;
         else
             return 0;
@@ -62,5 +62,49 @@ public class PlayerUpgrades : MonoBehaviour
             return strengthUpgradeValue2;
         else
             return 0f;
+    }
+
+    public int CheckSpecialUpgrade(int specialLevel) {
+        if (specialLevel < specialUpgradeThreshold1)
+            return 0;
+        else if (specialLevel >= specialUpgradeThreshold1 && specialLevel < specialUpgradeThreshold2)
+            return 1;
+        else if (specialLevel >= specialUpgradeThreshold2)
+            return 2;
+        else
+            return 0;
+    }
+
+    public int CheckFocusUpgrade(int focusLevel) {
+        if (focusLevel < focusUpgradeThreshold1)
+            return 0;
+        else if (focusLevel >= focusUpgradeThreshold1 && focusLevel < focusUpgradeThreshold2)
+            return 1;
+        else if (focusLevel >= focusUpgradeThreshold2)
+            return 2;
+        else
+            return 0;
+    }
+
+    public int CheckVitalityUpgrade(int vitalityLevel) {
+        if (vitalityLevel < vitalityUpgradeThreshold1)
+            return 0;
+        else if (vitalityLevel >= vitalityUpgradeThreshold1 && vitalityLevel < vitalityUpgradeThreshold2)
+            return 1;
+        else if (vitalityLevel >= vitalityUpgradeThreshold2)
+            return 2;
+        else
+            return 0;
+    }
+
+    public int CheckStaminaUpgrade(int staminaLevel) {
+        if (staminaLevel < staminaUpgradeThreshold1)
+            return 0;
+        else if (staminaLevel >= staminaUpgradeThreshold1 && staminaLevel < staminaUpgradeThreshold2)
+            return 1;
+        else if (staminaLevel >= staminaUpgradeThreshold2)
+            return 2;
+        else
+            return 0;
     }
 }

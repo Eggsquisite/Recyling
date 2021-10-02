@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Player Stats")]
     [SerializeField]
+    private int levelCap;
+    [SerializeField]
     private int maxHealth;
     [SerializeField]
     private int maxEnergy;
@@ -99,11 +101,10 @@ public class PlayerStats : MonoBehaviour
     private float specialBlasterHeavyUpgradeWeak;
 
     [Header("Player Stat Levels")]
-    private int levelCap;
-    private Dictionary<string, int> upgrades;   // health max value
+    private Dictionary<string, int> upgrades = new Dictionary<string, int>();
     // vitality     - health max value
-    // focus   - health recovery and energy regen
-    // strength     - attack damage
+    // focus        - health recovery and energy regen
+    // strength     - attack damage/speed
     // stamina      - stamina max value/regen
     // special      - energy max value and special attack dmg
 
@@ -113,8 +114,6 @@ public class PlayerStats : MonoBehaviour
         if (player == null) player = GetComponent<Player>();
         if (playerUpgrades == null) playerUpgrades = GetComponent<PlayerUpgrades>();
 
-        levelCap = 20;
-        upgrades = new Dictionary<string, int>();
         upgrades.Add("playerLevel", 1);
         upgrades.Add("vitality", 1);
         upgrades.Add("focus", 1);
@@ -397,8 +396,16 @@ public class PlayerStats : MonoBehaviour
         player.SetBlasterHeavyDmg(blasterHeavyDmg);
     }
 
-    public void CheckUpgradeLevels(out int strengthUpgradeLevel) {
+    public void CheckUpgradeLevels(out int strengthUpgradeLevel, 
+                                    out int specialUpgradeLevel,
+                                    out int focusUpgradeLevel,
+                                    out int vitalityUpgradeLevel,
+                                    out int staminaUpgradeLevel) {
         strengthUpgradeLevel = playerUpgrades.CheckStrengthUpgrade(upgrades["strength"]);
+        specialUpgradeLevel = playerUpgrades.CheckSpecialUpgrade(upgrades["special"]);
+        focusUpgradeLevel = playerUpgrades.CheckFocusUpgrade(upgrades["focus"]);
+        vitalityUpgradeLevel = playerUpgrades.CheckVitalityUpgrade(upgrades["vitality"]);
+        staminaUpgradeLevel = playerUpgrades.CheckStaminaUpgrade(upgrades["stamina"]);
     }
 
     public float GetEnergyRecoveryValue() {

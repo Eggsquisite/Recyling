@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59f0077d939aeb4986fb0a0e9aa2c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelCap: 10
   maxHealth: 1000
   maxEnergy: 750
   maxStamina: 900
@@ -255,18 +256,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f00f726cc12fe64192c9fe8efa5030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthUpgrade1: 5
-  strengthUpgrade2: 10
+  strengthUpgradeThreshold1: 5
+  strengthUpgradeThreshold2: 10
   strengthUpgradeValue1: 1.2
   strengthUpgradeValue2: 8
-  specialUpgrade1: 5
-  specialUpgrade2: 10
-  focusUpgrade1: 5
-  focusUpgrade2: 10
-  vitalityUpgrade1: 5
-  vitalityUpgrade2: 10
-  staminaUpgrade1: 5
-  staminaUpgrade2: 10
+  specialUpgradeThreshold1: 5
+  specialUpgradeThreshold2: 10
+  focusUpgradeThreshold1: 5
+  focusUpgradeThreshold2: 10
+  vitalityUpgradeThreshold1: 5
+  vitalityUpgradeThreshold2: 10
+  staminaUpgradeThreshold1: 5
+  staminaUpgradeThreshold2: 10
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1253,7 +1253,11 @@ public class Player : MonoBehaviour
     /// PLAYER UPGRADING STUFF ////////////////////////////////////////////////////////////////////////////
 
     private void UpdatePlayerUpgrades() {
-        playerStats.CheckUpgradeLevels(out strengthUpgradeLevel);
+        playerStats.CheckUpgradeLevels(out strengthUpgradeLevel, 
+            out specialUpgradeLevel, 
+            out focusUpgradeLevel,
+            out vitalityUpgradeLevel,
+            out staminaUpgradeLevel);
 
         UpdateStrengthUpgrades();
     }
@@ -1265,6 +1269,8 @@ public class Player : MonoBehaviour
             anim.SetFloat("attackMultiplier", playerUpgrades.GetStrengthUpgradeValues(1));
         } 
         else if (strengthUpgradeLevel == 2) {
+            anim.SetFloat("attackMultiplier", playerUpgrades.GetStrengthUpgradeValues(1));
+
             jetpackDamage = true;
             dashFallSpeed = playerUpgrades.GetStrengthUpgradeValues(2);
         }
