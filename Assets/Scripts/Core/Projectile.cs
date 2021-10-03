@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
 
     private int damage;
     private int damage2;
+    private bool pushbackUpgrade;
 
     public void SetDamage(float dmg) {
         damage = Mathf.RoundToInt(dmg);
@@ -24,6 +25,10 @@ public class Projectile : MonoBehaviour
         damage2 = Mathf.RoundToInt(dmg);
     }
 
+    public void SetPushbackDistance(float distance) {
+        pushbackDistance[0] = distance;
+    }
+
     /// <summary>
     /// Called through animation event
     /// </summary>
@@ -31,12 +36,17 @@ public class Projectile : MonoBehaviour
     private void ShootProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
+
+        // if enemy is calling this function, else use player projectile
         if (newProjectile.GetComponent<EnemyProjectile>() != null) { 
             newProjectile.GetComponent<EnemyProjectile>().SetStats(damage, pushbackDistance[index]);
-
         }
         else if (newProjectile.GetComponent<PlayerProjectile>() != null) { 
-            newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, pushbackDistance[index]);
+            // if player has upgraded special enough, add pushback, else add none
+            if (pushbackUpgrade)
+                newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, pushbackDistance[index]);
+            else
+                newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, 0f);
         }
     }
 

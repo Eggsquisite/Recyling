@@ -396,11 +396,17 @@ public class PlayerStats : MonoBehaviour
                                     out int focusUpgradeLevel,
                                     out int vitalityUpgradeLevel,
                                     out int staminaUpgradeLevel) {
-        strengthUpgradeLevel = playerUpgrades.CheckStrengthUpgrade(upgrades["strength"]);
-        specialUpgradeLevel = playerUpgrades.CheckSpecialUpgrade(upgrades["special"]);
-        focusUpgradeLevel = playerUpgrades.CheckFocusUpgrade(upgrades["focus"]);
-        vitalityUpgradeLevel = playerUpgrades.CheckVitalityUpgrade(upgrades["vitality"]);
-        staminaUpgradeLevel = playerUpgrades.CheckStaminaUpgrade(upgrades["stamina"]);
+        strengthUpgradeLevel = playerUpgrades.CheckUpgradeLevels(upgrades["strength"]);
+        specialUpgradeLevel = playerUpgrades.CheckUpgradeLevels(upgrades["special"]);
+        focusUpgradeLevel = playerUpgrades.CheckUpgradeLevels(upgrades["focus"]);
+        vitalityUpgradeLevel = playerUpgrades.CheckUpgradeLevels(upgrades["vitality"]);
+        staminaUpgradeLevel = playerUpgrades.CheckUpgradeLevels(upgrades["stamina"]);
+
+        /*        strengthUpgradeLevel = playerUpgrades.CheckStrengthUpgrade(upgrades["strength"]);
+                specialUpgradeLevel = playerUpgrades.CheckSpecialUpgrade(upgrades["special"]);
+                focusUpgradeLevel = playerUpgrades.CheckFocusUpgrade(upgrades["focus"]);
+                vitalityUpgradeLevel = playerUpgrades.CheckVitalityUpgrade(upgrades["vitality"]);
+                staminaUpgradeLevel = playerUpgrades.CheckStaminaUpgrade(upgrades["stamina"]);*/
     }
 
     public float GetEnergyRecoveryValue() {

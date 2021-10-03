@@ -256,18 +256,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f00f726cc12fe64192c9fe8efa5030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthUpgradeThreshold1: 5
-  strengthUpgradeThreshold2: 10
+  statUpgradeThreshold1: 4
+  statUpgradeThreshold2: 7
+  strengthUpgradeThreshold1: 4
+  strengthUpgradeThreshold2: 7
   strengthUpgradeValue1: 1.2
   strengthUpgradeValue2: 8
-  specialUpgradeThreshold1: 5
-  specialUpgradeThreshold2: 10
-  focusUpgradeThreshold1: 5
-  focusUpgradeThreshold2: 10
-  vitalityUpgradeThreshold1: 5
-  vitalityUpgradeThreshold2: 10
-  staminaUpgradeThreshold1: 5
-  staminaUpgradeThreshold2: 10
+  specialUpgradeThreshold1: 4
+  specialUpgradeThreshold2: 7
+  specialUpgradeValue1: 0
+  focusUpgradeThreshold1: 4
+  focusUpgradeThreshold2: 7
+  vitalityUpgradeThreshold1: 4
+  vitalityUpgradeThreshold2: 7
+  staminaUpgradeThreshold1: 4
+  staminaUpgradeThreshold2: 7
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.5
-  updateSpeed: 100
+  updateSpeed: 125
   updateModifier: 10
   UI: {fileID: 0}
   baseRequiredCurrencyModifier: 5
