@@ -1260,6 +1260,7 @@ public class Player : MonoBehaviour
             out staminaUpgradeLevel);
 
         UpdateStrengthUpgrades();
+        UpdateSpecialUpgrades();
     }
 
     private void UpdateStrengthUpgrades() {
@@ -1274,8 +1275,22 @@ public class Player : MonoBehaviour
             jetpackDamage = true;
             dashFallSpeed = playerUpgrades.GetStrengthUpgradeValues(2);
         }
-        else if (strengthUpgradeLevel == 3) { 
-            
+    }
+
+    private void UpdateSpecialUpgrades() {
+        if (specialUpgradeLevel == 0)
+            return;
+        else if (specialUpgradeLevel == 1) {
+            projectile.SetPierceUpgrade(true, playerUpgrades.GetSpecialUpgradeValues(1));
+        } 
+        else if (specialUpgradeLevel == 2) {
+            projectile.SetPierceUpgrade(true, playerUpgrades.GetSpecialUpgradeValues(1));
+
+            var tmp = playerUpgrades.GetSpecialUpgradeValues(2);
+            blasterLightEnergy -= (int)(blasterLightEnergy * tmp);
+            blasterHeavyEnergy -= (int)(blasterHeavyEnergy * tmp);
+            superAttackEnergy1 -= (int)(superAttackEnergy1 * tmp);
+            superAttackEnergy2 -= (int)(superAttackEnergy2 * tmp);
         }
     }
 

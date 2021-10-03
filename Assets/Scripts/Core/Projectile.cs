@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     private int damage;
     private int damage2;
-    private bool pushbackUpgrade;
+    private bool pierceUpgrade;
 
     public void SetDamage(float dmg) {
         damage = Mathf.RoundToInt(dmg);
@@ -25,8 +25,9 @@ public class Projectile : MonoBehaviour
         damage2 = Mathf.RoundToInt(dmg);
     }
 
-    public void SetPushbackDistance(float distance) {
-        pushbackDistance[0] = distance;
+    public void SetPierceUpgrade(bool flag, float pushbackIncrease) {
+        pierceUpgrade = flag;
+        pushbackDistance[0] = pushbackIncrease;
     }
 
     /// <summary>
@@ -42,11 +43,11 @@ public class Projectile : MonoBehaviour
             newProjectile.GetComponent<EnemyProjectile>().SetStats(damage, pushbackDistance[index]);
         }
         else if (newProjectile.GetComponent<PlayerProjectile>() != null) { 
-            // if player has upgraded special enough, add pushback, else add none
-            if (pushbackUpgrade)
-                newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, pushbackDistance[index]);
-            else
-                newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, 0f);
+            newProjectile.GetComponent<PlayerProjectile>().SetStats(damage, pushbackDistance[index]);
+
+            // if player has upgraded special enough, add piercing, else add none
+            if (pierceUpgrade)
+                newProjectile.GetComponent<PlayerProjectile>().SetPiercing(true);
         }
     }
 
@@ -57,10 +58,11 @@ public class Projectile : MonoBehaviour
     private void ShootSpecialProjectile(int index) {
         var newProjectile = Instantiate(prefab, instantiatePos[index].position, Quaternion.Euler(transform.localScale));
         newProjectile.transform.localScale = transform.localScale;
+
+        // Check if enemy projectile or player projectile
         if (newProjectile.GetComponent<EnemyProjectile>() != null)
             newProjectile.GetComponent<EnemyProjectile>().SetStats(damage2, pushbackDistance[index]);
-        else if (newProjectile.GetComponent<PlayerProjectile>() != null) 
-        { 
+        else if (newProjectile.GetComponent<PlayerProjectile>() != null) { 
             newProjectile.GetComponent<PlayerProjectile>().SetStats(damage2, pushbackDistance[index]);
             if (adjustedVelocity > 0)
                 newProjectile.GetComponent<PlayerProjectile>().SetVelocity(adjustedVelocity);

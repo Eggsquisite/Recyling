@@ -264,7 +264,8 @@ MonoBehaviour:
   strengthUpgradeValue2: 8
   specialUpgradeThreshold1: 4
   specialUpgradeThreshold2: 7
-  specialUpgradeValue1: 0
+  specialUpgradeValue1: 0.5
+  specialUpgradeValue2: 0.5
   focusUpgradeThreshold1: 4
   focusUpgradeThreshold2: 7
   vitalityUpgradeThreshold1: 4

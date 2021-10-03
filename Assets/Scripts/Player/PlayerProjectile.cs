@@ -11,6 +11,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private int damage;
     private float pushDistance;
+    private bool piercing;
 
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -38,7 +39,9 @@ public class PlayerProjectile : MonoBehaviour
         if (collision.tag == "Enemy" && !collision.GetComponent<BasicEnemy>().GetIsInvincible()) {
             collision.GetComponent<BasicEnemy>().EnemyHurt(damage, pushDistance, 1);
             coll.enabled = false;
-            Destroy(gameObject);
+
+            if (!piercing)
+                Destroy(gameObject);
         }
     }
 
@@ -54,5 +57,9 @@ public class PlayerProjectile : MonoBehaviour
 
     public void SetVelocity(float speed) {
         projectileVelocity = speed;
+    }
+
+    public void SetPiercing(bool flag) {
+        piercing = flag;
     }
 }

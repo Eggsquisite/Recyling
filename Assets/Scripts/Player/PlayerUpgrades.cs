@@ -25,8 +25,10 @@ public class PlayerUpgrades : MonoBehaviour
     private int specialUpgradeThreshold1;
     [SerializeField]
     private int specialUpgradeThreshold2;
-    [SerializeField] [Tooltip("Add pushback to blaster")]
+    [SerializeField] [Tooltip("Pushback increase to blaster")]
     private float specialUpgradeValue1; 
+    [SerializeField] [Tooltip("Overall energy reduction as percentage")]
+    private float specialUpgradeValue2;
 
     [Header("Focus Upgrade Properties")]
     [SerializeField]
@@ -96,6 +98,15 @@ public class PlayerUpgrades : MonoBehaviour
             return 2;
         else
             return 0;
+    }
+
+    public float GetSpecialUpgradeValues(int index) {
+        if (index == 1)
+            return specialUpgradeValue1;
+        else if (index == 2)
+            return specialUpgradeValue2;
+        else
+            return 0f;
     }
 
     // FOCUS PROPERTIES ////////////////////////////////////////////////////////////////////////////////
