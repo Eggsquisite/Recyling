@@ -633,6 +633,9 @@ public class BasicEnemy : MonoBehaviour
         AttackDeactivated();
         AttackFollowDeactivated();
 
+        if (attackAnimationRoutine != null)
+            StopCoroutine(attackAnimationRoutine);
+
         if (staminaRecoveryRoutine != null)
             StopCoroutine(staminaRecoveryRoutine);
         staminaRecoveryRoutine = StartCoroutine(StaminaRecovery());

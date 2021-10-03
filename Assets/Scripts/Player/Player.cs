@@ -1310,12 +1310,12 @@ public class Player : MonoBehaviour
     }
 
     private void UpdateFocusUpgrades() { 
-        if (strengthUpgradeLevel == 0)
+        if (focusUpgradeLevel == 0)
             return;
-        else if (strengthUpgradeLevel == 1) {
+        else if (focusUpgradeLevel == 1) {
             healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
         } 
-        else if (strengthUpgradeLevel == 2) {
+        else if (focusUpgradeLevel == 2) {
             healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
             focusUpgrade = true;   
         }
