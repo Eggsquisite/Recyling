@@ -935,7 +935,10 @@ public class Player : MonoBehaviour
         canReceiveInput = false;
         isBlasterSuperAttackPressed = false;
         attackDelay = GetAnimationLength(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
-        PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
+        if (PlayerAnimStates.PLAYER_BLASTER_HEAVY == currentState)
+            ReplayAnimation(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
+        else
+            PlayAnimation(PlayerAnimStates.PLAYER_BLASTER_HEAVY);
 
         if (resetAttackRoutine != null)
             StopCoroutine(resetAttackRoutine);
