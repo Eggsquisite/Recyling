@@ -35,6 +35,10 @@ public class PlayerUpgrades : MonoBehaviour
     private int focusUpgradeThreshold1;
     [SerializeField]
     private int focusUpgradeThreshold2;
+    [SerializeField] [Tooltip("Heal walk speed multiplier increase")]
+    private float focusUpgradeValue1;
+    [SerializeField]
+    private float focusUpgradeValue2;
 
     [Header("Vitality Upgrade Properties")]
     [SerializeField]
@@ -119,6 +123,15 @@ public class PlayerUpgrades : MonoBehaviour
             return 2;
         else
             return 0;
+    }
+
+    public float GetFocusUpgradeValues(int index) {
+        if (index == 1)
+            return focusUpgradeValue1;
+        else if (index == 2)
+            return focusUpgradeValue2;
+        else
+            return 0f;
     }
 
     // VITALITY PROPERTIES ////////////////////////////////////////////////////////////////////////////////

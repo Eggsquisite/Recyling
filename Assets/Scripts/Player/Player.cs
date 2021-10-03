@@ -86,6 +86,8 @@ public class Player : MonoBehaviour
     private bool isHurt;
     private bool isStunned;
     private bool isInvincible;
+    private bool deathResist;
+    private bool vitalityUpgrade;
     private float stunDuration;
 
     private Coroutine pushBackMovementRoutine, pushBackDurationRoutine, isHurtRoutine;
@@ -121,6 +123,7 @@ public class Player : MonoBehaviour
     private int blasterLightDmg;
     private int blasterHeavyDmg;
 
+    private bool focusUpgrade;
     private bool isAttacking;
     private bool runAttackDash;
     private bool isAttackPressed;
@@ -792,8 +795,13 @@ public class Player : MonoBehaviour
             return;
     }
 
-    public void RegainEnergy(float energyGainMultiplier) {
-        StartCoroutine(UI.EnergyRegenOnHit(energyGainMultiplier));
+    public void RegainEnergy(float gainMultiplier) {
+        if (focusUpgrade) { 
+            StartCoroutine(UI.EnergyRegenOnHit(gainMultiplier));
+            StartCoroutine(UI.HealthRegenOnHit(gainMultiplier));
+        }
+        else
+            StartCoroutine(UI.EnergyRegenOnHit(gainMultiplier));
     }
 
     /// <summary>
@@ -945,6 +953,8 @@ public class Player : MonoBehaviour
         resetAttackRoutine = StartCoroutine(ResetAttack(attackDelay - 0.02f));
     }
 
+
+    // CONSUMPTION CODE ////////////////////////////////////////////////////////////////////////////////
     private void ConsumeEnergy(int index) {
         // called thru animation events
         if (index == -1)
@@ -1065,8 +1075,8 @@ public class Player : MonoBehaviour
         if (reference.x > rb.position.x)
         {
             newPosition = new Vector2(-distance, 0f);
-            facingLeft = false;
-            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+            //facingLeft = false;
+            //transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
 
             if (pushBackDurationRoutine != null)
                 StopCoroutine(pushBackDurationRoutine);
@@ -1075,8 +1085,8 @@ public class Player : MonoBehaviour
         else if (reference.x <= transform.position.x)
         {
             newPosition = new Vector2(distance, 0f);
-            facingLeft = true;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            //facingLeft = true;
+            //transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 
             if (pushBackDurationRoutine != null)
                 StopCoroutine(pushBackDurationRoutine);
@@ -1264,6 +1274,8 @@ public class Player : MonoBehaviour
 
         UpdateStrengthUpgrades();
         UpdateSpecialUpgrades();
+        UpdateFocusUpgrades();
+        UpdateVitalityUpgrades();
     }
 
     private void UpdateStrengthUpgrades() {
@@ -1294,6 +1306,29 @@ public class Player : MonoBehaviour
             blasterHeavyEnergy -= (int)(blasterHeavyEnergy * tmp);
             superAttackEnergy1 -= (int)(superAttackEnergy1 * tmp);
             superAttackEnergy2 -= (int)(superAttackEnergy2 * tmp);
+        }
+    }
+
+    private void UpdateFocusUpgrades() { 
+        if (strengthUpgradeLevel == 0)
+            return;
+        else if (strengthUpgradeLevel == 1) {
+            healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
+        } 
+        else if (strengthUpgradeLevel == 2) {
+            healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
+            focusUpgrade = true;   
+        }
+    }
+
+    private void UpdateVitalityUpgrades() { 
+        if (strengthUpgradeLevel == 0)
+            return;
+        else if (strengthUpgradeLevel == 1) {
+
+        } 
+        else if (strengthUpgradeLevel == 2) {
+
         }
     }
 

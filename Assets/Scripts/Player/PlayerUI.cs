@@ -50,6 +50,7 @@ public class PlayerUI : MonoBehaviour
     private bool healthLost;
     private bool healthDecaying;
     private bool healthRecovering;
+    private int healthRegenInUse = 0;
     private float healthRecoveryValue;
     private float energyToHealthMultiplier;
 
@@ -313,6 +314,46 @@ public class PlayerUI : MonoBehaviour
             healthDestroyedValue.value += newValue;
 
         healthCurrentValue.value += newValue;
+    }
+
+    public IEnumerator HealthRegenOnHit(float healthRegenMultiplier) {
+        var tmp = healthRecoveryValue;
+        healthRegenInUse += 1;
+        healthRecoveryValue = healthRecoveryValue * healthRegenInUse * healthRegenMultiplier;
+        if (healthRecoveryRoutine != null)
+            StopCoroutine(healthRecoveryRoutine);
+        healthRecoveryRoutine = StartCoroutine(HealthRecovery(0f));
+
+        yield return new WaitForSeconds(0.33f);
+        healthRecoveryValue = tmp;
+        healthRegenInUse -= 1;
+        if (healthRegenInUse < 0) 
+            healthRegenInUse = 0;
+
+        if (healthRegenInUse <= 0) {
+            if (healthRecoveryRoutine != null)
+                StopCoroutine(healthRecoveryRoutine);
+        }
+    }
+
+    IEnumerator HealthRecovery(float delay) {
+        healthRecovering = true;
+
+        yield return new WaitForSeconds(delay);
+        while (healthCurrentValue.value < healthCurrentValue.maxValue && healthRecoveryValue > 0) {
+            if (healthLost) {
+                healthRecovering = false;
+
+                if (healthRecoveryRoutine != null)  
+                    StopCoroutine(healthRecoveryRoutine);
+                yield break;
+            }
+            SetCurrentHealth(healthRecoveryValue * updateModifier * Time.deltaTime);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        healthRecovering = false;
+        yield break;
     }
 
     public void SetFutureHealth(float healthMultiplier) {
