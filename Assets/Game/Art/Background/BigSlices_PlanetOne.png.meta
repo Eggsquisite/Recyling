@@ -189,6 +189,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -198,8 +199,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -886,6 +887,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Big Slices_2: 1296857816748767687
+      Big Slices_13: 3126794213404919252
+      Big Slices_23: -2710171063774796810
+      Big Slices_18: 6482983588876351912
+      Big Slices_8: -6843359517455104163
+      Big Slices_26: -905570930713848718
+      Big Slices_15: 8759561350949954119
+      Big Slices_10: 8947757572878321335
+      Big Slices_14: -5474858346727486184
+      Big Slices_11: 8012060437165036321
+      Big Slices_3: 4823205176051326445
+      Big Slices_12: -3422372553238037826
+      Big Slices_17: -1561742405983467153
+      Big Slices_25: 2765955677976343764
+      Big Slices_22: -6094206399029750804
+      Big Slices_21: -2703359579358000861
+      Big Slices_4: 6062233307344938008
+      Big Slices_24: -5472418886998563916
+      Big Slices_9: 177933519164691701
+      Big Slices_6: -4792684613082300611
+      Big Slices_16: 7407864024578412831
+      Big Slices_0: 716512255656357631
+      Big Slices_28: -4406490145820995202
+      Big Slices_19: -9199185543746520107
+      Big Slices_7: -3287382994330469292
+      Big Slices_1: 6048012666251763423
+      Big Slices_20: -2000684247822304791
+      Big Slices_27: 6982281899432135958
+      Big Slices_5: 8313968099605570990
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

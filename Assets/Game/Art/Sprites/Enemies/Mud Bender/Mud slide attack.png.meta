@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,8 +64,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -352,6 +353,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mud slide attack_8: 4303138032470002742
+      Mud slide attack_4: -8531007237537694275
+      Mud slide attack_9: -7802221261704524627
+      Mud slide attack_0: -760247291858005843
+      Mud slide attack_3: -7626083295822382783
+      Mud slide attack_6: -3153587025491014426
+      Mud slide attack_2: 7314249315941840589
+      Mud slide attack_1: 7726070618803153610
+      Mud slide attack_5: 6692732243871731608
+      Mud slide attack_7: 2691407591260352659
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

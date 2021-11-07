@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1264,6 +1265,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BigSlices_Planet Two_27: 4418611589769288925
+      BigSlices_Planet Two_5: -268891109017431701
+      BigSlices_Planet Two_23: -3336005516605027101
+      BigSlices_Planet Two_8: 4078053618808481066
+      BigSlices_Planet Two_42: 2721404620848587165
+      BigSlices_Planet Two_20: -4701196051397164898
+      BigSlices_Planet Two_38: 1478656822829791591
+      BigSlices_Planet Two_24: -2643101940352072460
+      BigSlices_Planet Two_10: -5927952635691248511
+      BigSlices_Planet Two_41: 5941242766078869085
+      BigSlices_Planet Two_30: -4180352014885849212
+      BigSlices_Planet Two_6: -940293378655324830
+      BigSlices_Planet Two_11: -6767221337143318572
+      BigSlices_Planet Two_26: 5660483249675566388
+      BigSlices_Planet Two_39: -6027561584833302186
+      BigSlices_Planet Two_13: 6879214565684064247
+      BigSlices_Planet Two_3: 1290877752334241414
+      BigSlices_Planet Two_9: 7750875152447165481
+      BigSlices_Planet Two_44: 2630555182499884084
+      BigSlices_Planet Two_45: -3063713779751198760
+      BigSlices_Planet Two_0: -6756601461856547328
+      BigSlices_Planet Two_1: -2309985581771708780
+      BigSlices_Planet Two_18: -2214370181897924923
+      BigSlices_Planet Two_4: -7083463659797246184
+      BigSlices_Planet Two_34: -8422003781237040308
+      BigSlices_Planet Two_12: -2257755237295860955
+      BigSlices_Planet Two_28: -586305132047280726
+      BigSlices_Planet Two_36: -7344809775538066090
+      BigSlices_Planet Two_7: -6904723939224912369
+      BigSlices_Planet Two_25: 2003302704821694263
+      BigSlices_Planet Two_33: -5662046858268266937
+      BigSlices_Planet Two_29: -3025869275400532402
+      BigSlices_Planet Two_35: -4388775207562653588
+      BigSlices_Planet Two_14: 7707087368112315259
+      BigSlices_Planet Two_32: -4125373122295425102
+      BigSlices_Planet Two_37: 3982974057228221881
+      BigSlices_Planet Two_19: 8581606571473240201
+      BigSlices_Planet Two_17: 4786322540901762882
+      BigSlices_Planet Two_16: -2925715229275008214
+      BigSlices_Planet Two_2: -2814661259806173959
+      BigSlices_Planet Two_21: 1475278820894857464
+      BigSlices_Planet Two_40: -127396017454507153
+      BigSlices_Planet Two_47: 4598934297087726875
+      BigSlices_Planet Two_22: -7955206802132442524
+      BigSlices_Planet Two_46: -1994814187513576561
+      BigSlices_Planet Two_43: 8367432570967427310
+      BigSlices_Planet Two_31: 3605734822260983174
+      BigSlices_Planet Two_15: 5104861087738154636
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

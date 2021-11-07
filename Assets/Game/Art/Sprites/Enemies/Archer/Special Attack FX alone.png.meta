@@ -30,6 +30,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -39,8 +40,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -391,6 +392,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Special Attack FX alone_0: -1845999519265780392
+      Special Attack FX alone_11: 4221999109459291649
+      Special Attack FX alone_2: 2350839134571942225
+      Special Attack FX alone_5: 4621525361459468025
+      Special Attack FX alone_12: -4611559815012878802
+      Special Attack FX alone_8: -361761712532245316
+      Special Attack FX alone_1: -1532017927065429440
+      Special Attack FX alone_6: -1189164840933636138
+      Special Attack FX alone_10: 8253409120271400680
+      Special Attack FX alone_9: -461853410776612983
+      Special Attack FX alone_3: 166899122027791348
+      Special Attack FX alone_7: -3859768930878344374
+      Special Attack FX alone_4: 4729035555390123173
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

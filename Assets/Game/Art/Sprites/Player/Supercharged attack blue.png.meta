@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -75,8 +76,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -448,6 +449,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Supercharged attack blue_13: 5050243828678847380
+      Supercharged attack blue_4: -246116194472493897
+      Supercharged attack blue_7: 3155990078175016600
+      Supercharged attack blue_8: -1303110565791523480
+      Supercharged attack blue_3: 5937968071335314315
+      Supercharged attack blue_0: 2771209076344203233
+      Supercharged attack blue_2: -1154509827499692280
+      Supercharged attack blue_11: -5116186297181876955
+      Supercharged attack blue_10: 5914716979814852014
+      Supercharged attack blue_12: -3754762919119393109
+      Supercharged attack blue_6: 5946527419150408265
+      Supercharged attack blue_1: -1337977306335245319
+      Supercharged attack blue_5: 4920132531606649320
+      Supercharged attack blue_9: -2059871902532429601
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

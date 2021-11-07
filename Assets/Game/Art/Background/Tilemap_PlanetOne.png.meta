@@ -606,6 +606,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -615,8 +616,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -4768,6 +4769,201 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      SCi-fi assets planet one_51: -467808877130150665
+      SCi-fi assets planet one_139: 7180526087149056647
+      SCi-fi assets planet one_133: 2525809731422350132
+      SCi-fi assets planet one_118: 1593655632982480651
+      SCi-fi assets planet one_152: 6167909571981792196
+      SCi-fi assets planet one_153: -5154004191206246068
+      SCi-fi assets planet one_40: -2674124903109451529
+      SCi-fi assets planet one_191: 4335236525953206537
+      SCi-fi assets planet one_91: -5964133948645204137
+      SCi-fi assets planet one_174: 1113129476079358021
+      SCi-fi assets planet one_55: -357504414445623995
+      SCi-fi assets planet one_114: 2919573821731082918
+      SCi-fi assets planet one_125: -4783705371627229998
+      SCi-fi assets planet one_20: 8180488584467201164
+      SCi-fi assets planet one_172: -5997360888516693329
+      SCi-fi assets planet one_136: 6653835912184414336
+      SCi-fi assets planet one_177: -8048908892090666840
+      SCi-fi assets planet one_184: 8432568162483861972
+      SCi-fi assets planet one_61: 3077605255202303359
+      SCi-fi assets planet one_7: 3001593016227489863
+      SCi-fi assets planet one_39: -622450226359721896
+      SCi-fi assets planet one_98: 946513791906594033
+      SCi-fi assets planet one_82: 8219745487459451857
+      SCi-fi assets planet one_11: 5313081423138726597
+      SCi-fi assets planet one_2: -6919191849760844859
+      SCi-fi assets planet one_73: -5464267563726885422
+      SCi-fi assets planet one_38: -45353967671198886
+      SCi-fi assets planet one_9: 5518919186810599906
+      SCi-fi assets planet one_189: 1540414558762471881
+      SCi-fi assets planet one_145: 1102628260881951629
+      SCi-fi assets planet one_175: 6644954905898091593
+      SCi-fi assets planet one_99: 3675533699825219699
+      SCi-fi assets planet one_79: 2365524581258880776
+      SCi-fi assets planet one_116: 4168482725482545589
+      SCi-fi assets planet one_158: -2939663160785318690
+      SCi-fi assets planet one_46: 8530197448524868396
+      SCi-fi assets planet one_3: -15405949780769232
+      SCi-fi assets planet one_5: 3132101349384097061
+      SCi-fi assets planet one_190: 1461858942839457123
+      SCi-fi assets planet one_69: 7994118858369307159
+      SCi-fi assets planet one_14: -7397942257655301504
+      SCi-fi assets planet one_109: 708650883162851900
+      SCi-fi assets planet one_185: -2249046923219069439
+      SCi-fi assets planet one_31: -1439306588374728319
+      SCi-fi assets planet one_37: -5836836695425651312
+      SCi-fi assets planet one_16: -5096185059061018649
+      SCi-fi assets planet one_96: 7201372404918207263
+      SCi-fi assets planet one_77: 273091477468891156
+      SCi-fi assets planet one_182: 1891896843595547570
+      SCi-fi assets planet one_187: 3204982206704105243
+      SCi-fi assets planet one_142: -7923053277486454394
+      SCi-fi assets planet one_26: -4470552291741711265
+      SCi-fi assets planet one_101: 4455882501652898284
+      SCi-fi assets planet one_193: 615684869707125143
+      SCi-fi assets planet one_150: -2576170474572519830
+      SCi-fi assets planet one_107: 3460889554291516328
+      SCi-fi assets planet one_22: 5527207695879969882
+      SCi-fi assets planet one_132: -1546032905522716501
+      SCi-fi assets planet one_57: -2571745864976610391
+      SCi-fi assets planet one_146: -5551355063095037211
+      SCi-fi assets planet one_105: -3550322755560092559
+      SCi-fi assets planet one_1: 5007522362675628726
+      SCi-fi assets planet one_24: 892050785666731592
+      SCi-fi assets planet one_13: 7546867155361865084
+      SCi-fi assets planet one_60: 6182917908423829374
+      SCi-fi assets planet one_48: -8702067336370443211
+      SCi-fi assets planet one_143: -7050225706781806379
+      SCi-fi assets planet one_86: -8045373505215045022
+      SCi-fi assets planet one_137: -3983192473720429865
+      SCi-fi assets planet one_122: -7079076280067082538
+      SCi-fi assets planet one_52: 4818845567729074662
+      SCi-fi assets planet one_56: 7416159257748614139
+      SCi-fi assets planet one_65: 845704455360336365
+      SCi-fi assets planet one_179: -5547603158482862682
+      SCi-fi assets planet one_8: -1710258775069586372
+      SCi-fi assets planet one_123: 8739719528666312372
+      SCi-fi assets planet one_188: 6633087532100471370
+      SCi-fi assets planet one_165: 8523654394196784835
+      SCi-fi assets planet one_63: -5073890190780880357
+      SCi-fi assets planet one_50: -6188471436893090556
+      SCi-fi assets planet one_141: 7283446021552940874
+      SCi-fi assets planet one_147: -4266833063994584488
+      SCi-fi assets planet one_161: 5591708250923232300
+      SCi-fi assets planet one_183: 6595249768461341607
+      SCi-fi assets planet one_33: -6048726821436761625
+      SCi-fi assets planet one_64: 6331369146768307302
+      SCi-fi assets planet one_173: -1839879132442047846
+      SCi-fi assets planet one_95: -2133442180623851298
+      SCi-fi assets planet one_89: -2057953997305795510
+      SCi-fi assets planet one_148: 5828500941019468123
+      SCi-fi assets planet one_25: -2955922193302479251
+      SCi-fi assets planet one_115: -8042773750503905622
+      SCi-fi assets planet one_66: 9095024903222160306
+      SCi-fi assets planet one_93: 281480075986510556
+      SCi-fi assets planet one_180: -7152663785435323389
+      SCi-fi assets planet one_43: 4923196270665973216
+      SCi-fi assets planet one_41: 1609351796464800
+      SCi-fi assets planet one_42: 4557946041662596119
+      SCi-fi assets planet one_18: 5401539249972270034
+      SCi-fi assets planet one_154: 1152425234290762325
+      SCi-fi assets planet one_67: 3923778608098301536
+      SCi-fi assets planet one_151: -2493486277602996491
+      SCi-fi assets planet one_167: 4055238831239724547
+      SCi-fi assets planet one_117: -1228949013852857631
+      SCi-fi assets planet one_186: 4039758069437149450
+      SCi-fi assets planet one_84: -5161627604662663395
+      SCi-fi assets planet one_72: -3725233489285166826
+      SCi-fi assets planet one_112: 3990122064749490315
+      SCi-fi assets planet one_58: 2156991971595264444
+      SCi-fi assets planet one_110: 5262914362252229161
+      SCi-fi assets planet one_28: 1942638656518531318
+      SCi-fi assets planet one_92: 1168604574706662292
+      SCi-fi assets planet one_100: -5947552089654292795
+      SCi-fi assets planet one_135: -7107225471165874207
+      SCi-fi assets planet one_23: 8382307826310810546
+      SCi-fi assets planet one_128: -6175616103375839639
+      SCi-fi assets planet one_47: -1886638305239336969
+      SCi-fi assets planet one_121: -2891486600941053961
+      SCi-fi assets planet one_176: 4925428898853818322
+      SCi-fi assets planet one_102: -4905784936296559193
+      SCi-fi assets planet one_129: -7958812804881479338
+      SCi-fi assets planet one_134: -6021739913362245793
+      SCi-fi assets planet one_15: -4625091822369634542
+      SCi-fi assets planet one_81: -6623204706732049952
+      SCi-fi assets planet one_97: 2257003879479717268
+      SCi-fi assets planet one_162: 7090868775530437385
+      SCi-fi assets planet one_76: 5958889534375110042
+      SCi-fi assets planet one_170: 8943528753012226536
+      SCi-fi assets planet one_32: 1595361412465798827
+      SCi-fi assets planet one_104: -3132865880712752865
+      SCi-fi assets planet one_54: -7363530235181257248
+      SCi-fi assets planet one_0: 7295907119583491395
+      SCi-fi assets planet one_124: 3509969455435905890
+      SCi-fi assets planet one_192: -8203986084158902035
+      SCi-fi assets planet one_29: -8005691701671025494
+      SCi-fi assets planet one_163: -2325309828230866418
+      SCi-fi assets planet one_164: 272983519542088729
+      SCi-fi assets planet one_78: 5403285781626384377
+      SCi-fi assets planet one_45: 7252669715433479304
+      SCi-fi assets planet one_4: 1962619151208213047
+      SCi-fi assets planet one_156: -2729879881855053798
+      SCi-fi assets planet one_113: -4317129862471877679
+      SCi-fi assets planet one_103: -8991840101243565699
+      SCi-fi assets planet one_108: 5112448607446065493
+      SCi-fi assets planet one_149: -5394610045465534541
+      SCi-fi assets planet one_85: -7551046501569859091
+      SCi-fi assets planet one_71: 3211540695953806149
+      SCi-fi assets planet one_35: -2503420628231897310
+      SCi-fi assets planet one_157: -9011844082268193720
+      SCi-fi assets planet one_166: -3005217908127428025
+      SCi-fi assets planet one_6: -5622144650110440386
+      SCi-fi assets planet one_87: -4443668781341376300
+      SCi-fi assets planet one_94: 3026367057089620708
+      SCi-fi assets planet one_178: 9031841959500808806
+      SCi-fi assets planet one_36: -3658810893966139957
+      SCi-fi assets planet one_74: -5841762425336103084
+      SCi-fi assets planet one_30: -3596353076182685708
+      SCi-fi assets planet one_75: -4708476169100252621
+      SCi-fi assets planet one_169: 7370018300219255758
+      SCi-fi assets planet one_88: 5505467882795199602
+      SCi-fi assets planet one_17: -1940216925784254206
+      SCi-fi assets planet one_19: 5865674023002252908
+      SCi-fi assets planet one_106: -3859887047442740453
+      SCi-fi assets planet one_140: -784558075723177287
+      SCi-fi assets planet one_131: -3391454085173991190
+      SCi-fi assets planet one_181: -8195452674019445563
+      SCi-fi assets planet one_126: -892867252554086565
+      SCi-fi assets planet one_138: 6252925391553478976
+      SCi-fi assets planet one_171: 7623462906738421872
+      SCi-fi assets planet one_159: 2395500260567058685
+      SCi-fi assets planet one_12: 567140806086024760
+      SCi-fi assets planet one_70: 2044827499411835492
+      SCi-fi assets planet one_34: 8289448930874661560
+      SCi-fi assets planet one_168: 5839745419855854533
+      SCi-fi assets planet one_27: -5955629947420849258
+      SCi-fi assets planet one_62: -343659074297142649
+      SCi-fi assets planet one_111: -943740778624226491
+      SCi-fi assets planet one_127: 4915823195507882002
+      SCi-fi assets planet one_90: -8387580111488698891
+      SCi-fi assets planet one_53: -6318969793565818682
+      SCi-fi assets planet one_130: 5885045201652827346
+      SCi-fi assets planet one_44: 729798030377639990
+      SCi-fi assets planet one_119: 1830033578551782005
+      SCi-fi assets planet one_120: 7156137794474315512
+      SCi-fi assets planet one_59: -4346165071185303519
+      SCi-fi assets planet one_155: 728770647779924868
+      SCi-fi assets planet one_21: -1313634393941369853
+      SCi-fi assets planet one_160: 5537288396194151380
+      SCi-fi assets planet one_80: -1848602602404526725
+      SCi-fi assets planet one_10: -142818920152311982
+      SCi-fi assets planet one_83: 4277173842375098039
+      SCi-fi assets planet one_144: 1391791453781394743
+      SCi-fi assets planet one_49: -9018934647505682892
+      SCi-fi assets planet one_68: -5469710112716531107
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

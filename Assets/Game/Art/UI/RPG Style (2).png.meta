@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -60,8 +61,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -328,6 +329,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      RPG Style (2)_4: -5859808982866087392
+      RPG Style (2)_1: 232092599849304347
+      RPG Style (2)_8: 860344620022815357
+      RPG Style (2)_3: 5893293092730226277
+      RPG Style (2)_6: -4660250352770507441
+      RPG Style (2)_2: 1986992132587432240
+      RPG Style (2)_7: 975322903340362193
+      RPG Style (2)_0: -6318189742324828622
+      RPG Style (2)_5: -3345166122119593779
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

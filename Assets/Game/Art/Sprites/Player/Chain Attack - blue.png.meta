@@ -75,6 +75,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -84,8 +85,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -520,6 +521,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Chain Attack - blue_0: 4966379858391957411
+      Chain Attack - blue_14: -8086188184859414419
+      Chain Attack - blue_10: -3941627681949195187
+      Chain Attack - blue_13: 376876645821646040
+      Chain Attack - blue_4: -4786767607533511712
+      Chain Attack - blue_11: -674639397904046199
+      Chain Attack - blue_15: -2399815189577070854
+      Chain Attack - blue_3: 3255404129963994888
+      Chain Attack - blue_12: 3674032254321150668
+      Chain Attack - blue_6: 3991396677116783961
+      Chain Attack - blue_8: -8238838483059364815
+      Chain Attack - blue_2: 5761458163237546788
+      Chain Attack - blue_1: 8911759986453612837
+      Chain Attack - blue_7: 1414048108399162607
+      Chain Attack - blue_9: 6093678599333242233
+      Chain Attack - blue_16: 1266179183656452009
+      Chain Attack - blue_5: 8972338205680739460
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

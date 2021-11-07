@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,8 +64,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -352,6 +353,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mud damaged and death_9: 2333366546524723461
+      Mud damaged and death_4: -3347112869839749604
+      Mud damaged and death_5: -3250485221850363365
+      Mud damaged and death_6: 5913316591790612409
+      Mud damaged and death_3: -8186557821457667096
+      Mud damaged and death_7: -683981450819989421
+      Mud damaged and death_0: 999025997599386001
+      Mud damaged and death_2: 6974505217433537663
+      Mud damaged and death_8: -565654214147457714
+      Mud damaged and death_1: -8354122086939038608
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

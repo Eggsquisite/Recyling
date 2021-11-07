@@ -696,6 +696,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -705,8 +706,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -5488,6 +5489,231 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tilemap_Planet Two_137: -5166072570124536724
+      Tilemap_Planet Two_33: 5922999735153232394
+      Tilemap_Planet Two_100: -1558963921205155816
+      Tilemap_Planet Two_147: 981234380043177156
+      Tilemap_Planet Two_4: 7688932427875737111
+      Tilemap_Planet Two_70: 8953504890086768738
+      Tilemap_Planet Two_110: -2007354133536794725
+      Tilemap_Planet Two_201: 7442059225773673397
+      Tilemap_Planet Two_27: -317756838396869333
+      Tilemap_Planet Two_40: 2817768542363984476
+      Tilemap_Planet Two_59: 5322826359461933746
+      Tilemap_Planet Two_82: 6172725981863890542
+      Tilemap_Planet Two_101: 5270994126950809133
+      Tilemap_Planet Two_124: 1978424131189919121
+      Tilemap_Planet Two_209: 8552201609479837917
+      Tilemap_Planet Two_99: 1404707062047376791
+      Tilemap_Planet Two_123: 7402739864213372
+      Tilemap_Planet Two_25: -1180650254170561300
+      Tilemap_Planet Two_30: 6262836167008786524
+      Tilemap_Planet Two_104: -2788545429986835973
+      Tilemap_Planet Two_12: -2355680081136042988
+      Tilemap_Planet Two_146: -4572860939794786790
+      Tilemap_Planet Two_170: 5134269855708647969
+      Tilemap_Planet Two_65: 1126009294231909438
+      Tilemap_Planet Two_15: 4351314704445274161
+      Tilemap_Planet Two_49: -8838384546050240546
+      Tilemap_Planet Two_52: 4636297003430279913
+      Tilemap_Planet Two_141: 1827836411664605604
+      Tilemap_Planet Two_79: -2537853715447944233
+      Tilemap_Planet Two_45: -7614077280135481657
+      Tilemap_Planet Two_87: -4641116740124247491
+      Tilemap_Planet Two_93: 3796148893444393993
+      Tilemap_Planet Two_128: -5039276141128887619
+      Tilemap_Planet Two_120: 4129252762020001436
+      Tilemap_Planet Two_185: -2579656339590273046
+      Tilemap_Planet Two_180: 1934012985043839786
+      Tilemap_Planet Two_127: 5464513141963850300
+      Tilemap_Planet Two_131: -4371411590647917627
+      Tilemap_Planet Two_200: 4859164120322819877
+      Tilemap_Planet Two_11: 458772866130140741
+      Tilemap_Planet Two_144: 1412206970610968079
+      Tilemap_Planet Two_90: -4622644033900025464
+      Tilemap_Planet Two_17: 1962884468863101054
+      Tilemap_Planet Two_86: -9132759677756401892
+      Tilemap_Planet Two_103: -5688255433947092531
+      Tilemap_Planet Two_77: -8642053145437431971
+      Tilemap_Planet Two_38: -1107088492858058219
+      Tilemap_Planet Two_21: -3019310584025331458
+      Tilemap_Planet Two_97: -3374849163001766236
+      Tilemap_Planet Two_164: -5443972277914673404
+      Tilemap_Planet Two_197: -4573612525938445207
+      Tilemap_Planet Two_58: -8024895882538268556
+      Tilemap_Planet Two_116: -6461351988293785181
+      Tilemap_Planet Two_74: -1863556806312385772
+      Tilemap_Planet Two_154: 252829181618505876
+      Tilemap_Planet Two_24: 6891233121707020091
+      Tilemap_Planet Two_26: -3020618826890096977
+      Tilemap_Planet Two_83: 7555853532557407970
+      Tilemap_Planet Two_219: 3061757004299503535
+      Tilemap_Planet Two_156: -2033118338135303218
+      Tilemap_Planet Two_179: -6498846334145755623
+      Tilemap_Planet Two_184: 6527815081282875131
+      Tilemap_Planet Two_105: -4036490695360964744
+      Tilemap_Planet Two_56: 180651954089124674
+      Tilemap_Planet Two_115: -8116127512128197462
+      Tilemap_Planet Two_193: -2757863943013086074
+      Tilemap_Planet Two_118: 6401686815710404150
+      Tilemap_Planet Two_10: -668919465735766318
+      Tilemap_Planet Two_108: 4936391752810197387
+      Tilemap_Planet Two_176: -2742229333329829207
+      Tilemap_Planet Two_204: -1971029103466352078
+      Tilemap_Planet Two_152: -4422087735290714497
+      Tilemap_Planet Two_1: -8806358810377034848
+      Tilemap_Planet Two_54: -4567300581507447571
+      Tilemap_Planet Two_91: -8567488145198936433
+      Tilemap_Planet Two_64: -3447829148084582255
+      Tilemap_Planet Two_159: -3315387495002210414
+      Tilemap_Planet Two_177: -1818842205096119218
+      Tilemap_Planet Two_51: 4960272296378469632
+      Tilemap_Planet Two_95: -5563966340023565667
+      Tilemap_Planet Two_138: 1147113082196187776
+      Tilemap_Planet Two_81: -7624666346283617632
+      Tilemap_Planet Two_211: -3469380249920352605
+      Tilemap_Planet Two_150: 1348356927274223567
+      Tilemap_Planet Two_5: 2209281619293540921
+      Tilemap_Planet Two_174: 1232731329507590601
+      Tilemap_Planet Two_171: 1396954770446406383
+      Tilemap_Planet Two_192: 2422062600045449546
+      Tilemap_Planet Two_119: -7461669692975480748
+      Tilemap_Planet Two_66: 5351175964577586595
+      Tilemap_Planet Two_89: 8361342513384235642
+      Tilemap_Planet Two_111: 6560505859456747106
+      Tilemap_Planet Two_166: 6196100364234905518
+      Tilemap_Planet Two_207: 8833179249018799046
+      Tilemap_Planet Two_43: -4962548806471217596
+      Tilemap_Planet Two_199: -1987913977577172604
+      Tilemap_Planet Two_47: -4807813440303033828
+      Tilemap_Planet Two_145: -6147029837250390126
+      Tilemap_Planet Two_125: 9091214492347540199
+      Tilemap_Planet Two_41: -6739038379705910077
+      Tilemap_Planet Two_195: -8378684557907770374
+      Tilemap_Planet Two_29: -4757948719829748034
+      Tilemap_Planet Two_220: -6043141997319638048
+      Tilemap_Planet Two_186: -2193801180967666355
+      Tilemap_Planet Two_221: 3344942971849316627
+      Tilemap_Planet Two_106: 8517541357800795158
+      Tilemap_Planet Two_117: -7466171569181200223
+      Tilemap_Planet Two_136: 4670738268149804900
+      Tilemap_Planet Two_121: 3390851331873091242
+      Tilemap_Planet Two_165: -8339073066759271340
+      Tilemap_Planet Two_22: -8874386959011905206
+      Tilemap_Planet Two_213: 69839873298931882
+      Tilemap_Planet Two_139: 3404088993175358628
+      Tilemap_Planet Two_7: 6853488982222772433
+      Tilemap_Planet Two_202: 3041921998539621784
+      Tilemap_Planet Two_190: -3026119993021426789
+      Tilemap_Planet Two_0: -3871553710077906751
+      Tilemap_Planet Two_8: -5497952986468567653
+      Tilemap_Planet Two_57: -1166706823919192859
+      Tilemap_Planet Two_107: 5415144299934408603
+      Tilemap_Planet Two_196: 871625222476039311
+      Tilemap_Planet Two_80: 1081515062984282120
+      Tilemap_Planet Two_149: 7209370376501913171
+      Tilemap_Planet Two_130: 4241098594039539693
+      Tilemap_Planet Two_114: 1332085334241264717
+      Tilemap_Planet Two_3: 6501678122571443950
+      Tilemap_Planet Two_194: -7468522442926892057
+      Tilemap_Planet Two_85: 4759663883156625992
+      Tilemap_Planet Two_160: 6946020471882596757
+      Tilemap_Planet Two_191: 7900968755866101503
+      Tilemap_Planet Two_60: 3330420676976380789
+      Tilemap_Planet Two_55: 5910612580838212536
+      Tilemap_Planet Two_94: -8212610848492724450
+      Tilemap_Planet Two_182: -2265194713889767099
+      Tilemap_Planet Two_157: 5818772821169736197
+      Tilemap_Planet Two_172: -5187559889693426319
+      Tilemap_Planet Two_142: 5366104024239545084
+      Tilemap_Planet Two_53: 5755588252068109789
+      Tilemap_Planet Two_134: -3562725950951533402
+      Tilemap_Planet Two_14: 7599650173674554510
+      Tilemap_Planet Two_46: -57135869286144811
+      Tilemap_Planet Two_223: 8866979466859553069
+      Tilemap_Planet Two_61: 2991673128462552143
+      Tilemap_Planet Two_78: -2592590267261794553
+      Tilemap_Planet Two_109: -4620867866627469624
+      Tilemap_Planet Two_133: -248105465494785927
+      Tilemap_Planet Two_129: -8583436526128009686
+      Tilemap_Planet Two_16: -6075199792567313995
+      Tilemap_Planet Two_19: -6280561487882606366
+      Tilemap_Planet Two_50: 2058219350704399344
+      Tilemap_Planet Two_34: 6695258806137544760
+      Tilemap_Planet Two_48: 5565407489835432357
+      Tilemap_Planet Two_37: -2187586662212774453
+      Tilemap_Planet Two_72: 8849058632897270762
+      Tilemap_Planet Two_71: 1991849019519453502
+      Tilemap_Planet Two_216: 9147716804750931203
+      Tilemap_Planet Two_210: 3344618096467355925
+      Tilemap_Planet Two_23: 1732062416926009278
+      Tilemap_Planet Two_92: 5563388440137579837
+      Tilemap_Planet Two_140: 541666692848183282
+      Tilemap_Planet Two_122: 3935787750978344159
+      Tilemap_Planet Two_167: -2643369215083329897
+      Tilemap_Planet Two_39: -7225902073559106196
+      Tilemap_Planet Two_163: 8469064622957957104
+      Tilemap_Planet Two_13: 5327781484994119949
+      Tilemap_Planet Two_218: -3085961023112148575
+      Tilemap_Planet Two_35: -4015227938163221953
+      Tilemap_Planet Two_151: 4600316331189023945
+      Tilemap_Planet Two_189: -2713137757574920488
+      Tilemap_Planet Two_135: -6696185906263373630
+      Tilemap_Planet Two_162: -6227345379177514165
+      Tilemap_Planet Two_31: -5271785315302306353
+      Tilemap_Planet Two_168: 234766151978604426
+      Tilemap_Planet Two_206: 7932037487166591722
+      Tilemap_Planet Two_112: 7894400357024521492
+      Tilemap_Planet Two_76: 3602944814497281307
+      Tilemap_Planet Two_88: -7272554307795303979
+      Tilemap_Planet Two_187: 6793461021360708062
+      Tilemap_Planet Two_44: 1556971442620882984
+      Tilemap_Planet Two_84: -1081145110703932963
+      Tilemap_Planet Two_183: -4667950202252137476
+      Tilemap_Planet Two_214: -1080342525417312383
+      Tilemap_Planet Two_75: 5282916319855925176
+      Tilemap_Planet Two_198: 5583271629689628149
+      Tilemap_Planet Two_96: 2675687126061264137
+      Tilemap_Planet Two_102: -7577587804789372482
+      Tilemap_Planet Two_173: -3040474643878660264
+      Tilemap_Planet Two_42: -5012180924082962475
+      Tilemap_Planet Two_62: 2995259123093922157
+      Tilemap_Planet Two_161: -281723417322880981
+      Tilemap_Planet Two_212: -5993591975496477386
+      Tilemap_Planet Two_9: 2212368400361412714
+      Tilemap_Planet Two_126: -8965907972175352506
+      Tilemap_Planet Two_6: 6038625976184749841
+      Tilemap_Planet Two_36: -1057237345300969317
+      Tilemap_Planet Two_98: 1605725853337358479
+      Tilemap_Planet Two_155: 8590655611487397588
+      Tilemap_Planet Two_175: 2841770662714905694
+      Tilemap_Planet Two_222: -1504925149569447607
+      Tilemap_Planet Two_113: 184593175361485247
+      Tilemap_Planet Two_181: -7065126843308391260
+      Tilemap_Planet Two_169: -5302805544641361368
+      Tilemap_Planet Two_203: -3685072870925794972
+      Tilemap_Planet Two_18: -8126436458907962221
+      Tilemap_Planet Two_178: 7970522529596553802
+      Tilemap_Planet Two_205: 9205939315788050367
+      Tilemap_Planet Two_208: -469671191261530257
+      Tilemap_Planet Two_28: 2659948302909137787
+      Tilemap_Planet Two_215: 6324991249045191556
+      Tilemap_Planet Two_63: 5575398148172106836
+      Tilemap_Planet Two_67: -4604499747604822454
+      Tilemap_Planet Two_158: 7411922884261304503
+      Tilemap_Planet Two_68: -1998483293134357156
+      Tilemap_Planet Two_69: 9075265762856321946
+      Tilemap_Planet Two_2: -3291084942371147385
+      Tilemap_Planet Two_148: 3008862839214588784
+      Tilemap_Planet Two_188: 4880216920586322423
+      Tilemap_Planet Two_143: 8173846322332179028
+      Tilemap_Planet Two_217: -4617090938870877688
+      Tilemap_Planet Two_20: -5423168393626149770
+      Tilemap_Planet Two_153: -8786909821746625683
+      Tilemap_Planet Two_32: -7954003058605539477
+      Tilemap_Planet Two_132: 9187922606462390727
+      Tilemap_Planet Two_73: -5944961089839591014
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
