@@ -795,6 +795,12 @@ public class Player : MonoBehaviour
             return;
     }
 
+
+    /// <summary>
+    /// Regain energy on hitting an enemy
+    /// If focusUpgrade is true (Focus upgrade 2 is unlocked), then heal health on hit as well
+    /// </summary>
+    /// <param name="gainMultiplier"></param>
     public void RegainEnergy(float gainMultiplier) {
         if (focusUpgrade) { 
             StartCoroutine(UI.EnergyRegenOnHit(gainMultiplier));
