@@ -11,43 +11,47 @@ public class PlayerUpgrades : MonoBehaviour
     private int statUpgradeThreshold2;
 
     [Header("Strength Upgrade Properties")]
-    [SerializeField]
-    private int strengthUpgradeThreshold1;
-    //[SerializeField]
-    private int strengthUpgradeThreshold2;
     [SerializeField] [Tooltip("Faster attack speed multiplier")]
     private float strengthUpgradeValue1;
     [SerializeField] [Tooltip("Player damages surrounding enemies when landing from jetpack")]
     private float strengthUpgradeValue2;
 
-    [Header("Special Upgrade Properties")]
-    [SerializeField]
-    private int specialUpgradeThreshold1;
     //[SerializeField]
-    private int specialUpgradeThreshold2;
+    private int strengthUpgradeThreshold1;
+    //[SerializeField]
+    private int strengthUpgradeThreshold2;
+
+    [Header("Special Upgrade Properties")]
     [SerializeField] [Tooltip("Pushback increase to blaster")]
     private float specialUpgradeValue1; 
     [SerializeField] [Tooltip("Overall energy reduction as percentage")]
     private float specialUpgradeValue2;
 
+    //[SerializeField]
+    private int specialUpgradeThreshold1;
+    //[SerializeField]
+    private int specialUpgradeThreshold2;
+
     [Header("Focus Upgrade Properties")]
+    [SerializeField] [Tooltip("Heal walk speed multiplier increase")]
+    private float focusUpgradeValue1;
     [SerializeField]
+    private float focusUpgradeValue2;
+
+    //[SerializeField]
     private int focusUpgradeThreshold1;
     //[SerializeField]
     private int focusUpgradeThreshold2;
-    //[SerializeField] [Tooltip("Heal walk speed multiplier increase")]
-    private float focusUpgradeValue1;
-    //[SerializeField]
-    private float focusUpgradeValue2;
 
     [Header("Vitality Upgrade Properties")]
-    [SerializeField]
+
+    //[SerializeField]
     private int vitalityUpgradeThreshold1;
     //[SerializeField]
     private int vitalityUpgradeThreshold2;
 
     [Header("Stamina Upgrade Properties")]
-    [SerializeField]
+    //[SerializeField]
     private int staminaUpgradeThreshold1;
     //[SerializeField]
     private int staminaUpgradeThreshold2;
