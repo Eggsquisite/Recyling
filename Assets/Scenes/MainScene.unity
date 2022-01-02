@@ -12373,7 +12373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeSave:
-    saveName: save1
+    saveName: tmp
     areaToLoadIndex: 0
     areaToRespawnIndex: 0
     minCameraPos: 0
