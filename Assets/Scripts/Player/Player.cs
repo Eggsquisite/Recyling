@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     private int vitalityUpgradeLevel;
     private int staminaUpgradeLevel;
 
-    private bool jetpackDamage;
+    private bool jetpackDamageFlag;
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -82,12 +82,14 @@ public class Player : MonoBehaviour
     private float isHurtMaxTime;
     [SerializeField]
     private float hurtPushBackSpeed;
+    private float hurtMaxTimeUpgraded;
 
     private bool isHurt;
     private bool isStunned;
     private bool isInvincible;
-    private bool deathResist;
-    private bool vitalityUpgrade;
+    private bool deathResistFlag;
+    private bool deathResistEnabled;
+    private bool increaseHurtMaxTimeFlag;
     private float stunDuration;
 
     private Coroutine pushBackMovementRoutine, pushBackDurationRoutine, isHurtRoutine;
@@ -814,7 +816,7 @@ public class Player : MonoBehaviour
     /// Attack for when jetpack attack is set to true
     /// </summary>
     private void JetpackHitboxActivated() {
-        if (!jetpackDamage)
+        if (!jetpackDamageFlag)
             return;
 
         Debug.Log("Activating jetpack damage");
@@ -1154,7 +1156,14 @@ public class Player : MonoBehaviour
     }
 
     private IEnumerator BeginIsHurtTimer() {
-        yield return new WaitForSeconds(isHurtMaxTime);
+        if (increaseHurtMaxTimeFlag) {
+            Debug.Log("Longer i-frames triggered");
+            yield return new WaitForSeconds(isHurtMaxTime );
+        }
+        else { 
+            yield return new WaitForSeconds(isHurtMaxTime);
+        }
+
         isHurt = false;
         sp.enabled = true;
         ResetInvincible();
@@ -1269,7 +1278,7 @@ public class Player : MonoBehaviour
     }
 
 
-    /// PLAYER UPGRADING STUFF ////////////////////////////////////////////////////////////////////////////
+    /// PLAYER UPGRADING/UPGRADES STUFF ////////////////////////////////////////////////////////////////////////////
 
     private void UpdatePlayerUpgrades() {
         playerStats.CheckUpgradeLevels(out strengthUpgradeLevel, 
@@ -1282,6 +1291,7 @@ public class Player : MonoBehaviour
         UpdateSpecialUpgrades();
         UpdateFocusUpgrades();
         UpdateVitalityUpgrades();
+        UpdateStaminaUpgrades();
     }
 
     private void UpdateStrengthUpgrades() {
@@ -1293,7 +1303,7 @@ public class Player : MonoBehaviour
         else if (strengthUpgradeLevel == 2) {
             anim.SetFloat("attackMultiplier", playerUpgrades.GetStrengthUpgradeValues(1));
 
-            jetpackDamage = true;
+            jetpackDamageFlag = true;
             dashFallSpeed = playerUpgrades.GetStrengthUpgradeValues(2);
         }
     }
@@ -1328,12 +1338,27 @@ public class Player : MonoBehaviour
     }
 
     private void UpdateVitalityUpgrades() { 
-        if (strengthUpgradeLevel == 0)
+        if (vitalityUpgradeLevel == 0)
             return;
-        else if (strengthUpgradeLevel == 1) {
+        else if (vitalityUpgradeLevel == 1) {
+            hurtMaxTimeUpgraded = playerUpgrades.GetVitalityUpgradeValues(1);
+        } 
+        else if (vitalityUpgradeLevel == 2) {
+            hurtMaxTimeUpgraded = playerUpgrades.GetVitalityUpgradeValues(1);
+
+            // Enable single death resist per altar visit
+            deathResistFlag = true;
+            deathResistEnabled = true;
+        }
+    }
+
+    private void UpdateStaminaUpgrades() { 
+        if (staminaUpgradeLevel == 0)
+            return;
+        else if (staminaUpgradeLevel == 1) {
 
         } 
-        else if (strengthUpgradeLevel == 2) {
+        else if (staminaUpgradeLevel == 2) {
 
         }
     }

@@ -73,10 +73,13 @@ public class PlayerInput : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.LeftControl))
                 player.StopRecoverInput();
 
-            // DEV TESTING STUFF
+            // DEV TESTING STUFF //////////////////////////////////////////////////////
             if (Input.GetKeyDown(KeyCode.Y))
                 //playerStats.IncreaseStat(3, 4);
-                Player.instance.GetComponent<PlayerUI>().SetCurrency(100);
+                Player.instance.GetComponent<PlayerUI>().SetCurrency(1000);
+
+            if (Input.GetKeyDown(KeyCode.P))
+                SaveManager.instance.DeleteSaveData();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////

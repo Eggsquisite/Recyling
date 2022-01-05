@@ -44,6 +44,8 @@ public class PlayerUpgrades : MonoBehaviour
     private int focusUpgradeThreshold2;
 
     [Header("Vitality Upgrade Properties")]
+    [SerializeField]
+    private float vitalityUpgradeValue1;
 
     //[SerializeField]
     private int vitalityUpgradeThreshold1;
@@ -147,6 +149,13 @@ public class PlayerUpgrades : MonoBehaviour
             return 2;
         else
             return 0;
+    }
+
+    public float GetVitalityUpgradeValues(int index) {
+        if (index == 1)
+            return vitalityUpgradeValue1;
+        else
+            return 0f;
     }
 
     // STAMINA PROPERTIES ////////////////////////////////////////////////////////////////////////////////

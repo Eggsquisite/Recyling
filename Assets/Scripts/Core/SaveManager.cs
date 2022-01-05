@@ -64,6 +64,7 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteSaveData()
     {
+        Debug.Log("Deleting save data for " + activeSave.saveName + "...");
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
 
         if (File.Exists(filePath))
