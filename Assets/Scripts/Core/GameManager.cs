@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
             // player starts at starting position
             Player.instance.transform.position = newGameSpawn;
             activeSave.playerRespawnPosition = newGameSpawn;
+            activeSave.areaToRespawnIndex = 1;
             cam.SetMinX(0);
             cam.SetMaxX(0);
         }

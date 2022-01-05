@@ -12396,7 +12396,7 @@ MonoBehaviour:
     bossArenaOneDefeated: 0
     bossArenaTwoDefeated: 0
     bossArenaThreeDefeated: 0
-  saveGame: save6
+  saveGame: save2
   hasLoaded: 0
 --- !u!1001 &1179281695
 PrefabInstance:

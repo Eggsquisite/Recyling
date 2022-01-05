@@ -9,7 +9,9 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance;
     public SaveData activeSave;
     public string saveGame;
+
     public bool hasLoaded;
+    private bool deleteGame;
 
     private float tmpMinX;
     private float tmpMaxX;
@@ -22,6 +24,11 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        if (deleteGame) {
+            DeleteSaveData();
+            return;
+        }
+
         CheckSave();
         //GetPlayerValues();
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
@@ -65,11 +72,12 @@ public class SaveManager : MonoBehaviour
     public void DeleteSaveData()
     {
         Debug.Log("Deleting save data for " + activeSave.saveName + "...");
+        deleteGame = true;
+
         string filePath = Path.Combine(Application.persistentDataPath, activeSave.saveName + ".xml");
 
         if (File.Exists(filePath))
             File.Delete(filePath);
-        
     }
 
     public List<EnemyData> LoadEnemyData() {
@@ -149,7 +157,7 @@ public class SaveData
     // denotes where the camera should be in regards to min/max values
     [Header("Camera Clamp Values")]
     // variables saved in PlayerInput.cs
-    public int areaToLoadIndex;
+    public int areaToLoadIndex = 1;
     public int areaToRespawnIndex;
     public float minCameraPos;
     public float maxCameraPos;
