@@ -1038,7 +1038,13 @@ public class Player : MonoBehaviour
         UI.SetCurrentHealth(-damageNum);
 
         if (UI.GetCurrentHealth() <= 0) {
-            Death();
+
+            if (deathResistEnabled) { 
+                // play a death animation then quick revive
+            }
+            else { 
+                Death();
+            }
         }
         else { 
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
