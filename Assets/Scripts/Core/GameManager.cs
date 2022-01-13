@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
                 tmp.GetComponent<DeathPickup>().SetCurrencyStored(activeSave.playerLostCurrency);
             }
 
+            // If player is not dead, load them at their last position with the same health, energy, and currency
             if (!activeSave.playerIsDead) { 
                 AreaManager.instance.LoadArea(activeSave.areaToLoadIndex, false);
                 Player.instance.transform.position = activeSave.playerCurrentPosition;
@@ -57,7 +58,9 @@ public class GameManager : MonoBehaviour
                 Player.instance.LoadCurrency(activeSave.playerCurrency);
                 Player.instance.LoadHealth(activeSave.playerHealth);
                 Player.instance.LoadEnergy(activeSave.playerEnergy);
-            } else {
+            } 
+            // if player IS dead, reset all enemies and load them at their respawn position
+            else {
                 EnemyManager.Instance.ResetAllEnemies();
                 AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
@@ -67,12 +70,13 @@ public class GameManager : MonoBehaviour
                 activeSave.playerIsDead = false;
             }
 
-        } else
-        {
+        } else {
             // player starts at starting position
+
+            Debug.Log("Loading new save");
             Player.instance.transform.position = newGameSpawn;
             activeSave.playerRespawnPosition = newGameSpawn;
-            activeSave.areaToRespawnIndex = 1;
+            activeSave.areaToLoadIndex = 1;
             cam.SetMinX(0);
             cam.SetMaxX(0);
         }

@@ -78,8 +78,10 @@ public class PlayerInput : MonoBehaviour
                 //playerStats.IncreaseStat(3, 4);
                 Player.instance.GetComponent<PlayerUI>().SetCurrency(1000);
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P)) {
+                Debug.Log("Deleting Save");
                 SaveManager.instance.DeleteSaveData();
+            }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////

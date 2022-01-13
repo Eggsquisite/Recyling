@@ -60,6 +60,7 @@ public class LoadArea : MonoBehaviour
     {
         if (cam == null) cam = Camera.main.GetComponent<CameraFollow>();
         if (transition == null) transition = cam.GetComponentInChildren<Animator>();
+        transition.Play("FadeOut");
     }
 
     private void Start()

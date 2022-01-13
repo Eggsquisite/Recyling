@@ -1038,7 +1038,6 @@ public class Player : MonoBehaviour
         UI.SetCurrentHealth(-damageNum);
 
         if (UI.GetCurrentHealth() <= 0) {
-
             if (deathResistEnabled) { 
                 // play a death animation then quick revive
             }
@@ -1164,7 +1163,7 @@ public class Player : MonoBehaviour
     private IEnumerator BeginIsHurtTimer() {
         if (increaseHurtMaxTimeFlag) {
             Debug.Log("Longer i-frames triggered");
-            yield return new WaitForSeconds(isHurtMaxTime );
+            yield return new WaitForSeconds(isHurtMaxTime + hurtMaxTimeUpgraded);
         }
         else { 
             yield return new WaitForSeconds(isHurtMaxTime);

@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4, y: 0.275, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 722439447500652326}
   m_RootOrder: 3
@@ -66,6 +67,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.76, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 722439448051027864}
   - {fileID: 722439448608458872}
@@ -114,7 +116,7 @@ CapsuleCollider2D:
   m_Direction: 1
 --- !u!95 &1572641357111832798
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,6 +129,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -258,22 +261,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statUpgradeThreshold1: 4
   statUpgradeThreshold2: 7
-  strengthUpgradeThreshold1: 4
-  strengthUpgradeThreshold2: 7
   strengthUpgradeValue1: 1.2
   strengthUpgradeValue2: 8
-  specialUpgradeThreshold1: 4
-  specialUpgradeThreshold2: 7
   specialUpgradeValue1: 0.5
   specialUpgradeValue2: 0.5
-  focusUpgradeThreshold1: 4
-  focusUpgradeThreshold2: 7
   focusUpgradeValue1: 0.75
   focusUpgradeValue2: 0
-  vitalityUpgradeThreshold1: 4
-  vitalityUpgradeThreshold2: 7
-  staminaUpgradeThreshold1: 4
-  staminaUpgradeThreshold2: 7
+  vitalityUpgradeValue1: 0.17
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +353,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 722439447500652326}
   m_RootOrder: 0
@@ -391,6 +386,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 722439447500652326}
   m_RootOrder: 1
@@ -487,6 +483,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.025, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 722439447500652326}
   m_RootOrder: 2
@@ -572,6 +569,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 722439447500652326}
   m_RootOrder: 4
@@ -5326,6 +5324,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 1
@@ -5349,6 +5348,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!114 &3996217313178782798
 MonoBehaviour:
