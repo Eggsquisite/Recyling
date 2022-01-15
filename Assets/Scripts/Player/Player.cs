@@ -1035,15 +1035,18 @@ public class Player : MonoBehaviour
         // take damage
         playSounds.PlayPlayerHit();
         UI.StopFutureHealthRecovery();
-        UI.SetCurrentHealth(-damageNum);
+        //UI.SetCurrentHealth(-damageNum);
+
+        if (UI.GetCurrentHealth() - damageNum <= 0 && deathResistEnabled && deathResistFlag) {
+            // play some guardian angel FX breaking
+            UI.SetCurrentHealth(UI.GetHealthMaxValue() * 0.01f);
+            deathResistFlag = false;
+        } else {
+            UI.SetCurrentHealth(-damageNum);
+        }
 
         if (UI.GetCurrentHealth() <= 0) {
-            if (deathResistEnabled) { 
-                // play a death animation then quick revive
-            }
-            else { 
-                Death();
-            }
+            Death();
         }
         else { 
             PlayAnimation(PlayerAnimStates.PLAYER_HURT);
@@ -1074,6 +1077,9 @@ public class Player : MonoBehaviour
 
     public void RefreshResources() {
         playerStats.RefreshResources();
+
+        if (deathResistEnabled)
+            deathResistFlag = true;
     }
 
     public bool GetIsDead() {

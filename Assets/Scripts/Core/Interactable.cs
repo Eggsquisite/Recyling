@@ -91,14 +91,17 @@ public class Interactable : MonoBehaviour
         if (resetEnemiesOnUse)
             EnemyManager.Instance.ResetAllEnemies();
 
-        if (healOnUse)
-            player.GetComponent<PlayerStats>().RefreshResources();
+        if (healOnUse) {
+            //player.GetComponent<PlayerStats>().RefreshResources();
+            player.GetComponent<Player>().RefreshResources();
+        }
 
         // SAVE SPAWN POINT HERE *************************
         if (setSpawnPoint && spawnPoint != null) { 
             SaveManager.instance.SaveSpawnPoint(spawnPoint);
         }
 
+        // PICKUP ENERGY
         if (deathPickup) {
             var tmp = GetComponent<DeathPickup>();
             tmp.InteractActivated();
