@@ -381,6 +381,8 @@ public class PlayerStats : MonoBehaviour
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
         }
+
+        player.UpdatePlayerUpgrades();
     }
 
     private void SetDamageVariables()

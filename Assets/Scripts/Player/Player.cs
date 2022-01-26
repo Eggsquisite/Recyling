@@ -1039,6 +1039,8 @@ public class Player : MonoBehaviour
 
         if (UI.GetCurrentHealth() - damageNum <= 0 && deathResistEnabled && deathResistFlag) {
             // play some guardian angel FX breaking
+            Debug.Log("Death Resist used up");
+
             UI.SetCurrentHealth(UI.GetHealthMaxValue() * 0.01f);
             deathResistFlag = false;
         } else {
@@ -1291,7 +1293,7 @@ public class Player : MonoBehaviour
 
     /// PLAYER UPGRADING/UPGRADES STUFF ////////////////////////////////////////////////////////////////////////////
 
-    private void UpdatePlayerUpgrades() {
+    public void UpdatePlayerUpgrades() {
         playerStats.CheckUpgradeLevels(out strengthUpgradeLevel, 
             out specialUpgradeLevel, 
             out focusUpgradeLevel,
