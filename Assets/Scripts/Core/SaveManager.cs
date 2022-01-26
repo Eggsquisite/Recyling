@@ -40,7 +40,7 @@ public class SaveManager : MonoBehaviour
             stream.Close();
         }
 
-        Debug.Log("save: " + activeSave.saveName + " saved!");
+        //Debug.Log("save: " + activeSave.saveName + " saved!");
     }
 
     public void Load()

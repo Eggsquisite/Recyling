@@ -82,17 +82,23 @@ public class Player : MonoBehaviour
     private float isHurtMaxTime;
     [SerializeField]
     private float hurtPushBackSpeed;
-    private float hurtMaxTimeUpgraded;
 
     private bool isHurt;
     private bool isStunned;
     private bool isInvincible;
-    private bool deathResistFlag;
-    private bool deathResistEnabled;
-    private bool increaseHurtMaxTimeFlag;
     private float stunDuration;
 
     private Coroutine pushBackMovementRoutine, pushBackDurationRoutine, isHurtRoutine;
+
+    [Header ("Upgrade Properties")]
+    private bool focusUpgrade;
+
+    // flag to check if vitality boost was granted to avoid duplicate boosts
+    private bool vitalityUpgradeGranted;
+
+    // flag to check if deathResist upgrade is enabled and if it is currently available
+    private bool deathResistFlag;
+    private bool deathResistEnabled;
 
     [Header("Healing Properties")]
     private bool isHealing;
@@ -125,7 +131,6 @@ public class Player : MonoBehaviour
     private int blasterLightDmg;
     private int blasterHeavyDmg;
 
-    private bool focusUpgrade;
     private bool isAttacking;
     private bool runAttackDash;
     private bool isAttackPressed;
@@ -1169,14 +1174,8 @@ public class Player : MonoBehaviour
     }
 
     private IEnumerator BeginIsHurtTimer() {
-        if (increaseHurtMaxTimeFlag) {
-            Debug.Log("Longer i-frames triggered");
-            yield return new WaitForSeconds(isHurtMaxTime + hurtMaxTimeUpgraded);
-        }
-        else { 
-            yield return new WaitForSeconds(isHurtMaxTime);
-        }
-
+        yield return new WaitForSeconds(isHurtMaxTime);
+        
         isHurt = false;
         sp.enabled = true;
         ResetInvincible();
@@ -1342,10 +1341,13 @@ public class Player : MonoBehaviour
         if (focusUpgradeLevel == 0)
             return;
         else if (focusUpgradeLevel == 1) {
+            // increase player walk speed while healing
             healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
         } 
         else if (focusUpgradeLevel == 2) {
             healWalkSpeedMultiplier = playerUpgrades.GetFocusUpgradeValues(1);
+
+            // allow player to heal health on hit in addition to more energy
             focusUpgrade = true;   
         }
     }
@@ -1354,10 +1356,19 @@ public class Player : MonoBehaviour
         if (vitalityUpgradeLevel == 0)
             return;
         else if (vitalityUpgradeLevel == 1) {
-            hurtMaxTimeUpgraded = playerUpgrades.GetVitalityUpgradeValues(1);
+            // grant a significant boost to health
+            if (!vitalityUpgradeGranted) { 
+                Debug.Log("Granting health boost");
+                vitalityUpgradeGranted = true;
+                playerStats.SetMaxHealth(UI.GetHealthMaxValue() + playerUpgrades.GetVitalityUpgradeValues(1));
+            }
         } 
         else if (vitalityUpgradeLevel == 2) {
-            hurtMaxTimeUpgraded = playerUpgrades.GetVitalityUpgradeValues(1);
+            // check to avoid granted health boost twice on leveling up to the second upgrade tier in a single playthrough
+            if (!vitalityUpgradeGranted) {
+                vitalityUpgradeGranted = true;
+                playerStats.SetMaxHealth(UI.GetHealthMaxValue() + playerUpgrades.GetVitalityUpgradeValues(1));
+            }
 
             // Enable single death resist per altar visit
             deathResistFlag = true;

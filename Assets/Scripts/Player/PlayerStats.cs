@@ -179,11 +179,11 @@ public class PlayerStats : MonoBehaviour
                 //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
                 if (upgrades["vitality"] <= 4) { 
-                    maxHealth += vitalityUpgradeStrong;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeStrong;
                 } else if (upgrades["vitality"] > 4 && upgrades["vitality"] <= 7) {
-                    maxHealth += vitalityUpgradeMid;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeMid;
                 } else if (upgrades["vitality"] > 7) {
-                    maxHealth += vitalityUpgradeWeak;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeWeak;
                 }
 
                 UI.SetMaxHealth(maxHealth);
@@ -274,6 +274,8 @@ public class PlayerStats : MonoBehaviour
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
             }
+
+            player.UpdatePlayerUpgrades();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -285,17 +287,19 @@ public class PlayerStats : MonoBehaviour
                 //Debug.Log("Vitality Level: " + upgrades["vitality"]);
 
                 if (upgrades["vitality"] <= 4) { 
-                    maxHealth += vitalityUpgradeStrong;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeStrong;
                 } else if (upgrades["vitality"] > 4 && upgrades["vitality"] <= 7) {
-                    maxHealth += vitalityUpgradeMid;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeMid;
                 } else if (upgrades["vitality"] > 7) {
-                    maxHealth += vitalityUpgradeWeak;
+                    maxHealth = UI.GetMaxHealth() + vitalityUpgradeWeak;
                 }
 
                 UI.SetMaxHealth(maxHealth);
                 UI.SetCurrentHealth(maxHealth);
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+
+                player.UpdatePlayerUpgrades();
             }
         }
         else if (index == 1 && upgrades["focus"] < levelCap) {
@@ -315,6 +319,8 @@ public class PlayerStats : MonoBehaviour
                 UI.SetEnergyToHealthMultiplier(energyToHealthMultiplier);
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+
+                player.UpdatePlayerUpgrades();
             }
         }
         else if (index == 2 && upgrades["strength"] < levelCap) {
@@ -330,6 +336,8 @@ public class PlayerStats : MonoBehaviour
 
                 SetDamageVariables();
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+
+                player.UpdatePlayerUpgrades();
             }
         }
         else if (index == 3 && upgrades["stamina"] < levelCap) {
@@ -351,6 +359,8 @@ public class PlayerStats : MonoBehaviour
                 UI.SetStaminaRecoveryValue(staminaRecoveryValue);
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+
+                player.UpdatePlayerUpgrades();
             }
         }
         else if (index == 4 && upgrades["special"] < levelCap) {
@@ -379,10 +389,16 @@ public class PlayerStats : MonoBehaviour
                 UI.SetCurrentEnergy(maxEnergy);
 
                 upgrades["playerLevel"] = upgrades["playerLevel"] + 1;
+
+                player.UpdatePlayerUpgrades();
             }
         }
+    }
 
-        player.UpdatePlayerUpgrades();
+    public void SetMaxHealth(int newValue) {
+        maxHealth = newValue;
+        UI.SetMaxHealth(maxHealth);
+        UI.SetCurrentHealth(maxHealth);
     }
 
     private void SetDamageVariables()

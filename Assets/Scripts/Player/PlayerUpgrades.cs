@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour
 {
+
     [Header("Universal Stat Threshold")]
     [SerializeField]
     private int statUpgradeThreshold1;
@@ -35,8 +36,6 @@ public class PlayerUpgrades : MonoBehaviour
     [Header("Focus Upgrade Properties")]
     [SerializeField] [Tooltip("Heal walk speed multiplier increase")]
     private float focusUpgradeValue1;
-    [SerializeField]
-    private float focusUpgradeValue2;
 
     //[SerializeField]
     private int focusUpgradeThreshold1;
@@ -45,7 +44,7 @@ public class PlayerUpgrades : MonoBehaviour
 
     [Header("Vitality Upgrade Properties")]
     [SerializeField]
-    private float vitalityUpgradeValue1;
+    private int vitalityHealthUpgradeValue;
 
     //[SerializeField]
     private int vitalityUpgradeThreshold1;
@@ -133,8 +132,6 @@ public class PlayerUpgrades : MonoBehaviour
     public float GetFocusUpgradeValues(int index) {
         if (index == 1)
             return focusUpgradeValue1;
-        else if (index == 2)
-            return focusUpgradeValue2;
         else
             return 0f;
     }
@@ -151,11 +148,11 @@ public class PlayerUpgrades : MonoBehaviour
             return 0;
     }
 
-    public float GetVitalityUpgradeValues(int index) {
+    public int GetVitalityUpgradeValues(int index) {
         if (index == 1)
-            return vitalityUpgradeValue1;
+            return vitalityHealthUpgradeValue;
         else
-            return 0f;
+            return 0;
     }
 
     // STAMINA PROPERTIES ////////////////////////////////////////////////////////////////////////////////

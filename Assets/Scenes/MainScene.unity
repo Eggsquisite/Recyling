@@ -24337,6 +24337,10 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 883881559}
+    - target: {fileID: 1949231003, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
+      propertyPath: visualDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 722439447500652325, guid: 7e34336953cfa0b408ad29a1586f3f8a, type: 3}
       propertyPath: m_Name
       value: Player

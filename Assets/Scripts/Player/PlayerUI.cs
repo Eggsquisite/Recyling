@@ -384,6 +384,10 @@ public class PlayerUI : MonoBehaviour
     public int GetCurrentHealth() {
         return (int)healthCurrentValue.value;
     }
+
+    public int GetMaxHealth() {
+        return (int)healthMaxValue.value;
+    }
     
     public int GetFutureHealth() {
         return (int)healthDestroyedValue.value;

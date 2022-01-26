@@ -267,7 +267,7 @@ MonoBehaviour:
   specialUpgradeValue2: 0.5
   focusUpgradeValue1: 0.75
   focusUpgradeValue2: 0
-  vitalityUpgradeValue1: 0.17
+  vitalityHealthUpgradeValue: 250
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0
