@@ -1237,6 +1237,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2562707792007071620, guid: ea87aef7125c8ac49b9d1718c55b1a7e, type: 3}
   m_PrefabInstance: {fileID: 142927435}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &149245830 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 941536483, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
+  m_PrefabInstance: {fileID: 1942279112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &157064006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20178,6 +20183,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2611664197077241567, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
+      propertyPath: visualizePoint
+      value: 
+      objectReference: {fileID: 149245830}
+    - target: {fileID: 2611664197077241567, guid: 83bc646d5dde14e41b72c689c96f2e75, type: 3}
       propertyPath: attackDamages.Array.data[0]
       value: 120
       objectReference: {fileID: 0}
@@ -20690,6 +20699,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 63
       objectReference: {fileID: 0}
+    - target: {fileID: 1185910160, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
+      propertyPath: UI.Array.data[0]
+      value: 
+      objectReference: {fileID: 1927270653}
     - target: {fileID: 4268789785134223636, guid: a5380fdef173d294aba25d1a37c79acd, type: 3}
       propertyPath: m_SortingOrder
       value: 28
