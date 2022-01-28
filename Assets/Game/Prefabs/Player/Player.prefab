@@ -223,8 +223,8 @@ MonoBehaviour:
   energyToHealthMultiplier: 0.9
   energyRecoveryValue: 20
   staminaRecoveryValue: 50
-  staminaRecoveryDelay: 0.33
-  swordDamage: 15
+  staminaRecoveryDelay: 1
+  swordDamage: 18
   specialAttackDmg: 55
   blasterLightDmg: 25
   blasterHeavyDmg: 55
@@ -266,7 +266,6 @@ MonoBehaviour:
   specialUpgradeValue1: 0.5
   specialUpgradeValue2: 0.5
   focusUpgradeValue1: 0.75
-  focusUpgradeValue2: 0
   vitalityHealthUpgradeValue: 250
 --- !u!114 &1949231003
 MonoBehaviour:
@@ -280,8 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf4e6999774d09459e2e11419584ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualDelay: 0.5
-  updateSpeed: 125
+  visualDelay: 0.75
+  updateSpeed: 150
   updateModifier: 10
   UI: {fileID: 0}
   baseRequiredCurrencyModifier: 5

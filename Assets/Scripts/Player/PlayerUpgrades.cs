@@ -14,7 +14,7 @@ public class PlayerUpgrades : MonoBehaviour
     [Header("Strength Upgrade Properties")]
     [SerializeField] [Tooltip("Faster attack speed multiplier")]
     private float strengthUpgradeValue1;
-    [SerializeField] [Tooltip("Player damages surrounding enemies when landing from jetpack")]
+    [SerializeField] [Tooltip("Jetpack fall speed increase to damage enemies")]
     private float strengthUpgradeValue2;
 
     //[SerializeField]
@@ -23,7 +23,7 @@ public class PlayerUpgrades : MonoBehaviour
     private int strengthUpgradeThreshold2;
 
     [Header("Special Upgrade Properties")]
-    [SerializeField] [Tooltip("Pushback increase to blaster")]
+    [SerializeField] [Tooltip("Add piercing and pushback increase to blaster")]
     private float specialUpgradeValue1; 
     [SerializeField] [Tooltip("Overall energy reduction as percentage")]
     private float specialUpgradeValue2;
