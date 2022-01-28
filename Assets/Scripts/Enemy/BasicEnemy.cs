@@ -1049,6 +1049,18 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called thru animation event: will hide health bar when enemies disappear such as when teleporting
+    /// </summary>
+    private void HideHealthBar() {
+        if (healthBarParent != null && healthFill != null) {
+            if (healthBarRoutine != null)
+                StopCoroutine(healthBarRoutine);
+
+            healthBarParent.SetActive(false);
+        }
+    }
+
     IEnumerator HealthBarVisibility(float delay) {
         if (isBoss)
             yield return null;

@@ -317,12 +317,12 @@ MonoBehaviour:
   nextWaypointDistance: 3
   repeatFollowDelay: 0.25
   attackFollowDelay: 0.25
-  stunFollowDelay: 0.5
+  stunFollowDelay: 0.25
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 1
-  maxMoveSpeed: 1.25
+  minMoveSpeed: 1.5
+  maxMoveSpeed: 1.75
   minOffset: 1
   maxOffset: 1.5
   offsetAttackStandbyRange: {x: 1, y: 0.25}

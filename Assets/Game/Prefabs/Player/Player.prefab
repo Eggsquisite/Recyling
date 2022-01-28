@@ -166,11 +166,11 @@ MonoBehaviour:
   playerSprite: {fileID: 722439448608458872}
   sp: {fileID: 5715822747553379095}
   ps: {fileID: 9044749983975138823}
-  baseWalkSpeed: 1.5
+  baseWalkSpeed: 1.75
   runSpeed: 2.5
   healWalkSpeedMultiplier: 0.25
   verticalSpeedMult: 0.33
-  horizontalSpeedMult: 1.25
+  horizontalSpeedMult: 1.1
   walkToRunTime: 0.75
   stopBuffer: 0.1
   isHurtMaxTime: 0.33

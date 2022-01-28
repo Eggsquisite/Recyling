@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1033765477905236114}
   m_RootOrder: 0
@@ -84,6 +85,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1033765477905236114}
   m_RootOrder: 1
@@ -144,6 +146,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 630793616}
   - {fileID: 1581406450}
@@ -316,12 +319,14 @@ MonoBehaviour:
   bottomBorder: {fileID: 6338490705318072716}
   min_X: 0
   max_X: 10
+  min_Y: 1
+  max_Y: 2
   camSpeed: 1.5
   canFollow: 1
   focusSize: 3
   focusDuration: 0.5
-  min_Y: 1
-  max_Y: 2
+  focusMin_Y: 0
+  focusMax_Y: 0
 --- !u!1 &4547673069174331206
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +354,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1033765477905236114}
   m_RootOrder: 2
@@ -407,6 +413,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 100, y: 100, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1033765477905236114}
   m_RootOrder: 3
@@ -465,7 +472,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1881335131366646815
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -478,6 +485,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
