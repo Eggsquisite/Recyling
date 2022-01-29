@@ -343,7 +343,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   minMoveSpeed: 1.25
-  maxMoveSpeed: 1.5
+  maxMoveSpeed: 1.25
   minOffset: 0.5
   maxOffset: 1
   offsetAttackStandbyRange: {x: 2, y: 0.25}

@@ -351,7 +351,7 @@ public class PlayerStats : MonoBehaviour
                 if (upgrades["stamina"] <= 7) {
                     maxStamina += staminaMaxUpgradeStrong;
                 } else if (upgrades["stamina"] > 7) {
-                    maxStamina += levelCap % upgrades["stamina"] * 3 + staminaMaxUpgradeWeak;
+                    maxStamina += staminaMaxUpgradeWeak;
                 }
 
                 UI.SetMaxStamina(maxStamina);
@@ -399,6 +399,11 @@ public class PlayerStats : MonoBehaviour
         maxHealth = newValue;
         UI.SetMaxHealth(maxHealth);
         UI.SetCurrentHealth(maxHealth);
+    }
+
+    public void SetStaminaRecoveryDelay(float newValue) {
+        staminaRecoveryDelay = newValue;
+        UI.SetStaminaRecoveryDelay(staminaRecoveryDelay);
     }
 
     private void SetDamageVariables()

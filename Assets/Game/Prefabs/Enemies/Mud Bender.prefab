@@ -322,10 +322,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   minMoveSpeed: 1.5
-  maxMoveSpeed: 1.75
+  maxMoveSpeed: 1.5
   minOffset: 1
-  maxOffset: 1.5
-  offsetAttackStandbyRange: {x: 1, y: 0.25}
+  maxOffset: 1.25
+  offsetAttackStandbyRange: {x: 0.25, y: 0.25}
   canPatrol: 0
   offsetPatrolDestination: {x: 0, y: 0}
   waitTime: 0
@@ -362,8 +362,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualizePoint: {fileID: 1928331373}
-  visualizeRange: 1.75
+  visualizePoint: {fileID: 2611664197826840113}
+  visualizeRange: 1.5
   hurtPushBackSpeed: 4
   attackPoints:
   - {fileID: 2611664197826840113}
@@ -375,7 +375,7 @@ MonoBehaviour:
   - 1.1
   - 1.25
   - 1.75
-  attackDamages: 96000000b4000000b4000000b4000000
+  attackDamages: 78000000960000009600000096000000
   attackPushDistances:
   - 1
   - 1.5
@@ -385,7 +385,7 @@ MonoBehaviour:
   - {fileID: 2611664197826840113}
   - {fileID: 2611664197826840113}
   attackDetectRanges:
-  - 3
+  - 1.5
   - 3
   attackAnimations:
   - enemy_attack1

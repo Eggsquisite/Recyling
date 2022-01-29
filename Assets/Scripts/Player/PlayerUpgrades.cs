@@ -52,6 +52,9 @@ public class PlayerUpgrades : MonoBehaviour
     private int vitalityUpgradeThreshold2;
 
     [Header("Stamina Upgrade Properties")]
+    [SerializeField] [Tooltip("New stamina recovery delay on upgrade")]
+    private float staminaRecoveryDelay;
+
     //[SerializeField]
     private int staminaUpgradeThreshold1;
     //[SerializeField]
@@ -163,6 +166,14 @@ public class PlayerUpgrades : MonoBehaviour
             return 1;
         else if (staminaLevel >= staminaUpgradeThreshold2)
             return 2;
+        else
+            return 0;
+    }
+
+    public float GetStaminaUpgradeValues(int index)
+    {
+        if (index == 1)
+            return staminaRecoveryDelay;
         else
             return 0;
     }

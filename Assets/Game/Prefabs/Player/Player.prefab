@@ -222,8 +222,8 @@ MonoBehaviour:
   healthRecoveryValue: 10
   energyToHealthMultiplier: 0.9
   energyRecoveryValue: 20
-  staminaRecoveryValue: 50
-  staminaRecoveryDelay: 1
+  staminaRecoveryValue: 60
+  staminaRecoveryDelay: 1.5
   swordDamage: 18
   specialAttackDmg: 55
   blasterLightDmg: 25
@@ -236,9 +236,9 @@ MonoBehaviour:
   energyToHealthFocusUpgrade: 0.03
   strengthUpgrade: 2.25
   energyFocusUpgradeWeak: 0.75
-  staminaRecoveryUpgrade: 0.1
-  staminaMaxUpgradeStrong: 35
-  staminaMaxUpgradeWeak: 5
+  staminaRecoveryUpgrade: 1.5
+  staminaMaxUpgradeStrong: 50
+  staminaMaxUpgradeWeak: 35
   specialEnergyUpgradeStrong: 35
   specialEnergyUpgradeWeak: 5
   specialAttackUpgradeStrong: 18.33
@@ -266,7 +266,8 @@ MonoBehaviour:
   specialUpgradeValue1: 0.5
   specialUpgradeValue2: 0.5
   focusUpgradeValue1: 0.75
-  vitalityHealthUpgradeValue: 250
+  vitalityHealthUpgradeValue: 150
+  staminaRecoveryDelay: 0.5
 --- !u!114 &1949231003
 MonoBehaviour:
   m_ObjectHideFlags: 0

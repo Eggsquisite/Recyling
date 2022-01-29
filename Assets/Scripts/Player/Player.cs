@@ -45,7 +45,22 @@ public class Player : MonoBehaviour
     private int vitalityUpgradeLevel;
     private int staminaUpgradeLevel;
 
+    [Header("Upgrade Properties")]
+    private bool focusUpgrade;
+
+    // flag to check if vitality boost was granted to avoid duplicate boosts
+    private bool vitalityUpgradeGranted;
+
+    // flag to set if jetpack does damage on landing or dash damages enemies in the area
     private bool jetpackDamageFlag;
+
+    // flag to check if deathResist upgrade is enabled and if it is currently available
+    private bool deathResistFlag;
+    private bool deathResistEnabled;
+
+    // flag to check if player can run without consuming stamina
+    private bool freeStaminaRunFlag;
+
 
     [Header("Movement Properties")]
     [SerializeField]
@@ -89,16 +104,6 @@ public class Player : MonoBehaviour
     private float stunDuration;
 
     private Coroutine pushBackMovementRoutine, pushBackDurationRoutine, isHurtRoutine;
-
-    [Header ("Upgrade Properties")]
-    private bool focusUpgrade;
-
-    // flag to check if vitality boost was granted to avoid duplicate boosts
-    private bool vitalityUpgradeGranted;
-
-    // flag to check if deathResist upgrade is enabled and if it is currently available
-    private bool deathResistFlag;
-    private bool deathResistEnabled;
 
     [Header("Healing Properties")]
     private bool isHealing;
@@ -984,8 +989,12 @@ public class Player : MonoBehaviour
         // called thru animation events
         if (index == -3)
             UI.SetCurrentStamina(-dodgeStamina);
-        else if (index == -2)
-            UI.StaminaWithoutDecay(-runStamina);
+        else if (index == -2) { 
+            if (freeStaminaRunFlag)
+                UI.StaminaWithoutDecay(-1);
+            else
+                UI.StaminaWithoutDecay(-runStamina);
+        }
         else if (index == -1)
             UI.SetCurrentStamina(-runAttackStamina);
         else if (index == 0)
@@ -1380,10 +1389,14 @@ public class Player : MonoBehaviour
         if (staminaUpgradeLevel == 0)
             return;
         else if (staminaUpgradeLevel == 1) {
-
+            // Set stamina recovery delay to a new, lower value
+            playerStats.SetStaminaRecoveryDelay(playerUpgrades.GetStaminaUpgradeValues(1));
         } 
         else if (staminaUpgradeLevel == 2) {
+            // Set stamina recovery delay to a new, lower value
+            playerStats.SetStaminaRecoveryDelay(playerUpgrades.GetStaminaUpgradeValues(1));
 
+            freeStaminaRunFlag = true;
         }
     }
 
