@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931913510982460526}
   m_RootOrder: 3
@@ -57,6 +58,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.12, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931913510982460526}
   m_RootOrder: 0
@@ -149,6 +151,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.19, y: -0.77, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 931913510713939686}
   - {fileID: 931913511192833155}
@@ -248,7 +251,7 @@ CapsuleCollider2D:
   m_Direction: 1
 --- !u!95 &931913510982460527
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -261,6 +264,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -328,6 +332,8 @@ MonoBehaviour:
   detectPos: {fileID: 3586005031621766619}
   detectInRange: 5
   detectIsRay: 0
+  usePathfinding: 0
+  nextWaypointDistance: 3
   repeatFollowDelay: 1.5
   attackFollowDelay: 1
   stunFollowDelay: 0.25
@@ -359,17 +365,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarParent: {fileID: 0}
   maxHealth: 80
   maxStamina: 60
   staminaRecoveryValue: 10
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
-  currencyOnDeath: 80
+  currencyOnDeath: 150
   energyGainMultiplier: 1
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 8
   tetherUnfollowRange: 12
   deleteOnDeath: 0
+  isBoss: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -394,6 +402,7 @@ MonoBehaviour:
   attackFollowDistances:
   - 0
   attackIsRay: 00
+  boss2ndPhaseAttack: 00
   minStunAttackDelay: 1
   maxStunAttackDelay: 2
   minAttackDelay: 7.5
@@ -444,6 +453,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.45, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931913510982460526}
   m_RootOrder: 1
@@ -474,6 +484,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931913510982460526}
   m_RootOrder: 2
