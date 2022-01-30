@@ -370,6 +370,7 @@ MonoBehaviour:
   healthBarParent: {fileID: 357467029018162465}
   maxHealth: 80
   maxStamina: 60
+  healthBarVisiblityDuration: 5
   staminaRecoveryValue: 10
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5

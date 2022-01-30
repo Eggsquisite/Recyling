@@ -49,6 +49,8 @@ public class BasicEnemy : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private int maxStamina;
+    [SerializeField]
+    private float healthBarVisiblityDuration;
 
     [SerializeField]
     private int staminaRecoveryValue;
@@ -984,11 +986,12 @@ public class BasicEnemy : MonoBehaviour
             if (healthBarParent != null && healthFill != null) {
                 healthBarParent.SetActive(true);
                 // updates health text and visuals
+                healthFill.UpdateHealthbarDirection();
                 healthFill.SetCurrentHealth(damageNum);
 
                 if (healthBarRoutine != null)
                     StopCoroutine(healthBarRoutine);
-                healthBarRoutine = StartCoroutine(HealthBarVisibility(5f));
+                healthBarRoutine = StartCoroutine(HealthBarVisibility(healthBarVisiblityDuration));
             } 
         }
         else if (isBoss) {
