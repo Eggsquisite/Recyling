@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 63
   m_Sprite: {fileID: -940293378655324830, guid: e448f057754142c41811acba1c2d0406, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -575,7 +575,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -29
+  m_SortingOrder: 28
   m_Sprite: {fileID: -1994814187513576561, guid: e448f057754142c41811acba1c2d0406, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 4268789785867972681}
   - component: {fileID: 4268789785867972680}
   m_Layer: 12
-  m_Name: BigSlices_Planet Two_34
+  m_Name: BeamOfLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

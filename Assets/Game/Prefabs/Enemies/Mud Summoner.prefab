@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 357467029018162465}
-  maxHealth: 80
+  maxHealth: 120
   maxStamina: 60
   healthBarVisiblityDuration: 5
   staminaRecoveryValue: 10
