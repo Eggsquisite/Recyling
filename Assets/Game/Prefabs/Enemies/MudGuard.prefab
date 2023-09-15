@@ -202,7 +202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 160
+  m_SortingOrder: -6
   m_Sprite: {fileID: 8793639957104055765, guid: 68afdf6c3bddec346b8be2c411952d70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -368,8 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 5015679225200605190}
-  maxHealth: 100
-  maxStamina: 120
+  maxHealth: 120
+  maxStamina: 80
   healthBarVisiblityDuration: 5
   staminaRecoveryValue: 15
   staminaRecoveryDelay: 3
@@ -378,7 +378,7 @@ MonoBehaviour:
   energyGainMultiplier: 1
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 6
-  tetherUnfollowRange: 10
+  tetherUnfollowRange: 15
   deleteOnDeath: 0
   isBoss: 0
   playerLayer:
@@ -427,8 +427,8 @@ MonoBehaviour:
   boss2ndPhaseAttack: 0000000000
   minStunAttackDelay: 1
   maxStunAttackDelay: 1.5
-  minAttackDelay: 2
-  maxAttackDelay: 3
+  minAttackDelay: 1.5
+  maxAttackDelay: 2
 --- !u!114 &1331519821
 MonoBehaviour:
   m_ObjectHideFlags: 0

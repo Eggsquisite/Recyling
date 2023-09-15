@@ -1080,7 +1080,7 @@ public class Player : MonoBehaviour
     private void BeginRespawn() {
         // called at the end of the Player_Death Animation
         GameManager.instance.BeginRespawn(GetCurrency());
-        UI.SetCurrency(-GetCurrency());
+        UI.SetCurrency(-(GetCurrency() / 2));
     }
 
     public void Respawn() {

@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5761460218273841755}
   m_RootOrder: 2
@@ -65,6 +66,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.78, y: 1.55, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5761460218542371027}
   - {fileID: 5761460219095272118}
@@ -83,6 +85,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -162,7 +165,7 @@ CapsuleCollider2D:
   m_Direction: 1
 --- !u!95 &5761460218273841754
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -175,6 +178,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -241,6 +245,9 @@ MonoBehaviour:
     m_Bits: 64
   detectPos: {fileID: 4618153347026935516}
   detectInRange: 4
+  detectIsRay: 0
+  usePathfinding: 0
+  nextWaypointDistance: 3
   repeatFollowDelay: 0.5
   attackFollowDelay: 1
   stunFollowDelay: 0.25
@@ -249,10 +256,17 @@ MonoBehaviour:
     m_Bits: 1536
   minMoveSpeed: 1
   maxMoveSpeed: 1.25
-  idleSpeedMult: 0.75
   minOffset: 1.5
   maxOffset: 3
   offsetAttackStandbyRange: {x: 1, y: 0.5}
+  canPatrol: 0
+  offsetPatrolDestination: {x: 0, y: 0}
+  waitTime: 0
+  canTeleport: 0
+  minTeleportDuration: 0
+  maxTeleportDuration: 0
+  minTeleportCooldown: 0
+  maxTeleportCooldown: 0
 --- !u!114 &5761460218273841752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,19 +279,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7ee4304a5c26c4bbc9fb39b96f2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherFollowRange: 8
-  tetherUnfollowRange: 12
+  healthBarParent: {fileID: 0}
   maxHealth: 300
   maxStamina: 200
+  healthBarVisiblityDuration: 0
   staminaRecoveryValue: 30
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
+  currencyOnDeath: 0
+  energyGainMultiplier: 0
+  baseDamageThresholdPercent: 0
+  tetherFollowRange: 8
+  tetherUnfollowRange: 15
+  deleteOnDeath: 0
+  isBoss: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   visualizePoint: {fileID: 5761460219095272118}
   visualizeRange: 2.5
-  detectIsRay: 0
+  hurtPushBackSpeed: 0
   attackPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
@@ -285,6 +306,9 @@ MonoBehaviour:
   - 2.5
   - 2.5
   attackDamages: 9600000096000000
+  attackPushDistances:
+  - 0
+  - 0
   attackDetectPoints:
   - {fileID: 5761460219095272118}
   - {fileID: 5761460219095272118}
@@ -299,6 +323,8 @@ MonoBehaviour:
   attackFollowDistances:
   - 1
   - 1.5
+  attackIsRay: 0101
+  boss2ndPhaseAttack: 0000
   minStunAttackDelay: 0.25
   maxStunAttackDelay: 0.75
   minAttackDelay: 2
@@ -330,6 +356,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5761460218273841755}
   m_RootOrder: 0
@@ -345,6 +372,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -411,6 +439,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5761460218273841755}
   m_RootOrder: 1

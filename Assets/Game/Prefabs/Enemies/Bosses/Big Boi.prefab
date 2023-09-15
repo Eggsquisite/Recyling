@@ -522,8 +522,8 @@ MonoBehaviour:
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 0.75
-  maxMoveSpeed: 1
+  minMoveSpeed: 1.25
+  maxMoveSpeed: 1.25
   minOffset: 1.5
   maxOffset: 2
   offsetAttackStandbyRange: {x: 0.5, y: 0.5}
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthThresholdPercent: 0.75
-  animSpeedMult: 1.1
-  moveSpeedMult: 1.25
+  animSpeedMult: 1.25
+  moveSpeedMult: 1.75
   attackDelayReduction: 0.15
 --- !u!114 &422593186431581017
 MonoBehaviour:

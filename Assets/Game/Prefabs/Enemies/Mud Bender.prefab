@@ -181,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 42
+  m_SortingOrder: 125
   m_Sprite: {fileID: -8066589419829931963, guid: 0eed3d627fdd679419d4858060e8af6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -321,8 +321,8 @@ MonoBehaviour:
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 1.5
-  maxMoveSpeed: 1.5
+  minMoveSpeed: 1.75
+  maxMoveSpeed: 1.75
   minOffset: 1
   maxOffset: 1.25
   offsetAttackStandbyRange: {x: 0.25, y: 0.25}
@@ -347,17 +347,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 655177625065556426}
-  maxHealth: 75
-  maxStamina: 120
+  maxHealth: 90
+  maxStamina: 80
   healthBarVisiblityDuration: 5
-  staminaRecoveryValue: 15
+  staminaRecoveryValue: 12
   staminaRecoveryDelay: 3
   staminaRecoverySpeed: 0.5
   currencyOnDeath: 80
   energyGainMultiplier: 1
   baseDamageThresholdPercent: 0.1
   tetherFollowRange: 6
-  tetherUnfollowRange: 8
+  tetherUnfollowRange: 10
   deleteOnDeath: 0
   isBoss: 0
   playerLayer:
@@ -401,7 +401,7 @@ MonoBehaviour:
   minStunAttackDelay: 0.5
   maxStunAttackDelay: 1.5
   minAttackDelay: 1.5
-  maxAttackDelay: 2.5
+  maxAttackDelay: 2
 --- !u!114 &185922768608146209
 MonoBehaviour:
   m_ObjectHideFlags: 0

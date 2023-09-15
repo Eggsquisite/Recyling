@@ -225,8 +225,8 @@ MonoBehaviour:
   borderLayer:
     serializedVersion: 2
     m_Bits: 512
-  minMoveSpeed: 0.5
-  maxMoveSpeed: 0.75
+  minMoveSpeed: 1
+  maxMoveSpeed: 1
   minOffset: 0.5
   maxOffset: 0.75
   offsetAttackStandbyRange: {x: 1, y: 0.25}
@@ -261,7 +261,7 @@ MonoBehaviour:
   energyGainMultiplier: 0.25
   baseDamageThresholdPercent: 0
   tetherFollowRange: 8
-  tetherUnfollowRange: 12
+  tetherUnfollowRange: 15
   deleteOnDeath: 1
   isBoss: 0
   playerLayer:

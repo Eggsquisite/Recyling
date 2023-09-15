@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
                 EnemyManager.Instance.ResetAllEnemies();
                 AreaManager.instance.LoadArea(activeSave.areaToRespawnIndex, true);
                 Player.instance.transform.position = activeSave.playerRespawnPosition;
-                Player.instance.LoadCurrency(0);
+                Player.instance.LoadCurrency(activeSave.playerCurrency);
 
                 Player.instance.RefreshResources();
                 activeSave.playerIsDead = false;

@@ -166,10 +166,10 @@ MonoBehaviour:
   playerSprite: {fileID: 722439448608458872}
   sp: {fileID: 5715822747553379095}
   ps: {fileID: 9044749983975138823}
-  baseWalkSpeed: 1.75
-  runSpeed: 2.5
-  healWalkSpeedMultiplier: 0.25
-  verticalSpeedMult: 0.33
+  baseWalkSpeed: 2
+  runSpeed: 3
+  healWalkSpeedMultiplier: 0.4
+  verticalSpeedMult: 0.7
   horizontalSpeedMult: 1.1
   walkToRunTime: 0.75
   stopBuffer: 0.1
@@ -199,10 +199,10 @@ MonoBehaviour:
   superAttackStamina2: 200
   blasterLightStamina: 20
   blasterHeavyStamina: 75
-  blasterLightEnergy: 150
-  blasterHeavyEnergy: 225
-  superAttackEnergy1: 200
-  superAttackEnergy2: 250
+  blasterLightEnergy: 75
+  blasterHeavyEnergy: 200
+  superAttackEnergy1: 150
+  superAttackEnergy2: 200
 --- !u!114 &2311640890247761020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   energyToHealthMultiplier: 0.9
   energyRecoveryValue: 20
   staminaRecoveryValue: 60
-  staminaRecoveryDelay: 1.5
+  staminaRecoveryDelay: 0.75
   swordDamage: 18
   specialAttackDmg: 55
   blasterLightDmg: 25
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualDelay: 0.75
-  updateSpeed: 150
+  updateSpeed: 175
   updateModifier: 10
   UI: {fileID: 0}
   baseRequiredCurrencyModifier: 5
