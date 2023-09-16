@@ -82,6 +82,12 @@ public class PlayerInput : MonoBehaviour
                 Debug.Log("Deleting Save");
                 SaveManager.instance.DeleteSaveData();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Debug.Log("Quit Game");
+                Application.Quit();
+            }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////
