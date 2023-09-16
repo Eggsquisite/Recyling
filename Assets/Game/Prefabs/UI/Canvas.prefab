@@ -295,14 +295,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00035, y: 1.00035, z: 1.00035}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8979376575552909939}
+  m_Children: []
   m_Father: {fileID: 4960649387091035666}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: -37.5}
+  m_AnchoredPosition: {x: -155, y: -37.5}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &206755138
@@ -333,9 +332,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Controls:\nM1 -\t\tAttack \nM2 - \t\tSpecial Attack\nQ - \t\tSwitch Weapons\nE
-    -\t\tInteract\nSpacebar - \tDodge\nLeft Ctrl - \tHold to Heal\nLeft Shift - \tHold
-    to Run\nEsc - \t\tQuit Game"
+  m_text: "Controls:\nWASD -\tWalk\nLeft Shift - \tHold to Run\nE -\t\tInteract\nEsc
+    - \t\tQuit Game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
   m_sharedMaterial: {fileID: -1597413469492962879, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
@@ -398,7 +396,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -199.0961, y: 0, z: 0, w: -275.08255}
+  m_margin: {x: -199.0961, y: 0, z: 0, w: -150.3039}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5357,15 +5355,15 @@ RectTransform:
   m_GameObject: {fileID: 3610992188333464814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.00035, y: 1.00035, z: 1.00035}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 206755136}
-  m_RootOrder: 0
+  m_Father: {fileID: 4960649387091035666}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -596.8349, y: -37.5}
+  m_AnchoredPosition: {x: -930.27124, y: -37.5}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7354695621964035187
@@ -5396,7 +5394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nCheats:\nY - \tGive money\nP-\tDelete Save\n"
+  m_text: "\nCheats:\nY - \tGive money\nP -\tDelete Save\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
   m_sharedMaterial: {fileID: -1597413469492962879, guid: dac1b9e307c212d48a93d3d21195e72c, type: 2}
@@ -5506,6 +5504,7 @@ RectTransform:
   - {fileID: 1715202718}
   - {fileID: 618974425}
   - {fileID: 206755136}
+  - {fileID: 8979376575552909939}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
